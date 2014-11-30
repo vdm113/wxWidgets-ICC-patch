@@ -46,6 +46,11 @@ DecorationList::DecorationList() : currentIndicator(0), currentValue(1), current
 
 DecorationList::~DecorationList() {
 	Decoration *deco = root;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (deco) {
 		Decoration *decoNext = deco->next;
 		delete deco;
@@ -77,6 +82,11 @@ Decoration *DecorationList::Create(int indicator, int length) {
 	Decoration *decoPrev = 0;
 	Decoration *deco = root;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (deco && (deco->indicator < indicator)) {
 		decoPrev = deco;
 		deco = deco->next;
@@ -99,6 +109,11 @@ void DecorationList::Delete(int indicator) {
 			root = root->next;
 		} else {
 			Decoration *deco=root;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			while (deco->next && !decoToDelete) {
 				if (deco->next && deco->next->indicator == indicator) {
 					decoToDelete = deco->next;
@@ -171,6 +186,11 @@ void DecorationList::DeleteRange(int position, int deleteLength) {
 
 void DecorationList::DeleteAnyEmpty() {
 	Decoration *deco = root;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (deco) {
 		if ((lengthDocument == 0) || deco->Empty()) {
 			Delete(deco->indicator);

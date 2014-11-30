@@ -208,6 +208,11 @@ static void FoldEiffelDocKeyWords(unsigned int startPos, int length, int /* init
 		if ((stylePrev != SCE_EIFFEL_WORD) && (style == SCE_EIFFEL_WORD)) {
 			char s[20];
 			unsigned int j = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			while ((j < (sizeof(s) - 1)) && (iswordchar(styler[i + j]))) {
 				s[j] = styler[i + j];
 				j++;

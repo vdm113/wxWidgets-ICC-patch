@@ -286,6 +286,11 @@ bool wxGDIImage::RemoveHandler(const wxString& name)
 wxGDIImageHandler *wxGDIImage::FindHandler(const wxString& name)
 {
     wxGDIImageHandlerList::compatibility_iterator node = ms_handlers.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( node )
     {
         wxGDIImageHandler *handler = node->GetData();
@@ -301,6 +306,11 @@ wxGDIImageHandler *wxGDIImage::FindHandler(const wxString& extension,
                                            long type)
 {
     wxGDIImageHandlerList::compatibility_iterator node = ms_handlers.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( node )
     {
         wxGDIImageHandler *handler = node->GetData();
@@ -318,6 +328,11 @@ wxGDIImageHandler *wxGDIImage::FindHandler(const wxString& extension,
 wxGDIImageHandler *wxGDIImage::FindHandler(long type)
 {
     wxGDIImageHandlerList::compatibility_iterator node = ms_handlers.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( node )
     {
         wxGDIImageHandler *handler = node->GetData();
@@ -333,6 +348,11 @@ wxGDIImageHandler *wxGDIImage::FindHandler(long type)
 void wxGDIImage::CleanUpHandlers()
 {
     wxGDIImageHandlerList::compatibility_iterator node = ms_handlers.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( node )
     {
         wxGDIImageHandler *handler = node->GetData();

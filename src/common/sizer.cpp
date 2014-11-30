@@ -683,6 +683,11 @@ bool wxSizer::Remove( wxSizer *sizer )
     wxASSERT_MSG( sizer, wxT("Removing NULL sizer") );
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -721,6 +726,11 @@ bool wxSizer::Detach( wxSizer *sizer )
     wxASSERT_MSG( sizer, wxT("Detaching NULL sizer") );
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -743,6 +753,11 @@ bool wxSizer::Detach( wxWindow *window )
     wxASSERT_MSG( window, wxT("Detaching NULL window") );
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -785,6 +800,11 @@ bool wxSizer::Replace( wxWindow *oldwin, wxWindow *newwin, bool recursive )
     wxASSERT_MSG( newwin, wxT("Replacing with NULL window") );
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -813,6 +833,11 @@ bool wxSizer::Replace( wxSizer *oldsz, wxSizer *newsz, bool recursive )
     wxASSERT_MSG( newsz, wxT("Replacing with NULL sizer") );
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -858,6 +883,11 @@ void wxSizer::Clear( bool delete_windows )
 {
     // First clear the ContainingSizer pointers
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -878,6 +908,11 @@ void wxSizer::Clear( bool delete_windows )
 void wxSizer::DeleteWindows()
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -1049,6 +1084,11 @@ bool wxSizer::DoSetItemMinSize( wxWindow *window, int width, int height )
     // Is it our immediate child?
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -1064,6 +1104,11 @@ bool wxSizer::DoSetItemMinSize( wxWindow *window, int width, int height )
     // No?  Search any subsizers we own then
 
     node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -1087,6 +1132,11 @@ bool wxSizer::DoSetItemMinSize( wxSizer *sizer, int width, int height )
     // Is it our immediate child?
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -1102,6 +1152,11 @@ bool wxSizer::DoSetItemMinSize( wxSizer *sizer, int width, int height )
     // No?  Search any subsizers we own then
 
     node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -1145,6 +1200,11 @@ wxSizerItem* wxSizer::GetItem( wxWindow *window, bool recursive )
     wxASSERT_MSG( window, wxT("GetItem for NULL window") );
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -1171,6 +1231,11 @@ wxSizerItem* wxSizer::GetItem( wxSizer *sizer, bool recursive )
     wxASSERT_MSG( sizer, wxT("GetItem for NULL sizer") );
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxSizerItem *item = node->GetData();
@@ -1207,6 +1272,11 @@ wxSizerItem* wxSizer::GetItemById( int id, bool recursive )
     // and NOT the id of a window if the item is a window.
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -1270,6 +1340,11 @@ bool wxSizer::Show( size_t index, bool show)
 void wxSizer::ShowItems( bool show )
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         node->GetData()->Show( show );
@@ -1280,6 +1355,11 @@ void wxSizer::ShowItems( bool show )
 bool wxSizer::AreAnyItemsShown() const
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         if ( node->GetData()->IsShown() )
@@ -1293,6 +1373,11 @@ bool wxSizer::AreAnyItemsShown() const
 bool wxSizer::IsShown( wxWindow *window ) const
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -1312,6 +1397,11 @@ bool wxSizer::IsShown( wxWindow *window ) const
 bool wxSizer::IsShown( wxSizer *sizer ) const
 {
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -1479,6 +1569,11 @@ wxSize wxGridSizer::CalcMin()
     int h = 0;
 
     wxSizerItemList::compatibility_iterator node = m_children.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -1494,6 +1589,11 @@ wxSize wxGridSizer::CalcMin()
     // a chance to adjust to that (we give it width component)
     node = m_children.GetFirst();
     bool didChangeMinSize = false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxSizerItem     *item = node->GetData();
@@ -1507,6 +1607,11 @@ wxSize wxGridSizer::CalcMin()
     {
         node = m_children.GetFirst();
         w = h = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (node)
         {
             wxSizerItem     *item = node->GetData();

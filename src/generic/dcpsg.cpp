@@ -478,7 +478,17 @@ void wxPostScriptDCImpl::DoDrawArc (wxCoord x1, wxCoord y1, wxCoord x2, wxCoord 
                 wxRadToDeg(-atan2(double(y2-yc), double(x2-xc)));
     }
     while (alpha1 <= 0)   alpha1 += 360;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (alpha2 <= 0)   alpha2 += 360; // adjust angles to be between
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (alpha1 > 360)  alpha1 -= 360; // 0 and 360 degree
     while (alpha2 > 360)  alpha2 -= 360;
 
@@ -1658,6 +1668,11 @@ void wxPostScriptDCImpl::DoDrawSpline( const wxPointList *points )
     CalcBoundingBox( (wxCoord)x3, (wxCoord)y3 );
 
     node = node->GetNext();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         q = node->GetData();
@@ -2317,6 +2332,11 @@ void wxPostScriptDCImpl::DoGetTextExtent(const wxString& string,
             char line[256];
             int ascii,cWidth;
             /* read in the file and parse it */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while(fgets(line,sizeof(line),afmFile)!=NULL)
             {
                 /* A.) check for descender definition */

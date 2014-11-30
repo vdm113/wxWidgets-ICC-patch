@@ -96,6 +96,11 @@ printruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 
     (void) buf;
     printf("%d m(", row++);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (runs < erun) {
 	if (runlength <= 0) {
 	    colormode ^= 1;
@@ -117,6 +122,11 @@ printruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 	 * characters (i.e., no escape codes or octal chars).
 	 */
 	l = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (runlength > 6) {	/* Run is greater than six... */
 	    if (runlength >= WBarr[l].width) {
 		if (n == 0) {
@@ -128,9 +138,19 @@ printruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 	    } else
 		l++;
 	}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (runlength > 0 && runlength <= 6) {
 	    uint32 bitsleft = 6;
 	    int t = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	    while (bitsleft) {
 		if (runlength <= bitsleft) {
 		    if (colormode)
@@ -293,6 +313,11 @@ findPage(TIFF* tif, uint16 pageNumber)
     uint16 pn = (uint16) -1;
     uint16 ptotal = (uint16) -1;
     if (GetPageNumber(tif)) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (pn != (pageNumber-1) && TIFFReadDirectory(tif) && GetPageNumber(tif))
 	    ;
 	return (pn == (pageNumber-1));
@@ -355,6 +380,11 @@ main(int argc, char** argv)
     int c, dowarnings = 0;		/* if 1, enable library warnings */
     TIFF* tif;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ((c = getopt(argc, argv, "l:p:x:y:W:H:wS")) != -1)
 	switch (c) {
 	case 'H':		/* page height */

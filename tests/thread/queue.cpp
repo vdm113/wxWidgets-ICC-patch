@@ -197,6 +197,11 @@ void QueueTestCase::TestReceiveTimeout()
 void *QueueTestCase::MyThread::Entry()
 {
     int messagesReceived = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( messagesReceived < m_maxMsgCount )
     {
         wxMessageQueueError result;

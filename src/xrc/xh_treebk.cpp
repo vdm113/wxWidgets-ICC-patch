@@ -96,6 +96,11 @@ wxObject *wxTreebookXmlHandler::DoCreateResource()
             if ( m_tbk->GetPage(i) )
             {
                 wxXmlNode *child = node->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while (child)
                 {
                     if (child->GetName() == "expanded" && child->GetNodeContent() == "1")

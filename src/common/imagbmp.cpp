@@ -1094,6 +1094,11 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
                 column++;
             }
         }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( (linepos < linesize) && (comp != 1) && (comp != 2) )
         {
             ++linepos;

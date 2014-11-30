@@ -298,6 +298,11 @@ unsigned int wxChoice::GetCount() const
     if (!gtk_list_store_iter_is_valid(GTK_LIST_STORE(model), &iter ))
         return 0;
     unsigned int ret = 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (gtk_tree_model_iter_next( model, &iter ))
         ret++;
     return ret;

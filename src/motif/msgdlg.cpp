@@ -249,6 +249,11 @@ int wxMessageDialog::ShowModal()
     // local message loop
     XtAppContext context = XtWidgetToApplicationContext(wParent);
     XEvent event;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( m_result == -1 )
     {
         XtAppNextEvent(context, &event);

@@ -930,6 +930,11 @@ parserInit(XML_Parser parser, const XML_Char *encodingName)
 static void FASTCALL
 moveToFreeBindingList(XML_Parser parser, BINDING *bindings)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (bindings) {
     BINDING *b = bindings;
     bindings = bindings->nextTagBinding;
@@ -947,6 +952,11 @@ XML_ParserReset(XML_Parser parser, const XML_Char *encodingName)
     return XML_FALSE;
   /* move tagStack to freeTagList */
   tStk = tagStack;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (tStk) {
     TAG *tag = tStk;
     tStk = tStk->parent;
@@ -957,6 +967,11 @@ XML_ParserReset(XML_Parser parser, const XML_Char *encodingName)
   }
   /* move openInternalEntities to freeInternalEntities */
   openEntityList = openInternalEntities;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (openEntityList) {
     OPEN_INTERNAL_ENTITY *openEntity = openEntityList;
     openEntityList = openEntity->next;
@@ -2530,6 +2545,11 @@ doContent(XML_Parser parser,
         if (noElmHandlers && defaultHandler)
           reportDefault(parser, enc, s, next);
         poolClear(&tempPool);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (bindings) {
           BINDING *b = bindings;
           if (endNamespaceDeclHandler)
@@ -2585,6 +2605,11 @@ doContent(XML_Parser parser,
         }
         else if (defaultHandler)
           reportDefault(parser, enc, s, next);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (tag->bindings) {
           BINDING *b = tag->bindings;
           if (endNamespaceDeclHandler)
@@ -3014,6 +3039,11 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
             return XML_ERROR_NO_MEMORY;
           uriHash = CHAR_HASH(uriHash, c);
         }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (*s++ != XML_T(ASCII_COLON))
           ;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -6319,6 +6349,11 @@ lookup(XML_Parser parser, HASH_TABLE *table, KEY name, size_t createSize)
     unsigned long mask = (unsigned long)table->size - 1;
     unsigned char step = 0;
     i = h & mask;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (table->v[i]) {
       if (keyeq(name, table->v[i]->name))
         return table->v[i];
@@ -6349,6 +6384,11 @@ lookup(XML_Parser parser, HASH_TABLE *table, KEY name, size_t createSize)
           unsigned long newHash = hash(parser, table->v[i]->name);
           size_t j = newHash & newMask;
           step = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
           while (newV[j]) {
             if (!step)
               step = PROBE_STEP(newHash, newMask, newPower);
@@ -6362,6 +6402,11 @@ lookup(XML_Parser parser, HASH_TABLE *table, KEY name, size_t createSize)
       table->size = newSize;
       i = h & newMask;
       step = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while (table->v[i]) {
         if (!step)
           step = PROBE_STEP(h, newMask, newPower);
@@ -6428,6 +6473,11 @@ hashTableIterInit(HASH_TABLE_ITER *iter, const HASH_TABLE *table)
 static NAMED * FASTCALL
 hashTableIterNext(HASH_TABLE_ITER *iter)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (iter->p != iter->end) {
     NAMED *tem = *(iter->p)++;
     if (tem)
@@ -6454,6 +6504,11 @@ poolClear(STRING_POOL *pool)
     pool->freeBlocks = pool->blocks;
   else {
     BLOCK *p = pool->blocks;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (p) {
       BLOCK *tem = p->next;
       p->next = pool->freeBlocks;
@@ -6471,12 +6526,22 @@ static void FASTCALL
 poolDestroy(STRING_POOL *pool)
 {
   BLOCK *p = pool->blocks;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (p) {
     BLOCK *tem = p->next;
     pool->mem->free_fcn(p);
     p = tem;
   }
   p = pool->freeBlocks;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (p) {
     BLOCK *tem = p->next;
     pool->mem->free_fcn(p);

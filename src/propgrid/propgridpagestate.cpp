@@ -451,6 +451,11 @@ wxPGProperty* wxPropertyGridPageState::GetLastItem( int flags )
 
     // First, get last child of last parent
     wxPGProperty* pwc = (wxPGProperty*)m_properties->Last();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( pwc->GetChildCount() &&
             wxPG_ITERATOR_PARENTEXMASK_TEST(pwc, parentExMask) )
         pwc = (wxPGProperty*) pwc->Last();
@@ -939,6 +944,11 @@ void wxPropertyGridPageState::PropagateColSizeDec( int column,
     wxASSERT( dir == 1 || dir == -1 );
 
     int col = column;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(decrease > 0 && col >= 0 && col < (int)m_colWidths.size())
     {
         const int origWidth = m_colWidths[col];
@@ -955,6 +965,11 @@ void wxPropertyGridPageState::PropagateColSizeDec( int column,
     // on the requested side we try to do this on the other side.
     col = column;
     dir *= -1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(decrease > 0 && col >= 0 && col < (int)m_colWidths.size())
     {
         const int origWidth = m_colWidths[col];
@@ -1315,6 +1330,11 @@ void wxPropertyGridPageState::DoSetColumnProportion( unsigned int column,
     if ( proportion < 1 )
         proportion = 1;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( m_columnProportions.size() <= column )
         m_columnProportions.push_back(1);
 
@@ -1328,6 +1348,11 @@ int wxPropertyGridPageState::HitTestH( int x, int* pSplitterHit, int* pSplitterH
     int col = -1;
     int prevSplitter = -1;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( x > cx )
     {
         col++;

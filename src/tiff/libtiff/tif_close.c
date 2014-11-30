@@ -66,6 +66,11 @@ TIFFCleanup(TIFF* tif)
 	/*
          * Clean up client info links.
          */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while( tif->tif_clientinfo )
 	{
 		TIFFClientInfoLink *link = tif->tif_clientinfo;

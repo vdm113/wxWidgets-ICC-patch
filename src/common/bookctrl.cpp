@@ -328,6 +328,11 @@ void wxBookCtrlBase::OnHelp(wxHelpEvent& event)
     // if the event object == this because the book control can have other
     // subcontrols inside it (e.g. wxSpinButton in case of a notebook in wxUniv)
     wxWindow *source = wxStaticCast(event.GetEventObject(), wxWindow);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( source && source != this && source->GetParent() != this )
     {
         source = source->GetParent();

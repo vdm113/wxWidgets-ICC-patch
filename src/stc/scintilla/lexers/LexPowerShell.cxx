@@ -66,6 +66,11 @@ static void ColourisePowerShellDoc(unsigned int startPos, int length, int initSt
 			}
 		} else if (sc.state == SCE_POWERSHELL_COMMENTSTREAM) {
 			if(sc.atLineStart) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while(IsASpaceOrTab(sc.ch)) {
 					sc.Forward();
 				}
@@ -218,6 +223,11 @@ static void FoldPowerShellDoc(unsigned int startPos, int length, int initStyle,
 		} else if (foldComment && style == SCE_POWERSHELL_COMMENT) {
 			if (ch == '#') {
 				unsigned int j = i + 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while ((j < endPos) && IsASpaceOrTab(styler.SafeGetCharAt(j))) {
 					j++;
 				}

@@ -50,6 +50,11 @@ static wxString LINKAGEMODE HtmlizeLinebreaks(const wxString& str)
         switch ( (*i).GetValue() )
         {
             case '<':
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while ( i != end && *i != '>' )
                 {
                     out << *i++;

@@ -88,6 +88,11 @@ wxHtmlImageMapAreaCell::wxHtmlImageMapAreaCell( wxHtmlImageMapAreaCell::celltype
     wxString x = incoords, y;
 
     type = t;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ((i = x.Find( ',' )) != wxNOT_FOUND)
     {
         coords.Add( (int)(pixel_scale * (double)wxAtoi( x.Left( i ).c_str())) );
@@ -158,12 +163,22 @@ wxHtmlLinkInfo *wxHtmlImageMapAreaCell::GetLink( int x, int y ) const
                      }
                  }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                  while (pointer < end)
                  {
                      yval = coords[pointer];
                      pointer += 2;
                      if (yval >= wherey)
                      {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                          while ((pointer < end) && (coords[pointer] >= wherey))
                          {
                              pointer += 2;
@@ -186,6 +201,11 @@ wxHtmlLinkInfo *wxHtmlImageMapAreaCell::GetLink( int x, int y ) const
                      }
                      else
                      {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                          while ((pointer < end) && (coords[pointer] < wherey))
                          {
                              pointer += 2;
@@ -638,6 +658,11 @@ wxHtmlLinkInfo *wxHtmlImageCell::GetLink( int x, int y ) const
     {
         wxHtmlContainerCell *p, *op;
         op = p = GetParent();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (p)
         {
             op = p;

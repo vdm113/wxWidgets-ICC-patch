@@ -56,6 +56,11 @@ static	void cpTags(TIFF* in, TIFF* out);
 static int
 checkcmap(int n, uint16* r, uint16* g, uint16* b)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (n-- > 0)
 	    if (*r++ >= 256 || *g++ >= 256 || *b++ >= 256)
 		return (16);
@@ -90,6 +95,11 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char* optarg;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while ((c = getopt(argc, argv, "C:c:p:r:")) != -1)
 		switch (c) {
 		case 'C':		/* force colormap interpretation */
@@ -278,6 +288,11 @@ processCompressOptions(char* opt)
 		char* cp = strchr(opt, ':');
 
                 compression = COMPRESSION_JPEG;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while( cp )
                 {
                     if (isdigit((int)cp[1]))

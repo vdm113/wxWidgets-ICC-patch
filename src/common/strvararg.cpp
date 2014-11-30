@@ -163,6 +163,11 @@ public:
         // this is reset to NULL if we modify the format string
         m_fmtOrig = format;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( *format )
         {
             if ( CopyFmtChar(*format++) == wxT('%') )
@@ -181,6 +186,11 @@ public:
 #endif // wxUSE_PRINTF_POS_PARAMS
 
                 // skip any flags
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while ( IsFlagChar(*format) )
                     CopyFmtChar(*format++);
 
@@ -401,6 +411,11 @@ private:
 
     void SkipDigits(const CharType **ptpc)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( **ptpc >= wxT('0') && **ptpc <= wxT('9') )
             CopyFmtChar(*(*ptpc)++);
     }

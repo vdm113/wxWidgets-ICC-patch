@@ -506,6 +506,11 @@ BreakFinder::BreakFinder(LineLayout *ll_, int lineStart_, int lineEnd_, int posL
 	if (xStart > 0.0f)
 		nextBreak = ll->FindBefore(xStart, lineStart, lineEnd);
 	// Now back to a style break
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while ((nextBreak > lineStart) && (ll->styles[nextBreak] == ll->styles[nextBreak - 1])) {
 		nextBreak--;
 	}
@@ -541,6 +546,11 @@ BreakFinder::~BreakFinder() {
 TextSegment BreakFinder::Next() {
 	if (subBreak == -1) {
 		int prev = nextBreak;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (nextBreak < lineEnd) {
 			int charWidth = 1;
 			if (encodingFamily == efUnicode)
@@ -551,6 +561,11 @@ TextSegment BreakFinder::Next() {
 			if (((nextBreak > 0) && (ll->styles[nextBreak] != ll->styles[nextBreak - 1])) ||
 					repr ||
 					(nextBreak == saeNext)) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while ((nextBreak >= saeNext) && (saeNext < lineEnd)) {
 					saeCurrentPos++;
 					saeNext = (saeCurrentPos < selAndEdge.size()) ? selAndEdge[saeCurrentPos] : lineEnd;
@@ -737,6 +752,11 @@ void PositionCache::MeasureWidths(Surface *surface, ViewStyle &vstyle, unsigned 
 		// Break up into segments
 		unsigned int startSegment = 0;
 		XYPOSITION xStartSegment = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (startSegment < len) {
 			unsigned int lenSegment = pdoc->SafeSegment(s + startSegment, len - startSegment, BreakFinder::lengthEachSubdivision);
 			surface->MeasureWidths(vstyle.styles[styleNumber].font, s + startSegment, lenSegment, positions + startSegment);

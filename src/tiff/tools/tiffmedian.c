@@ -133,6 +133,11 @@ main(int argc, char* argv[])
 	extern char* optarg;
 
 	num_colors = MAX_CMAP_SIZE;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while ((c = getopt(argc, argv, "c:C:r:f")) != -1)
 		switch (c) {
 		case 'c':		/* compression scheme */
@@ -220,6 +225,11 @@ main(int argc, char* argv[])
 	 * STEP 3: continually subdivide boxes until no more free
 	 * boxes remain or until all colors assigned.
 	 */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (freeboxes != NULL) {
 		ptr = largest_box();
 		if (ptr != NULL)

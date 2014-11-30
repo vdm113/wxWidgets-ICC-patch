@@ -77,6 +77,11 @@
 // helper function of cMB2WC(): check if n bytes at this location are all NUL
 static bool NotAllNULs(const char *p, size_t n)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( n && *p++ == '\0' )
         n--;
 
@@ -273,6 +278,11 @@ wxMBConv::ToWChar(wchar_t *dst, size_t dstLen,
         // advance the input pointer past the end of this chunk: notice that we
         // will always stop before srcEnd because we know that the chunk is
         // always properly NUL-terminated
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( NotAllNULs(src, nulLen) )
         {
             // notice that we must skip over multiple bytes here as we suppose
@@ -682,6 +692,11 @@ size_t wxMBConvUTF7::ToWChar(wchar_t *dst, size_t dstLen,
 
     const char * const srcEnd = src + srcLen;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( (src < srcEnd) && (!dst || (len < dstLen)) )
     {
         const unsigned char cc = *src++;
@@ -862,6 +877,11 @@ size_t wxMBConvUTF7::FromWChar(char *dst, size_t dstLen,
     size_t len = 0;
 
     const wchar_t * const srcEnd = src + srcLen;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( src < srcEnd && (!dst || len < dstLen) )
     {
         wchar_t cc = *src++;
@@ -1279,6 +1299,11 @@ size_t wxMBConvUTF8::ToWChar(wchar_t *buf, size_t n,
     // The length can be either given explicitly or computed implicitly for the
     // NUL-terminated strings.
     const bool isNulTerminated = srcLen == wxNO_LEN;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ((isNulTerminated ? *psz : srcLen--) && ((!buf) || (len < n)))
     {
         const char *opsz = psz;
@@ -1321,6 +1346,11 @@ size_t wxMBConvUTF8::ToWChar(wchar_t *buf, size_t n,
             {
                 unsigned ocnt = cnt - 1;
                 wxUint32 res = cc & (0x3f >> cnt);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while (cnt--)
                 {
                     if (!isNulTerminated && !srcLen)
@@ -1385,6 +1415,11 @@ size_t wxMBConvUTF8::ToWChar(wchar_t *buf, size_t n,
             {
                 if (m_options & MAP_INVALID_UTF8_TO_PUA)
                 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     while (opsz < psz && (!buf || len < n))
                     {
 #ifdef WC_UTF16
@@ -1405,6 +1440,11 @@ size_t wxMBConvUTF8::ToWChar(wchar_t *buf, size_t n,
                 }
                 else if (m_options & MAP_INVALID_UTF8_TO_OCTAL)
                 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     while (opsz < psz && (!buf || len < n))
                     {
                         if ( buf && len + 3 < n )
@@ -1457,6 +1497,11 @@ size_t wxMBConvUTF8::FromWChar(char *buf, size_t n,
     // The length can be either given explicitly or computed implicitly for the
     // NUL-terminated strings.
     const bool isNulTerminated = srcLen == wxNO_LEN;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ((isNulTerminated ? *psz : srcLen--) && ((!buf) || (len < n)))
     {
         wxUint32 cc;
@@ -1523,6 +1568,11 @@ size_t wxMBConvUTF8::FromWChar(char *buf, size_t n,
                 if (buf)
                 {
                     *buf++ = (char) ((-128 >> cnt) | ((cc >> (cnt * 6)) & (0x3f >> cnt)));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     while (cnt--)
                         *buf++ = (char) (0x80 | ((cc >> (cnt * 6)) & 0x3f));
                 }

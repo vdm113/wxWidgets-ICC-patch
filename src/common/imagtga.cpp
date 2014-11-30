@@ -127,6 +127,11 @@ int DecodeRLE(unsigned char* imageData, unsigned long imageSize,
     unsigned int length;
     unsigned char buf[4];
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (index < imageSize)
     {
         int ch = stream.GetC();

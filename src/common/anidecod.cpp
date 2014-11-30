@@ -145,6 +145,11 @@ bool wxANIDecoder::DoCanRead(wxInputStream& stream) const
         return false;
 
     // we have a riff file:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( stream.IsOk() )
     {
         if ( FCC1 == anih32 )
@@ -253,6 +258,11 @@ bool wxANIDecoder::Load( wxInputStream& stream )
     m_info.Clear();
 
     // we have a riff file:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( !stream.Eof() )
     {
         // we always have a data size:

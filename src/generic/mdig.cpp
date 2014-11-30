@@ -137,6 +137,11 @@ bool wxGenericMDIParentFrame::CloseAll()
         return true; // none of the windows left
 
     wxBookCtrlBase * const book = client->GetBookCtrl();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( book->GetPageCount() )
     {
         wxGenericMDIChildFrame * const child = client->GetChild(0);

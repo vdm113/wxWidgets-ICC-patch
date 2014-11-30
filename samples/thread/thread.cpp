@@ -651,6 +651,11 @@ void MyFrame::OnResumeThread(wxCommandEvent& WXUNUSED(event) )
 
     // resume first suspended thread
     size_t n = 0, count = wxGetApp().m_threads.Count();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( n < count && !wxGetApp().m_threads[n]->IsPaused() )
         n++;
 
@@ -674,6 +679,11 @@ void MyFrame::OnPauseThread(wxCommandEvent& WXUNUSED(event) )
 
     // pause last running thread
     int n = wxGetApp().m_threads.Count() - 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( n >= 0 && !wxGetApp().m_threads[n]->IsRunning() )
         n--;
 

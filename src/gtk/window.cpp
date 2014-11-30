@@ -1057,6 +1057,11 @@ gtk_window_key_press_callback( GtkWidget *WXUNUSED(widget),
         // Next check for accelerators.
 #if wxUSE_ACCEL
         wxWindowGTK *ancestor = win;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (ancestor)
         {
             int command = ancestor->GetAcceleratorTable()->GetCommand( event );
@@ -1328,6 +1333,11 @@ wxWindowGTK *FindWindowForMouseEvent(wxWindowGTK *win, wxCoord& x, wxCoord& y)
     }
 
     wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxWindow* child = static_cast<wxWindow*>(node->GetData());
@@ -4172,6 +4182,11 @@ void wxWindowGTK::GTKSendPaintEvents(const GdkRegion* region)
         const int width = gdk_window_get_width(GTKGetDrawingWindow());
 
         wxRegionIterator upd( m_nativeUpdateRegion );
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (upd)
         {
             wxRect rect;
@@ -4750,6 +4765,11 @@ bool wxWindowGTK::DoPopupMenu( wxMenu *menu, int x, int y )
         return false;
     }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (menu->m_popupShown)
     {
         gtk_main_iteration();

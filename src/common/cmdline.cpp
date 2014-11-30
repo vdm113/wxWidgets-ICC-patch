@@ -1590,6 +1590,11 @@ static wxString GetOptionName(wxString::const_iterator p,
 {
     wxString argName;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( p != end && (wxIsalnum(*p) || wxStrchr(allowedChars, *p)) )
     {
         argName += *p++;
@@ -1672,6 +1677,11 @@ wxCmdLineParser::ConvertStringToArgs(const wxString& cmdline,
     for ( ;; )
     {
         // skip white space
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( p != end && (*p == ' ' || *p == '\t') )
             ++p;
 

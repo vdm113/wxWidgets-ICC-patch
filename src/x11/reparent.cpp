@@ -166,6 +166,11 @@ bool wxReparenter::WaitAndReparent(wxWindow* newParent, wxAdoptedWindow* toRepar
     sm_done = false;
 
     wxEventLoop eventLoop;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (!sm_done)
     {
         if (eventLoop.Pending())

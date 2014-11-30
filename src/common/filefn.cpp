@@ -341,6 +341,11 @@ static void wxDoStripExtension(T *buffer)
 {
     int len = wxStrlen(buffer);
     int i = len-1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (i > 0)
     {
         if (buffer[i] == wxT('.'))
@@ -520,10 +525,20 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
     CharType *nm_tmp = nm;
 
     /* Skip leading whitespace and cr */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (wxStrchr(trimchars, *nm) != NULL)
         nm++;
     /* And strip off trailing whitespace and cr */
     s = nm + (q = wxStrlen(nm)) - 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (q-- && wxStrchr(trimchars, *s) != NULL)
         *s = wxT('\0');
 
@@ -536,6 +551,11 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
 #endif
 
     /* Expand inline environment variables */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ((*d++ = *s) != 0) {
 #  ifndef __WINDOWS__
         if (*s == wxT('\\')) {
@@ -557,6 +577,11 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
             CharType  *start = d;
             int     braces = (*s == wxT('{') || *s == wxT('('));
             CharType  *value;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ((*d++ = *s) != 0)
                 if (braces ? (*s == wxT('}') || *s == wxT(')')) : !(wxIsalnum(*s) || *s == wxT('_')) )
                     break;
@@ -632,6 +657,11 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
     d = buf;
     if (s && *s) { /* MATTHEW: s could be NULL if user '~' didn't exist */
         /* Copy home dir */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (wxT('\0') != (*d++ = *s++))
           /* loop */;
         // Handle root home
@@ -639,6 +669,11 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
           *(d - 1) = SEP;
     }
     s = nm;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ((*d++ = *s++) != 0)
     {
         // Empty
@@ -751,6 +786,11 @@ wxPathOnly (wxChar *path)
         wxStrcpy (buf, path);
 
         // Search backward for a backward or forward slash
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (i > -1)
         {
             // Unix like or Windows
@@ -800,6 +840,11 @@ wxString wxPathOnly (const wxString& path)
         wxStrcpy(buf, path);
 
         // Search backward for a backward or forward slash
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (i > -1)
         {
             // Unix like or Windows
@@ -922,6 +967,11 @@ template<typename T>
 static void wxDoDos2UnixFilename(T *s)
 {
   if (s)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (*s)
       {
         if (*s == wxT('\\'))
@@ -948,6 +998,11 @@ wxDoUnix2DosFilename(T *WXUNUSED(s) )
 // Yes, I really mean this to happen under DOS only! JACS
 #if defined(__WINDOWS__)
   if (s)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (*s)
       {
         if (*s == wxT('/'))
@@ -1625,6 +1680,11 @@ int WXDLLIMPEXP_BASE wxParseCommonDialogsFilter(const wxString& filterStr,
 
     wxString description, filter;
     int pos = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while( pos != wxNOT_FOUND )
     {
         pos = str.Find(wxT('|'));

@@ -27,6 +27,11 @@ library code wasn't exception-safe and so an exception propagating through it
 could result in memory and/or resource leaks, and also not very convenient.
 
 However the recent wxWidgets versions are exception-friendly. This means that
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 while the library still doesn't use the exceptions by itself, it should be now
 safe to use the exceptions in the user code and the library tries to help you
 with this.

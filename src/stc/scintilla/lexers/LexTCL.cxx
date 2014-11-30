@@ -161,6 +161,11 @@ next:
                 sc.GetCurrent(w, sizeof(w));
                 if (w[strlen(w)-1]=='\r')
                     w[strlen(w)-1]=0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while(*s == ':') // ignore leading : like in ::set a 10
                     ++s;
                 bool quote = sc.state == SCE_TCL_IN_QUOTE;

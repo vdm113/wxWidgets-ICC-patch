@@ -191,6 +191,11 @@ static bool IsASYDrawingLine(int line, Accessor &styler) {
 	int startpos = pos;
 	char buffer[100]="";
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (startpos<eol_pos){
 		char ch = styler[startpos];
 		ParseASYWord(startpos,styler,buffer);

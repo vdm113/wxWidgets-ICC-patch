@@ -86,6 +86,11 @@ wxCursorRefData::wxCursorRefData()
 wxCursorRefData::~wxCursorRefData()
 {
     wxXCursorList::compatibility_iterator node = m_cursors.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxXCursor* c = node->GetData();
@@ -354,6 +359,11 @@ WXCursor wxCursor::GetXCursor(WXDisplay* display) const
     if (!M_CURSORDATA)
         return (WXCursor) 0;
     wxXCursorList::compatibility_iterator node = M_CURSORDATA->m_cursors.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxXCursor* c = node->GetData();

@@ -156,6 +156,11 @@ public:
 
         You may omit the file extension and a suitable one will be chosen.
         For wxHtmlHelpController, the extensions zip, htb and hhp will be appended
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while searching for a suitable file. For WinHelp, the hlp extension is appended.
     */
     virtual bool Initialize(const wxString& file);

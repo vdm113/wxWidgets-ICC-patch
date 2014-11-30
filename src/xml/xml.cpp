@@ -149,6 +149,11 @@ void wxXmlNode::DoCopy(const wxXmlNode& node)
     m_children = NULL;
 
     wxXmlNode *n = node.m_children;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (n)
     {
         AddChild(new wxXmlNode(*n));
@@ -157,6 +162,11 @@ void wxXmlNode::DoCopy(const wxXmlNode& node)
 
     m_attrs = NULL;
     wxXmlAttribute *p = node.m_attrs;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (p)
     {
        AddAttribute(p->GetName(), p->GetValue());
@@ -168,6 +178,11 @@ bool wxXmlNode::HasAttribute(const wxString& attrName) const
 {
     wxXmlAttribute *attr = GetAttributes();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (attr)
     {
         if (attr->GetName() == attrName) return true;
@@ -183,6 +198,11 @@ bool wxXmlNode::GetAttribute(const wxString& attrName, wxString *value) const
 
     wxXmlAttribute *attr = GetAttributes();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (attr)
     {
         if (attr->GetName() == attrName)
@@ -242,6 +262,11 @@ bool wxXmlNode::InsertChild(wxXmlNode *child, wxXmlNode *followingNode)
     else
     {
         wxXmlNode *ch = m_children;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( ch && ch->m_next != followingNode )
             ch = ch->m_next;
         if ( !ch )
@@ -299,6 +324,11 @@ bool wxXmlNode::RemoveChild(wxXmlNode *child)
     else
     {
         wxXmlNode *ch = m_children;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (ch->m_next)
         {
             if (ch->m_next == child)
@@ -365,6 +395,11 @@ bool wxXmlNode::DeleteProperty(const wxString& name)
     else
     {
         wxXmlAttribute *p = m_attrs;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (p->GetNext())
         {
             if (p->GetNext()->GetName() == name)
@@ -385,6 +420,11 @@ wxString wxXmlNode::GetNodeContent() const
 {
     wxXmlNode *n = GetChildren();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (n)
     {
         if (n->GetType() == wxXML_TEXT_NODE ||
@@ -516,6 +556,11 @@ wxXmlNode *wxXmlDocument::DetachRoot()
     {
         node = m_docNode->GetChildren();
         wxXmlNode *prev = NULL;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (node != NULL && node->GetType() != wxXML_ELEMENT_NODE)
         {
             prev = node;
@@ -549,6 +594,11 @@ void wxXmlDocument::SetRoot(wxXmlNode *root)
     {
         node = m_docNode->GetChildren();
         wxXmlNode *prev = NULL;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (node != NULL && node->GetType() != wxXML_ELEMENT_NODE)
         {
             prev = node;
@@ -665,6 +715,11 @@ static void StartElementHnd(void *userData, const char *name, const char **atts)
     const char **a = atts;
 
     // add node attributes
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (*a)
     {
         node->AddAttribute(CharToString(ctx->conv, a[0]), CharToString(ctx->conv, a[1]));

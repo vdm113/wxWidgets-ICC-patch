@@ -423,6 +423,11 @@ public:
         This method is similar to ProcessEvent() but while the latter is
         synchronous, i.e. the event is processed immediately, before the
         function returns, this one is asynchronous and returns immediately
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while the event will be processed at some later time (usually during
         the next event loop iteration).
 
@@ -2216,6 +2221,11 @@ public:
         int vX,vY,vW,vH;                 // Dimensions of client area in pixels
         wxRegionIterator upd(GetUpdateRegion()); // get the update rect list
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (upd)
         {
             vX = upd.GetX();

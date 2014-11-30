@@ -463,6 +463,11 @@ void wxSizerXmlHandler::SetGrowables(wxFlexGridSizer* sizer,
     wxStringTokenizer tkn;
     tkn.SetString(GetParamValue(param), wxT(","));
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (tkn.HasMoreTokens())
     {
         wxString propStr;

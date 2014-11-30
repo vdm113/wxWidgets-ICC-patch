@@ -340,6 +340,11 @@ void wxConfigPathChanger::UpdateIfDeleted()
         return;
 
     // find the deepest still existing parent path of the original path
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( !m_pContainer->HasGroup(m_strOldPath) )
     {
         m_strOldPath = m_strOldPath.BeforeLast(wxCONFIG_PATH_SEPARATOR);
@@ -363,6 +368,11 @@ wxString wxConfigBase::RemoveTrailingSeparator(const wxString& key)
     wxString path(key);
 
     // don't remove the only separator from a root group path!
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( path.length() > 1 )
     {
         if ( *path.rbegin() != wxCONFIG_PATH_SEPARATOR )
@@ -443,6 +453,11 @@ wxString wxExpandEnvVars(const wxString& str)
 
           m = n + 1;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
           while ( m < str.length() && (wxIsalnum(str[m]) || str[m] == wxT('_')) )
             m++;
 

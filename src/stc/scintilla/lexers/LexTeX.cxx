@@ -326,6 +326,11 @@ static int ParseTeXCommand(unsigned int pos, Accessor &styler, char *command)
   }
 
   // find end
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
      while(isWordChar(ch) && !isNumber(ch) && ch!='_' && ch!='.' && length<100){
           command[length]=ch;
           length++;
@@ -385,6 +390,11 @@ static bool IsTeXCommentLine(int line, Accessor &styler) {
 
 	int startpos = pos;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (startpos<eol_pos){
 		char ch = styler[startpos];
 		if (ch!='%' && ch!=' ') return false;

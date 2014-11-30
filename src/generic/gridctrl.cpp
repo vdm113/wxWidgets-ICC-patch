@@ -257,6 +257,11 @@ void wxGridCellEnumRenderer::SetParameters(const wxString& params)
     m_choices.Empty();
 
     wxStringTokenizer tk(params, wxT(','));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( tk.HasMoreTokens() )
     {
         m_choices.Add(tk.GetNextToken());
@@ -350,6 +355,11 @@ wxGridCellAutoWrapStringRenderer::BreakLine(wxDC& dc,
 
     // For each word
     wxStringTokenizer wordTokenizer(logicalLine, wxS(" \t"), wxTOKEN_RET_DELIMS);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( wordTokenizer.HasMoreTokens() )
     {
         const wxString word = wordTokenizer.GetNextToken();
@@ -499,6 +509,11 @@ wxGridCellAutoWrapStringRenderer::GetBestWidth(wxGrid& grid,
     // TODO: this is not the most efficient to do it for the long strings.
     const int charWidth = dc.GetCharWidth();
     int width = 2*charWidth;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( GetTextLines(grid, dc, attr, wxSize(width, height),
                          row, col).size() > maxLines )
         width += charWidth;
@@ -554,6 +569,11 @@ wxSize wxGridCellStringRenderer::DoGetBestSize(const wxGridCellAttr& attr,
     wxCoord x = 0, y = 0, max_x = 0;
     dc.SetFont(attr.GetFont());
     wxStringTokenizer tk(text, wxT('\n'));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( tk.HasMoreTokens() )
     {
         dc.GetTextExtent(tk.GetNextToken(), &x, &y);

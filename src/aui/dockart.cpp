@@ -664,6 +664,11 @@ void wxAuiDefaultDockArt::DrawGripper(wxDC& dc, wxWindow *WXUNUSED(window),
     if (!pane.HasGripperTop())
     {
         int y = 5;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (1)
         {
             dc.SetPen(m_gripperPen1);
@@ -684,6 +689,11 @@ void wxAuiDefaultDockArt::DrawGripper(wxDC& dc, wxWindow *WXUNUSED(window),
     else
     {
         int x = 5;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (1)
         {
             dc.SetPen(m_gripperPen1);

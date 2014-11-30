@@ -123,6 +123,11 @@ process_data_simple_main (j_compress_ptr cinfo,
 {
   my_main_ptr mymain = (my_main_ptr) cinfo->main;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (mymain->cur_iMCU_row < cinfo->total_iMCU_rows) {
     /* Read input data if we haven't filled the main buffer yet */
     if (mymain->rowgroup_ctr < DCTSIZE)
@@ -182,6 +187,11 @@ process_data_buffer_main (j_compress_ptr cinfo,
   jpeg_component_info *compptr;
   wxjpeg_boolean writing = (mymain->pass_mode != JBUF_CRANK_DEST);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (mymain->cur_iMCU_row < cinfo->total_iMCU_rows) {
     /* Realign the virtual buffers if at the start of an iMCU row. */
     if (mymain->rowgroup_ctr == 0) {

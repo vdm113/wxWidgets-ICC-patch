@@ -463,6 +463,11 @@ int wxMessageDialog::ShowMessageBox()
         // message loop is entered), this must be done or the next message box
         // will never be shown - just try putting 2 calls to wxMessageBox() in
         // OnInit() to see it
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( wxTheApp->Pending() )
             wxTheApp->Dispatch();
     }

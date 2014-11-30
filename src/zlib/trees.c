@@ -548,6 +548,11 @@ local void pqdownheap(s, tree, k)
 {
     int v = s->heap[k];
     int j = k << 1;  /* left son of k */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (j <= s->heap_len) {
         /* Set j to the smallest of the two sons: */
         if (j < s->heap_len &&
@@ -661,6 +666,11 @@ local void gen_bitlen(s, desc)
 #endif
     for (bits = max_length; bits != 0; bits--) {
         n = s->bl_count[bits];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (n != 0) {
             m = s->heap[--h];
             if (m > max_code) continue;
@@ -771,6 +781,11 @@ local void build_tree(s, desc)
      * possible code. So to avoid special checks later on we force at least
      * two codes of non zero frequency.
      */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (s->heap_len < 2) {
         node = s->heap[++(s->heap_len)] = (max_code < 2 ? ++max_code : 0);
         tree[node].Freq = 1;

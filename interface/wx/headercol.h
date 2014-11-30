@@ -419,6 +419,11 @@ public:
         Constructor for a column header.
 
         The first constructor creates a header showing the given text @a title
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while the second one creates one showing the specified @a bitmap image.
      */
     wxHeaderColumnSimple(const wxString& title,

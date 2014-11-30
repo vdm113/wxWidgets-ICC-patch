@@ -152,6 +152,11 @@ void wxFontsManager::AddAllFonts()
         path = wxT(wxINSTALL_PREFIX "/share/wx/fonts");
 
     wxStringTokenizer tkn(path, wxPATH_SEP);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( tkn.HasMoreTokens() )
     {
         wxString dir = tkn.GetNextToken();

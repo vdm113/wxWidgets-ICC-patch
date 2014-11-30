@@ -377,6 +377,11 @@ bool wxGIFHandler::CompressOutput(wxOutputStream *stream, int code)
 {
     if (code == FLUSH_OUTPUT)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (m_crntShiftState > 0)
         {
             // Get rid of what is left in DWord, and flush it.
@@ -398,6 +403,11 @@ bool wxGIFHandler::CompressOutput(wxOutputStream *stream, int code)
     {
         m_crntShiftDWord |= ((long) code) << m_crntShiftState;
         m_crntShiftState += m_runningBits;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (m_crntShiftState >= 8)
         {
             // Dump out full bytes:
@@ -450,6 +460,11 @@ bool wxGIFHandler::CompressLine(wxOutputStream *stream,
     else
         crntCode = m_crntCode;     // Get last code in compression.
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (i < lineLen)
     {
         // Decode lineLen items.
@@ -536,6 +551,11 @@ void wxGIFHandler::ClearHashTable()
     int index = HT_SIZE;
     wxUint32 *HTable = m_hashTable->HTable;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (--index>=0)
     {
         HTable[index] = 0xfffffffful;
@@ -547,6 +567,11 @@ void wxGIFHandler::InsertHashTable(unsigned long key, int code)
     int hKey = wxGIFHandler_KeyItem(key);
     wxUint32 *HTable = m_hashTable->HTable;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (HT_GET_KEY(HTable[hKey]) != 0xFFFFFL)
     {
         hKey = (hKey + 1) & HT_KEY_MASK;
@@ -560,6 +585,11 @@ int wxGIFHandler::ExistsHashTable(unsigned long key)
     int hKey = wxGIFHandler_KeyItem(key);
     wxUint32 *HTable = m_hashTable->HTable, HTKey;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ((HTKey = HT_GET_KEY(HTable[hKey])) != 0xFFFFFL)
     {
         if (key == HTKey)

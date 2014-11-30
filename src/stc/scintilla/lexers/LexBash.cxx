@@ -85,6 +85,11 @@ static inline int translateBashDigit(int ch) {
 static inline int getBashNumberBase(char *s) {
 	int i = 0;
 	int base = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (*s) {
 		base = base * 10 + (*s++ - '0');
 		i++;
@@ -486,12 +491,22 @@ static void ColouriseBashDoc(unsigned int startPos, int length, int initStyle,
 				if (sc.atLineStart) {
 					sc.SetState(SCE_SH_HERE_Q);
 					int prefixws = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 					while (IsASpace(sc.ch) && !sc.atLineEnd) {	// whitespace prefix
 						sc.Forward();
 						prefixws++;
 					}
 					if (prefixws > 0)
 						sc.SetState(SCE_SH_HERE_Q);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 					while (!sc.atLineEnd) {
 						sc.Forward();
 					}

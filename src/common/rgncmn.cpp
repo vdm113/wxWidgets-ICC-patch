@@ -117,6 +117,11 @@ static bool DoRegionUnion(wxRegionBase& region,
         {
             // search for a continuous range of non-transparent pixels
             int x0 = x;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( x < width)
             {
                 unsigned char R = image.GetRed(x,y);

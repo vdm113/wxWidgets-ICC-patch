@@ -915,6 +915,11 @@ void Pack::Shuffle()
     for (i = 0; i <= m_topCard; i++)
     {
         int pos = rand() % (m_topCard + 1);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (temp[pos])
         {
             pos--;
@@ -936,6 +941,11 @@ void Pack::Shuffle()
     for (i = 0; i <= m_topCard; i++)
     {
         int pos = rand() % (m_topCard + 1);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (m_cards[pos])
         {
             pos++;

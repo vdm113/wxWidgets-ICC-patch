@@ -34,6 +34,11 @@ using namespace Scintilla;
 int RunStyles::RunFromPosition(int position) const {
 	int run = starts->PartitionFromPosition(position);
 	// Go to first element with this position
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while ((run > 0) && (position == starts->PositionFromPartition(run-1))) {
 		run--;
 	}
@@ -272,6 +277,11 @@ int RunStyles::Find(int value, int start) const {
 		if (styles->ValueAt(run) == value)
 			return start;
 		run++;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (run < starts->Partitions()) {
 			if (styles->ValueAt(run) == value)
 				return starts->PositionFromPartition(run);
@@ -292,6 +302,11 @@ void RunStyles::Check() const {
 		throw std::runtime_error("RunStyles: Partitions and styles different lengths.");
 	}
 	int start=0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (start < Length()) {
 		int end = EndRun(start);
 		if (start >= end) {

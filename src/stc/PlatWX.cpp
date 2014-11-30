@@ -1315,6 +1315,11 @@ void ListBoxImpl::SetList(const char* list, char separator, char typesep) {
     GETLB(wid)->Freeze();
     Clear();
     wxStringTokenizer tkzr(stc2wx(list), (wxChar)separator);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( tkzr.HasMoreTokens() ) {
         wxString token = tkzr.GetNextToken();
         long type = -1;

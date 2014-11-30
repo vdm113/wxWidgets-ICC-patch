@@ -261,6 +261,11 @@ size_t wxStringTokenizer::CountTokens() const
     wxStringTokenizer tkz(wxString(m_pos, m_stringEnd), m_delims, m_mode);
 
     size_t count = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( tkz.HasMoreTokens() )
     {
         count++;
@@ -340,6 +345,11 @@ wxArrayString wxStringTokenize(const wxString& str,
 {
     wxArrayString tokens;
     wxStringTokenizer tk(str, delims, mode);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( tk.HasMoreTokens() )
     {
         tokens.Add(tk.GetNextToken());

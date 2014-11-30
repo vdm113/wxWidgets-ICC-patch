@@ -1597,6 +1597,11 @@ void wxGridCellChoiceEditor::SetParameters(const wxString& params)
     m_choices.Empty();
 
     wxStringTokenizer tk(params, wxT(','));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( tk.HasMoreTokens() )
     {
         m_choices.Add(tk.GetNextToken());

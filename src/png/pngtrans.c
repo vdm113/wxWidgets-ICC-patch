@@ -539,6 +539,11 @@ png_do_strip_channel(png_row_infop row_info, png_bytep row, int at_start)
             sp += 2, ++dp;
 
          /* For a 1 pixel wide image there is nothing to do */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
          while (sp < ep)
             *dp++ = *sp, sp += 2;
 
@@ -552,6 +557,11 @@ png_do_strip_channel(png_row_infop row_info, png_bytep row, int at_start)
          else          /* Skip initial channel and, for sp, the filler */
             sp += 4, dp += 2;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
          while (sp < ep)
             *dp++ = *sp++, *dp++ = *sp, sp += 3;
 
@@ -579,6 +589,11 @@ png_do_strip_channel(png_row_infop row_info, png_bytep row, int at_start)
             sp += 4, dp += 3;
 
          /* Note that the loop adds 3 to dp and 4 to sp each time. */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
          while (sp < ep)
             *dp++ = *sp++, *dp++ = *sp++, *dp++ = *sp, sp += 2;
 
@@ -592,6 +607,11 @@ png_do_strip_channel(png_row_infop row_info, png_bytep row, int at_start)
          else          /* Skip initial channels and, for sp, the filler */
             sp += 8, dp += 6;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
          while (sp < ep)
          {
             /* Copy 6 bytes, skip 2 */

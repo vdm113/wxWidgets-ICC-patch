@@ -390,6 +390,11 @@ static void EventFlagsToSelType(long style,
 static bool
 IsDescendantOf(const wxGenericTreeItem *parent, const wxGenericTreeItem *item)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( item )
     {
         if ( item == parent )
@@ -1359,6 +1364,11 @@ bool wxGenericTreeCtrl::IsVisible(const wxTreeItemId& item) const
     // An item is only visible if it's not a descendant of a collapsed item
     wxGenericTreeItem *pItem = (wxGenericTreeItem*) item.m_pItem;
     wxGenericTreeItem* parent = pItem->GetParent();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (parent)
     {
         if (!parent->IsExpanded())
@@ -1603,6 +1613,11 @@ wxTreeItemId wxGenericTreeCtrl::GetPrevVisible(const wxTreeItemId& item) const
     }
 
     // from there we must be able to navigate until this item
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( prevItem.IsOk() )
     {
         const wxTreeItemId nextItem = GetNextVisible(prevItem);
@@ -1648,6 +1663,11 @@ wxTreeItemId wxGenericTreeCtrl::FindItem(const wxTreeItemId& idParent,
     }
 
     // look for the item starting with the given prefix after it
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( itemid.IsOk() && !GetItemText(itemid).Lower().StartsWith(prefix) )
     {
         itemid = GetNext(itemid);
@@ -1665,6 +1685,11 @@ wxTreeItemId wxGenericTreeCtrl::FindItem(const wxTreeItemId& idParent,
         }
 
         // and try all the items (stop when we get to the one we started from)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( itemid.IsOk() && itemid != idParent &&
                     !GetItemText(itemid).Lower().StartsWith(prefix) )
         {
@@ -2228,6 +2253,11 @@ void wxGenericTreeCtrl::DoSelectItem(const wxTreeItemId& itemId,
         return;
 
     wxTreeItemId parent = GetItemParent( itemId );
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (parent.IsOk())
     {
         if (!IsExpanded(parent))
@@ -2347,6 +2377,11 @@ void wxGenericTreeCtrl::EnsureVisible(const wxTreeItemId& item)
 
     if ( HasFlag(wxTR_HIDE_ROOT) )
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( parent && parent != m_anchor )
         {
             Expand(parent);
@@ -2355,6 +2390,11 @@ void wxGenericTreeCtrl::EnsureVisible(const wxTreeItemId& item)
     }
     else
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( parent )
         {
             Expand(parent);
@@ -3390,6 +3430,11 @@ void wxGenericTreeCtrl::OnChar( wxKeyEvent &event )
             {
                 wxTreeItemId last = GetRootItem();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while ( last.IsOk() && IsExpanded(last) )
                 {
                     wxTreeItemId lastChild = GetLastChild(last);

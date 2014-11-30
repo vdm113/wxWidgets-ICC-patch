@@ -2196,12 +2196,22 @@ void MyRichTextCtrl::PrepareContent(wxRichTextParagraphLayoutBox& container)
     {
         // Lock all content that's about to be added to the control
         wxRichTextObjectList::compatibility_iterator node = container.GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (node)
         {
             wxRichTextParagraph* para = wxDynamicCast(node->GetData(), wxRichTextParagraph);
             if (para)
             {
                 wxRichTextObjectList::compatibility_iterator childNode = para->GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while (childNode)
                 {
                     wxRichTextObject* obj = childNode->GetData();
@@ -2363,6 +2373,11 @@ wxRichTextTable* MyRichTextCtrl::FindTable() const
         return table;
     }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (obj)
     {
         obj = obj->GetParent();

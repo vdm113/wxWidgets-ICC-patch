@@ -39,11 +39,21 @@ public:
 		int part1Left = part1Length - start;
 		if (range1Length > part1Left)
 			range1Length = part1Left;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (i < range1Length) {
 			body[start++] += delta;
 			i++;
 		}
 		start += gapLength;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (i < rangeLength) {
 			body[start++] += delta;
 			i++;

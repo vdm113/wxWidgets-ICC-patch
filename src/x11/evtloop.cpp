@@ -136,10 +136,20 @@ int wxGUIEventLoop::DoRun()
     m_impl = new wxEventLoopImpl;
 
     m_impl->m_keepGoing = true;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( m_impl->m_keepGoing )
     {
         // generate and process idle events for as long as we don't have
         // anything else to do
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( ! Pending() )
         {
 #if wxUSE_TIMER
@@ -267,6 +277,11 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
         wxTheApp->Dispatch();
 
         // TODO: implement event filtering using the eventsToProcess mask
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (wxTheApp && wxTheApp->Pending())
             wxTheApp->Dispatch();
 

@@ -492,6 +492,11 @@ int wxTextCtrl::PixelToPos( int line, int pixel )
 
     int w = 0;
     int res = text.Len();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (res > 0)
     {
         GetTextExtent( text, &w, NULL, NULL, NULL );
@@ -522,6 +527,11 @@ void wxTextCtrl::WriteText(const wxString& text2)
     wxString text( text2 );
     wxArrayString lines;
     int pos;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( (pos = text.Find('\n')) != -1 )
     {
        lines.Add( text.Left( pos ) );
@@ -590,6 +600,11 @@ void wxTextCtrl::AppendText(const wxString& text2)
     wxString text( text2 );
     wxArrayString lines;
     int pos;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( (pos = text.Find('\n')) != -1 )
     {
        lines.Add( text.Left( pos ) );
@@ -813,6 +828,11 @@ void wxTextCtrl::Paste()
     wxString text( data.GetText() );
     wxArrayString lines;
     int pos;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( (pos = text.Find('\n')) != -1 )
     {
        lines.Add( text.Left( pos ) );
@@ -1496,6 +1516,11 @@ void wxTextCtrl::DoDClick()
         if (p > 0)
         {
             ch = line[(size_t) (p-1)];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (((ch >= 'a') && (ch <= 'z')) ||
                    ((ch >= 'A') && (ch <= 'Z')) ||
                    ((ch >= '0') && (ch <= '9')) ||
@@ -1512,6 +1537,11 @@ void wxTextCtrl::DoDClick()
         if (p < (int)line.Len())
         {
             ch = line[(size_t) (p)];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (((ch >= 'a') && (ch <= 'z')) ||
                    ((ch >= 'A') && (ch <= 'Z')) ||
                    ((ch >= '0') && (ch <= '9')) ||
@@ -1650,8 +1680,18 @@ void wxTextCtrl::DrawLinePart( wxDC &dc, int x, int y, const wxString &toDraw, c
     size_t pos = 0;
     size_t len = origin.Len();
     dc.SetTextForeground( colour );
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (pos < len)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (toDraw[pos] == wxT(' '))
         {
             pos++;
@@ -1663,6 +1703,11 @@ void wxTextCtrl::DrawLinePart( wxDC &dc, int x, int y, const wxString &toDraw, c
         wxString current;
         current += toDraw[pos];
         pos++;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( (toDraw[pos] == origin[pos]) && (pos < len))
         {
             current += toDraw[pos];
@@ -1727,6 +1772,11 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
 
         size_t pos = 0;
         wxString token( GetNextToken( line, pos ) );
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( !token.empty() )
         {
             if (m_keywords.Index( token ) != wxNOT_FOUND)

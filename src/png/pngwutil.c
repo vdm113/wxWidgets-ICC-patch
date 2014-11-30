@@ -395,6 +395,11 @@ png_deflate_claim(png_structrp png_ptr, png_uint_32 owner,
           */
          unsigned int half_window_size = 1U << (windowBits-1);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
          while (data_size + 262 <= half_window_size)
          {
             half_window_size >>= 1;
@@ -724,6 +729,11 @@ png_check_keyword(png_structrp png_ptr, png_const_charp key, png_bytep new_key)
       return 0;
    }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    while (*key && key_len < 79)
    {
       png_byte ch = (png_byte)(0xff & *key++);

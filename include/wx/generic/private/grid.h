@@ -804,6 +804,11 @@ public:
         wxASSERT_MSG( m_oper.Select(coords) >= 0, "invalid row/column" );
 
         int pos = GetLinePos(coords);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( pos )
         {
             // Check the previous line.
@@ -865,6 +870,11 @@ public:
         wxASSERT_MSG( m_oper.Select(coords) < m_numLines, "invalid row/column" );
 
         int pos = GetLinePos(coords);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( pos < m_numLines - 1 )
         {
             int line = GetLineAt(++pos);

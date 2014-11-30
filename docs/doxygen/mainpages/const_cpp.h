@@ -45,6 +45,11 @@ using @ifdef_ and not @if_.
 @itemdef{__WXMSW__, GUI using <a href="http://en.wikipedia.org/wiki/Windows_User">Windows Controls</a>.
 Notice that for compatibility reasons, this symbol is defined for console
 applications under Windows as well, but it should only be used in the GUI code
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 while <tt>__WINDOWS__</tt> should be used for the platform tests.}
 @itemdef{__WXOSX__, OS X GUI using any Apple widget framework (Carbon, AppKit or UIKit)}
 @itemdef{__WXOSX_IPHONE__, OS X iPhone (UIKit)}

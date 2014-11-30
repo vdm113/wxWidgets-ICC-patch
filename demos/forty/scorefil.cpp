@@ -56,6 +56,11 @@ void ScoreFile::GetPlayerList( wxArrayString &list )
     if (m_config->GetFirstGroup(player, index))
     {
          list.Add( player );
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (m_config->GetNextGroup(player, index))
         {
               list.Add( player );

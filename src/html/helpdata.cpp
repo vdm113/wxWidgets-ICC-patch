@@ -57,10 +57,20 @@ static const wxChar* ReadLine(const wxChar *line, wxChar *buf, size_t bufsize)
     wxChar *endptr = buf + bufsize - 1;
     const wxChar *readptr = line;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (*readptr != 0 && *readptr != wxT('\r') && *readptr != wxT('\n') &&
            writeptr != endptr)
         *(writeptr++) = *(readptr++);
     *writeptr = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (*readptr == wxT('\r') || *readptr == wxT('\n'))
         readptr++;
     if (*readptr == 0)
@@ -95,10 +105,20 @@ wxHtmlHelpIndexCompareFunc(wxHtmlHelpDataItem **a, wxHtmlHelpDataItem **b)
         wxHtmlHelpDataItem *ia2 = ia;
         wxHtmlHelpDataItem *ib2 = ib;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (ia2->level > ib2->level)
         {
             ia2 = ia2->parent;
         }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (ib2->level > ia2->level)
         {
             ib2 = ib2->parent;
@@ -702,6 +722,11 @@ bool wxHtmlHelpData::AddBook(const wxString& book)
 #endif
             s = fsys.FindFirst(book + wxT("#zip:*.hhp"), wxFILE);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (!s.empty())
         {
             if (AddBook(s)) rt = true;

@@ -171,6 +171,11 @@ static void ColouriseErlangDoc(unsigned int startPos, int length, int initStyle,
 						if (parse_state == COMMENT_DOC_MACRO
 							&& erlangDocMacro.InList(cur)) {
 								sc.ChangeState(SCE_ERLANG_COMMENT_DOC_MACRO);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 								while (sc.ch != '}' && !sc.atLineEnd)
 									sc.Forward();
 						} else if (erlangDoc.InList(cur)) {

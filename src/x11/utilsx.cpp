@@ -135,12 +135,22 @@ static void wxCalcPrecAndShift( unsigned long mask, int *shift, int *prec )
     *shift = 0;
     *prec = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (!(mask & 0x1))
     {
         (*shift)++;
         mask >>= 1;
     }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (mask & 0x1)
     {
         (*prec)++;

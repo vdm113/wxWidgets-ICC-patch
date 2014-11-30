@@ -229,6 +229,11 @@ jpeg_make_c_derived_tbl (j_compress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
     i = (int) htbl->bits[l];
     if (i < 0 || p + i > 256)	/* protect against table overrun */
       ERREXIT(cinfo, JERR_BAD_HUFF_TABLE);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (i--)
       huffsize[p++] = (char) l;
   }
@@ -241,7 +246,17 @@ jpeg_make_c_derived_tbl (j_compress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
   code = 0;
   si = huffsize[0];
   p = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (huffsize[p]) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (((int) huffsize[p]) == si) {
       huffcode[p++] = code;
       code++;
@@ -340,6 +355,11 @@ emit_bits (working_state * state, unsigned int code, int size)
 
   put_buffer |= state->cur.put_buffer; /* and merge with old buffer contents */
   
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (put_bits >= 8) {
     int c = (int) ((put_buffer >> 16) & 0xFF);
     
@@ -392,6 +412,11 @@ encode_one_block (working_state * state, JCOEFPTR block, int last_dc_val,
   
   /* Find the number of bits needed for the magnitude of the coefficient */
   nbits = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (temp) {
     nbits++;
     temp >>= 1;
@@ -426,6 +451,11 @@ encode_one_block (working_state * state, JCOEFPTR block, int last_dc_val,
       r++;
     } else {
       /* if run length > 15, must emit special run-length-16 codes (0xF0) */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while (r > 15) {
 	if (! emit_bits(state, actbl->ehufco[0xF0], actbl->ehufsi[0xF0]))
 	  return FALSE;
@@ -441,6 +471,11 @@ encode_one_block (working_state * state, JCOEFPTR block, int last_dc_val,
       
       /* Find the number of bits needed for the magnitude of the coefficient */
       nbits = 1;		/* there must be at least one 1 bit */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while ((temp >>= 1))
 	nbits++;
       /* Check for out-of-range coefficient values */
@@ -621,6 +656,11 @@ htest_one_block (j_compress_ptr cinfo, JCOEFPTR block, int last_dc_val,
   
   /* Find the number of bits needed for the magnitude of the coefficient */
   nbits = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (temp) {
     nbits++;
     temp >>= 1;
@@ -648,6 +688,11 @@ htest_one_block (j_compress_ptr cinfo, JCOEFPTR block, int last_dc_val,
       r++;
     } else {
       /* if run length > 15, must emit special run-length-16 codes (0xF0) */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while (r > 15) {
 	ac_counts[0xF0]++;
 	r -= 16;
@@ -659,6 +704,11 @@ htest_one_block (j_compress_ptr cinfo, JCOEFPTR block, int last_dc_val,
       
       /* Find the number of bits needed for the magnitude of the coefficient */
       nbits = 1;		/* there must be at least one 1 bit */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while ((temp >>= 1))
 	nbits++;
       /* Check for out-of-range coefficient values */
@@ -832,6 +882,11 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
 
     /* Increment the codesize of everything in c1's tree branch */
     codesize[c1]++;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (others[c1] >= 0) {
       c1 = others[c1];
       codesize[c1]++;
@@ -841,6 +896,11 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
     
     /* Increment the codesize of everything in c2's tree branch */
     codesize[c2]++;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (others[c2] >= 0) {
       c2 = others[c2];
       codesize[c2]++;
@@ -881,8 +941,18 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
 #   pragma unroll
 #endif
   for (i = MAX_CLEN; i > 16; i--) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (bits[i] > 0) {
       j = i - 2;		/* find length of new prefix to be used */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while (bits[j] == 0)
 	j--;
       
@@ -894,6 +964,11 @@ jpeg_gen_optimal_table (j_compress_ptr cinfo, JHUFF_TBL * htbl, long freq[])
   }
 
   /* Remove the count for the pseudo-symbol 256 from the largest codelength */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (bits[i] == 0)		/* find largest codelength still in use */
     i--;
   bits[i]--;

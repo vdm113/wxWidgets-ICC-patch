@@ -400,6 +400,11 @@ jpeg_finish_decompress (j_decompress_ptr cinfo)
     ERREXIT1(cinfo, JERR_BAD_STATE, cinfo->global_state);
   }
   /* Read until EOI */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (! cinfo->inputctl->eoi_reached) {
     if ((*cinfo->inputctl->consume_input) (cinfo) == JPEG_SUSPENDED)
       return FALSE;		/* Suspend, come back later */

@@ -211,6 +211,11 @@ static gint wxapp_idle_callback( gpointer WXUNUSED(data) )
 
     // Send idle event to all who request them as long as
     // no events have popped up in the event queue.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (wxTheApp->ProcessIdle() && (gtk_events_pending() == 0))
         ;
 
@@ -605,6 +610,11 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
 #endif
         for ( i = 0; i < argcGTK; i++ )
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( strcmp(wxConvUTF8.cWX2MB(argv[i]), argvGTK[i]) != 0 )
             {
                 memmove(argv + i, argv + i + 1, argc - i);

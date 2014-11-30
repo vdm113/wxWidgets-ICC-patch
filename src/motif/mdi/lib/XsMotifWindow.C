@@ -2203,6 +2203,11 @@ void _XsMotifMenu::_processEvents ( )
    Display *dpy = XtDisplay (_base);
    int   done = 0;
       
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    while (!done)
    {
       XtAppNextEvent (appContext, &event);
@@ -2227,6 +2232,11 @@ void _XsMotifMenu::_processEvents ( )
 
 // Process only the last motion event
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (XPending (dpy) > 0)
             {
                XPeekEvent (dpy, &next);

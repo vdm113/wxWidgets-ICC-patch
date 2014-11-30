@@ -296,6 +296,11 @@ char wxFTP::GetResult()
     bool badReply = false;
     bool firstLine = true;
     bool endOfReply = false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( !endOfReply && !badReply )
     {
         wxString line;
@@ -870,6 +875,11 @@ bool wxFTP::GetList(wxArrayString& files,
     }
 
     files.Empty();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (ReadLine(sock, line) == wxPROTO_NOERR )
     {
         files.Add(line);

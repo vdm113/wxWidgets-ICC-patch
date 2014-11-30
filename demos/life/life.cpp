@@ -448,6 +448,11 @@ void LifeFrame::OnMenu(wxCommandEvent& event)
             const long YIELD_INTERVAL = 1000 / 30;
             wxMilliClock_t lastyield = 0, now;
             
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (m_running && m_topspeed)
             {
                 OnStep();
@@ -836,6 +841,11 @@ void LifeCanvas::DrawChanged()
     }
     dc.SetLogicalFunction(wxXOR);
     
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (!done)
     {
         done = m_life->FindMore(&cells, &ncells);
@@ -912,6 +922,11 @@ void LifeCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
     dc.SetPen(*wxBLACK_PEN);
     dc.SetBrush(*wxBLACK_BRUSH);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (!done)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -1003,6 +1018,11 @@ void LifeCanvas::OnMouse(wxMouseEvent& event)
             // iterate over i
             d = aj - (ai >> 1);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (ii != i)
             {
                 m_life->SetCell(ii, jj, alive);
@@ -1021,6 +1041,11 @@ void LifeCanvas::OnMouse(wxMouseEvent& event)
             // iterate over j
             d = ai - (aj >> 1);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (jj != j)
             {
                 m_life->SetCell(ii, jj, alive);

@@ -518,6 +518,11 @@ wxString Edit::DeterminePrefs (const wxString &filename) {
         curInfo = &g_LanguagePrefs [languageNr];
         wxString filepattern = curInfo->filepattern;
         filepattern.Lower();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (!filepattern.empty()) {
             wxString cur = filepattern.BeforeFirst (';');
             if ((cur == filename) ||
@@ -946,6 +951,11 @@ void EditPrint::GetPageInfo (int *minPage, int *maxPage, int *selPageFrom, int *
                           page.y - (top + bottom));
 
     // count pages
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (HasPage (*maxPage)) {
         m_printed = m_edit->FormatRange (0, m_printed, m_edit->GetLength(),
                                        dc, dc, m_printRect, m_pageRect);

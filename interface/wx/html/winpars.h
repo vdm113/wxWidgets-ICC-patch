@@ -72,6 +72,11 @@ protected:
     /**
         Value of this attribute is identical to value of m_Parser.
         The only difference is that m_WParser points to wxHtmlWinParser object
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while m_Parser points to wxHtmlParser object. (The same object, but overcast.)
     */
     wxHtmlWinParser* m_WParser;

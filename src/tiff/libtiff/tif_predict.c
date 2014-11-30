@@ -262,6 +262,11 @@ horAcc8(TIFF* tif, uint8* cp0, tmsize_t cc)
 			unsigned int cb = cp[2];
 			cc -= 3;
 			cp += 3;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			while (cc>0) {
 				cp[0] = (char) (cr += cp[0]);
 				cp[1] = (char) (cg += cp[1]);
@@ -276,6 +281,11 @@ horAcc8(TIFF* tif, uint8* cp0, tmsize_t cc)
 			unsigned int ca = cp[3];
 			cc -= 4;
 			cp += 4;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			while (cc>0) {
 				cp[0] = (char) (cr += cp[0]);
 				cp[1] = (char) (cg += cp[1]);

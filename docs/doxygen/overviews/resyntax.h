@@ -30,6 +30,11 @@ that matches certain strings and doesn't match others.
 Regular expressions (RE), as defined by POSIX, come in two flavors:
 <em>extended regular expressions</em> (ERE) and <em>basic regular
 expressions</em> (BRE). EREs are roughly those of the traditional @e egrep,
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 while BREs are roughly those of the traditional @e ed. This implementation
 adds a third flavor: <em>advanced regular expressions</em> (ARE), basically
 EREs with some significant extensions.

@@ -664,6 +664,11 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
           */
          max_d = 96;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
          while (num_new_palette > maximum_colors)
          {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -798,6 +803,11 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
                if (hash[i] != NULL)
                {
                   png_dsortp p = hash[i];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                   while (p)
                   {
                      t = p->next;
@@ -2737,6 +2747,11 @@ png_do_unshift(png_row_infop row_info, png_bytep row,
             png_bytep bp = row;
             png_bytep bp_end = bp + row_info->rowbytes;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (bp < bp_end)
             {
                int b = (*bp >> 1) & 0x55;
@@ -2756,6 +2771,11 @@ png_do_unshift(png_row_infop row_info, png_bytep row,
 
             mask |= mask << 4;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (bp < bp_end)
             {
                int b = (*bp >> gray_shift) & mask;
@@ -2771,6 +2791,11 @@ png_do_unshift(png_row_infop row_info, png_bytep row,
             png_bytep bp_end = bp + row_info->rowbytes;
             int channel = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (bp < bp_end)
             {
                int b = *bp >> shift[channel];
@@ -2789,6 +2814,11 @@ png_do_unshift(png_row_infop row_info, png_bytep row,
             png_bytep bp_end = bp + row_info->rowbytes;
             int channel = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (bp < bp_end)
             {
                int value = (bp[0] << 8) + bp[1];
@@ -2820,6 +2850,11 @@ png_do_scale_16_to_8(png_row_infop row_info, png_bytep row)
       png_bytep dp = row; /* destination */
       png_bytep ep = sp + row_info->rowbytes; /* end+1 */
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while (sp < ep)
       {
          /* The input is an array of 16 bit components, these must be scaled to
@@ -2881,6 +2916,11 @@ png_do_chop(png_row_infop row_info, png_bytep row)
       png_bytep dp = row; /* destination */
       png_bytep ep = sp + row_info->rowbytes; /* end+1 */
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while (sp < ep)
       {
          *dp++ = *sp;
@@ -5437,6 +5477,11 @@ png_do_expand_16(png_row_infop row_info, png_bytep row)
        */
       png_byte *sp = row + row_info->rowbytes; /* source, last byte + 1 */
       png_byte *dp = sp + row_info->rowbytes;  /* destination, end + 1 */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while (dp > sp)
          dp[-2] = dp[-1] = *--sp, dp -= 2;
 

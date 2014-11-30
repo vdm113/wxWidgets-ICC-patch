@@ -585,6 +585,11 @@
 
 /*
    old C++ headers (like <iostream.h>) declare classes in the global namespace
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    while the new, standard ones (like <iostream>) do it in std:: namespace,
    unless it's an old gcc version.
 

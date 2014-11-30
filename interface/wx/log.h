@@ -538,6 +538,11 @@ public:
         to call it on the object itself). It should not be used for logging new
         messages which can be only sent to the currently active logger using
         OnLog() which also checks if the logging (for this level) is enabled
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while this method just directly calls DoLog().
 
         Example of use of this class from wxLogChain:

@@ -542,6 +542,11 @@ static int ChoosePixelFormatARB(HDC hdc, const int *attribList)
         #define ADD_ATTR_VALUE(attr) ADD_ATTR(attr, attribList[src++])
 
         int src = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( attribList[src] )
         {
             switch ( attribList[src++] )

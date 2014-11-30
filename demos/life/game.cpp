@@ -166,6 +166,11 @@ void Life::Clear()
 
     // free used boxes
     c = m_head;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (c)
     {
         nc = c->m_next;
@@ -176,6 +181,11 @@ void Life::Clear()
 
     // free available boxes
     c = m_available;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (c)
     {
         nc = c->m_next;
@@ -683,6 +693,11 @@ bool Life::NextTic()
     //
     c = m_head;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (c)
     {
         if (! (c->m_live1 || c->m_live2))
@@ -925,6 +940,11 @@ bool Life::NextTic()
     //
     c = m_head;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (c)
     {
         t1 = 0;

@@ -852,6 +852,11 @@ bool wxStandardDialogLayoutAdapter::IsStandardButton(wxDialog* dialog, wxButton*
 bool wxStandardDialogLayoutAdapter::FindLooseButtons(wxDialog* dialog, wxStdDialogButtonSizer* buttonSizer, wxSizer* sizer, int& count)
 {
     wxSizerItemList::compatibility_iterator node = sizer->GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxSizerItemList::compatibility_iterator next = node->GetNext();
@@ -885,6 +890,11 @@ void wxStandardDialogLayoutAdapter::ReparentControls(wxWindow* parent, wxWindow*
 void wxStandardDialogLayoutAdapter::DoReparentControls(wxWindow* parent, wxWindow* reparentTo, wxSizer* buttonSizer)
 {
     wxWindowList::compatibility_iterator node = parent->GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxWindowList::compatibility_iterator next = node->GetNext();
@@ -984,6 +994,11 @@ bool wxStandardDialogLayoutAdapter::DoFitWithScrolling(wxDialog* dialog, wxWindo
         }
 
         wxWindowList::compatibility_iterator node = windows.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (node)
         {
             wxWindow *win = node->GetData();

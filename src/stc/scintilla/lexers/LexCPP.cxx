@@ -59,6 +59,11 @@ static bool IsSpaceEquiv(int state) {
 // fixes this, and is highly recommended for readability anyway.
 static bool FollowsPostfixOperator(StyleContext &sc, LexAccessor &styler) {
 	int pos = (int) sc.currentPos;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (--pos > 0) {
 		char ch = styler[pos];
 		if (ch == '+' || ch == '-') {
@@ -73,6 +78,11 @@ static bool followsReturnKeyword(StyleContext &sc, LexAccessor &styler) {
 	int pos = (int) sc.currentPos;
 	int currentLine = styler.GetLine(pos);
 	int lineStartPos = styler.LineStart(currentLine);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (--pos > lineStartPos) {
 		char ch = styler.SafeGetCharAt(pos);
 		if (ch != ' ' && ch != '\t') {
@@ -81,6 +91,11 @@ static bool followsReturnKeyword(StyleContext &sc, LexAccessor &styler) {
 	}
 	const char *retBack = "nruter";
 	const char *s = retBack;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (*s
 		&& pos >= lineStartPos
 		&& styler.SafeGetCharAt(pos) == *s) {
@@ -95,6 +110,11 @@ static std::string GetRestOfLine(LexAccessor &styler, int start, bool allowSpace
 	int i =0;
 	char ch = styler.SafeGetCharAt(start, '\n');
 	int endLine = styler.LineEnd(styler.GetLine(start));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (((start+i) < endLine) && (ch != '\r')) {
 		char chNext = styler.SafeGetCharAt(start + i + 1, '\n');
 		if (ch == '/' && (chNext == '/' || chNext == '*'))
@@ -550,6 +570,11 @@ void SCI_METHOD LexerCPP::Lex(unsigned int startPos, int length, int initStyle, 
 	// look back to set chPrevNonWhite properly for better regex colouring
 	if (startPos > 0) {
 		int back = startPos;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (--back && IsSpaceEquiv(MaskActive(styler.StyleAt(back))))
 			;
 		if (MaskActive(styler.StyleAt(back)) == SCE_C_OPERATOR) {
@@ -874,6 +899,11 @@ void SCI_METHOD LexerCPP::Lex(unsigned int startPos, int length, int initStyle, 
 					sc.SetState(SCE_C_DEFAULT|activitySet);
 				} else if (! inRERange && sc.ch == '/') {
 					sc.Forward();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 					while ((sc.ch < 0x80) && islower(sc.ch))
 						sc.Forward();    // gobble regex flags
 					sc.SetState(SCE_C_DEFAULT|activitySet);
@@ -902,6 +932,11 @@ void SCI_METHOD LexerCPP::Lex(unsigned int startPos, int length, int initStyle, 
 				break;
 			case SCE_C_TRIPLEVERBATIM:
 				if (sc.Match("\"\"\"")) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 					while (sc.Match('"')) {
 						sc.Forward();
 					}
@@ -1255,6 +1290,11 @@ void LexerCPP::EvaluateTokens(std::vector<std::string> &tokens) {
 	// Find bracketed subexpressions and recurse on them
 	std::vector<std::string>::iterator itBracket = std::find(tokens.begin(), tokens.end(), "(");
 	std::vector<std::string>::iterator itEndBracket = std::find(tokens.begin(), tokens.end(), ")");
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while ((itBracket != tokens.end()) && (itEndBracket != tokens.end()) && (itEndBracket > itBracket)) {
 		std::vector<std::string> inBracket(itBracket + 1, itEndBracket);
 		EvaluateTokens(inBracket);

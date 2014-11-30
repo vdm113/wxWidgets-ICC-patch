@@ -330,6 +330,11 @@ public:
     {
         listitem.SetMask(wxLIST_MASK_TEXT |  wxLIST_MASK_DATA);
         int nLast = -1, nLastSelected = -1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ((nLast = this->GetNextItem(nLast,
                                          wxLIST_NEXT_ALL,
                                          wxLIST_STATE_SELECTED)) != -1)
@@ -1273,6 +1278,11 @@ void wxMediaPlayerFrame::OnKeyDown(wxKeyEvent& event)
         wxMediaPlayerNotebookPage* currentpage =
             (wxMediaPlayerNotebookPage*) m_notebook->GetCurrentPage();
        // delete all selected items
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
        while(true)
        {
            wxInt32 nSelectedItem = currentpage->m_playlist->GetNextItem(
@@ -1351,6 +1361,11 @@ void wxMediaPlayerFrame::OnPrev(wxCommandEvent& WXUNUSED(event))
         return;
 
     wxInt32 nLastSelectedItem = -1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(true)
     {
         wxInt32 nSelectedItem = currentpage->m_playlist->GetNextItem(nLastSelectedItem,
@@ -1404,6 +1419,11 @@ void wxMediaPlayerFrame::OnNext(wxCommandEvent& WXUNUSED(event))
         return;
 
     wxInt32 nLastSelectedItem = -1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(true)
     {
         wxInt32 nSelectedItem = currentpage->m_playlist->GetNextItem(nLastSelectedItem,

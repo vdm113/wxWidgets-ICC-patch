@@ -789,8 +789,18 @@ JPEGFixupTagsSubsamplingSec(struct JPEGFixupTagsSubsamplingData* data)
 {
 	static const char module[] = "JPEGFixupTagsSubsamplingSec";
 	uint8 m;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (1)
 	{
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (1)
 		{
 			if (!JPEGFixupTagsSubsamplingReadByte(data,&m))
@@ -798,6 +808,11 @@ JPEGFixupTagsSubsamplingSec(struct JPEGFixupTagsSubsamplingData* data)
 			if (m==255)
 				break;
 		}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (1)
 		{
 			if (!JPEGFixupTagsSubsamplingReadByte(data,&m))

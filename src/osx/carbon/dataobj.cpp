@@ -324,6 +324,11 @@ void wxDataObject::AddToPasteboard( void * pb, wxIntPtr itemID )
                 {
                     // the data is D-normalized UTF8 strings of filenames delimited with \n
                     char *fname = strtok((char*) buf,"\n");
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     while (fname != NULL)
                     {
                         // translate the filepath into a fileurl and put that into the pasteobard

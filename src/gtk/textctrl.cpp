@@ -463,6 +463,11 @@ au_check_range(GtkTextIter *s,
     if(g_unichar_isspace(gtk_text_iter_get_char(&range_start)))
         gtk_text_iter_forward_find_char(&range_start, pred_non_whitespace, NULL, range_end);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(!gtk_text_iter_equal(&range_start, range_end))
     {
         word_end = range_start;
@@ -672,6 +677,11 @@ wxTextCtrl::~wxTextCtrl()
 
     // this is also done by wxWindowGTK dtor, but has to be done here so our
     // DoThaw() override is called
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (IsFrozen())
         Thaw();
 

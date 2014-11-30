@@ -690,6 +690,11 @@ miSetExtents (Region pReg)
     pExtents->y2 = pBoxEnd->y2;
 
     wxASSERT_LEVEL_2(pExtents->y1 < pExtents->y2);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (pBox <= pBoxEnd)
     {
         if (pBox->x1 < pExtents->x1)
@@ -731,6 +736,11 @@ XOffsetRegion(
     pbox = pRegion->rects;
     nbox = pRegion->numRects;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(nbox--)
     {
         pbox->x1 += x;
@@ -779,6 +789,11 @@ miIntersectO (
 
     pNextRect = &pReg->rects[pReg->numRects];
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ((r1 != r1End) && (r2 != r2End))
     {
         x1 = wxMax(r1->x1,r2->x1);
@@ -958,6 +973,11 @@ miCoalesce(
          * this may be pointless -- see above).
          */
         pRegEnd--;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (pRegEnd[-1].y1 == pRegEnd->y1)
         {
             pRegEnd--;
@@ -1677,6 +1697,11 @@ miSubtractO (
     wxASSERT_LEVEL_2(y1<y2);
     pNextRect = &pReg->rects[pReg->numRects];
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ((r1 != r1End) && (r2 != r2End))
     {
         if (r2->x2 <= x1)
@@ -1771,6 +1796,11 @@ miSubtractO (
     /*
      * Add remaining minuend rectangles to region.
      */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (r1 != r1End)
     {
         wxASSERT_LEVEL_2(x1<r1->x2);

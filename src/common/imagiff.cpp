@@ -278,6 +278,11 @@ static void decomprle(const byte *sptr, byte *dptr, long slen, long dlen)
 {
     byte codeByte, dataByte;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ((slen > 0) && (dlen > 0)) {
     // read control byte
     codeByte = *sptr++;
@@ -287,6 +292,11 @@ static void decomprle(const byte *sptr, byte *dptr, long slen, long dlen)
         if ((slen > (long) codeByte) && (dlen >= (long) codeByte)) {
         slen -= codeByte + 1;
         dlen -= codeByte;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (codeByte > 0) {
             *dptr++ = *sptr++;
             codeByte--;
@@ -301,6 +311,11 @@ static void decomprle(const byte *sptr, byte *dptr, long slen, long dlen)
         dataByte = *sptr++;
         slen -= 2;
         dlen -= codeByte;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (codeByte > 0) {
             *dptr++ = dataByte;
             codeByte--;
@@ -408,6 +423,11 @@ int wxIFFDecoder::ReadIFF()
     byte bmhd_compression = 0;
     long camg_viewmode = 0;
     int colors = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (dataptr + 8 <= dataend) {
     // get chunk length and make even
     long chunkLen = (iff_getlong(dataptr + 4) + 1) & 0xfffffffe;

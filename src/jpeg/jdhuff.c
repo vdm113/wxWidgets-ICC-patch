@@ -206,6 +206,11 @@ jpeg_make_d_derived_tbl (j_decompress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
     i = (int) htbl->bits[l];
     if (i < 0 || p + i > 256)	/* protect against table overrun */
       ERREXIT(cinfo, JERR_BAD_HUFF_TABLE);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (i--)
       huffsize[p++] = (char) l;
   }
@@ -218,7 +223,17 @@ jpeg_make_d_derived_tbl (j_decompress_ptr cinfo, wxjpeg_boolean isDC, int tblno,
   code = 0;
   si = huffsize[0];
   p = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (huffsize[p]) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (((int) huffsize[p]) == si) {
       huffcode[p++] = code;
       code++;
@@ -351,6 +366,11 @@ jpeg_fill_bit_buffer (bitread_working_state * state,
   /* We fail to do so only if we hit a marker or are forced to suspend. */
 
   if (cinfo->unread_marker == 0) {	/* cannot advance past a marker */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (bits_left < MIN_GET_BITS) {
       register int c;
 

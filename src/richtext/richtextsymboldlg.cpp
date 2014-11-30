@@ -874,6 +874,11 @@ bool wxSymbolListCtrl::DoSetCurrent(int current)
         {
             // it is, indeed, only partly visible, so scroll it into view to
             // make it entirely visible
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( (unsigned)lineNo + 1 == GetVisibleEnd() &&
                     ScrollToRow(GetVisibleBegin() + 1) )
                 ;

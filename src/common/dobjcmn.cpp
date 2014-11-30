@@ -111,6 +111,11 @@ wxDataObjectComposite::GetObject(const wxDataFormat& format, wxDataObjectBase::D
 {
     wxSimpleDataObjectList::compatibility_iterator node = m_dataObjects.GetFirst();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( node )
     {
         wxDataObjectSimple *dataObj = node->GetData();

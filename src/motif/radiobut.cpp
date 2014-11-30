@@ -97,6 +97,11 @@ bool wxRadioButton::Create(wxWindow *parent, wxWindowID id,
         /* search backward for last group start */
         wxRadioButton *chief = NULL;
         wxWindowList::compatibility_iterator node = parent->GetChildren().GetLast();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (node)
         {
             wxWindow *child = node->GetData();
@@ -186,6 +191,11 @@ wxRadioButton* wxRadioButton::AddInCycle(wxRadioButton *cycle)
     else
     {
         wxRadioButton* current = cycle;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( current->m_cycle != cycle )
             current = current->m_cycle;
         m_cycle = cycle;
@@ -202,6 +212,11 @@ wxRadioButton* wxRadioButton::ClearSelections()
 
     if (cycle)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (cycle != this)
         {
             if ( cycle->GetValue() )
@@ -220,6 +235,11 @@ void wxRadioButton::RemoveFromCycle()
 {
     wxRadioButton* curr = NextInCycle();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while( curr )
     {
         if( curr->NextInCycle() == this )

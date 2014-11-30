@@ -156,6 +156,11 @@ void TokenizerTestCase::GetCount()
         CPPUNIT_ASSERT_EQUAL_MESSAGE( Nth(n), ttd.count, tkz.CountTokens() );
 
         size_t count = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( tkz.HasMoreTokens() )
         {
             tkz.GetNextToken();
@@ -291,6 +296,11 @@ void TokenizerTestCase::StrtokCompat()
         wxChar *s = wxStrtok(buf.data(), ttd.delims, &last);
 
         wxStringTokenizer tkz(ttd.str, ttd.delims, ttd.mode);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( tkz.HasMoreTokens() )
         {
             CPPUNIT_ASSERT_EQUAL( wxString(s), tkz.GetNextToken() );
@@ -303,6 +313,11 @@ void TokenizerTestCase::CopyObj()
 {
     // Test copy ctor
     wxStringTokenizer tkzSrc(wxT("first:second:third:fourth"), wxT(":"));
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( tkzSrc.HasMoreTokens() )
     {
         wxString tokenSrc = tkzSrc.GetNextToken();
@@ -325,6 +340,11 @@ void TokenizerTestCase::AssignObj()
     // Test assignment
     wxStringTokenizer tkzSrc(wxT("first:second:third:fourth"), wxT(":"));
     wxStringTokenizer tkz;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( tkzSrc.HasMoreTokens() )
     {
         wxString tokenSrc = tkzSrc.GetNextToken();

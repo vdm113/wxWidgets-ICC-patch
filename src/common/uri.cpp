@@ -360,6 +360,11 @@ const char* wxURI::ParseScheme(const char *uri)
         m_scheme += *uri++;
 
         //scheme        = ALPHA *( ALPHA / DIGIT / "+" / "-" / "." )
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (IsAlpha(*uri) || IsDigit(*uri) ||
                *uri == '+'   ||
                *uri == '-'   ||
@@ -415,6 +420,11 @@ const char* wxURI::ParseUserInfo(const char* uri)
     const char * const start = uri;
 
     // userinfo      = *( unreserved / pct-encoded / sub-delims / ":" )
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( *uri && *uri != '@' && *uri != '/' && *uri != '#' && *uri != '?' )
     {
         if ( IsUnreserved(*uri) || IsSubDelim(*uri) || *uri == ':' )
@@ -488,6 +498,11 @@ const char* wxURI::ParseServer(const char* uri)
     {
         uri = start;
         // reg-name      = *( unreserved / pct-encoded / sub-delims )
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( *uri && *uri != '/' && *uri != ':' && *uri != '#' && *uri != '?' )
         {
             if ( IsUnreserved(*uri) || IsSubDelim(*uri) )
@@ -509,6 +524,11 @@ const char* wxURI::ParsePort(const char* uri)
     if( *uri == ':' )
     {
         ++uri;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( IsDigit(*uri) )
         {
             m_port += *uri++;
@@ -611,6 +631,11 @@ const char* wxURI::ParseQuery(const char* uri)
     if ( *uri == '?' )
     {
         ++uri;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( *uri && *uri != '#' )
         {
             if ( IsUnreserved(*uri) || IsSubDelim(*uri) ||
@@ -633,6 +658,11 @@ const char* wxURI::ParseFragment(const char* uri)
     if ( *uri == '#' )
     {
         ++uri;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( *uri )
         {
             if ( IsUnreserved(*uri) || IsSubDelim(*uri) ||
@@ -964,6 +994,11 @@ bool wxURI::ParseIPv6address(const char*& uri)
             if (numPrefix != 6)
                 return false;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (*--uri != ':') {}
             ++uri;
 
@@ -1035,12 +1070,22 @@ bool wxURI::ParseIPvFuture(const char*& uri)
     if (*++uri != 'v' || !IsHex(*++uri))
         return false;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (IsHex(*++uri))
         ;
 
     if (*uri != '.' || !(IsUnreserved(*++uri) || IsSubDelim(*uri) || *uri == ':'))
         return false;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(IsUnreserved(*++uri) || IsSubDelim(*uri) || *uri == ':') {}
 
     return true;

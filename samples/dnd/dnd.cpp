@@ -1458,6 +1458,11 @@ void DnDFrame::OnCopyFiles(wxCommandEvent& WXUNUSED(event))
                          wxT("All files (*.*)|*.*"), 0);
 
     wxArrayString filenames;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( dialog.ShowModal() == wxID_OK )
     {
         filenames.Add(dialog.GetPath());

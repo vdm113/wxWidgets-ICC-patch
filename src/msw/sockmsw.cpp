@@ -137,6 +137,11 @@ DWORD WINAPI SocketThread(LPVOID data)
     HANDLE NetworkEvent = gs_WSACreateEvent();
     gs_WSAEventSelect(d->fd, NetworkEvent, d->lEvent);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(socketHash[d->fd] == true)
     {
         if ((gs_WSAWaitForMultipleEvents(1, &NetworkEvent, FALSE,INFINITE, FALSE)) == WAIT_FAILED)
@@ -290,6 +295,11 @@ wxSocketImplMSW::wxSocketImplMSW(wxSocketBase& wxsocket)
   wxCRIT_SECT_LOCKER(lock, gs_critical);
 
   int i = firstAvailable;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (socketList[i] != NULL)
   {
     i = (i + 1) % MAXSOCKETS;
@@ -316,6 +326,11 @@ wxSocketImplMSW::~wxSocketImplMSW()
       // them sent to a new socket which could reuse the same message number as
       // soon as we destroy this one
       MSG msg;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while ( ::PeekMessage(&msg, hWin, m_msgnumber, m_msgnumber, PM_REMOVE) )
           ;
 

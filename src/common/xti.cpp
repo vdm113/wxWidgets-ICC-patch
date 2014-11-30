@@ -426,6 +426,11 @@ void wxSetStringToArray( const wxString &s, wxArrayString &array )
     wxStringTokenizer tokenizer(s, wxT("| \t\n"), wxTOKEN_STRTOK);
     wxString flag;
     array.Clear();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (tokenizer.HasMoreTokens())
     {
         array.Add(tokenizer.GetNextToken());
@@ -444,6 +449,11 @@ void wxPropertyInfo::Insert(wxPropertyInfo* &iter)
     else
     {
         wxPropertyInfo* i = iter;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while( i->m_next )
             i = i->m_next;
 
@@ -460,6 +470,11 @@ void wxPropertyInfo::Remove()
     else
     {
         wxPropertyInfo *info = m_itsClass->m_firstProperty;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (info)
         {
             if ( info->m_next == this )
@@ -486,6 +501,11 @@ void wxHandlerInfo::Insert(wxHandlerInfo* &iter)
     else
     {
         wxHandlerInfo* i = iter;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while( i->m_next )
             i = i->m_next;
 
@@ -502,6 +522,11 @@ void wxHandlerInfo::Remove()
     else
     {
         wxHandlerInfo *info = m_itsClass->m_firstHandler;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (info)
         {
             if ( info->m_next == this )
@@ -582,6 +607,11 @@ wxPropertyInfo *wxClassInfo::FindPropertyInfoInThisClass (const wxChar *Property
 {
     wxPropertyInfo* info = GetFirstProperty();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while( info )
     {
         if ( wxStrcmp( info->GetName(), PropertyName ) == 0 )
@@ -617,6 +647,11 @@ wxHandlerInfo *wxClassInfo::FindHandlerInfoInThisClass (const wxChar *PropertyNa
 {
     wxHandlerInfo* info = GetFirstHandler();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while( info )
     {
         if ( wxStrcmp( info->GetName(), PropertyName ) == 0 )
@@ -727,6 +762,11 @@ void wxClassInfo::AddToPropertyCollection(wxObject *object, const wxChar *proper
 void wxClassInfo::GetProperties( wxPropertyInfoMap &infomap ) const
 {
     const wxPropertyInfo *pi = GetFirstProperty();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while( pi )
     {
         if ( infomap.find( pi->GetName() ) == infomap.end() )

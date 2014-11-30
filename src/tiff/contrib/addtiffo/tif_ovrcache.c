@@ -341,6 +341,11 @@ unsigned char *TIFFGetOvrBlock_Subsampled( TIFFOvrCache *psCache,
 void TIFFDestroyOvrCache( TIFFOvrCache * psCache )
 
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while( psCache->nBlockOffset < psCache->nBlocksPerColumn )
         TIFFWriteOvrRow( psCache );
 

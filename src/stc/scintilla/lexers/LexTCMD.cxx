@@ -123,6 +123,11 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 	bool sKeywordFound;		// Exit Special Keyword for-loop if found
 
 	// Skip leading whitespace
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while ((offset < lengthLine) && (isspacechar(lineBuffer[offset]))) {
 		offset++;
 	}
@@ -165,11 +170,21 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 		offset++;
 	}
 	// Skip whitespace
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while ((offset < lengthLine) && (isspacechar(lineBuffer[offset]))) {
 		offset++;
 	}
 
 	// Read remainder of line word-at-a-time or remainder-of-word-at-a-time
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (offset < lengthLine) {
 		if (offset > startLine) {
 			// Colorize Default Text
@@ -219,6 +234,11 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 			styler.ColourTo(startLine + offset - 1 - wbl, SCE_TCMD_DEFAULT);
 			wbo++;
 			// Search to end of word for second !
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			while ((wbo < wbl) && (wordBuffer[wbo] != '!') && (!IsBOperator(wordBuffer[wbo])) && (!IsBSeparator(wordBuffer[wbo]))) {
 				wbo++;
 			}
@@ -281,6 +301,11 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 			if (!sKeywordFound) {
 				wbo = 0;
 				// Read up to %, Operator or Separator
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while ((wbo < wbl) && (wordBuffer[wbo] != '%') && (!isDelayedExpansion || wordBuffer[wbo] != '!') && (!IsBOperator(wordBuffer[wbo])) &&	(!IsBSeparator(wordBuffer[wbo]))) {
 					wbo++;
 				}
@@ -301,6 +326,11 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 			// check for %[nn] syntax
 			if ( wordBuffer[1] == '[' ) {
 				n++;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while ((n < wbl) && (wordBuffer[n] != ']')) {
 					n++;
 				}
@@ -310,12 +340,22 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 			}
 
 			// Search to end of word for second % or to the first terminator (can be a long path)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			while ((wbo < wbl) && (wordBuffer[wbo] != '%') && (!IsBOperator(wordBuffer[wbo])) && (!IsBSeparator(wordBuffer[wbo]))) {
 				wbo++;
 			}
 
 			// Check for Argument (%n) or (%*)
 			if (((isdigit(wordBuffer[1])) || (wordBuffer[1] == '*')) && (wordBuffer[wbo] != '%')) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while (( wordBuffer[n] ) && ( strchr( "%0123456789*#$", wordBuffer[n] ) != NULL ))
 					n++;
 ColorizeArg:
@@ -346,6 +386,11 @@ ColorizeArg:
 			} else if (	(wbl > 2) && (wordBuffer[1] == '%') && (wordBuffer[2] != '%') && (!IsBOperator(wordBuffer[2])) && (!IsBSeparator(wordBuffer[2]))) {
 
 				n = 2;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while (( wordBuffer[n] ) && (!IsBOperator(wordBuffer[n])) && (!IsBSeparator(wordBuffer[n])))
 					n++;
 
@@ -400,6 +445,11 @@ ColorizeArg:
 		// Check for Default Text
 		} else {
 			// Read up to %, Operator or Separator
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			while ((wbo < wbl) && (wordBuffer[wbo] != '%') && (!isDelayedExpansion || wordBuffer[wbo] != '!') && (!IsBOperator(wordBuffer[wbo])) &&	(!IsBSeparator(wordBuffer[wbo]))) {
 				wbo++;
 			}
@@ -410,6 +460,11 @@ ColorizeArg:
 		}
 
 		// Skip whitespace - nothing happens if Offset was Reset
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while ((offset < lengthLine) && (isspacechar(lineBuffer[offset]))) {
 			offset++;
 		}
@@ -449,6 +504,11 @@ static void ColouriseTCMDDoc( unsigned int startPos, int length, int /*initStyle
 
 // Convert string to upper case
 static void StrUpr(char *s) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (*s) {
 		*s = MakeUpperCase(*s);
 		s++;

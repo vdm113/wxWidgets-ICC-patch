@@ -944,6 +944,11 @@ bool wxPopupMenuWindow::ProcessKeyDown(int key)
 
                 wxMenuItemIter nodeStart = up ? GetPrevNode() : GetNextNode(),
                                node = nodeStart;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while ( node && node->GetData()->IsSeparator() )
                 {
                     node = up ? GetPrevNode(node) : GetNextNode(node);

@@ -476,6 +476,11 @@ void zlibStream::doDecompress_ExternalData(const unsigned char *data, const char
         if (i == value_size)
         {
             // And if we do then try to see how long the stream actually is.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (!zstream_in.Eof())
             {
                 // Move one item along in the stream.

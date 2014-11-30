@@ -215,6 +215,11 @@ void FileNameTestCase::TestConstruction()
         {
             // copy the backslashes at beginning unchanged
             const char *p = fni.fullname;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( *p == '\\' )
                 fullnameOrig += *p++;
 

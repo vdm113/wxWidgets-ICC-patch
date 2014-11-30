@@ -525,6 +525,11 @@ void ListboxWidgetsPage::OnButtonDeleteSel(wxCommandEvent& WXUNUSED(event))
 {
     wxArrayInt selections;
     int n = m_lbox->GetSelections(selections);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( n > 0 )
     {
         m_lbox->Delete(selections[--n]);

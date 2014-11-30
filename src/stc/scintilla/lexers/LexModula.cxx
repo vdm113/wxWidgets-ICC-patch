@@ -147,6 +147,11 @@ static inline bool checkEndSemicolon(
 			return false;
 		}
 	}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while( isspace( styler.SafeGetCharAt( curPos + i ) ) ) {
 		i++;
 		if( ( curPos + i ) >= endPos ) return false;
@@ -174,6 +179,11 @@ static inline bool checkKeyIdentOper(
 	newPos++;
 	if( newPos >= endPos )
 		return false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while( isspace( styler.SafeGetCharAt( newPos ) ) ) {
 		newPos++;
 		if( newPos >= endPos )
@@ -186,11 +196,21 @@ static inline bool checkKeyIdentOper(
 		return false;
 	char ch;
 	ch = styler.SafeGetCharAt( newPos );
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while( isalpha( ch ) || isdigit( ch ) || ch == '_' ) {
 		newPos++;
 		if( newPos >= endPos ) return false;
 		ch = styler.SafeGetCharAt( newPos );
 	}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while( isspace( styler.SafeGetCharAt( newPos ) ) ) {
 		newPos++;
 		if( newPos >= endPos ) return false;
@@ -216,6 +236,11 @@ static void FoldModulaDoc( unsigned int startPos,
 	int visChars = 0;
 	int nextLevel = curLevel;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while( curPos < endPos ) {
 		if( ! isspace( styler.SafeGetCharAt( curPos ) ) ) visChars++;
 
@@ -282,11 +307,21 @@ static void FoldModulaDoc( unsigned int startPos,
 				int pos;
 				char ch;
 				int clv_new;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while( cln > 0 ) {
 					clv_new = styler.LevelAt( cln - 1 ) >> 16;
 					if( clv_new < clv_old ) {
 						nextLevel--;
 						pos = styler.LineStart( cln );
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 						while( ( ch = styler.SafeGetCharAt( pos ) ) != '\n' ) {
 							if( ch == 'P' ) {
 								if( styler.StyleAt(pos) == SCE_MODULA_KEYWORD )	{
@@ -310,6 +345,11 @@ static void FoldModulaDoc( unsigned int startPos,
 			if( checkEndSemicolon( styler, curPos, endPos ) )
 				nextLevel--;
 			else {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while( styler.StyleAt( curPos + 1 ) == SCE_MODULA_KEYWORD )
 					curPos++;
 			}
@@ -342,6 +382,11 @@ static void FoldModulaDoc( unsigned int startPos,
 }
 
 static inline bool skipWhiteSpaces( StyleContext & sc ) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while( isspace( sc.ch ) ) {
 		sc.SetState( SCE_MODULA_DEFAULT );
 		if( sc.More() )
@@ -373,6 +418,11 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 
 	StyleContext sc( startPos, length, initStyle, styler );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while( sc.More() ) 	{
 		switch( sc.state )	{
 		case SCE_MODULA_DEFAULT:

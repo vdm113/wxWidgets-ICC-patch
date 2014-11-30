@@ -170,6 +170,11 @@ int convertHTMLcodes(char *s, int len)
       if (sscanf(s,"&#%d;",&val) == 1)
       {
         o = 3;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (s[o] != ';')
         {
           o++;
@@ -237,6 +242,11 @@ int formatIPTC(FILE *ifile, FILE *ofile)
   tagsfound = 0; /* number of tags found */
 
   c = getc(ifile);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (c != EOF)
   {
 	  if (c == 0x1c)
@@ -517,6 +527,11 @@ int main(int argc, char *argv[])
 
       line = (char *) malloc(inputlen);     
       token = (char *)NULL;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while((line = super_fgets(line,&inputlen,ifile))!=NULL)
       {
         state=0;
@@ -524,6 +539,11 @@ int main(int argc, char *argv[])
 
         token = (char *) malloc(inputlen);     
         newstr = (char *) malloc(inputlen);     
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while(tokenizer(0, token, inputlen, line, "", "=", "\"", 0,
           &brkused,&next,&quoted)==0)
         {
@@ -539,6 +559,11 @@ int main(int argc, char *argv[])
 
               state=0;
               next=0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
               while(tokenizer(0, newstr, inputlen, token, "", "#", "", 0,
                 &brkused, &next, &quoted)==0)
               {
@@ -565,6 +590,11 @@ int main(int argc, char *argv[])
 
                 next=0;
                 len = strlen(token);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while(tokenizer(0, newstr, inputlen, token, "", "&", "", 0,
                   &brkused, &next, &quoted)==0)
                 {
@@ -593,6 +623,11 @@ int main(int argc, char *argv[])
                     fputc(len & 255, ofile);
                   }
                 next=0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while (len--)
                   fputc(token[next++], ofile);
               }

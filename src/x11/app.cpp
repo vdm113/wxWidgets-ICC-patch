@@ -174,6 +174,11 @@ bool wxApp::Initialize(int& argC, wxChar **argV)
 #endif
         for ( int i = 0; i < argC; i++ )
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( !argV[i] )
             {
                 memmove(argV + i, argV + i + 1, (argCOrig - i)*sizeof(wxChar *));
@@ -322,6 +327,11 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
                 wxExposeInfo info;
                 info.window = event->xexpose.window;
                 info.found_non_matching = false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while (XCheckIfEvent( wxGlobalDisplay(), &tmp_event, wxX11ExposePredicate, (XPointer) &info ))
                 {
                     // Don't worry about optimizing redrawing the border etc.
@@ -341,6 +351,11 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
                 wxExposeInfo info;
                 info.window = event->xexpose.window;
                 info.found_non_matching = false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while (XCheckIfEvent( wxGlobalDisplay(), &tmp_event, wxX11ExposePredicate, (XPointer) &info ))
                 {
                     win->GetUpdateRegion().Union( tmp_event.xexpose.x, tmp_event.xexpose.y,
@@ -590,6 +605,11 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
             // Here we check if the top level window is
             // disabled, which is one aspect of modality.
             wxWindow *tlw = win;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (tlw && !tlw->IsTopLevel())
                 tlw = tlw->GetParent();
             if (tlw && !tlw->IsEnabled())

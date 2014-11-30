@@ -1042,6 +1042,11 @@ bool wxToolBar::Realize()
                         {
                             wxToolBarToolsList::compatibility_iterator nodePrev = node->GetPrevious();
                             int prevIndex = i - 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                             while ( nodePrev )
                             {
                                 TBBUTTON& prevButton = buttons[prevIndex];

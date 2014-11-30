@@ -67,6 +67,11 @@ void AutoCaptureMechanism::Delay(int seconds)
 
     // Wait for 3 seconds
     clock_t start = clock();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( clock() - start < (clock_t)CLOCKS_PER_SEC * seconds)
         wxYieldIfNeeded();
 }
@@ -156,6 +161,11 @@ void AutoCaptureMechanism::Save(wxBitmap* screenshot, const wxString& fileName)
         "-" + wxPlatformInfo::Get().GetPortIdShortName() + ".png");
 
     // do not overwrite already existing files with this name
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (fullFileName.FileExists())
         fullFileName.SetName(fullFileName.GetName() + "_");
 

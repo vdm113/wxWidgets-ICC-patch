@@ -577,6 +577,11 @@ static int FindPhpStringDelimiter(char *phpStringDelimiter, const int phpStringD
 	const int beginning = i - 1;
 	bool isValidSimpleString = false;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (i < lengthDoc && (styler[i] == ' ' || styler[i] == '\t'))
 		i++;
 
@@ -649,6 +654,11 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 
 	// If inside a tag, it may be a script tag, so reread from the start of line starting tag to ensure any language tags are seen
 	if (InTagState(state)) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while ((startPos > 0) && (InTagState(styler.StyleAt(startPos - 1)))) {
 			int backLineStart = styler.LineStart(styler.GetLine(startPos-1));
 			length += startPos - backLineStart;
@@ -658,6 +668,11 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 	}
 	// String can be heredoc, must find a delimiter first. Reread from beginning of line containing the string, to get the correct lineState
 	if (isPHPStringState(state)) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (startPos > 0 && (isPHPStringState(state) || !isLineEnd(styler[startPos - 1]))) {
 			startPos--;
 			length++;
@@ -755,6 +770,11 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 	if (scriptLanguage == eScriptJS && startPos > 0) {
 		int back = startPos;
 		int style = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (--back) {
 			style = styler.StyleAt(back);
 			if (style < SCE_HJ_DEFAULT || style > SCE_HJ_COMMENTDOC)
@@ -810,6 +830,11 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 				//if ((state == SCE_HPHP_OPERATOR) || (state == SCE_HPHP_DEFAULT) || (state == SCE_HJ_SYMBOLS) || (state == SCE_HJ_START) || (state == SCE_HJ_DEFAULT)) {
 					if (ch == '#') {
 						int j = i + 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 						while ((j < lengthDoc) && IsASpaceOrTab(styler.SafeGetCharAt(j))) {
 							j++;
 						}
@@ -1776,6 +1801,11 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 		case SCE_HJ_REGEX:
 			if (ch == '\r' || ch == '\n' || ch == '/') {
 				if (ch == '/') {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 					while (IsASCII(chNext) && islower(chNext)) {   // gobble regex flags
 						i++;
 						ch = chNext;

@@ -903,6 +903,11 @@ void wxListLineData::DrawTextFormatted(wxDC *dc,
         wxCoord w_c, h_c;
         size_t len = text.length();
         wxString drawntext = text.Left(len);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (len > 1)
         {
             dc->GetTextExtent(drawntext.Last(), &w_c, &h_c);
@@ -914,6 +919,11 @@ void wxListLineData::DrawTextFormatted(wxDC *dc,
         }
 
         // if still not enough space, remove ellipsis characters
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (ellipsis.length() > 0 && w + base_w > width)
         {
             ellipsis = ellipsis.Left(ellipsis.length() - 1);
@@ -3461,6 +3471,11 @@ void wxListMainWindow::SetItemStateAll(long state, long stateMask)
         {
             // clear for non virtual (somewhat optimized by using GetNextItem())
             long i = -1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( (i = GetNextItem(i, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != -1 )
             {
                 SetItemState( i, 0, wxLIST_STATE_SELECTED );
@@ -4644,6 +4659,11 @@ wxListMainWindow::PrefixFindItem(size_t idParent,
     }
 
     // look for the item starting with the given prefix after it
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( ( itemid < (size_t)GetItemCount() ) &&
             !GetLine(itemid)->GetText(0).Lower().StartsWith(prefix) )
     {
@@ -4657,6 +4677,11 @@ wxListMainWindow::PrefixFindItem(size_t idParent,
         itemid = 0;
 
         // and try all the items (stop when we get to the one we started from)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( ( itemid < (size_t)GetItemCount() ) && itemid != idParent &&
                     !GetLine(itemid)->GetText(0).Lower().StartsWith(prefix) )
         {

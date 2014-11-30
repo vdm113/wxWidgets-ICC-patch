@@ -86,6 +86,11 @@ public:
 
         // Not found, handle pre-registrations
         size_t i = m_anyToVariantRegs.size();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( i > 0 )
         {
             i--;

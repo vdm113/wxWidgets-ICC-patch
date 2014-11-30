@@ -378,6 +378,11 @@ bool OpenUserDataRec::CheckFile( const wxString &filename , OSType type)
                 return true ;
 
             wxStringTokenizer tokenizer( m_extensions[i] , wxT(";") ) ;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( tokenizer.HasMoreTokens() )
             {
                 wxString extension = tokenizer.GetNextToken() ;

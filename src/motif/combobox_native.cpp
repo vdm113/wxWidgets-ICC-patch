@@ -246,6 +246,11 @@ void wxComboBox::Clear()
     XmListDeleteAllItems (GetXmList(this));
 #else
     size_t n = m_stringArray.GetCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(n > 0)
     {
         XmComboBoxDeletePos((Widget) m_mainWidget, n--);

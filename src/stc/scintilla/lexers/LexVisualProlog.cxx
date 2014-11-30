@@ -217,11 +217,21 @@ static bool isOpenStringVerbatim(int next, int &closingQuote){
 // Look ahead to see which colour "end" should have (takes colour after the following keyword)
 static void endLookAhead(char s[], LexAccessor &styler, int start) {
     char ch = styler.SafeGetCharAt(start, '\n');
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (' ' == ch) {
         start++;
         ch = styler.SafeGetCharAt(start, '\n');
     }
     int i = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (i < 100 && isLowerLetter(ch)){
         s[i] = ch;
         i++;

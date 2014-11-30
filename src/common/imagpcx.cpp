@@ -61,6 +61,11 @@ void RLEencode(unsigned char *p, unsigned int size, wxOutputStream& s)
     cont = 1;
     size--;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (size-- > 0)
     {
         data = (unsigned char) *(p++);
@@ -99,6 +104,11 @@ void RLEdecode(unsigned char *p, unsigned int size, wxInputStream& s)
     // to read one or more _complete_ scanlines. Else, more than
     // 'size' bytes might be read and the buffer might overflow.
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (size != 0)
     {
         unsigned int data = (unsigned char)s.GetC();

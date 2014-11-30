@@ -977,6 +977,11 @@ bool wxWebViewIE::IsElementVisible(wxCOMPtr<IHTMLElement> elm)
     bool is_visible = true;
     //This method is not perfect but it does discover most of the hidden elements.
     //so if a better solution is found, then please do improve.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(elm1)
     {
         wxCOMPtr<wxIHTMLElement2> elm2;
@@ -1053,6 +1058,11 @@ void wxWebViewIE::FindInternal(const wxString& text, int flags, int internal_fla
                m_findPointers.reserve(text.Len() == 1 ? 1000 : 500);
             }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while(ptrBegin->FindText(text_bstr, find_flag, ptrEnd, NULL) == S_OK)
             {
                 wxCOMPtr<IHTMLElement> elm;

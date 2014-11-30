@@ -212,6 +212,11 @@ size_t wxDir::Traverse(wxDirTraverser& sink,
 
         wxString filename;
         bool cont = GetFirst(&filename, filespec, flags);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( cont )
         {
             wxDirTraverseResult res = sink.OnFile(prefix + filename);

@@ -296,6 +296,11 @@ static void FoldNoBoxVHDLDoc(
     chPrev          = styler.SafeGetCharAt(i - 1);
     chNextNonBlank  = chNext;
     unsigned int j  = i+1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(IsABlank(chNextNonBlank) && j<endPos)
     {
       j ++ ;

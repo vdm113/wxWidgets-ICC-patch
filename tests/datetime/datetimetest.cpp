@@ -449,6 +449,11 @@ for n in range(20):
     countFromEnd = choice([-1, 1])
     weekNum = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while dt.month is month:
         dt = dt - countFromEnd * week
         weekNum = weekNum + countFromEnd
@@ -550,6 +555,11 @@ for n in range(20):
     weekNumMonth2 = 0
     dtSunday = GetLastSundayBefore(dt)
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while dtSunday >= GetLastSundayBefore(DateTime(dt.year, dt.month, 1)):
         weekNumMonth2 = weekNumMonth2 + 1
         dtSunday = dtSunday - DateTimeDelta(7)
@@ -850,6 +860,11 @@ void DateTimeTestCase::TestTimeFormat()
                     // incapable of parsing time zone part used at the end of date
                     // representations in many (but not "C") locales, compensate
                     // for it ourselves by simply consuming and ignoring it
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     while ( *result && (*result >= 'A' && *result <= 'Z') )
                         result++;
 

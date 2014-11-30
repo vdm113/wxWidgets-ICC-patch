@@ -30,6 +30,11 @@ namespace Scintilla {
 #endif
 
 int CompareCaseInsensitive(const char *a, const char *b) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (*a && *b) {
 		if (*a != *b) {
 			char upperA = MakeUpperCase(*a);
@@ -45,6 +50,11 @@ int CompareCaseInsensitive(const char *a, const char *b) {
 }
 
 int CompareNCaseInsensitive(const char *a, const char *b, size_t len) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (*a && *b && len) {
 		if (*a != *b) {
 			char upperA = MakeUpperCase(*a);

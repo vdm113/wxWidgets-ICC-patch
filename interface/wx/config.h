@@ -215,6 +215,11 @@ enum
 
     // first enum all entries
     bool bCont = config->GetFirstEntry(str, dummy);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( bCont ) {
         aNames.Add(str);
 
@@ -225,6 +230,11 @@ enum
 
     // now all groups...
     bCont = config->GetFirstGroup(str, dummy);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( bCont ) {
         aNames.Add(str);
 

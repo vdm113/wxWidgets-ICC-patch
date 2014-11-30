@@ -225,6 +225,11 @@ void ColouriseCamlDoc(
 	int nesting = (state_ >= SCE_CAML_COMMENT)? (state_ - SCE_CAML_COMMENT): 0;
 
 	// foreach char in range...
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (sc.More()) {
 		// set up [per-char] state info
 		int state2 = -1;				// (ASSUME no state change)

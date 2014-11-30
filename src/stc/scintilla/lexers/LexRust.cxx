@@ -196,6 +196,11 @@ static bool IsIdentifierContinue(int ch) {
 }
 
 static void ScanWhitespace(Accessor& styler, int& pos, int max) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (IsWhitespace(styler.SafeGetCharAt(pos, '\0')) && pos < max) {
 		if (pos == styler.LineEnd(styler.GetLine(pos)))
 			styler.SetLineState(styler.GetLine(pos), 0);
@@ -217,6 +222,11 @@ static void GrabString(char* s, Accessor& styler, int start, int len) {
 
 static void ScanIdentifier(Accessor& styler, int& pos, WordList *keywords) {
 	int start = pos;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (IsIdentifierContinue(styler.SafeGetCharAt(pos, '\0')))
 		pos++;
 
@@ -408,6 +418,11 @@ static void ScanCharacterLiteralOrLifetime(Accessor &styler, int& pos) {
 	bool valid_lifetime = IsIdentifierStart(c);
 	bool valid_char = true;
 	bool first = true;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (!done) {
 		switch (c) {
 			case '\\':
@@ -551,6 +566,11 @@ static void ResumeLineComment(Accessor &styler, int& pos, int max, CommentState 
 		maybe_doc_comment = true;
 	}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (pos < max && c != '\n') {
 		if (pos == styler.LineEnd(styler.GetLine(pos)))
 			styler.SetLineState(styler.GetLine(pos), 0);
@@ -577,6 +597,11 @@ static void ScanComments(Accessor &styler, int& pos, int max) {
 static void ResumeString(Accessor &styler, int& pos, int max) {
 	int c = styler.SafeGetCharAt(pos, '\0');
 	bool error = false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (c != '"' && !error) {
 		if (pos >= max) {
 			error = true;
@@ -625,6 +650,11 @@ static void ResumeRawString(Accessor &styler, int& pos, int max, int num_hashes)
 		if (c == '"') {
 			pos++;
 			int trailing_num_hashes = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			while (styler.SafeGetCharAt(pos, '\0') == '#' && trailing_num_hashes < num_hashes) {
 				trailing_num_hashes++;
 				pos++;
@@ -646,6 +676,11 @@ static void ResumeRawString(Accessor &styler, int& pos, int max, int num_hashes)
 static void ScanRawString(Accessor &styler, int& pos, int max) {
 	pos++;
 	int num_hashes = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (styler.SafeGetCharAt(pos, '\0') == '#') {
 		num_hashes++;
 		pos++;
@@ -677,6 +712,11 @@ void SCI_METHOD LexerRust::Lex(unsigned int startPos, int length, int initStyle,
 		ResumeRawString(styler, pos, max, styler.GetLineState(styler.GetLine(pos) - 1));
 	}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (pos < max) {
 		int c = styler.SafeGetCharAt(pos, '\0');
 		int n = styler.SafeGetCharAt(pos + 1, '\0');

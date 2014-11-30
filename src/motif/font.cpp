@@ -207,6 +207,11 @@ void wxFontRefData::Init(int pointSize,
 wxFontRefData::~wxFontRefData()
 {
     wxList::compatibility_iterator node = m_fonts.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxXFont* f = (wxXFont*) node->GetData();
@@ -520,6 +525,11 @@ wxXFont* wxFont::GetInternalFont(double scale, WXDisplay* display) const
 
     // search existing fonts first
     wxList::compatibility_iterator node = M_FONTDATA->m_fonts.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxXFont* f = (wxXFont*) node->GetData();

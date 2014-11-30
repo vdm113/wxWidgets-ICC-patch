@@ -576,6 +576,11 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 				prevChar = *p;
 				ChSet(*p++);
 			}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			while (*p && *p != ']') {
 				if (*p == '-') {
 					if (prevChar < 0) {
@@ -613,6 +618,11 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 								ChSet('-');
 							} else {
 								// Put all chars between c1 and c2 included in the char set
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 								while (c1 <= c2) {
 									ChSetWithCase(static_cast<unsigned char>(c1++), caseSensitive);
 								}
@@ -694,6 +704,11 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 			*mp++ = END;
 			sp = mp;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			while (--mp > lp)
 				*mp = mp[-1];
 			if (*p == '?')          *mp = CLQ;
@@ -869,11 +884,21 @@ int RESearch::Execute(CharacterIndexer &ci, int lp, int endp) {
 		}
 	case CHR:			/* ordinary char: locate it fast */
 		c = *(ap+1);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while ((lp < endp) && (static_cast<unsigned char>(ci.CharAt(lp)) != c))
 			lp++;
 		if (lp >= endp)	/* if EOS, fail, else fall thru. */
 			return 0;
 	default:			/* regular matching all the way. */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (lp < endp) {
 			ep = PMatch(ci, lp, endp, ap);
 			if (ep != NOTFOUND)
@@ -941,6 +966,11 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 	int are;	/* to save the line ptr.  */
 	int llp;	/* lazy lp for LCLO       */
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while ((op = *ap++) != END)
 		switch (op) {
 
@@ -986,6 +1016,11 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 			n = *ap++;
 			bp = bopat[n];
 			ep = eopat[n];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			while (bp < ep)
 				if (ci.CharAt(bp++) != ci.CharAt(lp++))
 					return NOTFOUND;
@@ -998,6 +1033,11 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 
 			case ANY:
 				if (op == CLO || op == LCLO)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 					while (lp < endp)
 						lp++;
 				else if (lp < endp)
@@ -1008,6 +1048,11 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 			case CHR:
 				c = *(ap+1);
 				if (op == CLO || op == LCLO)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 					while ((lp < endp) && (c == ci.CharAt(lp)))
 						lp++;
 				else if ((lp < endp) && (c == ci.CharAt(lp)))
@@ -1015,6 +1060,11 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 				n = CHRSKIP;
 				break;
 			case CCL:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while ((lp < endp) && isinset(ap+1,ci.CharAt(lp)))
 					lp++;
 				n = CCLSKIP;
@@ -1028,6 +1078,11 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 
 			llp = lp;
 			e = NOTFOUND;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			while (llp >= are) {
 				int q;
 				if ((q = PMatch(ci, llp, endp, ap)) != NOTFOUND) {

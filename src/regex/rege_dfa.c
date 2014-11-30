@@ -80,6 +80,11 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 
 	/* main loop */
 	if (v->eflags&REG_FTRACE)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (cp < realstop) {
 			FDEBUG(("+++ at c%d +++\n", css - d->ssets));
 			co = GETCOLOR(cm, *cp);
@@ -95,6 +100,11 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 			css = ss;
 		}
 	else
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (cp < realstop) {
 			co = GETCOLOR(cm, *cp);
 			ss = css->outs[co];
@@ -186,6 +196,11 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 
 	/* main loop */
 	if (v->eflags&REG_FTRACE)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (cp < realmax) {
 			FDEBUG(("--- at c%d ---\n", css - d->ssets));
 			co = GETCOLOR(cm, *cp);
@@ -203,6 +218,11 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 				break;		/* NOTE BREAK OUT */
 		}
 	else
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (cp < realmax) {
 			co = GETCOLOR(cm, *cp);
 			ss = css->outs[co];
@@ -511,6 +531,11 @@ chr *start;			/* where the attempt got started */
 				}
 	dolacons = (gotstate) ? (cnfa->flags&HASLACONS) : 0;
 	sawlacons = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (dolacons) {		/* transitive closure */
 		dolacons = 0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -642,6 +667,11 @@ chr *start;
 
 	/* clear out its inarcs, including self-referential ones */
 	ap = ss->ins;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while ((p = ap.ss) != NULL) {
 		co = ap.co;
 		FDEBUG(("zapping c%d's %ld outarc\n", p - d->ssets, (long)co));

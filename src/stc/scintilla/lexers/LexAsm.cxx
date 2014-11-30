@@ -314,6 +314,11 @@ void SCI_METHOD LexerAsm::Lex(unsigned int startPos, int length, int initStyle, 
 				sc.SetState(SCE_ASM_DEFAULT);
 				if (IsDirective && !strcmp(s, "comment")) {
 					char delimiter = options.delimiter.empty() ? '~' : options.delimiter.c_str()[0];
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 					while (IsASpaceOrTab(sc.ch) && !sc.atLineEnd) {
 						sc.ForwardSetState(SCE_ASM_DEFAULT);
 					}
@@ -325,6 +330,11 @@ void SCI_METHOD LexerAsm::Lex(unsigned int startPos, int length, int initStyle, 
 		} else if (sc.state == SCE_ASM_COMMENTDIRECTIVE) {
 			char delimiter = options.delimiter.empty() ? '~' : options.delimiter.c_str()[0];
 			if (sc.ch == delimiter) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while (!sc.atLineEnd) {
 					sc.Forward();
 				}

@@ -972,8 +972,10 @@ private:
             { return const_reverse_iterator(NULL, GetFirst()); }            \
         void resize(size_type n, value_type v = value_type())               \
         {                                                                   \
+VDM_MACRO_PRAGMA_IVDEP \
             while (n < size())                                              \
                 pop_back();                                                 \
+VDM_MACRO_PRAGMA_IVDEP \
             while (n > size())                                              \
                 push_back(v);                                                \
         }                                                                   \
@@ -1310,6 +1312,7 @@ VDM_MACRO_PRAGMA_IVDEP \
 #define WX_APPEND_LIST(list, other)                                           \
     {                                                                         \
         wxList::compatibility_iterator node = other->GetFirst();              \
+VDM_MACRO_PRAGMA_IVDEP \
         while ( node )                                                        \
         {                                                                     \
             (list)->push_back(node->GetData());                               \

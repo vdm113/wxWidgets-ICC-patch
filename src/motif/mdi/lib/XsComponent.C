@@ -172,6 +172,11 @@ void XsComponent::_setResources (Widget w, const String *resources)
 // Add the component resources
 
    loop = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    while (resources[loop] != 0)
    {
       sprintf (buffer, "*%s%s\n", _name, resources[loop++]);

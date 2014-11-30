@@ -154,6 +154,11 @@ select_file_name (char * fname)
     if (*env == '\0')		/* null string means "." */
       env = ".";
     ptr = fname;		/* copy name to fname */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (*env != '\0')
       *ptr++ = *env++;
     if (ptr[-1] != '\\' && ptr[-1] != '/')

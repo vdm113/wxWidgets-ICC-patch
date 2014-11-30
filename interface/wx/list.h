@@ -90,6 +90,11 @@
 
     // the same with the legacy API from the old wxList class
     MyList::compatibility_iterator node = list.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         MyListElement *current = node->GetData();

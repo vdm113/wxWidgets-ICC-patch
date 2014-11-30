@@ -253,6 +253,11 @@ main(int argc, char* argv[])
 
         pageOrientation[0] = '\0';
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while ((c = getopt(argc, argv, "b:d:h:H:W:L:i:w:l:o:O:P:C:r:t:acemxyzps1238DT")) != -1)
 		switch (c) {
 		case 'b':
@@ -2804,6 +2809,11 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 			if ( ascii85_l > 0 )
 			    fwrite( ascii85_p, ascii85_l, 1, fd );
 #else
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			while (cc-- > 0)
 				Ascii85Put(*cp++, fd);
 #endif /* EXP_ASCII85_ENCODER */
@@ -2812,6 +2822,11 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 
 			if (alpha) {
 				int adjust;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while (cc-- > 0) {
 					DOBREAK(breaklen, 1, fd);
 					/*
@@ -2825,6 +2840,11 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 					cp++, cc--;
 				}
 			} else {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while (cc-- > 0) {
 					c = *cp++;
 					DOBREAK(breaklen, 1, fd);

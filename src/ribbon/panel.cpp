@@ -854,6 +854,11 @@ bool wxRibbonPanel::ShowExpanded()
     // and thus assume a new position.
     // NB: Children iterators not used as behaviour is not well defined
     // when iterating over a container which is being emptied
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(!GetChildren().IsEmpty())
     {
         wxWindow *child = GetChildren().GetFirst()->GetData();
@@ -905,6 +910,11 @@ bool wxRibbonPanel::TryAfter(wxEvent& evt)
 
 static bool IsAncestorOf(wxWindow *ancestor, wxWindow *window)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(window != NULL)
     {
         wxWindow *parent = window->GetParent();
@@ -982,6 +992,11 @@ bool wxRibbonPanel::HideExpanded()
     // Move children back to original panel
     // NB: Children iterators not used as behaviour is not well defined
     // when iterating over a container which is being emptied
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(!GetChildren().IsEmpty())
     {
         wxWindow *child = GetChildren().GetFirst()->GetData();

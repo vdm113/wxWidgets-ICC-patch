@@ -221,6 +221,11 @@ public:
         when a panel is expanded, there exist two panels - the original panel
         (which is referred to as the dummy panel) and the expanded panel. The
         original is termed a dummy as it sits in the ribbon bar doing nothing,
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while the expanded panel holds the panel children.
 
         @return @true if the panel was expanded, @false if it was not (possibly

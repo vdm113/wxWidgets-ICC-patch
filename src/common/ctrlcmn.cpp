@@ -444,6 +444,11 @@ wxString wxControlBase::DoEllipsizeSingleLine(const wxString& curLine, const wxD
         case wxELLIPSIZE_START:
             {
                 calc.Init(0, 1);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while ( !calc.IsShortEnough() )
                     calc.RemoveFromEnd();
 
@@ -469,6 +474,11 @@ wxString wxControlBase::DoEllipsizeSingleLine(const wxString& curLine, const wxD
 
                 bool removeFromStart = true;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while ( !calc.IsShortEnough() )
                 {
                     const bool canRemoveFromStart = calc.GetFirstRemoved() > 0;
@@ -508,6 +518,11 @@ wxString wxControlBase::DoEllipsizeSingleLine(const wxString& curLine, const wxD
         case wxELLIPSIZE_END:
             {
                 calc.Init(len - 1, 1);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while ( !calc.IsShortEnough() )
                     calc.RemoveFromStart();
 

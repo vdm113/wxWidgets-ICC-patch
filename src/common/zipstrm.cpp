@@ -490,8 +490,18 @@ size_t wxRawInputStream::OnSysRead(void *buffer, size_t size)
     char *buf = (char*)buffer;
     size_t count = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (count < size && IsOk())
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (m_parent_i_stream->IsOk() && m_tee->GetCount() == 0)
             m_parent_i_stream->Read(m_dummy.data(), BUFSIZE);
 
@@ -843,8 +853,18 @@ wxString wxZipEntry::GetInternalName(const wxString& name,
     if (isDir)
         internal.erase(internal.length() - 1);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (!internal.empty() && *internal.begin() == '/')
         internal.erase(0, 1);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (!internal.empty() && internal.compare(0, 2, wxT("./")) == 0)
         internal.erase(0, 2);
     if (internal == wxT(".") || internal == wxT(".."))
@@ -1499,6 +1519,11 @@ bool wxZipInputStream::FindEndRecord()
     memcpy(buf.data(), magic, 3);
     wxFileOffset minpos = wxMax(pos - 65535L, 0);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (pos > minpos) {
         size_t len = wx_truncate_cast(size_t,
                         pos - wxMax(pos - (BUFSIZE - 3), minpos));
@@ -1511,6 +1536,11 @@ bool wxZipInputStream::FindEndRecord()
 
         char *p = buf.data() + len;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (p-- > buf.data()) {
             if ((m_signature = CrackUint32(p)) == END_MAGIC) {
                 size_t remainder = buf.data() + len - p;
@@ -1586,6 +1616,11 @@ wxStreamError wxZipInputStream::ReadLocal(bool readEndRec /*=false*/)
         }
     }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (m_signature == CENTRAL_MAGIC) {
         if (m_weaklinks->IsEmpty() && m_streamlink == NULL)
             return wxSTREAM_EOF;
@@ -1799,6 +1834,11 @@ bool wxZipInputStream::CloseEntry()
 
         const int BUFSIZE = 8192;
         wxCharBuffer buf(BUFSIZE);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (IsOk())
             Read(buf.data(), BUFSIZE);
 

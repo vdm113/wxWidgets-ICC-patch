@@ -961,6 +961,11 @@ void wxRichTextCtrl::OnMoveMouse(wxMouseEvent& event)
             if (commonAncestor && commonAncestor->HandlesChildSelections())
             {
                 wxRichTextObject* p = hitObj2;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while (p)
                 {
                     if (p->GetParent() == commonAncestor)
@@ -2430,6 +2435,11 @@ bool wxRichTextCtrl::ExtendCellSelection(wxRichTextTable* table, int noRowSteps,
             bool visibleCol = false;
             if (noRowSteps != 0)
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while (r >= 0 && r < table->GetRowCount())
                 {
                     wxRichTextCell* cell = table->GetCell(r, newCol);
@@ -2451,6 +2461,11 @@ bool wxRichTextCtrl::ExtendCellSelection(wxRichTextTable* table, int noRowSteps,
 
             if (noColSteps != 0)
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while (c >= 0 && c < table->GetColumnCount())
                 {
                     wxRichTextCell* cell = table->GetCell(newRow, c);
@@ -2701,6 +2716,11 @@ long wxRichTextCtrl::FindNextWordPosition(int direction) const
         long i = m_caretPosition+1+direction; // +1 for conversion to character pos
 
         // First skip current text to space
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (i < endPos && i > -1)
         {
             // i is in character, not caret positions
@@ -2717,6 +2737,11 @@ long wxRichTextCtrl::FindNextWordPosition(int direction) const
                 break;
             }
         }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (i < endPos && i > -1)
         {
             // i is in character, not caret positions
@@ -2744,6 +2769,11 @@ long wxRichTextCtrl::FindNextWordPosition(int direction) const
         long i = m_caretPosition;
 
         // First skip white space
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (i < endPos && i > -1)
         {
             // i is in character, not caret positions
@@ -2758,6 +2788,11 @@ long wxRichTextCtrl::FindNextWordPosition(int direction) const
                 break;
         }
         // Next skip current text to space
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (i < endPos && i > -1)
         {
             // i is in character, not caret positions
@@ -4805,6 +4840,11 @@ wxRichTextRange wxRichTextCtrl::FindRangeForList(long pos, bool& isNumberedList)
         if (initialNode)
         {
             wxRichTextObjectList::compatibility_iterator startNode = initialNode->GetPrevious();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (startNode)
             {
                 wxRichTextParagraph* p = wxDynamicCast(startNode->GetData(), wxRichTextParagraph);
@@ -4821,6 +4861,11 @@ wxRichTextRange wxRichTextCtrl::FindRangeForList(long pos, bool& isNumberedList)
 
             // Search forward
             wxRichTextObjectList::compatibility_iterator endNode = initialNode->GetNext();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (endNode)
             {
                 wxRichTextParagraph* p = wxDynamicCast(endNode->GetData(), wxRichTextParagraph);
@@ -4938,6 +4983,11 @@ bool wxRichTextCtrl::RefreshForSelectionChange(const wxRichTextSelection& oldSel
             wxRichTextObjectList floatingObjects;
             GetFocusObject()->GetFloatingObjects(floatingObjects);
             wxRichTextObjectList::compatibility_iterator node = floatingObjects.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (node)
             {
                 wxRichTextObject* obj = node->GetData();
@@ -5237,6 +5287,11 @@ bool wxRichTextCtrl::ProcessDelayedImageLoading(const wxRect& screenRect, wxRich
         return true;
 
     wxRichTextObjectList::compatibility_iterator node = box->GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         // Could be a cell or a paragraph
@@ -5246,6 +5301,11 @@ bool wxRichTextCtrl::ProcessDelayedImageLoading(const wxRect& screenRect, wxRich
         else // assume a paragraph
         {
             wxRichTextObjectList::compatibility_iterator node2 = composite->GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (node2)
             {
                 wxRichTextObject* obj = node2->GetData();

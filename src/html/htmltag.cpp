@@ -124,6 +124,11 @@ wxHtmlTagsCache::wxHtmlTagsCache(const wxString& source)
         }
         tagBuffer[i] = wxT('\0');
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (pos < end && *pos != wxT('>'))
             ++pos;
 
@@ -177,9 +182,19 @@ wxHtmlTagsCache::wxHtmlTagsCache(const wxString& source)
 
                 // find next matching tag
                 int tag_len = wxStrlen(tagBuffer);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while (pos < end)
                 {
                     // find the ending tag
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     while (pos + 1 < end &&
                            (*pos != '<' || *(pos+1) != '/'))
                         ++pos;
@@ -188,6 +203,11 @@ wxHtmlTagsCache::wxHtmlTagsCache(const wxString& source)
 
                     // see if it matches
                     int match_pos = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     while (pos < end && match_pos < tag_len )
                     {
                         wxChar c = *pos;
@@ -359,6 +379,11 @@ wxHtmlTag::wxHtmlTag(wxHtmlTag *parent,
     wxString::const_iterator i(pos+1);
 
     // find tag's name and convert it to uppercase:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ((i < end_pos) &&
            ((c = *(i++)) != wxT(' ') && c != wxT('\r') &&
              c != wxT('\n') && c != wxT('\t') &&
@@ -389,6 +414,11 @@ wxHtmlTag::wxHtmlTag(wxHtmlTag *parent,
 
         quote = 0;
         state = ST_BEFORE_NAME;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (i < end_pos)
         {
             c = *(i++);
@@ -519,6 +549,11 @@ wxHtmlTag::~wxHtmlTag()
 {
     wxHtmlTag *t1, *t2;
     t1 = m_FirstChild;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (t1)
     {
         t2 = t1->GetNextSibling();
@@ -698,6 +733,11 @@ wxHtmlTag *wxHtmlTag::GetFirstSibling() const
     else
     {
         wxHtmlTag *cur = (wxHtmlTag*)this;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (cur->m_Prev)
             cur = cur->m_Prev;
         return cur;
@@ -711,6 +751,11 @@ wxHtmlTag *wxHtmlTag::GetLastSibling() const
     else
     {
         wxHtmlTag *cur = (wxHtmlTag*)this;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (cur->m_Next)
             cur = cur->m_Next;
         return cur;
@@ -723,6 +768,11 @@ wxHtmlTag *wxHtmlTag::GetNextTag() const
     if (m_Next) return m_Next;
     wxHtmlTag *cur = m_Parent;
     if (!cur) return NULL;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (cur->m_Parent && !cur->m_Next)
         cur = cur->m_Parent;
     return cur->m_Next;

@@ -367,6 +367,11 @@ int ZEXPORT deflateSetDictionary (strm, dictionary, dictLength)
     strm->avail_in = dictLength;
     strm->next_in = (z_const Bytef *)dictionary;
     fill_window(s);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (s->lookahead >= MIN_MATCH) {
         str = s->strstart;
         n = s->lookahead - (MIN_MATCH-1);

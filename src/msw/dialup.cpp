@@ -513,6 +513,11 @@ HRASCONN wxDialUpManagerMSW::FindActiveConnection()
     DWORD nConnections = 0;
     DWORD dwRet = ERROR_BUFFER_TOO_SMALL;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( dwRet == ERROR_BUFFER_TOO_SMALL )
     {
         dwRet = ms_pfnRasEnumConnections(lpRasConn, &cbBuf, &nConnections);
@@ -1251,6 +1256,11 @@ static DWORD wxRasMonitorThread(wxRasThreadData *data)
     handles[1] = data->hEventQuit;
 
     bool cont = true;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( cont )
     {
         DWORD dwRet = ::WaitForMultipleObjects(2, handles, FALSE, INFINITE);

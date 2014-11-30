@@ -288,6 +288,11 @@ WXColormap wxPalette::GetXColormap(WXDisplay* display) const
         wxXPalette* p = (wxXPalette*) node->GetData();
         return p->m_cmap;
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxXPalette* p = (wxXPalette*) node->GetData();
@@ -339,6 +344,11 @@ bool wxPalette::TransferBitmap(void *data, int depth, int size)
             unsigned char *uptr = (unsigned char *)data;
             int pix_array_n;
             unsigned long *pix_array = GetXPixArray((Display*) wxGetDisplay(), &pix_array_n);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while(size-- > 0)
             {
                 if((int)*uptr < pix_array_n)
@@ -361,6 +371,11 @@ bool wxPalette::TransferBitmap8(unsigned char *data, unsigned long sz,
     switch(bpp) {
     case 8: {
         unsigned char *dptr = (unsigned char *)dest;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while(sz-- > 0) {
             if((int)*data < pix_array_n)
                 *dptr = (unsigned char)pix_array[*data];
@@ -371,6 +386,11 @@ bool wxPalette::TransferBitmap8(unsigned char *data, unsigned long sz,
             }
     case 16: {
         unsigned short *dptr = (unsigned short *)dest;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while(sz-- > 0) {
             if((int)*data < pix_array_n)
                 *dptr = (unsigned short)pix_array[*data];
@@ -381,6 +401,11 @@ bool wxPalette::TransferBitmap8(unsigned char *data, unsigned long sz,
              }
     case 24: {
         struct rgb24 { unsigned char r, g, b; } *dptr = (struct rgb24 *)dest;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while(sz-- > 0) {
             if((int)*data < pix_array_n) {
                 dptr->r = pix_array[*data] & 0xFF;
@@ -394,6 +419,11 @@ bool wxPalette::TransferBitmap8(unsigned char *data, unsigned long sz,
              }
     case 32: {
         unsigned long *dptr = (unsigned long *)dest;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while(sz-- > 0) {
             if((int)*data < pix_array_n)
                 *dptr = pix_array[*data];

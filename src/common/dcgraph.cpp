@@ -779,9 +779,19 @@ void wxGCDCImpl::DoDrawSpline(const wxPointList *points)
     path.AddLineToPoint( cx1 , cy1 );
 #if !wxUSE_STD_CONTAINERS
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ((node = node->GetNext()) != NULL)
 #else
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ((node = node->GetNext()))
 #endif // !wxUSE_STD_CONTAINERS
 

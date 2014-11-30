@@ -205,6 +205,11 @@ STDMETHODIMP wxIDropTarget::DragEnter(IDataObject *pIDataSource,
     if ( SUCCEEDED(pIDataSource->EnumFormatEtc(DATADIR_GET, &penumFmt)) )
     {
         FORMATETC fmt;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( penumFmt->Next(1, &fmt, NULL) == S_OK )
         {
             wxLogDebug(wxT("Drop source supports format %s"),

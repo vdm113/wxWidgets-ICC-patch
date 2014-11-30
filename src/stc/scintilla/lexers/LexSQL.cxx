@@ -624,6 +624,11 @@ void SCI_METHOD LexerSQL::Fold(unsigned int startPos, int length, int initStyle,
 		int lastNLPos = -1;
 		// And keep going back until we find an operator ';' followed
 		// by white-space and/or comments. This will improve folding.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (--startPos > 0) {
 			char ch = styler[startPos];
 			if (ch == '\n' || (ch == '\r' && styler[startPos + 1] != '\n')) {

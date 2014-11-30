@@ -116,6 +116,11 @@ static int str16len(const char *s)
 {
     int count = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (s[0] && s[1]) {
         count++;
         s += 2;
@@ -902,6 +907,11 @@ void wxWindow::ScrollWindow(int dx, int dy, const wxRect *rect)
     dc.SetBrush(brush); // FIXME: needed?
 
     wxWindowList::compatibility_iterator cnode = m_children.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (cnode)
     {
         wxWindow *child = cnode->GetData();
@@ -993,6 +1003,11 @@ void wxWindow::ScrollWindow(int dx, int dy, const wxRect *rect)
     // Now send expose events
 
     wxList::compatibility_iterator  node = updateRects.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxRect* rect = (wxRect*) node->GetData();
@@ -1018,6 +1033,11 @@ void wxWindow::ScrollWindow(int dx, int dy, const wxRect *rect)
 
     // Delete the update rects
     node = updateRects.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (node)
     {
         wxRect* rect = (wxRect*) node->GetData();
@@ -1145,6 +1165,11 @@ bool wxWindow::DoPopupMenu(wxMenu *menu, int x, int y)
 
     wxEventLoop evtLoop;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (menu->GetId() == 1)
     {
         wxDoEventLoopIteration( evtLoop );
@@ -1648,6 +1673,11 @@ void wxWindow::DoPaint()
 void wxWindow::OnSysColourChanged(wxSysColourChangedEvent& event)
 {
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( node )
     {
         // Only propagate to non-top-level windows
@@ -1692,6 +1722,11 @@ bool wxWindow::ProcessAccelerator(wxKeyEvent& event)
             // Need to go up to the top of the window hierarchy, since it might
             // be e.g. a menu item
             wxWindow* parent = this;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( parent && !parent->IsTopLevel() )
                 parent = parent->GetParent();
 
@@ -2015,6 +2050,11 @@ static void wxCanvasInputEvent(Widget drawingArea,
             {
                 // Implement wxFrame::OnCharHook by checking ancestor.
                 wxWindow *parent = canvas;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while (parent && !parent->IsTopLevel())
                     parent = parent->GetParent();
 
