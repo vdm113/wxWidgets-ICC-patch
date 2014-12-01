@@ -1091,6 +1091,11 @@ parsePseudoAttribute(const ENCODING *enc,
   }
   ptr += enc->minBytesPerChar;
   c = toAscii(enc, ptr, end);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (isSpace(c)) {
     ptr += enc->minBytesPerChar;
     c = toAscii(enc, ptr, end);
@@ -1229,6 +1234,11 @@ doParseXmlDecl(const ENCODING *(*encodingFinder)(const ENCODING *,
     *badPtr = val;
     return 0;
   }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (isSpace(toAscii(enc, ptr, end)))
     ptr += enc->minBytesPerChar;
   if (ptr != end) {
@@ -1406,6 +1416,11 @@ unknown_toUtf16(const ENCODING *enc,
                 unsigned short **toP, const unsigned short *toLim)
 {
   const struct unknown_encoding *uenc = AS_UNKNOWN_ENCODING(enc);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (*fromP != fromLim && *toP != toLim) {
     unsigned short c = uenc->utf16[(unsigned char)**fromP];
     if (c == 0) {

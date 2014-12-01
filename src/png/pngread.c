@@ -1948,6 +1948,11 @@ make_ga_colormap(png_image_read_control *display)
     * }
     */
    i = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    while (i < 231)
    {
       unsigned int gray = (i * 256 + 115) / 231;

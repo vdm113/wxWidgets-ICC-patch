@@ -647,6 +647,11 @@ chr *end;			/* end of same */
 	MDEBUG(("tentative midpoint %ld\n", LOFF(mid)));
 
 	/* iterate until satisfaction or failure */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (longest(v, d2, mid, end, (int *)NULL) != end) {
 		/* that midpoint didn't work, find a new one */
 		if (mid == stop) {

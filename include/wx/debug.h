@@ -39,11 +39,6 @@ class WXDLLIMPEXP_FWD_BASE wxCStrData;
     specified by the value of wxDEBUG_LEVEL constant:
 
     0:  No assertion macros at all, this should only be used when optimizing
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for resource-constrained systems (typically embedded ones).
     1:  Default level, most of the assertions are enabled.
     2:  Maximal (at least for now): asserts which are "expensive"

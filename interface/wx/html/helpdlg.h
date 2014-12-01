@@ -48,11 +48,6 @@ public:
 
     /**
         Creates the dialog. See @ref wxHtmlHelpDialog() "the constructor"
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for a description of the parameters.
     */
     bool Create(wxWindow* parent, wxWindowID id,

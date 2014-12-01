@@ -1320,6 +1320,11 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 						sc.Forward();
 					} while (setFormat.Contains(sc.ch));
 				}
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while (IsASpaceOrTab(sc.ch) && !sc.atLineEnd)
 					sc.Forward();
 				if (sc.ch == '=') {

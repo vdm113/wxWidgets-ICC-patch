@@ -281,11 +281,6 @@ public:
 
         Under Unix, the service name may be either an integer port
         identifier in which case an Internet domain socket will be used
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for the communications, or a valid file name (which shouldn't
         exist and will be deleted afterwards) in which case a Unix domain
         socket is created.
@@ -301,11 +296,6 @@ public:
     /**
         Called by MakeConnection(), by default this simply returns a new wxConnection
         object. Override this method to return a wxConnection descendant customised
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for the application.
 
         The advantage of deriving your own connection class is that it will enable

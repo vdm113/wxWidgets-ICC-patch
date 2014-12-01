@@ -76,11 +76,6 @@ public:
 
         The banner orientation changes how the text in it is displayed and also
         defines where is the bitmap truncated if it's too big to fit but doesn't
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         do anything for the banner position, this is supposed to be taken care
         of in the usual way, e.g. using sizers.
     */

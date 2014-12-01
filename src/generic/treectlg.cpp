@@ -1580,6 +1580,11 @@ wxTreeItemId wxGenericTreeCtrl::GetNextVisible(const wxTreeItemId& item) const
     wxTreeItemId id = item;
     if (id.IsOk())
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (id = GetNext(id), id.IsOk())
         {
             if (IsVisible(id))
@@ -1602,6 +1607,11 @@ wxTreeItemId wxGenericTreeCtrl::GetPrevVisible(const wxTreeItemId& item) const
     }
 
     // find the first visible item after it
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( prevItem.IsOk() && !IsVisible(prevItem) )
     {
         prevItem = GetNext(prevItem);
@@ -3353,6 +3363,11 @@ void wxGenericTreeCtrl::OnChar( wxKeyEvent &event )
                 }
                 if (prev)
                 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     while ( IsExpanded(prev) && HasChildren(prev) )
                     {
                         wxTreeItemId child = GetLastChild(prev);
@@ -3410,6 +3425,11 @@ void wxGenericTreeCtrl::OnChar( wxKeyEvent &event )
                     if (!next)
                     {
                         wxTreeItemId current = m_key_current;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         while (current.IsOk() && !next)
                         {
                             current = GetItemParent( current );

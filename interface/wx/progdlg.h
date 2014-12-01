@@ -79,11 +79,6 @@ class wxGenericProgressDialog : public wxDialog
 public:
     /**
         Constructor. Creates the dialog, displays it and disables user input
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for other windows, or, if @c wxPD_APP_MODAL flag is not given, for its
         parent window only.
 
@@ -168,11 +163,6 @@ public:
          Normally a Cancel button press is indicated by Update() returning
          @false but sometimes it may be more convenient to check if the dialog
          was cancelled from elsewhere in the code and this function allows to
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
          do it.
 
          It always returns @false if the Cancel button is not shown at all.
@@ -206,11 +196,6 @@ public:
         function depends on whether @c wxPD_AUTO_HIDE was used when the dialog
         was created. If it was, the dialog is hidden and the function returns
         immediately. If it was not, the dialog becomes a modal dialog and waits
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for the user to dismiss it, meaning that this function does not return
         until this happens.
 

@@ -128,11 +128,6 @@
 
 /* current (= before mingw-runtime 3.3) mingw32 headers forget to
    define _puttchar, this will probably be fixed in the next versions but
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    for now do it ourselves
  */
 #if defined( __MINGW32__ ) && \

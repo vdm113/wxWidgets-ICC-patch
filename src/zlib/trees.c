@@ -929,11 +929,6 @@ local void send_tree (s, tree, max_code)
         if (++count < max_count && curlen == nextlen) {
             continue;
         } else if (count < min_count) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             do { send_code(s, curlen, s->bl_tree); } while (--count != 0);
 
         } else if (curlen != 0) {
@@ -1415,6 +1410,11 @@ local void copy_block(s, buf, len, header)
     }
 #ifdef DEBUG
     s->bits_sent += (ulg)len<<3;
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
     while (len--) {
         put_byte(s, *buf++);

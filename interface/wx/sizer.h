@@ -160,11 +160,6 @@ public:
             Although the meaning of this parameter is undefined in wxSizer, it
             is used in wxBoxSizer to indicate if a child of a sizer can change
             its size in the main orientation of the wxBoxSizer - where 0 stands
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             for not changeable and a value of more than zero is interpreted
             relative to the value of other children of the same wxBoxSizer. For
             example, you might have a horizontal wxBoxSizer with three
@@ -223,11 +218,6 @@ public:
             Although the meaning of this parameter is undefined in wxSizer, it
             is used in wxBoxSizer to indicate if a child of a sizer can change
             its size in the main orientation of the wxBoxSizer - where 0 stands
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             for not changeable and a value of more than zero is interpreted
             relative to the value of other children of the same wxBoxSizer. For
             example, you might have a horizontal wxBoxSizer with three
@@ -276,11 +266,6 @@ public:
             Although the meaning of this parameter is undefined in wxSizer, it
             is used in wxBoxSizer to indicate if a child of a sizer can change
             its size in the main orientation of the wxBoxSizer - where 0 stands
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             for not changeable and a value of more than zero is interpreted
             relative to the value of other children of the same wxBoxSizer. For
             example, you might have a horizontal wxBoxSizer with three
@@ -1557,11 +1542,6 @@ public:
         there is extra space available to the sizer.
 
         The @a proportion parameter has the same meaning as the stretch factor
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for the sizers (see wxBoxSizer) except that if all proportions are 0,
         then all columns are resized equally (instead of not being resized at all).
 
@@ -1715,11 +1695,6 @@ public:
         maximally allowed number of items is not an error however.
 
         Finally, it is also possible to specify the number of rows and use 0
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for @a cols. In this case, the sizer will use the given fixed number of
         rows and as many columns as necessary.
 

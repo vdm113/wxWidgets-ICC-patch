@@ -80,11 +80,6 @@
    the GTK port of wxWidgets, especially its internal structures. Obviously,
    you cannot understand wxGTK without knowing a little about the GTK, but
    some more information about what the wxWindow, which is the base class
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    for all other window classes, does seems required as well.
 
    I)
@@ -196,11 +191,6 @@
 
    Cursors, too, have been a constant source of pleasure. The main difficulty
    is that a GdkWindow inherits a cursor if the programmer sets a new cursor
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    for the parent. To prevent this from doing too much harm, I use idle time
    to set the cursor over and over again, starting from the toplevel windows
    and ending with the youngest generation (speaking of parent and child windows).

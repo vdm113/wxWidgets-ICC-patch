@@ -387,11 +387,6 @@ typedef int (*wxPGSortCallback)(wxPropertyGrid* propGrid,
     wxPropertyGrid is a specialized grid for editing properties - in other
     words name = value pairs. List of ready-to-use property classes include
     strings, numbers, flag sets, fonts, colours and many others. It is possible,
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for example, to categorize properties, set up a complete tree-hierarchy,
     add more than two columns, and set arbitrary per-property attributes.
 

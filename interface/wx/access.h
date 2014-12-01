@@ -279,11 +279,6 @@ public:
     /**
         Performs the default action for the object.
         @a childId is 0 (the action for this object) or greater than 0 (the action
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for a child).
 
         @return wxACC_NOT_SUPPORTED if there is no default action for this

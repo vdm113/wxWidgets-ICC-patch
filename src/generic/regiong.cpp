@@ -1230,12 +1230,22 @@ miRegionOp(
          * respective regions.
          */
         r1BandEnd = r1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ((r1BandEnd != r1End) && (r1BandEnd->y1 == r1->y1))
         {
             r1BandEnd++;
         }
 
         r2BandEnd = r2;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ((r2BandEnd != r2End) && (r2BandEnd->y1 == r2->y1))
         {
             r2BandEnd++;
@@ -1336,6 +1346,11 @@ miRegionOp(
             do
             {
                 r1BandEnd = r1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while ((r1BandEnd < r1End) && (r1BandEnd->y1 == r1->y1))
                 {
                     r1BandEnd++;
@@ -1356,6 +1371,11 @@ miRegionOp(
         do
         {
             r2BandEnd = r2;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ((r2BandEnd < r2End) && (r2BandEnd->y1 == r2->y1))
             {
                  r2BandEnd++;
@@ -1440,6 +1460,11 @@ miUnionNonO (
 
     wxASSERT_LEVEL_2(y1 < y2);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (r != rEnd)
     {
         wxASSERT_LEVEL_2(r->x1 < r->x2);
@@ -1515,6 +1540,11 @@ miUnionO (
     r++;
 
     wxASSERT_LEVEL_2 (y1<y2);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ((r1 != r1End) && (r2 != r2End))
     {
         if (r1->x1 < r2->x1)
@@ -1646,6 +1676,11 @@ miSubtractNonO1 (
 
     wxASSERT_LEVEL_2(y1<y2);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (r != rEnd)
     {
         wxASSERT_LEVEL_2(r->x1<r->x2);

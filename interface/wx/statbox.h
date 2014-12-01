@@ -22,11 +22,6 @@
     inside a static box be created as its siblings (i.e. use the same parent as
     the static box itself), since wxWidgets 2.9.1 it is also possible to create
     them as children of wxStaticBox itself and you are actually encouraged to
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     do it like this if compatibility with the previous versions is not
     important.
 

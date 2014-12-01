@@ -135,11 +135,6 @@ typedef HGLRC(WINAPI * PFNWGLCREATECONTEXTATTRIBSARBPROC)
   C++ family of compilers
 
   Fundementally what they do is instruct the linker to use these two libraries
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   for the resolution of symbols. In essence, this is the equivalent of adding
   these two libraries to either the Makefile or project file.
 

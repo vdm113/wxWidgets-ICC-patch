@@ -154,11 +154,6 @@ public:
         Hide the info bar window.
 
         This method hides the window and lays out the parent window to account
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for its disappearance (unlike a simple Hide()).
      */
     virtual void Dismiss();

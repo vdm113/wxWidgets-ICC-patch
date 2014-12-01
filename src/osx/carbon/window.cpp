@@ -598,22 +598,12 @@ WXDLLEXPORT pascal OSStatus wxMacUnicodeTextEventHandler( EventHandlerCallRef ha
                     UInt32 message = (0  << 8) + ((char)uniChars[pos] );
     Since it simply truncated the unichar to the last byte, it ended up causing weird bugs with inline
     input, such as switching to another field when one attempted to insert the character U+4E09 (the kanji
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for "three"), because it was truncated to 09 (kTabCharCode), which was later "converted" to WXK_TAB
     (still 09) in wxMacTranslateKey; or triggering the default button when one attempted to insert U+840D
     (the kanji for "name"), which got truncated to 0D and interpreted as a carriage return keypress.
     Note that even single-byte characters could have been misinterpreted, since MacRoman charcodes only
     overlap with Unicode within the (7-bit) ASCII range.
     But simply passing a NUL charcode would disable text updated events, because wxTextCtrl::OnChar checks
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for codes within a specific range. Therefore I went for the solution seen above, which keeps ASCII
     characters as they are and replaces the rest with '?', ensuring that update events are triggered.
     It would be better to change wxTextCtrl::OnChar to look at the actual unicode character instead, but

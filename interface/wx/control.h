@@ -219,11 +219,6 @@ public:
         Unlike SetLabel(), this function shows exactly the @a text passed to it
         in the control, without interpreting ampersands in it in any way.
         Notice that it means that the control can't have any mnemonic defined
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for it using this function.
 
         @see EscapeMnemonics()

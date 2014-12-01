@@ -224,6 +224,11 @@ int LineLayout::FindBefore(XYPOSITION x, int lower, int upper) const {
 
 int LineLayout::FindPositionFromX(XYPOSITION x, Range range, bool charPosition) const {
 	int pos = FindBefore(x, range.start, range.end);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (pos < range.end) {
 		if (charPosition) {
 			if (x < (positions[pos + 1])) {

@@ -966,6 +966,11 @@ void wxHtmlContainerCell::Layout(int w)
 
             if (m_AlignHor != wxHTML_ALIGN_JUSTIFY || cell == NULL)
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while (line != cell)
                 {
                     line->SetPos(line->GetPosX() + xdelta,
@@ -1802,6 +1807,11 @@ const wxHtmlCell* wxHtmlTerminalCellsInterator::operator++()
         {
             // we must go up the hierarchy until we reach container where this
             // is not the last child, and then go down to first terminal cell:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( m_pos->GetNext() == NULL )
             {
                 m_pos = m_pos->GetParent();

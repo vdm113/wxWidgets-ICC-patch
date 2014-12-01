@@ -754,6 +754,11 @@ static void ColourisePropsLine(
 
 	unsigned int i = 0;
 	if (allowInitialSpaces) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while ((i < lengthLine) && isspacechar(lineBuffer[i]))	// Skip initial spaces
 			i++;
 	} else {

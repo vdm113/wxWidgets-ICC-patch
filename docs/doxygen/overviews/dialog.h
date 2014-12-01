@@ -21,11 +21,6 @@
 Classes: wxDialog, wxDialogLayoutAdapter
 
 A dialog box is similar to a panel, in that it is a window which can be used
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 for placing controls, with the following exceptions:
 
 @li A surrounding frame is implicitly created.
@@ -113,11 +108,6 @@ fool-proof, and may fail in the following situations:
 
 @li The dialog doesn't use sizers.
 @li The dialog implementation makes assumptions about the window hierarchy,
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for example getting the parent of a control and casting to the dialog class.
 @li The dialog does custom painting and/or event handling not handled by the scrolled window.
     If this problem can be solved globally, you can derive a new adapter class from

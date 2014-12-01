@@ -622,6 +622,7 @@ Fax3SetupState(TIFF* tif)
 static const int _msbmask[9] =
     { 0x00, 0x01, 0x03, 0x07, 0x0f, 0x1f, 0x3f, 0x7f, 0xff };
 #define	_PutBits(tif, bits, length) {				\
+VDM_MACRO_PRAGMA_IVDEP \
 	while (length > bit) {					\
 		data |= bits >> (length - bit);			\
 		length -= bit;					\
@@ -683,6 +684,11 @@ putspan(TIFF* tif, int32 span, const tableentry* tab)
 	int data = sp->data;
 	unsigned int code, length;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (span >= 2624) {
 		const tableentry* te = &tab[63 + (2560>>6)];
 		code = te->code, length = te->length;

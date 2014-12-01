@@ -284,11 +284,6 @@ void wxSocketManager::Init()
     /*
         Details: Initialize() creates a hidden window as a sink for socket
         events, such as 'read completed'. wxMSW has only one message loop
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for the main thread. If Initialize is called in a secondary thread,
         the socket window will be created for the secondary thread, but
         since there is no message loop on this thread, it will never
@@ -652,10 +647,10 @@ const wxSockAddressImpl& wxSocketImpl::GetLocal()
 // is EINTR
 #ifdef __UNIX__
     #define DO_WHILE_EINTR( rc, syscall ) \
-VDM_MACRO_PRAGMA_IVDEP \
         do { \
             rc = (syscall); \
         } \
+VDM_MACRO_PRAGMA_IVDEP \
         while ( rc == -1 && errno == EINTR )
 #else
     #define DO_WHILE_EINTR( rc, syscall ) rc = (syscall)

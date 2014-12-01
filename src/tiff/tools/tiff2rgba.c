@@ -450,6 +450,11 @@ cvt_whole_image( TIFF *in, TIFF *out )
         unsigned char *src, *dst;
 
 	src = dst = (unsigned char *) raster;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (count > 0)
         {
 	    *(dst++) = *(src++);

@@ -41,11 +41,6 @@ enum wxSystemFont
     /**
         Default font for user interface objects such as menus and dialog boxes.
         Note that with modern GUIs nothing guarantees that the same font is used
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for all GUI elements, so some controls might use a different font by default.
     */
     wxSYS_DEFAULT_GUI_FONT
@@ -152,11 +147,6 @@ enum wxSystemColour
         On wxMSW this colour should be used as the background colour of
         wxFrames which are used as containers of controls; this is in fact the
         same colour used for the borders of controls like e.g. wxNotebook or
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for the background of e.g. wxPanel.
 
         @since 2.9.0

@@ -275,6 +275,11 @@ processCompressOptions(char* opt)
 		char* cp = strchr(opt, ':');
 
                 compression = COMPRESSION_JPEG;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while( cp )
                 {
                     if (isdigit((int)cp[1]))

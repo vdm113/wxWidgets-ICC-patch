@@ -2103,6 +2103,11 @@ DECLAREContigPutFunc(putcontig8bitYCbCr44tile)
             pp += fromskew;
         }
     } else {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (h > 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
@@ -2204,6 +2209,11 @@ DECLAREContigPutFunc(putcontig8bitYCbCr42tile)
             pp += fromskew;
         }
     } else {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (h > 0) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
@@ -2318,8 +2328,18 @@ DECLAREContigPutFunc(putcontig8bitYCbCr22tile)
 	(void) y;
 	fromskew = (fromskew / 2) * 6;
 	cp2 = cp+w+toskew;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (h>=2) {
 		x = w;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (x>=2) {
 			uint32 Cb = pp[4];
 			uint32 Cr = pp[5];
@@ -2348,6 +2368,11 @@ DECLAREContigPutFunc(putcontig8bitYCbCr22tile)
 	}
 	if (h==1) {
 		x = w;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (x>=2) {
 			uint32 Cb = pp[4];
 			uint32 Cr = pp[5];
@@ -2422,6 +2447,11 @@ DECLAREContigPutFunc(putcontig8bitYCbCr12tile)
 	(void) y;
 	fromskew = (fromskew / 2) * 4;
 	cp2 = cp+w+toskew;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (h>=2) {
 		x = w;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -2500,6 +2530,11 @@ DECLARESepPutFunc(putseparate8bitYCbCr11tile)
 	(void) y;
 	(void) a;
 	/* TODO: naming of input vars is still off, change obfuscating declaration inside define, or resolve obfuscation */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (h-- > 0) {
 		x = w;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -2708,6 +2743,11 @@ checkcmap(TIFFRGBAImage* img)
     uint16* b = img->bluecmap;
     long n = 1L<<img->bitspersample;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (n-- > 0)
 	if (*r++ >= 256 || *g++ >= 256 || *b++ >= 256)
 	    return (16);

@@ -250,11 +250,6 @@
     _T() is a synonym for wxT() familiar to Windows programmers. As this macro
     has even higher risk of conflicting with system headers, its use is
     discouraged and you may predefine wxNO__T to disable it. Additionally, we
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     do it ourselves for Sun CC which is known to use it in its standard headers
     (see #10660).
  */

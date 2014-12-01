@@ -3593,6 +3593,11 @@ wxImageHistogram::FindFirstUnusedColour(unsigned char *r,
 {
     unsigned long key = MakeKey(r2, g2, b2);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( find(key) != end() )
     {
         // color already used

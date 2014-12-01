@@ -1404,11 +1404,6 @@ The result looks quite similar to the native ellipse, only e few pixels differ.
 The performance on a desktop system (Athlon 1800, WinXP) is about 7 times
 slower as DrawEllipse(...), which calls the native API.
 An rotated ellipse outside the clipping region takes nearly the same time,
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 while an native ellipse outside takes nearly no time to draw.
 
 If you draw an arc with this new method, you will see the starting and ending angles

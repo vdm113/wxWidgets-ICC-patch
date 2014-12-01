@@ -85,11 +85,6 @@ private:
 
 /*
     Note 1: the outer helper class _WX_LIST_HELPER_##liT below is a workaround
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for mingw 3.2.3 compiler bug that prevents a static function of liT class
     from being exported into dll. A minimal code snippet reproducing the bug:
 

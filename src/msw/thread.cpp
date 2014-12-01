@@ -995,6 +995,11 @@ bool wxThread::SetConcurrency(size_t WXUNUSED_IN_WINCE(level))
     // processor; we want to schedule the process to run on first level
     // CPUs
     DWORD bit = 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( bit )
     {
         if ( dwSysMask & bit )

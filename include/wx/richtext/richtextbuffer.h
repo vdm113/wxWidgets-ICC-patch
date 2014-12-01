@@ -28,11 +28,6 @@
 
   The top of the hierarchy is the buffer, a kind of wxRichTextParagraphLayoutBox.
   These boxes will allow flexible placement of text boxes on a page, but
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
   for now there is a single box representing the document, and this box is
   a wxRichTextParagraphLayoutBox which contains further wxRichTextParagraph
   objects, each of which can include text and images.
@@ -2261,11 +2256,6 @@ public:
     /**
         Do we have virtual text for this object? Virtual text allows an application
         to replace characters in an object for editing and display purposes, for example
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for highlighting special characters.
     */
     bool HasVirtualText(const wxRichTextPlainText* obj) const;
@@ -2723,11 +2713,6 @@ public:
     /**
         Lays out the object first with a given amount of space, and then if no width was specified in attr,
         lays out the object again using the minimum size. @a availableParentSpace is the maximum space
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for the object, whereas @a availableContainerSpace is the container with which relative positions and
         sizes should be computed. For example, a text box whose space has already been constrained
         in a previous layout pass to @a availableParentSpace, but should have a width of 50% of @a availableContainerSpace.
@@ -6545,11 +6530,6 @@ public:
     /**
         Sets flags that change the behaviour of loading or saving.
         See the documentation for each handler class to see what flags are relevant
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for each handler.
 
         You call this function directly if you are using a file handler explicitly
@@ -6681,11 +6661,6 @@ public:
     /**
         Do we have virtual text for this object? Virtual text allows an application
         to replace characters in an object for editing and display purposes, for example
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for highlighting special characters.
     */
     virtual bool HasVirtualText(const wxRichTextPlainText* obj) const = 0;

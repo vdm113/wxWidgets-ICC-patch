@@ -6283,6 +6283,11 @@ void Editor::Indent(bool forwards) {
 					if (newColumn < 0)
 						newColumn = 0;
 					int newPos = caretPosition;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 					while (pdoc->GetColumn(newPos) > newColumn)
 						newPos--;
 					sel.Range(r) = SelectionRange(newPos);

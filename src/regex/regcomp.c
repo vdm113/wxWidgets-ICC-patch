@@ -654,11 +654,6 @@ struct state *final;		/* final state */
 	NOERRN();
 	branch = branches;
 	firstbranch = 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	do {	/* a branch */
 		if (!firstbranch) {
 			/* need a place to hang it */
@@ -735,6 +730,11 @@ int partial;			/* is this only part of a branch? */
 	seencontent = 0;
 	t = subre(v, '=', 0, left, right);	/* op '=' is tentative */
 	NOERRN();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (!SEE('|') && !SEE(stopper) && !SEE(EOS)) {
 		if (seencontent) {	/* implicit concat operator */
 			lp = newstate(v->nfa);

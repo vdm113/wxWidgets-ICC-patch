@@ -602,10 +602,10 @@ void wxPropertyGridPageState::DoSetPropertyName( wxPGProperty* p,
 #endif
 
 #define ITEM_ITERATION_LOOP_BEGIN \
-VDM_MACRO_PRAGMA_IVDEP \
     do \
     { \
         iMax = parent->GetChildCount(); \
+VDM_MACRO_PRAGMA_IVDEP \
         while ( i < iMax ) \
         {  \
             wxPGProperty* p = parent->Item(i);

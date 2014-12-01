@@ -156,11 +156,6 @@ public:
 
         You may omit the file extension and a suitable one will be chosen.
         For wxHtmlHelpController, the extensions zip, htb and hhp will be appended
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while searching for a suitable file. For WinHelp, the hlp extension is appended.
     */
     virtual bool Initialize(const wxString& file);
@@ -303,11 +298,6 @@ public:
       similar style to the Microsoft HTML Help viewer and using some of the same
       files. Although it has an API compatible with other help controllers, it has
       more advanced features, so it is recommended that you use the specific API
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
       for this class instead. Note that if you use .zip or .htb formats for your
       books, you must add this line to your application initialization:
       @code wxFileSystem::AddHandler(new wxArchiveFSHandler); @endcode

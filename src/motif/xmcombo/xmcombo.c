@@ -2210,6 +2210,11 @@ static void EditVerifyCallback(Widget w, XtPointer pClientData,
     	
     	    if ( i > ItemCount ) i = 1;
     	    Ignore = True;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     	    while ( i != Start || Ignore ) {
     	        Ignore = False;
     	        XmStringGetLtoR(Items[i-1], XmSTRING_DEFAULT_CHARSET, 

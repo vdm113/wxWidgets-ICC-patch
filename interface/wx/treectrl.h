@@ -71,11 +71,6 @@
         range is selected, the current range, if any, is deselected.
     @style{wxTR_DEFAULT_STYLE}
         The set of flags that are closest to the defaults for the native control
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for a particular toolkit.
     @endStyleTable
 
@@ -601,11 +596,6 @@ public:
 
     /**
         Returns the next sibling of the specified item; call GetPrevSibling()
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for the previous sibling.
 
         Returns an invalid tree item if there are no further siblings.

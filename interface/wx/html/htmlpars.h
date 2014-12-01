@@ -88,11 +88,6 @@ protected:
 
     /**
         This method calls parser's wxHtmlParser::DoParsing method
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for the string between this tag and the paired ending tag:
         @code
         ...<A HREF="x.htm">Hello, world!</A>...

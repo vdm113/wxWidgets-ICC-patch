@@ -216,11 +216,6 @@ BY ANY OTHER PARTY.
 		<tgl@sss.pgh.pa.us>
 	lpd 95-06-22 removed #ifndefs whose sole purpose was to define
 		undefined preprocessor symbols as 0; changed all #ifdefs
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		for configuration symbols to #ifs
 	lpd 95-04-05 changed copyright notice to make it clear that
 		including ansi2knr in a program does not bring the entire
@@ -661,6 +656,11 @@ top:	p = endfn;
 			   case ']':	/* skip array dimension(s) */
 			   case ')':	/* skip procedure args OR name */
 			   {	int level = 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while ( level )
 				 switch ( *--p )
 				   {

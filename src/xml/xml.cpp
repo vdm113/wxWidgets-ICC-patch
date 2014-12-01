@@ -543,6 +543,11 @@ wxXmlNode *wxXmlDocument::GetRoot() const
     if (node)
     {
         node = m_docNode->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (node != NULL && node->GetType() != wxXML_ELEMENT_NODE)
             node = node->GetNext();
     }
@@ -1244,6 +1249,11 @@ bool wxXmlDocument::Save(wxOutputStream& stream, int indentstep) const
     if ( node )
         node = node->GetChildren();
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while( rc && node )
     {
         rc = OutputNode(stream, node, 0, convMem.get(),

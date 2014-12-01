@@ -350,11 +350,6 @@ public:
     @class wxGridCellStringRenderer
 
     This class may be used to format string data in a cell; it is the default
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for string cells.
 
     @library{wxadv}
@@ -576,11 +571,6 @@ public:
 
     /**
         This method allows you to customize the values returned by GetValue()
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for the cell using this editor. By default, the default values of the
         arguments are used, i.e. @c "1" is returned if the cell is checked and
         an empty string otherwise.
@@ -1243,11 +1233,6 @@ public:
         label and the corner window. Unlike cell attributes, these objects are
         not reference counted and are never @NULL so they are returned by
         reference and not pointer and DecRef() shouldn't (and can't) be called
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for them.
 
         All these functions were added in wxWidgets 2.9.1.
@@ -1298,11 +1283,6 @@ public:
         Default constructor initializes the object to invalid state.
 
         Initially the row and column are both invalid (-1) and so operator!()
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for an uninitialized wxGridCellCoords returns false.
      */
     wxGridCellCoords();
@@ -1376,11 +1356,6 @@ public:
     numbers.
 
     This base class is not quite abstract as it implements a trivial strategy
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for storing the attributes by forwarding it to wxGridCellAttrProvider and
     also provides stubs for some other functions. However it does have a number
     of pure virtual methods which must be implemented in the derived classes.
@@ -1984,11 +1959,6 @@ enum wxGridRenderStyle
     help you get started, wxGrid is the only class you need to refer to
     directly. It will set up default instances of the other classes and manage
     them for you. For more complex applications you can derive your own classes
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for custom grid views, grid data tables, cell editors and renderers. The
     @ref overview_grid has examples of simple and more complex applications,
     explains the relationship between the various grid classes and has a
@@ -2162,11 +2132,6 @@ public:
 
         Call this directly after the grid constructor. When you use this
         function wxGrid will create and manage a simple table of string values
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for you. All of the grid data will be stored in memory.
 
         For applications with more complex data types or relationships, or for
@@ -2465,11 +2430,6 @@ public:
 
     /**
         Sets the arguments to the horizontal and vertical text alignment values
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for the grid cell at the specified location.
 
         Horizontal alignment will be one of @c wxALIGN_LEFT, @c wxALIGN_CENTRE
@@ -2940,11 +2900,6 @@ public:
         which would return @a typeName from its GetTypeName() method for the
         cells in this column: while it doesn't really change the type of the
         cells in this column, it does associate the renderer and editor used
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for the cells of the specified type with them.
 
         See the @ref overview_grid for more information on working with custom
@@ -3030,11 +2985,6 @@ public:
     /**
         Automatically sizes all columns to fit their contents. If @a setAsMin
         is @true the calculated widths will also be set as the minimal widths
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for the columns.
     */
     void AutoSizeColumns(bool setAsMin = true);
@@ -3054,11 +3004,6 @@ public:
     /**
         Automatically sizes all rows to fit their contents. If @a setAsMin is
         @true the calculated heights will also be set as the minimal heights
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for the rows.
     */
     void AutoSizeRows(bool setAsMin = true);
@@ -3338,11 +3283,6 @@ public:
         Specifying a value of more than 1 in @a num_rows or @a num_cols will
         make the cell at (@a row, @a col) span the block of the specified size,
         covering the other cells which would be normally shown in it. Passing 1
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for both arguments resets the cell to normal appearance.
 
         @see GetCellSize()
@@ -3363,11 +3303,6 @@ public:
 
         For normal cells, the function fills both @a num_rows and @a num_cols
         with 1 and returns CellSpan_None. For cells which span multiple cells, i.e.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for which SetCellSize() had been called, the returned values are the
         same ones as were passed to SetCellSize() call and the function return
         value is CellSpan_Main.
@@ -3717,11 +3652,6 @@ public:
         if the event handler vetoes this event, the cursor is not moved.
 
         This function doesn't make the target call visible, use GoToCell() to
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         do this.
     */
     void SetGridCursor(int row, int col);
@@ -3735,11 +3665,6 @@ public:
         if the event handler vetoes this event, the cursor is not moved.
 
         This function doesn't make the target call visible, use GoToCell() to
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         do this.
     */
     void SetGridCursor(const wxGridCellCoords& coords);

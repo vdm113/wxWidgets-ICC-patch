@@ -174,11 +174,6 @@ public:
     /**
         Sets new appearance for the control. Default implementation
         sets foreground colour, background colour, font, plus text
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for wxTextCtrl and wxComboCtrl.
 
         @param appearance

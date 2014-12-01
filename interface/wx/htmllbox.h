@@ -131,11 +131,6 @@ protected:
     /**
         This method must be implemented in the derived class and should return
         the body (i.e. without @c html nor @c body tags) of the HTML fragment
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for the given item.
 
         Note that this function should always return a text fragment for the @a n item

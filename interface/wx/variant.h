@@ -45,11 +45,6 @@
     as an editor for different data types, or a remote procedure call protocol.
 
     An optional name member is associated with a wxVariant. This might be used,
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for example, in CORBA or OLE automation classes, where named parameters are
     required.
 

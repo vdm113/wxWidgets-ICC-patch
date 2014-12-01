@@ -287,6 +287,11 @@ local int gz_skip(state, len)
     unsigned n;
 
     /* skip over len bytes or reach end-of-file, whichever comes first */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (len)
         /* skip over whatever is in output buffer */
         if (state->x.have) {
@@ -499,6 +504,11 @@ int ZEXPORT gzungetc(c, file)
     if (state->x.next == state->out) {
         unsigned char *src = state->out + state->x.have;
         unsigned char *dest = state->out + (state->size << 1);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (src > state->out)
             *--dest = *--src;
         state->x.next = dest;

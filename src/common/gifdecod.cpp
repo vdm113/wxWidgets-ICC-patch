@@ -427,6 +427,11 @@ wxGIFDecoder::dgif(wxInputStream& stream, GIFImage *img, int interl, int bits)
         }
 
         // build the string for this code in the stack
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (code > ab_clr)
         {
             stack[pos++] = ab_tail[code];

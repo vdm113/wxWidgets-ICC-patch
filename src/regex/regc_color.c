@@ -642,6 +642,11 @@ struct colormap *cm;
 			assert(scd->nchrs > 0);
 			assert(scd->sub == sco);
 			scd->sub = NOSUB;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 			while ((a = cd->arcs) != NULL) {
 				assert(a->co == co);
 				/* uncolorchain(cm, a); */

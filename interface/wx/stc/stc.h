@@ -5557,11 +5557,6 @@ public:
     /**
         On GTK+, allow selecting the modifier key to use for mouse-based
         rectangular selection. Often the window manager requires Alt+Mouse Drag
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for moving windows.
         Valid values are SCMOD_CTRL(default), SCMOD_ALT, or SCMOD_SUPER.
     */

@@ -68,11 +68,6 @@ The base class for all these conversions is the wxMBConv class (which itself
 implements standard libc locale conversion). Derived classes include
 wxMBConvLibc, several different wxMBConvUTFxxx classes, and wxCSConv, which
 implement different kinds of conversions. You can also derive your own class
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 for your own custom encoding and use it, should you need it. All you need to do
 is override the MB2WC and WC2MB methods.
 

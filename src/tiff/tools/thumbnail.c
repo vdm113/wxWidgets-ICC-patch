@@ -533,6 +533,11 @@ setupStepTables(uint32 sw)
 	for (x = 0; x < tnw; x++) {
 	    uint32 sx0 = sx;
 	    err += step;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	    while (err >= limit) {
 		err -= limit;
 		sx++;

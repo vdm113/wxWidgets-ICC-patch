@@ -297,11 +297,6 @@ public:
 
         The @a typeNew parameter allows you to change the file format
         (default argument means "don't change type") and may be used to convert,
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for example, DOS files to Unix.
 
         The @a conv argument is only meaningful in Unicode build of wxWidgets when

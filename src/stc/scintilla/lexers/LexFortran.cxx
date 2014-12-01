@@ -115,19 +115,9 @@ static void ColouriseFortranDoc(unsigned int startPos, int length, int initStyle
 					sc.SetState(SCE_F_COMMENT);
 				}
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while (!sc.atLineEnd && sc.More()) sc.Forward(); // Until line end
 			} else if (toLineStart >= 72) {
 				sc.SetState(SCE_F_COMMENT);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				while (!sc.atLineEnd && sc.More()) sc.Forward(); // Until line end
 			} else if (toLineStart < 5) {
 				if (IsADigit(sc.ch))

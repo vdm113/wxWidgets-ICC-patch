@@ -91,11 +91,6 @@ enum wxLocaleCategory
         category, e.g. wxLOCALE_SHORT_DATE_FMT which can only be used with
         wxLOCALE_CAT_DATE. As this is the default value of the second parameter
         of wxLocale::GetInfo(), wxLOCALE_CAT_DATE can be omitted when asking
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for wxLOCALE_SHORT_DATE_FMT value.
 
         @since 2.9.0

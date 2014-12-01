@@ -113,11 +113,6 @@ public:
             Help event origin, see wxHelpEvent::GetOrigin.
 
         @return @true if help was shown, or @false if no help was available
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 for this window.
 
         @since 2.7.0
@@ -271,11 +266,6 @@ public:
         @param size
             Button size. 
             If ::wxDefaultSize is specified then the button is sized appropriately 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             for the question mark bitmap.
         @param style
             Window style.

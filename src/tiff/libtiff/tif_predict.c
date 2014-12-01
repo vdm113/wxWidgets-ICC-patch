@@ -422,6 +422,11 @@ fpAcc(TIFF* tif, uint8* cp0, tmsize_t cc)
 	if (!tmp)
 		return;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (count > stride) {
 		REPEAT4(stride, cp[stride] += cp[0]; cp++)
 		count -= stride;
@@ -492,6 +497,11 @@ PredictorDecodeTile(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 		assert(rowsize > 0);
 		assert((occ0%rowsize)==0);
 		assert(sp->decodepfunc != NULL);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (occ0 > 0) {
 			(*sp->decodepfunc)(tif, op0, rowsize);
 			occ0 -= rowsize;
@@ -713,6 +723,11 @@ PredictorEncodeTile(TIFF* tif, uint8* bp0, tmsize_t cc0, uint16 s)
 	rowsize = sp->rowsize;
 	assert(rowsize > 0);
 	assert((cc0%rowsize)==0);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (cc > 0) {
 		(*sp->encodepfunc)(tif, bp, rowsize);
 		cc -= rowsize;

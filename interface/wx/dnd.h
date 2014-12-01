@@ -368,11 +368,6 @@ public:
 
     /**
         See wxDropTarget::OnDrop(). This function is implemented appropriately
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for text, and calls OnDropText().
     */
     virtual bool OnDrop(wxCoord x, wxCoord y);
@@ -414,11 +409,6 @@ public:
 
     /**
         See wxDropTarget::OnDrop(). This function is implemented appropriately
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for files, and calls OnDropFiles().
     */
     virtual bool OnDrop(wxCoord x, wxCoord y);

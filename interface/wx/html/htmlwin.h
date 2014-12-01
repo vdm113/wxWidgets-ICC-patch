@@ -389,11 +389,6 @@ public:
 
     /**
         This function sets font sizes and faces. See wxHtmlDCRenderer::SetFonts
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for detailed description.
 
         @see SetSize()

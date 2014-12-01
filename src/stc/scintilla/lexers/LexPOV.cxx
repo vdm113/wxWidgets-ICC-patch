@@ -298,6 +298,11 @@ static void FoldPovDoc(
 		if (foldDirective && (style == SCE_POV_DIRECTIVE)) {
 			if (ch == '#') {
 				unsigned int j=i+1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while ((j<endPos) && IsASpaceOrTab(styler.SafeGetCharAt(j))) {
 					j++;
 				}

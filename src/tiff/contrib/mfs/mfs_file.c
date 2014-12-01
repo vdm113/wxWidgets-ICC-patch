@@ -22,11 +22,6 @@ Copyright (c) 1996 Mike Johnson
 Copyright (c) 1996 BancTec AB
 
 Permission to use, copy, modify, distribute, and sell this software
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 for any purpose is hereby granted without fee, provided
 that (i) the above copyright notices and this permission notice appear in
 all copies of the software and related documentation, and (ii) the names of

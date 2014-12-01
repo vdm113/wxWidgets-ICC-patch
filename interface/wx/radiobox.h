@@ -151,11 +151,6 @@ public:
 
     /**
         Creates the radiobox for two-step construction. See wxRadioBox()
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for further details.
     */
     bool Create(wxWindow* parent, wxWindowID id,
@@ -171,11 +166,6 @@ public:
 
     /**
         Creates the radiobox for two-step construction. See wxRadioBox()
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for further details.
     */
     bool Create(wxWindow* parent, wxWindowID id,

@@ -333,11 +333,6 @@ public:
         Creates a directory.
         
         This is just an alias for wxFileName::Mkdir(); refer to that function
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for more info.
     */
     static bool Make(const wxString &dir, int perm = wxS_DIR_DEFAULT,
@@ -353,11 +348,6 @@ public:
         Removes a directory.
         
         This is just an alias for wxFileName::Rmdir(); refer to that function
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for more info.
     */
     static bool Remove(const wxString &dir, int flags = 0);
@@ -376,11 +366,6 @@ public:
 
         For each directory found, @ref wxDirTraverser::OnDir() "sink.OnDir()"
         is called and @ref wxDirTraverser::OnFile() "sink.OnFile()" is called
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for every file. Depending on the return value, the enumeration may
         continue or stop. If entering a subdirectory fails, @ref
         wxDirTraverser::OnOpenError() "sink.OnOpenError()" is called.

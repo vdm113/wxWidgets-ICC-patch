@@ -594,11 +594,6 @@ public:
         If the value was not found, @a f is not changed.
 
         Notice that the value is read as a double but must be in a valid range
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for floats for the function to return @true.
 
         @since 2.9.1
@@ -614,11 +609,6 @@ public:
         If the value was not found, @a defaultVal is used instead.
 
         Notice that the value is read as a double but must be in a valid range
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for floats for the function to return @true.
 
         @since 2.9.1

@@ -61,11 +61,6 @@ public:
         This is because validators are passed to control constructors as
         references which must be copied. Unlike objects such as pens and
         brushes, it does not make sense to have a reference counting scheme to
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         do this cloning because all validators should have separate data.
 
         @return This base function returns @NULL.

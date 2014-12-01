@@ -53,22 +53,12 @@ enum wxScrollbarVisibility
     calling either wxWindow::SetVirtualSize(), or wxWindow::FitInside(), and
     setting the scrolling increments for it by calling SetScrollRate().
     Scrolling in some orientation is enabled by setting a non-zero increment
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for it.
 
     The most automatic and newest way is to simply let sizers determine the
     scrolling area. This is now the default when you set an interior sizer into
     a wxScrolled with wxWindow::SetSizer().  The scrolling area will be
     set to the size requested by the sizer and the scrollbars will be assigned
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for each orientation according to the need for them and the scrolling
     increment set by SetScrollRate().  As above, scrolling is only enabled in
     orientations with a non-zero increment.  You can influence the minimum size
@@ -249,11 +239,6 @@ public:
     /**
         Creates the window for two-step construction. Derived classes
         should call or replace this function. See wxScrolled::wxScrolled()
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for details.
     */
     bool Create(wxWindow* parent, wxWindowID id = -1,
@@ -410,11 +395,6 @@ public:
 
     /**
         This is a simple overload of GetViewStart(int*,int*); see that function
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for more info.
     */
     wxPoint GetViewStart() const;

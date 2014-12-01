@@ -880,11 +880,6 @@ png_handle_as_unknown(png_const_structrp png_ptr, png_const_bytep chunk_name)
     * code was always searched from the end of the list, this is no longer
     * necessary because the 'set' routine handles duplicate entries correcty.
     */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    do /* num_chunk_list > 0, so at least one */
    {
       p -= 5;
@@ -2571,6 +2566,11 @@ png_check_fp_number(png_const_charp string, png_size_t size, int *statep,
    int state = *statep;
    png_size_t i = *whereami;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    while (i < size)
    {
       int type;
@@ -2885,6 +2885,11 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
                      }
                      else
                      {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         while (cdigits > 0 && d > 9)
                         {
                            int ch = *--ascii;

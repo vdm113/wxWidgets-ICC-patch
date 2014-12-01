@@ -295,11 +295,6 @@ void wxPopupWindow::DoSetSize( int x, int y, int width, int height, int sizeFlag
         if ((m_x != old_x) || (m_y != old_y))
         {
             /* we set the position here and when showing the dialog
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                for the first time in idle time */
             gtk_widget_set_uposition( m_widget, m_x, m_y );
         }
@@ -332,11 +327,6 @@ void wxPopupWindow::GtkOnSize( int WXUNUSED(x), int WXUNUSED(y), int width, int 
 
     /* FIXME: is this a hack? */
     /* Since for some reason GTK will revert to using maximum size ever set
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
        for this window, we have to set geometry hints maxsize to match size
        given. Also set the to that minsize since resizing isn't possible
        anyway. */

@@ -150,11 +150,6 @@ public:
     is called, playback is guaranteed to start at the beginning of the media.
     This is because some streams are not seekable, and when stop is called on
     them they return to the beginning, thus wxMediaCtrl tries to keep consistent
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for all types of media.
 
     Note that when changing the state of the media through Play() and other methods,
@@ -202,11 +197,6 @@ public:
 
     Generally, you should almost certainly leave this part up to wxMediaCtrl -
     but if you need a certain backend for a particular reason, such as QuickTime
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for playing .mov files, all you need to do to choose a specific backend is
     to pass the name of the backend class to wxMediaCtrl::Create().
 

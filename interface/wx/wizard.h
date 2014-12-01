@@ -358,11 +358,6 @@ public:
         Default constructor.
 
         Use this if you wish to derive from wxWizard and then call Create(),
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for example if you wish to set an extra style with wxWindow::SetExtraStyle()
         between the two calls.
     */

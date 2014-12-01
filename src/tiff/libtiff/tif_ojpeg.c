@@ -1179,6 +1179,11 @@ OJPEGReadSecondarySos(TIFF* tif, uint16 s)
 	assert(sp->sos_end[0].log!=0);
 	assert(sp->sos_end[s].log==0);
 	sp->plane_sample_offset=s-1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while(sp->sos_end[sp->plane_sample_offset].log==0)
 		sp->plane_sample_offset--;
 	sp->in_buffer_source=sp->sos_end[sp->plane_sample_offset].in_buffer_source;
@@ -1188,6 +1193,11 @@ OJPEGReadSecondarySos(TIFF* tif, uint16 s)
 	sp->in_buffer_file_togo=sp->sos_end[sp->plane_sample_offset].in_buffer_file_togo;
 	sp->in_buffer_togo=0;
 	sp->in_buffer_cur=0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while(sp->plane_sample_offset<s)
 	{
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch

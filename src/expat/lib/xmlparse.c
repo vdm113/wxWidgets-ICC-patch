@@ -2099,11 +2099,6 @@ XML_GetFeatureList(void)
 }
 
 /* Initially tag->rawName always points into the parse buffer;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    for those TAG instances opened while the current parse buffer was
    processed, and not yet closed, we need to store tag->rawName in a more
    permanent location, since the parse buffer is about to be discarded.
@@ -2112,6 +2107,11 @@ static XML_Bool
 storeRawNames(XML_Parser parser)
 {
   TAG *tag = tagStack;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (tag) {
     int bufSize;
     int nameLen = sizeof(XML_Char) * (tag->name.strLen + 1);
@@ -3046,11 +3046,6 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
 #endif
         while (*s++ != XML_T(ASCII_COLON))
           ;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         do {  /* copies null terminator */
           const XML_Char c = *s;
           if (!poolAppendChar(&tempPool, *s))
@@ -3064,6 +3059,11 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
           unsigned char step = 0;
           unsigned long mask = nsAttsSize - 1;
           j = uriHash & mask;  /* index into hash table */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
           while (nsAtts[j].version == version) {
             /* for speed we compare stored hash values first */
             if (uriHash == nsAtts[j].hash) {
@@ -3143,6 +3143,11 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
     if (!binding)
       return XML_ERROR_UNBOUND_PREFIX;
     localPart = tagNamePtr->str;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (*localPart++ != XML_T(ASCII_COLON))
       ;
   }
@@ -4386,11 +4391,6 @@ doProlog(XML_Parser parser,
 #ifdef XML_DTD
       else
         /* use externalSubsetName to make doctypeSysid non-NULL
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
            for the case where no startDoctypeDeclHandler is set */
         doctypeSysid = externalSubsetName;
 #endif /* XML_DTD */
@@ -5872,6 +5872,11 @@ setContext(XML_Parser parser, const XML_Char *context)
   DTD * const dtd = _dtd;  /* save one level of indirection */
   const XML_Char *s = context;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (*context != XML_T('\0')) {
     if (*s == CONTEXT_SEP || *s == XML_T('\0')) {
       ENTITY *e;
@@ -6319,6 +6324,11 @@ static unsigned long FASTCALL
 hash(XML_Parser parser, KEY s)
 {
   unsigned long h = hash_secret_salt;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (*s)
     h = CHAR_HASH(h, *s++);
   return h;
@@ -6609,6 +6619,11 @@ poolCopyStringN(STRING_POOL *pool, const XML_Char *s, int n)
 static const XML_Char * FASTCALL
 poolAppendString(STRING_POOL *pool, const XML_Char *s)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (*s) {
     if (!poolAppendChar(pool, *s))
       return NULL;

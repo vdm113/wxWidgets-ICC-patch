@@ -25,11 +25,6 @@
     @style{wxTE_PROCESS_ENTER}
         Indicates that the control should generate @c wxEVT_TEXT_ENTER
         events. Using this style will prevent the user from using the Enter key
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for dialog navigation (e.g. activating the default button in the
         dialog) under MSW.
     @style{wxALIGN_LEFT}

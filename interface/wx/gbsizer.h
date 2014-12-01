@@ -124,11 +124,6 @@ public:
         Look at all items and see if any intersect (or would overlap) the given
         item. Returns @true if so, @false if there would be no overlap. If an
         @a excludeItem is given then it will not be checked for intersection,
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for example it may be the item we are checking the position of.
     */
     bool CheckForIntersection(wxGBSizerItem* item,

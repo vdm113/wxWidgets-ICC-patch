@@ -16,11 +16,6 @@
     @class wxGenericValidator
 
     wxGenericValidator performs data transfer (but not validation or filtering)
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for many type of controls.
 
     wxGenericValidator supports:

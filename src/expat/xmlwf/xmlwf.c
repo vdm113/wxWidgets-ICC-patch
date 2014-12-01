@@ -662,6 +662,11 @@ showVersion(XML_Char *prog)
   XML_Char *s = prog;
   XML_Char ch;
   const XML_Feature *features = XML_GetFeatureList();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while ((ch = *s) != 0) {
     if (ch == '/'
 #if (defined(WIN32) || defined(__WATCOMC__))

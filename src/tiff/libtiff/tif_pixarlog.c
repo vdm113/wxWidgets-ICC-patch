@@ -1079,6 +1079,11 @@ horizontalDifferenceF(float *ip, int n, int stride, uint16 *wp, uint16 *FromLT2)
 	    g2 = wp[1] = (uint16) CLAMP(ip[1]);
 	    b2 = wp[2] = (uint16) CLAMP(ip[2]);
 	    n -= 3;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	    while (n > 0) {
 		n -= 3;
 		wp += 3;

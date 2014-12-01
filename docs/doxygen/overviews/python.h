@@ -57,11 +57,6 @@ an internal scripting or macro language.
 
 Currently wxPython is available for Win32 platforms and the GTK toolkit (wxGTK)
 on most Unix/X-windows platforms. See the wxPython website http://wxPython.org/
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 for details about getting wxPython working for you.
 
 
@@ -124,11 +119,6 @@ There are quite a few other GUI modules available for Python, some in active
 use, some that haven't been updated for ages. Most are simple wrappers around
 some C or C++ toolkit or another, and most are not cross-platform compatible.
 See <a href="http://pypi.python.org/pypi?:action=browse&show=all&c=433">this link</a>
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 for a listing of a few of them.
 
 
@@ -239,11 +229,6 @@ is always the window that the event table entry should be added to.
 
 Notice the use of @c wxDLG_PNT and @c wxDLG_SZE in lines 19-29 to convert from
 dialog units to pixels. These helpers are unique to wxPython since Python can't
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 do method overloading like C++.
 
 There is an @c OnCloseWindow method at line 34 but no call to @c EVT_CLOSE to

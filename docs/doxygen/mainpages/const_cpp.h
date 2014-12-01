@@ -45,11 +45,6 @@ using @ifdef_ and not @if_.
 @itemdef{__WXMSW__, GUI using <a href="http://en.wikipedia.org/wiki/Windows_User">Windows Controls</a>.
 Notice that for compatibility reasons, this symbol is defined for console
 applications under Windows as well, but it should only be used in the GUI code
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 while <tt>__WINDOWS__</tt> should be used for the platform tests.}
 @itemdef{__WXOSX__, OS X GUI using any Apple widget framework (Carbon, AppKit or UIKit)}
 @itemdef{__WXOSX_IPHONE__, OS X iPhone (UIKit)}
@@ -262,11 +257,6 @@ with the corresponding library. The following symbols are honoured:
     - wxNO_ZLIB_LIB
 
 Notice that the base library is always included and the core is always included
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 for the GUI applications (i.e. those which don't define @c wxUSE_GUI as 0).
 
 If the makefiles have been used to build the libraries from source and the @c CFG
@@ -283,11 +273,6 @@ configuration.
         always defined in wxWidgets applications, see also wxCHECK_VERSION}
 @itemdef{wxDEBUG_LEVEL, defined as 1 by default, may be pre-defined as 0 before
         including wxWidgets headers to disable generation of any code at all
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for the assertion macros, see @ref overview_debugging}
 @itemdef{__WXDEBUG__, defined if wxDEBUG_LEVEL is 1 or more, undefined otherwise}
 @itemdef{wxUSE_XXX,

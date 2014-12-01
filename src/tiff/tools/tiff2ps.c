@@ -1711,6 +1711,11 @@ static int
 checkcmap(TIFF* tif, int n, uint16* r, uint16* g, uint16* b)
 {
 	(void) tif;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (n-- > 0)
 		if (*r++ >= 256 || *g++ >= 256 || *b++ >= 256)
 			return (16);

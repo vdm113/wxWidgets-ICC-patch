@@ -1624,6 +1624,11 @@ bool wxFindFileInPath(wxString *pStr, const wxString& szPath, const wxString& sz
 
     wxStringTokenizer tkn(szPath, wxPATH_SEP);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( tkn.HasMoreTokens() )
     {
         wxString strFile = tkn.GetNextToken();

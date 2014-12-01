@@ -456,7 +456,6 @@ unsigned copy;
 /* check macros for header crc */
 #ifdef GUNZIP
 #  define CRC2(check, word) \
-VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hbuf[0] = (unsigned char)(word); \
         hbuf[1] = (unsigned char)((word) >> 8); \
@@ -464,7 +463,6 @@ VDM_MACRO_PRAGMA_IVDEP \
     } while (0)
 
 #  define CRC4(check, word) \
-VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hbuf[0] = (unsigned char)(word); \
         hbuf[1] = (unsigned char)((word) >> 8); \
@@ -476,7 +474,6 @@ VDM_MACRO_PRAGMA_IVDEP \
 
 /* Load registers with state in inflate() for speed */
 #define LOAD() \
-VDM_MACRO_PRAGMA_IVDEP \
     do { \
         put = strm->next_out; \
         left = strm->avail_out; \
@@ -488,7 +485,6 @@ VDM_MACRO_PRAGMA_IVDEP \
 
 /* Restore state from registers in inflate() */
 #define RESTORE() \
-VDM_MACRO_PRAGMA_IVDEP \
     do { \
         strm->next_out = put; \
         strm->avail_out = left; \
@@ -500,7 +496,6 @@ VDM_MACRO_PRAGMA_IVDEP \
 
 /* Clear the input bit accumulator */
 #define INITBITS() \
-VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hold = 0; \
         bits = 0; \
@@ -509,7 +504,6 @@ VDM_MACRO_PRAGMA_IVDEP \
 /* Get a byte of input into the bit accumulator, or return from inflate()
    if there is no input available. */
 #define PULLBYTE() \
-VDM_MACRO_PRAGMA_IVDEP \
     do { \
         if (have == 0) goto inf_leave; \
         have--; \
@@ -520,8 +514,8 @@ VDM_MACRO_PRAGMA_IVDEP \
 /* Assure that there are at least n bits in the bit accumulator.  If there is
    not enough available input to do that, then return from inflate(). */
 #define NEEDBITS(n) \
-VDM_MACRO_PRAGMA_IVDEP \
     do { \
+VDM_MACRO_PRAGMA_IVDEP \
         while (bits < (unsigned)(n)) \
             PULLBYTE(); \
     } while (0)
@@ -532,7 +526,6 @@ VDM_MACRO_PRAGMA_IVDEP \
 
 /* Remove n bits from the bit accumulator */
 #define DROPBITS(n) \
-VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hold >>= (n); \
         bits -= (unsigned)(n); \
@@ -540,7 +533,6 @@ VDM_MACRO_PRAGMA_IVDEP \
 
 /* Remove zero to seven bits as needed to go to a byte boundary */
 #define BYTEBITS() \
-VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hold >>= bits & 7; \
         bits -= bits & 7; \
@@ -598,6 +590,11 @@ VDM_MACRO_PRAGMA_IVDEP \
    returns:
 
     case STATEw:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (want < need) {
             NEEDBITS(n);
             keep[want++] = BITS(n);
@@ -959,11 +956,21 @@ int flush;
             state->have = 0;
             state->mode = LENLENS;
         case LENLENS:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (state->have < state->ncode) {
                 NEEDBITS(3);
                 state->lens[order[state->have++]] = (unsigned short)BITS(3);
                 DROPBITS(3);
             }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (state->have < 19)
                 state->lens[order[state->have++]] = 0;
             state->next = state->codes;
@@ -980,6 +987,11 @@ int flush;
             state->have = 0;
             state->mode = CODELENS;
         case CODELENS:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (state->have < state->nlen + state->ndist) {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
@@ -1027,6 +1039,11 @@ int flush;
                         state->mode = BAD;
                         break;
                     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     while (copy--)
                         state->lens[state->have++] = (unsigned short)len;
                 }
@@ -1442,6 +1459,11 @@ unsigned len;
 
     got = *have;
     next = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (next < len && got < 4) {
         if ((int)(buf[next]) == (got < 2 ? 0 : 0xff))
             got++;
@@ -1474,6 +1496,11 @@ z_streamp strm;
         state->hold <<= state->bits & 7;
         state->bits -= state->bits & 7;
         len = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (state->bits >= 8) {
             buf[len++] = (unsigned char)(state->hold);
             state->hold >>= 8;

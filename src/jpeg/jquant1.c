@@ -434,6 +434,11 @@ create_colorindex (j_decompress_ptr cinfo)
 #   pragma unroll
 #endif
     for (j = 0; j <= MAXJSAMPLE; j++) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while (j > k)		/* advance val if past boundary */
 	k = largest_input_value(cinfo, i, ++val, nci-1);
       /* premultiply so that no multiplication needed in main processing */

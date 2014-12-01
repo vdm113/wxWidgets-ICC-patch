@@ -483,6 +483,11 @@ jpeg_huff_decode (bitread_working_state * state,
   /* Collect the rest of the Huffman code one bit at a time. */
   /* This is per Figure F.16 in the JPEG spec. */
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (code > htbl->maxcode[l]) {
     code <<= 1;
     CHECK_BIT_BUFFER(*state, 1, return -1);

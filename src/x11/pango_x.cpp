@@ -249,6 +249,11 @@ x11_pango_get_item_properties( PangoItem      *item,
   if (rise)
     *rise = 0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (tmp_list)
     {
       PangoAttribute *attr = (PangoAttribute *) tmp_list->data;

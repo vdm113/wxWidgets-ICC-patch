@@ -678,11 +678,6 @@ int main(int argc, char *argv[])
 				or only white space between generate a null
 				token for each two break characters together.
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				for example, if blank is set to be the white
 				space and comma is set to be the break
 				character, the line ...
@@ -729,11 +724,6 @@ int main(int argc, char *argv[])
 				position of the string gets treated as a
 				"normal" (i.e., non-quote, non-white,
 				non-break, and non-escape) character.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				for example, assume white space, break
 				character, and quote are the same as in the
 				above examples, and further, assume that
@@ -801,11 +791,6 @@ int main(int argc, char *argv[])
 			note that a token starting with one of these characters
 			needs the same quote character to terminate it.
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 			for example,
 
 			"ABC '

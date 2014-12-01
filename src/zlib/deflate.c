@@ -797,6 +797,11 @@ int ZEXPORT deflate (strm, flush)
         if (s->gzhead->extra != Z_NULL) {
             uInt beg = s->pending;  /* start of bytes to update crc */
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (s->gzindex < (s->gzhead->extra_len & 0xffff)) {
                 if (s->pending == s->pending_buf_size) {
                     if (s->gzhead->hcrc && s->pending > beg)
@@ -1436,11 +1441,6 @@ local void check_match(s, start, match, length)
     }
     if (z_verbose > 1) {
         fprintf(stderr,"\\[%d,%d]", start-match, length);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         do { putc(s->window[start++], stderr); } while (--length != 0);
     }
 }
@@ -1560,6 +1560,11 @@ local void fill_window(s)
             UPDATE_HASH(s, s->ins_h, s->window[str + 1]);
 #if MIN_MATCH != 3
             Call UPDATE_HASH() MIN_MATCH-3 more times
+#endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
 #endif
             while (s->insert) {
                 UPDATE_HASH(s, s->ins_h, s->window[str + MIN_MATCH-1]);

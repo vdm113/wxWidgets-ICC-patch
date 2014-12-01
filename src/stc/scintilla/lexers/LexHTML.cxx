@@ -1391,6 +1391,11 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 				}
 				// find the length of the word
 				int size = 1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while (setHTMLWord.Contains(static_cast<unsigned char>(styler.SafeGetCharAt(i + size))))
 					size++;
 				styler.ColourTo(i + size - 1, StateToPrint);

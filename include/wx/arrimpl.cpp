@@ -107,7 +107,6 @@ int name::Index(const T& item, bool bFromEnd) const                           \
   if ( bFromEnd ) {                                                           \
     if ( size() > 0 ) {                                                       \
       size_t ui = size() - 1;                                                 \
-VDM_MACRO_PRAGMA_IVDEP \
       do {                                                                    \
         if ( (T*)base_array::operator[](ui) == &item )                        \
           return static_cast<int>(ui);                                     \

@@ -30,11 +30,6 @@ that matches certain strings and doesn't match others.
 Regular expressions (RE), as defined by POSIX, come in two flavors:
 <em>extended regular expressions</em> (ERE) and <em>basic regular
 expressions</em> (BRE). EREs are roughly those of the traditional @e egrep,
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 while BREs are roughly those of the traditional @e ed. This implementation
 adds a third flavor: <em>advanced regular expressions</em> (ARE), basically
 EREs with some significant extensions.
@@ -148,11 +143,6 @@ list begins with @c ^, it matches any single character (but see below) @e not
 from the rest of the list.
 
 If two characters in the list are separated by <tt>-</tt>, this is shorthand
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 for the full @e range of characters between those two (inclusive) in the
 collating sequence, e.g. <tt>[0-9]</tt> in ASCII matches any decimal digit.
 Two ranges may not share an endpoint, so e.g. <tt>a-c-e</tt> is illegal.
@@ -524,11 +514,6 @@ order of significance:
 
 BREs differ from EREs in several respects. @c |, @c +, and @c ? are ordinary
 characters and there is no equivalent for their functionality. The delimiters
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 for bounds are @c @\{ and @c @\}, with @c { and @c } by themselves ordinary
 characters. The parentheses for nested subexpressions are @c @\( and @c @\),
 with @c ( and @c ) by themselves ordinary characters. @c ^ is an ordinary

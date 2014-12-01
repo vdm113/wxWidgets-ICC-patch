@@ -2381,6 +2381,11 @@ void wxCairoContext::GetPartialTextExtents(const wxString& text, wxArrayDouble& 
     }
     size_t i = widths.GetCount();
     const size_t len = text.length();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (i++ < len)
         widths.Add(PANGO_PIXELS(w));
 #else

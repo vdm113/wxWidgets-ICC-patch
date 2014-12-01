@@ -191,21 +191,11 @@ static void ColouriseFlagShipDoc(unsigned int startPos, int length, int initStyl
 			case SCE_FS_DISABLEDCODE:
 				if (sc.ch == '#' && visibleChars == 0) {
 					sc.SetState(bEnableCode ? SCE_FS_PREPROCESSOR : SCE_FS_PREPROCESSOR_C);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 					do {	// Skip whitespace between # and preprocessor word
 						sc.Forward();
 					} while (IsASpaceOrTab(sc.ch) && sc.More());
 					if (sc.MatchIgnoreCase("pragma")) {
 						sc.Forward(6);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 						do {	// Skip more whitespace until keyword
 							sc.Forward();
 						} while (IsASpaceOrTab(sc.ch) && sc.More());
@@ -262,11 +252,6 @@ static void ColouriseFlagShipDoc(unsigned int startPos, int length, int initStyl
 				sc.SetState(bEnableCode ? SCE_FS_STRING : SCE_FS_STRING_C);
 			} else if (sc.ch == '#' && visibleChars == 0) {
 				sc.SetState(bEnableCode ? SCE_FS_PREPROCESSOR : SCE_FS_PREPROCESSOR_C);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				do {	// Skip whitespace between # and preprocessor word
 					sc.Forward();
 				} while (IsASpaceOrTab(sc.ch) && sc.More());
@@ -278,11 +263,6 @@ static void ColouriseFlagShipDoc(unsigned int startPos, int length, int initStyl
 					}
 				} else if (sc.MatchIgnoreCase("pragma")) {
 					sc.Forward(6);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 					do {	// Skip more whitespace until keyword
 						sc.Forward();
 					} while (IsASpaceOrTab(sc.ch) && sc.More());
@@ -306,11 +286,6 @@ static void ColouriseFlagShipDoc(unsigned int startPos, int length, int initStyl
 				int p = 0;
 				int chSeek;
 				unsigned int endPos(startPos + length);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 				do {	// Skip whitespace
 					chSeek = sc.GetRelative(++p);
 				} while (IsASpaceOrTab(chSeek) && (sc.currentPos + p < endPos));

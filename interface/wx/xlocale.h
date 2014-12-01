@@ -75,11 +75,6 @@ public:
     /**
         Creates the locale object corresponding to the specified locale string.
         The locale string is system-dependent, use constructor taking wxLanguage
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for better portability.
     */
     wxXLocale(const char* loc);

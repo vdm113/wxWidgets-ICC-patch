@@ -35,11 +35,6 @@ wish to jump directly in the details of its support in the library.
 
 Unicode is a standard for character encoding which addresses the shortcomings
 of the previous standards (e.g. the ASCII standard), by using 8, 16 or 32 bits
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 for encoding each character.
 This allows enough code points (see below for the definition) sufficient to
 encode all of the world languages at once.
@@ -90,11 +85,6 @@ code points to code unit sequences. The simplest of them is <b>UTF-32</b> where
 each code unit is composed by 32 bits (4 bytes) and each code point is always
 represented by a single code unit (fixed length encoding).
 (Note that even UTF-32 is still not completely trivial as the mapping is different
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 for little and big-endian architectures). UTF-32 is commonly used under Unix systems for
 internal representation of Unicode strings.
 
@@ -432,11 +422,6 @@ wxString::To8BitData(). They can be used to create a wxString from arbitrary bin
 data without supposing that it is in current locale encoding, and then get it back,
 again, without any conversion or, rather, undoing the conversion used by
 wxString::From8BitData(). Because of this you should only use wxString::From8BitData()
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 for the strings created using wxString::To8BitData(). Also notice that in spite
 of the availability of these functions, wxString is not the ideal class for storing
 arbitrary binary data as they can take up to 4 times more space than needed

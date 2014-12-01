@@ -399,11 +399,6 @@ public:
 
     /**
         Calls the static GetInternalName() function for the archive entry type,
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for example wxZipEntry::GetInternalName.
     */
     virtual wxString GetInternalName(const wxString& name,

@@ -385,11 +385,6 @@ public:
 
     /**
         This function sets font sizes and faces. See wxHtmlWindow::SetFonts
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for detailed description.
     */
     void SetFonts(const wxString& normal_face, const wxString& fixed_face,

@@ -422,11 +422,6 @@ protected:
         @note
         This is not part of wxArtProvider's public API, use wxArtProvider::GetBitmap
         or wxArtProvider::GetIconBundle or wxArtProvider::GetIcon to query wxArtProvider
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for a resource.
 
         @see CreateIconBundle()

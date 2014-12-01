@@ -434,11 +434,6 @@ wdayNames = [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ]
 
 week = DateTimeDelta(7)
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 for n in range(20):
     year = randint(1900, 2100)
     month = randint(1, 12)
@@ -449,11 +444,6 @@ for n in range(20):
     countFromEnd = choice([-1, 1])
     weekNum = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while dt.month is month:
         dt = dt - countFromEnd * week
         weekNum = weekNum + countFromEnd
@@ -538,11 +528,6 @@ def GetLastSundayBefore(dt):
     else:
         return dt - DateTimeDelta(dt.iso_week[2])
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 for n in range(20):
     year = randint(1900, 2100)
     month = randint(1, 12)
@@ -555,11 +540,6 @@ for n in range(20):
     weekNumMonth2 = 0
     dtSunday = GetLastSundayBefore(dt)
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while dtSunday >= GetLastSundayBefore(DateTime(dt.year, dt.month, 1)):
         weekNumMonth2 = weekNumMonth2 + 1
         dtSunday = dtSunday - DateTimeDelta(7)

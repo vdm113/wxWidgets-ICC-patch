@@ -747,11 +747,6 @@ public:
         This method is only meaningful when the wxListCtrl is in the report mode.
         If @a subItem parameter is equal to the special value
         @c wxLIST_GETSUBITEMRECT_WHOLEITEM the return value is the same as
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for GetItemRect().
 
         @a code can be one of @c wxLIST_RECT_BOUNDS, @c wxLIST_RECT_ICON or
@@ -998,11 +993,6 @@ public:
         header (Win32) or 80 pixels (other platforms).
 
         In small or normal icon view, @a col must be -1, and the column width is set
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for all columns.
     */
     bool SetColumnWidth(int col, int width);
@@ -1053,11 +1043,6 @@ public:
 
         Please notice that this function makes sense for report view only and
         currently is only implemented in wxMSW port. To avoid explicit tests
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for @c __WXMSW__ in your code, please use @c wxHAS_LISTCTRL_COLUMN_ORDER
         as this will allow it to start working under the other platforms when
         support for the column reordering is added there.
@@ -1169,11 +1154,6 @@ public:
         @code
             list->SetItemState(item, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
         @endcode
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while to deselect it you should use
         @code
             list->SetItemState(item, 0, wxLIST_STATE_SELECTED);

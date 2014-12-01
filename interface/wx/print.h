@@ -535,11 +535,6 @@ public:
 
         @remarks
         The setup dialog is obsolete from Windows 95, though retained
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for backward compatibility.
     */
     virtual bool Setup(wxWindow* parent);
@@ -679,11 +674,6 @@ public:
         Returns the number of pixels per logical inch of the printer device context.
 
         Dividing the printer PPI by the screen PPI can give a suitable scaling factor
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for drawing text onto the printer.
 
         Remember to multiply this by a scaling factor to take the preview DC size into
@@ -702,11 +692,6 @@ public:
         Returns the number of pixels per logical inch of the screen device context.
 
         Dividing the printer PPI by the screen PPI can give a suitable scaling factor
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for drawing text onto the printer.
 
         If you are doing your own scaling, remember to multiply this by a scaling
@@ -820,11 +805,6 @@ public:
         That is, the user scale is set to (1,1) and the device origin is set to (0,0).
 
         Use this if you want to do your own scaling prior to calling wxDC drawing calls,
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for example, if your underlying model is floating-point and you want to achieve
         maximum drawing precision on high-resolution printers.
 

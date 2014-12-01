@@ -1229,6 +1229,11 @@ bool wxPGProperty::StringToValue( wxVariant& v, const wxString& text, int argFla
                     size_t startPos = pos;
 
                     // Group item - find end
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     while ( it != text.end() && depth > 0 )
                     {
                         a = *it;

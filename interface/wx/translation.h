@@ -262,11 +262,6 @@ public:
         @param origString  The singular form of the string to be converted.
         @param n           The number on which the plural form choice depends on.
                            (In some languages, there are different plural forms
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                            for e.g. n=2 and n=3 etc., in addition to the singular
                            form (n=1) being different.)
         @param domain      The only domain (i.e. message catalog) to search if

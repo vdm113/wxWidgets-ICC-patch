@@ -175,6 +175,11 @@ static int ParseASYWord(unsigned int pos, Accessor &styler, char *word)
   char ch=styler.SafeGetCharAt(pos);
   *word=0;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while(isASYidentifier(ch) && length<100){
           word[length]=ch;
           length++;

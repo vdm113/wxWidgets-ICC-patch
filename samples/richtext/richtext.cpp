@@ -2302,11 +2302,6 @@ public:
     /**
         Do we have virtual text for this object? Virtual text allows an application
         to replace characters in an object for editing and display purposes, for example
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for highlighting special characters.
     */
     virtual bool HasVirtualText(const wxRichTextPlainText* WXUNUSED(obj)) const wxOVERRIDE { return false; }

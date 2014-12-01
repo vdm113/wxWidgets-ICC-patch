@@ -36,11 +36,6 @@
 
     Notice that the use of the ugly wxTLS_VALUE() macro is unfortunately
     required if you need to support platforms without native compiler support
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for thread-specific variables. If you compile your code only on platforms
     which do have such support (recent versions of GNU C++ compiler, Microsoft
     Visual C++ and Sun C++ compiler are known to have it), you can avoid it and

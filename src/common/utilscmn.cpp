@@ -599,6 +599,11 @@ bool wxGetEnvMap(wxEnvVariableHashMap *map)
     {
         wxString name,
                  value;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( *env )
         {
             const wxString var(*env);
@@ -780,12 +785,10 @@ Thanks,
 
 /* Byte-wise swap two items of size SIZE. */
 #define SWAP(a, b, size)                                                      \
-VDM_MACRO_PRAGMA_IVDEP \
   do                                                                          \
     {                                                                         \
       size_t __size = (size);                                                 \
       char *__a = (a), *__b = (b);                                            \
-VDM_MACRO_PRAGMA_IVDEP \
       do                                                                      \
         {                                                                     \
           char __tmp = *__a;                                                  \
@@ -854,6 +857,11 @@ void wxQsort(void* pbase, size_t total_elems,
 
       PUSH (NULL, NULL);
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while (STACK_NOT_EMPTY)
         {
           char *left_ptr;
@@ -888,9 +896,19 @@ void wxQsort(void* pbase, size_t total_elems,
 #endif
           do
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
               while ((*cmp) ((void *) left_ptr, (void *) mid, user_data) < 0)
                 left_ptr += size;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
               while ((*cmp) ((void *) mid, (void *) right_ptr, user_data) < 0)
                 right_ptr -= size;
 
@@ -947,11 +965,6 @@ void wxQsort(void* pbase, size_t total_elems,
 
   /* Once the BASE_PTR array is partially sorted by quicksort the rest
      is completely sorted using insertion sort, since this is efficient
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
      for partitions below MAX_THRESH size. BASE_PTR points to the beginning
      of the array to sort, and END_PTR points at the very last element in
      the array (*not* one beyond it!). */
@@ -1078,6 +1091,11 @@ unsigned int wxGCD(unsigned int u, unsigned int v)
     {
         // remove all factors of 2 in v -- they are not common
         // note: v is not zero, so while will terminate
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ((v & 1) == 0)
             v >>= 1;
 

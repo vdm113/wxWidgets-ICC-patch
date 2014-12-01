@@ -71,11 +71,6 @@ public:
         @param size
             Button size. 
             If ::wxDefaultSize is specified then the button is sized appropriately 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             for the bitmap.
         @param style
             Window style. See wxBitmapButton.

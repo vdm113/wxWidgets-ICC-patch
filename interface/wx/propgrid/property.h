@@ -67,11 +67,6 @@
 
     When set to True, bool property will use check box instead of a
     combo box as its editor control. If you set this attribute
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for a wxFlagsProperty, it is automatically applied to child
     bool properties.
 */
@@ -82,11 +77,6 @@
 
     Set to True for the bool property to cycle value on double click
     (instead of showing the popup listbox). If you set this attribute
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for a wxFlagsProperty, it is automatically applied to child
     bool properties.
 */
@@ -391,11 +381,6 @@ wxPG_PROP_BEING_DELETED             = 0x00200000
 
     Not an actual property per se, but a header for a group of properties.
     Regardless inherits from wxPGProperty, and supports displaying 'labels'
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for columns other than the first one. Easiest way to set category's
     label for second column is to call wxPGProperty::SetValue() with string
     argument.
@@ -889,11 +874,6 @@ public:
         Events received by editor widgets are processed here. Note that editor class
         usually processes most events. Some, such as button press events of
         TextCtrlAndButton class, can be handled here. Also, if custom handling
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for regular events is desired, then that can also be done (for example,
         wxSystemColourProperty custom handles @c wxEVT_CHOICE
         to display colour picker dialog when 'custom' selection is made).
@@ -1002,11 +982,6 @@ public:
         @remarks
         You can get common filename validator by returning
         wxFileProperty::GetClassValidator(). wxDirProperty,
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for example, uses it.
     */
     virtual wxValidator* DoGetValidator () const;
@@ -1827,11 +1802,6 @@ public:
                  size of the font. Therefore it is recommended
                  to use return value of wxPropertyGrid::GetFont()
                  or wxPropertyGrid::GetCaptionFont() as a basis
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                  for the font that, after modifications, is passed
                  to this member function.
     */

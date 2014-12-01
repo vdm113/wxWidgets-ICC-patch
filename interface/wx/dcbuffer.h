@@ -36,11 +36,6 @@
     look at wxBufferedPaintDC instead.
 
     When used like this, a valid @e DC must be specified in the constructor
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while the @e buffer bitmap doesn't have to be explicitly provided, by
     default this class will allocate the bitmap of required size itself.
     However using a dedicated bitmap can speed up the redrawing process by

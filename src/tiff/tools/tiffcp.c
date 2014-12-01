@@ -394,6 +394,11 @@ processCompressOptions(char* opt)
 		char* cp = strchr(opt, ':');
 
 		defcompression = COMPRESSION_JPEG;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while( cp )
 		{
 			if (isdigit((int)cp[1]))
@@ -802,6 +807,11 @@ tiffcp(TIFF* in, TIFF* out)
 			if (TIFFGetField(in, TIFFTAG_INKNAMES, &inknames)) {
 				int inknameslen = strlen(inknames) + 1;
 				const char* cp = inknames;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while (ninks > 1) {
 					cp = strchr(cp, '\0');
                                         cp++;

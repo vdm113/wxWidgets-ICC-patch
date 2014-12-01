@@ -1570,11 +1570,6 @@ bool wxWindowDCImpl::DoBlit( wxCoord xdest, wxCoord ydest, wxCoord width, wxCoor
                we'd get a BadMatch or what not).
                Is a double XGetImage and combined XGetPixel and
                XPutPixel really faster? I'm not sure. look at wxXt
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                for a different implementation of the same problem. */
 
             wxBitmap bitmap( width, height );

@@ -812,6 +812,11 @@ void wxFileListCtrl::FreeAllItemsData()
     item.m_mask = wxLIST_MASK_DATA;
 
     item.m_itemId = GetNextItem( -1, wxLIST_NEXT_ALL );
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( item.m_itemId != -1 )
     {
         GetItem( item );

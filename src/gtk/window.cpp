@@ -77,11 +77,6 @@ typedef guint KeySym;
    the GTK port of wxWidgets, especially its internal structures. Obviously,
    you cannot understand wxGTK without knowing a little about the GTK, but
    some more information about what the wxWindow, which is the base class
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    for all other window classes, does seems required as well.
 
    I)
@@ -193,11 +188,6 @@ typedef guint KeySym;
 
    Cursors, too, have been a constant source of pleasure. The main difficulty
    is that a GdkWindow inherits a cursor if the programmer sets a new cursor
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    for the parent. To prevent this from doing too much harm, SetCursor calls
    GTKUpdateCursor, which will recursively re-set the cursors of all child windows.
    Also don't forget that cursors (like much else) are connected to GdkWindows,
@@ -2625,6 +2615,11 @@ wxWindowGTK::~wxWindowGTK()
     // avoid problem with GTK+ 2.18 where a frozen window causes the whole
     // TLW to be frozen, and if the window is then destroyed, nothing ever
     // gets painted again
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (IsFrozen())
         Thaw();
 

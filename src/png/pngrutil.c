@@ -1374,6 +1374,11 @@ png_handle_iCCP(png_structrp png_ptr, png_inforp info_ptr, png_uint_32 length)
       length -= read_length;
 
       keyword_length = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while (keyword_length < 80 && keyword_length < read_length &&
          keyword[keyword_length] != 0)
          ++keyword_length;
@@ -4177,6 +4182,11 @@ png_read_IDAT_data(png_structrp png_ptr, png_bytep output,
          uInt avail_in;
          png_bytep buffer;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
          while (png_ptr->idat_size == 0)
          {
             png_crc_finish(png_ptr, 0);

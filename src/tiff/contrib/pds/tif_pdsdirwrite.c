@@ -430,11 +430,6 @@ TIFFWriteNormalSubTag(TIFF* tif, TIFFDirEntry* dir, const TIFFFieldInfo* fip,
 		   TIFFSetField() function for TIFF_DOUBLEs, which expects
 		   to be passed a single double by value for the wc==1 case.
 		   (See the handling of TIFFFetchNormalTag() in tif_dirread.c
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 		   for an example.) Maybe this function was written before
 		   TIFFWriteDoubleArray() was written, not that that's an
 		   excuse. Anyway, the new code below is a trivial modification

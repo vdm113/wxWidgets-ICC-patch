@@ -44,11 +44,6 @@ public:
         first button being mapped to the least significant bit, and so on.
 
         A bitlist of wxJOY_BUTTONn identifiers, where n is 1, 2, 3 or 4 is available
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for historical reasons.
     */
     int GetButtonState() const;

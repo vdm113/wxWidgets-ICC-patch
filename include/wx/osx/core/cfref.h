@@ -352,11 +352,6 @@ inline wxCFRef<Type*> wxCFRefFromGet(Type *p)
     @param  otherRef    Normal parameter.  The source wxCFRef<> object.
     @discussion This is intended to be a clever way to make static_cast work while allowing
                 the return value to be converted to either a strong ref or a raw pointer
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while ensuring that the retain count is updated appropriately.
 
                 This is modeled after shared_ptr's static_pointer_cast.  Just as wxCFRef is

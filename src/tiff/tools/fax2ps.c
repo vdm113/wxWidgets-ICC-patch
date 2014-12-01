@@ -451,6 +451,11 @@ main(int argc, char** argv)
 #if defined(HAVE_SETMODE) && defined(O_BINARY)
 	setmode(fileno(stdin), O_BINARY);
 #endif
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while ((n = read(fileno(stdin), buf, sizeof (buf))) > 0)
 	    write(fileno(fd), buf, n);
 	lseek(fileno(fd), 0, SEEK_SET);

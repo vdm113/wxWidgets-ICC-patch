@@ -899,11 +899,6 @@ enum XML_ParamEntityParsing {
    XML_ExternalEntityParserCreate, XML_Parse/XML_ParseBuffer and
    XML_ParserFree calls must be made during this call.  After
    XML_ExternalEntityParserCreate has been called to create the parser
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    for the external parameter entity (context must be 0 for this
    call), it is illegal to make any calls on the old parser until
    XML_ParserFree has been called on the newly created parser.
