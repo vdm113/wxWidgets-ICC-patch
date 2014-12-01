@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
@@ -116,15 +116,6 @@ again:
             }
         }
 
-		{
-			size_t i1=strlen(buf);
-			if(i1>0 && '\\'==buf[i1-1]) {
-				last_char_was_backslash=true;
-			} else {
-				last_char_was_backslash=false;
-			}
-		}
-
         if(!do_patch && !strcmp(buf,inline_pragma)) {
             changed=true;
             continue;
@@ -148,6 +139,11 @@ again:
                 scrollback.push_back(buf);
 
                 buf2[0]='x';
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while('\r'!=buf2[0] && '\n'!=buf2[0]) {
                     buf2[0]='x';
                     fgets(buf2,length,in);
@@ -193,6 +189,15 @@ again:
             line.erase(0,1);
         }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
+        while(line.length()>0 && ('{'==line[line.length()-1] || ' '==line[line.length()-1] || '\t'==line[line.length()-1])) {
+            line.erase(line.length()-1,1);
+        }
+
         if(line.rfind("//")!=string::npos) {
             line.erase(line.rfind("//"));
         }
@@ -213,7 +218,7 @@ again:
 #   pragma swp
 #   pragma unroll
 #endif
-            while((startpos=line.find(i1.first))!=string::npos) {
+            while((startpos=line.find(i1.first))!=string::npos) { 
                 const string::size_type endpos=line.find(i1.second);
                 if(endpos==string::npos) {
                     // multi-line comment, delete until the end
@@ -242,61 +247,73 @@ again:
             }
         }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
-        for(size_t i1=0; i1<line.length(); ++i1)
-
-        {
-            string line_new;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
-            for(size_t i1=0; i1<line.length(); ++i1) {
-                if('('!=line[i1] && '{'!=line[i1] && ' '!=line[i1] && '\t'!=line[i1]) {
-                    line_new.append(1,line[i1]);
-                } else {
-                    break;
-                }
-            }
-            line=line_new;
-        }
-
         bool reformat=false;
+        string seeking;
 
-        // for
-        if(!line.compare("for")) {
-            reformat=true;
+        seeking="for";
+        if(line.find(seeking)==0) {
+            string ln=line;
+            ln.erase(0,seeking.length());
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
+            while(ln.length()>0 && ' '==ln[0])
+                ln.erase(0,1);
+            if(ln.length()>0 && '('==ln[0])
+                reformat=true;
         }
 
-        // for_each (C++0x)
-        if(!line.compare("for_each")) {
-            reformat=true;
+        seeking="for_each";
+        if(line.find(seeking)==0) {
+            string ln=line;
+            ln.erase(0,seeking.length());
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
+            while(ln.length()>0 && ' '==ln[0])
+                ln.erase(0,1);
+            if(ln.length()>0 && '('==ln[0])
+                reformat=true;
         }
 
-        // while
-        if(!line.compare("while")) {
-            if(0==do_cnt || (do_cnt!=0 && do_cnt--==0) || !do_patch)
+        seeking="while";
+        if(line.find(seeking)==0) {
+            string ln=line;
+            ln.erase(0,seeking.length());
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
+            while(ln.length()>0 && ' '==ln[0])
+                ln.erase(0,1);
+            if(ln.length()>0 && '('==ln[0])
                 reformat=true;
 
 #if 1 // ICC 14 bug workaround
-            string line_orig=buf;
+            string line_orig=line;
             char ch;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
 #endif
-            do {
+            while(line_orig.length()>0) {
                 ch=line_orig[line_orig.length()-1];
-                if(' '==ch || '\t'==ch)
-                    line_orig.erase(line_orig.length()-1);
-            } while(' '==ch || '\t'==ch);
-            if(';'==ch && !end_do && do_patch)
+                if(' '==ch || '\t'==ch || '\r'==ch || '\n'==ch || '\\'==ch) {
+                    line_orig.erase(line_orig.length()-1,1);
+                    continue;
+                }
+                if('{'==ch || ')'==ch) {
+                    break;
+                }
+                break;
+            }
+            if(';'==ch && do_patch)
                 reformat=false;
 #endif
         }
@@ -322,7 +339,7 @@ again:
                     break;
                 }
             }
-            if(got && ( (*i1).compare(line1)==0 || (*i1).compare(line1_disabled)==0 ) ) {
+            if(got && ((*i1).compare(line1)==0 || (*i1).compare(line1_disabled)==0)) {
                 reformat=!do_patch;
             } else {
                 reformat=do_patch;
@@ -345,7 +362,12 @@ again:
             for(int i2=0; i2<line2.size()+1; ++i2) {
                 string ln=*i1;
                 ++i1;
-                while(ln.length()!=0 && ( ln[ln.length()-1]=='\r' || ln[ln.length()-1]=='\n') )
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
+                while(ln.length()!=0 && ( ln[ln.length()-1]=='\r' || ln[ln.length()-1]=='\n' || ln[ln.length()-1]==' ') )
                     ln.erase(ln.length()-1,1);
                 const char* cmp=line1;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -367,9 +389,6 @@ again:
                     break;
                 }
             }
-            if(line2.size()+1==i3) {
-                reformat=!do_patch;
-            }
 
             if(reformat) {
                 string save=scrollback.back();
@@ -379,6 +398,7 @@ again:
                         scrollback.pop_back();
                         scrollback.push_back(tmp_buf);
                         scrollback.push_back(save);
+                        changed=true;
                     } else {
                         sprintf(tmp_buf,"%s\n",line1);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -394,12 +414,13 @@ again:
                         scrollback.pop_back();
                         scrollback.push_back(tmp_buf);
                         scrollback.push_back(save);
+                        changed=true;
                     }
                 } else {
                     if(last_char_was_backslash) {
                         scrollback.pop_back();
-                        scrollback.pop_back();
                         scrollback.push_back(save);
+                        changed=true;
                     } else {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
@@ -411,12 +432,22 @@ again:
                         scrollback.pop_back();
                         scrollback.pop_back();
                         scrollback.push_back(save);
+                        changed=true;
                     }
                 }
                 if(!changed)
                     ++cnt;
             }
         }
+
+        {
+			size_t i1=strlen(buf);
+			if(i1>0 && '\\'==buf[i1-1]) {
+				last_char_was_backslash=true;
+			} else {
+				last_char_was_backslash=false;
+			}
+		}
     }
 
     fclose(in);
@@ -540,10 +571,25 @@ int _tmain(int argc, _TCHAR* argv[])
 #endif
             for(size_t i1=1; i1<argc; ++i1) {
                 if(strcmp(argv[i1],"-p")==0) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     do_patch=true;
                 } else if(strcmp(argv[i1],"-u")==0) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     do_patch=false;
                 } else if(strcmp(argv[i1],"--no-wait")==0) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     do_nowait=true;
                 } else {
                     usage=true;
