@@ -663,7 +663,9 @@ protected:
 
     void OnPaint( wxPaintEvent &event );
 
+#if wxUSE_TOOLBAR
     void OnToolbarClick( wxCommandEvent &event );
+#endif
     void OnResize( wxSizeEvent& event );
     void OnPropertyGridSelect( wxPropertyGridEvent& event );
     void OnPGColDrag( wxPropertyGridEvent& event );
