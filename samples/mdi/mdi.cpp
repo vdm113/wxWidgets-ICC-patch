@@ -78,6 +78,8 @@ wxBEGIN_EVENT_TABLE(MyFrame, wxMDIParentFrame)
     EVT_MENU(wxID_CLOSE_ALL, MyFrame::OnCloseAll)
 
     EVT_MENU_OPEN(MyFrame::OnMenuOpen)
+    EVT_MENU_HIGHLIGHT(wxID_ABOUT, MyFrame::OnMenuHighlight)
+    EVT_MENU_HIGHLIGHT(MDI_REFRESH, MyFrame::OnMenuHighlight)
     EVT_MENU_CLOSE(MyFrame::OnMenuClose)
 
     EVT_CLOSE(MyFrame::OnClose)
@@ -102,13 +104,21 @@ wxBEGIN_EVENT_TABLE(MyChild, wxMDIChildFrame)
     EVT_MOVE(MyChild::OnMove)
 
     EVT_MENU_OPEN(MyChild::OnMenuOpen)
+    EVT_MENU_HIGHLIGHT(wxID_ABOUT, MyChild::OnMenuHighlight)
+    EVT_MENU_HIGHLIGHT(MDI_REFRESH, MyChild::OnMenuHighlight)
     EVT_MENU_CLOSE(MyChild::OnMenuClose)
 
     EVT_CLOSE(MyChild::OnCloseWindow)
 wxEND_EVENT_TABLE()
 
 wxBEGIN_EVENT_TABLE(MyCanvas, wxScrolledWindow)
+    EVT_CONTEXT_MENU(MyCanvas::OnMenu)
     EVT_MOUSE_EVENTS(MyCanvas::OnEvent)
+
+    EVT_MENU_OPEN(MyCanvas::OnMenuOpen)
+    EVT_MENU_HIGHLIGHT(wxID_ABOUT, MyCanvas::OnMenuHighlight)
+    EVT_MENU_HIGHLIGHT(MDI_REFRESH, MyCanvas::OnMenuHighlight)
+    EVT_MENU_CLOSE(MyCanvas::OnMenuClose)
 wxEND_EVENT_TABLE()
 
 wxBEGIN_EVENT_TABLE(MyChild::EventHandler, wxEvtHandler)
@@ -359,11 +369,13 @@ void MyFrame::InitToolBar(wxToolBar* toolBar)
 // ---------------------------------------------------------------------------
 
 // Define a constructor for my canvas
-MyCanvas::MyCanvas(wxWindow *parent, const wxPoint& pos, const wxSize& size)
+MyCanvas::MyCanvas(wxFrame *parent, const wxPoint& pos, const wxSize& size)
         : wxScrolledWindow(parent, wxID_ANY, pos, size,
                            wxSUNKEN_BORDER |
                            wxNO_FULL_REPAINT_ON_RESIZE |
-                           wxVSCROLL | wxHSCROLL)
+                           wxVSCROLL | wxHSCROLL),
+          MenuEventLogger("canvas", parent)
+
 {
     SetBackgroundColour(*wxWHITE);
     SetCursor(wxCursor(wxCURSOR_PENCIL));
@@ -423,9 +435,20 @@ void MyCanvas::OnEvent(wxMouseEvent& event)
 
         m_dirty = true;
     }
+    else
+    {
+        event.Skip();
+    }
 
     xpos = pt.x;
     ypos = pt.y;
+}
+
+void MyCanvas::OnMenu(wxContextMenuEvent& event)
+{
+    wxMenu menu;
+    menu.Append(MDI_REFRESH, "&Refresh picture");
+    PopupMenu(&menu, ScreenToClient(event.GetPosition()));
 }
 
 // ---------------------------------------------------------------------------

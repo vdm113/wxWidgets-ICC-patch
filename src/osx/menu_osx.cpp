@@ -556,7 +556,7 @@ void wxMenu::HandleMenuItemHighlighted( wxMenuItem* item )
 {
     int menuid = item ? item->GetId() : 0;
     wxMenuEvent wxevent(wxEVT_MENU_HIGHLIGHT, menuid, this);
-    DoHandleMenuEvent( wxevent );
+    ProcessMenuEvent(this, wxevent, GetWindow());
 }
 
 void wxMenu::DoHandleMenuOpenedOrClosed(wxEventType evtType)
@@ -567,7 +567,7 @@ void wxMenu::DoHandleMenuOpenedOrClosed(wxEventType evtType)
     // Set the id to allow wxMenuEvent::IsPopup() to work correctly.
     int menuid = this == wxCurrentPopupMenu ? wxID_ANY : 0;
     wxMenuEvent wxevent(evtType, menuid, this);
-    DoHandleMenuEvent( wxevent );
+    ProcessMenuEvent(this, wxevent, GetWindow());
 }
 
 void wxMenu::HandleMenuOpened()
@@ -578,26 +578,6 @@ void wxMenu::HandleMenuOpened()
 void wxMenu::HandleMenuClosed()
 {
     DoHandleMenuOpenedOrClosed(wxEVT_MENU_CLOSE);
-}
-
-bool wxMenu::DoHandleMenuEvent(wxEvent& wxevent)
-{
-    wxevent.SetEventObject(this);
-    wxEvtHandler* handler = GetEventHandler();
-    if (handler && handler->ProcessEvent(wxevent))
-    {
-        return true;
-    }
-    else
-    {
-        wxWindow *win = GetWindow();
-        if (win)
-        {
-            if ( win->HandleWindowEvent(wxevent) )
-                return true;
-        }
-    }
-    return false;
 }
 
 // Menu Bar

@@ -17,6 +17,10 @@ Changes in behaviour not resulting in compilation errors
   wxINTERPOLATION_DEFAULT and not wxINTERPOLATION_GOOD as in 3.0 for
   consistency with OS X, call SetInterpolationQuality() explicitly if needed.
 
+- Calling wxYield() in wxMSW now generates wxEVT_IDLE events, just as in the
+  other ports, but this can be unexpected for the applications not expecting
+  their idle handlers to be called from inside wxYield().
+
 Changes in behaviour which may result in build errors
 -----------------------------------------------------
 
@@ -89,6 +93,7 @@ All (GUI):
 - Add wxUIActionSimulator::Select().
 - Add wxOwnerDrawnComboBox::Is{List,Text}Empty() methods.
 - Fix creating/removing mode buttons in wxPG manager (Artur Wieczorek).
+- Harmonize wxMenuEvent handling between all major ports.
 
 wxGTK:
 
@@ -118,6 +123,8 @@ wxMSW:
 - Drastically improve efficiency of selecting all items in wxDataViewCtrl.
 - Fix wxMenuEvent::GetMenu() for wxEVT_MENU_{OPEN,CLOSE} in MDI frames.
 - Added support for reading multi string values to wxRegKey (Carl Godkin).
+- Fix updating wxSpinCtrlDouble tooltip text (Laurent Poujoulat).
+- Fix appearance of checked disabled wxToolBar tools with custom images.
 
 wxOSX/Cocoa:
 

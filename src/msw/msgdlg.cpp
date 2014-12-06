@@ -457,7 +457,7 @@ wxFont wxMessageDialog::GetMessageFont()
 
 int wxMessageDialog::ShowMessageBox()
 {
-    if ( !wxTheApp->GetTopWindow() )
+    if ( wxTheApp && !wxTheApp->GetTopWindow() )
     {
         // when the message box is shown from wxApp::OnInit() (i.e. before the
         // message loop is entered), this must be done or the next message box
@@ -570,7 +570,7 @@ int wxMessageDialog::ShowMessageBox()
         msStyle |= MB_TOPMOST;
 
 #ifndef __WXWINCE__
-    if ( wxTheApp->GetLayoutDirection() == wxLayout_RightToLeft )
+    if ( wxApp::MSWGetDefaultLayout(m_parent) == wxLayout_RightToLeft )
         msStyle |= MB_RTLREADING | MB_RIGHT;
 #endif
 
@@ -578,19 +578,6 @@ int wxMessageDialog::ShowMessageBox()
         msStyle |= MB_APPLMODAL;
     else
         msStyle |= MB_TASKMODAL;
-
-    // per MSDN documentation for MessageBox() we can prefix the message with 2
-    // right-to-left mark characters to tell the function to use RTL layout
-    // (unfortunately this only works in Unicode builds)
-    wxString message = GetFullMessage();
-#if wxUSE_UNICODE
-    if ( wxTheApp->GetLayoutDirection() == wxLayout_RightToLeft )
-    {
-        // NB: not all compilers support \u escapes
-        static const wchar_t wchRLM = 0x200f;
-        message.Prepend(wxString(wchRLM, 2));
-    }
-#endif // wxUSE_UNICODE
 
 #if wxUSE_MSGBOX_HOOK
     // install the hook in any case as we don't know in advance if the message
@@ -603,7 +590,13 @@ int wxMessageDialog::ShowMessageBox()
 #endif // wxUSE_MSGBOX_HOOK
 
     // do show the dialog
-    int msAns = MessageBox(hWnd, message.t_str(), m_caption.t_str(), msStyle);
+    const int msAns = MessageBox
+                      (
+                        hWnd,
+                        GetFullMessage().t_str(),
+                        m_caption.t_str(),
+                        msStyle
+                      );
 
     return MSWTranslateReturnCode(msAns);
 }
@@ -734,7 +727,7 @@ void wxMSWTaskDialogConfig::MSWCommonTaskDialogInit(TASKDIALOGCONFIG &tdc)
     // use the top level window as parent if none specified
     tdc.hwndParent = parent ? GetHwndOf(parent) : NULL;
 
-    if ( wxTheApp->GetLayoutDirection() == wxLayout_RightToLeft )
+    if ( wxApp::MSWGetDefaultLayout(parent) == wxLayout_RightToLeft )
         tdc.dwFlags |= TDF_RTL_LAYOUT;
 
     // If we have both the main and extended messages, just use them as

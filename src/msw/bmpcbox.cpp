@@ -441,7 +441,7 @@ bool wxBitmapComboBox::MSWOnDraw(WXDRAWITEMSTRUCT *item)
 
     // Draw default for item -1, which means 'focus rect only'
     if ( pos == -1 )
-        return FALSE;
+        return false;
 
     int flags = 0;
     if ( lpDrawItem->itemState & ODS_COMBOBOXEDIT )
@@ -481,9 +481,9 @@ bool wxBitmapComboBox::MSWOnMeasure(WXMEASUREITEMSTRUCT *item)
     LPMEASUREITEMSTRUCT lpMeasureItem = (LPMEASUREITEMSTRUCT) item;
     int pos = lpMeasureItem->itemID;
 
-    // Measure item height if item list is not empty,
+    // Measure edit field height if item list is not empty,
     // otherwise leave default system value.
-    if ( pos >= 0 )
+    if ( m_usedImgSize.y >= 0 || pos >= 0 )
     {
         lpMeasureItem->itemHeight = wxBitmapComboBoxBase::MeasureItem(pos);
     }

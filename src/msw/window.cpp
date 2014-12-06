@@ -2321,9 +2321,7 @@ wxWindowMSW::HandleMenuSelect(WXWORD nItem, WXWORD flags, WXHMENU hMenu)
         item = wxID_NONE;
 
     wxMenuEvent event(wxEVT_MENU_HIGHLIGHT, item);
-    event.SetEventObject(this);
-
-    if ( HandleWindowEvent(event) )
+    if ( wxMenu::ProcessMenuEvent(MSWFindMenuFromHMENU(hMenu), event, this) )
         return true;
 
     // by default, i.e. if the event wasn't handled above, clear the status bar
@@ -2340,35 +2338,25 @@ wxWindowMSW::HandleMenuSelect(WXWORD nItem, WXWORD flags, WXHMENU hMenu)
 }
 
 bool
-wxWindowMSW::DoSendMenuOpenCloseEvent(wxEventType evtType, wxMenu* menu, bool popup)
+wxWindowMSW::DoSendMenuOpenCloseEvent(wxEventType evtType, wxMenu* menu)
 {
-    wxMenuEvent event(evtType, popup ? wxID_ANY : 0, menu);
-    event.SetEventObject(menu);
+    wxMenuEvent event(evtType, menu && !menu->IsAttached() ? wxID_ANY : 0, menu);
 
-    return HandleWindowEvent(event);
+    return wxMenu::ProcessMenuEvent(menu, event, this);
 }
 
 bool wxWindowMSW::HandleMenuPopup(wxEventType evtType, WXHMENU hMenu)
 {
-    bool isPopup = false;
-    wxMenu* menu = NULL;
-    if ( wxCurrentPopupMenu && wxCurrentPopupMenu->GetHMenu() == hMenu )
-    {
-        menu = wxCurrentPopupMenu;
-        isPopup = true;
-    }
-    else
-    {
-        menu = MSWFindMenuFromHMENU(hMenu);
-    }
+    wxMenu* const menu = MSWFindMenuFromHMENU(hMenu);
 
-
-    return DoSendMenuOpenCloseEvent(evtType, menu, isPopup);
+    return DoSendMenuOpenCloseEvent(evtType, menu);
 }
 
-wxMenu* wxWindowMSW::MSWFindMenuFromHMENU(WXHMENU WXUNUSED(hMenu))
+wxMenu* wxWindowMSW::MSWFindMenuFromHMENU(WXHMENU hMenu)
 {
-    // We don't have any menus at this level.
+    if ( wxCurrentPopupMenu && wxCurrentPopupMenu->GetHMenu() == hMenu )
+        return wxCurrentPopupMenu;
+
     return NULL;
 }
 

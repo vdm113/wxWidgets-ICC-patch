@@ -2859,7 +2859,7 @@ bool wxTextCtrl::MSWSetParaFormat(const wxTextAttr& style, long start, long end)
 #if wxUSE_RICHEDIT2
     if ( m_verRichEdit > 1 )
     {
-        if ( wxTheApp->GetLayoutDirection() == wxLayout_RightToLeft )
+        if ( GetLayoutDirection() == wxLayout_RightToLeft )
         {
             // Use RTL paragraphs in RTL mode to get proper layout
             pf.dwMask |= PFM_RTLPARA;

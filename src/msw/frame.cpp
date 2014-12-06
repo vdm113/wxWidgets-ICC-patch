@@ -503,10 +503,10 @@ bool wxFrame::HandleMenuSelect(WXWORD nItem, WXWORD flags, WXHMENU hMenu)
     return wxWindow::HandleMenuSelect(nItem, flags, hMenu);
 }
 
-bool wxFrame::DoSendMenuOpenCloseEvent(wxEventType evtType, wxMenu* menu, bool popup)
+bool wxFrame::DoSendMenuOpenCloseEvent(wxEventType evtType, wxMenu* menu)
 {
     // Update the menu depth when dealing with the top level menus.
-    if ( !popup )
+    if ( !menu || menu->IsAttached() )
     {
         if ( evtType == wxEVT_MENU_OPEN )
         {
@@ -524,12 +524,18 @@ bool wxFrame::DoSendMenuOpenCloseEvent(wxEventType evtType, wxMenu* menu, bool p
         }
     }
 
-    return wxWindow::DoSendMenuOpenCloseEvent(evtType, menu, popup);
+    return wxWindow::DoSendMenuOpenCloseEvent(evtType, menu);
 }
 
 wxMenu* wxFrame::MSWFindMenuFromHMENU(WXHMENU hMenu)
 {
-    return GetMenuBar() ? GetMenuBar()->MSWGetMenu(hMenu) : NULL;
+    if ( wxMenuBar* mbar = GetMenuBar() )
+    {
+        if ( wxMenu* menu = mbar->MSWGetMenu(hMenu) )
+            return menu;
+    }
+
+    return wxFrameBase::MSWFindMenuFromHMENU(hMenu);
 }
 #endif // wxUSE_MENUS && !defined(__WXUNIVERSAL__)
 
@@ -993,6 +999,22 @@ WXLRESULT wxFrame::MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM lPara
                 // not do it again or the handlers which skip the event would
                 // be called twice
                 processed = true;
+            }
+            break;
+
+        case WM_INITMENUPOPUP:
+        case WM_UNINITMENUPOPUP:
+            // We get these messages from the menu bar even if the menu is
+            // disabled, which is unexpected, so ignore them in this case.
+            if ( wxMenuBar* mbar = GetMenuBar() )
+            {
+                const int pos = mbar->MSWGetTopMenuPos((WXHMENU)wParam);
+                if ( pos != wxNOT_FOUND && !mbar->IsEnabledTop(pos) )
+                {
+                    // This event comes from a disabled top level menu, don't
+                    // handle it.
+                    return MSWDefWindowProc(message, wParam, lParam);
+                }
             }
             break;
 

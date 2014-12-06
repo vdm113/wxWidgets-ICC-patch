@@ -1046,7 +1046,6 @@ bool wxMenu::MSWCommand(WXUINT WXUNUSED(param), WXWORD id_)
 }
 
 // get the menu with given handle (recursively)
-#if wxUSE_OWNER_DRAWN
 wxMenu* wxMenu::MSWGetMenu(WXHMENU hMenu)
 {
     // check self
@@ -1074,7 +1073,6 @@ wxMenu* wxMenu::MSWGetMenu(WXHMENU hMenu)
     // unknown hMenu
     return NULL;
 }
-#endif // wxUSE_OWNER_DRAWN
 
 // ---------------------------------------------------------------------------
 // Menu Bar
@@ -1733,13 +1731,30 @@ void wxMenuBar::Detach()
     wxMenuBarBase::Detach();
 }
 
-// get the menu with given handle (recursively)
-wxMenu* wxMenuBar::MSWGetMenu(WXHMENU hMenu)
+int wxMenuBar::MSWGetTopMenuPos(WXHMENU hMenu) const
 {
-    wxCHECK_MSG( GetHMenu() != hMenu, NULL,
-                 wxT("wxMenuBar::MSWGetMenu(): menu handle is wxMenuBar, not wxMenu") );
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
+    for ( size_t n = 0 ; n < GetMenuCount(); ++n )
+    {
+        wxMenu* menu = GetMenu(n)->MSWGetMenu(hMenu);
+        if ( menu )
+            return n;
+    }
 
-#if wxUSE_OWNER_DRAWN
+    return wxNOT_FOUND;
+}
+
+wxMenu* wxMenuBar::MSWGetMenu(WXHMENU hMenu) const
+{
+    // If we're called with the handle of the menu bar itself, we can return
+    // immediately as it certainly can't be the handle of one of our menus.
+    if ( hMenu == GetHMenu() )
+        return NULL;
+
     // query all menus
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
@@ -1752,7 +1767,6 @@ wxMenu* wxMenuBar::MSWGetMenu(WXHMENU hMenu)
         if ( menu )
             return menu;
     }
-#endif
 
     // unknown hMenu
     return NULL;

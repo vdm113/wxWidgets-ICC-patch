@@ -256,11 +256,7 @@ void wxMimeTypesManagerImpl::LoadXDGAppsFilesFromDir(const wxString& dirname)
         cont = dir.GetNext(&filename);
     }
 
-#if 0
-    // RR: I'm not sure this makes any sense. On my system we'll just
-    //     scan the YAST2 and other useless directories
-
-    // Look recursively into subdirs
+    // Recurse into subdirs, which on KDE may hold most of the .desktop files
     cont = dir.GetFirst(&filename, wxEmptyString, wxDIR_DIRS);
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
@@ -274,7 +270,6 @@ void wxMimeTypesManagerImpl::LoadXDGAppsFilesFromDir(const wxString& dirname)
         LoadXDGAppsFilesFromDir( p.GetPath() );
         cont = dir.GetNext(&filename);
     }
-#endif
 }
 
 
@@ -957,6 +952,7 @@ wxFileType * wxMimeTypesManagerImpl::GetFileTypeFromExtension(const wxString& ex
 
     InitIfNeeded();
 
+    wxFileType* fileTypeFallback = NULL;
     size_t count = m_aExtensions.GetCount();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
@@ -981,12 +977,32 @@ wxFileType * wxMimeTypesManagerImpl::GetFileTypeFromExtension(const wxString& ex
                 wxFileType *fileType = new wxFileType;
                 fileType->m_impl->Init(this, n);
 
-                return fileType;
+                // See if this one has a known open-command. If not, keep
+                // looking for another one that does, as a file that can't be
+                // opened is not very useful, but store this one as a fallback.
+                wxString type, desc, open;
+                fileType->GetMimeType(&type);
+                fileType->GetDescription(&desc);
+                wxFileType::MessageParameters params("filename."+ext, type);
+                if ( fileType->GetOpenCommand(&open, params) )
+                {
+                    delete fileTypeFallback;
+                    return fileType;
+                }
+                else
+                {
+                    // Override the previous fallback, if any, with the new
+                    // one: we consider that later entries have priority.
+                    delete fileTypeFallback;
+                    fileTypeFallback = fileType;
+                }
             }
         }
     }
 
-    return NULL;
+    // If we couldn't find a filetype with a known open-command, return any
+    // without one
+    return fileTypeFallback;
 }
 
 wxFileType * wxMimeTypesManagerImpl::GetFileTypeFromMimeType(const wxString& mimeType)

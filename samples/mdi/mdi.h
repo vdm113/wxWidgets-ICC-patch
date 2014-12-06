@@ -24,26 +24,6 @@ public:
     virtual bool OnInit() wxOVERRIDE;
 };
 
-class MyCanvas : public wxScrolledWindow
-{
-public:
-    MyCanvas(wxWindow *parent, const wxPoint& pos, const wxSize& size);
-    virtual void OnDraw(wxDC& dc) wxOVERRIDE;
-
-    bool IsDirty() const { return m_dirty; }
-
-    void SetText(const wxString& text) { m_text = text; Refresh(); }
-
-private:
-    void OnEvent(wxMouseEvent& event);
-
-    wxString m_text;
-
-    bool m_dirty;
-
-    wxDECLARE_EVENT_TABLE();
-};
-
 // Helper class logging menu open/close events.
 class MenuEventLogger
 {
@@ -63,18 +43,51 @@ protected:
 
         wxMenu* const menu = event.GetMenu();
         if ( menu )
-            what.Printf("Menu with title \"%s\"", menu->GetTitle());
+            what.Printf("Menu \"%s\"", menu->GetTitle());
         else
             what = "Unknown menu";
 
-        wxLogMessage(m_frame, "%s was %s in the %s frame",
-                     what, action, m_label);
+        wxLogMessage(m_frame, "%s %s in %s", what, action, m_label);
+    }
+
+    void LogMenuHighlight(wxMenuEvent& event)
+    {
+        event.Skip();
+
+        wxLogMessage(m_frame, "Item %d selected in %s",
+                     event.GetMenuId(), m_label);
     }
 
     const wxString m_label;
     wxFrame* const m_frame;
 
     wxDECLARE_NO_COPY_CLASS(MenuEventLogger);
+};
+
+class MyCanvas : public wxScrolledWindow,
+                 private MenuEventLogger
+{
+public:
+    MyCanvas(wxFrame *parent, const wxPoint& pos, const wxSize& size);
+    virtual void OnDraw(wxDC& dc) wxOVERRIDE;
+
+    bool IsDirty() const { return m_dirty; }
+
+    void SetText(const wxString& text) { m_text = text; Refresh(); }
+
+private:
+    void OnMenuOpen(wxMenuEvent& event) { LogMenuOpenClose(event, "opened"); }
+    void OnMenuHighlight(wxMenuEvent& event) { LogMenuHighlight(event); }
+    void OnMenuClose(wxMenuEvent& event) { LogMenuOpenClose(event, "closed"); }
+
+    void OnMenu(wxContextMenuEvent& event);
+    void OnEvent(wxMouseEvent& event);
+
+    wxString m_text;
+
+    bool m_dirty;
+
+    wxDECLARE_EVENT_TABLE();
 };
 
 // Define a new frame
@@ -98,6 +111,7 @@ private:
     void OnCloseAll(wxCommandEvent& event);
 
     void OnMenuOpen(wxMenuEvent& event) { LogMenuOpenClose(event, "opened"); }
+    void OnMenuHighlight(wxMenuEvent& event) { LogMenuHighlight(event); }
     void OnMenuClose(wxMenuEvent& event) { LogMenuOpenClose(event, "closed"); }
 
     void OnClose(wxCloseEvent& event);
@@ -128,6 +142,7 @@ private:
     void OnSize(wxSizeEvent& event);
     void OnMove(wxMoveEvent& event);
     void OnMenuOpen(wxMenuEvent& event) { LogMenuOpenClose(event, "opened"); }
+    void OnMenuHighlight(wxMenuEvent& event) { LogMenuHighlight(event); }
     void OnMenuClose(wxMenuEvent& event) { LogMenuOpenClose(event, "closed"); }
     void OnCloseWindow(wxCloseEvent& event);
 
