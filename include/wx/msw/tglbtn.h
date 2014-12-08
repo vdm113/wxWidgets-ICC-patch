@@ -63,6 +63,8 @@ protected:
 
     virtual WXDWORD MSWGetStyle(long flags, WXDWORD *exstyle = NULL) const;
 
+    virtual bool MSWIsPushed() const;
+
     void Init();
 
     // current state of the button (when owner-drawn)

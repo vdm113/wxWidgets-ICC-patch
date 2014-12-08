@@ -80,6 +80,8 @@ protected:
     void MakeOwnerDrawn();
     bool IsOwnerDrawn() const;
 
+    virtual bool MSWIsPushed() const;
+
 private:
     wxDECLARE_NO_COPY_CLASS(wxAnyButton);
 };

@@ -1221,6 +1221,11 @@ bool wxAnyButton::SetForegroundColour(const wxColour &colour)
     return true;
 }
 
+bool wxAnyButton::MSWIsPushed() const
+{
+    return (SendMessage(GetHwnd(), BM_GETSTATE, 0, 0) & BST_PUSHED) != 0;
+}
+
 bool wxAnyButton::MSWOnDraw(WXDRAWITEMSTRUCT *wxdis)
 {
     LPDRAWITEMSTRUCT lpDIS = (LPDRAWITEMSTRUCT)wxdis;
@@ -1242,7 +1247,7 @@ bool wxAnyButton::MSWOnDraw(WXDRAWITEMSTRUCT *wxdis)
             break;
     }
 
-    bool pushed = (SendMessage(GetHwnd(), BM_GETSTATE, 0, 0) & BST_PUSHED) != 0;
+    bool pushed = MSWIsPushed();
 
     RECT rectBtn;
     CopyRect(&rectBtn, &lpDIS->rcItem);

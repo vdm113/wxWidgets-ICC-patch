@@ -142,6 +142,11 @@ WXDWORD wxToggleButton::MSWGetStyle(long style, WXDWORD *exstyle) const
     return msStyle;
 }
 
+bool wxToggleButton::MSWIsPushed() const
+{
+    return GetValue();
+}
+
 void wxToggleButton::SetValue(bool val)
 {
     m_state = val;
