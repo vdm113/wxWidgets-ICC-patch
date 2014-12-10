@@ -641,7 +641,7 @@ public:
     // Overridden functions - no documentation required.
     //
 
-    void SetId( wxWindowID winid );
+    void SetId( wxWindowID winid ) wxOVERRIDE;
     virtual void SetExtraStyle ( long exStyle ) wxOVERRIDE;
     virtual bool SetFont ( const wxFont& font ) wxOVERRIDE;
     virtual void SetWindowStyleFlag ( long style ) wxOVERRIDE;
@@ -757,6 +757,8 @@ protected:
     virtual bool SetEditableStateItem( const wxString& name, wxVariant value ) wxOVERRIDE;
     virtual wxVariant GetEditableStateItem( const wxString& name ) const wxOVERRIDE;
 
+    // Reconnect propgrid event handlers.
+    void ReconnectEventHandlers(wxWindowID oldId, wxWindowID newId);
 private:
     DECLARE_EVENT_TABLE()
 };
