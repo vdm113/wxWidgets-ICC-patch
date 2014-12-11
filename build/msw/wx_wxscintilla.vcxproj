@@ -171,7 +171,7 @@
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <StringPooling>true</StringPooling>
       <FunctionLevelLinking>false</FunctionLevelLinking>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Precise</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
@@ -219,7 +219,7 @@
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <StringPooling>true</StringPooling>
       <FunctionLevelLinking>false</FunctionLevelLinking>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Precise</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
@@ -266,7 +266,7 @@
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FunctionLevelLinking>false</FunctionLevelLinking>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Precise</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
@@ -274,7 +274,9 @@
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch %(AdditionalOptions)</AdditionalOptions>
+      <EnableMatrixMultiplyLibraryCall>No</EnableMatrixMultiplyLibraryCall>
+      <OffloadConstructs>None</OffloadConstructs>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -314,7 +316,7 @@
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FunctionLevelLinking>false</FunctionLevelLinking>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Precise</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
@@ -322,7 +324,9 @@
       <UseProcessorExtensions>HOST</UseProcessorExtensions>
       <Cpp0xSupport>true</Cpp0xSupport>
       <EnableAnsiAliasing>true</EnableAnsiAliasing>
-      <AdditionalOptions>/Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Gm /Qlong_double /Qopt-class-analysis /Qopt-mem-bandwidth2 /Qopt-streaming-stores:auto /Qno-alias-args /Qopt-prefetch %(AdditionalOptions)</AdditionalOptions>
+      <EnableMatrixMultiplyLibraryCall>No</EnableMatrixMultiplyLibraryCall>
+      <OffloadConstructs>None</OffloadConstructs>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WX__;SCI_LEXER;LINK_LEXERS;__WXMSW__;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -362,7 +366,7 @@
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <StringPooling>true</StringPooling>
       <FunctionLevelLinking>false</FunctionLevelLinking>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Precise</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
@@ -410,7 +414,7 @@
       <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
       <StringPooling>true</StringPooling>
       <FunctionLevelLinking>false</FunctionLevelLinking>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Precise</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
@@ -457,7 +461,7 @@
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FunctionLevelLinking>false</FunctionLevelLinking>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Precise</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
@@ -504,7 +508,7 @@
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FunctionLevelLinking>false</FunctionLevelLinking>
-      <FloatingPointModel>Fast2</FloatingPointModel>
+      <FloatingPointModel>Precise</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
