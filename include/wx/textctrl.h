@@ -738,9 +738,6 @@ public:
        wxTextEntry::SetValue(value);
     }
 
-    // wxTextEntry overrides
-    virtual bool SetHint(const wxString& hint) wxOVERRIDE;
-
     // wxWindow overrides
     virtual wxVisualAttributes GetDefaultAttributes() const wxOVERRIDE
     {
