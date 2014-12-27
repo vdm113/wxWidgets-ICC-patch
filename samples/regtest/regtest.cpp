@@ -112,7 +112,6 @@ public:
 
     // information
     bool IsKeySelected() const;
-    static const char *ValueTypeName(wxRegKey::ValueType type);
 
 private:
     // structure describing a registry key/value
@@ -1082,32 +1081,12 @@ bool RegTreeCtrl::TreeNode::OnExpand()
         {
         case wxRegKey::Type_String:
         case wxRegKey::Type_Expand_String:
+        case wxRegKey::Type_Multi_String:
         {
             wxString strValue;
             icon = RegImageList::TextValue;
             m_pKey->QueryValue(str, strValue);
             strItem += strValue;
-        }
-        break;
-
-        case wxRegKey::Type_Multi_String:
-        {
-            wxArrayString names, values;
-            m_pKey->QueryValue(str, names, values);
-            strItem += "(multi string) ";
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
-            for ( size_t i = 0; i < names.GetCount(); i++ )
-            {
-                if ( i > 0 )
-                    strItem += wxT (", ");
-                strItem += names[i] + wxT ("=") + values[i];
-            }
-
-            icon = RegImageList::TextValue;
         }
         break;
 
@@ -1440,37 +1419,6 @@ void RegTreeCtrl::SetRegistryView(wxRegKey::WOW64ViewMode viewMode)
     m_pRoot->Refresh();
 }
 
-const char *RegTreeCtrl::ValueTypeName(wxRegKey::ValueType type)
-{
-    switch ( type )
-    {
-        case wxRegKey::Type_None:
-            return "none";
-        case wxRegKey::Type_String:
-            return "string";
-        case wxRegKey::Type_Expand_String:
-            return "expand_string";
-        case wxRegKey::Type_Binary:
-            return "binary";
-        case wxRegKey::Type_Dword:
-            return "number";
-        case wxRegKey::Type_Dword_big_endian:
-            return "big endian number";
-        case wxRegKey::Type_Link:
-            return "symbolic link";
-        case wxRegKey::Type_Multi_String:
-            return "multiple strings";
-        case wxRegKey::Type_Resource_list:
-            return "resource list in the resource map";
-        case wxRegKey::Type_Full_resource_descriptor:
-            return "resource list in the hardware description";
-        case wxRegKey::Type_Resource_requirements_list:
-            return "resource requirements list";
-        default:
-            return "unrecognized";
-    }
-}
-
 void RegTreeCtrl::ShowProperties()
 {
     wxTreeItemId lCurrent = GetSelection();
@@ -1509,7 +1457,8 @@ void RegTreeCtrl::ShowProperties()
             value,
             parent->m_strName.c_str(),
             key.GetValueType(value),
-            ValueTypeName(key.GetValueType (value)));
+            key.IsNumericValue(value) ? wxT("numeric") : wxT("string"));
+
     }
 }
 

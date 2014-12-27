@@ -1007,43 +1007,7 @@ bool wxRegKey::QueryValue(const wxString& szValue, wxMemoryBuffer& buffer) const
   return false;
 }
 
-bool wxRegKey::QueryValue(const wxString& szValue, wxArrayString &names,
-                          wxArrayString &values) const
-{
-    // Make sure value is a multistring.
-    wxASSERT_MSG(GetValueType (szValue) == Type_Multi_String,
-                 wxT("Type mismatch in wxRegKey::QueryValue()."));
 
-    wxMemoryBuffer buf;
-    if ( !QueryValue (szValue, buf) )
-        return false;
-
-    wxChar * const data = static_cast<wxChar *>(buf.GetData());
-
-    // Parse the list of NUL-separated strings of the form "name=value".
-    size_t begin = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
-    for ( size_t i = 0; i < buf.GetDataLen() - 1; i++ )
-    {
-        if ( data[i] == 0 )
-        {
-            if ( i > begin )
-            {
-                wxString value;
-                names.Add(wxString(&data[begin]).BeforeFirst('=', &value));
-                values.Add(value);
-            }
-
-            begin = i + 1;
-        }
-    }
-
-    return true;
-}
 
 bool wxRegKey::QueryValue(const wxString& szValue,
                           wxString& strValue,
@@ -1068,12 +1032,27 @@ bool wxRegKey::QueryValue(const wxString& szValue,
             }
             else
             {
-                m_dwLastError = RegQueryValueEx((HKEY) m_hKey,
-                                                RegValueStr(szValue),
-                                                RESERVED,
-                                                &dwType,
-                                                (RegString)(wxChar*)wxStringBuffer(strValue, dwSize),
-                                                &dwSize);
+                // extra scope for wxStringBufferLength
+                {
+                    // We need length in characters, not bytes.
+                    DWORD chars = dwSize / sizeof(wxChar);
+
+                    wxStringBufferLength strBuf(strValue, chars);
+                    m_dwLastError = RegQueryValueEx((HKEY) m_hKey,
+                                                    RegValueStr(szValue),
+                                                    RESERVED,
+                                                    &dwType,
+                                                    (RegString)(wxChar*)strBuf,
+                                                    &dwSize);
+
+                    // The returned string may or not be NUL-terminated,
+                    // exclude the trailing NUL if it's there (which is
+                    // typically the case but is not guaranteed to always be).
+                    if ( strBuf[chars - 1] == '\0' )
+                        chars--;
+
+                    strBuf.SetLength(chars);
+                }
 
                 // expand the var expansions in the string unless disabled
 #ifndef __WXWINCE__
