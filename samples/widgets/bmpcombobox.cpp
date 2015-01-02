@@ -429,7 +429,7 @@ void BitmapComboBoxWidgetsPage::Reset()
 
 void BitmapComboBoxWidgetsPage::CreateCombo()
 {
-    int flags = ms_defaultFlags;
+    int flags = GetAttrs().m_defaultFlags;
 
     if ( m_chkSort->GetValue() )
         flags |= wxCB_SORT;
