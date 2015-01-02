@@ -102,9 +102,7 @@ struct WidgetAttributes
         m_tooltip = "This is a tooltip";
 #endif // wxUSE_TOOLTIPS
         m_enabled = true;
-        m_show = true;
         m_dir = wxLayout_LeftToRight;
-        m_variant = wxWINDOW_VARIANT_NORMAL;
         m_cursor = *wxSTANDARD_CURSOR;
         m_defaultFlags = wxBORDER_DEFAULT;
     }
@@ -119,9 +117,7 @@ struct WidgetAttributes
     wxColour m_colBg;
     wxColour m_colPageBg;
     bool m_enabled;
-    bool m_show;
     wxLayoutDirection m_dir;
-    wxWindowVariant m_variant;
     wxCursor m_cursor;
     // the default flags, currently only contains border flags
     int m_defaultFlags;
