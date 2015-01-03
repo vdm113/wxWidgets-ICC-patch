@@ -122,9 +122,6 @@
     <ClInclude Include="..\..\include\wx\richtext\richtextsymboldlg.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\richtext\richtexttabspage.h">
-      <Filter>Common Headers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\wx\richtext\richtextuicustomization.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
