@@ -3165,11 +3165,6 @@ void wxPGChoices::Add( const wxChar* const* labels, const ValArrItem* values )
 {
     AllocExclusive();
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( unsigned int i = 0; *labels; labels++, i++ )
     {
         const int value = values ? values[i] : i;
@@ -3189,11 +3184,6 @@ void wxPGChoices::Add( const wxArrayString& arr, const wxArrayInt& arrint )
     wxASSERT_MSG( valcount >= itemcount || valcount == 0,
                   wxT("Insufficient number of values in the array") );
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < itemcount; i++ )
     {
         const int value = (i < valcount) ? arrint[i] : i;
