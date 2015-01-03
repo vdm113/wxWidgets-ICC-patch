@@ -771,6 +771,7 @@
     <ClInclude Include="..\..\include\wx\richtext\richtextstylepage.h" />
     <ClInclude Include="..\..\include\wx\richtext\richtextstyles.h" />
     <ClInclude Include="..\..\include\wx\richtext\richtextsymboldlg.h" />
+    <ClInclude Include="..\..\include\wx\richtext\richtexttabspage.h" />
     <ClInclude Include="..\..\include\wx\richtext\richtextuicustomization.h" />
     <ClInclude Include="..\..\include\wx\richtext\richtextxml.h" />
     <ClInclude Include="..\..\include\wx\xrc\xh_richtext.h" />
