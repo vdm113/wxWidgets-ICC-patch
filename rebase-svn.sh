@@ -26,7 +26,7 @@ cp -arf ./vdm/scripts/build .
 git add build/msw/
 git commit -a --signoff -m 'restore our project files'
 mv -f README.md README_orig_wx.md
-cp -af ../vdm/scripts/git/* ../vdm/scripts/git/.??* ../vdm/scripts/scripts/* .
+cp -af ./vdm/scripts/git/* ./vdm/scripts/git/.??* ./vdm/scripts/scripts/* .
 git commit -a --signoff -m 'restore our git and script files'
 git checkout master
 git merge merge
