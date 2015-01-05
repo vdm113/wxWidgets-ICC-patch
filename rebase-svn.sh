@@ -1,9 +1,8 @@
 #!/bin/bash
 
 if [ "x$1" != "xInternal" ] ; then
-  cp -a ./rebase-svn.sh ..
-  cp -arf ./vdm ..
-  ../rebase-svn.sh Internal
+  cp -af ./vdm/scripts/scripts/*.sh ..
+  ../rebase-git.sh Internal
   exit 0
 fi
 
