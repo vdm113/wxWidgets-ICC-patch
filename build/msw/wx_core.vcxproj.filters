@@ -885,8 +885,12 @@
     <ClCompile Include="..\..\src\msw\graphicsd2d.cpp">
       <Filter>MSW Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\msw\appprogress.cpp" />
-    <ClCompile Include="..\..\src\msw\taskbarbutton.cpp" />
+    <ClCompile Include="..\..\src\msw\taskbarbutton.cpp">
+      <Filter>MSW Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\msw\appprogress.cpp">
+      <Filter>MSW Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\src\msw\version.rc">
@@ -1896,8 +1900,12 @@
     <ClInclude Include="..\..\include\wx\xrc\xmlreshandler.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\msw\taskbarbutton.h" />
-    <ClInclude Include="..\..\include\wx\taskbarbutton.h" />
+    <ClInclude Include="..\..\include\wx\taskbarbutton.h">
+      <Filter>Generic Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx\msw\taskbarbutton.h">
+      <Filter>Generic Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\include\wx\msw\setup.h">
