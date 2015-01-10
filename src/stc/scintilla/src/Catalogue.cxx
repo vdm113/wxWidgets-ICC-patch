@@ -123,6 +123,7 @@ int Scintilla_LinkLexers() {
 	LINK_LEXER(lmD);
 	LINK_LEXER(lmDiff);
 	LINK_LEXER(lmDMAP);
+	LINK_LEXER(lmDMIS);
 	LINK_LEXER(lmECL);
 	LINK_LEXER(lmEiffel);
 	LINK_LEXER(lmEiffelkw);

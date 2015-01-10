@@ -27,22 +27,17 @@ using namespace Scintilla;
 
 static PRectangle PixelGridAlign(const PRectangle &rc) {
 	// Move left and right side to nearest pixel to avoid blurry visuals
-	return PRectangle(int(rc.left + 0.5), rc.top, int(rc.right + 0.5), rc.bottom);
+	return PRectangle::FromInts(int(rc.left + 0.5), int(rc.top), int(rc.right + 0.5), int(rc.bottom));
 }
 
 void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &rcLine) {
 	surface->PenColour(fore);
-	int ymid = (rc.bottom + rc.top) / 2;
+	int ymid = static_cast<int>(rc.bottom + rc.top) / 2;
 	if (style == INDIC_SQUIGGLE) {
 		int x = int(rc.left+0.5);
 		int xLast = int(rc.right+0.5);
 		int y = 0;
-		surface->MoveTo(x, rc.top + y);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
+		surface->MoveTo(x, static_cast<int>(rc.top) + y);
 		while (x < xLast) {
 			if ((x + 2) > xLast) {
 				if (xLast > x)
@@ -52,12 +47,12 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 				x += 2;
 				y = 2 - y;
 			}
-			surface->LineTo(x, rc.top + y);
+			surface->LineTo(x, static_cast<int>(rc.top) + y);
 		}
 	} else if (style == INDIC_SQUIGGLEPIXMAP) {
 		PRectangle rcSquiggle = PixelGridAlign(rc);
 
-		int width = Platform::Minimum(4000, rcSquiggle.Width());
+		int width = Platform::Minimum(4000, static_cast<int>(rcSquiggle.Width()));
 		RGBAImage image(width, 3, 1.0, 0);
 		enum { alphaFull = 0xff, alphaSide = 0x2f, alphaSide2=0x5f };
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
@@ -79,8 +74,8 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		}
 		surface->DrawRGBAImage(rcSquiggle, image.GetWidth(), image.GetHeight(), image.Pixels());
 	} else if (style == INDIC_SQUIGGLELOW) {
-		surface->MoveTo(rc.left, rc.top);
-		int x = rc.left + 3;
+		surface->MoveTo(static_cast<int>(rc.left), static_cast<int>(rc.top));
+		int x = static_cast<int>(rc.left) + 3;
 		int y = 0;
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
@@ -88,20 +83,15 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 #   pragma unroll
 #endif /* VDM auto patch */
 		while (x < rc.right) {
-			surface->LineTo(x-1, rc.top + y);
+			surface->LineTo(x - 1, static_cast<int>(rc.top) + y);
 			y = 1 - y;
-        	surface->LineTo(x, rc.top + y);
+			surface->LineTo(x, static_cast<int>(rc.top) + y);
 			x += 3;
 		}
-		surface->LineTo(rc.right, rc.top + y);	// Finish the line
+		surface->LineTo(static_cast<int>(rc.right), static_cast<int>(rc.top) + y);	// Finish the line
 	} else if (style == INDIC_TT) {
-		surface->MoveTo(rc.left, ymid);
-		int x = rc.left + 5;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
+		surface->MoveTo(static_cast<int>(rc.left), ymid);
+		int x = static_cast<int>(rc.left) + 5;
 		while (x < rc.right) {
 			surface->LineTo(x, ymid);
 			surface->MoveTo(x-3, ymid);
@@ -110,40 +100,35 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 			surface->MoveTo(x, ymid);
 			x += 5;
 		}
-		surface->LineTo(rc.right, ymid);	// Finish the line
+		surface->LineTo(static_cast<int>(rc.right), ymid);	// Finish the line
 		if (x - 3 <= rc.right) {
 			surface->MoveTo(x-3, ymid);
 			surface->LineTo(x-3, ymid+2);
 		}
 	} else if (style == INDIC_DIAGONAL) {
-		int x = rc.left;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
+		int x = static_cast<int>(rc.left);
 		while (x < rc.right) {
-			surface->MoveTo(x, rc.top+2);
+			surface->MoveTo(x, static_cast<int>(rc.top) + 2);
 			int endX = x+3;
-			int endY = rc.top - 1;
+			int endY = static_cast<int>(rc.top) - 1;
 			if (endX > rc.right) {
-				endY += endX - rc.right;
-				endX = rc.right;
+				endY += endX - static_cast<int>(rc.right);
+				endX = static_cast<int>(rc.right);
 			}
 			surface->LineTo(endX, endY);
 			x += 4;
 		}
 	} else if (style == INDIC_STRIKE) {
-		surface->MoveTo(rc.left, rc.top - 4);
-		surface->LineTo(rc.right, rc.top - 4);
+		surface->MoveTo(static_cast<int>(rc.left), static_cast<int>(rc.top) - 4);
+		surface->LineTo(static_cast<int>(rc.right), static_cast<int>(rc.top) - 4);
 	} else if (style == INDIC_HIDDEN) {
 		// Draw nothing
 	} else if (style == INDIC_BOX) {
-		surface->MoveTo(rc.left, ymid+1);
-		surface->LineTo(rc.right, ymid+1);
-		surface->LineTo(rc.right, rcLine.top+1);
-		surface->LineTo(rc.left, rcLine.top+1);
-		surface->LineTo(rc.left, ymid+1);
+		surface->MoveTo(static_cast<int>(rc.left), ymid + 1);
+		surface->LineTo(static_cast<int>(rc.right), ymid + 1);
+		surface->LineTo(static_cast<int>(rc.right), static_cast<int>(rcLine.top) + 1);
+		surface->LineTo(static_cast<int>(rc.left), static_cast<int>(rcLine.top) + 1);
+		surface->LineTo(static_cast<int>(rc.left), ymid + 1);
 	} else if (style == INDIC_ROUNDBOX || style == INDIC_STRAIGHTBOX) {
 		PRectangle rcBox = rcLine;
 		rcBox.top = rcLine.top + 1;
@@ -155,8 +140,8 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		rcBox.top = rcLine.top + 1;
 		rcBox.bottom = rcLine.bottom;
 		// Cap width at 4000 to avoid large allocations when mistakes made
-		int width = Platform::Minimum(rcBox.Width(), 4000);
-		RGBAImage image(width, rcBox.Height(), 1.0, 0);
+		int width = Platform::Minimum(static_cast<int>(rcBox.Width()), 4000);
+		RGBAImage image(width, static_cast<int>(rcBox.Height()), 1.0, 0);
 		// Draw horizontal lines top and bottom
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
@@ -164,53 +149,28 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 #   pragma unroll
 #endif /* VDM auto patch */
 		for (int x=0; x<width; x++) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
-			for (int y=0; y<rcBox.Height(); y += rcBox.Height()-1) {
+			for (int y = 0; y<static_cast<int>(rcBox.Height()); y += static_cast<int>(rcBox.Height()) - 1) {
 				image.SetPixel(x, y, fore, ((x + y) % 2) ? outlineAlpha : fillAlpha);
 			}
 		}
 		// Draw vertical lines left and right
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
-		for (int y=1; y<rcBox.Height(); y++) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
+		for (int y = 1; y<static_cast<int>(rcBox.Height()); y++) {
 			for (int x=0; x<width; x += width-1) {
 				image.SetPixel(x, y, fore, ((x + y) % 2) ? outlineAlpha : fillAlpha);
 			}
 		}
 		surface->DrawRGBAImage(rcBox, image.GetWidth(), image.GetHeight(), image.Pixels());
 	} else if (style == INDIC_DASH) {
-		int x = rc.left;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
+		int x = static_cast<int>(rc.left);
 		while (x < rc.right) {
 			surface->MoveTo(x, ymid);
-			surface->LineTo(Platform::Minimum(x + 4, rc.right), ymid);
+			surface->LineTo(Platform::Minimum(x + 4, static_cast<int>(rc.right)), ymid);
 			x += 7;
 		}
 	} else if (style == INDIC_DOTS) {
-		int x = rc.left;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
-		while (x < rc.right) {
-			PRectangle rcDot(x, ymid, x+1, ymid+1);
+		int x = static_cast<int>(rc.left);
+		while (x < static_cast<int>(rc.right)) {
+			PRectangle rcDot = PRectangle::FromInts(x, ymid, x + 1, ymid + 1);
 			surface->FillRectangle(rcDot, fore);
 			x += 2;
 		}
@@ -218,8 +178,8 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 		PRectangle rcComposition(rc.left+1, rcLine.bottom-2, rc.right-1, rcLine.bottom);
 		surface->FillRectangle(rcComposition, fore);
 	} else {	// Either INDIC_PLAIN or unknown
-		surface->MoveTo(rc.left, ymid);
-		surface->LineTo(rc.right, ymid);
+		surface->MoveTo(static_cast<int>(rc.left), ymid);
+		surface->LineTo(static_cast<int>(rc.right), ymid);
 	}
 }
 

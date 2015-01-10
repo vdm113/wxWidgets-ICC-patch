@@ -552,7 +552,7 @@ void ScintillaWX::Paste() {
         }
         else
         {
-            InsertPaste(selStart, buf, len);
+            InsertPaste(buf, len);
         }
     }
 #endif // wxUSE_DATAOBJ

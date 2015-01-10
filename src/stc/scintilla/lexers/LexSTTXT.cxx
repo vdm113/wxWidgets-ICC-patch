@@ -40,9 +40,9 @@ static void ClassifySTTXTWord(WordList *keywordlists[], StyleContext &sc)
 	char s[256] = { 0 };
 	sc.GetCurrentLowered(s, sizeof(s));
 
-	if ((*keywordlists[0]).InList(s)) {
-		sc.ChangeState(SCE_STTXT_KEYWORD);
-	}
+ 	if ((*keywordlists[0]).InList(s)) {
+ 		sc.ChangeState(SCE_STTXT_KEYWORD);
+ 	}
 
 	else if ((*keywordlists[1]).InList(s)) {
 		sc.ChangeState(SCE_STTXT_TYPE);
@@ -79,13 +79,8 @@ static void ColouriseSTTXTDoc (unsigned int startPos, int length, int initStyle,
 	CharacterSet setOperator(CharacterSet::setNone,",.+-*/:;<=>[]()%&");
 	CharacterSet setDataTime(CharacterSet::setDigits,"_.-:dmshDMSH");
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
-	for ( ; sc.More() ; sc.Forward())
-	{
+ 	for ( ; sc.More() ; sc.Forward())
+ 	{
 		if(sc.atLineStart && sc.state != SCE_STTXT_COMMENT)
 			sc.SetState(SCE_STTXT_DEFAULT);
 
@@ -193,7 +188,7 @@ static void ColouriseSTTXTDoc (unsigned int startPos, int length, int initStyle,
 			else if (setOperator.Contains(sc.ch))
 				sc.SetState(SCE_STTXT_OPERATOR);
 		}
-	}
+ 	}
 
 	if (sc.state == SCE_STTXT_IDENTIFIER && setWord.Contains(sc.chPrev))
 		ClassifySTTXTWord(keywordlists, sc);
@@ -392,7 +387,7 @@ static void FoldSTTXTDoc(unsigned int startPos, int length, int initStyle, WordL
 		}
 		if ( foldComment && atEOL && ( IsCommentLine(lineCurrent, styler,false)
 			|| IsCommentLine(lineCurrent,styler,true))) {
-			if(!IsCommentLine(lineCurrent-1, styler,true) && IsCommentLine(lineCurrent+1, styler,true))
+ 			if(!IsCommentLine(lineCurrent-1, styler,true) && IsCommentLine(lineCurrent+1, styler,true))
 				levelCurrent++;
 			if (IsCommentLine(lineCurrent-1, styler,true) && !IsCommentLine(lineCurrent+1, styler,true))
 				levelCurrent--;

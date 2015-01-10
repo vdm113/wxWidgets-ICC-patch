@@ -48,12 +48,7 @@ static void ColourisePODoc(unsigned int startPos, int length, int initStyle, Wor
 	int curLine = styler.GetLine(startPos);
 	// the line state holds the last state on or before the line that isn't the default style
 	int curLineState = curLine > 0 ? styler.GetLineState(curLine - 1) : SCE_PO_DEFAULT;
-
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
+	
 	for (; sc.More(); sc.Forward()) {
 		// whether we should leave a state
 		switch (sc.state) {
@@ -69,19 +64,19 @@ static void ColourisePODoc(unsigned int startPos, int length, int initStyle, Wor
 					// on its own like a keyword rather than changing the whole flags style
 					sc.ChangeState(SCE_PO_FUZZY);
 				break;
-
+			
 			case SCE_PO_MSGCTXT:
 			case SCE_PO_MSGID:
 			case SCE_PO_MSGSTR:
 				if (isspacechar(sc.ch))
 					sc.SetState(SCE_PO_DEFAULT);
 				break;
-
+			
 			case SCE_PO_ERROR:
 				if (sc.atLineEnd)
 					sc.SetState(SCE_PO_DEFAULT);
 				break;
-
+			
 			case SCE_PO_MSGCTXT_TEXT:
 			case SCE_PO_MSGID_TEXT:
 			case SCE_PO_MSGSTR_TEXT:
@@ -104,7 +99,7 @@ static void ColourisePODoc(unsigned int startPos, int length, int initStyle, Wor
 				}
 				break;
 		}
-
+		
 		// whether we should enter a new state
 		if (sc.state == SCE_PO_DEFAULT) {
 			// forward to the first non-white character on the line
@@ -115,16 +110,11 @@ static void ColourisePODoc(unsigned int startPos, int length, int initStyle, Wor
 				// and anyway the styling don't use line state for comments
 				if (curLineState == SCE_PO_COMMENT)
 					curLineState = SCE_PO_DEFAULT;
-
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
+				
 				while (sc.More() && ! sc.atLineEnd && isspacechar(sc.ch))
 					sc.Forward();
 			}
-
+			
 			if (atLineStart && sc.ch == '#') {
 				if (sc.chNext == '.')
 					sc.SetState(SCE_PO_PROGRAMMER_COMMENT);
@@ -151,11 +141,11 @@ static void ColourisePODoc(unsigned int startPos, int length, int initStyle, Wor
 					sc.SetState(SCE_PO_ERROR);
 			} else if (! isspacechar(sc.ch))
 				sc.SetState(SCE_PO_ERROR);
-
+			
 			if (sc.state != SCE_PO_DEFAULT)
 				curLineState = sc.state;
 		}
-
+		
 		if (sc.atLineEnd) {
 			// Update the line state, so it can be seen by next line
 			curLine = styler.GetLine(sc.currentPos);
@@ -185,7 +175,7 @@ static void FoldPODoc(unsigned int startPos, int length, int, WordList *[], Acce
 		return;
 	bool foldCompact = styler.GetPropertyInt("fold.compact") != 0;
 	bool foldComment = styler.GetPropertyInt("fold.comment") != 0;
-
+	
 	unsigned int endPos = startPos + length;
 	int curLine = styler.GetLine(startPos);
 	int lineState = styler.GetLineState(curLine);
@@ -194,22 +184,17 @@ static void FoldPODoc(unsigned int startPos, int length, int, WordList *[], Acce
 	int nextLevel;
 	int visible = 0;
 	int chNext = styler[startPos];
-
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
+	
 	for (unsigned int i = startPos; i < endPos; i++) {
 		int ch = chNext;
 		chNext = styler.SafeGetCharAt(i+1);
-
+		
 		if (! isspacechar(ch)) {
 			visible++;
 		} else if ((ch == '\r' && chNext != '\n') || ch == '\n' || i+1 >= endPos) {
 			int lvl = level;
 			int nextLine = curLine + 1;
-
+			
 			nextLineState = styler.GetLineState(nextLine);
 			if ((lineState != SCE_PO_COMMENT || foldComment) &&
 					nextLineState == lineState &&
@@ -217,14 +202,14 @@ static void FoldPODoc(unsigned int startPos, int length, int, WordList *[], Acce
 				nextLevel = SC_FOLDLEVELBASE + 1;
 			else
 				nextLevel = SC_FOLDLEVELBASE;
-
+			
 			if (nextLevel > level)
 				lvl |= SC_FOLDLEVELHEADERFLAG;
 			if (visible == 0 && foldCompact)
 				lvl |= SC_FOLDLEVELWHITEFLAG;
-
+			
 			styler.SetLevel(curLine, lvl);
-
+			
 			lineState = nextLineState;
 			curLine = nextLine;
 			level = nextLevel;
