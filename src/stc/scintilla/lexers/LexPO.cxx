@@ -51,14 +51,6 @@ static void ColourisePODoc(unsigned int startPos, int length, int initStyle, Wor
 	// the line state holds the last state on or before the line that isn't the default style
 	int curLineState = curLine > 0 ? styler.GetLineState(curLine - 1) : SCE_PO_DEFAULT;
 	
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd
-#   endif
-#endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
 		// whether we should leave a state
 		switch (sc.state) {
@@ -121,14 +113,6 @@ static void ColourisePODoc(unsigned int startPos, int length, int initStyle, Wor
 				if (curLineState == SCE_PO_COMMENT)
 					curLineState = SCE_PO_DEFAULT;
 				
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd
-#   endif
-#endif /* VDM auto patch */
 				while (sc.More() && ! sc.atLineEnd && isspacechar(sc.ch))
 					sc.Forward();
 			}
@@ -206,14 +190,6 @@ static void FoldPODoc(unsigned int startPos, int length, int, WordList *[], Acce
 	int visible = 0;
 	int chNext = styler[startPos];
 	
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd
-#   endif
-#endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
 		int ch = chNext;
 		chNext = styler.SafeGetCharAt(i+1);
