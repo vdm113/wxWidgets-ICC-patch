@@ -191,11 +191,6 @@ static bool IsCommentBlockStart(int line, Accessor &styler)
 {
     int pos = styler.LineStart(line);
 	int eol_pos = styler.LineStart(line + 1) - 1;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (int i = pos; i < eol_pos; i++) {
 		char ch = styler[i];
 		char chNext = styler[i+1];
@@ -211,11 +206,6 @@ static bool IsCommentBlockEnd(int line, Accessor &styler)
     int pos = styler.LineStart(line);
 	int eol_pos = styler.LineStart(line + 1) - 1;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (int i = pos; i < eol_pos; i++) {
 		char ch = styler[i];
 		char chNext = styler[i+1];
@@ -453,19 +443,13 @@ static void FoldNoBoxVHDLDoc(
             strcmp(s, "entity") == 0         ||
             strcmp(s, "configuration") == 0 )
           {
-            if (strcmp(prevWord, "end") != 0 && lastStart)
+            if (strcmp(prevWord, "end") != 0)
             { // check for instantiated unit by backward searching for the colon.
-              unsigned pos = lastStart;
+              unsigned pos = lastStart-1;
               char chAtPos, styleAtPos;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
               do{// skip white spaces
-                pos--;
                 styleAtPos = styler.StyleAt(pos);
-                chAtPos = styler.SafeGetCharAt(pos);
+                chAtPos = styler.SafeGetCharAt(pos--);
               }while(pos>0 &&
                      (chAtPos == ' ' || chAtPos == '\t' ||
                       chAtPos == '\n' || chAtPos == '\r' ||
@@ -488,11 +472,6 @@ static void FoldNoBoxVHDLDoc(
             { // This code checks to see if the procedure / function is a definition within a "package"
               // rather than the actual code in the body.
               int BracketLevel = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
               for(int pos=i+1; pos<styler.Length(); pos++)
               {
                 int styleAtPos = styler.StyleAt(pos);
