@@ -194,14 +194,6 @@ void XPM::Draw(Surface *surface, PRectangle &rc) {
 	// Centre the pixmap
 	int startY = static_cast<int>(rc.top + (rc.Height() - height) / 2);
 	int startX = static_cast<int>(rc.left + (rc.Width() - width) / 2);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 	for (int y=0; y<height; y++) {
 		int prevCode = 0;
 		int xStartRun = 0;

@@ -358,7 +358,6 @@ static void ScanNumber(Accessor& styler, int& pos) {
 			error |= !ScanDigits(styler, pos, 10);
 		}
 		
-		/* Scan the floating point suffix. */
 		c = styler.SafeGetCharAt(pos, '\0');
 		if (c == 'f') {
 			error |= base != 10;
@@ -724,9 +723,7 @@ static void ResumeRawString(Accessor &styler, int& pos, int max, int num_hashes,
 			}
 		} else if (pos >= max) {
 			break;
-		} else {
-			if (ascii_only && !IsASCII((char)c)) 
-				break;
+		} else {		
 			pos++;
 		}
 	}

@@ -528,7 +528,7 @@ BreakFinder::BreakFinder(const LineLayout *ll_, const Selection *psel, Range lin
 	// Search for first visible break
 	// First find the first visible character
 	if (xStart > 0.0f)
-		nextBreak = ll->FindBefore(static_cast<XYPOSITION>(xStart), lineRange.start, lineRange.end);
+		nextBreak = ll->FindBefore(static_cast<XYPOSITION>(xStart), lineStart, lineEnd);
 	// Now back to a style break
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep

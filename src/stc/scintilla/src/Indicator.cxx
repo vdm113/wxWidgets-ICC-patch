@@ -32,29 +32,14 @@ static PRectangle PixelGridAlign(const PRectangle &rc) {
 	return PRectangle::FromInts(int(rc.left + 0.5), int(rc.top), int(rc.right + 0.5), int(rc.bottom));
 }
 
-void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &rcLine, DrawState drawState, int value) const {
-	StyleAndColour sacDraw = sacNormal;
-	if (Flags() & SC_INDICFLAG_VALUEFORE) {
-		sacDraw.fore = value & SC_INDICVALUEMASK;
-	}
-	if (drawState == drawHover) {
-		sacDraw = sacHover;
-	}
-	surface->PenColour(sacDraw.fore);
+void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &rcLine) {
+	surface->PenColour(fore);
 	int ymid = static_cast<int>(rc.bottom + rc.top) / 2;
-	if (sacDraw.style == INDIC_SQUIGGLE) {
+	if (style == INDIC_SQUIGGLE) {
 		int x = int(rc.left+0.5);
 		int xLast = int(rc.right+0.5);
 		int y = 0;
 		surface->MoveTo(x, static_cast<int>(rc.top) + y);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 		while (x < xLast) {
 			if ((x + 2) > xLast) {
 				if (xLast > x)
@@ -93,7 +78,7 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 			}
 		}
 		surface->DrawRGBAImage(rcSquiggle, image.GetWidth(), image.GetHeight(), image.Pixels());
-	} else if (sacDraw.style == INDIC_SQUIGGLELOW) {
+	} else if (style == INDIC_SQUIGGLELOW) {
 		surface->MoveTo(static_cast<int>(rc.left), static_cast<int>(rc.top));
 		int x = static_cast<int>(rc.left) + 3;
 		int y = 0;
@@ -112,17 +97,9 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 			x += 3;
 		}
 		surface->LineTo(static_cast<int>(rc.right), static_cast<int>(rc.top) + y);	// Finish the line
-	} else if (sacDraw.style == INDIC_TT) {
+	} else if (style == INDIC_TT) {
 		surface->MoveTo(static_cast<int>(rc.left), ymid);
 		int x = static_cast<int>(rc.left) + 5;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 		while (x < rc.right) {
 			surface->LineTo(x, ymid);
 			surface->MoveTo(x-3, ymid);
@@ -136,16 +113,8 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 			surface->MoveTo(x-3, ymid);
 			surface->LineTo(x-3, ymid+2);
 		}
-	} else if (sacDraw.style == INDIC_DIAGONAL) {
+	} else if (style == INDIC_DIAGONAL) {
 		int x = static_cast<int>(rc.left);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 		while (x < rc.right) {
 			surface->MoveTo(x, static_cast<int>(rc.top) + 2);
 			int endX = x+3;
@@ -157,20 +126,18 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 			surface->LineTo(endX, endY);
 			x += 4;
 		}
-	} else if (sacDraw.style == INDIC_STRIKE) {
+	} else if (style == INDIC_STRIKE) {
 		surface->MoveTo(static_cast<int>(rc.left), static_cast<int>(rc.top) - 4);
 		surface->LineTo(static_cast<int>(rc.right), static_cast<int>(rc.top) - 4);
-	} else if ((sacDraw.style == INDIC_HIDDEN) || (sacDraw.style == INDIC_TEXTFORE)) {
+	} else if (style == INDIC_HIDDEN) {
 		// Draw nothing
-	} else if (sacDraw.style == INDIC_BOX) {
+	} else if (style == INDIC_BOX) {
 		surface->MoveTo(static_cast<int>(rc.left), ymid + 1);
 		surface->LineTo(static_cast<int>(rc.right), ymid + 1);
 		surface->LineTo(static_cast<int>(rc.right), static_cast<int>(rcLine.top) + 1);
 		surface->LineTo(static_cast<int>(rc.left), static_cast<int>(rcLine.top) + 1);
 		surface->LineTo(static_cast<int>(rc.left), ymid + 1);
-	} else if (sacDraw.style == INDIC_ROUNDBOX ||
-		sacDraw.style == INDIC_STRAIGHTBOX ||
-		sacDraw.style == INDIC_FULLBOX) {
+	} else if (style == INDIC_ROUNDBOX || style == INDIC_STRAIGHTBOX) {
 		PRectangle rcBox = rcLine;
 		if (sacDraw.style != INDIC_FULLBOX)
 			rcBox.top = rcLine.top + 1;
@@ -195,69 +162,29 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 #   endif
 #endif /* VDM auto patch */
 		for (int x=0; x<width; x++) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 			for (int y = 0; y<static_cast<int>(rcBox.Height()); y += static_cast<int>(rcBox.Height()) - 1) {
-				image.SetPixel(x, y, sacDraw.fore, ((x + y) % 2) ? outlineAlpha : fillAlpha);
+				image.SetPixel(x, y, fore, ((x + y) % 2) ? outlineAlpha : fillAlpha);
 			}
 		}
 		// Draw vertical lines left and right
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 		for (int y = 1; y<static_cast<int>(rcBox.Height()); y++) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 			for (int x=0; x<width; x += width-1) {
 				image.SetPixel(x, y, sacDraw.fore, ((x + y) % 2) ? outlineAlpha : fillAlpha);
 			}
 		}
 		surface->DrawRGBAImage(rcBox, image.GetWidth(), image.GetHeight(), image.Pixels());
-	} else if (sacDraw.style == INDIC_DASH) {
+	} else if (style == INDIC_DASH) {
 		int x = static_cast<int>(rc.left);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 		while (x < rc.right) {
 			surface->MoveTo(x, ymid);
 			surface->LineTo(Platform::Minimum(x + 4, static_cast<int>(rc.right)), ymid);
 			x += 7;
 		}
-	} else if (sacDraw.style == INDIC_DOTS) {
+	} else if (style == INDIC_DOTS) {
 		int x = static_cast<int>(rc.left);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 		while (x < static_cast<int>(rc.right)) {
 			PRectangle rcDot = PRectangle::FromInts(x, ymid, x + 1, ymid + 1);
-			surface->FillRectangle(rcDot, sacDraw.fore);
+			surface->FillRectangle(rcDot, fore);
 			x += 2;
 		}
 	} else if (sacDraw.style == INDIC_COMPOSITIONTHICK) {
