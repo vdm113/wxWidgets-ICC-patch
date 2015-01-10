@@ -260,11 +260,6 @@ static void ScanIdentifier(Accessor& styler, int& pos, WordList *keywords) {
 /* Scans a sequence of digits, returning true if it found any. */
 static bool ScanDigits(Accessor& styler, int& pos, int base) {
 	int old_pos = pos;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (;;) {
 		int c = styler.SafeGetCharAt(pos, '\0');
 		if (IsADigit(c, base) || c == '_')
@@ -341,6 +336,7 @@ static void ScanNumber(Accessor& styler, int& pos) {
 			error |= !ScanDigits(styler, pos, 10);
 		}
 		
+		/* Scan the floating point suffix. */
 		c = styler.SafeGetCharAt(pos, '\0');
 		if (c == 'f') {
 			error |= base != 10;
@@ -657,11 +653,6 @@ static void ResumeString(Accessor &styler, int& pos, int max, bool ascii_only) {
 }
 
 static void ResumeRawString(Accessor &styler, int& pos, int max, int num_hashes, bool ascii_only) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (;;) {
 		if (pos == styler.LineEnd(styler.GetLine(pos)))
 			styler.SetLineState(styler.GetLine(pos), num_hashes);
@@ -685,7 +676,9 @@ static void ResumeRawString(Accessor &styler, int& pos, int max, int num_hashes,
 			}
 		} else if (pos >= max) {
 			break;
-		} else {		
+		} else {
+			if (ascii_only && !IsASCII((char)c)) 
+				break;
 			pos++;
 		}
 	}
