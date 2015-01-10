@@ -401,8 +401,7 @@ class WXDLLIMPEXP_FWD_CORE wxScrollBar;
 #define wxSTC_MOD_CONTAINER 0x40000
 #define wxSTC_MOD_LEXERSTATE 0x80000
 #define wxSTC_MOD_INSERTCHECK 0x100000
-#define wxSTC_MOD_CHANGETABSTOPS 0x200000
-#define wxSTC_MODEVENTMASKALL 0x3FFFFF
+#define wxSTC_MODEVENTMASKALL 0x1FFFFF
 #define wxSTC_UPDATE_CONTENT 0x1
 #define wxSTC_UPDATE_SELECTION 0x2
 #define wxSTC_UPDATE_V_SCROLL 0x4
@@ -552,11 +551,6 @@ class WXDLLIMPEXP_FWD_CORE wxScrollBar;
 #define wxSTC_LEX_DMAP 112
 #define wxSTC_LEX_AS 113
 #define wxSTC_LEX_DMIS 114
-#define wxSTC_LEX_REGISTRY 115
-#define wxSTC_LEX_BIBTEX 116
-#define wxSTC_LEX_SREC 117
-#define wxSTC_LEX_IHEX 118
-#define wxSTC_LEX_TEHEX 119
 
 /// When a lexer specifies its language as SCLEX_AUTOMATIC it receives a
 /// value assigned in sequence from SCLEX_AUTOMATIC+1.
@@ -2364,51 +2358,6 @@ class WXDLLIMPEXP_FWD_CORE wxScrollBar;
 #define wxSTC_DMIS_UNSUPPORTED_MAJOR 7
 #define wxSTC_DMIS_UNSUPPORTED_MINOR 8
 #define wxSTC_DMIS_LABEL 9
-
-/// Lexical states for SCLEX_REGISTRY
-#define wxSTC_REG_DEFAULT 0
-#define wxSTC_REG_COMMENT 1
-#define wxSTC_REG_VALUENAME 2
-#define wxSTC_REG_STRING 3
-#define wxSTC_REG_HEXDIGIT 4
-#define wxSTC_REG_VALUETYPE 5
-#define wxSTC_REG_ADDEDKEY 6
-#define wxSTC_REG_DELETEDKEY 7
-#define wxSTC_REG_ESCAPED 8
-#define wxSTC_REG_KEYPATH_GUID 9
-#define wxSTC_REG_STRING_GUID 10
-#define wxSTC_REG_PARAMETER 11
-#define wxSTC_REG_OPERATOR 12
-
-/// Lexical state for SCLEX_BIBTEX
-#define wxSTC_BIBTEX_DEFAULT 0
-#define wxSTC_BIBTEX_ENTRY 1
-#define wxSTC_BIBTEX_UNKNOWN_ENTRY 2
-#define wxSTC_BIBTEX_KEY 3
-#define wxSTC_BIBTEX_PARAMETER 4
-#define wxSTC_BIBTEX_VALUE 5
-#define wxSTC_BIBTEX_COMMENT 6
-
-/// Lexical state for SCLEX_SREC
-#define wxSTC_HEX_DEFAULT 0
-#define wxSTC_HEX_RECSTART 1
-#define wxSTC_HEX_RECTYPE 2
-#define wxSTC_HEX_RECTYPE_UNKNOWN 3
-#define wxSTC_HEX_BYTECOUNT 4
-#define wxSTC_HEX_BYTECOUNT_WRONG 5
-#define wxSTC_HEX_NOADDRESS 6
-#define wxSTC_HEX_DATAADDRESS 7
-#define wxSTC_HEX_RECCOUNT 8
-#define wxSTC_HEX_STARTADDRESS 9
-#define wxSTC_HEX_ADDRESSFIELD_UNKNOWN 10
-#define wxSTC_HEX_EXTENDEDADDRESS 11
-#define wxSTC_HEX_DATA_ODD 12
-#define wxSTC_HEX_DATA_EVEN 13
-#define wxSTC_HEX_DATA_UNKNOWN 14
-#define wxSTC_HEX_DATA_EMPTY 15
-#define wxSTC_HEX_CHECKSUM 16
-#define wxSTC_HEX_CHECKSUM_WRONG 17
-#define wxSTC_HEX_GARBAGE 18
 
 //}}}
 //----------------------------------------------------------------------
