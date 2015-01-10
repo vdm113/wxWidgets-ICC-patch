@@ -88,6 +88,11 @@ int SelectionRange::Length() const {
 	}
 }
 
+void SelectionRange::MoveForInsertDelete(bool insertion, int startChange, int length) {
+	caret.MoveForInsertDelete(insertion, startChange, length);
+	anchor.MoveForInsertDelete(insertion, startChange, length);
+}
+
 bool SelectionRange::Contains(int pos) const {
 	if (anchor > caret)
 		return (pos >= caret.Position()) && (pos <= anchor.Position());
@@ -307,9 +312,11 @@ void Selection::MovePositions(bool insertion, int startChange, int length) {
 #   pragma unroll
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ranges.size(); i++) {
-		ranges[i].caret.MoveForInsertDelete(insertion, startChange, length);
-		ranges[i].anchor.MoveForInsertDelete(insertion, startChange, length);
+		ranges[i].MoveForInsertDelete(insertion, startChange, length);
 	}
+	if (selType == selRectangle) {
+		rangeRectangular.MoveForInsertDelete(insertion, startChange, length);
+	} 
 }
 
 void Selection::TrimSelection(SelectionRange range) {

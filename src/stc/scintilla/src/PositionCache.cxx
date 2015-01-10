@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <ctype.h>
 
+#include <stdexcept>
 #include <string>
 #include <vector>
 #include <map>
@@ -492,13 +493,12 @@ void BreakFinder::Insert(int val) {
 	}
 }
 
-BreakFinder::BreakFinder(LineLayout *ll_, int lineStart_, int lineEnd_, int posLineStart_,
-	int xStart, bool breakForSelection, Document *pdoc_, SpecialRepresentations *preprs_) :
+BreakFinder::BreakFinder(const LineLayout *ll_, const Selection *psel, Range lineRange_, int posLineStart_,
+	int xStart, bool breakForSelection, const Document *pdoc_, const SpecialRepresentations *preprs_) :
 	ll(ll_),
-	lineStart(lineStart_),
-	lineEnd(lineEnd_),
+	lineRange(lineRange_),
 	posLineStart(posLineStart_),
-	nextBreak(lineStart_),
+	nextBreak(lineRange_.start),
 	saeCurrentPos(0),
 	saeNext(0),
 	subBreak(-1),
@@ -509,20 +509,15 @@ BreakFinder::BreakFinder(LineLayout *ll_, int lineStart_, int lineEnd_, int posL
 	// Search for first visible break
 	// First find the first visible character
 	if (xStart > 0.0f)
-		nextBreak = ll->FindBefore(static_cast<XYPOSITION>(xStart), lineStart, lineEnd);
+		nextBreak = ll->FindBefore(static_cast<XYPOSITION>(xStart), lineRange.start, lineRange.end);
 	// Now back to a style break
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
-	while ((nextBreak > lineStart) && (ll->styles[nextBreak] == ll->styles[nextBreak - 1])) {
+	while ((nextBreak > lineRange.start) && (ll->styles[nextBreak] == ll->styles[nextBreak - 1])) {
 		nextBreak--;
 	}
 
 	if (breakForSelection) {
 		SelectionPosition posStart(posLineStart);
-		SelectionPosition posEnd(posLineStart + lineEnd);
+		SelectionPosition posEnd(posLineStart + lineRange.end);
 		SelectionSegment segmentLine(posStart, posEnd);
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
@@ -541,7 +536,7 @@ BreakFinder::BreakFinder(LineLayout *ll_, int lineStart_, int lineEnd_, int posL
 	}
 
 	Insert(ll->edgeColumn);
-	Insert(lineEnd);
+	Insert(lineRange.end);
 	saeNext = (!selAndEdge.empty()) ? selAndEdge[0] : -1;
 }
 
@@ -551,29 +546,19 @@ BreakFinder::~BreakFinder() {
 TextSegment BreakFinder::Next() {
 	if (subBreak == -1) {
 		int prev = nextBreak;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
-		while (nextBreak < lineEnd) {
+		while (nextBreak < lineRange.end) {
 			int charWidth = 1;
 			if (encodingFamily == efUnicode)
-				charWidth = UTF8DrawBytes(reinterpret_cast<unsigned char *>(ll->chars) + nextBreak, lineEnd - nextBreak);
+				charWidth = UTF8DrawBytes(reinterpret_cast<unsigned char *>(ll->chars) + nextBreak, lineRange.end - nextBreak);
 			else if (encodingFamily == efDBCS)
 				charWidth = pdoc->IsDBCSLeadByte(ll->chars[nextBreak]) ? 2 : 1;
 			Representation *repr = preprs->RepresentationFromCharacter(ll->chars + nextBreak, charWidth);
 			if (((nextBreak > 0) && (ll->styles[nextBreak] != ll->styles[nextBreak - 1])) ||
 					repr ||
 					(nextBreak == saeNext)) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
-				while ((nextBreak >= saeNext) && (saeNext < lineEnd)) {
+				while ((nextBreak >= saeNext) && (saeNext < lineRange.end)) {
 					saeCurrentPos++;
-					saeNext = (saeCurrentPos < selAndEdge.size()) ? selAndEdge[saeCurrentPos] : lineEnd;
+					saeNext = (saeCurrentPos < selAndEdge.size()) ? selAndEdge[saeCurrentPos] : lineRange.end;
 				}
 				if ((nextBreak > prev) || repr) {
 					// Have a segment to report
@@ -614,7 +599,7 @@ TextSegment BreakFinder::Next() {
 }
 
 bool BreakFinder::More() const {
-	return (subBreak >= 0) || (nextBreak < lineEnd);
+	return (subBreak >= 0) || (nextBreak < lineRange.end);
 }
 
 PositionCacheEntry::PositionCacheEntry() :

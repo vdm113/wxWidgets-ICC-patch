@@ -107,6 +107,7 @@ int Scintilla_LinkLexers() {
 	LINK_LEXER(lmBaan);
 	LINK_LEXER(lmBash);
 	LINK_LEXER(lmBatch);
+	LINK_LEXER(lmBibTeX);
 	LINK_LEXER(lmBlitzBasic);
 	LINK_LEXER(lmBullant);
 	LINK_LEXER(lmCaml);
@@ -180,6 +181,7 @@ int Scintilla_LinkLexers() {
 	LINK_LEXER(lmPython);
 	LINK_LEXER(lmR);
 	LINK_LEXER(lmREBOL);
+	LINK_LEXER(lmRegistry);
 	LINK_LEXER(lmRuby);
 	LINK_LEXER(lmRust);
 	LINK_LEXER(lmScriptol);

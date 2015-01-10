@@ -210,7 +210,9 @@ int DecorationList::AllOnFor(int position) const {
 #endif /* VDM auto patch */
 	for (Decoration *deco=root; deco; deco = deco->next) {
 		if (deco->rs.ValueAt(position)) {
-			mask |= 1 << deco->indicator;
+			if (deco->indicator < INDIC_IME) {
+				mask |= 1 << deco->indicator;
+			}
 		}
 	}
 	return mask;
