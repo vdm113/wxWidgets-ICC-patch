@@ -596,14 +596,6 @@ LineTabstops::~LineTabstops() {
 }
 
 void LineTabstops::Init() {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd
-#   endif
-#endif /* VDM auto patch */
 	for (int line = 0; line < tabstops.Length(); line++) {
 		delete tabstops[line];
 	}
@@ -658,14 +650,6 @@ int LineTabstops::GetNextTabstop(int line, int x) const {
 	if (line < tabstops.Length()) {
 		TabstopList *tl = tabstops[line];
 		if (tl) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd
-#   endif
-#endif /* VDM auto patch */
 			for (size_t i = 0; i < tl->size(); i++) {
 				if ((*tl)[i] > x) {
 					return (*tl)[i];
