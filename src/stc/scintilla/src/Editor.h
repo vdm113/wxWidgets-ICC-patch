@@ -262,6 +262,10 @@ protected:	// ScintillaBase subclass needs access to much of Editor
 	bool recordingMacro;
 
 	int foldAutomatic;
+	ContractionState cs;
+
+	// Hotspot support
+	Range hotspot;
 
 	// Wrapping support
 	WrapPending wrapPending;
@@ -381,6 +385,28 @@ protected:	// ScintillaBase subclass needs access to much of Editor
 	void LinesSplit(int pixelWidth);
 
 	void PaintSelMargin(Surface *surface, PRectangle &rc);
+	LineLayout *RetrieveLineLayout(int lineNumber);
+	void LayoutLine(int line, Surface *surface, const ViewStyle &vstyle, LineLayout *ll,
+		int width=LineLayout::wrapWidthInfinite);
+	ColourDesired SelectionBackground(const ViewStyle &vsDraw, bool main) const;
+	ColourDesired TextBackground(const ViewStyle &vsDraw, ColourOptional background, int inSelection, bool inHotspot, int styleMain, int i, LineLayout *ll) const;
+	void DrawIndentGuide(Surface *surface, int lineVisible, int lineHeight, int start, PRectangle rcSegment, bool highlight);
+	static void DrawWrapMarker(Surface *surface, PRectangle rcPlace, bool isEndMarker, ColourDesired wrapColour);
+	void DrawEOL(Surface *surface, const ViewStyle &vsDraw, PRectangle rcLine, LineLayout *ll,
+		int line, int lineEnd, int xStart, int subLine, XYACCUMULATOR subLineStart,
+		ColourOptional background);
+	static void DrawIndicator(int indicNum, int startPos, int endPos, Surface *surface, const ViewStyle &vsDraw,
+		int xStart, PRectangle rcLine, LineLayout *ll, int subLine);
+	void DrawIndicators(Surface *surface, const ViewStyle &vsDraw, int line, int xStart,
+		PRectangle rcLine, LineLayout *ll, int subLine, int lineEnd, bool under);
+	void DrawAnnotation(Surface *surface, const ViewStyle &vsDraw, int line, int xStart,
+        PRectangle rcLine, LineLayout *ll, int subLine);
+	void DrawLine(Surface *surface, const ViewStyle &vsDraw, int line, int lineVisible, int xStart,
+		PRectangle rcLine, LineLayout *ll, int subLine);
+	void DrawBlockCaret(Surface *surface, const ViewStyle &vsDraw, LineLayout *ll, int subLine,
+		int xStart, int offset, int posCaret, PRectangle rcCaret, ColourDesired caretColour) const;
+	void DrawCarets(Surface *surface, const ViewStyle &vsDraw, int line, int xStart,
+		PRectangle rcLine, LineLayout *ll, int subLine);
 	void RefreshPixMaps(Surface *surfaceWindow);
 	void Paint(Surface *surfaceWindow, PRectangle rcArea);
 	long FormatRange(bool draw, Sci_RangeToFormat *pfr);
@@ -554,8 +580,6 @@ protected:	// ScintillaBase subclass needs access to much of Editor
 	bool PointIsHotspot(Point pt);
 	void SetHotSpotRange(Point *pt);
 	Range GetHotSpotRange() const;
-	void SetHoverIndicatorPosition(int position);
-	void SetHoverIndicatorPoint(Point pt);
 
 	int CodePage() const;
 	virtual bool ValidCodePage(int /* codePage */) const { return true; }

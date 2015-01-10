@@ -157,7 +157,8 @@ struct TextSegment {
 // Class to break a line of text into shorter runs at sensible places.
 class BreakFinder {
 	const LineLayout *ll;
-	Range lineRange;
+	int lineStart;
+	int lineEnd;
 	int posLineStart;
 	int nextBreak;
 	std::vector<int> selAndEdge;
@@ -176,8 +177,8 @@ public:
 	enum { lengthStartSubdivision = 300 };
 	// Try to make each subdivided run lengthEachSubdivision or shorter.
 	enum { lengthEachSubdivision = 100 };
-	BreakFinder(const LineLayout *ll_, const Selection *psel, Range rangeLine_, int posLineStart_,
-		int xStart, bool breakForSelection, const Document *pdoc_, const SpecialRepresentations *preprs_, const ViewStyle *pvsDraw);
+	BreakFinder(const LineLayout *ll_, const Selection *psel, int lineStart_, int lineEnd_, int posLineStart_,
+		int xStart, bool breakForSelection, const Document *pdoc_, const SpecialRepresentations *preprs_);
 	~BreakFinder();
 	TextSegment Next();
 	bool More() const;

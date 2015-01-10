@@ -379,18 +379,18 @@ next:
 	sc.Complete();
 }
 
-static const char *const tclWordListDesc[] = {
-	"TCL Keywords",
-	"TK Keywords",
-	"iTCL Keywords",
-	"tkCommands",
-	"expand",
-	"user1",
-	"user2",
-	"user3",
-	"user4",
-	0
-};
+static const char * const tclWordListDesc[] = {
+            "TCL Keywords",
+            "TK Keywords",
+            "iTCL Keywords",
+            "tkCommands",
+            "expand",
+            "user1",
+            "user2",
+            "user3",
+            "user4",
+            0
+        };
 
 // this code supports folding in the colourizer
 LexerModule lmTCL(SCLEX_TCL, ColouriseTCLDoc, "tcl", 0, tclWordListDesc);

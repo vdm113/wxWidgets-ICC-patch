@@ -222,15 +222,6 @@ void ScintillaBase::AutoCompleteInsert(Position startPos, int removeLen, const c
 		SetEmptySelection(startPos + lengthInserted);
 	} else {
 		// SC_MULTIAUTOC_EACH
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 		for (size_t r=0; r<sel.Count(); r++) {
 			if (!RangeContainsProtected(sel.Range(r).Start().Position(),
 				sel.Range(r).End().Position())) {
