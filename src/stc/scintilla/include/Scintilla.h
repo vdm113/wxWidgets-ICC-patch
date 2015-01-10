@@ -281,9 +281,6 @@ typedef sptr_t (*SciFnDirect)(sptr_t ptr, unsigned int iMessage, uptr_t wParam, 
 #define INDIC_DOTBOX 12
 #define INDIC_SQUIGGLEPIXMAP 13
 #define INDIC_COMPOSITIONTHICK 14
-#define INDIC_COMPOSITIONTHIN 15
-#define INDIC_FULLBOX 16
-#define INDIC_TEXTFORE 17
 #define INDIC_IME 32
 #define INDIC_IME_MAX 35
 #define INDIC_MAX 35
@@ -991,7 +988,8 @@ typedef sptr_t (*SciFnDirect)(sptr_t ptr, unsigned int iMessage, uptr_t wParam, 
 #define SC_MOD_CONTAINER 0x40000
 #define SC_MOD_LEXERSTATE 0x80000
 #define SC_MOD_INSERTCHECK 0x100000
-#define SC_MODEVENTMASKALL 0x1FFFFF
+#define SC_MOD_CHANGETABSTOPS 0x200000
+#define SC_MODEVENTMASKALL 0x3FFFFF
 #define SC_UPDATE_CONTENT 0x1
 #define SC_UPDATE_SELECTION 0x2
 #define SC_UPDATE_V_SCROLL 0x4
