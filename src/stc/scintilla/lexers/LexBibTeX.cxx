@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Copyright 2008-2010 Sergiu Dotenco. The License.txt file describes the
 // conditions under which this software may be distributed.
 
@@ -93,11 +86,6 @@ namespace {
 
 		// We always colorize a section from the beginning, so let's
 		// search for the @ character which isn't escaped, i.e. \@
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		while (start_pos > 0 && !IsEntryStart(styler.SafeGetCharAt(start_pos - 1),
 			styler.SafeGetCharAt(start_pos))) {
 			--start_pos; ++length;
@@ -118,11 +106,6 @@ namespace {
 		char closing_brace = 0;
 		bool collect_entry_name = false;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		for (; going; sc.Forward()) {
 			if (!sc.More())
 				going = false; // we need to go one behind the end of text
@@ -178,11 +161,6 @@ namespace {
 					// 3. year=2005
 
 					// Skip ", { until we encounter the first alphanumerical character
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 					while (sc.More() && !(IsAlphaNumeric(sc.ch) || sc.ch == '"' || sc.ch == '{'))
 						sc.Forward();
 
@@ -200,11 +178,6 @@ namespace {
 							// Skip preceding " or { such as in name={{test}}.
 							// Remember how many characters have been skipped
 							// Make sure that empty values, i.e. "" are also handled correctly
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 							while (sc.More() && (sc.ch == ch && (ch != '"' || skipped < 1))) {
 								sc.Forward();
 								++skipped;
@@ -218,11 +191,6 @@ namespace {
 						// We have reached the parameter value
 						// In case the open character was a alnum char, skip until , is found
 						// otherwise until skipped == 0
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 						while (sc.More() && (skipped > 0 || (!ch && !(sc.ch == ',' || sc.ch == closing_brace)))) {
 							// Make sure the character isn't escaped
 							if (sc.chPrev != '\\') {
@@ -244,11 +212,6 @@ namespace {
 
 					// Skip until the , or entry's closing closing_brace is found
 					// since this parameter might be the last one
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 					while (sc.More() && !(sc.ch == ',' || sc.ch == closing_brace))
 						sc.Forward();
 
@@ -269,11 +232,6 @@ namespace {
 
 					// We have possibly skipped some lines, so the folding levels
 					// have to be adjusted separately
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 					for (int i = styler.GetLine(start); i <= styler.GetLine(end); ++i)
 						styler.SetLevel(i, prev_level);
 

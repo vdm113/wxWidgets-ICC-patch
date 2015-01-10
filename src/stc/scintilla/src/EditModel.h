@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file EditModel.h
  ** Defines the editor state that must be visible to EditorView.
@@ -55,7 +48,6 @@ public:
 	ContractionState cs;
 	// Hotspot support
 	Range hotspot;
-	int hoverIndicatorPos;
 
 	// Wrapping support
 	int wrapWidth;
