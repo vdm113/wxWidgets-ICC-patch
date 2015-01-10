@@ -307,7 +307,7 @@ protected:	// ScintillaBase subclass needs access to much of Editor
 	virtual void DiscardOverdraw();
 	virtual void Redraw();
 	void RedrawSelMargin(int line=-1, bool allAfter=false);
-	PRectangle RectangleFromRange(Range r, int overlap);
+	PRectangle RectangleFromRange(Range r);
 	void InvalidateRange(int start, int end);
 
 	bool UserVirtualSpace() const {
@@ -394,8 +394,7 @@ protected:	// ScintillaBase subclass needs access to much of Editor
 	void FilterSelections();
 	int InsertSpace(int position, unsigned int spaces);
 	void AddChar(char ch);
-	virtual void AddCharUTF(const char *s, unsigned int len, bool treatAsDBCS=false);
-	void FillVirtualSpace();
+	virtual void AddCharUTF(char *s, unsigned int len, bool treatAsDBCS=false);
 	void InsertPaste(const char *text, int len);
 	enum PasteShape { pasteStream=0, pasteRectangular = 1, pasteLine = 2 };
 	void InsertPasteShape(const char *text, int len, PasteShape shape);
