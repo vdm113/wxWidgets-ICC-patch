@@ -74,12 +74,7 @@ inline int Maximum(int a, int b) {
 
 // Shut up annoying Visual C++ warnings:
 #ifdef _MSC_VER
-#pragma warning(disable: 4244 4309 4456 4457)
-#endif
-
-// Turn off shadow warnings for lexers as may be maintained by others
-#if defined(__GNUC__)
-#pragma GCC diagnostic ignored "-Wshadow"
+#pragma warning(disable: 4244 4309)
 #endif
 
 #ifdef SCI_NAMESPACE
