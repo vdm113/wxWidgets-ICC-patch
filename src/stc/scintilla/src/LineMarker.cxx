@@ -206,12 +206,12 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
 		// An invisible marker so don't draw anything
 
 	} else if (markType == SC_MARK_VLINE) {
-		surface->PenColour(body);
+		surface->PenColour(colourBody);
 		surface->MoveTo(centreX, static_cast<int>(rcWhole.top));
 		surface->LineTo(centreX, static_cast<int>(rcWhole.bottom));
 
 	} else if (markType == SC_MARK_LCORNER) {
-		surface->PenColour(tail);
+		surface->PenColour(colourTail);
 		surface->MoveTo(centreX, static_cast<int>(rcWhole.top));
 		surface->LineTo(centreX, centreY);
 		surface->LineTo(static_cast<int>(rc.right) - 1, centreY);
@@ -221,15 +221,15 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
 		surface->MoveTo(centreX, centreY);
 		surface->LineTo(static_cast<int>(rc.right) - 1, centreY);
 
-		surface->PenColour(body);
+		surface->PenColour(colourBody);
 		surface->MoveTo(centreX, static_cast<int>(rcWhole.top));
 		surface->LineTo(centreX, centreY + 1);
 
-		surface->PenColour(head);
+		surface->PenColour(colourHead);
 		surface->LineTo(centreX, static_cast<int>(rcWhole.bottom));
 
 	} else if (markType == SC_MARK_LCORNERCURVE) {
-		surface->PenColour(tail);
+		surface->PenColour(colourTail);
 		surface->MoveTo(centreX, static_cast<int>(rcWhole.top));
 		surface->LineTo(centreX, centreY-3);
 		surface->LineTo(centreX+3, centreY);
@@ -241,11 +241,11 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
 		surface->LineTo(centreX+3, centreY);
 		surface->LineTo(static_cast<int>(rc.right) - 1, centreY);
 
-		surface->PenColour(body);
+		surface->PenColour(colourBody);
 		surface->MoveTo(centreX, static_cast<int>(rcWhole.top));
 		surface->LineTo(centreX, centreY-2);
 
-		surface->PenColour(head);
+		surface->PenColour(colourHead);
 		surface->LineTo(centreX, static_cast<int>(rcWhole.bottom));
 
 	} else if (markType == SC_MARK_BOXPLUS) {
@@ -260,7 +260,7 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
 		surface->MoveTo(centreX, centreY + blobSize);
 		surface->LineTo(centreX, static_cast<int>(rcWhole.bottom));
 
-		surface->PenColour(body);
+		surface->PenColour(colourBody);
 		surface->MoveTo(centreX, static_cast<int>(rcWhole.top));
 		surface->LineTo(centreX, centreY - blobSize);
 
@@ -294,7 +294,7 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
 		surface->MoveTo(centreX, centreY + blobSize);
 		surface->LineTo(centreX, static_cast<int>(rcWhole.bottom));
 
-		surface->PenColour(body);
+		surface->PenColour(colourBody);
 		surface->MoveTo(centreX, static_cast<int>(rcWhole.top));
 		surface->LineTo(centreX, centreY - blobSize);
 
@@ -321,7 +321,7 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
 		surface->MoveTo(centreX, centreY + blobSize);
 		surface->LineTo(centreX, static_cast<int>(rcWhole.bottom));
 
-		surface->PenColour(body);
+		surface->PenColour(colourBody);
 		surface->MoveTo(centreX, static_cast<int>(rcWhole.top));
 		surface->LineTo(centreX, centreY - blobSize);
 
@@ -341,7 +341,7 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
 		surface->MoveTo(centreX, centreY + blobSize);
 		surface->LineTo(centreX, static_cast<int>(rcWhole.bottom));
 
-		surface->PenColour(body);
+		surface->PenColour(colourBody);
 		surface->MoveTo(centreX, static_cast<int>(rcWhole.top));
 		surface->LineTo(centreX, centreY - blobSize);
 

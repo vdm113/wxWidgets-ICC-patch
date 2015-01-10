@@ -184,17 +184,9 @@ unsigned int UTF32FromUTF8(const char *s, unsigned int len, unsigned int *tbuf, 
 	unsigned int ui=0;
 	const unsigned char *us = reinterpret_cast<const unsigned char *>(s);
 	unsigned int i=0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 	while ((i<len) && (ui<tlen)) {
 		unsigned char ch = us[i++];
-		unsigned int value = 0;
+		wchar_t value = 0;
 		if (ch < 0x80) {
 			value = ch;
 		} else if (((len-i) >= 1) && (ch < 0x80 + 0x40 + 0x20)) {
