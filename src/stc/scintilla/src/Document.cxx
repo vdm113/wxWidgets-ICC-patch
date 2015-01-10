@@ -273,14 +273,6 @@ void Document::TentativeUndo() {
 			bool multiLine = false;
 			int steps = cb.TentativeSteps();
 			//Platform::DebugPrintf("Steps=%d\n", steps);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd
-#   endif
-#endif /* VDM auto patch */
 			for (int step = 0; step < steps; step++) {
 				const int prevLinesTotal = LinesTotal();
 				const Action &action = cb.GetUndoStep();
@@ -2068,14 +2060,6 @@ Document::CharacterExtracted Document::ExtractCharacter(int position) const {
 	}
 	const int widthCharBytes = UTF8BytesOfLead[leadByte];
 	unsigned char charBytes[UTF8MaxBytes] = { leadByte, 0, 0, 0 };
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd
-#   endif
-#endif /* VDM auto patch */
 	for (int b=1; b<widthCharBytes; b++)
 		charBytes[b] = static_cast<unsigned char>(cb.CharAt(position + b));
 	int utf8status = UTF8Classify(charBytes, widthCharBytes);
@@ -2083,7 +2067,7 @@ Document::CharacterExtracted Document::ExtractCharacter(int position) const {
 		// Treat as invalid and use up just one byte
 		return CharacterExtracted(unicodeReplacementChar, 1);
 	} else {
-		return CharacterExtracted(UnicodeFromUTF8(charBytes), utf8status & UTF8MaskWidth);
+		return CharacterExtracted(UnicodeFromBytes(charBytes), utf8status & UTF8MaskWidth);
 	}
 }
 
@@ -3112,9 +3096,6 @@ public:
 		doc(doc_), position(position_), characterIndex(0), lenBytes(0), lenCharacters(0) {
 		buffered[0] = 0;
 		buffered[1] = 0;
-		if (doc) {
-			ReadCharacter();
-		}
 	}
 	UTF8Iterator(const UTF8Iterator &other) {
 		doc = other.doc;
@@ -3137,8 +3118,10 @@ public:
 		}
 		return *this;
 	}
-	wchar_t operator*() const {
-		assert(lenCharacters != 0);
+	wchar_t operator*() {
+		if (lenCharacters == 0) {
+			ReadCharacter();
+		}
 		return buffered[characterIndex];
 	}
 	UTF8Iterator &operator++() {
@@ -3283,14 +3266,6 @@ bool MatchOnLines(const Document *doc, const Regex &regexp, const RESearchRange 
 	//	matched = std::regex_search(uiStart, uiEnd, match, regexp, flagsMatch);
 
 	// Line by line.
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd
-#   endif
-#endif /* VDM auto patch */
 	for (int line = resr.lineRangeStart; line != resr.lineRangeBreak; line += resr.increment) {
 		const Range lineRange = resr.LineRange(line);
 		Iterator itStart(doc, lineRange.start);
@@ -3300,14 +3275,6 @@ bool MatchOnLines(const Document *doc, const Regex &regexp, const RESearchRange 
 		// Check for the last match on this line.
 		if (matched) {
 			if (resr.increment == -1) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd
-#   endif
-#endif /* VDM auto patch */
 				while (matched) {
 					Iterator itNext(doc, match[0].second.PosRoundUp());
 					flagsMatch = MatchFlags(doc, itNext.Pos(), lineRange.end);
@@ -3327,27 +3294,11 @@ bool MatchOnLines(const Document *doc, const Regex &regexp, const RESearchRange 
 		}
 	}
 	if (matched) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd
-#   endif
-#endif /* VDM auto patch */
 		for (size_t co = 0; co < match.size(); co++) {
 			search.bopat[co] = match[co].first.Pos();
 			search.eopat[co] = match[co].second.PosRoundUp();
 			size_t lenMatch = search.eopat[co] - search.bopat[co];
 			search.pat[co].resize(lenMatch);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd
-#   endif
-#endif /* VDM auto patch */
 			for (size_t iPos = 0; iPos < lenMatch; iPos++) {
 				search.pat[co][iPos] = doc->CharAt(iPos + search.bopat[co]);
 			}
@@ -3448,14 +3399,6 @@ long BuiltinRegex::FindText(Document *doc, int minPos, int maxPos, const char *s
 	int lenRet = 0;
 	const char searchEnd = s[*length - 1];
 	const char searchEndPrev = (*length > 1) ? s[*length - 2] : '\0';
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd
-#   endif
-#endif /* VDM auto patch */
 	for (int line = resr.lineRangeStart; line != resr.lineRangeBreak; line += resr.increment) {
 		int startOfLine = doc->LineStart(line);
 		int endOfLine = doc->LineEnd(line);
