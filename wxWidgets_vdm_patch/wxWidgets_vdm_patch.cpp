@@ -296,27 +296,55 @@ again:
             if(ln.length()>0 && '('==ln[0])
                 reformat=true;
 
-#if 0 // ICC 14 bug workaround
-            string line_orig=line;
-            char ch=0;
+#if 1 // ICC 14, 15 bug workaround
+            if(reformat) {
+                reformat=false;
+                int stage=0;
+                int nest=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
 #endif
-            while(line_orig.length()>0) {
-                ch=line_orig[line_orig.length()-1];
-                if(' '==ch || '\t'==ch || '\r'==ch || '\n'==ch || '\\'==ch) {
-                    line_orig.erase(line_orig.length()-1,1);
-                    continue;
+                for(size_t i1=0; i1<ln.length(); ++i1) {
+                    if(0==stage) {
+                        if('('==ln[i1]) {
+                            ++nest;
+                            continue;
+                        }
+                        if(')'==ln[i1]) {
+                            --nest;
+
+                            if(0==nest)
+                                ++stage;
+
+                            continue;
+                        }
+                        if(' '==ln[i1] || '\t'==ln[i1])
+                            continue;
+                    }
+                    if(1==stage) {
+                        if(' '==ln[i1] || '\t'==ln[i1])
+                            continue;
+                        if(';'==ln[i1]) {
+                            stage=-1;
+                            break;
+                        }
+                        if('{'==ln[i1]) {
+                            stage=2;
+                            break;
+                        }
+                    }
                 }
-                if('{'==ch || ')'==ch) {
-                    break;
-                }
-                break;
+                if(2==stage)
+                    reformat=do_patch;
+                if(1==stage) // "while(condition)\n"
+                    reformat=do_patch;
+                if(0==stage) // "while(condition ...\n" (multi-line condition)
+                    reformat=do_patch;
+                if(-1==stage) // "while(condition);\n"
+                    reformat=false;
             }
-            if(';'==ch && do_patch)
-                reformat=false;
 #endif
         }
 
