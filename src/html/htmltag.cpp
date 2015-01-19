@@ -315,6 +315,11 @@ void wxHtmlTagsCache::QueryTag(const wxString::const_iterator& at,
                 return;
             }
         }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (Cache()[m_CachePos].Key != at);
     }
 

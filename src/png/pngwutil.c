@@ -291,6 +291,11 @@ optimize_cmf(png_bytep data, png_alloc_size_t data_size)
                half_z_window_size >>= 1;
                --z_cinfo;
             }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (z_cinfo > 0 && data_size <= half_z_window_size);
 
             z_cmf = (z_cmf & 0x0f) | (z_cinfo << 4);
@@ -479,6 +484,11 @@ png_free_buffer_list(png_structrp png_ptr, png_compression_bufferp *listp)
          png_free(png_ptr, list);
          list = next;
       }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while (list != NULL);
    }
 }
@@ -619,6 +629,11 @@ png_text_compress(png_structrp png_ptr, png_uint_32 chunk_name,
          input_len += png_ptr->zstream.avail_in;
          png_ptr->zstream.avail_in = 0; /* safety */
       }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while (ret == Z_OK);
 
       /* There may be some space left in the last output buffer, this needs to

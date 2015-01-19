@@ -1008,6 +1008,11 @@ int wxCmdLineParser::Parse(bool showUsage)
                         len--;
                     }
                 }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while ( optInd == wxNOT_FOUND );
 
                 len++;  // compensates extra len-- above

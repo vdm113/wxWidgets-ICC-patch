@@ -251,6 +251,11 @@ void LongLongTestCase::Division()
         {
            l = rand();
         }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( !l );
 
         wxLongLong q = a / l;

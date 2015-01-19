@@ -365,6 +365,11 @@ wxObject* wxHtmlWinParser::GetProduct()
     OpenContainer();
 
     top = m_Container;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (top->GetParent()) top = top->GetParent();
     top->RemoveExtraSpacing(true, true);
 

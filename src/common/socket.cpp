@@ -647,10 +647,15 @@ const wxSockAddressImpl& wxSocketImpl::GetLocal()
 // is EINTR
 #ifdef __UNIX__
     #define DO_WHILE_EINTR( rc, syscall ) \
+VDM_MACRO_PRAGMA_IVDEP \
         do { \
             rc = (syscall); \
         } \
-VDM_MACRO_PRAGMA_IVDEP \
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( rc == -1 && errno == EINTR )
 #else
     #define DO_WHILE_EINTR( rc, syscall ) rc = (syscall)
@@ -1120,6 +1125,11 @@ wxSocketBase& wxSocketBase::ReadMsg(void* buffer, wxUint32 nbytes)
                     discard_len = DoRead(discard_buffer, (wxUint32)discard_len);
                     len2 -= (wxUint32)discard_len;
                 }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while ((discard_len > 0) && len2);
             }
 
@@ -1306,6 +1316,11 @@ wxSocketBase& wxSocketBase::Discard()
         ret = DoRead(buffer, MAX_DISCARD_SIZE);
         total += ret;
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (ret == MAX_DISCARD_SIZE);
 
     delete[] buffer;

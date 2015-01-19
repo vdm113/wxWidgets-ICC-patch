@@ -530,6 +530,11 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #endif
                   do
                      j--;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                   while ((int)png_ptr->quantize_sort[j] >= maximum_colors);
 
                   palette[i] = palette[j];
@@ -562,6 +567,11 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #endif
                   do
                      j--;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                   while ((int)png_ptr->quantize_sort[j] >= maximum_colors);
 
                   tmp_color = palette[j];

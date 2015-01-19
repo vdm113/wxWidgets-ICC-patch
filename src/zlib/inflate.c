@@ -280,9 +280,29 @@ struct inflate_state FAR *state;
 
         /* literal/length table */
         sym = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (sym < 144) state->lens[sym++] = 8;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (sym < 256) state->lens[sym++] = 9;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (sym < 280) state->lens[sym++] = 7;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (sym < 288) state->lens[sym++] = 8;
         next = fixed;
         lenfix = next;
@@ -291,6 +311,11 @@ struct inflate_state FAR *state;
 
         /* distance table */
         sym = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (sym < 32) state->lens[sym++] = 5;
         distfix = next;
         bits = 5;
@@ -456,6 +481,7 @@ unsigned copy;
 /* check macros for header crc */
 #ifdef GUNZIP
 #  define CRC2(check, word) \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hbuf[0] = (unsigned char)(word); \
         hbuf[1] = (unsigned char)((word) >> 8); \
@@ -463,6 +489,7 @@ unsigned copy;
     } while (0)
 
 #  define CRC4(check, word) \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hbuf[0] = (unsigned char)(word); \
         hbuf[1] = (unsigned char)((word) >> 8); \
@@ -474,6 +501,7 @@ unsigned copy;
 
 /* Load registers with state in inflate() for speed */
 #define LOAD() \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         put = strm->next_out; \
         left = strm->avail_out; \
@@ -485,6 +513,7 @@ unsigned copy;
 
 /* Restore state from registers in inflate() */
 #define RESTORE() \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         strm->next_out = put; \
         strm->avail_out = left; \
@@ -496,6 +525,7 @@ unsigned copy;
 
 /* Clear the input bit accumulator */
 #define INITBITS() \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hold = 0; \
         bits = 0; \
@@ -504,6 +534,7 @@ unsigned copy;
 /* Get a byte of input into the bit accumulator, or return from inflate()
    if there is no input available. */
 #define PULLBYTE() \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         if (have == 0) goto inf_leave; \
         have--; \
@@ -514,6 +545,7 @@ unsigned copy;
 /* Assure that there are at least n bits in the bit accumulator.  If there is
    not enough available input to do that, then return from inflate(). */
 #define NEEDBITS(n) \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
 VDM_MACRO_PRAGMA_IVDEP \
         while (bits < (unsigned)(n)) \
@@ -526,6 +558,7 @@ VDM_MACRO_PRAGMA_IVDEP \
 
 /* Remove n bits from the bit accumulator */
 #define DROPBITS(n) \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hold >>= (n); \
         bits -= (unsigned)(n); \
@@ -533,6 +566,7 @@ VDM_MACRO_PRAGMA_IVDEP \
 
 /* Remove zero to seven bits as needed to go to a byte boundary */
 #define BYTEBITS() \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hold >>= bits & 7; \
         bits -= bits & 7; \

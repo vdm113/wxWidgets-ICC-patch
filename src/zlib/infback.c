@@ -101,9 +101,29 @@ struct inflate_state FAR *state;
 
         /* literal/length table */
         sym = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (sym < 144) state->lens[sym++] = 8;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (sym < 256) state->lens[sym++] = 9;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (sym < 280) state->lens[sym++] = 7;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (sym < 288) state->lens[sym++] = 8;
         next = fixed;
         lenfix = next;
@@ -112,6 +132,11 @@ struct inflate_state FAR *state;
 
         /* distance table */
         sym = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (sym < 32) state->lens[sym++] = 5;
         distfix = next;
         bits = 5;
@@ -133,6 +158,7 @@ struct inflate_state FAR *state;
 
 /* Load returned state from inflate_fast() */
 #define LOAD() \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         put = strm->next_out; \
         left = strm->avail_out; \
@@ -144,6 +170,7 @@ struct inflate_state FAR *state;
 
 /* Set state from registers for inflate_fast() */
 #define RESTORE() \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         strm->next_out = put; \
         strm->avail_out = left; \
@@ -155,6 +182,7 @@ struct inflate_state FAR *state;
 
 /* Clear the input bit accumulator */
 #define INITBITS() \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hold = 0; \
         bits = 0; \
@@ -163,6 +191,7 @@ struct inflate_state FAR *state;
 /* Assure that some input is available.  If input is requested, but denied,
    then return a Z_BUF_ERROR from inflateBack(). */
 #define PULL() \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         if (have == 0) { \
             have = in(in_desc, &next); \
@@ -177,6 +206,7 @@ struct inflate_state FAR *state;
 /* Get a byte of input into the bit accumulator, or return from inflateBack()
    with an error if there is no input available. */
 #define PULLBYTE() \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         PULL(); \
         have--; \
@@ -188,6 +218,7 @@ struct inflate_state FAR *state;
    not enough available input to do that, then return from inflateBack() with
    an error. */
 #define NEEDBITS(n) \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
 VDM_MACRO_PRAGMA_IVDEP \
         while (bits < (unsigned)(n)) \
@@ -200,6 +231,7 @@ VDM_MACRO_PRAGMA_IVDEP \
 
 /* Remove n bits from the bit accumulator */
 #define DROPBITS(n) \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hold >>= (n); \
         bits -= (unsigned)(n); \
@@ -207,6 +239,7 @@ VDM_MACRO_PRAGMA_IVDEP \
 
 /* Remove zero to seven bits as needed to go to a byte boundary */
 #define BYTEBITS() \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hold >>= bits & 7; \
         bits -= bits & 7; \
@@ -216,6 +249,7 @@ VDM_MACRO_PRAGMA_IVDEP \
    if it's full.  If the write fails, return from inflateBack() with a
    Z_BUF_ERROR. */
 #define ROOM() \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         if (left == 0) { \
             put = state->window; \

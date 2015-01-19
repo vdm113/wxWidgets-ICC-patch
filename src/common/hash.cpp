@@ -107,6 +107,11 @@ void wxHashTableBase::Clear()
 
             delete curr;
         }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while( curr != end );
 
         m_table[i] = NULL;
@@ -228,6 +233,11 @@ void* wxHashTableBase::DoGet( long key, long hash ) const
 
         curr = curr->GetNext();
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while( curr != first );
 
     return NULL;
@@ -257,6 +267,11 @@ void* wxHashTableBase::DoGet( const wxString& key, long hash ) const
 
         curr = curr->GetNext();
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while( curr != first );
 
     return NULL;
@@ -311,6 +326,11 @@ void* wxHashTableBase::DoDelete( long key, long hash )
         prev = curr;
         curr = curr->GetNext();
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while( curr != first );
 
     return NULL;
@@ -350,6 +370,11 @@ void* wxHashTableBase::DoDelete( const wxString& key, long hash )
         prev = curr;
         curr = curr->GetNext();
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while( curr != first );
 
     return NULL;

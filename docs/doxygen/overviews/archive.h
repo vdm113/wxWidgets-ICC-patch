@@ -187,6 +187,11 @@ do
 {
     entry.reset(zip.GetNextEntry());
 }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 while (entry.get() != NULL && entry->GetInternalName() != name);
 
 if (entry.get() != NULL)

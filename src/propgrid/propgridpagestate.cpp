@@ -602,6 +602,7 @@ void wxPropertyGridPageState::DoSetPropertyName( wxPGProperty* p,
 #endif
 
 #define ITEM_ITERATION_LOOP_BEGIN \
+VDM_MACRO_PRAGMA_IVDEP \
     do \
     { \
         iMax = parent->GetChildCount(); \
@@ -623,6 +624,11 @@ VDM_MACRO_PRAGMA_IVDEP \
         i = parent->m_arrIndex + 1; \
         parent = parent->m_parent; \
     } \
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( parent != NULL );
 
 bool wxPropertyGridPageState::EnableCategories( bool enable )

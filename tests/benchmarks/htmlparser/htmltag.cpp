@@ -102,6 +102,11 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
             m_Cache[tg].Name = new wxChar[i+1];
             memcpy(m_Cache[tg].Name, tagBuffer, (i+1)*sizeof(wxChar));
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (pos < lng && src[pos] != wxT('>')) pos++;
 
             if (src[stpos+1] == wxT('/')) // ending tag:
@@ -241,6 +246,11 @@ void wx28HtmlTagsCache::QueryTag(int at, int* end1, int* end2)
 
             m_CachePos += delta;
         }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (m_Cache[m_CachePos].Key != at);
     }
     *end1 = m_Cache[m_CachePos].End1;

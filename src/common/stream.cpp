@@ -481,6 +481,11 @@ size_t wxStreamBuffer::Read(wxStreamBuffer *dbuf)
             total += nRead;
         }
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( nRead );
 
     return total;
@@ -598,6 +603,11 @@ size_t wxStreamBuffer::Write(wxStreamBuffer *sbuf)
             nWrite = 0;
         }
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( nWrite == WXSIZEOF(buf) );
 
     return total;

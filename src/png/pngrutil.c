@@ -783,6 +783,11 @@ png_inflate_read(png_structrp png_ptr, png_bytep read_buffer, uInt read_size,
          ret = inflate(&png_ptr->zstream,
             *chunk_bytes > 0 ? Z_NO_FLUSH : (finish ? Z_FINISH : Z_SYNC_FLUSH));
       }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while (ret == Z_OK && (*out_size > 0 || png_ptr->zstream.avail_out > 0));
 
       *out_size += png_ptr->zstream.avail_out;
@@ -3431,6 +3436,11 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
                   dp += bytes_to_jump;
                   row_width -= bytes_to_jump;
                }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                while (row_width > 1);
 
                /* And there can only be one byte left at this point: */
@@ -3503,6 +3513,11 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
                            *dp32++ = *sp32++;
                            c -= (sizeof (png_uint_32));
                         }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         while (c > 0);
 
                         if (row_width <= bytes_to_jump)
@@ -3512,6 +3527,11 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
                         sp32 += skip;
                         row_width -= bytes_to_jump;
                      }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                      while (bytes_to_copy <= row_width);
 
                      /* Get to here when the row_width truncates the final copy.
@@ -3527,6 +3547,11 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
 #endif
                      do
                         *dp++ = *sp++;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                      while (--row_width > 0);
                      return;
                   }
@@ -3560,6 +3585,11 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
                            *dp16++ = *sp16++;
                            c -= (sizeof (png_uint_16));
                         }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                         while (c > 0);
 
                         if (row_width <= bytes_to_jump)
@@ -3569,6 +3599,11 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
                         sp16 += skip;
                         row_width -= bytes_to_jump;
                      }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                      while (bytes_to_copy <= row_width);
 
                      /* End of row - 1 byte left, bytes_to_copy > row_width: */
@@ -3581,6 +3616,11 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
 #endif
                      do
                         *dp++ = *sp++;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                      while (--row_width > 0);
                      return;
                   }

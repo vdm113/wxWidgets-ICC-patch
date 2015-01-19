@@ -1773,6 +1773,11 @@ png_write_image_16bit(png_voidp argument)
             reciprocal = ((0xffff<<15)+(alpha>>1))/alpha;
 
          c = channels;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
          do /* always at least one channel */
          {
             png_uint_16 component = *in_ptr++;
@@ -1799,6 +1804,11 @@ png_write_image_16bit(png_voidp argument)
 
             *out_ptr++ = component;
          }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
          while (--c > 0);
 
          /* Skip to next component (skip the intervening alpha channel) */
@@ -1929,8 +1939,18 @@ png_write_image_8bit(png_voidp argument)
                reciprocal = UNP_RECIPROCAL(alpha);
 
             c = channels;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             do /* always at least one channel */
                *out_ptr++ = png_unpremultiply(*in_ptr++, alpha, reciprocal);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (--c > 0);
 
             /* Skip to next component (skip the intervening alpha channel) */

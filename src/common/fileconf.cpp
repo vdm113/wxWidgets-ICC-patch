@@ -458,6 +458,11 @@ wxFileConfig::wxFileConfig(wxInputStream &inStream, const wxMBConv& conv)
             break;
         }
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( !inStream.Eof() );
 
 #if wxUSE_UNICODE

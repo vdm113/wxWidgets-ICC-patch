@@ -63,10 +63,12 @@ int name::Index(T lItem, bool bFromEnd) const                               \
   if ( bFromEnd ) {                                                         \
     if ( size() > 0 ) {                                                     \
       size_t n = size();                                                    \
+VDM_MACRO_PRAGMA_IVDEP \
       do {                                                                  \
         if ( (*this)[--n] == lItem )                                        \
           return n;                                                         \
       }                                                                     \
+VDM_MACRO_PRAGMA_IVDEP \
       while ( n != 0 );                                                     \
     }                                                                       \
   }                                                                         \

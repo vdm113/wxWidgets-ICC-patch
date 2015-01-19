@@ -2601,6 +2601,11 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
 
             dc.DestroyClippingRegion(); // Is this really necessary?
         }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( ci > 0 );
 
         if ( fontChanged )
@@ -5731,6 +5736,11 @@ void wxPropertyGrid::ClearActionTriggers( int action )
             }
         }
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( didSomething );
 }
 

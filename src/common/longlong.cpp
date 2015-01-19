@@ -814,6 +814,11 @@ wxLongLongWx& wxLongLongWx::operator*=(const wxLongLongWx& ll)
         t <<= 1;
         counter++;
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ((counter < 64) && ((q.m_hi != 0) || (q.m_lo != 0)));
 
 #ifdef wxLONGLONG_TEST_MODE
@@ -851,6 +856,11 @@ wxULongLongWx& wxULongLongWx::operator*=(const wxULongLongWx& ll)
         t <<= 1;
         counter++;
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ((counter < 64) && ((q.m_hi != 0) || (q.m_lo != 0)));
 
 #ifdef wxLONGLONG_TEST_MODE

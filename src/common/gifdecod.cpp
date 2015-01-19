@@ -606,6 +606,11 @@ as an End of Information itself)
         pos = 0;
         lastcode = readcode;
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (code != ab_fin);
 
     return wxGIF_OK;

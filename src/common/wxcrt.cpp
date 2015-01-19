@@ -740,6 +740,11 @@ size_t wxStrlen(const wxChar16 *s )
 {
     if (!s) return 0;
     size_t i=0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (*s!=0) { ++i; ++s; };
     return i;
 }
@@ -758,6 +763,11 @@ size_t wxStrlen(const wxChar32 *s )
 {
     if (!s) return 0;
     size_t i=0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (*s!=0) { ++i; ++s; };
     return i;
 }
@@ -811,6 +821,11 @@ WXDLLIMPEXP_BASE int wxCRT_StrnicmpA(const char *s1, const char *s2, size_t n)
 {
   // initialize the variables just to suppress stupid gcc warning
   char c1 = 0, c2 = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (n && ((c1 = wxTolower(*s1)) == (c2 = wxTolower(*s2)) ) && c1) n--, s1++, s2++;
   if (n) {
     if (c1 < c2) return -1;
@@ -825,6 +840,11 @@ WXDLLIMPEXP_BASE int wxCRT_StrnicmpW(const wchar_t *s1, const wchar_t *s2, size_
 {
   // initialize the variables just to suppress stupid gcc warning
   wchar_t c1 = 0, c2 = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
   while (n && ((c1 = wxTolower(*s1)) == (c2 = wxTolower(*s2)) ) && c1) n--, s1++, s2++;
   if (n) {
     if (c1 < c2) return -1;
@@ -909,6 +929,11 @@ wxCRT_StrtoullBase(const T* nptr, T** endptr, int base, T* sign)
     wxString::const_iterator end = wxstr.end();
 
     // Skip spaces
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( i != end && wxIsspace(*i) ) ++i;
 
     // Starts with sign?

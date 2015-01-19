@@ -5659,6 +5659,11 @@ bool wxRichTextParagraph::Layout(wxDC& dc, wxRichTextDrawingContext& context, co
             else
                 doLoop = false;
         }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (doLoop);
 
         // 2014-03-08: also need to set object positions

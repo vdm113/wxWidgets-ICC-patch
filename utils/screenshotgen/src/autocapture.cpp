@@ -101,6 +101,11 @@ bool AutoCaptureMechanism::Capture(wxBitmap* bitmap, int x, int y,
     {
         fullscreen = wxBitmap(wxT("/tmp/wx_screen_capture.png"), wxBITMAP_TYPE_PNG);
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while(!fullscreen.IsOk());
 
     *bitmap = fullscreen.GetSubBitmap(wxRect(x, y, width, height));
@@ -219,6 +224,11 @@ void AutoCaptureMechanism::CaptureAll()
                 Union(&screenshot, &screenshot2, &combined);
                 screenshot = combined;
             }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while(!(it->flag & AJ_UnionEnd));
         }
 

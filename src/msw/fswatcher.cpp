@@ -217,6 +217,11 @@ wxThread::ExitCode wxIOCPThread::Entry()
     wxLogTrace(wxTRACE_FSWATCHER, "[iocp] Started IOCP thread");
 
     // read events in a loop until we get false, which means we should exit
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( ReadEvents() );
 
     wxLogTrace(wxTRACE_FSWATCHER, "[iocp] Ended IOCP thread");
@@ -312,6 +317,11 @@ bool wxIOCPThread::ReadEvents()
         offset = e->NextEntryOffset;
         memory += offset;
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (offset);
 
     // process events

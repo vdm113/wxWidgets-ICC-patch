@@ -305,6 +305,11 @@ int wxArrayString::Index(const wxString& str, bool bCase, bool bFromEnd) const
           if ( m_pItems[--ui].IsSameAs(str, bCase) )
             return ui;
         }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( ui != 0 );
       }
     }

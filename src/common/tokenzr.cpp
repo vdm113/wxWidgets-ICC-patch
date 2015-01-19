@@ -330,6 +330,11 @@ wxString wxStringTokenizer::GetNextToken()
             m_lastDelim = (pos == m_stringEnd) ? wxT('\0') : (wxChar)*pos;
         }
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( !AllowEmpty() && token.empty() );
 
     return token;

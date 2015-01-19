@@ -210,6 +210,11 @@ public:
             // we have event, so process it
             ProcessNativeEvent(event);
         }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (true);
 
         // when ret>0 we still have events, when ret<=0 we return

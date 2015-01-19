@@ -331,9 +331,29 @@ local void tr_static_init()
 #endif
     for (bits = 0; bits <= MAX_BITS; bits++) bl_count[bits] = 0;
     n = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (n <= 143) static_ltree[n++].Len = 8, bl_count[8]++;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (n <= 255) static_ltree[n++].Len = 9, bl_count[9]++;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (n <= 279) static_ltree[n++].Len = 7, bl_count[7]++;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (n <= 287) static_ltree[n++].Len = 8, bl_count[8]++;
     /* Codes 286 and 287 do not exist, but we must include them in the
      * tree construction to get a canonical Huffman tree (longest code
@@ -644,6 +664,11 @@ local void gen_bitlen(s, desc)
 #endif
     do {
         bits = max_length-1;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (s->bl_count[bits] == 0) bits--;
         s->bl_count[bits]--;      /* move one leaf down the tree */
         s->bl_count[bits+1] += 2; /* move one overflow item as its brother */

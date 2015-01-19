@@ -2361,6 +2361,11 @@ bool wxTransferFileToStream(const wxString& filename, wxSTD ostream& stream)
         if ( !stream )
             return false;
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( !file.Eof() );
 
     return true;
@@ -2391,6 +2396,11 @@ bool wxTransferStreamToFile(wxSTD istream& stream, const wxString& filename)
                 return false;
         }
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( !stream.eof() );
 
     return true;
@@ -2426,6 +2436,11 @@ bool wxTransferFileToStream(const wxString& filename, wxOutputStream& stream)
         if ( !stream )
             return false;
     }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( !file.Eof() );
 
     return true;

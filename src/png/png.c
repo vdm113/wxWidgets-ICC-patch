@@ -164,6 +164,11 @@ png_calculate_crc(png_structrp png_ptr, png_const_bytep ptr, png_size_t length)
          ptr += safe_length;
          length -= safe_length;
       }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while (length > 0);
 
       /* And the following is always safe because the crc is only 32 bits. */
@@ -880,6 +885,11 @@ png_handle_as_unknown(png_const_structrp png_ptr, png_const_bytep chunk_name)
     * code was always searched from the end of the list, this is no longer
     * necessary because the 'set' routine handles duplicate entries correcty.
     */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    do /* num_chunk_list > 0, so at least one */
    {
       p -= 5;
@@ -887,6 +897,11 @@ png_handle_as_unknown(png_const_structrp png_ptr, png_const_bytep chunk_name)
       if (!memcmp(chunk_name, p, 4))
          return p[4];
    }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
    while (p > p_end);
 
    /* This means that known chunks should be processed and unknown chunks should
@@ -2740,6 +2755,11 @@ png_pow10(int power)
          mult *= mult;
          power >>= 1;
       }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
       while (power > 0);
 
       if (recip) d = 1/d;
@@ -2824,6 +2844,11 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
           * test on DBL_MAX above.
           */
          fp /= base;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
          while (fp >= 1) fp /= 10, ++exp_b10;
 
          /* Because of the code above fp may, at this point, be
@@ -2983,6 +3008,11 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
                   *ascii++ = (char)(48 + (int)d), ++cdigits;
                }
             }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (cdigits+czero-clead < (int)precision && fp > DBL_MIN);
 
             /* The total output count (max) is now 4+precision */
@@ -3003,6 +3033,11 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
                 * zeros were *not* output, so this doesn't increase
                 * the output count.
                 */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                while (--exp_b10 >= 0) *ascii++ = 48;
 
                *ascii = 0;
@@ -3058,6 +3093,11 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
              */
             if ((int)size > cdigits)
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                while (cdigits > 0) *ascii++ = exponent[--cdigits];
 
                *ascii = 0;
@@ -3134,6 +3174,11 @@ png_ascii_from_fixed(png_const_structrp png_ptr, png_charp ascii,
 
          if (ndigits > 0)
          {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (ndigits > 5) *ascii++ = digits[--ndigits];
             /* The remaining digits are fractional digits, ndigits is '5' or
              * smaller at this point.  It is certainly not zero.  Check for a
@@ -3147,7 +3192,17 @@ png_ascii_from_fixed(png_const_structrp png_ptr, png_charp ascii,
                 * then ndigits digits to first:
                 */
                i = 5;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                while (ndigits < i) *ascii++ = 48, --i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                while (ndigits >= first) *ascii++ = digits[--ndigits];
                /* Don't output the trailing zeros! */
             }

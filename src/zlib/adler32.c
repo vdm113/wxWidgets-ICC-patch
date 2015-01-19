@@ -33,22 +33,26 @@ local uLong adler32_combine_ OF((uLong adler1, uLong adler2, z_off64_t len2));
 /* note that this assumes BASE is 65521, where 65536 % 65521 == 15
    (thank you to John Reiser for pointing this out) */
 #  define CHOP(a) \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         unsigned long tmp = a >> 16; \
         a &= 0xffffUL; \
         a += (tmp << 4) - tmp; \
     } while (0)
 #  define MOD28(a) \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         CHOP(a); \
         if (a >= BASE) a -= BASE; \
     } while (0)
 #  define MOD(a) \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         CHOP(a); \
         MOD28(a); \
     } while (0)
 #  define MOD63(a) \
+VDM_MACRO_PRAGMA_IVDEP \
     do { /* this assumes a is not negative */ \
         z_off64_t tmp = a >> 32; \
         a &= 0xffffffffL; \

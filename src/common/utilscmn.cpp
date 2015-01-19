@@ -785,10 +785,12 @@ Thanks,
 
 /* Byte-wise swap two items of size SIZE. */
 #define SWAP(a, b, size)                                                      \
+VDM_MACRO_PRAGMA_IVDEP \
   do                                                                          \
     {                                                                         \
       size_t __size = (size);                                                 \
       char *__a = (a), *__b = (b);                                            \
+VDM_MACRO_PRAGMA_IVDEP \
       do                                                                      \
         {                                                                     \
           char __tmp = *__a;                                                  \
@@ -929,6 +931,11 @@ void wxQsort(void* pbase, size_t total_elems,
                   break;
                 }
             }
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
           while (left_ptr <= right_ptr);
 
           /* Set up pointers for next iteration.  First determine whether
