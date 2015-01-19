@@ -1042,11 +1042,6 @@ void ArchiveTestCase<ClassFactoryT>::VerifyDir(wxString& path,
             delete it->second;
             m_testEntries.erase(it);
         }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (dir.GetNext(&name));
     }
 }

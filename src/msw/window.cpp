@@ -4770,11 +4770,6 @@ bool wxWindowMSW::HandleQueryNewPalette()
 #if wxUSE_PALETTE
     // check to see if we our our parents have a custom palette
     wxWindowMSW *win = this;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (!win->HasCustomPalette() && win->GetParent()) win = win->GetParent();
     if (win->HasCustomPalette()) {
         /* realize the palette to see whether redrawing is needed */

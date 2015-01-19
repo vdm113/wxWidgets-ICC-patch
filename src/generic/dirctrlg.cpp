@@ -797,11 +797,6 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
                     dirs.Add(eachFilename);
                 }
             }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (d.GetNext(&eachFilename));
         }
     }
@@ -842,11 +837,6 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
                             filenames.Add(eachFilename);
                         }
                     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                     while (d.GetNext(& eachFilename));
                 }
             }
@@ -1287,11 +1277,6 @@ void wxGenericDirCtrl::FindChildFiles(wxTreeItemId treeid, int dirFlags, wxArray
                     filenames.Add(eachFilename);
                 }
             }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (d.GetNext(& eachFilename)) ;
         }
     }

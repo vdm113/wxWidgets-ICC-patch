@@ -68,7 +68,6 @@ VDM_MACRO_PRAGMA_IVDEP \
         if ( (*this)[--n] == lItem )                                        \
           return n;                                                         \
       }                                                                     \
-VDM_MACRO_PRAGMA_IVDEP \
       while ( n != 0 );                                                     \
     }                                                                       \
   }                                                                         \

@@ -2596,11 +2596,6 @@ wxMBConv_iconv::ToWChar(wchar_t *dst, size_t dstLen,
 
             res += 8 - (dstLen / SIZEOF_WCHAR_T);
         }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ((cres == (size_t)-1) && (errno == E2BIG));
     }
 
@@ -2675,11 +2670,6 @@ size_t wxMBConv_iconv::FromWChar(char *dst, size_t dstLen,
 
             res += WXSIZEOF(tbuf) - outbuflen;
         }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while ((cres == (size_t)-1) && (errno == E2BIG));
     }
 

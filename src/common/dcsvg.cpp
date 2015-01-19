@@ -194,11 +194,6 @@ wxSVGBitmapFileHandler::ProcessBitmap(const wxBitmap& bmp,
     {
         sPNG = wxString::Format("image%d.png", sub_images++);
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (wxFile::Exists(sPNG));
 
     if ( !bmp.SaveFile(sPNG, wxBITMAP_TYPE_PNG) )

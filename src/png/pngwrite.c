@@ -1804,11 +1804,6 @@ png_write_image_16bit(png_voidp argument)
 
             *out_ptr++ = component;
          }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
          while (--c > 0);
 
          /* Skip to next component (skip the intervening alpha channel) */
@@ -1946,11 +1941,6 @@ png_write_image_8bit(png_voidp argument)
 #endif
             do /* always at least one channel */
                *out_ptr++ = png_unpremultiply(*in_ptr++, alpha, reciprocal);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while (--c > 0);
 
             /* Skip to next component (skip the intervening alpha channel) */

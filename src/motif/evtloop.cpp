@@ -249,11 +249,6 @@ void ProcessXEvent(XEvent* event)
 
         //  to avoid flicker
         report = * event;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while( XCheckTypedWindowEvent (disp, win, ResizeRequest, &report));
 
         // TODO: when implementing refresh optimization, we can use

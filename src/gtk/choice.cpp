@@ -235,11 +235,6 @@ int wxChoice::FindString( const wxString &item, bool bCase ) const
 
         count++;
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( gtk_tree_model_iter_next(model, &iter) );
 
     return wxNOT_FOUND;

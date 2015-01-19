@@ -549,11 +549,6 @@ wxThread::ExitCode ThreadWorker::Entry()
             LogWorker(wxString::Format("to_process: %d",to_process));
 
         }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (!m_socket->Error() && to_process != 0);
 
         if (signature[0] == 0)
@@ -594,11 +589,6 @@ wxThread::ExitCode ThreadWorker::Entry()
             LogWorker(wxString::Format("ThreadWorker: %d bytes readed, %d todo",m_socket->LastCount(),to_process));
 
         }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while(!m_socket->Error() && to_process != 0);
 
         to_process = size;
@@ -619,11 +609,6 @@ wxThread::ExitCode ThreadWorker::Entry()
            to_process -= m_socket->LastCount();
            LogWorker(wxString::Format("ThreadWorker: %d bytes written, %d todo",m_socket->LastCount(),to_process));
         }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while(!m_socket->Error() && to_process != 0);
     }
 
@@ -709,11 +694,6 @@ EventWorker::DoRead()
                 }
             }
         }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while(!m_socket->Error() && (2 - m_infill != 0));
     }
 
@@ -755,11 +735,6 @@ EventWorker::DoRead()
             DoWrite();
         }
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while(!m_socket->Error());
 };
 
@@ -838,11 +813,6 @@ void  EventWorker::DoWrite()
         LogWorker(wxString::Format("Written %d of %d bytes, todo %d",
                   m_socket->LastCount(),m_size,m_size - m_written));
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (!m_socket->Error());
 }
 

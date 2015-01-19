@@ -7022,11 +7022,6 @@ int wxGrid::PosToEdgeOfLine(int pos, const wxGridOperations& oper) const
             {
                 line = oper.GetLineBefore(this, line);
             }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while ( line >= 0 && oper.GetLineSize(this, line) == 0 );
 
             // It can possibly be -1 here.

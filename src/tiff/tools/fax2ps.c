@@ -355,11 +355,6 @@ fax2ps(TIFF* tif, uint16 npages, uint16* pages, char* filename)
 #endif
 	do
 	    printTIF(tif, pageNumber++);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while (TIFFReadDirectory(tif));
     }
 }

@@ -120,11 +120,6 @@ void ScoreCanvas::OnDraw(wxDC& dc)
         wxChar text[256];
         wxChar* dest = text;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (*str && *str >= ' ') *dest++ = *str++;
         *dest = '\0';
 

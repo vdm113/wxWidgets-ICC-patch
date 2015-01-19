@@ -263,11 +263,6 @@ void wx28HtmlParser::CreateDOMSubTree(wx28HtmlTag *cur,
             // ... or skip ending tag:
             else
             {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while (i < end_pos && m_Source.GetChar(i) != wxT('>')) i++;
                 textBeginning = i+1;
             }

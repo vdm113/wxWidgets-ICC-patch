@@ -571,11 +571,6 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
 
             //  to avoid flicker
             report = * event;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while( XCheckTypedWindowEvent (disp, actualWindow, ResizeRequest, &report));
 
             wxSize sz = win->GetSize();

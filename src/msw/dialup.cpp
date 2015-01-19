@@ -727,11 +727,6 @@ size_t wxDialUpManagerMSW::GetISPNames(wxArrayString& names) const
             return 0u;
         }
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( dwRet != 0 );
 
     // process them

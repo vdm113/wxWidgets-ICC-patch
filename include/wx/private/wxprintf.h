@@ -520,11 +520,6 @@ bool wxPrintfConvSpec<CharType>::Parse(const CharType *format)
             return false;
         }
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (!done);
 
     return true;        // parsing was successful

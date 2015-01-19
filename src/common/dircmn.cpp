@@ -189,11 +189,6 @@ size_t wxDir::Traverse(wxDirTraverser& sink,
                                     break;
                             }
                         }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                         while ( !ok );
 
                         if ( ok )

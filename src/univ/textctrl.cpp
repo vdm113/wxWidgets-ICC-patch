@@ -1237,11 +1237,6 @@ void wxTextCtrl::Replace(wxTextPos from, wxTextPos to, const wxString& text)
 
                 UpdateMaxWidth(lineEnd);
             }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while ( nReplaceLine < nReplaceCount );
         }
 
@@ -2775,11 +2770,6 @@ void wxTextCtrl::LayoutLine(wxTextCoord line, wxWrappedLineData& lineData) const
 
         colRowStart += lenRow;
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( colRowStart < text.length() );
 
     // put the current timestamp on it

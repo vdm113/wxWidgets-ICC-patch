@@ -1125,11 +1125,6 @@ wxSocketBase& wxSocketBase::ReadMsg(void* buffer, wxUint32 nbytes)
                     discard_len = DoRead(discard_buffer, (wxUint32)discard_len);
                     len2 -= (wxUint32)discard_len;
                 }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 while ((discard_len > 0) && len2);
             }
 
@@ -1316,11 +1311,6 @@ wxSocketBase& wxSocketBase::Discard()
         ret = DoRead(buffer, MAX_DISCARD_SIZE);
         total += ret;
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (ret == MAX_DISCARD_SIZE);
 
     delete[] buffer;

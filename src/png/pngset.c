@@ -1099,11 +1099,6 @@ png_set_sPLT(png_const_structrp png_ptr,
       ++(info_ptr->splt_palettes_num);
       ++np;
    }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    while (++entries, --nentries);
 
    if (nentries > 0)

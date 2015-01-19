@@ -706,11 +706,6 @@ found:		if ( *p == '.' && p[-1] == '.' && p[-2] == '.' )
 		   }
 		p = end;
 	   }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ( *p++ == ',' );
 	*bp = p;
 	/* Make a special check for 'void' arglist */
@@ -726,11 +721,6 @@ found:		if ( *p == '.' && p[-1] == '.' && p[-2] == '.' )
 	   }
 	/* Put out the function name and left parenthesis. */
 	p = buf;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	while ( p != endfn ) putc(*p, out), p++;
 	/* Put out the declaration. */
 	if ( header )
