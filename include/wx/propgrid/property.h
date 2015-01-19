@@ -1654,6 +1654,7 @@ public:
     */
     virtual wxString GetValueAsString( int argFlags = 0 ) const;
 
+#if wxPG_COMPATIBILITY_1_4
     /** Synonymous to GetValueAsString().
 
         @deprecated Use GetValueAsString() instead.
@@ -1661,6 +1662,7 @@ public:
         @see GetValueAsString()
     */
     wxDEPRECATED( wxString GetValueString( int argFlags = 0 ) const );
+#endif
 
     /**
         Returns wxPGCell of given column.
