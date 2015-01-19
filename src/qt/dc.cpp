@@ -76,6 +76,11 @@ void wxQtDCImpl::QtPreparePainter( )
         {
             wxRegionIterator ri(*m_clippingRegion);
             bool append = false;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (ri.HaveRects())
             {
                 wxRect r = ri.GetRect();
