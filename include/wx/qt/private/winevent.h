@@ -69,7 +69,8 @@ public:
 
     void HandleDestroyedSignal()
     {
-        wxQtHandleDestroyedSignal(this);
+        wxLogDebug( wxT("%s was destroyed by Qt. pointer=%p"),
+                    QObject::staticMetaObject.className(), this );
     }
 
     virtual Handler *GetHandler() const
