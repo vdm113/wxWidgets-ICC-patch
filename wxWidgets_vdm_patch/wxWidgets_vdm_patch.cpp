@@ -26,6 +26,8 @@
 #include <sstream>
 #include <vector>
 #include <cassert>
+#include <functional>
+#include <map>
 #include <conio.h>
 #include <Windows.h>
 
@@ -54,7 +56,8 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch)
 {
     static const char* line1="#if defined(__INTEL_COMPILER) && 1 // VDM auto patch";
     static const char* line1_disabled="#if defined(__INTEL_COMPILER) && 0 // VDM auto patch";
-    static const vector<const char*> line2={ "#   pragma ivdep", "#   pragma swp", "#   pragma unroll", "#endif" };
+    static const char* line_end="#endif";
+    static const vector<const char*> line2={ "#   pragma ivdep", "#   pragma swp", "#   pragma unroll", line_end };
 
     static const char* line_prologue_token="/* token_VDM_prologue */";
 #if !ICC_BUG_02
@@ -251,7 +254,7 @@ again:
         string seeking;
 
         seeking="for";
-        if(line.find(seeking)==0) {
+        if(!reformat && line.find(seeking)==0) {
             string ln=line;
             ln.erase(0,seeking.length());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -266,7 +269,7 @@ again:
         }
 
         seeking="for_each";
-        if(line.find(seeking)==0) {
+        if(!reformat && line.find(seeking)==0) {
             string ln=line;
             ln.erase(0,seeking.length());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -281,7 +284,7 @@ again:
         }
 
         seeking="while";
-        if(line.find(seeking)==0) {
+        if(!reformat && line.find(seeking)==0) {
             string ln=line;
             ln.erase(0,seeking.length());
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -296,7 +299,7 @@ again:
 
 #if 1 // ICC 14 bug workaround
             string line_orig=line;
-            char ch;
+            char ch=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #   pragma swp
@@ -319,23 +322,26 @@ again:
         }
 
         // do
-        if(!line.compare("do")) {
+        if(!reformat && !line.compare("do")) {
             ++do_cnt;
             reformat=true;
         }
 
         if(reformat && scrollback.size()>1+line2.size()) {
             auto i1=scrollback.crbegin();
-            ++i1;
-            bool got=true;
+            bool got=false;
+            size_t i3=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
 #endif
-            for(int i2=line2.size()-1; i2>=0; --i2, ++i1) {
-                if((*i1).compare(line2[i2])!=0) {
-                    got=false;
+            for(auto i2=scrollback.rbegin(); i2!=scrollback.rend(); ++i2) {
+                if(++i3<=line2.size())
+                    continue;
+                if(((*i2).compare(line1)==0 || (*i2).compare(line1_disabled)==0)) {
+                    i1=i2;
+                    got=true;
                     break;
                 }
             }
@@ -427,16 +433,21 @@ again:
 #   pragma swp
 #   pragma unroll
 #endif
-                        for(size_t i4=0; i4<line2.size(); ++i4)
+                        while(scrollback.size()>1+line2.size() && (!scrollback[scrollback.size()-1-1-line2.size()].compare(line1) || !scrollback[scrollback.size()-1-1-line2.size()].compare(line1_disabled))) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
+                            do {
+                                scrollback.pop_back();
+                            } while(!(!(*scrollback.rbegin()).compare(line1) || !(*scrollback.rbegin()).compare(line1_disabled)));
                             scrollback.pop_back();
-                        scrollback.pop_back();
-                        scrollback.pop_back();
-                        scrollback.push_back(save);
-                        changed=true;
+                            scrollback.push_back(save);
+                            changed=true;
+                        }
                     }
                 }
-                if(!changed)
-                    ++cnt;
             }
         }
 
@@ -483,17 +494,16 @@ again:
 
 static set<string> ext;
 static set<string> ext_prologue;
+static map<string,bool> files;
 
-unsigned directory_recurse(const string& base, const string& directory, const string& path, bool do_patch)
+void directory_recurse(const string& base, const string& directory, const string& path)
 {
-    unsigned cnt=0;
-
     string current=directory;
 
     _finddata_t rc;
     intptr_t handle=_findfirst(current.c_str(),&rc);
     if(!check_return_value(errno))
-        return cnt;
+        return;
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
@@ -523,7 +533,15 @@ unsigned directory_recurse(const string& base, const string& directory, const st
                 if(n.rfind("*")==n.length()-1)
                     n.erase(n.length()-1,1);
                 n+=name;
-                cnt+=reformat(n,(ext_prologue.find(*i1)!=ext_prologue.end()),do_patch);
+                bool b=ext_prologue.find(*i1)!=ext_prologue.end();
+
+                if(files.find(n)==files.end()) {
+                    files.insert(make_pair(n,b));
+                } else {
+                    if(!(*files.find(n)).second && b) {
+                        files.find(n)->second=true;
+                    }
+                }
 
                 break;
             }
@@ -534,7 +552,7 @@ unsigned directory_recurse(const string& base, const string& directory, const st
             dir_name.erase(dir_name.length()-1,1);
             dir_name+=name;
             dir_name.append("\\*");
-            cnt+=directory_recurse(base,dir_name,name,do_patch);
+            directory_recurse(base,dir_name,name);
         }
 
 next_entry:
@@ -549,8 +567,6 @@ next_entry:
     }
 
     _findclose(handle);
-
-    return cnt;
 }
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -571,25 +587,10 @@ int _tmain(int argc, _TCHAR* argv[])
 #endif
             for(size_t i1=1; i1<argc; ++i1) {
                 if(strcmp(argv[i1],"-p")==0) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                     do_patch=true;
                 } else if(strcmp(argv[i1],"-u")==0) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                     do_patch=false;
                 } else if(strcmp(argv[i1],"--no-wait")==0) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                     do_nowait=true;
                 } else {
                     usage=true;
@@ -626,13 +627,36 @@ int _tmain(int argc, _TCHAR* argv[])
     }
     string d=dir;
     d.append("\\.\\*");
-    unsigned cnt1=directory_recurse(".",d,d,do_patch);
+    directory_recurse(".",d,d);
     d=dir;
     d.append("\\..\\*");
-    unsigned cnt2=directory_recurse(".",d,d,do_patch);
+    directory_recurse(".",d,d);
+
+    vector<function<unsigned()> > funcs;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
+    for(auto i1=files.cbegin(); i1!=files.cend(); ++i1) {
+        string n=(*i1).first;
+        bool b=(*i1).second;
+        funcs.push_back([n,b,do_patch]{ return reformat(n,b,do_patch); });
+    }
+
+    size_t cnt=0;
+#pragma omp parallel for shared(cnt)
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
+    for(auto i1=funcs.begin(); i1!=funcs.end(); ++i1) {
+        cnt+=(*i1)();
+    }
 
     if(!do_nowait) {
-        printf("%u occurences processed. Press any key to exit.\n",cnt1+cnt2);
+        printf("%u occurences processed. Press any key to exit.\n",cnt);
         getch();
     }
 
