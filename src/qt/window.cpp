@@ -1169,7 +1169,6 @@ bool wxWindowQt::QtHandleKeyEvent ( QWidget *WXUNUSED( handler ), QKeyEvent *eve
         e.m_uniChar = 0;
     else
         e.m_uniChar = event->text().at( 0 ).unicode();
-#endif // wxUSE_UNICODE
 
     e.m_rawCode = event->nativeVirtualKey();
     e.m_rawFlags = event->nativeModifiers();
