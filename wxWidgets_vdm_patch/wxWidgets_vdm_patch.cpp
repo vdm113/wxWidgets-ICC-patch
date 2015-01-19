@@ -52,7 +52,7 @@ bool check_return_value(int rc)
     return true;
 }
 
-unsigned reformat(const string& file, bool do_prologue, bool do_patch)
+unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_uu)
 {
     static const char* line1="#if defined(__INTEL_COMPILER) && 1 // VDM auto patch";
     static const char* line1_disabled="#if defined(__INTEL_COMPILER) && 0 // VDM auto patch";
@@ -121,6 +121,7 @@ again:
 
         if(!do_patch && !strcmp(buf,inline_pragma)) {
             changed=true;
+            ++cnt;
             continue;
         }
 
@@ -170,6 +171,7 @@ again:
             string save=scrollback.back();
             scrollback.clear();
             scrollback.push_back(tmp_buf);
+            ++cnt;
             if(save.compare(line_prologue_token)) {
                 scrollback.push_back(save);
                 changed=true;
@@ -178,6 +180,7 @@ again:
 
         if(!do_patch && do_prologue && 1==ln && strcmp(buf,line_prologue_token)==0) {
             scrollback.push_back(buf);
+            ++cnt;
             changed=true;
         }
 
@@ -201,12 +204,8 @@ again:
             line.erase(line.length()-1,1);
         }
 
-        if(line.rfind("//")!=string::npos) {
-            line.erase(line.rfind("//"));
-        }
-
-        if(line.rfind("\\\\")!=string::npos) {
-            line.erase(line.rfind("\\\\"));
+        if(line.find("//")!=string::npos) {
+            line.erase(line.find("//"));
         }
 
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -297,7 +296,7 @@ again:
             if(ln.length()>0 && '('==ln[0])
                 reformat=true;
 
-#if 1 // ICC 14 bug workaround
+#if 0 // ICC 14 bug workaround
             string line_orig=line;
             char ch=0;
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -322,34 +321,78 @@ again:
         }
 
         // do
-        if(!reformat && !line.compare("do")) {
-            ++do_cnt;
-            reformat=true;
-        }
+        if(!reformat && line.find("do")==0) {
+            string ln=line;
 
-        if(reformat && scrollback.size()>1+line2.size()) {
-            auto i1=scrollback.crbegin();
-            bool got=false;
-            size_t i3=0;
+            ln.erase(0,strlen("do"));
+
+            if(ln.length()>0 && '\\'==ln[ln.length()-1])
+                ln.erase(ln.length()-1,1);
+
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
 #endif
-            for(auto i2=scrollback.rbegin(); i2!=scrollback.rend(); ++i2) {
-                if(++i3<=line2.size())
-                    continue;
-                if(((*i2).compare(line1)==0 || (*i2).compare(line1_disabled)==0)) {
-                    i1=i2;
-                    got=true;
-                    break;
-                }
-            }
-            if(got && ((*i1).compare(line1)==0 || (*i1).compare(line1_disabled)==0)) {
-                reformat=!do_patch;
+            while(ln.length()>0 && ' '==ln[0])
+                ln.erase(0,1);
+
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
+            while(ln.length()>0 && ' '==ln[ln.length()-1])
+                ln.erase(ln.length()-1,1);
+
+            if(ln.length()>0 && '{'==ln[ln.length()-1]) {
+                reformat=true;
+                ++do_cnt;
             } else {
-                reformat=do_patch;
+                if(ln.length()==0)
+                    reformat=true;
+                else
+                    reformat=false;
             }
+        }
+
+        if(line.length()>0 && '\\'==line[line.length()-1])
+            last_char_was_backslash=true;
+        else
+            last_char_was_backslash=false;
+
+        if(!last_char_was_backslash) {
+            if(reformat && scrollback.size()>1 && scrollback[scrollback.size()-1-1].compare(inline_pragma) && scrollback.size()>1+line2.size()) {
+                bool got=false;
+                size_t i3=0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
+                for(auto i2=scrollback.rbegin(); i2!=scrollback.rend(); ++i2) {
+                    if(i3++<=line2.size())
+                        continue;
+                    if(((*i2).compare(line1)==0 || (*i2).compare(line1_disabled)==0)) {
+                        got=true;
+                        break;
+                    } else {
+                        break;
+                    }
+                }
+                if(got)
+                    reformat=!do_patch;
+            } else if(reformat && scrollback.size()>1 && !scrollback[scrollback.size()-1-1].compare(inline_pragma)) {
+                reformat=!do_patch;
+            }
+        } else {
+            string tmp;
+            if(scrollback.size()>1)
+                tmp=scrollback[scrollback.size()-1-1];
+            if(reformat && !tmp.compare(inline_pragma))
+                reformat=!do_patch;
+            else if(reformat)
+                reformat=do_patch;
         }
 
         if(reformat) {
@@ -404,6 +447,7 @@ again:
                         scrollback.pop_back();
                         scrollback.push_back(tmp_buf);
                         scrollback.push_back(save);
+                        ++cnt;
                         changed=true;
                     } else {
                         sprintf(tmp_buf,"%s\n",line1);
@@ -420,12 +464,14 @@ again:
                         scrollback.pop_back();
                         scrollback.push_back(tmp_buf);
                         scrollback.push_back(save);
+                        ++cnt;
                         changed=true;
                     }
                 } else {
                     if(last_char_was_backslash) {
                         scrollback.pop_back();
                         scrollback.push_back(save);
+                        ++cnt;
                         changed=true;
                     } else {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -444,6 +490,7 @@ again:
                             } while(!(!(*scrollback.rbegin()).compare(line1) || !(*scrollback.rbegin()).compare(line1_disabled)));
                             scrollback.pop_back();
                             scrollback.push_back(save);
+                            ++cnt;
                             changed=true;
                         }
                     }
@@ -463,6 +510,29 @@ again:
 
     fclose(in);
 
+    if(opt_uu) {
+        uu_again:
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
+        for(vector<string>::iterator i1=scrollback.begin(); i1!=scrollback.end(); ++i1) {
+            if(!(*i1).compare(line1)) {
+                vector<string>::iterator i2=i1+1+line2.size();
+                scrollback.erase(i1,i2);
+                changed=true;
+                ++cnt;
+                goto uu_again;
+            } else if(!(*i1).compare(inline_pragma)) {
+                scrollback.erase(i1);
+                changed=true;
+                ++cnt;
+                goto uu_again;
+            }
+        }
+    }
+
     if(changed || 0!=cnt) {
         FILE* in=fopen(file.c_str(),"w+b");
         if(!in) {
@@ -481,9 +551,6 @@ again:
 
         fclose(in);
     }
-
-    if(changed)
-        ++cnt;
 
     if(cnt) {
         printf("Processed file: %s\n",file.c_str());
@@ -572,6 +639,7 @@ next_entry:
 int _tmain(int argc, _TCHAR* argv[])
 {
     bool do_patch;
+    bool opt_uu=false;
     bool do_nowait=false;
 
     {
@@ -590,6 +658,9 @@ int _tmain(int argc, _TCHAR* argv[])
                     do_patch=true;
                 } else if(strcmp(argv[i1],"-u")==0) {
                     do_patch=false;
+                } else if(strcmp(argv[i1],"-uu")==0) {
+                    do_patch=false;
+                    opt_uu=true;
                 } else if(strcmp(argv[i1],"--no-wait")==0) {
                     do_nowait=true;
                 } else {
@@ -641,7 +712,7 @@ int _tmain(int argc, _TCHAR* argv[])
     for(auto i1=files.cbegin(); i1!=files.cend(); ++i1) {
         string n=(*i1).first;
         bool b=(*i1).second;
-        funcs.push_back([n,b,do_patch]{ return reformat(n,b,do_patch); });
+        funcs.push_back([n,b,do_patch,opt_uu]{ return reformat(n,b,do_patch,opt_uu); });
     }
 
     size_t cnt=0;
