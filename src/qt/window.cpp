@@ -429,7 +429,7 @@ void wxWindowQt::Refresh( bool WXUNUSED( eraseBackground ), const wxRect *rect )
     }
 }
 
-    
+
 bool wxWindowQt::SetFont( const wxFont &font )
 {
     // SetFont may be called before Create, so the font is stored
@@ -551,7 +551,7 @@ void wxWindowQt::SetScrollbar( int orientation, int pos, int thumbvisible, int r
             scrollBar->GetHandle()->setEnabled( false );
         }
         else
-            scrollBar->GetHandle()->setEnabled( true );            
+            scrollBar->GetHandle()->setEnabled( true );
     }
 }
 
@@ -567,7 +567,7 @@ int wxWindowQt::GetScrollPos( int orientation ) const
 {
     wxScrollBar *scrollBar = QtGetScrollBar( orientation );
     wxCHECK_MSG( scrollBar, 0, "Invalid scrollbar" );
-    
+
     return scrollBar->GetThumbPosition();
 }
 
@@ -575,7 +575,7 @@ int wxWindowQt::GetScrollThumb( int orientation ) const
 {
     wxScrollBar *scrollBar = QtGetScrollBar( orientation );
     wxCHECK_MSG( scrollBar, 0, "Invalid scrollbar" );
-    
+
     return scrollBar->GetThumbSize();
 }
 
@@ -583,7 +583,7 @@ int wxWindowQt::GetScrollRange( int orientation ) const
 {
     wxScrollBar *scrollBar = QtGetScrollBar( orientation );
     wxCHECK_MSG( scrollBar, 0, "Invalid scrollbar" );
-    
+
     return scrollBar->GetRange();
 }
 
@@ -634,7 +634,7 @@ void wxWindowQt::ScrollWindow( int dx, int dy, const wxRect *rect )
     else
         widget->scroll( dx, dy );
 }
-    
+
 
 void wxWindowQt::SetDropTarget( wxDropTarget * WXUNUSED( dropTarget ) )
 {
@@ -644,7 +644,7 @@ void wxWindowQt::SetDropTarget( wxDropTarget * WXUNUSED( dropTarget ) )
 void wxWindowQt::SetWindowStyleFlag( long style )
 {
     wxWindowBase::SetWindowStyleFlag( style );
-    
+
 //    wxMISSING_IMPLEMENTATION( "wxWANTS_CHARS, wxTAB_TRAVERSAL" );
 //    // wxFULL_REPAINT_ON_RESIZE: Qt::WResizeNoErase (marked obsolete)
 //    // wxTRANSPARENT_WINDOW, wxCLIP_CHILDREN: Used in window for
@@ -778,14 +778,14 @@ void wxWindowQt::DoClientToScreen( int *x, int *y ) const
     *y = screenPosition.y();
 }
 
-    
+
 void wxWindowQt::DoScreenToClient( int *x, int *y ) const
 {
     QPoint clientPosition = GetHandle()->mapFromGlobal( QPoint( *x, *y ));
     *x = clientPosition.x();
     *y = clientPosition.y();
 }
-    
+
 
 void wxWindowQt::DoCaptureMouse()
 {
@@ -827,7 +827,7 @@ void wxWindowQt::DoGetSize(int *width, int *height) const
     if (height) *height = rect.height();
 }
 
-    
+
 
 void wxWindowQt::DoSetSize(int x, int y, int width, int height, int sizeFlags )
 {
@@ -863,7 +863,7 @@ void wxWindowQt::DoSetSize(int x, int y, int width, int height, int sizeFlags )
     // if a control is created with size of zero, it is set as hidden by qt
     // if it is then resized, in some cases it remains hidden, so it
     // needs to be shown here
-    if (!m_qtWindow->isVisible() && IsShown())
+    if (m_qtWindow && !m_qtWindow->isVisible() && IsShown())
         m_qtWindow->show();
 }
 
@@ -875,7 +875,7 @@ void wxWindowQt::DoGetClientSize(int *width, int *height) const
     if (height) *height = geometry.height();
 }
 
-    
+
 void wxWindowQt::DoSetClientSize(int width, int height)
 {
     QWidget *qtWidget = GetHandle();
@@ -898,7 +898,7 @@ void wxWindowQt::DoMoveWindow(int x, int y, int width, int height)
 void wxWindowQt::DoSetToolTip( wxToolTip *tip )
 {
     wxWindowBase::DoSetToolTip( tip );
-    
+
     if ( tip != NULL )
         GetHandle()->setToolTip( wxQtConvertString( tip->GetTip() ));
     else
@@ -920,7 +920,7 @@ bool wxWindowQt::DoPopupMenu(wxMenu *menu, int x, int y)
 void wxWindowQt::SetAcceleratorTable( const wxAcceleratorTable& accel )
 {
     wxWindowBase::SetAcceleratorTable( accel );
-    
+
     // Disable previously set accelerators
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
@@ -929,11 +929,11 @@ void wxWindowQt::SetAcceleratorTable( const wxAcceleratorTable& accel )
 #endif
     while ( !m_qtShortcuts.isEmpty() )
         delete m_qtShortcuts.takeFirst();
-    
+
     // Create new shortcuts (use GetHandle() so all events inside
     // the window are handled, not only in the container subwindow)
     m_qtShortcuts = accel.ConvertShortcutTable( GetHandle() );
-    
+
     // Connect shortcuts to window
     Q_FOREACH( QShortcut *s, m_qtShortcuts )
     {
@@ -1144,7 +1144,7 @@ bool wxWindowQt::QtHandleWheelEvent ( QWidget *WXUNUSED( handler ), QWheelEvent 
     e.m_wheelRotation = event->delta();
     e.m_linesPerAction = 3;
     e.m_wheelDelta = 120;
-    
+
     return ProcessWindowEvent( e );
 }
 
@@ -1164,7 +1164,7 @@ bool wxWindowQt::QtHandleKeyEvent ( QWidget *WXUNUSED( handler ), QKeyEvent *eve
          * Return true to avoid Qt-processing of the event
          * Instead, use the flag to indicate that it wasn't processed */
         m_processingShortcut = false;
-        
+
         return true;
     }
 #endif // wxUSE_ACCEL
@@ -1180,7 +1180,7 @@ bool wxWindowQt::QtHandleKeyEvent ( QWidget *WXUNUSED( handler ), QKeyEvent *eve
         e.m_uniChar = 0;
     else
         e.m_uniChar = event->text().at( 0 ).unicode();
-    
+
     e.m_rawCode = event->nativeVirtualKey();
     e.m_rawFlags = event->nativeModifiers();
 
@@ -1201,12 +1201,12 @@ bool wxWindowQt::QtHandleKeyEvent ( QWidget *WXUNUSED( handler ), QKeyEvent *eve
              * to this function. We use the m_processingShortcut flag to avoid
              * processing that recursive call and return back to this one. */
             m_processingShortcut = true;
-            
+
             QApplication::instance()->notify( GetHandle(), event );
-            
+
             handled = m_processingShortcut;
             m_processingShortcut = false;
-            
+
             if ( handled )
                 return true;
         }
@@ -1220,10 +1220,10 @@ bool wxWindowQt::QtHandleKeyEvent ( QWidget *WXUNUSED( handler ), QKeyEvent *eve
             translated = event->text().at( 0 ).toLatin1();
         if ( translated )
             e.m_keyCode = translated;
-        
+
         handled = ProcessWindowEvent( e );
     }
-    
+
     return handled;
 }
 
@@ -1330,7 +1330,7 @@ bool wxWindowQt::QtHandleMouseEvent ( QWidget *handler, QMouseEvent *event )
     if ( mousePos.x() < 0 || mousePos.x() > handler->width() ||
         mousePos.y() < 0 || mousePos.y() > handler->height() )
         mouseInside = false;
-    
+
     if ( e.GetEventType() == wxEVT_MOTION )
     {
         /* Qt doesn't emit leave/enter events while the mouse is grabbed
@@ -1351,7 +1351,7 @@ bool wxWindowQt::QtHandleMouseEvent ( QWidget *handler, QMouseEvent *event )
     }
 
     m_mouseInside = mouseInside;
-    
+
     return handled;
 }
 
@@ -1360,13 +1360,13 @@ bool wxWindowQt::QtHandleEnterEvent ( QWidget *handler, QEvent *event )
     wxMouseEvent e( event->type() == QEvent::Enter ? wxEVT_ENTER_WINDOW : wxEVT_LEAVE_WINDOW );
     e.m_clickCount = 0;
     e.SetPosition( wxQtConvertPoint( handler->mapFromGlobal( QCursor::pos() ) ) );
-    
+
     // Mouse buttons
     wxQtFillMouseButtons( QApplication::mouseButtons(), &e );
-    
+
     // Keyboard modifiers
     wxQtFillKeyboardModifiers( QApplication::keyboardModifiers(), &e );
-    
+
     return ProcessWindowEvent( e );
 }
 
@@ -1374,7 +1374,7 @@ bool wxWindowQt::QtHandleMoveEvent ( QWidget *handler, QMoveEvent *event )
 {
     if ( GetHandle() != handler )
         return false;
-    
+
     wxMoveEvent e( wxQtConvertPoint( event->pos() ) );
 
     return ProcessWindowEvent( e );
@@ -1384,7 +1384,7 @@ bool wxWindowQt::QtHandleShowEvent ( QWidget *handler, QEvent *event )
 {
     if ( GetHandle() != handler )
         return false;
-    
+
     wxShowEvent e;
     e.SetShow( event->type() == QEvent::Show );
 
@@ -1410,7 +1410,7 @@ bool wxWindowQt::QtHandleCloseEvent ( QWidget *handler, QCloseEvent *WXUNUSED( e
 {
     if ( GetHandle() != handler )
         return false;
-    
+
     int close = Close();
     if ( close )
     {
@@ -1423,7 +1423,7 @@ bool wxWindowQt::QtHandleContextMenuEvent ( QWidget *WXUNUSED( handler ), QConte
 {
     wxContextMenuEvent e( wxEVT_CONTEXT_MENU );
     e.SetPosition( wxQtConvertPoint( event->globalPos() ) );
-    
+
     return ProcessWindowEvent( e );
 }
 
@@ -1439,7 +1439,7 @@ bool wxWindowQt::QtHandleFocusEvent ( QWidget *WXUNUSED( handler ), QFocusEvent 
         wxChildFocusEvent childEvent( this );
         parent->ProcessWindowEvent( childEvent );
     }
-    
+
     return handled;
 }
 
@@ -1450,7 +1450,7 @@ void wxWindowQt::QtHandleShortcut ( int command )
     {
         wxCommandEvent menu_event( wxEVT_COMMAND_MENU_SELECTED, command );
         bool ret = ProcessWindowEvent( menu_event );
-        
+
         if ( !ret )
         {
             // if the accelerator wasn't handled as menu event, try
