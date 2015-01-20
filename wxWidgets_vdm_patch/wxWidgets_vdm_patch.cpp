@@ -120,8 +120,6 @@ again:
         }
 
         if(!do_patch && !strcmp(buf,inline_pragma)) {
-            changed=true;
-            ++cnt;
             continue;
         }
 
@@ -171,9 +169,9 @@ again:
             string save=scrollback.back();
             scrollback.clear();
             scrollback.push_back(tmp_buf);
-            ++cnt;
             if(save.compare(line_prologue_token)) {
                 scrollback.push_back(save);
+                ++cnt;
                 changed=true;
             }
         }
@@ -334,10 +332,13 @@ again:
                             stage=2;
                             break;
                         }
+                        break;
                     }
                 }
+                if(1==stage && 0==nest)
+                    ++stage;
                 if(2==stage)
-                    reformat=do_patch;
+                    reformat=true;
                 if(1==stage) // "while(condition)\n"
                     reformat=do_patch;
                 if(0==stage) // "while(condition ...\n" (multi-line condition)
