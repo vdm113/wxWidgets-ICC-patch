@@ -34,6 +34,8 @@
 
 #include "bench.h"
 
+#include <vector>
+
 // ----------------------------------------------------------------------------
 // constants
 // ----------------------------------------------------------------------------
@@ -269,6 +271,9 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
 int BenchApp::OnRun()
 {
     int rc = EXIT_SUCCESS;
+
+    std::vector<Bench::Function*> funcs;
+
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #   pragma swp
@@ -280,7 +285,15 @@ int BenchApp::OnRun()
     {
         if ( m_toRun.Index(func->GetName()) == wxNOT_FOUND )
             continue;
+        funcs.push_back(func);
+    }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
+    for(std::vector<Bench::Function*>::iterator func=funcs.begin(); func!=funcs.end(); ++func) {
         wxString params;
         if ( m_numParam )
             params += wxString::Format(" with N=%ld", m_numParam);
@@ -291,13 +304,10 @@ int BenchApp::OnRun()
             params += wxString::Format(" with s=\"%s\"", m_strParam);
         }
 
-        sprintf(tmp,"Benchmarking %s%s: ", func->GetName(), params);
-        vdm_log(tmp);
-
         long timeMin = LONG_MAX,
              timeMax = 0,
              timeTotal = 0;
-        bool ok = func->Init();
+        bool ok = (*func)->Init();
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #   pragma swp
@@ -313,7 +323,7 @@ int BenchApp::OnRun()
 #endif
             for ( long n = 0; n < m_numRuns && ok; n++ )
             {
-                ok = func->Run();
+                ok = (*func)->Run();
             }
 
             sw.Pause();
@@ -326,7 +336,10 @@ int BenchApp::OnRun()
             timeTotal += t;
         }
 
-        func->Done();
+        (*func)->Done();
+
+        sprintf(tmp,"%s,", (*func)->GetName());
+        vdm_log(tmp);
 
         if ( !ok )
         {
@@ -336,18 +349,7 @@ int BenchApp::OnRun()
         }
         else
         {
-            sprintf(tmp,"%ldms total, ", timeTotal);
-            vdm_log(tmp);
-
-            long times = m_avgCount;
-            if ( m_avgCount > 2 )
-            {
-                timeTotal -= timeMin + timeMax;
-                times -= 2;
-            }
-
-            sprintf(tmp,"%.2f avg (min=%ld, max=%ld)\n",
-                     (float)timeTotal / times, timeMin, timeMax);
+            sprintf(tmp,"%ld\n", timeTotal);
             vdm_log(tmp);
         }
 
