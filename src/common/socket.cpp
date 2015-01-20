@@ -651,11 +651,7 @@ VDM_MACRO_PRAGMA_IVDEP \
         do { \
             rc = (syscall); \
         } \
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
+VDM_MACRO_PRAGMA_IVDEP \
         while ( rc == -1 && errno == EINTR )
 #else
     #define DO_WHILE_EINTR( rc, syscall ) rc = (syscall)
