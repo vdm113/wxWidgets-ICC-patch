@@ -82,7 +82,6 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
         return cnt;
     }
 
-    bool last_char_was_backslash=false;
     size_t ln=0;
 
     const vector<pair<string,string> > strip={ { "/*", "*/" }, { "'", "'" }, { "\"", "\""} };
@@ -96,7 +95,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma unroll
 #endif
     while(in && !feof(in)) {
-again:
+    again:
         char buf[length+16];
         if(fgets(buf,length,in)==NULL) {
             if(feof(in)) {
@@ -385,10 +384,12 @@ again:
             }
         }
 
-        if(line.length()>0 && '\\'==line[line.length()-1])
-            last_char_was_backslash=true;
-        else
-            last_char_was_backslash=false;
+        bool last_char_was_backslash=false;
+        if(scrollback.size()>1) {
+            string tmp=scrollback[scrollback.size()-1-1];
+            if(tmp.length()>0 && '\\'==tmp[tmp.length()-1])
+                last_char_was_backslash=true;
+        }
 
         if(!last_char_was_backslash) {
             if(reformat && scrollback.size()>1 && scrollback[scrollback.size()-1-1].compare(inline_pragma) && scrollback.size()>1+line2.size()) {
@@ -526,15 +527,6 @@ again:
                 }
             }
         }
-
-        {
-			size_t i1=strlen(buf);
-			if(i1>0 && '\\'==buf[i1-1]) {
-				last_char_was_backslash=true;
-			} else {
-				last_char_was_backslash=false;
-			}
-		}
     }
 
     fclose(in);
