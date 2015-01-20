@@ -129,8 +129,11 @@ bool BenchApp::OnInit()
     if ( !BenchAppBase::OnInit() )
         return false;
 
+    char cwd[1024+1];
+    getcwd(cwd,sizeof(cwd)-1);
+
     sprintf(tmp,"wxWidgets benchmarking program\n"
-             "Build: %s\n", WX_BUILD_OPTIONS_SIGNATURE);
+             "Build: %s\nCWD: %s\n", WX_BUILD_OPTIONS_SIGNATURE, cwd);
     vdm_log(tmp);
 
 #if wxUSE_GUI
