@@ -1528,6 +1528,11 @@ void wxHtmlHelpWindow::OnToolbar(wxCommandEvent& event)
                 {
                     size_t idx = ha->m_Index + 1;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                     while (contents[idx].GetFullPath() == page) idx++;
 
                     if (!contents[idx].page.empty())

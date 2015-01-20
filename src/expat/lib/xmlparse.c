@@ -2593,10 +2593,20 @@ doContent(XML_Parser parser,
             */
             uri = (XML_Char *)tag->name.str + tag->name.uriLen;
             /* don't need to check for space - already done in storeAtts() */
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (*localPart) *uri++ = *localPart++;
             prefix = (XML_Char *)tag->name.prefix;
             if (ns_triplets && prefix) {
               *uri++ = namespaceSeparator;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
               while (*prefix) *uri++ = *prefix++;
              }
             *uri = XML_T('\0');

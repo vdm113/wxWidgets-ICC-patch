@@ -242,6 +242,11 @@ void wxHtmlParser::CreateDOMSubTree(wxHtmlTag *cur,
             // ... or skip ending tag:
             else
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 while (i < end_pos && *i != wxT('>')) ++i;
                 textBeginning = i < end_pos ? i+1 : i;
             }

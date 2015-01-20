@@ -380,6 +380,11 @@ void wxClipboard::Clear()
             gtk_selection_owner_set( NULL, g_clipboardAtom,
                                      (guint32) GDK_CURRENT_TIME );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (m_waiting) gtk_main_iteration();
         }
 
@@ -390,6 +395,11 @@ void wxClipboard::Clear()
             gtk_selection_owner_set( NULL, GDK_SELECTION_PRIMARY,
                                      (guint32) GDK_CURRENT_TIME );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while (m_waiting) gtk_main_iteration();
         }
 
@@ -541,6 +551,11 @@ bool wxClipboard::IsSupported( const wxDataFormat& format )
                            g_targetsAtom,
                            (guint32) GDK_CURRENT_TIME );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (m_waiting) gtk_main_iteration();
 
     return m_formatSupported;
@@ -592,6 +607,11 @@ bool wxClipboard::GetData( wxDataObject& data )
                            g_targetsAtom,
                            (guint32) GDK_CURRENT_TIME );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (m_waiting) gtk_main_iteration();
 
         if (!m_formatSupported) continue;
@@ -627,6 +647,11 @@ bool wxClipboard::GetData( wxDataObject& data )
                                m_targetRequested,
                                (guint32) GDK_CURRENT_TIME );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (m_waiting) gtk_main_iteration();
 
         /*

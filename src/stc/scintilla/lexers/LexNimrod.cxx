@@ -272,6 +272,11 @@ static void ColouriseNimrodDoc(unsigned int startPos, int length, int initStyle,
       case '\0': return;
       case '#': {
         bool doccomment = (styler.SafeGetCharAt(pos+1) == '#');
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (pos < max && !isNewLine(styler.SafeGetCharAt(pos, LF))) pos++;
         if (doccomment)
           styler.ColourTo(pos, SCE_C_COMMENTLINEDOC);

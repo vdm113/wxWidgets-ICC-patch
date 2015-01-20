@@ -232,6 +232,11 @@ void wxXmlNode::AddChild(wxXmlNode *child)
     else
     {
         wxXmlNode *ch = m_children;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (ch->m_next) ch = ch->m_next;
         ch->m_next = child;
     }
@@ -371,6 +376,11 @@ void wxXmlNode::AddProperty(wxXmlAttribute *attr)
     else
     {
         wxXmlAttribute *p = m_attrs;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (p->GetNext()) p = p->GetNext();
         p->SetNext(attr);
     }

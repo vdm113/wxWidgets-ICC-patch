@@ -1532,9 +1532,29 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
     {
         bUseAngles = true;
         // normalisation of angles
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while( sa<0 ) sa += 360;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while( ea<0 ) ea += 360;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while( sa>=360 ) sa -= 360;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while( ea>=360 ) ea -= 360;
         // calculate quadrant numbers
         if( sa > 270 ) sq = 3;

@@ -54,11 +54,26 @@ static inline bool IsALineEnd(char ch) {
 }
 /***************************************/
 static unsigned int GetContinuedPos(unsigned int pos, Accessor &styler) {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (!IsALineEnd(styler.SafeGetCharAt(pos++))) continue;
 	if (styler.SafeGetCharAt(pos) == '\n') pos++;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	while (IsABlank(styler.SafeGetCharAt(pos++))) continue;
 	char chCur = styler.SafeGetCharAt(pos);
 	if (chCur == '&') {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 		while (IsABlank(styler.SafeGetCharAt(++pos))) continue;
 		return pos;
 	} else {
@@ -115,9 +130,19 @@ static void ColouriseFortranDoc(unsigned int startPos, int length, int initStyle
 					sc.SetState(SCE_F_COMMENT);
 				}
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while (!sc.atLineEnd && sc.More()) sc.Forward(); // Until line end
 			} else if (toLineStart >= 72) {
 				sc.SetState(SCE_F_COMMENT);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while (!sc.atLineEnd && sc.More()) sc.Forward(); // Until line end
 			} else if (toLineStart < 5) {
 				if (IsADigit(sc.ch))
@@ -169,6 +194,11 @@ static void ColouriseFortranDoc(unsigned int startPos, int length, int initStyle
 				int currentState = sc.state;
 				sc.SetState(SCE_F_CONTINUATION);
 				sc.ForwardSetState(SCE_F_DEFAULT);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 				while (IsASpace(sc.ch) && sc.More()) sc.Forward();
 				if (sc.ch == '&') {
 					sc.SetState(SCE_F_CONTINUATION);

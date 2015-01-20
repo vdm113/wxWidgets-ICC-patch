@@ -2545,6 +2545,11 @@ static Boolean FetchXmStringTableResource(Widget w,
 #endif
 	for ( Entry = 0; Entry < Entries; ++Entry ) {
 	    pStart = p;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 	    while ( (*p != 0) && (*p != ',') ) ++p;
 	    *p++ = 0;
 	    (*pStringTable)[Entry] = (XmString)

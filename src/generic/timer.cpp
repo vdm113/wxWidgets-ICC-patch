@@ -105,6 +105,11 @@ void wxTimerScheduler::QueueTimer(wxTimerDesc *desc, wxTimerTick_t when)
     if ( m_timers )
     {
         wxTimerDesc *d = m_timers;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( d->next && d->next->shotTime < when ) d = d->next;
         desc->next = d->next;
         desc->prev = d;
