@@ -12800,10 +12800,10 @@ bool wxRichTextAction::Do()
                 while (c)
                 {
                     if (c == container)
-                    {
                         m_ctrl->StoreFocusObject(container);
-                        break;
-                    }
+
+                    if (m_ctrl && (c == m_ctrl->GetSelection().GetContainer()))
+                        m_ctrl->SelectNone();
                     c = c->GetParent();
                 }
             }
@@ -12986,10 +12986,10 @@ bool wxRichTextAction::Undo()
                 while (c)
                 {
                     if (c == container)
-                    {
                         m_ctrl->StoreFocusObject(container);
-                        break;
-                    }
+
+                    if (m_ctrl && (c == m_ctrl->GetSelection().GetContainer()))
+                        m_ctrl->SelectNone();
                     c = c->GetParent();
                 }
             }
