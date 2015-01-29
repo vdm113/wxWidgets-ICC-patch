@@ -28,3 +28,17 @@
 README          text=auto
 WARNING         text=auto
 *.TXT           text=auto
+
+*.md            text eol=lf
+*.in            text eol=lf
+*.m4            text eol=lf
+*.guess         text eol=lf
+*.sub           text eol=lf
+configure       text eol=lf
+*.mms           text eol=lf
+install-sh      text eol=lf
+mkinstalldirs   text eol=lf
+regen           text eol=lf
+setup.h_vms     text eol=lf
+
+#eof
