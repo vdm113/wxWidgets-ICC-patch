@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        busyinfo.h
 // Purpose:     interface of wxBusyInfo
@@ -29,11 +22,6 @@
     @code
         wxBusyInfo wait("Please wait, working...");
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for (int i = 0; i < 100000; i++)
         {
             DoACalculation();
@@ -73,11 +61,6 @@
         wxWindowDisabler disableAll;
         wxBusyInfo wait("Please wait, working...");
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for (int i = 0; i < 100000; i++)
         {
             DoACalculation();

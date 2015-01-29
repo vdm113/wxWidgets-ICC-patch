@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        config.h
 // Purpose:     interface of wxConfigBase
@@ -215,11 +208,6 @@ enum
 
     // first enum all entries
     bool bCont = config->GetFirstEntry(str, dummy);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( bCont ) {
         aNames.Add(str);
 
@@ -230,11 +218,6 @@ enum
 
     // now all groups...
     bCont = config->GetFirstGroup(str, dummy);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( bCont ) {
         aNames.Add(str);
 

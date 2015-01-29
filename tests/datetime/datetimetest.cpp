@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/datetime/datetime.cpp
 // Purpose:     wxDateTime unit test
@@ -88,11 +81,6 @@ static wxString TranslateDate(const wxString& str)
     // small optimization: if there are no alphabetic characters in the string,
     // there is nothing to translate
     wxString::const_iterator i, end = str.end();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( i = str.begin(); i != end; ++i )
     {
         if ( isalpha(*i) )
@@ -104,11 +92,6 @@ static wxString TranslateDate(const wxString& str)
 
     wxString trans(str);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( wxDateTime::WeekDay wd = wxDateTime::Sun;
           wd < wxDateTime::Inv_WeekDay;
           wxNextWDay(wd) )
@@ -120,11 +103,6 @@ static wxString TranslateDate(const wxString& str)
               );
     }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( wxDateTime::Month mon = wxDateTime::Jan;
           mon < wxDateTime::Inv_Month;
           wxNextMonth(mon) )
@@ -307,11 +285,6 @@ void DateTimeTestCase::TestLeapYears()
         { 2400, true },
     };
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( size_t n = 0; n < WXSIZEOF(years); n++ )
     {
         const LeapYearTestData& y = years[n];
@@ -323,11 +296,6 @@ void DateTimeTestCase::TestLeapYears()
 // test constructing wxDateTime objects
 void DateTimeTestCase::TestTimeSet()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( size_t n = 0; n < WXSIZEOF(testDates); n++ )
     {
         const Date& d1 = testDates[n];
@@ -346,11 +314,6 @@ void DateTimeTestCase::TestTimeSet()
 // test conversions to JDN &c
 void DateTimeTestCase::TestTimeJDN()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( size_t n = 0; n < WXSIZEOF(testDates); n++ )
     {
         const Date& d = testDates[n];
@@ -371,11 +334,6 @@ void DateTimeTestCase::TestTimeWDays()
 {
     // test GetWeekDay()
     size_t n;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( n = 0; n < WXSIZEOF(testDates); n++ )
     {
         const Date& d = testDates[n];
@@ -479,11 +437,6 @@ for n in range(20):
     };
 
     wxDateTime dt;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( n = 0; n < WXSIZEOF(weekDatesTestData); n++ )
     {
         const WeekDateTestData& wd = weekDatesTestData[n];
@@ -594,11 +547,6 @@ for n in range(20):
         { { 31, wxDateTime::Dec, 2013, 0, 0, 0, 0.0, wxDateTime::Inv_WeekDay, 0 },  1, 6, 5, 365 },
     };
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( size_t n = 0; n < WXSIZEOF(weekNumberTestDates); n++ )
     {
         const WeekNumberTestData& wn = weekNumberTestDates[n];
@@ -687,11 +635,6 @@ void DateTimeTestCase::TestTimeDST()
         }
     };
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( size_t n = 0; n < WXSIZEOF(datesDST[0]); n++ )
     {
         const int year = 1990 + n;
@@ -764,29 +707,14 @@ void DateTimeTestCase::TestTimeFormat()
 #endif
     };
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( unsigned idxtz = 0; idxtz < WXSIZEOF(timeZonesOffsets); ++idxtz )
     {
         wxDateTime::TimeZone tz(timeZonesOffsets[idxtz]);
         const bool isLocalTz = tz.GetOffset() == -wxGetTimeZone();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for ( size_t d = 0; d < WXSIZEOF(formatTestDates); d++ )
         {
             wxDateTime dt = formatTestDates[d].DT();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             for ( unsigned n = 0; n < WXSIZEOF(formatTestFormats); n++ )
             {
                 const char *fmt = formatTestFormats[n].format;
@@ -840,11 +768,6 @@ void DateTimeTestCase::TestTimeFormat()
                     // incapable of parsing time zone part used at the end of date
                     // representations in many (but not "C") locales, compensate
                     // for it ourselves by simply consuming and ignoring it
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                     while ( *result && (*result >= 'A' && *result <= 'Z') )
                         result++;
 
@@ -986,11 +909,6 @@ void DateTimeTestCase::TestTimeSpanFormat()
         {    0,  0, -1,   0, "%H:%M:%S",      "-00:00:01"             },
     };
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( size_t n = 0; n < WXSIZEOF(testSpans); n++ )
     {
         const TimeSpanFormatTestData& td = testSpans[n];
@@ -1008,11 +926,6 @@ void DateTimeTestCase::TestTimeTicks()
     // only have expected test results in UTC in testDates
     static const long tzOffset = TZ_LOCAL.GetOffset() - TZ_TEST.GetOffset();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( size_t n = 0; n < WXSIZEOF(testDates); n++ )
     {
         const Date& d = testDates[n];
@@ -1081,11 +994,6 @@ void DateTimeTestCase::TestParceRFC822()
         },
     };
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( unsigned n = 0; n < WXSIZEOF(parseTestDates); n++ )
     {
         const char * const datestr = parseTestDates[n].rfc822;
@@ -1139,11 +1047,6 @@ void DateTimeTestCase::TestDateParse()
     CPPUNIT_ASSERT( dt.ParseDate(wxT("today")) );
     CPPUNIT_ASSERT_EQUAL( wxDateTime::Today(), dt );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( size_t n = 0; n < WXSIZEOF(parseTestDates); n++ )
     {
         const wxString datestr = TranslateDate(parseTestDates[n].str);
@@ -1209,11 +1112,6 @@ void DateTimeTestCase::TestDateParseISO()
         { "" },
     };
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( size_t n = 0; n < WXSIZEOF(parseTestDates); n++ )
     {
         wxDateTime dt;
@@ -1223,11 +1121,6 @@ void DateTimeTestCase::TestDateParseISO()
 
             CPPUNIT_ASSERT_EQUAL( parseTestDates[n].date.DT(), dt );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             for ( size_t m = 0; m < WXSIZEOF(parseTestTimes); m++ )
             {
                 wxString dtCombined;
@@ -1295,11 +1188,6 @@ void DateTimeTestCase::TestDateTimeParse()
     CLocaleSetter cloc;
 
     wxDateTime dt;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( size_t n = 0; n < WXSIZEOF(parseTestDates); n++ )
     {
         const wxString datestr = TranslateDate(parseTestDates[n].str);
@@ -1393,11 +1281,6 @@ void DateTimeTestCase::TestDateWeekFormat()
         { 2010, 11, 30, "2010-48" },
     };
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( size_t n = 0; n < WXSIZEOF(testWeeks); n++ )
     {
         const DateWeekTestData& td = testWeeks[n];
@@ -1425,11 +1308,6 @@ void DateTimeTestCase::TestTimeArithmetics()
                dt1,
                dt2;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( size_t n = 0; n < WXSIZEOF(testArithmData); n++ )
     {
         const wxDateSpan& span = testArithmData[n];

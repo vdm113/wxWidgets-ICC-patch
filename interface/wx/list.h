@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        list.h
 // Purpose:     interface of wxList<T>
@@ -66,11 +59,6 @@
 
     // let's iterate over the list in STL syntax
     MyList::iterator iter;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for (iter = list.begin(); iter != list.end(); ++iter)
     {
         MyListElement *current = *iter;
@@ -80,11 +68,6 @@
 
     // the same with the legacy API from the old wxList class
     MyList::compatibility_iterator node = list.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         MyListElement *current = node->GetData();

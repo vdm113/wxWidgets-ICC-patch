@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/utils.cpp
 // Purpose:     Various utilities
@@ -831,11 +824,6 @@ int wxKillAllChildren(long pid, wxSignal sig, wxKillError *krc)
         return -1;
     }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     do {
         if (pe.th32ParentProcessID == (DWORD) pid) {
             if (wxKill(pe.th32ProcessID, sig, krc))
@@ -1606,11 +1594,6 @@ extern long wxCharsetToCodepage(const char *name)
     wxString cn(name);
 
     // follow the alias loop
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( ;; )
     {
         wxRegKey key(wxRegKey::HKCR, path + cn);

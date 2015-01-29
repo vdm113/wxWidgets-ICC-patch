@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/docview.cpp
 // Purpose:     Document/view classes
@@ -168,11 +161,6 @@ bool wxDocument::Close()
 
     // As usual, first check if all children can be closed.
     DocsList::const_iterator it = m_childDocuments.begin();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( DocsList::const_iterator end = m_childDocuments.end(); it != end; ++it )
     {
         if ( !(*it)->OnSaveModified() )
@@ -184,11 +172,6 @@ bool wxDocument::Close()
 
     // Now that they all did, do close them: as m_childDocuments is modified as
     // we iterate over it, don't use the usual for-style iteration here.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while ( !m_childDocuments.empty() )
     {
         wxDocument * const childDoc = m_childDocuments.front();
@@ -227,11 +210,6 @@ bool wxDocument::DeleteAllViews()
 
     // first check if all views agree to be closed
     const wxList::iterator end = m_documentViews.end();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( wxList::iterator i = m_documentViews.begin(); i != end; ++i )
     {
         wxView *view = (wxView *)*i;
@@ -251,11 +229,6 @@ bool wxDocument::DeleteAllViews()
     {
         // as we delete elements we iterate over, don't use the usual "from
         // begin to end" loop
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for ( ;; )
         {
             wxView *view = (wxView *)*m_documentViews.begin();
@@ -352,11 +325,6 @@ bool wxDocument::SaveAs()
     {
         wxList::compatibility_iterator
             node = docTemplate->GetDocumentManager()->GetTemplates().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (node)
         {
             wxDocTemplate *t = (wxDocTemplate*) node->GetData();
@@ -621,11 +589,6 @@ void wxDocument::OnChangedViewList()
 void wxDocument::UpdateAllViews(wxView *sender, wxObject *hint)
 {
     wxList::compatibility_iterator node = m_documentViews.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxView *view = (wxView *)node->GetData();
@@ -638,11 +601,6 @@ void wxDocument::UpdateAllViews(wxView *sender, wxObject *hint)
 void wxDocument::NotifyClosing()
 {
     wxList::compatibility_iterator node = m_documentViews.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxView *view = (wxView *)node->GetData();
@@ -663,11 +621,6 @@ void wxDocument::OnChangeFilename(bool notifyViews)
     {
         // Notify the views that the filename has changed
         wxList::compatibility_iterator node = m_documentViews.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (node)
         {
             wxView *view = (wxView *)node->GetData();
@@ -951,11 +904,6 @@ bool wxDocTemplate::FileMatchesTemplate(const wxString& path)
 {
     wxStringTokenizer parser (GetFileFilter(), wxT(";"));
     wxString anything = wxT ("*");
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (parser.HasMoreTokens())
     {
         wxString filter = parser.GetNextToken();
@@ -1071,11 +1019,6 @@ bool wxDocManager::CloseDocument(wxDocument* doc, bool force)
 bool wxDocManager::CloseDocuments(bool force)
 {
     wxList::compatibility_iterator node = m_docs.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxDocument *doc = (wxDocument *)node->GetData();
@@ -1100,11 +1043,6 @@ bool wxDocManager::Clear(bool force)
     m_currentView = NULL;
 
     wxList::compatibility_iterator node = m_templates.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     while (node)
     {
         wxDocTemplate *templ = (wxDocTemplate*) node->GetData();
@@ -1469,11 +1407,6 @@ wxDocTemplateVector GetVisibleTemplates(const wxList& allTemplates)
     {
         templates.reserve(totalNumTemplates);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for ( wxList::const_iterator i = allTemplates.begin(),
                                    end = allTemplates.end();
               i != end;
@@ -1504,11 +1437,6 @@ void wxDocument::Activate()
 wxDocument* wxDocManager::FindDocumentByPath(const wxString& path) const
 {
     const wxFileName fileName(path);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( wxList::const_iterator i = m_docs.begin(); i != m_docs.end(); ++i )
     {
         wxDocument * const doc = wxStaticCast(*i, wxDocument);
@@ -1790,11 +1718,6 @@ wxDocTemplate *wxDocManager::FindTemplateForPath(const wxString& path)
     wxDocTemplate *theTemplate = NULL;
 
     // Find the template which this extension corresponds to
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for (size_t i = 0; i < m_templates.GetCount(); i++)
     {
         wxDocTemplate *temp = (wxDocTemplate *)m_templates.Item(i)->GetData();
@@ -1820,11 +1743,6 @@ wxDocTemplate *wxDocManager::SelectDocumentPath(wxDocTemplate **templates,
 #ifdef wxHAS_MULTIPLE_FILEDLG_FILTERS
     wxString descrBuf;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for (int i = 0; i < noTemplates; i++)
     {
         if (templates[i]->IsVisible())
@@ -1907,22 +1825,12 @@ wxDocTemplate *wxDocManager::SelectDocumentType(wxDocTemplate **templates,
     int i;
     int n = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for (i = 0; i < noTemplates; i++)
     {
         if (templates[i]->IsVisible())
         {
             int j;
             bool want = true;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             for (j = 0; j < n; j++)
             {
                 //filter out NOT unique documents + view combinations
@@ -1949,18 +1857,8 @@ wxDocTemplate *wxDocManager::SelectDocumentType(wxDocTemplate **templates,
         // are typically short.
         int j;
         n = strings.Count();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for (i = 0; i < n; i++)
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             for (j = 0; j < noTemplates; j++)
             {
                 if (strings[i] == templates[j]->m_description)
@@ -2005,11 +1903,6 @@ wxDocTemplate *wxDocManager::SelectViewType(wxDocTemplate **templates,
     int i;
     int n = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for (i = 0; i < noTemplates; i++)
     {
         wxDocTemplate *templ = templates[i];
@@ -2017,11 +1910,6 @@ wxDocTemplate *wxDocManager::SelectViewType(wxDocTemplate **templates,
         {
             int j;
             bool want = true;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             for (j = 0; j < n; j++)
             {
                 //filter out NOT unique views
@@ -2045,18 +1933,8 @@ wxDocTemplate *wxDocManager::SelectViewType(wxDocTemplate **templates,
         // are typically short.
         int j;
         n = strings.Count();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for (i = 0; i < n; i++)
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             for (j = 0; j < noTemplates; j++)
             {
                 if (strings[i] == templates[j]->m_viewTypeName)
@@ -2105,11 +1983,6 @@ void wxDocManager::DisassociateTemplate(wxDocTemplate *temp)
 
 wxDocTemplate* wxDocManager::FindTemplate(const wxClassInfo* classinfo)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
    for ( wxList::compatibility_iterator node = m_templates.GetFirst();
          node;
          node = node->GetNext() )
@@ -2346,11 +2219,6 @@ bool wxTransferFileToStream(const wxString& filename, wxSTD ostream& stream)
     char buf[4096];
 
     size_t nRead;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     do
     {
         nRead = file.Read(buf, WXSIZEOF(buf));
@@ -2377,11 +2245,6 @@ bool wxTransferStreamToFile(wxSTD istream& stream, const wxString& filename)
         return false;
 
     char buf[4096];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     do
     {
         stream.read(buf, WXSIZEOF(buf));
@@ -2411,11 +2274,6 @@ bool wxTransferFileToStream(const wxString& filename, wxOutputStream& stream)
     char buf[4096];
 
     size_t nRead;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     do
     {
         nRead = file.Read(buf, WXSIZEOF(buf));
@@ -2442,11 +2300,6 @@ bool wxTransferStreamToFile(wxInputStream& stream, const wxString& filename)
         return false;
 
     char buf[4096];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( ;; )
     {
         stream.Read(buf, WXSIZEOF(buf));
