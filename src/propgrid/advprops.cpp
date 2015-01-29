@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/propgrid/advprops.cpp
 // Purpose:     wxPropertyGrid Advanced Properties (font, colour, etc.)
@@ -95,6 +102,11 @@ bool operator == (const wxArrayInt& array1, const wxArrayInt& array2)
     if ( array1.size() != array2.size() )
         return false;
     size_t i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( i=0; i<array1.size(); i++ )
     {
         if ( array1[i] != array2[i] )
@@ -1048,6 +1060,11 @@ wxVariant wxSystemColourProperty::DoTranslateVal( wxColourPropertyValue& v ) con
 int wxSystemColourProperty::ColToInd( const wxColour& colour ) const
 {
     const unsigned int i_max = m_choices.GetCount();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( unsigned int i=0; i<i_max; i++ )
     {
         const int ind = m_choices[i].GetValue();
@@ -1237,6 +1254,11 @@ bool wxSystemColourProperty::QueryColourFromUser( wxVariant& variant ) const
     data.SetChooseFull(true);
     data.SetColour(val.m_colour);
     int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( i = 0; i < 16; i++)
     {
         wxColour colour(i*16, i*16, i*16);
@@ -1620,6 +1642,11 @@ wxColourProperty::wxColourProperty( const wxString& label,
     {
         // Extend colour database with PG-specific colours.
         const char* const* colourLabels = gs_cp_es_normcolour_labels;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( int i = 0; *colourLabels; colourLabels++, i++ )
         {
             // Don't take into account user-defined custom colour.
@@ -1852,6 +1879,11 @@ const wxString& wxPGGetDefaultImageWildcard()
 
         // Let's iterate over the image handler list.
         //for ( wxList::Node *node = handlers.GetFirst(); node; node = node->GetNext() )
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( node = handlers.begin(); node != handlers.end(); ++node )
         {
             wxImageHandler *handler = (wxImageHandler*)*node;
@@ -2031,6 +2063,11 @@ void wxMultiChoiceProperty::GenerateValueAsString( wxVariant& value,
     if ( itemCount )
         tempStr.append( wxT("\"") );
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( i = 0; i < itemCount; i++ )
     {
         tempStr.append( strings[i] );
@@ -2051,11 +2088,21 @@ wxArrayInt wxMultiChoiceProperty::GetValueAsIndices() const
 
     if ( !m_choices.IsOk() || !m_choices.GetCount() || !(&valueArr) )
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( i=0; i<valueArr.size(); i++ )
             selections.Add(-1);
     }
     else
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( i=0; i<valueArr.size(); i++ )
         {
             int sIndex = m_choices.Index(valueArr[i]);
@@ -2115,16 +2162,31 @@ bool wxMultiChoiceProperty::OnEvent( wxPropertyGrid* propgrid,
             unsigned int n;
             if ( userStringMode == 1 )
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for (n=0;n<extraStrings.size();n++)
                     value.push_back(extraStrings[n]);
             }
 
             unsigned int i;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for ( i=0; i<arrInt.size(); i++ )
                 value.Add(m_choices.GetLabel(arrInt.Item(i)));
 
             if ( userStringMode == 2 )
             {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
                 for (n=0;n<extraStrings.size();n++)
                     value.push_back(extraStrings[n]);
             }
@@ -2277,6 +2339,11 @@ wxString wxDateProperty::DetermineDefaultDateFormat( bool showCentury )
     wxString str(dt.Format(wxT("%x")));
 
     const wxChar *p = str.c_str();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( *p )
     {
         int n=wxAtoi(p);

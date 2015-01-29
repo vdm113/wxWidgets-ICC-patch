@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        commondialogs.h
 // Purpose:     topic overview
@@ -67,6 +74,11 @@ uses it to set the background of a window.
 @code
 wxColourData data;
 data.SetChooseFull(true);
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
 for (int i = 0; i < 16; i++)
 {
     wxColour colour(i*16, i*16, i*16);

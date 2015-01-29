@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/uiactioncmn.cpp
 // Purpose:     wxUIActionSimulator common implementation
@@ -142,6 +149,11 @@ bool wxUIActionSimulator::Char(int keycode, int modifiers)
 
 bool wxUIActionSimulator::Text(const char *s)
 {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while ( *s != '\0' )
     {
         const char ch = *s++;
@@ -191,6 +203,11 @@ bool wxUIActionSimulator::Select(const wxString& text)
     }
 
     // And then go down in the control until we reach the item we want.
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( ;; )
     {
         if ( container->GetStringSelection() == text )

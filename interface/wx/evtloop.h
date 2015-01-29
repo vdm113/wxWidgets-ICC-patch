@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/evtloop.h
 // Purpose:     wxEventLoop and related classes
@@ -144,6 +151,11 @@ public:
         This can be used for programming event loops, e.g.
 
         @code
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while (evtloop->Pending())
             evtloop->Dispatch();
         @endcode
