@@ -4,7 +4,9 @@
 # root directory of the project.
 language: cpp
 
-compiler: gcc
+compiler:
+    - clang
+    - gcc
 
 branches:
     only:
