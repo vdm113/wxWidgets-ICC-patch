@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "x$1" != "xInternal" ] ; then
-  cp -af ./vdm/scripts/root_dir/*.sh ..
+  cp -af ./vdm/root_dir/*.sh ..
   ../rebase-git.sh Internal
   exit 0
 fi
@@ -21,11 +21,11 @@ for i in ${files} ; do cp -f "../wxWidgets_vanilla_trunk-svn/${i}" "./${i}" ; do
 cd wxWidgets_vdm_patch && ./X64/Release/wxWidgets_vdm_patch.exe -p --no-wait && cd ..
 for i in `find build/msw/ -type f -maxdepth 1` ; do ( git rm -f "${i}" 2>/dev/null ) ; ( rm -f "${i}" 2>/dev/null ) ; done
 git commit -a --signoff -m 'sync with upstream (SVN); patched for ICC; removed files we do not support'
-cp -rf ./vdm/scripts/build .
+cp -rf ./vdm/build .
 git add build/msw/
 git commit -a --signoff -m 'restore our project files'
 mv -f README.md README_orig_wx.md
-cp -f ./vdm/scripts/root_dir/* ./vdm/scripts/root_dir/.??* .
+cp -f ./vdm/root_dir/* ./vdm/root_dir/.??* .
 git add README.md
 git commit -a --signoff -m 'restore our git and script files'
 git checkout master
