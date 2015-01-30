@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "x$1" != "xInternal" ] ; then
-  cp -af ./vdm/scripts/scripts/*.sh ..
+  cp -af ./vdm/scripts/root_dir/*.sh ..
   ../rebase-git.sh Internal
   exit 0
 fi
@@ -25,7 +25,7 @@ cp -rf ./vdm/scripts/build .
 git add build/msw/
 git commit -a --signoff -m 'restore our project files'
 mv -f README.md README_orig_wx.md
-cp -f ./vdm/scripts/git/* ./vdm/scripts/git/.??* ./vdm/scripts/scripts/* .
+cp -f ./vdm/scripts/root_dir/* ./vdm/scripts/root_dir/.??* .
 git commit -a --signoff -m 'restore our git and script files'
 git checkout master
 git merge merge
