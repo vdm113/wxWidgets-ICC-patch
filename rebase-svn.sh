@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "x$1" != "xInternal" ] ; then
-  cp -af ./vdm/scripts/scripts/*.sh ..
+  cp -af ./vdm/scripts/root_dir/*.sh ..
   ../rebase-git.sh Internal
   exit 0
 fi
