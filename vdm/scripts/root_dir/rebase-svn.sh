@@ -26,6 +26,7 @@ git add build/msw/
 git commit -a --signoff -m 'restore our project files'
 mv -f README.md README_orig_wx.md
 cp -f ./vdm/scripts/root_dir/* ./vdm/scripts/root_dir/.??* .
+git add README.md
 git commit -a --signoff -m 'restore our git and script files'
 git checkout master
 git merge merge
