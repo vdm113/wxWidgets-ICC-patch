@@ -27,7 +27,7 @@ git commit -a --signoff -m 'restore our project files'
 mv -f README.md README_orig_wx.md
 cp -f ./vdm/root_dir/* ./vdm/root_dir/.??* .
 git add README.md
-git commit -a --signoff -m 'restore our git and script files'
+git commit -a --signoff -m 'restore our support files'
 git checkout master
 git merge merge
 git branch -D merge
