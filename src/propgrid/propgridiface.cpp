@@ -266,7 +266,7 @@ bool wxPropertyGridInterface::EnableProperty( wxPGPropArg id, bool enable )
 
     if ( enable )
     {
-        if ( !(p->m_flags & wxPG_PROP_DISABLED) )
+        if ( !p->HasFlag(wxPG_PROP_DISABLED) )
             return false;
 
         // If active, Set active Editor.
@@ -275,7 +275,7 @@ bool wxPropertyGridInterface::EnableProperty( wxPGPropArg id, bool enable )
     }
     else
     {
-        if ( p->m_flags & wxPG_PROP_DISABLED )
+        if ( p->HasFlag(wxPG_PROP_DISABLED) )
             return false;
 
         // If active, Disable as active Editor.
