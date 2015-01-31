@@ -362,7 +362,7 @@ void wxPGTextCtrlEditor::DrawValue( wxDC& dc, wxPGProperty* property, const wxRe
         // Code below should no longer be needed, as the obfuscation
         // is now done in GetValueAsString.
         /*if ( property->HasFlag(wxPG_PROP_PASSWORD) &&
-             wxDynamicCast(property, wxStringProperty) )
+             property->IsKindOf(WX_PG_CLASSINFO(wxStringProperty)) )
         {
             size_t a = drawStr.length();
             drawStr.Empty();
