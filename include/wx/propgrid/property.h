@@ -2434,6 +2434,12 @@ protected:
     // Removes child property with given pointer. Does not delete it.
     void RemoveChild( wxPGProperty* p );
 
+    // Removes child property at given index. Does not delete it.
+    void RemoveChild(unsigned int index);
+
+    // Sorts children using specified comparison function.
+    void SortChildren(int (*fCmp)(wxPGProperty**, wxPGProperty**));
+
     void DoEnable( bool enable );
 
     void DoPreAddChild( int index, wxPGProperty* prop );
