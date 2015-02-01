@@ -15,14 +15,6 @@ This fork of wxWidgets is as of the official GIT repository:
 
 https://github.com/wxWidgets/wxWidgets
 
-*** NB ***
-
-Set in your project files these preprocessor defines, in other case you might encounter random crashes:
-<pre><code>_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0</code></pre>
-or remove these from MSVC project files of WX for debugging STL iterators, but you need to keep this consistent, i.e. WX and your project needs to have same defines.
-
-*** NB ***
-
 If you are using 32-bit ICC, or 64-bit one and you don't have enough RAM or time, I recommend change for sub-library "core" from /Qipo to /Qip.
 
 NB: Please, read file "BuildSVN.txt" in this directory as well. There are instructions for building from SVN, but as this GIT repository is regurarily updated from official SVN repository, and it is its fork, it is relevant to read it.
