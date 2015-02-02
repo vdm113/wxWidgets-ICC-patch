@@ -27,7 +27,7 @@ http://software.intel.com/en-us/forums/topic/486611
 
 http://software.intel.com/en-us/articles/fail-to-build-x64-configuration-in-visual-studio-2013-with-error-trk0002-failed-to-execute
 
-Please note ICC 14 SP1 Update 1 is broken, and unable to link the library (linker produces errors with unresolved external that actually doesn't exist). I recommend to use ICC 14 SP1 (first non-beta version).
+Please note ICC 14 SP1 Update 1 is broken, and unable to link the library (linker produces errors with unresolved external that actually doesn't exist). I recommend to use ICC 14 SP1 (first non-beta version), or even better the latest one: ICC 15.0 Update 1.
 
 Best regards,
 
