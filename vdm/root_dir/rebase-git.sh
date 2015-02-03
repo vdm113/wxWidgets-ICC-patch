@@ -27,7 +27,8 @@ git commit -a --signoff -m 'restore our project files'
 mv -f README.md README_orig_wx.md
 cp -f ./vdm/root_dir/* ./vdm/root_dir/.??* .
 git add README.md
-git commit -a --signoff -m 'restore our support files'
+export DATE=`date`
+git commit -a --signoff -m "restore our support files: ${DATE}"
 detached_head=`git rev-parse HEAD`
 git checkout master
 git merge ${detached_head}
