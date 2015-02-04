@@ -2814,7 +2814,7 @@ static bool AlphaBlt(wxMSWDCImpl* dcDst,
                      int srcX, int srcY,
                      int srcWidth, int srcHeight,
                      HDC hdcSrc,
-                     const wxBitmap& bmpSrc)
+                     const wxBitmap& WXUNUSED_UNLESS_DEBUG(bmpSrc))
 {
     wxASSERT_MSG( bmpSrc.IsOk() && bmpSrc.HasAlpha(),
                     wxT("AlphaBlt(): invalid bitmap") );
