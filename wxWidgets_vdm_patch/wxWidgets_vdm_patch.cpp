@@ -737,7 +737,6 @@ int _tmain(int argc, _TCHAR* argv[])
     }
 
     size_t cnt=0;
-#pragma omp parallel for shared(cnt)
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #   pragma swp
