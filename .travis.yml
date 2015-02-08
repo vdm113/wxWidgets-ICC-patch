@@ -4,18 +4,17 @@
 # root directory of the project.
 language: cpp
 
-compiler:
-    - clang
-    - gcc
+compiler: gcc
 
 branches:
     only:
         - master
+        - WX_3_0_BRANCH
 
 notifications:
     email:
         recipients:
-            - vdm113@gmail.com
+            - vadim@wxwidgets.org
         on_success: change
         on_failure: change
 
