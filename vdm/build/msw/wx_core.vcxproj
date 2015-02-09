@@ -1541,6 +1541,7 @@
     <ClInclude Include="..\..\include\wx\preferences.h" />
     <ClInclude Include="..\..\include\wx\testing.h" />
     <ClInclude Include="..\..\include\wx\msw\ole\safearray.h" />
+    <ClInclude Include="..\..\include\wx\addremovectrl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
