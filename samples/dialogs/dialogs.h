@@ -387,7 +387,13 @@ public:
     void MultiChoice(wxCommandEvent& event);
 #endif // wxUSE_CHOICEDLG
 
+#if wxUSE_REARRANGECTRL
     void Rearrange(wxCommandEvent& event);
+#endif // wxUSE_REARRANGECTRL
+
+#if wxUSE_ADDREMOVECTRL
+    void AddRemove(wxCommandEvent& event);
+#endif // wxUSE_ADDREMOVECTRL
 
 #if wxUSE_TEXTDLG
     void LineEntry(wxCommandEvent& event);
@@ -553,6 +559,7 @@ enum
     DIALOGS_SINGLE_CHOICE,
     DIALOGS_MULTI_CHOICE,
     DIALOGS_REARRANGE,
+    DIALOGS_ADDREMOVE,
     DIALOGS_LINE_ENTRY,
     DIALOGS_TEXT_ENTRY,
     DIALOGS_PASSWORD_ENTRY,
