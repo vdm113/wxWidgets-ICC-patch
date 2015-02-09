@@ -60,9 +60,6 @@
     <ClCompile Include="..\..\src\generic\aboutdlgg.cpp">
       <Filter>Generic Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\generic\activityindicator.cpp">
-      <Filter>Generic Sources</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\generic\animateg.cpp">
       <Filter>Generic Sources</Filter>
     </ClCompile>
@@ -190,9 +187,6 @@
     <ClInclude Include="..\..\include\wx\aboutdlg.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\activityindicator.h">
-      <Filter>Common Headers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\wx\addremovectrl.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
@@ -233,9 +227,6 @@
       <Filter>Common Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\generic\aboutdlgg.h">
-      <Filter>Generic Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\wx\generic\activityindicator.h">
       <Filter>Generic Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\generic\animate.h">
