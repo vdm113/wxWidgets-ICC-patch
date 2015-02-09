@@ -2551,7 +2551,6 @@ ADVANCED_CMN_SRC =
 
 ADVANCED_CMN_HDR =
     wx/aboutdlg.h
-    wx/activityindicator.h
     wx/addremovectrl.h
     wx/animate.h
     wx/bannerwindow.h
