@@ -1333,6 +1333,7 @@ int wxVsscanf(const wxCStrData& str, const wchar_t *format, va_list ap)
 #define ANDROID_WCSTO_START \
     int len = wcslen(nptr) + 1; \
     char dst[len]; \
+VDM_MACRO_PRAGMA_IVDEP \
     for(int i=0; i<len; i++) \
         dst[i] = wctob(nptr[i]); \
     char *dstendp;
@@ -1374,6 +1375,11 @@ WXDLLEXPORT size_t android_mbstowcs(wchar_t * out, const char * in, size_t outle
     if (!out)
     {
         size_t outsize = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while(*in++)
             outsize++;
         return outsize;
@@ -1381,6 +1387,11 @@ WXDLLEXPORT size_t android_mbstowcs(wchar_t * out, const char * in, size_t outle
 
     const char* origin = in;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (outlen-- && *in)
     {
         *out++ = (wchar_t) *in++;
@@ -1396,6 +1407,11 @@ WXDLLEXPORT size_t android_wcstombs(char * out, const wchar_t * in, size_t outle
     if (!out)
     {
         size_t outsize = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while(*in++)
             outsize++;
         return outsize;
@@ -1403,6 +1419,11 @@ WXDLLEXPORT size_t android_wcstombs(char * out, const wchar_t * in, size_t outle
 
     const wchar_t* origin = in;
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     while (outlen-- && *in)
     {
         *out++ = (char) *in++;
