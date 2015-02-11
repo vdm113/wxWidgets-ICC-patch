@@ -33,6 +33,9 @@
 #define wxST_ELLIPSIZE_MIDDLE      0x0008
 #define wxST_ELLIPSIZE_END         0x0010
 
+#define wxST_ELLIPSIZE_MASK \
+    (wxST_ELLIPSIZE_START | wxST_ELLIPSIZE_MIDDLE | wxST_ELLIPSIZE_END)
+
 extern WXDLLIMPEXP_DATA_CORE(const char) wxStaticTextNameStr[];
 
 class WXDLLIMPEXP_CORE wxStaticTextBase : public wxControl
@@ -51,9 +54,7 @@ public:
 
     bool IsEllipsized() const
     {
-        return HasFlag(wxST_ELLIPSIZE_START) ||
-               HasFlag(wxST_ELLIPSIZE_MIDDLE) ||
-               HasFlag(wxST_ELLIPSIZE_END);
+        return (GetWindowStyle() & wxST_ELLIPSIZE_MASK) != 0;
     }
 
 protected:      // functions required for wxST_ELLIPSIZE_* support
