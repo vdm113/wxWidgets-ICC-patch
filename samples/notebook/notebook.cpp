@@ -896,7 +896,6 @@ void MyFrame::OnDeleteLastPage(wxCommandEvent& WXUNUSED(event))
 
 void MyFrame::OnNextPage(wxCommandEvent& WXUNUSED(event))
 {
-    wxFindWindowAtPoint(wxPoint(0,0));
     wxBookCtrlBase *currBook = GetCurrentBook();
 
     if ( currBook )

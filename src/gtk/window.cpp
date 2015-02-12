@@ -3385,6 +3385,11 @@ static bool GetFrozen(wxWindowGTK* win, wxVector<wxWindowGTK*>& vector)
         vector.push_back(win);
 
     wxWindowList& children = win->GetChildren();
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for (wxWindowList::iterator i = children.begin(); i != children.end(); ++i)
     {
         if (GetFrozen(*i, vector))
@@ -3406,6 +3411,11 @@ void wxWindowGTK::DoEnable( bool enable )
         // the freeze count. Avoid this by temporarily un-freezing window hierarchy.
         if (GetFrozen(this, frozen))
         {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             for (unsigned i = frozen.size(); i--;)
                 frozen[i]->DoThaw();
         }
@@ -3419,6 +3429,11 @@ void wxWindowGTK::DoEnable( bool enable )
 
     if (enable)
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for (unsigned i = frozen.size(); i--;)
             frozen[i]->DoFreeze();
     }
