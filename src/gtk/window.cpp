@@ -3419,15 +3419,49 @@ bool wxWindowGTK::Show( bool show )
     return true;
 }
 
-bool wxWindowGTK::IsShown() const
+static void GetFrozen(wxWindowGTK* win, wxVector<wxWindowGTK*>& vector)
 {
-    // return false for non-selected wxNotebook pages
-    return m_isShown && (m_widget == NULL || gtk_widget_get_child_visible(m_widget));
+    if (win->IsFrozen())
+        vector.push_back(win);
+
+    wxWindowList& children = win->GetChildren();
+    for (wxWindowList::iterator i = children.begin(); i != children.end(); ++i)
+        GetFrozen(*i, vector);
+}
+
+extern "C" {
+static void find_scrollbar(GtkWidget* widget, void* data)
+{
+    bool& isScrollbar = *static_cast<bool*>(data);
+    if (!isScrollbar)
+    {
+        if (GTK_IS_SCROLLBAR(widget))
+            isScrollbar = true;
+        else if (GTK_IS_CONTAINER(widget))
+            gtk_container_forall((GtkContainer*)widget, find_scrollbar, data);
+    }
+}
 }
 
 void wxWindowGTK::DoEnable( bool enable )
 {
     wxCHECK_RET( (m_widget != NULL), wxT("invalid window") );
+
+    wxVector<wxWindowGTK*> frozen;
+    if (enable)
+    {
+        // Ubuntu overlay scrollbar can cause GdkWindow.impl_window to change
+        // (by indirectly invoking gdk_window_ensure_native()), which messes up
+        // the freeze count. Avoid this by temporarily un-freezing window hierarchy.
+        bool isScrollbar = false;
+        find_scrollbar(m_widget, static_cast<void*>(&isScrollbar));
+        if (isScrollbar)
+        {
+            GetFrozen(wxGetTopLevelParent(static_cast<wxWindow*>(this)), frozen);
+            for (unsigned i = frozen.size(); i--;)
+                frozen[i]->DoThaw();
+        }
+    }
 
     gtk_widget_set_sensitive( m_widget, enable );
     if (m_wxwindow && (m_wxwindow != m_widget))
