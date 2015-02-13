@@ -46,8 +46,6 @@
 #include "wx/scrolbar.h"
 #endif
 
-#include "wx/recguard.h"
-
 #ifdef __WXMSW__
     #include <windows.h> // for DLGC_WANTARROWS
     #include "wx/msw/winundef.h"
@@ -1222,6 +1220,7 @@ wxScrollHelper::wxScrollHelper(wxWindow *winToScroll)
 {
     m_xVisibility =
     m_yVisibility = wxSHOW_SB_DEFAULT;
+    m_adjustScrollFlagReentrancy = 0;
 }
 
 bool wxScrollHelper::IsScrollbarShown(int orient) const
@@ -1322,8 +1321,7 @@ wxScrollHelper::DoAdjustScrollbar(int orient,
 
 void wxScrollHelper::AdjustScrollbars()
 {
-    static wxRecursionGuardFlag s_flagReentrancy;
-    wxRecursionGuard guard(s_flagReentrancy);
+    wxRecursionGuard guard(m_adjustScrollFlagReentrancy);
     if ( guard.IsInside() )
     {
         // don't reenter AdjustScrollbars() while another call to

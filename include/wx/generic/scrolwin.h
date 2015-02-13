@@ -17,6 +17,8 @@
 #ifndef _WX_GENERIC_SCROLLWIN_H_
 #define _WX_GENERIC_SCROLLWIN_H_
 
+#include "wx/recguard.h"
+
 // ----------------------------------------------------------------------------
 // generic wxScrollHelper implementation
 // ----------------------------------------------------------------------------
@@ -52,6 +54,7 @@ private:
 
     wxScrollbarVisibility m_xVisibility,
                           m_yVisibility;
+    wxRecursionGuardFlag m_adjustScrollFlagReentrancy;
 
     wxDECLARE_NO_COPY_CLASS(wxScrollHelper);
 };
