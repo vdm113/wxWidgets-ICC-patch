@@ -1647,11 +1647,6 @@ static void SendSetCursorEvent(wxWindowGTK* win, int x, int y)
     const wxPoint posScreen = win->ClientToScreen(posClient);
 
     wxWindowGTK* w = win;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( ;; )
     {
         wxSetCursorEvent event(posClient.x, posClient.y);
