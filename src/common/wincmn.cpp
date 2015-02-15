@@ -2060,15 +2060,6 @@ wxWindow *wxFindWindowRecursively(const wxWindow *parent,
         return (wxWindow *)parent;
 
     // It wasn't, so check all its children
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = parent->GetChildren().GetFirst();
           node;
           node = node->GetNext() )
