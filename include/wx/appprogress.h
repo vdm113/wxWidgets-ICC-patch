@@ -38,7 +38,7 @@ private:
 
 #if defined(__WXMSW__) && wxUSE_TASKBARBUTTON
     #include "wx/msw/appprogress.h"
-#elif defined(__WXOSX_COCOA__)
+#elif defined(__WXOSX__)
     #include "wx/osx/appprogress.h"
 #else
     class wxAppProgressIndicator : public wxAppProgressIndicatorBase

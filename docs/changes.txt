@@ -79,6 +79,7 @@ All (GUI):
 - Add wxWindow::FromDIP() for simpler high DPI support.
 - Allow customizing window shown by wxBusyInfo.
 - Add wxAddRemoveCtrl.
+- Add wxAppProgressIndicator for MSW (Chaobin Zhang) and OS X (Tobias Taschner).
 - Add wxEVT_MAGNIFY mouse event (Joost Nieuwenhuijse).
 - Add wxProcess::Activate().
 - Make results of wxDC::DrawEllipticArc() consistent across all platforms.
