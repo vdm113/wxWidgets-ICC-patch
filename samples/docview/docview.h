@@ -20,6 +20,7 @@
 #define _WX_SAMPLES_DOCVIEW_DOCVIEW_H_
 
 #include "wx/docview.h"
+#include "wx/vector.h"
 
 class MyCanvas;
 
@@ -45,6 +46,8 @@ public:
 
     virtual void OnInitCmdLine(wxCmdLineParser& parser) wxOVERRIDE;
     virtual bool OnCmdLineParsed(wxCmdLineParser& parser) wxOVERRIDE;
+
+    virtual void MacNewFile() wxOVERRIDE;
 
     // our specific methods
     Mode GetMode() const { return m_mode; }
@@ -75,6 +78,8 @@ private:
     // application object itself
     void OnAbout(wxCommandEvent& event);
 
+    // contains the file names given on the command line, possibly empty
+    wxVector<wxString> m_filesFromCmdLine;
 
     // the currently used mode
     Mode m_mode;
