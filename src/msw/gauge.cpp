@@ -102,17 +102,6 @@ bool wxGauge::Create(wxWindow *parent,
     // in case we need to emulate indeterminate mode...
     m_nDirection = wxRIGHT;
 
-    m_appProgressIndicator = NULL;
-    if ( (style & wxGA_PROGRESS) != 0 )
-    {
-        wxWindow* topParent = wxGetTopLevelParent(this);
-        if ( topParent != NULL )
-        {
-            m_appProgressIndicator =
-                new wxAppProgressIndicator(topParent, range);
-        }
-    }
-
     SetRange(range);
 
     return true;
@@ -120,7 +109,6 @@ bool wxGauge::Create(wxWindow *parent,
 
 wxGauge::~wxGauge()
 {
-    delete m_appProgressIndicator;
 }
 
 WXDWORD wxGauge::MSWGetStyle(long style, WXDWORD *exstyle) const

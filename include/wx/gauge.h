@@ -49,6 +49,8 @@
 
 extern WXDLLIMPEXP_DATA_CORE(const char) wxGaugeNameStr[];
 
+class WXDLLIMPEXP_FWD_CORE wxAppProgressIndicator;
+
 // ----------------------------------------------------------------------------
 // wxGauge: a progress bar
 // ----------------------------------------------------------------------------
@@ -105,6 +107,8 @@ protected:
 #if wxGAUGE_EMULATE_INDETERMINATE_MODE
     int m_nDirection;       // can be wxRIGHT or wxLEFT
 #endif
+
+    wxAppProgressIndicator *m_appProgressIndicator;
 
     wxDECLARE_NO_COPY_CLASS(wxGaugeBase);
 };
