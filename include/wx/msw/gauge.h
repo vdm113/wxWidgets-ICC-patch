@@ -78,7 +78,7 @@ private:
     void SetIndeterminateMode();
     void SetDeterminateMode();
 
-    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxGauge);
+    DECLARE_DYNAMIC_CLASS_NO_COPY(wxGauge)
 };
 
 #endif // wxUSE_GAUGE
