@@ -153,6 +153,11 @@ bool MyApp::OnCmdLineParsed(wxCmdLineParser& parser)
 
     // save any files given on the command line: we'll open them in OnInit()
     // later, after creating the frame
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( size_t i = 0; i != parser.GetParamCount(); ++i )
         m_filesFromCmdLine.push_back(parser.GetParam(i));
 
@@ -264,6 +269,11 @@ bool MyApp::OnInit()
     }
     else // we have files to open on command line
     {
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( size_t i = 0; i != m_filesFromCmdLine.size(); ++i )
             docManager->CreateDocument(m_filesFromCmdLine[i], wxDOC_SILENT);
     }
