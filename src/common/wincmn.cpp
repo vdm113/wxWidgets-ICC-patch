@@ -1984,28 +1984,25 @@ wxWindow *wxFindWindowRecursively(const wxWindow *parent,
                                   long id,
                                   wxFindWindowCmp cmp)
 {
-    if ( parent )
-    {
-        // see if this is the one we're looking for
-        if ( (*cmp)(parent, label, id) )
-            return (wxWindow *)parent;
+    // see if this is the one we're looking for
+    if ( (*cmp)(parent, label, id) )
+        return (wxWindow *)parent;
 
-        // It wasn't, so check all its children
+    // It wasn't, so check all its children
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
 #endif
-        for ( wxWindowList::compatibility_iterator node = parent->GetChildren().GetFirst();
-              node;
-              node = node->GetNext() )
-        {
-            // recursively check each child
-            wxWindow *win = (wxWindow *)node->GetData();
-            wxWindow *retwin = wxFindWindowRecursively(win, label, id, cmp);
-            if (retwin)
-                return retwin;
-        }
+    for ( wxWindowList::compatibility_iterator node = parent->GetChildren().GetFirst();
+          node;
+          node = node->GetNext() )
+    {
+        // recursively check each child
+        wxWindow *win = (wxWindow *)node->GetData();
+        wxWindow *retwin = wxFindWindowRecursively(win, label, id, cmp);
+        if (retwin)
+            return retwin;
     }
 
     // Not found
