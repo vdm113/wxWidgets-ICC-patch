@@ -149,7 +149,7 @@ IMPLEMENT_DYNAMIC_CLASS(wxUNIXaddress, wxSockAddress)
         }
     };
 #else
-    typedef char wxGethostBuf[1024];
+    typedef char wxGethostBuf[4096];
 #endif
 
 #ifdef HAVE_FUNC_GETSERVBYNAME_R_4
@@ -161,7 +161,7 @@ IMPLEMENT_DYNAMIC_CLASS(wxUNIXaddress, wxSockAddress)
         }
     };
 #else
-    typedef char wxGetservBuf[1024];
+    typedef char wxGetservBuf[4096];
 #endif
 
 #if defined(wxHAS_MT_SAFE_GETBY_FUNCS) || !wxUSE_THREADS
