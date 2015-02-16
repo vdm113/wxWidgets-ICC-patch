@@ -194,7 +194,8 @@ static void file_set(GtkFileChooser* widget, wxDirButton* p)
     {
         if ( chdir(filename) != 0 )
         {
-            wxLogSysError(_("Changing current directory to \"%s\" failed"));
+            wxLogSysError(_("Changing current directory to \"%s\" failed"),
+                          wxString::FromUTF8(filename));
         }
     }
 
