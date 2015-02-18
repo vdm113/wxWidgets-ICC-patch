@@ -1479,17 +1479,12 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         RT_START_TEST(MultipleColumns)
 
         // Test with multiple columns
-        // FIXME: Does not display changes.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
+        CreateGrid( -1, -1 );
+        FinalizeFramePosition();
+        pgman = m_pPropGridManager;
         for ( i=3; i<12; i+=2 )
         {
             RT_MSG(wxString::Format(wxT("%i columns"),(int)i));
-            CreateGrid( -1, -1 );
-            pgman = m_pPropGridManager;
             pgman->SetColumnCount(i);
             Refresh();
             Update();
