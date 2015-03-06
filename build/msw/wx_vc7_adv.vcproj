@@ -402,6 +402,9 @@
 			<File
 				RelativePath="..\..\src\html\winpars.cpp">
 			</File>
+			<File
+				RelativePath="..\..\src\generic\activityindicator.cpp">
+			</File>
 		</Filter>
 		<Filter
 			Name="Setup Headers"
@@ -553,6 +556,9 @@
 			<File
 				RelativePath="..\..\include\wx\html\winpars.h">
 			</File>
+			<File
+				RelativePath="..\..\include\wx\generic\activityindicator.h">
+			</File>
 		</Filter>
 		<Filter
 			Name="Common Headers"
@@ -562,6 +568,9 @@
 			</File>
 			<File
 				RelativePath="..\..\include\wx\wxhtml.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\activityindicator.h">
 			</File>
 		</Filter>
 	</Files>
