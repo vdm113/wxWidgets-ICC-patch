@@ -190,6 +190,9 @@
     <ClInclude Include="..\..\include\wx\aboutdlg.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\wx\activityindicator.h">
+      <Filter>Common Headers</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\wx\addremovectrl.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
@@ -376,7 +379,6 @@
     <ClInclude Include="..\..\include\wx\wizard.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\addremovectrl.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\include\wx\msw\setup.h">
