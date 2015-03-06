@@ -24,12 +24,11 @@
 
 #if wxUSE_ACTIVITYINDICATOR && !defined(__WXGTK3__)
 
-#include "wx/activityindicator.h"
-
 #ifndef WX_PRECOMP
-    #include "wx/dcclient.h"
     #include "wx/timer.h"
 #endif // WX_PRECOMP
+
+#include "wx/activityindicator.h"
 
 #include "wx/graphics.h"
 #include "wx/scopedptr.h"
@@ -150,7 +149,7 @@ private:
         // the next position every time.
         gc->Rotate(m_frame*angle);
 
-        const bool isEnabled = m_win->IsThisEnabled();
+        const bool isEnabled = m_win->IsEnabled();
         for ( int n = 0; n < NUM_DOTS; n++ )
         {
             // Draw all dots uniformly grey when the window is disabled,
