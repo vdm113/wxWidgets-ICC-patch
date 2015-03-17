@@ -1,11 +1,9 @@
-# BEGIN: copy of original WX's settings
 # Windows-specific files that require CRLF:
 
 *.bat       eol=crlf
 *.bcc       eol=crlf
 *.dsw       eol=crlf
 *.gcc       eol=crlf
-*.props     eol=crlf
 *.rc        eol=crlf
 *.sln       eol=crlf
 *.vc        eol=crlf
@@ -14,11 +12,12 @@
 
 # Documentation used with Windows installer:
 
-/BuildGit.txt         text=auto
-/docs/changes.txt     text=auto
-/docs/licence.txt     text=auto
-/docs/readme.txt      text=auto
-/docs/msw/*.txt       text=auto
+\BuildGit.txt         text=auto
+\docs\changes.txt     text=auto
+\docs\licence.txt     text=auto
+\docs\readme.txt      text=auto
+\docs\msw\install.txt text=auto
+\docs\msw\install.txt text=auto
 
 # Unix-specific files that require LF:
 
@@ -29,54 +28,6 @@ configure.in eol=lf
 Makefile.am  eol=lf
 Makefile.in  eol=lf
 
-config.guess eol=lf
-config.sub   eol=lf
-configure    eol=lf
-configure.in eol=lf
-
-# END: copy of original WX's settings
-
-*.vcproj        text eol=crlf
-*.vcxproj       text eol=crlf
-*.filters       text eol=crlf
-*.sln           text eol=crlf
-*.dsw           text eol=crlf
-*.dsp           text eol=crlf
-*.rc            text eol=crlf
-*.icproj        text eol=crlf
-*.cmd           text eol=crlf
-*.bat           text eol=crlf
-*.vc            text eol=crlf
-*.wat           text eol=crlf
-*.tgt           text eol=crlf
-*.bcc           text eol=crlf
-
-*.sh            text eol=lf
-*.awk           text eol=lf
-*.c             text eol=lf
-*.cxx           text eol=lf
-*.cpp           text eol=lf
-*.h             text eol=lf
-*.hpp           text eol=lf
-*.hxx           text eol=lf
-*.C             text eol=lf
-
-*.mm            text eol=lf
-*.txt           text=auto
-README          text=auto
-WARNING         text=auto
-*.TXT           text=auto
-
-*.md            text eol=lf
-*.in            text eol=lf
-*.m4            text eol=lf
-*.guess         text eol=lf
-*.sub           text eol=lf
-configure       text eol=lf
-*.mms           text eol=lf
-install-sh      text eol=lf
-mkinstalldirs   text eol=lf
-regen           text eol=lf
-setup.h_vms     text eol=lf
-
-#eof
+/config.guess eol=lf
+/config.sub   eol=lf
+/configure    eol=lf
