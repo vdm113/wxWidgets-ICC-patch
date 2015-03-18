@@ -277,6 +277,21 @@
 			Name="Common Sources"
 			UniqueIdentifier="{A6A5C30D-BDB6-5050-906D-10A96065136C}">
 			<File
+				RelativePath="..\..\src\common\addremovectrl.cpp">
+			</File>
+			<File
+				RelativePath="..\..\src\common\animatecmn.cpp">
+			</File>
+			<File
+				RelativePath="..\..\src\common\bmpcboxcmn.cpp">
+			</File>
+			<File
+				RelativePath="..\..\src\common\calctrlcmn.cpp">
+			</File>
+			<File
+				RelativePath="..\..\src\common\datavcmn.cpp">
+			</File>
+			<File
 				RelativePath="..\..\src\common\dummy.cpp">
 				<FileConfiguration
 					Name="Debug|Win32">
@@ -303,6 +318,21 @@
 						UsePrecompiledHeader="1"/>
 				</FileConfiguration>
 			</File>
+			<File
+				RelativePath="..\..\src\common\gridcmn.cpp">
+			</File>
+			<File
+				RelativePath="..\..\src\common\hyperlnkcmn.cpp">
+			</File>
+			<File
+				RelativePath="..\..\src\common\odcombocmn.cpp">
+			</File>
+			<File
+				RelativePath="..\..\src\common\richtooltipcmn.cpp">
+			</File>
+			<File
+				RelativePath="..\..\src\common\taskbarcmn.cpp">
+			</File>
 		</Filter>
 		<Filter
 			Name="MSW Sources"
@@ -324,7 +354,16 @@
 			Name="Generic Sources"
 			UniqueIdentifier="{FEA0C02F-F300-53BA-B784-52A5086B8093}">
 			<File
-				RelativePath="..\..\src\generic\htmllbox.cpp">
+				RelativePath="..\..\src\generic\aboutdlgg.cpp">
+			</File>
+			<File
+				RelativePath="..\..\src\generic\activityindicator.cpp">
+			</File>
+			<File
+				RelativePath="..\..\src\generic\animateg.cpp">
+			</File>
+			<File
+				RelativePath="..\..\src\generic\bannerwindow.cpp">
 			</File>
 		</Filter>
 		<Filter
@@ -398,9 +437,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\html\styleparams.cpp">
-			</File>
-			<File
-				RelativePath="..\..\src\html\winpars.cpp">
 			</File>
 		</Filter>
 		<Filter
@@ -500,8 +536,26 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="wxHTML Headers"
-			UniqueIdentifier="{B4103426-A5DB-5CF0-A30E-BC9546513AAF}">
+			Name="Generic Headers"
+			UniqueIdentifier="{61C63C83-EF8C-51CA-A418-51936E7FCD4A}">
+			<File
+				RelativePath="..\..\include\wx\generic\aboutdlgg.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\generic\activityindicator.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\generic\animate.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\generic\bmpcbox.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\generic\calctrlg.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\generic\dataview.h">
+			</File>
 			<File
 				RelativePath="..\..\include\wx\html\forcelnk.h">
 			</File>
@@ -550,18 +604,102 @@
 			<File
 				RelativePath="..\..\include\wx\html\styleparams.h">
 			</File>
-			<File
-				RelativePath="..\..\include\wx\html\winpars.h">
-			</File>
 		</Filter>
 		<Filter
 			Name="Common Headers"
 			UniqueIdentifier="{8C07E926-65B0-5F00-B0D6-7F40DA69BB25}">
 			<File
-				RelativePath="..\..\include\wx\htmllbox.h">
+				RelativePath="..\..\include\wx\aboutdlg.h">
 			</File>
 			<File
-				RelativePath="..\..\include\wx\wxhtml.h">
+				RelativePath="..\..\include\wx\activityindicator.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\addremovectrl.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\animate.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\bannerwindow.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\bmpcbox.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\calctrl.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\commandlinkbutton.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\dataview.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\datectrl.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\dateevt.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\datetimectrl.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\dcbuffer.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\dvrenderers.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\editlbox.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\grid.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\hyperlink.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\joystick.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\laywin.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\notifmsg.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\odcombo.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\propdlg.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\richtooltip.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\sashwin.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\sound.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\splash.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\taskbar.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\timectrl.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\tipdlg.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\treelist.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\wizard.h">
 			</File>
 		</Filter>
 	</Files>
