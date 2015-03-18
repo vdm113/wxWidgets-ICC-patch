@@ -19,7 +19,7 @@
 #include "wx/xrc/xh_activityindicator.h"
 #include "wx/activityindicator.h"
 
-wxIMPLEMENT_DYNAMIC_CLASS(wxActivityIndicatorXmlHandler, wxXmlResourceHandler);
+IMPLEMENT_DYNAMIC_CLASS(wxActivityIndicatorXmlHandler, wxXmlResourceHandler)
 
 wxActivityIndicatorXmlHandler::wxActivityIndicatorXmlHandler()
 {
