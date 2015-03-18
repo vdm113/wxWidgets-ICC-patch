@@ -1201,14 +1201,13 @@ public:
        Returns the magnification of the backing store of this window, eg 2.0
        for a window on a retina screen.
 
-       This factor should be used to determine the size of bitmaps and similar
-       "content-containing" windows appropriate for the current resolution.
-       E.g. the program may load a 32px bitmap if the content scale factor is
-       1.0 or 64px version of the same bitmap if it is 2.0 or bigger.
-
-       Notice that this method should @e not be used for window sizes, as they
-       are already scaled by this factor by the underlying toolkit under some
-       platforms. Use FromDIP() for anything window-related instead.
+       This method can be used to adjust hard coded pixel values to the values
+       appropriate for the current screen resolution. E.g. instead of using
+       32px icons, which would look tiny on the high resolution (also known as
+       HiDPI or retina) displays, you should use
+       @code
+       wxRound(32*GetContentScaleFactor())
+       @endcode instead.
 
        @since 2.9.5
     */
