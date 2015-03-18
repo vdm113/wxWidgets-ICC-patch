@@ -805,7 +805,11 @@ double wxWindowBase::GetContentScaleFactor() const
     // We also use just the vertical component of the DPI because it's the one
     // that counts most and, in practice, it's equal to the horizontal one
     // anyhow.
-    return double(wxScreenDC().GetPPI().y) / BASELINE_DPI;
+    //
+    // Finally, we consider 96 DPI to be the standard value, this is correct
+    // at least for MSW, but could conceivably need adjustment for the other
+    // platforms.
+    return wxScreenDC().GetPPI().y / 96.;
 }
 
 // helper of GetWindowBorderSize(): as many ports don't implement support for
