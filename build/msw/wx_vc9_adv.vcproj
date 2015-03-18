@@ -738,6 +738,26 @@
 			UniqueIdentifier="{A6A5C30D-BDB6-5050-906D-10A96065136C}"
 			>
 			<File
+				RelativePath="..\..\src\common\addremovectrl.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\common\animatecmn.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\common\bmpcboxcmn.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\common\calctrlcmn.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\common\datavcmn.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\common\dummy.cpp"
 				>
 				<FileConfiguration
@@ -805,6 +825,26 @@
 					/>
 				</FileConfiguration>
 			</File>
+			<File
+				RelativePath="..\..\src\common\gridcmn.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\common\hyperlnkcmn.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\common\odcombocmn.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\common\richtooltipcmn.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\common\taskbarcmn.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="MSW Sources"
@@ -829,6 +869,119 @@
 					Name="Release|x64"
 					ExcludedFromBuild="true"
 				/>
+			</File>
+		</Filter>
+		<Filter
+			Name="Generic Sources"
+			UniqueIdentifier="{FEA0C02F-F300-53BA-B784-52A5086B8093}"
+			>
+			<File
+				RelativePath="..\..\src\generic\aboutdlgg.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\activityindicator.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\animateg.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\bannerwindow.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\bmpcboxg.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\calctrlg.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\commandlinkbuttong.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\datavgen.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\datectlg.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\editlbox.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\grid.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\gridctrl.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\grideditors.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\gridsel.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\helpext.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\hyperlinkg.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\laywin.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\notifmsgg.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\odcombo.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\propdlg.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\richtooltipg.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\sashwin.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\splash.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\timectrlg.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\tipdlg.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\treelist.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\generic\wizard.cpp"
+				>
 			</File>
 		</Filter>
 		<Filter
@@ -1050,7 +1203,55 @@
 			UniqueIdentifier="{8C07E926-65B0-5F00-B0D6-7F40DA69BB25}"
 			>
 			<File
-				RelativePath="..\..\include\wx\richtext\richtextbackgroundpage.h"
+				RelativePath="..\..\include\wx\generic\aboutdlgg.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\wx\generic\activityindicator.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\wx\generic\animate.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\wx\generic\bmpcbox.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\wx\generic\calctrlg.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\wx\generic\dataview.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\wx\generic\datectrl.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\wx\generic\dvrenderer.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\wx\generic\dvrenderers.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\wx\generic\grid.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\wx\generic\gridctrl.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\wx\generic\grideditors.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\wx\generic\gridsel.h"
 				>
 			</File>
 			<File
@@ -1089,8 +1290,49 @@
 				RelativePath="..\..\include\wx\richtext\richtextimagedlg.h"
 				>
 			</File>
+		</Filter>
+		<Filter
+			Name="Common Headers"
+			UniqueIdentifier="{8C07E926-65B0-5F00-B0D6-7F40DA69BB25}"
+			>
 			<File
-				RelativePath="..\..\include\wx\richtext\richtextindentspage.h"
+				RelativePath="..\..\include\wx\aboutdlg.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\wx\activityindicator.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\wx\addremovectrl.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\wx\animate.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\wx\bannerwindow.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\wx\bmpcbox.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\wx\calctrl.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\wx\commandlinkbutton.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\wx\dataview.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\wx\datectrl.h"
 				>
 			</File>
 			<File
@@ -1181,14 +1423,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\richtext\richtextsymboldlg.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\richtext\richtextxml.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\xrc\xh_richtext.cpp"
 				>
 			</File>
 		</Filter>
