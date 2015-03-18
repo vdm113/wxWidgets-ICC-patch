@@ -460,8 +460,6 @@ WidgetsFrame::WidgetsFrame(const wxString& title)
     SetMenuBar(mbar);
 
     mbar->Check(Widgets_Enable, true);
-    mbar->Check(Widgets_Show, true);
-
     mbar->Check(Widgets_VariantNormal, true);
 #endif // wxUSE_MENUS
 
@@ -956,6 +954,28 @@ void WidgetsFrame::OnSetBorder(wxCommandEvent& event)
 
 void WidgetsFrame::OnSetVariant(wxCommandEvent& event)
 {
+    wxWindowVariant v;
+    switch ( event.GetId() )
+    {
+        case Widgets_VariantSmall:  v = wxWINDOW_VARIANT_SMALL; break;
+        case Widgets_VariantMini:   v = wxWINDOW_VARIANT_MINI; break;
+        case Widgets_VariantLarge:  v = wxWINDOW_VARIANT_LARGE; break;
+
+        default:
+            wxFAIL_MSG( "unknown window variant" );
+            wxFALLTHROUGH;
+
+        case Widgets_VariantNormal: v = wxWINDOW_VARIANT_NORMAL; break;
+    }
+
+    WidgetsPage::GetAttrs().m_variant = v;
+
+    CurrentPage()->SetUpWidget();
+    CurrentPage()->Layout();
+}
+
+void WidgetsFrame::OnToggleLayoutDirection(wxCommandEvent& event)
+{
     WidgetsPage::GetAttrs().m_dir = event.IsChecked() ? wxLayout_RightToLeft
                                        : wxLayout_LeftToRight;
 
@@ -1445,6 +1465,8 @@ void WidgetsPage::SetUpWidget()
         {
             (*it)->SetCursor(GetAttrs().m_cursor);
         }
+
+        (*it)->SetWindowVariant(GetAttrs().m_variant);
 
         (*it)->Refresh();
     }
