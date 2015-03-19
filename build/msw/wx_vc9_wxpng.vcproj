@@ -9,8 +9,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="wxzlib"
-	ProjectGUID="{8B867186-A0B5-5479-B824-E176EDD27C40}"
+	Name="wxpng"
+	ProjectGUID="{8ACC122A-CA6A-5AA6-9C97-9CDD2E533DB0}"
 	>
 	<Platforms>
 		<Platform
@@ -27,7 +27,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="..\..\lib\vc_lib"
-			IntermediateDirectory="vc_mswud\wxzlib"
+			IntermediateDirectory="vc_mswud\wxpng"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -46,22 +46,22 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
-				AdditionalIncludeDirectories=""
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\src\zlib"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP"
 				Optimization="0"
-				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\src\zlib"
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				BufferSecurityCheck="true"
 				RuntimeTypeInfo="true"
-				ObjectFile="vc_mswud\wxzlib\"
-				ProgramDataBaseFileName="..\..\lib\vc_lib\wxzlibd.pdb"
+				ObjectFile="vc_mswud\wxpng\"
+				ProgramDataBaseFileName="..\..\lib\vc_lib\wxpngd.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
@@ -71,16 +71,16 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				PreprocessorDefinitions="_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				Culture="1033"
-				AdditionalIncludeDirectories=""
+				AdditionalIncludeDirectories="..\..\src\zlib"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\vc_lib\wxzlibd.lib"
+				OutputFile="..\..\lib\vc_lib\wxpngd.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -94,7 +94,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_lib\wx_vc9_wxzlib.bsc"
+				OutputFile="..\..\lib\vc_lib\wx_vc9_wxpng.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -107,7 +107,7 @@
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="..\..\lib\vc_lib"
-			IntermediateDirectory="vc_mswu\wxzlib"
+			IntermediateDirectory="vc_mswu\wxpng"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -126,20 +126,20 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
-				AdditionalIncludeDirectories=""
+				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\src\zlib"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP"
 				Optimization="2"
-				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\src\zlib"
+				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				ExceptionHandling="1"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="true"
-				ObjectFile="vc_mswu\wxzlib\"
-				ProgramDataBaseFileName="..\..\lib\vc_lib\wxzlib.pdb"
+				ObjectFile="vc_mswu\wxpng\"
+				ProgramDataBaseFileName="..\..\lib\vc_lib\wxpng.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
@@ -149,16 +149,16 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				Culture="1033"
-				AdditionalIncludeDirectories=""
+				AdditionalIncludeDirectories="..\..\src\zlib"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\vc_lib\wxzlib.lib"
+				OutputFile="..\..\lib\vc_lib\wxpng.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -172,7 +172,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_lib\wx_vc9_wxzlib.bsc"
+				OutputFile="..\..\lib\vc_lib\wx_vc9_wxpng.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -185,7 +185,7 @@
 		<Configuration
 			Name="DLL Debug|Win32"
 			OutputDirectory="..\..\lib\vc_dll"
-			IntermediateDirectory="vc_mswuddll\wxzlib"
+			IntermediateDirectory="vc_mswuddll\wxpng"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -204,22 +204,22 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
-				AdditionalIncludeDirectories=""
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\src\zlib"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP"
 				Optimization="0"
-				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\src\zlib"
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				BufferSecurityCheck="true"
 				RuntimeTypeInfo="true"
-				ObjectFile="vc_mswuddll\wxzlib\"
-				ProgramDataBaseFileName="..\..\lib\vc_dll\wxzlibd.pdb"
+				ObjectFile="vc_mswuddll\wxpng\"
+				ProgramDataBaseFileName="..\..\lib\vc_dll\wxpngd.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
@@ -229,16 +229,16 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				PreprocessorDefinitions="_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				Culture="1033"
-				AdditionalIncludeDirectories=""
+				AdditionalIncludeDirectories="..\..\src\zlib"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\vc_dll\wxzlibd.lib"
+				OutputFile="..\..\lib\vc_dll\wxpngd.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -252,7 +252,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_dll\wx_vc9_wxzlib.bsc"
+				OutputFile="..\..\lib\vc_dll\wx_vc9_wxpng.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -265,7 +265,7 @@
 		<Configuration
 			Name="DLL Release|Win32"
 			OutputDirectory="..\..\lib\vc_dll"
-			IntermediateDirectory="vc_mswudll\wxzlib"
+			IntermediateDirectory="vc_mswudll\wxpng"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -284,20 +284,20 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
-				AdditionalIncludeDirectories=""
+				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\src\zlib"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP"
 				Optimization="2"
-				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\src\zlib"
+				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				ExceptionHandling="1"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="true"
-				ObjectFile="vc_mswudll\wxzlib\"
-				ProgramDataBaseFileName="..\..\lib\vc_dll\wxzlib.pdb"
+				ObjectFile="vc_mswudll\wxpng\"
+				ProgramDataBaseFileName="..\..\lib\vc_dll\wxpng.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
@@ -307,16 +307,16 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				Culture="1033"
-				AdditionalIncludeDirectories=""
+				AdditionalIncludeDirectories="..\..\src\zlib"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\vc_dll\wxzlib.lib"
+				OutputFile="..\..\lib\vc_dll\wxpng.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -330,7 +330,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_dll\wx_vc9_wxzlib.bsc"
+				OutputFile="..\..\lib\vc_dll\wx_vc9_wxpng.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -343,7 +343,7 @@
 		<Configuration
 			Name="Debug|x64"
 			OutputDirectory="..\..\lib\vc_x64_lib"
-			IntermediateDirectory="vc_mswud_x64\wxzlib"
+			IntermediateDirectory="vc_mswud_x64\wxpng"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -362,22 +362,22 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
-				AdditionalIncludeDirectories=""
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\src\zlib"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP"
 				Optimization="0"
-				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\src\zlib"
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				BufferSecurityCheck="true"
 				RuntimeTypeInfo="true"
-				ObjectFile="vc_mswud_x64\wxzlib\"
-				ProgramDataBaseFileName="..\..\lib\vc_x64_lib\wxzlibd.pdb"
+				ObjectFile="vc_mswud_x64\wxpng\"
+				ProgramDataBaseFileName="..\..\lib\vc_x64_lib\wxpngd.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
@@ -387,16 +387,16 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				PreprocessorDefinitions="_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				Culture="1033"
-				AdditionalIncludeDirectories=""
+				AdditionalIncludeDirectories="..\..\src\zlib"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\vc_x64_lib\wxzlibd.lib"
+				OutputFile="..\..\lib\vc_x64_lib\wxpngd.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -410,7 +410,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_x64_lib\wx_vc9_wxzlib.bsc"
+				OutputFile="..\..\lib\vc_x64_lib\wx_vc9_wxpng.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -423,7 +423,7 @@
 		<Configuration
 			Name="Release|x64"
 			OutputDirectory="..\..\lib\vc_x64_lib"
-			IntermediateDirectory="vc_mswu_x64\wxzlib"
+			IntermediateDirectory="vc_mswu_x64\wxpng"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -442,20 +442,20 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
-				AdditionalIncludeDirectories=""
+				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\src\zlib"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP"
 				Optimization="2"
-				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\src\zlib"
+				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				ExceptionHandling="1"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="true"
-				ObjectFile="vc_mswu_x64\wxzlib\"
-				ProgramDataBaseFileName="..\..\lib\vc_x64_lib\wxzlib.pdb"
+				ObjectFile="vc_mswu_x64\wxpng\"
+				ProgramDataBaseFileName="..\..\lib\vc_x64_lib\wxpng.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
@@ -465,16 +465,16 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				Culture="1033"
-				AdditionalIncludeDirectories=""
+				AdditionalIncludeDirectories="..\..\src\zlib"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\vc_x64_lib\wxzlib.lib"
+				OutputFile="..\..\lib\vc_x64_lib\wxpng.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -488,7 +488,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_x64_lib\wx_vc9_wxzlib.bsc"
+				OutputFile="..\..\lib\vc_x64_lib\wx_vc9_wxpng.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -501,7 +501,7 @@
 		<Configuration
 			Name="DLL Debug|x64"
 			OutputDirectory="..\..\lib\vc_x64_dll"
-			IntermediateDirectory="vc_mswuddll_x64\wxzlib"
+			IntermediateDirectory="vc_mswuddll_x64\wxpng"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -520,22 +520,22 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
-				AdditionalIncludeDirectories=""
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\src\zlib"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP"
 				Optimization="0"
-				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\src\zlib"
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				BufferSecurityCheck="true"
 				RuntimeTypeInfo="true"
-				ObjectFile="vc_mswuddll_x64\wxzlib\"
-				ProgramDataBaseFileName="..\..\lib\vc_x64_dll\wxzlibd.pdb"
+				ObjectFile="vc_mswuddll_x64\wxpng\"
+				ProgramDataBaseFileName="..\..\lib\vc_x64_dll\wxpngd.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
@@ -545,16 +545,16 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				PreprocessorDefinitions="_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				Culture="1033"
-				AdditionalIncludeDirectories=""
+				AdditionalIncludeDirectories="..\..\src\zlib"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\vc_x64_dll\wxzlibd.lib"
+				OutputFile="..\..\lib\vc_x64_dll\wxpngd.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -568,7 +568,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_x64_dll\wx_vc9_wxzlib.bsc"
+				OutputFile="..\..\lib\vc_x64_dll\wx_vc9_wxpng.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -581,7 +581,7 @@
 		<Configuration
 			Name="DLL Release|x64"
 			OutputDirectory="..\..\lib\vc_x64_dll"
-			IntermediateDirectory="vc_mswudll_x64\wxzlib"
+			IntermediateDirectory="vc_mswudll_x64\wxpng"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -600,20 +600,20 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
-				AdditionalIncludeDirectories=""
+				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\src\zlib"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP"
 				Optimization="2"
-				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\src\zlib"
+				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				ExceptionHandling="1"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="true"
-				ObjectFile="vc_mswudll_x64\wxzlib\"
-				ProgramDataBaseFileName="..\..\lib\vc_x64_dll\wxzlib.pdb"
+				ObjectFile="vc_mswudll_x64\wxpng\"
+				ProgramDataBaseFileName="..\..\lib\vc_x64_dll\wxpng.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
@@ -623,16 +623,16 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				Culture="1033"
-				AdditionalIncludeDirectories=""
+				AdditionalIncludeDirectories="..\..\src\zlib"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\vc_x64_dll\wxzlib.lib"
+				OutputFile="..\..\lib\vc_x64_dll\wxpng.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -646,7 +646,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_x64_dll\wx_vc9_wxzlib.bsc"
+				OutputFile="..\..\lib\vc_x64_dll\wx_vc9_wxpng.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -667,63 +667,63 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\src\zlib\adler32.c"
+				RelativePath="..\..\src\png\png.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\compress.c"
+				RelativePath="..\..\src\png\pngerror.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\crc32.c"
+				RelativePath="..\..\src\png\pngget.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\deflate.c"
+				RelativePath="..\..\src\png\pngmem.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\gzclose.c"
+				RelativePath="..\..\src\png\pngpread.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\gzlib.c"
+				RelativePath="..\..\src\png\pngread.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\gzread.c"
+				RelativePath="..\..\src\png\pngrio.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\gzwrite.c"
+				RelativePath="..\..\src\png\pngrtran.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\infback.c"
+				RelativePath="..\..\src\png\pngrutil.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\inffast.c"
+				RelativePath="..\..\src\png\pngset.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\inflate.c"
+				RelativePath="..\..\src\png\pngtrans.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\inftrees.c"
+				RelativePath="..\..\src\png\pngwio.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\trees.c"
+				RelativePath="..\..\src\png\pngwrite.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\uncompr.c"
+				RelativePath="..\..\src\png\pngwtran.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\zutil.c"
+				RelativePath="..\..\src\png\pngwutil.c"
 				>
 			</File>
 		</Filter>
