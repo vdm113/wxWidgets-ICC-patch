@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -37,49 +37,32 @@
   <PropertyGroup Label="Globals">
     <ProjectName>wxzlib</ProjectName>
     <ProjectGuid>{8B867186-A0B5-5479-B824-E176EDD27C40}</ProjectGuid>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="wx_config.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>Intel C++ Compiler XE 15.0</PlatformToolset>
-    <BasePlatformToolset>v120</BasePlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>Intel C++ Compiler XE 15.0</PlatformToolset>
-    <BasePlatformToolset>v120</BasePlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>Intel C++ Compiler XE 15.0</PlatformToolset>
-    <BasePlatformToolset>v120</BasePlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>Intel C++ Compiler XE 15.0</PlatformToolset>
-    <BasePlatformToolset>v120</BasePlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>Intel C++ Compiler XE 15.0</PlatformToolset>
-    <BasePlatformToolset>v120</BasePlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>Intel C++ Compiler XE 15.0</PlatformToolset>
-    <BasePlatformToolset>v120</BasePlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>Intel C++ Compiler XE 15.0</PlatformToolset>
-    <BasePlatformToolset>v120</BasePlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>Intel C++ Compiler XE 15.0</PlatformToolset>
-    <BasePlatformToolset>v120</BasePlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -166,12 +149,6 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
-      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
-      <EnableMatrixMultiplyLibraryCall>No</EnableMatrixMultiplyLibraryCall>
-      <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -205,12 +182,6 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
-      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
-      <EnableMatrixMultiplyLibraryCall>No</EnableMatrixMultiplyLibraryCall>
-      <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -232,7 +203,7 @@
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <Optimization>MaxSpeedHighLevel</Optimization>
+      <Optimization>MaxSpeed</Optimization>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -246,16 +217,6 @@
       <StringPooling>true</StringPooling>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
-      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
-      <EnableMatrixMultiplyLibraryCall>No</EnableMatrixMultiplyLibraryCall>
-      <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
-      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -278,7 +239,7 @@
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <Optimization>MaxSpeedHighLevel</Optimization>
+      <Optimization>MaxSpeed</Optimization>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -291,16 +252,6 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
-      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
-      <EnableMatrixMultiplyLibraryCall>No</EnableMatrixMultiplyLibraryCall>
-      <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
-      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -334,12 +285,6 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
-      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
-      <EnableMatrixMultiplyLibraryCall>No</EnableMatrixMultiplyLibraryCall>
-      <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -373,12 +318,6 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
-      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
-      <EnableMatrixMultiplyLibraryCall>No</EnableMatrixMultiplyLibraryCall>
-      <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -400,7 +339,7 @@
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <Optimization>MaxSpeedHighLevel</Optimization>
+      <Optimization>MaxSpeed</Optimization>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -413,16 +352,6 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
-      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
-      <EnableMatrixMultiplyLibraryCall>No</EnableMatrixMultiplyLibraryCall>
-      <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
-      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -444,7 +373,7 @@
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
-      <Optimization>MaxSpeedHighLevel</Optimization>
+      <Optimization>MaxSpeed</Optimization>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -457,16 +386,6 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
-      <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
-      <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
-      <EnableMatrixMultiplyLibraryCall>No</EnableMatrixMultiplyLibraryCall>
-      <UseProcessorExtensions>HOST</UseProcessorExtensions>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast2</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <InterproceduralOptimization>MultiFile</InterproceduralOptimization>
-      <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
