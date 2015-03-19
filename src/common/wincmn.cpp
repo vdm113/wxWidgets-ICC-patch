@@ -2867,14 +2867,11 @@ void wxWindowBase::OnInternalIdle()
 
 #ifndef wxHAVE_DPI_INDEPENDENT_PIXELS
 
-/* static */
-wxSize
-wxWindowBase::FromDIP(const wxSize& sz, const wxWindowBase* WXUNUSED(w))
+wxSize wxWindowBase::FromDIP(const wxSize& sz) const
 {
-    const wxSize dpi = wxScreenDC().GetPPI();
+    const double scale = GetContentScaleFactor();
 
-    return wxSize(wxMulDivInt32(sz.x, dpi.x, BASELINE_DPI),
-                  wxMulDivInt32(sz.y, dpi.y, BASELINE_DPI));
+    return wxSize(wxRound(scale*sz.x), wxRound(scale*sz.y));
 }
 
 #endif // !wxHAVE_DPI_INDEPENDENT_PIXELS
