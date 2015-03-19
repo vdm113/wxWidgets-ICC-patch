@@ -9,8 +9,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="7.10"
-	Name="wxzlib"
-	ProjectGUID="{DDD86D36-A4F6-5A54-AE2C-144B3594E1CE}">
+	Name="wxjpeg"
+	ProjectGUID="{3CA6563C-F480-52D4-AF05-D641E25A5DF2}">
 	<Platforms>
 		<Platform
 			Name="Win32"/>
@@ -19,23 +19,23 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="..\..\lib\vc_lib"
-			IntermediateDirectory="vc_mswud\wxzlib"
+			IntermediateDirectory="vc_mswud\wxjpeg"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\lib\vc_lib\mswud"
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="TRUE"
 				ExceptionHandling="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				BufferSecurityCheck="TRUE"
 				RuntimeTypeInfo="TRUE"
-				ObjectFile="vc_mswud\wxzlib\"
-				ProgramDataBaseFileName="..\..\lib\vc_lib\wxzlibd.pdb"
+				ObjectFile="vc_mswud\wxjpeg\"
+				ProgramDataBaseFileName="..\..\lib\vc_lib\wxjpegd.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				Detect64BitPortabilityProblems="TRUE"
@@ -44,12 +44,12 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\vc_lib\wxzlibd.lib"
+				OutputFile="..\..\lib\vc_lib\wxjpegd.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
-				AdditionalIncludeDirectories=""/>
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\lib\vc_lib\mswud"/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
 			<Tool
@@ -58,9 +58,9 @@
 				Name="VCPreLinkEventTool"/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				PreprocessorDefinitions="_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				Culture="1033"
-				AdditionalIncludeDirectories=""/>
+				AdditionalIncludeDirectories="..\..\lib\vc_lib\mswud"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -75,20 +75,20 @@
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="..\..\lib\vc_lib"
-			IntermediateDirectory="vc_mswu\wxzlib"
+			IntermediateDirectory="vc_mswu\wxjpeg"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
-				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\lib\vc_lib\mswu"
+				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				ExceptionHandling="TRUE"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="TRUE"
-				ObjectFile="vc_mswu\wxzlib\"
-				ProgramDataBaseFileName="..\..\lib\vc_lib\wxzlib.pdb"
+				ObjectFile="vc_mswu\wxjpeg\"
+				ProgramDataBaseFileName="..\..\lib\vc_lib\wxjpeg.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				Detect64BitPortabilityProblems="TRUE"
@@ -97,12 +97,12 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\vc_lib\wxzlib.lib"
+				OutputFile="..\..\lib\vc_lib\wxjpeg.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
-				AdditionalIncludeDirectories=""/>
+				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\lib\vc_lib\mswu"/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
 			<Tool
@@ -111,9 +111,9 @@
 				Name="VCPreLinkEventTool"/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				PreprocessorDefinitions="NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				Culture="1033"
-				AdditionalIncludeDirectories=""/>
+				AdditionalIncludeDirectories="..\..\lib\vc_lib\mswu"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -128,23 +128,23 @@
 		<Configuration
 			Name="DLL Debug|Win32"
 			OutputDirectory="..\..\lib\vc_dll"
-			IntermediateDirectory="vc_mswuddll\wxzlib"
+			IntermediateDirectory="vc_mswuddll\wxjpeg"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\lib\vc_dll\mswud"
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="TRUE"
 				ExceptionHandling="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				BufferSecurityCheck="TRUE"
 				RuntimeTypeInfo="TRUE"
-				ObjectFile="vc_mswuddll\wxzlib\"
-				ProgramDataBaseFileName="..\..\lib\vc_dll\wxzlibd.pdb"
+				ObjectFile="vc_mswuddll\wxjpeg\"
+				ProgramDataBaseFileName="..\..\lib\vc_dll\wxjpegd.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				Detect64BitPortabilityProblems="TRUE"
@@ -153,12 +153,12 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\vc_dll\wxzlibd.lib"
+				OutputFile="..\..\lib\vc_dll\wxjpegd.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
-				AdditionalIncludeDirectories=""/>
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\lib\vc_dll\mswud"/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
 			<Tool
@@ -167,9 +167,9 @@
 				Name="VCPreLinkEventTool"/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				PreprocessorDefinitions="_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				Culture="1033"
-				AdditionalIncludeDirectories=""/>
+				AdditionalIncludeDirectories="..\..\lib\vc_dll\mswud"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -184,20 +184,20 @@
 		<Configuration
 			Name="DLL Release|Win32"
 			OutputDirectory="..\..\lib\vc_dll"
-			IntermediateDirectory="vc_mswudll\wxzlib"
+			IntermediateDirectory="vc_mswudll\wxjpeg"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
-				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\lib\vc_dll\mswu"
+				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				ExceptionHandling="TRUE"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="TRUE"
-				ObjectFile="vc_mswudll\wxzlib\"
-				ProgramDataBaseFileName="..\..\lib\vc_dll\wxzlib.pdb"
+				ObjectFile="vc_mswudll\wxjpeg\"
+				ProgramDataBaseFileName="..\..\lib\vc_dll\wxjpeg.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				Detect64BitPortabilityProblems="TRUE"
@@ -206,12 +206,12 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\vc_dll\wxzlib.lib"
+				OutputFile="..\..\lib\vc_dll\wxjpeg.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
-				AdditionalIncludeDirectories=""/>
+				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\lib\vc_dll\mswu"/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
 			<Tool
@@ -220,9 +220,9 @@
 				Name="VCPreLinkEventTool"/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				PreprocessorDefinitions="NDEBUG;_CRT_SECURE_NO_WARNINGS"
 				Culture="1033"
-				AdditionalIncludeDirectories=""/>
+				AdditionalIncludeDirectories="..\..\lib\vc_dll\mswu"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -244,49 +244,142 @@
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
 			<File
-				RelativePath="..\..\src\zlib\adler32.c">
+				RelativePath="..\..\src\jpeg\jcapimin.c">
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\compress.c">
+				RelativePath="..\..\src\jpeg\jcapistd.c">
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\crc32.c">
+				RelativePath="..\..\src\jpeg\jccoefct.c">
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\deflate.c">
+				RelativePath="..\..\src\jpeg\jccolor.c">
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\gzclose.c">
+				RelativePath="..\..\src\jpeg\jcdctmgr.c">
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\gzlib.c">
+				RelativePath="..\..\src\jpeg\jchuff.c">
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\gzread.c">
+				RelativePath="..\..\src\jpeg\jcinit.c">
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\gzwrite.c">
+				RelativePath="..\..\src\jpeg\jcmainct.c">
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\infback.c">
+				RelativePath="..\..\src\jpeg\jcmarker.c">
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\inffast.c">
+				RelativePath="..\..\src\jpeg\jcmaster.c">
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\inflate.c">
+				RelativePath="..\..\src\jpeg\jcomapi.c">
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\inftrees.c">
+				RelativePath="..\..\src\jpeg\jcparam.c">
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\trees.c">
+				RelativePath="..\..\src\jpeg\jcphuff.c">
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\uncompr.c">
+				RelativePath="..\..\src\jpeg\jcprepct.c">
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\zutil.c">
+				RelativePath="..\..\src\jpeg\jcsample.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jctrans.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jdapimin.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jdapistd.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jdatadst.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jdatasrc.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jdcoefct.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jdcolor.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jddctmgr.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jdhuff.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jdinput.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jdmainct.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jdmarker.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jdmaster.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jdmerge.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jdphuff.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jdpostct.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jdsample.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jdtrans.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jerror.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jfdctflt.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jfdctfst.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jfdctint.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jidctflt.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jidctfst.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jidctint.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jidctred.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jmemmgr.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jmemnobs.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jquant1.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jquant2.c">
+			</File>
+			<File
+				RelativePath="..\..\src\jpeg\jutils.c">
 			</File>
 		</Filter>
 	</Files>
