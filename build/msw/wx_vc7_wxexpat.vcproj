@@ -9,8 +9,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="7.10"
-	Name="wxzlib"
-	ProjectGUID="{DDD86D36-A4F6-5A54-AE2C-144B3594E1CE}">
+	Name="wxexpat"
+	ProjectGUID="{AF27ABC5-1AB2-55D0-8E7D-239C0176530E}">
 	<Platforms>
 		<Platform
 			Name="Win32"/>
@@ -19,23 +19,23 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="..\..\lib\vc_lib"
-			IntermediateDirectory="vc_mswud\wxzlib"
+			IntermediateDirectory="vc_mswud\wxexpat"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\lib\vc_lib"
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP"
 				MinimalRebuild="TRUE"
 				ExceptionHandling="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				BufferSecurityCheck="TRUE"
 				RuntimeTypeInfo="TRUE"
-				ObjectFile="vc_mswud\wxzlib\"
-				ProgramDataBaseFileName="..\..\lib\vc_lib\wxzlibd.pdb"
+				ObjectFile="vc_mswud\wxexpat\"
+				ProgramDataBaseFileName="..\..\lib\vc_lib\wxexpatd.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				Detect64BitPortabilityProblems="TRUE"
@@ -44,12 +44,12 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\vc_lib\wxzlibd.lib"
+				OutputFile="..\..\lib\vc_lib\wxexpatd.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
-				AdditionalIncludeDirectories=""/>
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP"
+				AdditionalIncludeDirectories="..\..\lib\vc_lib"/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
 			<Tool
@@ -58,9 +58,9 @@
 				Name="VCPreLinkEventTool"/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				PreprocessorDefinitions="_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP"
 				Culture="1033"
-				AdditionalIncludeDirectories=""/>
+				AdditionalIncludeDirectories="..\..\lib\vc_lib"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -75,20 +75,20 @@
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="..\..\lib\vc_lib"
-			IntermediateDirectory="vc_mswu\wxzlib"
+			IntermediateDirectory="vc_mswu\wxexpat"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
-				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\lib\vc_lib"
+				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP"
 				ExceptionHandling="TRUE"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="TRUE"
-				ObjectFile="vc_mswu\wxzlib\"
-				ProgramDataBaseFileName="..\..\lib\vc_lib\wxzlib.pdb"
+				ObjectFile="vc_mswu\wxexpat\"
+				ProgramDataBaseFileName="..\..\lib\vc_lib\wxexpat.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				Detect64BitPortabilityProblems="TRUE"
@@ -97,12 +97,12 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\vc_lib\wxzlib.lib"
+				OutputFile="..\..\lib\vc_lib\wxexpat.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
-				AdditionalIncludeDirectories=""/>
+				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP"
+				AdditionalIncludeDirectories="..\..\lib\vc_lib"/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
 			<Tool
@@ -111,9 +111,9 @@
 				Name="VCPreLinkEventTool"/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				PreprocessorDefinitions="NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP"
 				Culture="1033"
-				AdditionalIncludeDirectories=""/>
+				AdditionalIncludeDirectories="..\..\lib\vc_lib"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -128,23 +128,23 @@
 		<Configuration
 			Name="DLL Debug|Win32"
 			OutputDirectory="..\..\lib\vc_dll"
-			IntermediateDirectory="vc_mswuddll\wxzlib"
+			IntermediateDirectory="vc_mswuddll\wxexpat"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\lib\vc_dll"
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP"
 				MinimalRebuild="TRUE"
 				ExceptionHandling="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				BufferSecurityCheck="TRUE"
 				RuntimeTypeInfo="TRUE"
-				ObjectFile="vc_mswuddll\wxzlib\"
-				ProgramDataBaseFileName="..\..\lib\vc_dll\wxzlibd.pdb"
+				ObjectFile="vc_mswuddll\wxexpat\"
+				ProgramDataBaseFileName="..\..\lib\vc_dll\wxexpatd.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				Detect64BitPortabilityProblems="TRUE"
@@ -153,12 +153,12 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\vc_dll\wxzlibd.lib"
+				OutputFile="..\..\lib\vc_dll\wxexpatd.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
-				AdditionalIncludeDirectories=""/>
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP"
+				AdditionalIncludeDirectories="..\..\lib\vc_dll"/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
 			<Tool
@@ -167,9 +167,9 @@
 				Name="VCPreLinkEventTool"/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				PreprocessorDefinitions="_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP"
 				Culture="1033"
-				AdditionalIncludeDirectories=""/>
+				AdditionalIncludeDirectories="..\..\lib\vc_dll"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -184,20 +184,20 @@
 		<Configuration
 			Name="DLL Release|Win32"
 			OutputDirectory="..\..\lib\vc_dll"
-			IntermediateDirectory="vc_mswudll\wxzlib"
+			IntermediateDirectory="vc_mswudll\wxexpat"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
-				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\lib\vc_dll"
+				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP"
 				ExceptionHandling="TRUE"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="TRUE"
-				ObjectFile="vc_mswudll\wxzlib\"
-				ProgramDataBaseFileName="..\..\lib\vc_dll\wxzlib.pdb"
+				ObjectFile="vc_mswudll\wxexpat\"
+				ProgramDataBaseFileName="..\..\lib\vc_dll\wxexpat.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				Detect64BitPortabilityProblems="TRUE"
@@ -206,12 +206,12 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\vc_dll\wxzlib.lib"
+				OutputFile="..\..\lib\vc_dll\wxexpat.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
-				AdditionalIncludeDirectories=""/>
+				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP"
+				AdditionalIncludeDirectories="..\..\lib\vc_dll"/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
 			<Tool
@@ -220,9 +220,9 @@
 				Name="VCPreLinkEventTool"/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS"
+				PreprocessorDefinitions="NDEBUG;_CRT_SECURE_NO_WARNINGS;COMPILED_FROM_DSP"
 				Culture="1033"
-				AdditionalIncludeDirectories=""/>
+				AdditionalIncludeDirectories="..\..\lib\vc_dll"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -244,49 +244,13 @@
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
 			<File
-				RelativePath="..\..\src\zlib\adler32.c">
+				RelativePath="..\..\src\expat\lib\xmlparse.c">
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\compress.c">
+				RelativePath="..\..\src\expat\lib\xmlrole.c">
 			</File>
 			<File
-				RelativePath="..\..\src\zlib\crc32.c">
-			</File>
-			<File
-				RelativePath="..\..\src\zlib\deflate.c">
-			</File>
-			<File
-				RelativePath="..\..\src\zlib\gzclose.c">
-			</File>
-			<File
-				RelativePath="..\..\src\zlib\gzlib.c">
-			</File>
-			<File
-				RelativePath="..\..\src\zlib\gzread.c">
-			</File>
-			<File
-				RelativePath="..\..\src\zlib\gzwrite.c">
-			</File>
-			<File
-				RelativePath="..\..\src\zlib\infback.c">
-			</File>
-			<File
-				RelativePath="..\..\src\zlib\inffast.c">
-			</File>
-			<File
-				RelativePath="..\..\src\zlib\inflate.c">
-			</File>
-			<File
-				RelativePath="..\..\src\zlib\inftrees.c">
-			</File>
-			<File
-				RelativePath="..\..\src\zlib\trees.c">
-			</File>
-			<File
-				RelativePath="..\..\src\zlib\uncompr.c">
-			</File>
-			<File
-				RelativePath="..\..\src\zlib\zutil.c">
+				RelativePath="..\..\src\expat\lib\xmltok.c">
 			</File>
 		</Filter>
 	</Files>
