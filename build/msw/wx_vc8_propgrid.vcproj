@@ -9,8 +9,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="net"
-	ProjectGUID="{C752F044-0E49-5C21-818F-751B327B35AA}"
+	Name="propgrid"
+	ProjectGUID="{93781718-26B6-5541-84C5-78C6A8226AEC}"
 	>
 	<Platforms>
 		<Platform
@@ -27,7 +27,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="..\..\lib\vc_lib"
-			IntermediateDirectory="vc_mswud\net"
+			IntermediateDirectory="vc_mswud\propgrid"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -47,14 +47,14 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;wxUSE_GUI=0"
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING"
 				AdditionalIncludeDirectories="..\..\lib\vc_lib\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\lib\vc_lib\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;wxUSE_GUI=0"
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING"
 				MinimalRebuild="true"
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
@@ -63,9 +63,9 @@
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="wx/wxprec.h"
-				PrecompiledHeaderFile="vc_mswud\wxprec_netlib.pch"
-				ObjectFile="vc_mswud\net\"
-				ProgramDataBaseFileName="..\..\lib\vc_lib\wxbase31ud_net.pdb"
+				PrecompiledHeaderFile="vc_mswud\wxprec_propgridlib.pch"
+				ObjectFile="vc_mswud\propgrid\"
+				ProgramDataBaseFileName="..\..\lib\vc_lib\wxmsw31ud_propgrid.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="true"
@@ -76,7 +76,7 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;wxUSE_GUI=0"
+				PreprocessorDefinitions="_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING"
 				Culture="1033"
 				AdditionalIncludeDirectories="..\..\lib\vc_lib\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 			/>
@@ -85,7 +85,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\vc_lib\wxbase31ud_net.lib"
+				OutputFile="..\..\lib\vc_lib\wxmsw31ud_propgrid.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -99,7 +99,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_lib\wx_vc8_net.bsc"
+				OutputFile="..\..\lib\vc_lib\wx_vc8_propgrid.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -112,7 +112,7 @@
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="..\..\lib\vc_lib"
-			IntermediateDirectory="vc_mswu\net"
+			IntermediateDirectory="vc_mswu\propgrid"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -132,22 +132,22 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;wxUSE_GUI=0"
+				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING"
 				AdditionalIncludeDirectories="..\..\lib\vc_lib\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				AdditionalIncludeDirectories="..\..\lib\vc_lib\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
-				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;wxUSE_GUI=0"
+				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING"
 				ExceptionHandling="1"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="wx/wxprec.h"
-				PrecompiledHeaderFile="vc_mswu\wxprec_netlib.pch"
-				ObjectFile="vc_mswu\net\"
-				ProgramDataBaseFileName="..\..\lib\vc_lib\wxbase31u_net.pdb"
+				PrecompiledHeaderFile="vc_mswu\wxprec_propgridlib.pch"
+				ObjectFile="vc_mswu\propgrid\"
+				ProgramDataBaseFileName="..\..\lib\vc_lib\wxmsw31u_propgrid.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="true"
@@ -158,7 +158,7 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;wxUSE_GUI=0"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING"
 				Culture="1033"
 				AdditionalIncludeDirectories="..\..\lib\vc_lib\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 			/>
@@ -167,7 +167,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\vc_lib\wxbase31u_net.lib"
+				OutputFile="..\..\lib\vc_lib\wxmsw31u_propgrid.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -181,7 +181,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_lib\wx_vc8_net.bsc"
+				OutputFile="..\..\lib\vc_lib\wx_vc8_propgrid.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -194,7 +194,7 @@
 		<Configuration
 			Name="DLL Debug|Win32"
 			OutputDirectory="..\..\lib\vc_dll"
-			IntermediateDirectory="vc_mswuddll\net"
+			IntermediateDirectory="vc_mswuddll\propgrid"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -214,14 +214,14 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_USRDLL;DLL_EXPORTS;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;wxUSE_GUI=0;WXUSINGDLL;WXMAKINGDLL_NET"
+				PreprocessorDefinitions="WIN32;_USRDLL;DLL_EXPORTS;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_PROPGRID"
 				AdditionalIncludeDirectories="..\..\lib\vc_dll\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\lib\vc_dll\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
-				PreprocessorDefinitions="WIN32;_USRDLL;DLL_EXPORTS;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;wxUSE_GUI=0;WXUSINGDLL;WXMAKINGDLL_NET"
+				PreprocessorDefinitions="WIN32;_USRDLL;DLL_EXPORTS;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_PROPGRID"
 				MinimalRebuild="true"
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
@@ -230,9 +230,9 @@
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="wx/wxprec.h"
-				PrecompiledHeaderFile="vc_mswuddll\wxprec_netdll.pch"
-				ObjectFile="vc_mswuddll\net\"
-				ProgramDataBaseFileName="..\..\lib\vc_dll\wxbase310ud_net_vc_custom.pdb"
+				PrecompiledHeaderFile="vc_mswuddll\wxprec_propgriddll.pch"
+				ObjectFile="vc_mswuddll\propgrid\"
+				ProgramDataBaseFileName="..\..\lib\vc_dll\wxmsw310ud_propgrid_vc_custom.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="true"
@@ -243,7 +243,7 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxbase310ud_net_vc_custom;wxUSE_GUI=0;WXUSINGDLL;WXMAKINGDLL_NET"
+				PreprocessorDefinitions="_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw310ud_propgrid_vc_custom;WXUSINGDLL;WXMAKINGDLL_PROPGRID"
 				Culture="1033"
 				AdditionalIncludeDirectories="..\..\lib\vc_dll\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 			/>
@@ -253,15 +253,15 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions=""
-				AdditionalDependencies="wxzlibd.lib wxregexud.lib wxexpatd.lib   kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib ..\..\lib\vc_dll\wxbase31ud.lib"
-				OutputFile="..\..\lib\vc_dll\wxbase310ud_net_vc_custom.dll"
+				AdditionalDependencies="wxtiffd.lib wxjpegd.lib wxpngd.lib   wxzlibd.lib wxregexud.lib wxexpatd.lib   kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib ..\..\lib\vc_dll\wxmsw31ud_adv.lib ..\..\lib\vc_dll\wxmsw31ud_core.lib ..\..\lib\vc_dll\wxbase31ud.lib"
+				OutputFile="..\..\lib\vc_dll\wxmsw310ud_propgrid_vc_custom.dll"
 				LinkIncremental="2"
-				ImportLibrary="..\..\lib\vc_dll\wxbase31ud_net.lib"
+				ImportLibrary="..\..\lib\vc_dll\wxmsw31ud_propgrid.lib"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib\vc_dll"
 				GenerateManifest="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="..\..\lib\vc_dll\wxbase310ud_net_vc_custom.pdb"
+				ProgramDatabaseFile="..\..\lib\vc_dll\wxmsw310ud_propgrid_vc_custom.pdb"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -275,7 +275,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_dll\wx_vc8_net.bsc"
+				OutputFile="..\..\lib\vc_dll\wx_vc8_propgrid.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -288,7 +288,7 @@
 		<Configuration
 			Name="DLL Release|Win32"
 			OutputDirectory="..\..\lib\vc_dll"
-			IntermediateDirectory="vc_mswudll\net"
+			IntermediateDirectory="vc_mswudll\propgrid"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -308,22 +308,22 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_USRDLL;DLL_EXPORTS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;wxUSE_GUI=0;WXUSINGDLL;WXMAKINGDLL_NET"
+				PreprocessorDefinitions="WIN32;_USRDLL;DLL_EXPORTS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_PROPGRID"
 				AdditionalIncludeDirectories="..\..\lib\vc_dll\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				AdditionalIncludeDirectories="..\..\lib\vc_dll\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
-				PreprocessorDefinitions="WIN32;_USRDLL;DLL_EXPORTS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;wxUSE_GUI=0;WXUSINGDLL;WXMAKINGDLL_NET"
+				PreprocessorDefinitions="WIN32;_USRDLL;DLL_EXPORTS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_PROPGRID"
 				ExceptionHandling="1"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="wx/wxprec.h"
-				PrecompiledHeaderFile="vc_mswudll\wxprec_netdll.pch"
-				ObjectFile="vc_mswudll\net\"
-				ProgramDataBaseFileName="..\..\lib\vc_dll\wxbase310u_net_vc_custom.pdb"
+				PrecompiledHeaderFile="vc_mswudll\wxprec_propgriddll.pch"
+				ObjectFile="vc_mswudll\propgrid\"
+				ProgramDataBaseFileName="..\..\lib\vc_dll\wxmsw310u_propgrid_vc_custom.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="true"
@@ -334,7 +334,7 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxbase310u_net_vc_custom;wxUSE_GUI=0;WXUSINGDLL;WXMAKINGDLL_NET"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw310u_propgrid_vc_custom;WXUSINGDLL;WXMAKINGDLL_PROPGRID"
 				Culture="1033"
 				AdditionalIncludeDirectories="..\..\lib\vc_dll\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 			/>
@@ -344,15 +344,15 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions=""
-				AdditionalDependencies="wxzlib.lib wxregexu.lib wxexpat.lib   kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib ..\..\lib\vc_dll\wxbase31u.lib"
-				OutputFile="..\..\lib\vc_dll\wxbase310u_net_vc_custom.dll"
+				AdditionalDependencies="wxtiff.lib wxjpeg.lib wxpng.lib   wxzlib.lib wxregexu.lib wxexpat.lib   kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib ..\..\lib\vc_dll\wxmsw31u_adv.lib ..\..\lib\vc_dll\wxmsw31u_core.lib ..\..\lib\vc_dll\wxbase31u.lib"
+				OutputFile="..\..\lib\vc_dll\wxmsw310u_propgrid_vc_custom.dll"
 				LinkIncremental="1"
-				ImportLibrary="..\..\lib\vc_dll\wxbase31u_net.lib"
+				ImportLibrary="..\..\lib\vc_dll\wxmsw31u_propgrid.lib"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib\vc_dll"
 				GenerateManifest="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="..\..\lib\vc_dll\wxbase310u_net_vc_custom.pdb"
+				ProgramDatabaseFile="..\..\lib\vc_dll\wxmsw310u_propgrid_vc_custom.pdb"
 				TargetMachine="1"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
@@ -368,7 +368,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_dll\wx_vc8_net.bsc"
+				OutputFile="..\..\lib\vc_dll\wx_vc8_propgrid.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -381,7 +381,7 @@
 		<Configuration
 			Name="Debug|x64"
 			OutputDirectory="..\..\lib\vc_x64_lib"
-			IntermediateDirectory="vc_mswud_x64\net"
+			IntermediateDirectory="vc_mswud_x64\propgrid"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -401,14 +401,14 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;wxUSE_GUI=0"
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING"
 				AdditionalIncludeDirectories="..\..\lib\vc_x64_lib\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\lib\vc_x64_lib\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;wxUSE_GUI=0"
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING"
 				MinimalRebuild="true"
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
@@ -417,9 +417,9 @@
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="wx/wxprec.h"
-				PrecompiledHeaderFile="vc_mswud_x64\wxprec_netlib.pch"
-				ObjectFile="vc_mswud_x64\net\"
-				ProgramDataBaseFileName="..\..\lib\vc_x64_lib\wxbase31ud_net.pdb"
+				PrecompiledHeaderFile="vc_mswud_x64\wxprec_propgridlib.pch"
+				ObjectFile="vc_mswud_x64\propgrid\"
+				ProgramDataBaseFileName="..\..\lib\vc_x64_lib\wxmsw31ud_propgrid.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="true"
@@ -430,7 +430,7 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;wxUSE_GUI=0"
+				PreprocessorDefinitions="_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING"
 				Culture="1033"
 				AdditionalIncludeDirectories="..\..\lib\vc_x64_lib\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 			/>
@@ -439,7 +439,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\vc_x64_lib\wxbase31ud_net.lib"
+				OutputFile="..\..\lib\vc_x64_lib\wxmsw31ud_propgrid.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -453,7 +453,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_x64_lib\wx_vc8_net.bsc"
+				OutputFile="..\..\lib\vc_x64_lib\wx_vc8_propgrid.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -466,7 +466,7 @@
 		<Configuration
 			Name="Release|x64"
 			OutputDirectory="..\..\lib\vc_x64_lib"
-			IntermediateDirectory="vc_mswu_x64\net"
+			IntermediateDirectory="vc_mswu_x64\propgrid"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -486,22 +486,22 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;wxUSE_GUI=0"
+				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING"
 				AdditionalIncludeDirectories="..\..\lib\vc_x64_lib\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				AdditionalIncludeDirectories="..\..\lib\vc_x64_lib\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
-				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;wxUSE_GUI=0"
+				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING"
 				ExceptionHandling="1"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="wx/wxprec.h"
-				PrecompiledHeaderFile="vc_mswu_x64\wxprec_netlib.pch"
-				ObjectFile="vc_mswu_x64\net\"
-				ProgramDataBaseFileName="..\..\lib\vc_x64_lib\wxbase31u_net.pdb"
+				PrecompiledHeaderFile="vc_mswu_x64\wxprec_propgridlib.pch"
+				ObjectFile="vc_mswu_x64\propgrid\"
+				ProgramDataBaseFileName="..\..\lib\vc_x64_lib\wxmsw31u_propgrid.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="true"
@@ -512,7 +512,7 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;wxUSE_GUI=0"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING"
 				Culture="1033"
 				AdditionalIncludeDirectories="..\..\lib\vc_x64_lib\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 			/>
@@ -521,7 +521,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\vc_x64_lib\wxbase31u_net.lib"
+				OutputFile="..\..\lib\vc_x64_lib\wxmsw31u_propgrid.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -535,7 +535,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_x64_lib\wx_vc8_net.bsc"
+				OutputFile="..\..\lib\vc_x64_lib\wx_vc8_propgrid.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -548,7 +548,7 @@
 		<Configuration
 			Name="DLL Debug|x64"
 			OutputDirectory="..\..\lib\vc_x64_dll"
-			IntermediateDirectory="vc_mswuddll_x64\net"
+			IntermediateDirectory="vc_mswuddll_x64\propgrid"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -568,14 +568,14 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_USRDLL;DLL_EXPORTS;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;wxUSE_GUI=0;WXUSINGDLL;WXMAKINGDLL_NET"
+				PreprocessorDefinitions="WIN32;_USRDLL;DLL_EXPORTS;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_PROPGRID"
 				AdditionalIncludeDirectories="..\..\lib\vc_x64_dll\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\lib\vc_x64_dll\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
-				PreprocessorDefinitions="WIN32;_USRDLL;DLL_EXPORTS;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;wxUSE_GUI=0;WXUSINGDLL;WXMAKINGDLL_NET"
+				PreprocessorDefinitions="WIN32;_USRDLL;DLL_EXPORTS;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_PROPGRID"
 				MinimalRebuild="true"
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
@@ -584,9 +584,9 @@
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="wx/wxprec.h"
-				PrecompiledHeaderFile="vc_mswuddll_x64\wxprec_netdll.pch"
-				ObjectFile="vc_mswuddll_x64\net\"
-				ProgramDataBaseFileName="..\..\lib\vc_x64_dll\wxbase310ud_net_vc_custom.pdb"
+				PrecompiledHeaderFile="vc_mswuddll_x64\wxprec_propgriddll.pch"
+				ObjectFile="vc_mswuddll_x64\propgrid\"
+				ProgramDataBaseFileName="..\..\lib\vc_x64_dll\wxmsw310ud_propgrid_vc_custom.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="true"
@@ -597,7 +597,7 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxbase310ud_net_vc_custom;wxUSE_GUI=0;WXUSINGDLL;WXMAKINGDLL_NET"
+				PreprocessorDefinitions="_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw310ud_propgrid_vc_custom;WXUSINGDLL;WXMAKINGDLL_PROPGRID"
 				Culture="1033"
 				AdditionalIncludeDirectories="..\..\lib\vc_x64_dll\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 			/>
@@ -607,15 +607,15 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions=""
-				AdditionalDependencies="wxzlibd.lib wxregexud.lib wxexpatd.lib   kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib ..\..\lib\vc_x64_dll\wxbase31ud.lib"
-				OutputFile="..\..\lib\vc_x64_dll\wxbase310ud_net_vc_custom.dll"
+				AdditionalDependencies="wxtiffd.lib wxjpegd.lib wxpngd.lib   wxzlibd.lib wxregexud.lib wxexpatd.lib   kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib ..\..\lib\vc_x64_dll\wxmsw31ud_adv.lib ..\..\lib\vc_x64_dll\wxmsw31ud_core.lib ..\..\lib\vc_x64_dll\wxbase31ud.lib"
+				OutputFile="..\..\lib\vc_x64_dll\wxmsw310ud_propgrid_vc_custom.dll"
 				LinkIncremental="2"
-				ImportLibrary="..\..\lib\vc_x64_dll\wxbase31ud_net.lib"
+				ImportLibrary="..\..\lib\vc_x64_dll\wxmsw31ud_propgrid.lib"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib\vc_x64_dll"
 				GenerateManifest="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="..\..\lib\vc_x64_dll\wxbase310ud_net_vc_custom.pdb"
+				ProgramDatabaseFile="..\..\lib\vc_x64_dll\wxmsw310ud_propgrid_vc_custom.pdb"
 				TargetMachine="17"
 			/>
 			<Tool
@@ -629,7 +629,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_x64_dll\wx_vc8_net.bsc"
+				OutputFile="..\..\lib\vc_x64_dll\wx_vc8_propgrid.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -642,7 +642,7 @@
 		<Configuration
 			Name="DLL Release|x64"
 			OutputDirectory="..\..\lib\vc_x64_dll"
-			IntermediateDirectory="vc_mswudll_x64\net"
+			IntermediateDirectory="vc_mswudll_x64\propgrid"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -662,22 +662,22 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_USRDLL;DLL_EXPORTS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;wxUSE_GUI=0;WXUSINGDLL;WXMAKINGDLL_NET"
+				PreprocessorDefinitions="WIN32;_USRDLL;DLL_EXPORTS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_PROPGRID"
 				AdditionalIncludeDirectories="..\..\lib\vc_x64_dll\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				AdditionalIncludeDirectories="..\..\lib\vc_x64_dll\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
-				PreprocessorDefinitions="WIN32;_USRDLL;DLL_EXPORTS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;wxUSE_GUI=0;WXUSINGDLL;WXMAKINGDLL_NET"
+				PreprocessorDefinitions="WIN32;_USRDLL;DLL_EXPORTS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_PROPGRID"
 				ExceptionHandling="1"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="wx/wxprec.h"
-				PrecompiledHeaderFile="vc_mswudll_x64\wxprec_netdll.pch"
-				ObjectFile="vc_mswudll_x64\net\"
-				ProgramDataBaseFileName="..\..\lib\vc_x64_dll\wxbase310u_net_vc_custom.pdb"
+				PrecompiledHeaderFile="vc_mswudll_x64\wxprec_propgriddll.pch"
+				ObjectFile="vc_mswudll_x64\propgrid\"
+				ProgramDataBaseFileName="..\..\lib\vc_x64_dll\wxmsw310u_propgrid_vc_custom.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="true"
@@ -688,7 +688,7 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxbase310u_net_vc_custom;wxUSE_GUI=0;WXUSINGDLL;WXMAKINGDLL_NET"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXDLLNAME=wxmsw310u_propgrid_vc_custom;WXUSINGDLL;WXMAKINGDLL_PROPGRID"
 				Culture="1033"
 				AdditionalIncludeDirectories="..\..\lib\vc_x64_dll\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 			/>
@@ -698,15 +698,15 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions=""
-				AdditionalDependencies="wxzlib.lib wxregexu.lib wxexpat.lib   kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib ..\..\lib\vc_x64_dll\wxbase31u.lib"
-				OutputFile="..\..\lib\vc_x64_dll\wxbase310u_net_vc_custom.dll"
+				AdditionalDependencies="wxtiff.lib wxjpeg.lib wxpng.lib   wxzlib.lib wxregexu.lib wxexpat.lib   kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib ..\..\lib\vc_x64_dll\wxmsw31u_adv.lib ..\..\lib\vc_x64_dll\wxmsw31u_core.lib ..\..\lib\vc_x64_dll\wxbase31u.lib"
+				OutputFile="..\..\lib\vc_x64_dll\wxmsw310u_propgrid_vc_custom.dll"
 				LinkIncremental="1"
-				ImportLibrary="..\..\lib\vc_x64_dll\wxbase31u_net.lib"
+				ImportLibrary="..\..\lib\vc_x64_dll\wxmsw31u_propgrid.lib"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib\vc_x64_dll"
 				GenerateManifest="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="..\..\lib\vc_x64_dll\wxbase310u_net_vc_custom.pdb"
+				ProgramDatabaseFile="..\..\lib\vc_x64_dll\wxmsw310u_propgrid_vc_custom.pdb"
 				TargetMachine="17"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
@@ -722,7 +722,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_x64_dll\wx_vc8_net.bsc"
+				OutputFile="..\..\lib\vc_x64_dll\wx_vc8_propgrid.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -809,59 +809,11 @@
 					/>
 				</FileConfiguration>
 			</File>
-			<File
-				RelativePath="..\..\src\common\fs_inet.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\common\ftp.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\common\http.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\common\protocol.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\common\sckaddr.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\common\sckfile.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\common\sckipc.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\common\sckstrm.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\common\socket.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\common\url.cpp"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="MSW Sources"
 			UniqueIdentifier="{D030D8C2-53EE-5B96-8F89-D78157B06140}"
 			>
-			<File
-				RelativePath="..\..\src\msw\sockmsw.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\msw\urlmsw.cpp"
-				>
-			</File>
 			<File
 				RelativePath="..\..\src\msw\version.rc"
 				>
@@ -1102,47 +1054,77 @@
 			UniqueIdentifier="{8C07E926-65B0-5F00-B0D6-7F40DA69BB25}"
 			>
 			<File
-				RelativePath="..\..\include\wx\protocol\file.h"
+				RelativePath="..\..\include\wx\propgrid\advprops.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\include\wx\fs_inet.h"
+				RelativePath="..\..\include\wx\propgrid\editors.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\include\wx\protocol\ftp.h"
+				RelativePath="..\..\include\wx\propgrid\manager.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\include\wx\protocol\http.h"
+				RelativePath="..\..\include\wx\propgrid\property.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\include\wx\protocol\log.h"
+				RelativePath="..\..\include\wx\propgrid\propgrid.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\include\wx\protocol\protocol.h"
+				RelativePath="..\..\include\wx\propgrid\propgriddefs.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\include\wx\sckaddr.h"
+				RelativePath="..\..\include\wx\propgrid\propgridiface.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\include\wx\sckipc.h"
+				RelativePath="..\..\include\wx\propgrid\propgridpagestate.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\include\wx\sckstrm.h"
+				RelativePath="..\..\include\wx\propgrid\props.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Source Files"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
+			<File
+				RelativePath="..\..\src\propgrid\advprops.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\include\wx\socket.h"
+				RelativePath="..\..\src\propgrid\editors.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\include\wx\url.h"
+				RelativePath="..\..\src\propgrid\manager.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\propgrid\property.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\propgrid\propgrid.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\propgrid\propgridiface.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\propgrid\propgridpagestate.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\propgrid\props.cpp"
 				>
 			</File>
 		</Filter>
