@@ -34,6 +34,7 @@
     #include "wx/string.h"
     #include "wx/log.h"
     #include "wx/intl.h"
+    #include "wx/math.h"
     #include "wx/frame.h"
     #include "wx/window.h"
     #include "wx/control.h"
@@ -48,6 +49,7 @@
     #include "wx/statusbr.h"
     #include "wx/toolbar.h"
     #include "wx/dcclient.h"
+    #include "wx/dcscreen.h"
     #include "wx/scrolbar.h"
     #include "wx/layout.h"
     #include "wx/sizer.h"
@@ -816,6 +818,21 @@ wxSize wxWindowBase::DoGetBestSize() const
     best.y += wxMax(0, diff.y);
 
     return best;
+}
+
+double wxWindowBase::GetContentScaleFactor() const
+{
+    // Currently we don't support per-monitor DPI, so it's useless to construct
+    // a DC associated with this window, just use the global value.
+    //
+    // We also use just the vertical component of the DPI because it's the one
+    // that counts most and, in practice, it's equal to the horizontal one
+    // anyhow.
+    //
+    // Finally, we consider 96 DPI to be the standard value, this is correct
+    // at least for MSW, but could conceivably need adjustment for the other
+    // platforms.
+    return wxScreenDC().GetPPI().y / 96.;
 }
 
 // helper of GetWindowBorderSize(): as many ports don't implement support for
@@ -2977,8 +2994,19 @@ void wxWindowBase::OnInternalIdle()
 }
 
 // ----------------------------------------------------------------------------
-// dialog units translations
+// DPI-independent pixels and dialog units translations
 // ----------------------------------------------------------------------------
+
+#ifndef wxHAVE_DPI_INDEPENDENT_PIXELS
+
+wxSize wxWindowBase::FromDIP(const wxSize& sz) const
+{
+    const double scale = GetContentScaleFactor();
+
+    return wxSize(wxRound(scale*sz.x), wxRound(scale*sz.y));
+}
+
+#endif // !wxHAVE_DPI_INDEPENDENT_PIXELS
 
 // Windows' computes dialog units using average character width over upper-
 // and lower-case ASCII alphabet and not using the average character width

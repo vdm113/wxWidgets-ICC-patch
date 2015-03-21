@@ -975,6 +975,7 @@ public:
     void OnUpClick(wxCommandEvent& event);
     void OnDownClick(wxCommandEvent& event);
     void OnEndLabelEdit(wxListEvent& event);
+    void OnBeginLabelEdit(wxListEvent& evt);
     void OnIdle(wxIdleEvent& event);
 
 protected:

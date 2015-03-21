@@ -164,10 +164,12 @@ bool MyApp::OnCmdLineParsed(wxCmdLineParser& parser)
     return wxApp::OnCmdLineParsed(parser);
 }
 
+#ifdef __WXMAC__
 void MyApp::MacNewFile()
 {
     wxDocManager::GetDocumentManager()->CreateNewDocument();
 }
+#endif // __WXMAC__
 
 bool MyApp::OnInit()
 {
