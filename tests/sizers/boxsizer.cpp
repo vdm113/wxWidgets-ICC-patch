@@ -51,6 +51,7 @@ private:
         CPPUNIT_TEST( BestSizeRespectsMaxSize );
         CPPUNIT_TEST( RecalcSizesRespectsMaxSize1 );
         CPPUNIT_TEST( RecalcSizesRespectsMaxSize2 );
+        CPPUNIT_TEST( IncompatibleFlags );
     CPPUNIT_TEST_SUITE_END();
 
     void Size1();
@@ -59,6 +60,7 @@ private:
     void BestSizeRespectsMaxSize();
     void RecalcSizesRespectsMaxSize1();
     void RecalcSizesRespectsMaxSize2();
+    void IncompatibleFlags();
 
     wxWindow *m_win;
     wxSizer *m_sizer;
@@ -417,4 +419,11 @@ void BoxSizerTestCase::RecalcSizesRespectsMaxSize2()
     CPPUNIT_ASSERT_EQUAL(125, child1->GetSize().GetHeight());
     CPPUNIT_ASSERT_EQUAL(50, child2->GetSize().GetHeight());
     CPPUNIT_ASSERT_EQUAL(125, child3->GetSize().GetHeight());
+}
+
+void BoxSizerTestCase::IncompatibleFlags()
+{
+    WX_ASSERT_FAILS_WITH_ASSERT(
+        m_sizer->Add(10, 10, 0, wxALIGN_BOTTOM | wxALIGN_CENTRE_VERTICAL)
+    );
 }
