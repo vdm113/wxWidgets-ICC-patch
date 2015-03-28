@@ -32,6 +32,6 @@ git commit -a --signoff -m "restore our support files: ${DATE}"
 detached_head=`git rev-parse HEAD`
 git checkout master
 git merge ${detached_head}
-find . -name '*~HEAD' -exec rm -f '{}' \; -exec git commit -a --signoff -m 'remove transient file' \;
+find . -name '*~HEAD*' -exec rm -f '{}' \; -exec git commit -a --signoff -m 'remove transient file' \;
 
 #eof
