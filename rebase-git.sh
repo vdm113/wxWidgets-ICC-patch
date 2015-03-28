@@ -20,7 +20,6 @@ for i in ${dirs} ; do mkdir ${i} 2>/dev/null ; done
 for i in ${files} ; do cp -f "../wxWidgets_vanilla_trunk/${i}" "./${i}" ; done
 cd wxWidgets_vdm_patch && ./X64/Release/wxWidgets_vdm_patch.exe -p --no-wait && cd ..
 for i in `find build/msw/ -type f -maxdepth 1` ; do ( git rm -f "${i}" 2>/dev/null ) ; ( rm -f "${i}" 2>/dev/null ) ; done
-find . -name '*~HEAD' -exec rm -f '{}' \;
 git commit -a --signoff -m 'sync with upstream (GIT); patched for ICC; removed files we do not support'
 cp -rf ./vdm/build .
 git add build/msw/
@@ -33,5 +32,6 @@ git commit -a --signoff -m "restore our support files: ${DATE}"
 detached_head=`git rev-parse HEAD`
 git checkout master
 git merge ${detached_head}
+find . -name '*~HEAD' -exec rm -f '{}' \; -exec git commit -a --signoff -m 'remove transient file' \;
 
 #eof
