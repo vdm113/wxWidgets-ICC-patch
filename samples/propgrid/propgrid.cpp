@@ -2656,6 +2656,11 @@ void FormMain::OnTestReplaceClick( wxCommandEvent& WXUNUSED(event) )
         // Look for unused property name
         wxString propName = wxT("ReplaceFlagsProperty");
         int idx = 0;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         while ( m_pPropGridManager->GetPropertyByName(propName) )
         {
             propName = wxString::Format(_T("ReplaceFlagsProperty %i"), ++idx);
