@@ -82,9 +82,45 @@ wxColour wxColourFromCDandAlpha(ColourDesired& cd, int alpha) {
 
 //----------------------------------------------------------------------
 
+namespace
+{
+
+// wxFont with ascent cached, a pointer to this type is stored in Font::fid.
+class wxFontWithAscent : public wxFont
+{
+public:
+    explicit wxFontWithAscent(const wxFont &font)
+        : wxFont(font),
+          m_ascent(0)
+    {
+    }
+
+    static wxFontWithAscent* FromFID(FontID fid)
+    {
+        return static_cast<wxFontWithAscent*>(fid);
+    }
+
+    void SetAscent(int ascent) { m_ascent = ascent; }
+    int GetAscent() const { return m_ascent; }
+
+private:
+    int m_ascent;
+};
+
+void SetAscent(Font& f, int ascent)
+{
+    wxFontWithAscent::FromFID(f.GetID())->SetAscent(ascent);
+}
+
+int GetAscent(Font& f)
+{
+    return wxFontWithAscent::FromFID(f.GetID())->GetAscent();
+}
+
+} // anonymous namespace
+
 Font::Font() {
     fid = 0;
-    ascent = 0;
 }
 
 Font::~Font() {
@@ -111,20 +147,20 @@ void Font::Create(const FontParameters &fp) {
     else
         weight = wxFONTWEIGHT_NORMAL;
 
-    wxFont* font = new wxFont(fp.size,
-                              wxFONTFAMILY_DEFAULT,
-                              fp.italic ? wxFONTSTYLE_ITALIC :  wxFONTSTYLE_NORMAL,
-                              weight,
-                              false,
-                              stc2wx(fp.faceName),
-                              encoding);
-    fid = font;
+    wxFont font(fp.size,
+        wxFONTFAMILY_DEFAULT,
+        fp.italic ? wxFONTSTYLE_ITALIC :  wxFONTSTYLE_NORMAL,
+        weight,
+        false,
+        stc2wx(fp.faceName),
+        encoding);
+    fid = new wxFontWithAscent(font);
 }
 
 
 void Font::Release() {
     if (fid)
-        delete (wxFont*)fid;
+        delete wxFontWithAscent::FromFID(fid);
     fid = 0;
 }
 
@@ -520,7 +556,7 @@ void SurfaceImpl::DrawTextNoClip(PRectangle rc, Font &font, XYPOSITION ybase,
 
     // ybase is where the baseline should be, but wxWin uses the upper left
     // corner, so I need to calculate the real position for the text...
-    hdc->DrawText(stc2wx(s, len), rc.left, ybase - font.ascent);
+    hdc->DrawText(stc2wx(s, len), rc.left, ybase - GetAscent(font));
 }
 
 void SurfaceImpl::DrawTextClipped(PRectangle rc, Font &font, XYPOSITION ybase,
@@ -533,7 +569,7 @@ void SurfaceImpl::DrawTextClipped(PRectangle rc, Font &font, XYPOSITION ybase,
     hdc->SetClippingRegion(wxRectFromPRectangle(rc));
 
     // see comments above
-    hdc->DrawText(stc2wx(s, len), rc.left, ybase - font.ascent);
+    hdc->DrawText(stc2wx(s, len), rc.left, ybase - GetAscent(font));
     hdc->DestroyClippingRegion();
 }
 
@@ -548,7 +584,7 @@ void SurfaceImpl::DrawTextTransparent(PRectangle rc, Font &font, XYPOSITION ybas
 
     // ybase is where the baseline should be, but wxWin uses the upper left
     // corner, so I need to calculate the real position for the text...
-    hdc->DrawText(stc2wx(s, len), rc.left, ybase - font.ascent);
+    hdc->DrawText(stc2wx(s, len), rc.left, ybase - GetAscent(font));
 
     hdc->SetBackgroundMode(wxBRUSHSTYLE_SOLID);
 }
@@ -635,8 +671,9 @@ XYPOSITION SurfaceImpl::Ascent(Font &font) {
     SetFont(font);
     int w, h, d, e;
     hdc->GetTextExtent(EXTENT_TEST, &w, &h, &d, &e);
-    font.ascent = h - d;
-    return font.ascent;
+    const int ascent = h - d;
+    SetAscent(font, ascent);
+    return ascent;
 }
 
 XYPOSITION SurfaceImpl::Descent(Font &font) {
