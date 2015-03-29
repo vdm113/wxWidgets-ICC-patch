@@ -158,11 +158,6 @@ private:
         gc->Rotate(m_frame*angle);
 
         const bool isEnabled = m_win->IsThisEnabled();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for ( int n = 0; n < NUM_DOTS; n++ )
         {
             // Draw all dots uniformly grey when the window is disabled,
