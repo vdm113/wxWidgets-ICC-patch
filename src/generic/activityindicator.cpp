@@ -157,12 +157,7 @@ private:
         // the next position every time.
         gc->Rotate(m_frame*angle);
 
-        const bool isEnabled = m_win->IsEnabled();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
+        const bool isEnabled = m_win->IsThisEnabled();
         for ( int n = 0; n < NUM_DOTS; n++ )
         {
             // Draw all dots uniformly grey when the window is disabled,
