@@ -3096,7 +3096,7 @@ bool wxPropertyGrid::PerformValidation( wxPGProperty* p, wxVariant& pendingValue
     //
     // Variant list a special value that cannot be validated
     // by normal means.
-    if ( pendingValue.GetType() != wxPG_VARIANT_TYPE_LIST )
+    if ( !pendingValue.IsType(wxPG_VARIANT_TYPE_LIST) )
     {
         if ( !p->ValidateValue(pendingValue, m_validationInfo) )
             return false;
@@ -3147,7 +3147,7 @@ bool wxPropertyGrid::PerformValidation( wxPGProperty* p, wxVariant& pendingValue
     wxVariant value;
     wxPGProperty* evtChangingProperty = changedProperty;
 
-    if ( pPendingValue->GetType() != wxPG_VARIANT_TYPE_LIST )
+    if ( !pPendingValue->IsType(wxPG_VARIANT_TYPE_LIST) )
     {
         value = *pPendingValue;
     }
@@ -3206,7 +3206,7 @@ bool wxPropertyGrid::PerformValidation( wxPGProperty* p, wxVariant& pendingValue
 
     // If changedProperty is not property which value was edited,
     // then call wxPGProperty::ValidateValue() for that as well.
-    if ( p != changedProperty && value.GetType() != wxPG_VARIANT_TYPE_LIST )
+    if ( p != changedProperty && !value.IsType(wxPG_VARIANT_TYPE_LIST) )
     {
         if ( !changedProperty->ValidateValue(value, m_validationInfo) )
             return false;
