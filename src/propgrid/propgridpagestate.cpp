@@ -1708,7 +1708,7 @@ void wxPropertyGridPageState::DoSetPropertyValues( const wxVariantList& list, wx
                     wxPGProperty* p = foundProp;
 
                     // If it was a list, we still have to go through it.
-                    if ( wxStrcmp(current->GetType(), wxS("list")) == 0 )
+                    if ( current->IsType(wxPG_VARIANT_TYPE_LIST) )
                     {
                         DoSetPropertyValues( current->GetList(),
                                 p->IsCategory()?p:(NULL)
@@ -1729,7 +1729,7 @@ void wxPropertyGridPageState::DoSetPropertyValues( const wxVariantList& list, wx
                 else
                 {
                     // Is it list?
-                    if ( !current->IsType(wxS("list")) )
+                    if ( !current->IsType(wxPG_VARIANT_TYPE_LIST) )
                     {
                         // Not.
                     }
