@@ -1467,6 +1467,14 @@ void wxTreeListCtrl::UnselectAll()
     m_view->UnselectAll();
 }
 
+void wxTreeListCtrl::EnsureVisible(wxTreeListItem item)
+{
+    wxCHECK_RET( m_view, "Must create first" );
+
+    m_view->EnsureVisible(m_model->ToDVI(item));
+}
+
+
 // ----------------------------------------------------------------------------
 // Checkbox handling
 // ----------------------------------------------------------------------------
