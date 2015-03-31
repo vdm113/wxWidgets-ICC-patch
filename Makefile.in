@@ -3910,6 +3910,7 @@ COND_WXUNIV_0_ADVANCED_HDR =  \
 	wx/treelist.h \
 	wx/wizard.h \
 	wx/addremovectrl.h \
+	wx/activityindicator.h \
 	$(ADVANCED_PLATFORM_HDR) \
 	$(ADVANCED_PLATFORM_NATIVE_HDR)
 @COND_WXUNIV_0@ADVANCED_HDR = $(COND_WXUNIV_0_ADVANCED_HDR)
@@ -3964,6 +3965,7 @@ COND_WXUNIV_1_ADVANCED_HDR =  \
 	wx/treelist.h \
 	wx/wizard.h \
 	wx/addremovectrl.h \
+	wx/activityindicator.h \
 	$(ADVANCED_PLATFORM_HDR) \
 	wx/generic/animate.h
 @COND_WXUNIV_1@ADVANCED_HDR = $(COND_WXUNIV_1_ADVANCED_HDR)
