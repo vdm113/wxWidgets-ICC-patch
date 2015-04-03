@@ -163,7 +163,7 @@ bool wxConvertAnyToVariant(const wxAny& any, wxVariant* variant)
     // and others to "longlong".
     if ( wxANY_CHECK_TYPE(any, signed int) )
     {
-#ifdef wxLongLong_t
+#if defined(wxLongLong_t) && wxUSE_LONGLONG
         wxLongLong_t ll = 0;
         if ( any.GetAs(&ll) )
         {
@@ -281,7 +281,7 @@ bool wxAnyValueTypeImplInt::ConvertValue(const wxAnyValueBuffer& src,
     wxAnyBaseIntType value = GetValue(src);
     if ( wxANY_VALUE_TYPE_CHECK_TYPE(dstType, wxString) )
     {
-#ifdef wxLongLong_t
+#if defined(wxLongLong_t) && wxUSE_LONLONG
         wxLongLong ll(value);
         wxString s = ll.ToString();
 #else
@@ -319,7 +319,7 @@ bool wxAnyValueTypeImplUint::ConvertValue(const wxAnyValueBuffer& src,
     wxAnyBaseUintType value = GetValue(src);
     if ( wxANY_VALUE_TYPE_CHECK_TYPE(dstType, wxString) )
     {
-#ifdef wxLongLong_t
+#if defined(wxLongLong_t) && wxUSE_LONGLONG
         wxULongLong ull(value);
         wxString s = ull.ToString();
 #else
