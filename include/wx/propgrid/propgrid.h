@@ -1822,7 +1822,7 @@ protected:
     wxBitmap            *m_doubleBuffer;
 
     /** Local time ms when control was created. */
-    wxLongLong          m_timeCreated;
+    wxMilliClock_t      m_timeCreated;
 
     /** wxPGProperty::OnEvent can change value by setting this. */
     wxVariant           m_changeInEventValue;
@@ -2032,7 +2032,7 @@ protected:
     wxWindow*           m_tlpClosed;
 
     // Local time ms when tlp was closed.
-    wxLongLong          m_tlpClosedTime;
+    wxMilliClock_t      m_tlpClosedTime;
 
     // Sort function
     wxPGSortCallback    m_sortFunction;
