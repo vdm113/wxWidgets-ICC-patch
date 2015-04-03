@@ -420,6 +420,7 @@ int wxDataViewModel::Compare( const wxDataViewItem &item1, const wxDataViewItem 
         else if (d1 > d2)
             return 1;
     }
+#if wxUSE_DATETIME
     else if (value1.GetType() == wxT("datetime"))
     {
         wxDateTime dt1 = value1.GetDateTime();
@@ -429,6 +430,7 @@ int wxDataViewModel::Compare( const wxDataViewItem &item1, const wxDataViewItem 
         if (dt2.IsEarlierThan(dt1))
             return 1;
     }
+#endif // wxUSE_DATETIME
     else if (value1.GetType() == wxT("bool"))
     {
         bool b1 = value1.GetBool();
