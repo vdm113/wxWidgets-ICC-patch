@@ -98,9 +98,10 @@ public:     // public API
     {
         int f = GetDefaultPickerCtrlFlag();
         if ( grow )
+        {
+            f &= ~wxALIGN_MASK;
             f |= wxGROW;
-        else
-            f &= ~wxGROW;
+        }
 
         GetPickerCtrlItem()->SetFlag(f);
     }
@@ -160,7 +161,7 @@ protected:
     {
         // on macintosh, without additional borders
         // there's not enough space for focus rect
-        return wxALIGN_CENTER_VERTICAL|wxGROW
+        return wxALIGN_CENTER_VERTICAL
 #ifdef __WXMAC__
             | wxTOP | wxRIGHT | wxBOTTOM
 #endif
