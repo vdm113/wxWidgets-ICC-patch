@@ -64,6 +64,7 @@ private:
     wxSizerItem* MakeSizerItem();
     void SetSizerItemAttributes(wxSizerItem* sitem);
     void AddSizerItem(wxSizerItem* sitem);
+    int GetSizerFlags();
 };
 
 #if wxUSE_BUTTON
