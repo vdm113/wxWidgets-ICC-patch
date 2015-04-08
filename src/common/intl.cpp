@@ -1476,6 +1476,11 @@ wxString wxTranslateFromUnicodeFormat(const wxString& fmt)
         if ( *p == '\'' )
         {
             ++p;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
             while ( p != fmt.end() )
             {
                 if ( IsAtTwoSingleQuotes(fmt, p) )
