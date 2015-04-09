@@ -254,6 +254,7 @@ private:
         CPPUNIT_TEST( TestTimeArithmetics );
         CPPUNIT_TEST( TestDSTBug );
         CPPUNIT_TEST( TestDateOnly );
+        CPPUNIT_TEST( TestTranslateFromUnicodeFormat );
     CPPUNIT_TEST_SUITE_END();
 
     void TestLeapYears();
@@ -274,6 +275,7 @@ private:
     void TestTimeArithmetics();
     void TestDSTBug();
     void TestDateOnly();
+    void TestTranslateFromUnicodeFormat();
 
     DECLARE_NO_COPY_CLASS(DateTimeTestCase)
 };
@@ -1567,6 +1569,39 @@ void DateTimeTestCase::TestDateOnly()
     CPPUNIT_ASSERT_EQUAL( wxDateTime(19, wxDateTime::Jan, 2007), dt );
 
     CPPUNIT_ASSERT_EQUAL( wxDateTime::Today(), wxDateTime::Now().GetDateOnly() );
+}
+
+// Forward declaration
+wxString wxTranslateFromUnicodeFormat(const wxString& fmt);
+
+void DateTimeTestCase::TestTranslateFromUnicodeFormat()
+{
+    // Test single quote handling...
+
+    CPPUNIT_ASSERT_EQUAL("",   wxTranslateFromUnicodeFormat("'"));
+    CPPUNIT_ASSERT_EQUAL("%H", wxTranslateFromUnicodeFormat("H'"));
+    CPPUNIT_ASSERT_EQUAL("H",  wxTranslateFromUnicodeFormat("'H"));
+
+    CPPUNIT_ASSERT_EQUAL("'",   wxTranslateFromUnicodeFormat("''"));
+    CPPUNIT_ASSERT_EQUAL("%H'", wxTranslateFromUnicodeFormat("H''"));
+    CPPUNIT_ASSERT_EQUAL("H",   wxTranslateFromUnicodeFormat("'H'"));
+    CPPUNIT_ASSERT_EQUAL("'%H", wxTranslateFromUnicodeFormat("''H"));
+
+    CPPUNIT_ASSERT_EQUAL("'",   wxTranslateFromUnicodeFormat("'''"));
+    CPPUNIT_ASSERT_EQUAL("%H'", wxTranslateFromUnicodeFormat("H'''"));
+    CPPUNIT_ASSERT_EQUAL("H'",  wxTranslateFromUnicodeFormat("'H''"));
+    CPPUNIT_ASSERT_EQUAL("'%H", wxTranslateFromUnicodeFormat("''H'"));
+    CPPUNIT_ASSERT_EQUAL("'H",  wxTranslateFromUnicodeFormat("'''H"));
+
+    CPPUNIT_ASSERT_EQUAL("''",   wxTranslateFromUnicodeFormat("''''"));
+    CPPUNIT_ASSERT_EQUAL("%H''", wxTranslateFromUnicodeFormat("H''''"));
+    CPPUNIT_ASSERT_EQUAL("H'",   wxTranslateFromUnicodeFormat("'H'''"));
+    CPPUNIT_ASSERT_EQUAL("'%H'", wxTranslateFromUnicodeFormat("''H''"));
+    CPPUNIT_ASSERT_EQUAL("'H",   wxTranslateFromUnicodeFormat("'''H'"));
+    CPPUNIT_ASSERT_EQUAL("''%H", wxTranslateFromUnicodeFormat("''''H"));
+
+    CPPUNIT_ASSERT_EQUAL("'%H o'clock: It's about time'",
+        wxTranslateFromUnicodeFormat("''H 'o''clock: It''s about time'''"));
 }
 
 #endif // wxUSE_DATETIME
