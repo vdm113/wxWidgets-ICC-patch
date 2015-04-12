@@ -109,7 +109,6 @@ void GarbageTestCase::LoadGarbage()
 // Execute the given macro with the given first and second parameters and
 // bitmap type as its third parameter for all bitmap types.
 #define wxFOR_ALL_VALID_BITMAP_TYPES(m, p1, p2) \
-VDM_MACRO_PRAGMA_IVDEP \
     for ( wxBitmapType type = wxBitmapType(wxBITMAP_TYPE_INVALID + 1); \
           type < wxBITMAP_TYPE_MAX; \
           type = (wxBitmapType)(type + 1) ) \
@@ -117,7 +116,6 @@ VDM_MACRO_PRAGMA_IVDEP \
 
 // Similar to above but for animation types.
 #define wxFOR_ALL_VALID_ANIMATION_TYPES(m, p1, p2) \
-VDM_MACRO_PRAGMA_IVDEP \
     for ( wxAnimationType type = wxAnimationType(wxANIMATION_TYPE_INVALID + 1); \
           type < wxANIMATION_TYPE_ANY; \
           type = (wxAnimationType)(type + 1) ) \
