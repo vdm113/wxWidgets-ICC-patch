@@ -474,7 +474,7 @@ extern bool IsAutomaticTest()
             username = wxGetUserId();
 
         username.MakeLower();
-        s_isAutomatic = username.Matches("buildslave*") ||
+        s_isAutomatic = username == "buildbot" ||
                             username.Matches("sandbox*");
     }
 
