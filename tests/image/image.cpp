@@ -1434,6 +1434,11 @@ CompareApprox(const wxImage& i1, const wxImage& i2)
     const unsigned char* p1 = i1.GetData();
     const unsigned char* p2 = i2.GetData();
     const int numBytes = i1.GetWidth()*i1.GetHeight()*3;
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
     for ( int n = 0; n < numBytes; n++, p1++, p2++ )
     {
         switch ( *p1 - *p2 )

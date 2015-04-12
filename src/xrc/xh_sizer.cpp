@@ -708,6 +708,11 @@ int wxSizerXmlHandler::GetSizerFlags()
                 break;
         }
 
+#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif
         for ( int orient = 0; orient < Orient_Max; orient++ )
         {
             if ( !flagSpecifiesAlignIn[orient] )
