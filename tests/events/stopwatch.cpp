@@ -110,7 +110,7 @@ void StopWatchTestCase::Misc()
     WX_ASSERT_MESSAGE
     (
         ("Actual time value is %ld", t),
-        t > sleepTime - tolerance && t < sleepTime + tolerance
+        t > sleepTime - tolerance && t < 2*sleepTime
     );
 
     sw.Pause();
