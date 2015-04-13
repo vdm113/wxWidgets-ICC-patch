@@ -5,8 +5,8 @@
 language: cpp
 
 compiler:
-    - clang
     - gcc
+    - clang
 
 branches:
     only:
@@ -17,7 +17,14 @@ notifications:
         recipients:
             - vdm113@gmail.com
         on_success: change
-        on_failure: change
+        on_failure: always
+        on_start: always
+
+os:
+    - linux
+    - osx
+
+osx_image: xcode61
 
 before_install:
     - sudo apt-get install -y libcppunit-dev
