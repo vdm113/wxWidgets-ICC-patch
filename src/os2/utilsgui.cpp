@@ -125,6 +125,11 @@ bool wxCheckForInterrupt( wxWindow* pWnd )
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while(::WinPeekMsg(hab, &vMsg, hwndFilter, 0, 0, PM_REMOVE))
         {
             ::WinDispatchMsg(hab, &vMsg);
@@ -319,6 +324,11 @@ wxString WXDLLEXPORT wxGetWindowClass( WXHWND hWnd )
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( ;; )
     {
         int                     nCount = ::WinQueryClassName((HWND)hWnd, nLen, (PSZ)(wxChar*)wxStringBuffer(vStr, nLen));
@@ -790,6 +800,11 @@ wxBitmap wxDisableBitmap(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0; i < rBmp.GetHeight(); i++)
     {
 #if defined(__INTEL_COMPILER) && 1 // VDM auto patch
@@ -797,6 +812,11 @@ wxBitmap wxDisableBitmap(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (j = 0; j < rBmp.GetWidth(); j++)
         {
             // Byte 1
@@ -856,6 +876,11 @@ wxBitmap wxDisableBitmap(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (j = 0; j < nPadding; j++)
         {
             pucData++;

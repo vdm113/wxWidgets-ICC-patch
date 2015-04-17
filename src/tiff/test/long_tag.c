@@ -107,11 +107,11 @@ main(int argc, char **argv)
 		goto failure;
 	}
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (i = 0; i < NTAGS; i++) {
 		if (!TIFFSetField(tif, long_tags[i].tag,
 				  long_tags[i].value)) {
@@ -145,11 +145,11 @@ main(int argc, char **argv)
 	if (CheckLongField(tif, TIFFTAG_ROWSPERSTRIP, rows_per_strip) < 0)
 		goto failure;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (i = 0; i < NTAGS; i++) {
 		if (CheckLongField(tif, long_tags[i].tag,
 				   long_tags[i].value) < 0)

@@ -420,11 +420,11 @@ public:
     {
         wxTreeItemIdValue cookie;
         wxTreeItemId child = GetFirstChild(parent,cookie);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while ( child.IsOk() )
         {
             if ( GetItemText(child) == text )
@@ -789,11 +789,11 @@ MyFrame::MyFrame(const wxString& title)
     cc->SetPopupControl(iface);
 
     int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( i=0; i<100; i++ )
         iface->AddSelection( wxString::Format(wxT("Item %02i"),i));
 
@@ -821,22 +821,22 @@ MyFrame::MyFrame(const wxString& title)
 
     wxTreeItemId groupId;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( i=0; i<4; i++ )
     {
         groupId = tcPopup->AppendItem(rootId,
             wxString::Format(wxT("Branch %02i"),i));
 
         int n;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( n=0; n<25; n++ )
             tcPopup->AppendItem(groupId,
                 wxString::Format(wxT("Subitem %02i"),(i*25)+n));

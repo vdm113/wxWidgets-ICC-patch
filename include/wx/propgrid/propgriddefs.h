@@ -339,11 +339,11 @@ WX_DEFINE_TYPEARRAY_WITH_DECL_PTR(wxObject*, wxArrayPGObject,
 template<typename CONTAINER, typename T>
 int wxPGFindInVector( CONTAINER vector, const T& item )
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( unsigned int i=0; i<vector.size(); i++ )
     {
         if ( vector[i] == item )

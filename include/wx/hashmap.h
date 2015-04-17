@@ -101,11 +101,11 @@ protected:
     static _wxHashTable_NodeBase* GetFirstNode( size_t buckets,
                                                 _wxHashTable_NodeBase** table )
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for( size_t i = 0; i < buckets; ++i )
             if( table[i] )
                 return table[i];

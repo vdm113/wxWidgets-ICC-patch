@@ -222,20 +222,20 @@ hostent *deepCopyHostent(hostent *h,
     /* leave space for pointer list */
     char **p = h->h_addr_list, **q;
     char **h_addr_list = (char **)(buffer + pos);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while(*(p++) != 0)
         pos += sizeof(char *);
 
     /* copy addresses and fill new pointer list */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (p = h->h_addr_list, q = h_addr_list; *p != 0; p++, q++)
     {
         if (size < pos + len)
@@ -258,20 +258,20 @@ hostent *deepCopyHostent(hostent *h,
     /* leave space for pointer list */
     p = h->h_aliases;
     char **h_aliases = (char **)(buffer + pos);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while(*(p++) != 0)
         pos += sizeof(char *);
 
     /* copy aliases and fill new pointer list */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (p = h->h_aliases, q = h_aliases; *p != 0; p++, q++)
     {
         len = strlen(*p);
@@ -397,20 +397,20 @@ servent *deepCopyServent(servent *s,
     /* leave space for pointer list */
     char **p = s->s_aliases, **q;
     char **s_aliases = (char **)(buffer + pos);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while(*(p++) != 0)
         pos += sizeof(char *);
 
     /* copy addresses and fill new pointer list */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (p = s->s_aliases, q = s_aliases; *p != 0; p++, q++){
         len = strlen(*p);
         if (size <= pos + len)
@@ -942,11 +942,11 @@ void wxIPV6address::DoInitImpl()
 bool wxIPV6address::Hostname(unsigned char addr[16])
 {
     unsigned short wk[8];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( int i = 0; i < 8; ++i )
     {
         wk[i] = addr[2*i];
@@ -991,11 +991,11 @@ wxString wxIPV6address::IPAddress() const
     wxUint16 words[8];
     int i,
         prefix_zero_count = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( i = 0; i < 8; ++i )
     {
         words[i] = addr[i*2];
@@ -1019,11 +1019,11 @@ wxString wxIPV6address::IPAddress() const
     else // general case
     {
         result = ":";
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( i = prefix_zero_count; i < 8; ++i )
         {
             result += wxString::Format(":%x", words[i]);

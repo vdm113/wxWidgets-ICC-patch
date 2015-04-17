@@ -450,11 +450,11 @@ wxCondError wxConditionInternal::Broadcast()
 {
     wxCriticalSectionLocker lock(m_csWaiters);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( m_numWaiters > 0 )
     {
         if ( m_semaphore.Post() != wxSEMA_NO_ERROR )

@@ -43,11 +43,11 @@ namespace
 unsigned GetRectsCount(const wxRegion& rgn)
 {
     unsigned count = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( wxRegionIterator iter(rgn); iter.HaveRects(); ++iter )
         count++;
     return count;

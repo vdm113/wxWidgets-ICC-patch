@@ -365,11 +365,11 @@ void wxRichTextFontPage::CreateControls()
 
     wxString nStr;
     int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (i = 8; i < 40; i++)
     {
         nStr.Printf(wxT("%d"), i);
@@ -940,11 +940,11 @@ void wxRichTextFontPage::OnFaceTextCtrlUpdated( wxCommandEvent& WXUNUSED(event) 
             // Try to find a partial match
             const wxArrayString& arr = m_faceListBox->GetFaceNames();
             size_t i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for (i = 0; i < arr.GetCount(); i++)
             {
                 if (arr[i].Mid(0, facename.Length()).Lower() == facename.Lower())

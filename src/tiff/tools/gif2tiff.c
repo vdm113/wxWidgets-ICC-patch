@@ -70,11 +70,11 @@ makegamtab(float gam)
 {
     int i;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for(i=0; i<256; i++) 
 	gamtab[i] = (unsigned short) (IMAX*pow(i/255.0,gam)+0.5);
 }
@@ -103,11 +103,11 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(-1);
@@ -156,11 +156,11 @@ main(int argc, char* argv[])
     extern char *optarg;
     int c, status;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ((c = getopt(argc, argv, "c:r:")) != -1)
 	    switch (c) {
 	    case 'c':		/* compression scheme */
@@ -228,11 +228,11 @@ convert(void)
     if (!checksignature())
         return (-1);
     readscreen();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ((ch = getc(infile)) != ';' && ch != EOF) {
         switch (ch) {
             case '\0':  break;  /* this kludge for non-standard files */
@@ -338,11 +338,11 @@ readextension(void)
     char buf[255];
 
     (void) getc(infile);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ((count = getc(infile)))
         fread(buf, 1, count, infile);
 }
@@ -370,36 +370,36 @@ readraster(void)
     oldcode = -1;
     codesize = datasize + 1;
     codemask = (1 << codesize) - 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (code = 0; code < clear; code++) {
 	prefix[code] = 0;
 	suffix[code] = code;
     }
     stackp = stack;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (count = getc(infile); count > 0; count = getc(infile)) {
 	fread(buf,1,count,infile);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (ch=buf; count-- > 0; ch++) {
 	    datum += (unsigned long) *ch << bits;
 	    bits += 8;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	    while (bits >= codesize) {
 		code = datum & codemask;
 		datum >>= codesize;
@@ -463,11 +463,11 @@ process(register int code, unsigned char** fill)
 	*stackp++ = firstchar;
 	code = oldcode;
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (code > clear) {
 	*stackp++ = suffix[code];
 	code = prefix[code];
@@ -483,11 +483,11 @@ process(register int code, unsigned char** fill)
 	codemask += avail;
     }
     oldcode = incode;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     do {
 	*(*fill)++ = *--stackp;
     } while (stackp > stack);
@@ -505,11 +505,11 @@ initcolors(unsigned char colormap[COLSIZE][3], int ncolors)
 {
     register int i;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (i = 0; i < ncolors; i++) {
         red[i]   = gamtab[colormap[i][0]];
         green[i] = gamtab[colormap[i][1]];
@@ -573,11 +573,11 @@ VDM_MACRO_PRAGMA_IVDEP \
     TIFFSetField(tif, TIFFTAG_ORIENTATION, ORIENTATION_TOPLEFT);
     strip = 0;
     stripsize = TIFFStripSize(tif);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (row=0; row<height; row += rowsperstrip) {
 	if (rowsperstrip > height-row) {
 	    rowsperstrip = height-row;

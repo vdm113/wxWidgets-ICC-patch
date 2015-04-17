@@ -101,6 +101,11 @@ bool wxPalette::Create( int n,
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (int i = 0; i < n; i ++)
     {
         pualTable[i] = (PC_RESERVED * 16777216) + ((int)pRed[i] * 65536) + ((int)pGreen[i] * 256) + (int)pBlue[i];
@@ -172,6 +177,11 @@ int wxPalette::GetPixel( unsigned char cRed,
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0; i < ulNumEntries; i++)
     {
         if (pualTable[i] == ulRGB)

@@ -160,6 +160,11 @@ bool wxComboBox::Create(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (int i = 0; i < n; i++)
     {
         Append(asChoices[i]);

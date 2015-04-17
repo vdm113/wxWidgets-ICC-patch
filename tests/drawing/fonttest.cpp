@@ -70,11 +70,11 @@ void GraphicsContextDrawingTestCase::DoFontDrawings (wxGraphicsContext *gc)
 
     wxString text;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( int n = -180; n < 180; n += 30 )
     {
         text.Printf(wxT("     %d rotated text"), n);

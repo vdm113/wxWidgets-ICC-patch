@@ -232,11 +232,11 @@ wxDynamicLibraryDetailsArray wxDynamicLibrary::ListLoaded()
 
         char path[1024];
         char buf[1024];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while ( fgets(buf, WXSIZEOF(buf), file.fp()) )
         {
             // format is: "start-end perm offset maj:min inode path", see proc(5)

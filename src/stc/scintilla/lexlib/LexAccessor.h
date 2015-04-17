@@ -110,11 +110,11 @@ public:
 		return encodingType;
 	}
 	bool Match(int pos, const char *s) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 		for (int i=0; *s; i++) {
 			if (*s != SafeGetCharAt(pos+i))
 				return false;
@@ -197,11 +197,11 @@ public:
 				if (chAttr != chWhile)
 					chFlags = 0;
 				chAttr = static_cast<char>(chAttr | chFlags);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 				for (unsigned int i = startSeg; i <= pos; i++) {
 					assert((startPosStyling + validLen) < Length());
 					styleBuf[validLen++] = static_cast<char>(chAttr);

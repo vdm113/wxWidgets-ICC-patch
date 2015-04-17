@@ -280,29 +280,29 @@ struct inflate_state FAR *state;
 
         /* literal/length table */
         sym = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while (sym < 144) state->lens[sym++] = 8;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while (sym < 256) state->lens[sym++] = 9;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while (sym < 280) state->lens[sym++] = 7;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while (sym < 288) state->lens[sym++] = 8;
         next = fixed;
         lenfix = next;
@@ -311,11 +311,11 @@ struct inflate_state FAR *state;
 
         /* distance table */
         sym = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while (sym < 32) state->lens[sym++] = 5;
         distfix = next;
         bits = 5;
@@ -372,11 +372,11 @@ void makefixed()
     size = 1U << 9;
     printf("    static const code lenfix[%u] = {", size);
     low = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (;;) {
         if ((low % 7) == 0) printf("\n        ");
         printf("{%u,%u,%d}", (low & 127) == 99 ? 64 : state.lencode[low].op,
@@ -388,11 +388,11 @@ void makefixed()
     size = 1U << 5;
     printf("\n    static const code distfix[%u] = {", size);
     low = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (;;) {
         if ((low % 6) == 0) printf("\n        ");
         printf("{%u,%u,%d}", state.distcode[low].op, state.distcode[low].bits,
@@ -577,11 +577,6 @@ VDM_MACRO_PRAGMA_IVDEP \
    much output data as possible before returning.  The state machine is
    structured roughly as follows:
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for (;;) switch (state) {
     ...
     case STATEn:
@@ -624,11 +619,6 @@ VDM_MACRO_PRAGMA_IVDEP \
    returns:
 
     case STATEw:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         while (want < need) {
             NEEDBITS(n);
             keep[want++] = BITS(n);
@@ -697,11 +687,11 @@ int flush;
     in = have;
     out = left;
     ret = Z_OK;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (;;)
         switch (state->mode) {
         case HEAD:
@@ -823,11 +813,11 @@ int flush;
             if (state->flags & 0x0800) {
                 if (have == 0) goto inf_leave;
                 copy = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                 do {
                     len = (unsigned)(next[copy++]);
                     if (state->head != Z_NULL &&
@@ -849,11 +839,11 @@ int flush;
             if (state->flags & 0x1000) {
                 if (have == 0) goto inf_leave;
                 copy = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                 do {
                     len = (unsigned)(next[copy++]);
                     if (state->head != Z_NULL &&
@@ -990,21 +980,21 @@ int flush;
             state->have = 0;
             state->mode = LENLENS;
         case LENLENS:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             while (state->have < state->ncode) {
                 NEEDBITS(3);
                 state->lens[order[state->have++]] = (unsigned short)BITS(3);
                 DROPBITS(3);
             }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             while (state->have < 19)
                 state->lens[order[state->have++]] = 0;
             state->next = state->codes;
@@ -1021,17 +1011,17 @@ int flush;
             state->have = 0;
             state->mode = CODELENS;
         case CODELENS:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             while (state->have < state->nlen + state->ndist) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                 for (;;) {
                     here = state->lencode[BITS(state->lenbits)];
                     if ((unsigned)(here.bits) <= bits) break;
@@ -1073,11 +1063,11 @@ int flush;
                         state->mode = BAD;
                         break;
                     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                     while (copy--)
                         state->lens[state->have++] = (unsigned short)len;
                 }
@@ -1130,11 +1120,11 @@ int flush;
                 break;
             }
             state->back = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for (;;) {
                 here = state->lencode[BITS(state->lenbits)];
                 if ((unsigned)(here.bits) <= bits) break;
@@ -1142,11 +1132,11 @@ int flush;
             }
             if (here.op && (here.op & 0xf0) == 0) {
                 last = here;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                 for (;;) {
                     here = state->lencode[last.val +
                             (BITS(last.bits + last.op) >> last.bits)];
@@ -1190,11 +1180,11 @@ int flush;
             state->was = state->length;
             state->mode = DIST;
         case DIST:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for (;;) {
                 here = state->distcode[BITS(state->distbits)];
                 if ((unsigned)(here.bits) <= bits) break;
@@ -1202,11 +1192,11 @@ int flush;
             }
             if ((here.op & 0xf0) == 0) {
                 last = here;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                 for (;;) {
                     here = state->distcode[last.val +
                             (BITS(last.bits + last.op) >> last.bits)];
@@ -1260,11 +1250,11 @@ int flush;
                     if (copy > left) copy = left;
                     left -= copy;
                     state->length -= copy;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                     do {
                         *put++ = 0;
                     } while (--copy);
@@ -1287,11 +1277,11 @@ int flush;
             if (copy > left) copy = left;
             left -= copy;
             state->length -= copy;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             do {
                 *put++ = *from++;
             } while (--copy);
@@ -1493,11 +1483,11 @@ unsigned len;
 
     got = *have;
     next = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (next < len && got < 4) {
         if ((int)(buf[next]) == (got < 2 ? 0 : 0xff))
             got++;
@@ -1530,11 +1520,11 @@ z_streamp strm;
         state->hold <<= state->bits & 7;
         state->bits -= state->bits & 7;
         len = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while (state->bits >= 8) {
             buf[len++] = (unsigned char)(state->hold);
             state->hold >>= 8;

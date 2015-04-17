@@ -31,11 +31,11 @@
 const wxFilterClassFactory *
 wxFilterClassFactory::Find(const wxString& protocol, wxStreamProtocolType type)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (const wxFilterClassFactory *f = GetFirst(); f; f = f->GetNext())
         if (f->CanHandle(protocol, type))
             return f;

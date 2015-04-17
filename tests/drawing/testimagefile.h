@@ -30,11 +30,11 @@ bool AreFilesContentsEqual(const wxString &filename, const wxString &refFilename
     wxUint8 buffer[1024], refBuffer[sizeof(buffer)];
 
     wxFileOffset remainingLength = refLength;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (remainingLength != 0)
     {
         input.Read (buffer, wxMin(remainingLength, sizeof(buffer)));

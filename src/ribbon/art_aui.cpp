@@ -311,11 +311,11 @@ int wxRibbonAUIArtProvider::GetTabCtrlHeight(
     if(m_flags & wxRIBBON_BAR_SHOW_PAGE_ICONS)
     {
         size_t numpages = pages.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for(size_t i = 0; i < numpages; ++i)
         {
             const wxRibbonPageTabInfo& info = pages.Item(i);
@@ -849,11 +849,11 @@ void wxRibbonAUIArtProvider::DrawPartialPanelBackground(wxDC& dc,
     wxWindow* parent = wnd->GetParent();
     wxRibbonPanel* panel = NULL;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for(; parent; parent = parent->GetParent())
     {
         panel = wxDynamicCast(parent, wxRibbonPanel);

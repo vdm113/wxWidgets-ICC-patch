@@ -133,11 +133,11 @@ bool wxGLCanvasBase::IsExtensionInList(const char *list, const char *extension)
     if ( !list )
         return false;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( const char *p = list; *p; p++ )
     {
         // advance up to the next possible match

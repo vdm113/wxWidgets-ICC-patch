@@ -213,11 +213,11 @@ get_soi (j_decompress_ptr cinfo)
 
   /* Reset all parameters that are defined to be reset by SOI */
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (i = 0; i < NUM_ARITH_TBLS; i++) {
     cinfo->arith_dc_L[i] = 0;
     cinfo->arith_dc_U[i] = 1;
@@ -288,11 +288,11 @@ get_sof (j_decompress_ptr cinfo, wxjpeg_boolean is_prog, wxjpeg_boolean is_arith
 			((j_common_ptr) cinfo, JPOOL_IMAGE,
 			 cinfo->num_components * SIZEOF(jpeg_component_info));
   
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
     compptr->component_index = ci;
@@ -339,20 +339,20 @@ get_sos (j_decompress_ptr cinfo)
 
   /* Collect the component-spec parameters */
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (i = 0; i < n; i++) {
     INPUT_BYTE(cinfo, cc, return FALSE);
     INPUT_BYTE(cinfo, c, return FALSE);
     
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
 	 ci++, compptr++) {
       if (cc == compptr->component_id)
@@ -407,11 +407,11 @@ get_dac (j_decompress_ptr cinfo)
   INPUT_2BYTES(cinfo, length, return FALSE);
   length -= 2;
   
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (length > 0) {
     INPUT_BYTE(cinfo, index, return FALSE);
     INPUT_BYTE(cinfo, val, return FALSE);
@@ -461,11 +461,11 @@ get_dht (j_decompress_ptr cinfo)
   INPUT_2BYTES(cinfo, length, return FALSE);
   length -= 2;
   
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (length > 16) {
     INPUT_BYTE(cinfo, index, return FALSE);
 
@@ -473,11 +473,11 @@ get_dht (j_decompress_ptr cinfo)
       
     bits[0] = 0;
     count = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (i = 1; i <= 16; i++) {
       INPUT_BYTE(cinfo, bits[i], return FALSE);
       count += bits[i];
@@ -498,11 +498,11 @@ get_dht (j_decompress_ptr cinfo)
     if (count > 256 || ((JPEG_INT32) count) > length)
       ERREXIT(cinfo, JERR_BAD_HUFF_TABLE);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (i = 0; i < count; i++)
       INPUT_BYTE(cinfo, huffval[i], return FALSE);
 
@@ -546,11 +546,11 @@ get_dqt (j_decompress_ptr cinfo)
   INPUT_2BYTES(cinfo, length, return FALSE);
   length -= 2;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (length > 0) {
     INPUT_BYTE(cinfo, n, return FALSE);
     prec = n >> 4;
@@ -565,11 +565,11 @@ get_dqt (j_decompress_ptr cinfo)
       cinfo->quant_tbl_ptrs[n] = jpeg_alloc_quant_table((j_common_ptr) cinfo);
     quant_ptr = cinfo->quant_tbl_ptrs[n];
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (i = 0; i < DCTSIZE2; i++) {
       if (prec)
 	INPUT_2BYTES(cinfo, tmp, return FALSE);
@@ -580,11 +580,11 @@ get_dqt (j_decompress_ptr cinfo)
     }
 
     if (cinfo->err->trace_level >= 2) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
       for (i = 0; i < DCTSIZE2; i += 8) {
 	TRACEMS8(cinfo, 2, JTRC_QUANTVALS,
 		 quant_ptr->quantval[i],   quant_ptr->quantval[i+1],
@@ -768,11 +768,11 @@ get_interesting_appn (j_decompress_ptr cinfo)
     numtoread = (unsigned int) length;
   else
     numtoread = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (i = 0; i < numtoread; i++)
     INPUT_BYTE(cinfo, b[i], return FALSE);
   length -= numtoread;
@@ -852,22 +852,22 @@ save_marker (j_decompress_ptr cinfo)
     data = cur_marker->data + bytes_read;
   }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (bytes_read < data_length) {
     INPUT_SYNC(cinfo);		/* move the restart point to here */
     marker->bytes_read = bytes_read;
     /* If there's not at least one byte in buffer, suspend */
     MAKE_BYTE_AVAIL(cinfo, return FALSE);
     /* Copy bytes with reasonable rapidity */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (bytes_read < data_length && bytes_in_buffer > 0) {
       *data++ = *next_input_byte++;
       bytes_in_buffer--;
@@ -882,11 +882,11 @@ save_marker (j_decompress_ptr cinfo)
       cinfo->marker_list = cur_marker;
     } else {
       jpeg_saved_marker_ptr prev = cinfo->marker_list;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
       while (prev->next != NULL)
 	prev = prev->next;
       prev->next = cur_marker;
@@ -958,11 +958,11 @@ next_marker (j_decompress_ptr cinfo)
   int c;
   INPUT_VARS(cinfo);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (;;) {
     INPUT_BYTE(cinfo, c, return FALSE);
     /* Skip any non-FF bytes.
@@ -970,11 +970,11 @@ next_marker (j_decompress_ptr cinfo)
      * We sync after each discarded byte so that a suspending data source
      * can discard the byte from its buffer.
      */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (c != 0xFF) {
       cinfo->marker->discarded_bytes++;
       INPUT_SYNC(cinfo);
@@ -985,11 +985,11 @@ next_marker (j_decompress_ptr cinfo)
      * will not be so many consecutive FF bytes as to overflow a suspending
      * data source's input buffer.
      */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     do {
       INPUT_BYTE(cinfo, c, return FALSE);
     } while (c == 0xFF);
@@ -1049,11 +1049,11 @@ METHODDEF(int)
 read_markers (j_decompress_ptr cinfo)
 {
   /* Outer loop repeats once for each marker. */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (;;) {
     /* Collect the marker proper, unless we already did. */
     /* NB: first_marker() enforces the requirement that SOI appear first. */
@@ -1300,11 +1300,11 @@ jpeg_resync_to_restart (j_decompress_ptr cinfo, int desired)
   WARNMS2(cinfo, JWRN_MUST_RESYNC, marker, desired);
   
   /* Outer loop handles repeated decision after scanning forward. */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (;;) {
     if (marker < (int) M_SOF0)
       action = 2;		/* invalid marker */
@@ -1386,11 +1386,11 @@ jinit_marker_reader (j_decompress_ptr cinfo)
    */
   marker->process_COM = skip_variable;
   marker->length_limit_COM = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (i = 0; i < 16; i++) {
     marker->process_APPn[i] = skip_variable;
     marker->length_limit_APPn[i] = 0;

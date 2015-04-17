@@ -76,11 +76,11 @@ void wxQtDCImpl::QtPreparePainter( )
         {
             wxRegionIterator ri(*m_clippingRegion);
             bool append = false;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             while (ri.HaveRects())
             {
                 wxRect r = ri.GetRect();
@@ -776,11 +776,11 @@ void wxQtDCImpl::DoDrawLines(int n, const wxPoint points[],
     if (n > 0)
     {
         QPainterPath path(wxQtConvertPoint(points[0]));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (int i = 1; i < n; i++)
         {
             path.lineTo(wxQtConvertPoint(points[i]));
@@ -803,11 +803,11 @@ void wxQtDCImpl::DoDrawPolygon(int n, const wxPoint points[],
                        wxPolygonFillMode fillStyle )
 {
     QPolygon qtPoints;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (int i = 0; i < n; i++) {
         qtPoints << wxQtConvertPoint(points[i]);
     }

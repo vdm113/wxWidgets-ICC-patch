@@ -252,11 +252,11 @@ void CheckBoxWidgetsPage::CreateCheckbox()
     wxString label = m_checkbox->GetLabel();
 
     size_t count = m_sizerCheckbox->GetChildren().GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
         m_sizerCheckbox->Remove(0);

@@ -181,11 +181,11 @@ wxEpollDispatcher::DoPoll(epoll_event *events, int numEvents, int timeout) const
         timeEnd = wxGetLocalTimeMillis();
 
     int rc;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( ;; )
     {
         rc = epoll_wait(m_epollDescriptor, events, numEvents, timeout);
@@ -228,11 +228,11 @@ int wxEpollDispatcher::Dispatch(int timeout)
     }
 
     int numEvents = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( epoll_event *p = events; p < events + rc; p++ )
     {
         wxFDIOHandler * const handler = (wxFDIOHandler *)(p->data.ptr);

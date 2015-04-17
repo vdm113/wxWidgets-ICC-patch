@@ -420,6 +420,11 @@ void wxFillLogFont( LOGFONT*      pFattrs,  // OS2 GPI FATTRS
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for(unsigned long LCNum = 0; LCNum < (unsigned long)lNumLids; LCNum++)
             if(alIds[LCNum] == *pflId)
                ++*pflId;
@@ -488,6 +493,11 @@ void wxOS2SelectMatchingFontByName(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for(i = 0;i < 16; i++)
         anMinDiff[i] = nMinDiff0;
 
@@ -577,6 +587,11 @@ void wxOS2SelectMatchingFontByName(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for(i = 0, nIs = 0; i < nNumFonts; i++)
     {
         anDiff[0] = wxGpiStrcmp((wxChar*)pFM[i].szFacename, zFontFaceName);
@@ -717,6 +732,11 @@ int wxGpiStrcmp(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for(i=0;i<l;i++)
     {
         d = s0[i]-s1[i];

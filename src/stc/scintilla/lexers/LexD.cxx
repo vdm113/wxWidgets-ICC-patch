@@ -260,11 +260,11 @@ void SCI_METHOD LexerD::Lex(unsigned int startPos, int length, int initStyle, ID
 	bool numFloat = false; // Float literals have '+' and '-' signs
 	bool numHex = false;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
 
 		if (sc.atLineStart) {
@@ -503,11 +503,6 @@ void SCI_METHOD LexerD::Fold(unsigned int startPos, int length, int initStyle, I
 	int style = initStyle;
 	bool foldAtElse = options.foldAtElseInt >= 0 ? options.foldAtElseInt != 0 : options.foldAtElse;
 	const bool userDefinedFoldMarkers = !options.foldExplicitStart.empty() && !options.foldExplicitEnd.empty();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

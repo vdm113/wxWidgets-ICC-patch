@@ -383,11 +383,11 @@ int wxNotebook::FindPagePosition(wxNotebookPage* page) const
 {
     size_t nPageCount = GetPageCount();
     size_t nPage;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( nPage = 0; nPage < nPageCount; nPage++ )
         if (m_pages[nPage] == page)
             return nPage;
@@ -401,11 +401,11 @@ bool wxNotebook::DeleteAllPages()
 
     size_t nPageCount = GetPageCount();
     size_t nPage;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( nPage = 0; nPage < nPageCount; nPage++ )
         delete m_pages[nPage];
 
@@ -540,11 +540,11 @@ bool wxNotebook::RefreshLayout(bool force)
         // fit the notebook page to the tab control's display area
 
         size_t nCount = m_pages.Count();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( size_t nPage = 0; nPage < nCount; nPage++ ) {
             wxNotebookPage *pPage = m_pages[nPage];
             wxRect clientRect = GetAvailableClientSize();

@@ -126,6 +126,11 @@ wxSize wxStaticText::DoGetBestSize() const
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (const wxChar *pc = sText; ; pc++)
     {
         if ( *pc == wxT('\n') || *pc == wxT('\0') )

@@ -257,11 +257,11 @@ wxString wxStandardPaths::GetDocumentsDir() const
             if (textFile.Open(dirsFile))
             {
                 size_t i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                 for (i = 0; i < textFile.GetLineCount(); i++)
                 {
                     wxString line(textFile[i]);

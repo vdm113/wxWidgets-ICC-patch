@@ -681,11 +681,11 @@ void MyFrame::BuildDataViewCtrl(wxPanel* parent, unsigned int nPanel, unsigned l
             lc->AppendProgressColumn( "Progress" );
 
             wxVector<wxVariant> data;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for (unsigned int i=0; i<10; i++)
             {
                 data.clear();
@@ -766,11 +766,11 @@ void MyFrame::OnPageChanged( wxBookCtrlEvent& WXUNUSED(event) )
     GetMenuBar()->FindItem(ID_STYLE_MENU)->SetItemLabel(
                 wxString::Format("Style of panel #%d", nPanel+1));
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (unsigned int id = ID_MULTIPLE; id <= ID_VERT_RULES; id++)
     {
         unsigned long style = 0;
@@ -926,11 +926,11 @@ void MyFrame::DeleteSelectedItems()
 {
     wxDataViewItemArray items;
     int len = m_ctrl[0]->GetSelections( items );
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for( int i = 0; i < len; i ++ )
         if (items[i].IsOk())
             m_music_model->Delete( items[i] );
@@ -1137,11 +1137,11 @@ void MyFrame::OnSortedList( wxDataViewEvent &/*event*/)
     wxVector<wxDataViewColumn *> const columns = m_ctrl[1]->GetSortingColumns();
     wxLogMessage( "wxEVT_DATAVIEW_COLUMN_SORTED using the following columns");
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( wxVector<wxDataViewColumn *>::const_iterator it = columns.begin(),
                                                       end = columns.end();
           it != end;

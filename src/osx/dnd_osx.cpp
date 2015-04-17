@@ -82,11 +82,11 @@ bool wxDropTarget::CurrentDragHasSupportedFormat()
             size_t formatcount = data->GetFormatCount();
             wxDataFormat *array = new wxDataFormat[formatcount];
             data->GetAllFormats( array );
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for (size_t i = 0; !supported && i < formatcount; i++)
             {
                 wxDataFormat format = array[i];
@@ -127,11 +127,11 @@ bool wxDropTarget::GetData()
             size_t formatcount = data->GetFormatCount();
             wxDataFormat *array = new wxDataFormat[formatcount];
             data->GetAllFormats( array );
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for (size_t i = 0; !transferred && i < formatcount; i++)
             {
                 wxDataFormat format = array[i];

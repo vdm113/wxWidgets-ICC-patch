@@ -71,11 +71,11 @@ static void ColouriseKVIrcDoc(unsigned int startPos, int length,
      * when asked for (transitions leaving strings and keywords do this
      * already) */
     bool next = true;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for( ; sc.More(); next ? sc.Forward() : (void)0 )
     {
         /* Resetting next */
@@ -329,11 +329,11 @@ static void ColouriseKVIrcDoc(unsigned int startPos, int length,
                     if (wordLen > 99)
                         wordLen = 99;  /* Include '\0' in buffer */
                     int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                     for( i = 0; i < wordLen; ++i )
                     {
                         s[i] = styler.SafeGetCharAt( styler.GetStartSegment() + i );
@@ -403,11 +403,11 @@ static void FoldKVIrcDoc(unsigned int startPos, int length, int /*initStyle - un
     int nextLevel = currentLevel;
 
     // Looping for characters in range
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (unsigned int i = safeStartPos; i < startPos + length; ++i)
     {
         /* Folding occurs after syntax highlighting, meaning Scintilla

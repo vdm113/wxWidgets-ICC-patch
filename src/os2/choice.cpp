@@ -101,6 +101,11 @@ bool wxChoice::Create(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (int i = 0; i < n; i++)
     {
         Append(asChoices[i]);
@@ -155,6 +160,11 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter& items
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for( unsigned int i = 0; i < count; ++i )
     {
         nIndex = (int)::WinSendMsg( GetHwnd()
@@ -327,6 +337,11 @@ wxSize wxChoice::DoGetBestSize() const
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (unsigned int i = 0; i < nItems; i++)
     {
         wxString sStr(GetString(i));

@@ -55,11 +55,11 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
     // DirectFBInit() wants UTF-8, not wchar_t, so convert
     int i;
     char **argvDFB = new char *[argc + 1];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( i = 0; i < argc; i++ )
     {
         argvDFB[i] = strdup(wxConvUTF8.cWX2MB(argv[i]));
@@ -75,18 +75,18 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
     if ( argcDFB != argc )
     {
         // we have to drop the parameters which were consumed by DFB+
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( i = 0; i < argcDFB; i++ )
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             while ( strcmp(wxConvUTF8.cWX2MB(argv[i]), argvDFB[i]) != 0 )
             {
                 memmove(argv + i, argv + i + 1, (argc - i)*sizeof(*argv));
@@ -98,11 +98,11 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
     //else: DirectFBInit() didn't modify our parameters
 
     // free our copy
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( i = 0; i < argcDFB; i++ )
     {
         free(argvDFB[i]);

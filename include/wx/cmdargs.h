@@ -46,11 +46,11 @@ public:
 
         if ( argv )
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             while ( *argv )
                 m_args.push_back(*argv++);
         }
@@ -64,11 +64,11 @@ public:
         {
             const size_t count = m_args.size();
             m_argsA = new char *[count];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for ( size_t n = 0; n < count; n++ )
                 m_argsA[n] = wxStrdup(m_args[n].ToAscii());
         }
@@ -82,11 +82,11 @@ public:
         {
             const size_t count = m_args.size();
             m_argsW = new wchar_t *[count];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for ( size_t n = 0; n < count; n++ )
                 m_argsW[n] = wxStrdup(m_args[n].wc_str());
         }
@@ -141,11 +141,11 @@ private:
             return;
 
         const size_t count = m_args.size();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )
             free(args[n]);
 

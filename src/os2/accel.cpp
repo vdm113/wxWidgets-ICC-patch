@@ -125,6 +125,11 @@ wxAcceleratorTable::wxAcceleratorTable(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0; i < n; i++)
     {
         USHORT                      uVirt = AF_CHAR;
@@ -230,6 +235,11 @@ wxString wxPMTextToLabel( const wxString& rsTitle )
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (zPc = rsTitle.c_str(); *zPc != wxT('\0'); zPc++)
     {
         if (*zPc == wxT('&'))

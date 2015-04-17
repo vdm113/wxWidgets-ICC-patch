@@ -62,11 +62,11 @@ strtoull(const char *nptr, char **endptr, int base)
 	 * See strtoq for comments as to the logic used.
 	 */
 	s = nptr;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	do {
 		c = *s++;
 	} while (isspace((unsigned char)c));
@@ -95,11 +95,11 @@ strtoull(const char *nptr, char **endptr, int base)
 
 	cutoff = ULLONG_MAX / base;
 	cutlim = ULLONG_MAX % base;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for ( ; ; c = *s++) {
 		if (c >= '0' && c <= '9')
 			c -= '0';

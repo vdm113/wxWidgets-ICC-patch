@@ -224,11 +224,11 @@ public:
           m_hwndBtn(GetHwndOf(btn))
     {
         // initialize all bitmaps except for the disabled one to normal state
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( int n = 0; n < wxAnyButton::State_Max; n++ )
         {
 #if wxUSE_IMAGE
@@ -908,11 +908,11 @@ void DrawButtonText(HDC hdc,
 
         const wxArrayString lines = wxSplit(text, '\n', '\0');
         const int hLine = h / lines.size();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( size_t lineNum = 0; lineNum < lines.size(); lineNum++ )
         {
             // Each line must be aligned in horizontal direction individually.

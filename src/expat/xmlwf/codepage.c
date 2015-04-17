@@ -24,38 +24,38 @@ codepageMap(int cp, int *map)
   CPINFO info;
   if (!GetCPInfo(cp, &info) || info.MaxCharSize > 2)
     return 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (i = 0; i < 256; i++)
     map[i] = -1;
   if (info.MaxCharSize > 1) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (i = 0; i < MAX_LEADBYTES; i+=2) {
       int j, lim;
       if (info.LeadByte[i] == 0 && info.LeadByte[i + 1] == 0)
         break;
       lim = info.LeadByte[i + 1];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
       for (j = info.LeadByte[i]; j <= lim; j++)
         map[j] = -2;
     }
   }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (i = 0; i < 256; i++) {
    if (map[i] == -1) {
      char c = (char)i;

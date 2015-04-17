@@ -123,11 +123,11 @@ void wxBitmapCache::CreateImageIfNeeded( WXWidget w )
 WXPixmap wxBitmapCache::GetPixmapFromCache(WXWidget w)
 {
     Widget widget = (Widget)w;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while( XmIsGadget( widget ) )
         widget = XtParent( widget );
 

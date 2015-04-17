@@ -200,11 +200,11 @@ wxMetalRenderer::wxMetalRenderer(wxRenderer *renderer, wxColourScheme *scheme)
     wxMemoryDC dcNormal,
                dcDisabled,
                dcInverse;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < Arrow_Max; n++ )
     {
         bool isVertical = n > Arrow_Right;
@@ -256,11 +256,11 @@ wxMetalRenderer::wxMetalRenderer(wxRenderer *renderer, wxColourScheme *scheme)
         else
             y2++;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( size_t i = 0; i < ARROW_LENGTH; i++ )
         {
             dcNormal.DrawLine(x1, y1, x2, y2);
@@ -553,11 +553,11 @@ void wxMetalRenderer::DrawArrow(wxDC& dc,
 void wxMetalRenderer::DrawMetal(wxDC &dc, const wxRect &rect )
 {
     dc.SetPen(*wxTRANSPARENT_PEN);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (int y = rect.y; y < rect.height+rect.y; y++)
     {
        unsigned char intens = (unsigned char)(230 + 80 * (rect.y-y) / rect.height);

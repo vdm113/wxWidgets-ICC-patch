@@ -172,11 +172,11 @@ bool wxClipboard::GetData( wxDataObject& data )
 
     if ( m_data )
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (size_t i = 0; !transferred && i < formatcount; i++)
         {
             wxDataFormat format = array[ i ];

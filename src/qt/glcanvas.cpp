@@ -149,11 +149,11 @@ bool wxGLCanvas::ConvertWXAttrsToQtGL(const int *wxattrs, QGLFormat &format)
     format.setAlpha(false);
     format.setStencil(false);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( int arg = 0; wxattrs[arg] != 0; arg++ )
     {
         // indicates whether we have a boolean attribute

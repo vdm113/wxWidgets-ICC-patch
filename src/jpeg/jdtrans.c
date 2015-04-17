@@ -58,11 +58,11 @@ jpeg_read_coefficients (j_decompress_ptr cinfo)
   }
   if (cinfo->global_state == DSTATE_RDCOEFS) {
     /* Absorb whole file into the coef buffer */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (;;) {
       int retcode;
       /* Call progress monitor hook if present */

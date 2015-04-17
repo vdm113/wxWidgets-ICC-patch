@@ -299,11 +299,11 @@ void wxRichTextBulletsPage::CreateControls()
         wxRichTextBuffer::GetRenderer()->EnumerateStandardBulletNames(standardBulletNames);
 
     size_t i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (i = 0; i < standardBulletNames.GetCount(); i++)
         m_bulletNameCtrl->Append(wxGetTranslation(standardBulletNames[i]));
 

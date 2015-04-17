@@ -50,11 +50,11 @@ wxDEFINE_EVENT( wxEVT_CLIPBOARD_CHANGED, wxClipboardEvent );
 bool wxClipboardEvent::SupportsFormat( const wxDataFormat &format ) const
 {
 #ifdef __WXGTK20__
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (wxVector<wxDataFormat>::size_type n = 0; n < m_formats.size(); n++)
     {
         if (m_formats[n] == format)

@@ -117,11 +117,11 @@ bool TestExec(const wxVector<wxFileName>& programs, long timeout)
 
     // run all programs specified as command line parameters
     wxArrayLong procID;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (i=0; i<programs.size(); i++)
     {
         MonitorData *dt = new MonitorData(programs[i].GetFullPath());
@@ -146,11 +146,11 @@ bool TestExec(const wxVector<wxFileName>& programs, long timeout)
 
     // check if all processes are still running
     bool allok = true;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (i=0; i<data.size(); i++)
     {
         MonitoredProcess& proc = data[i]->process;
@@ -226,11 +226,11 @@ int main(int argc, char **argv)
         {
             // check arguments
             wxVector<wxFileName> programs;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for (unsigned int i=0; i<parser.GetParamCount(); i++)
             {
                 wxFileName fn(parser.GetParam(i));

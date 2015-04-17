@@ -99,11 +99,11 @@ OpenUserDataRec::OpenUserDataRec( wxFileDialog* d)
     {
         m_menuitems = CFArrayCreateMutable( kCFAllocatorDefault ,
                                          numFilters , &kCFTypeArrayCallBacks ) ;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( size_t i = 0 ; i < numFilters ; ++i )
         {
             CFArrayAppendValue( m_menuitems , (CFStringRef) wxCFStringRef( m_name[i] ) ) ;
@@ -294,11 +294,11 @@ void OpenUserDataRec::MakeUserDataRec( const wxString& filter )
         bool isName = true ;
         wxString current ;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( unsigned int i = 0; i < filter2.length() ; i++ )
         {
             if ( filter2.GetChar(i) == wxT('|') )
@@ -335,11 +335,11 @@ void OpenUserDataRec::MakeUserDataRec( const wxString& filter )
         ++filterIndex ;
 
         const size_t extCount = m_extensions.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( size_t i = 0 ; i < extCount; i++ )
         {
             wxUint32 fileType, creator;
@@ -378,11 +378,11 @@ bool OpenUserDataRec::CheckFile( const wxString &filename , OSType type)
                 return true ;
 
             wxStringTokenizer tokenizer( m_extensions[i] , wxT(";") ) ;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             while ( tokenizer.HasMoreTokens() )
             {
                 wxString extension = tokenizer.GetNextToken() ;
@@ -604,11 +604,11 @@ int wxFileDialog::ShowModal()
 
         m_filterIndex = myData.GetCurrentFilter();
         ::AECountItems( &navReply.selection, &count );
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (long i = 1; i <= count; ++i)
         {
             err = ::AEGetNthPtr(

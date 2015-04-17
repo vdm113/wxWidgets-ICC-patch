@@ -129,11 +129,11 @@ public:
 
 	void DefineWordListSets(const char * const wordListDescriptions[]) {
 		if (wordListDescriptions) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 			for (size_t wl = 0; wordListDescriptions[wl]; wl++) {
 				if (!wordLists.empty())
 					wordLists += "\n";

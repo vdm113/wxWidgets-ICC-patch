@@ -214,11 +214,11 @@ wxFontMapper::CharsetToEncoding(const wxString& charset, bool interactive)
 
         wxString *encodingNamesTranslated = new wxString[count];
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( size_t i = 0; i < count; i++ )
         {
             encodingNamesTranslated[i] = GetEncodingDescription(GetEncoding(i));
@@ -401,11 +401,11 @@ bool wxFontMapper::GetAltForEncoding(wxFontEncoding encoding,
     wxFontEncoding equivEncoding = wxFONTENCODING_SYSTEM;
     if ( count )
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( size_t i = 0; i < count && !foundEquivEncoding; i++ )
         {
             // don't test for encoding itself, we already know we don't have it

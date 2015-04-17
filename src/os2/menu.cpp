@@ -171,6 +171,11 @@ int wxMenu::FindAccel(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (n = 0; n < nCount; n++)
         if (m_vAccels[n]->m_command == nId)
             return n;
@@ -191,6 +196,11 @@ void wxMenu::UpdateAccel(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while (node)
         {
             UpdateAccel(node->GetData());
@@ -494,6 +504,11 @@ wxMenuItem* wxMenu::DoRemove(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (nPos = 0; node; nPos++)
     {
         if (node->GetData() == pItem)
@@ -562,6 +577,11 @@ size_t wxMenu::CopyAccels(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (size_t n = 0; n < nCount; n++)
     {
         *pAccels++ = *m_vAccels[n];
@@ -669,6 +689,11 @@ wxMenuItem* wxMenu::FindItem(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxMenuItemList::compatibility_iterator node = m_items.GetFirst();
           node && !pItem;
           node = node->GetNext() )
@@ -736,6 +761,11 @@ wxMenuBar::wxMenuBar(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( int i = 0; i < nCount; i++ )
     {
         m_menus.Append(vMenus[i]);
@@ -813,6 +843,11 @@ WXHMENU wxMenuBar::Create()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (i = 0, it = m_menus.begin(); i < nCount; i++, it++)
         {
             APIRET   rc;
@@ -1102,6 +1137,11 @@ void wxMenuBar::RebuildAccelTable()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0, it = m_menus.begin(); i < nCount; i++, it++)
     {
         nAccelCount += (*it)->GetAccelCount();
@@ -1117,6 +1157,11 @@ void wxMenuBar::RebuildAccelTable()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (i = 0, it = m_menus.begin(); i < nCount; i++, it++)
         {
             nAccelCount += (*it)->CopyAccels(&pAccelEntries[nAccelCount]);
@@ -1178,6 +1223,11 @@ int wxMenuBar::FindMenuItem(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0, it = m_menus.begin(); i < nCount; i++, it++)
     {
         wxString                    sTitle = wxStripMenuCodes(m_titles[i]);
@@ -1204,6 +1254,11 @@ wxMenuItem* wxMenuBar::FindItem(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0, it = m_menus.begin(); !pItem && (i < nCount); i++, it++)
     {
         pItem = (*it)->FindItem( nId
@@ -1230,6 +1285,11 @@ wxMenuItem* wxMenuBar::FindItem(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0, it = m_menus.begin(); !pItem && (i < nCount); i++, it++)
     {
         pItem = (*it)->FindItem( nId

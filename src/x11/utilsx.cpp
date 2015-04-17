@@ -135,22 +135,22 @@ static void wxCalcPrecAndShift( unsigned long mask, int *shift, int *prec )
     *shift = 0;
     *prec = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (!(mask & 0x1))
     {
         (*shift)++;
         mask >>= 1;
     }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (mask & 0x1)
     {
         (*prec)++;
@@ -204,11 +204,11 @@ void wxXVisualInfo::Init( Display* dpy, XVisualInfo* vi )
     m_visualColormap = new XColor[m_visualColormapSize];
     XColor* colors = (XColor*) m_visualColormap;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (int i = 0; i < m_visualColormapSize; i++)
         colors[i].pixel = i;
 
@@ -217,25 +217,25 @@ void wxXVisualInfo::Init( Display* dpy, XVisualInfo* vi )
 
     m_colorCube = (unsigned char*)malloc(32 * 32 * 32);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (int r = 0; r < 32; r++)
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (int g = 0; g < 32; g++)
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for (int b = 0; b < 32; b++)
             {
                 int rr = (r << 3) | (r >> 2);
@@ -248,11 +248,11 @@ void wxXVisualInfo::Init( Display* dpy, XVisualInfo* vi )
                 {
                     int max = 3 * 65536;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                     for (int i = 0; i < m_visualColormapSize; i++)
                     {
                         int rdiff = ((rr << 8) - colors[i].red);

@@ -158,11 +158,11 @@ jpeg_fdct_islow (DCTELEM * data)
   /* furthermore, we scale the results by 2**PASS1_BITS. */
 
   dataptr = data;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (ctr = DCTSIZE-1; ctr >= 0; ctr--) {
     tmp0 = dataptr[0] + dataptr[7];
     tmp7 = dataptr[0] - dataptr[7];
@@ -228,11 +228,11 @@ jpeg_fdct_islow (DCTELEM * data)
    */
 
   dataptr = data;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (ctr = DCTSIZE-1; ctr >= 0; ctr--) {
     tmp0 = dataptr[DCTSIZE*0] + dataptr[DCTSIZE*7];
     tmp7 = dataptr[DCTSIZE*0] - dataptr[DCTSIZE*7];

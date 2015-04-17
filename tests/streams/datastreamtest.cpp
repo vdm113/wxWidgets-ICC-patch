@@ -176,11 +176,11 @@ private:
         }
 
         m_ok = true;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (typename ValueArray::size_type idx=0; idx!=Size; ++idx) {
             if (InValues[idx]!=Values[idx]) {
                 m_ok = false;

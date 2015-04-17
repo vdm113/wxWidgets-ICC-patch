@@ -46,6 +46,11 @@ class SVector {
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 		for (; i<len; i++) {
 			newv[i] = v[i];
 		}
@@ -54,6 +59,11 @@ class SVector {
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 		for (; i<size; i++) {
 			newv[i] = 0;
 		}
@@ -82,6 +92,11 @@ public:
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 			for (int i=0; i<other.Length(); i++)
 				v[i] = other.v[i];
 			len = other.Length();
@@ -101,6 +116,11 @@ public:
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 				for (int i=0; i<other.Length(); i++)
 					v[i] = other.v[i];
 				len = other.Length();

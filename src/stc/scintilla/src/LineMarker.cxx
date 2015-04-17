@@ -352,11 +352,11 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
 
 	} else if (markType == SC_MARK_DOTDOTDOT) {
 		int right = centreX - 6;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 		for (int b=0; b<3; b++) {
 			PRectangle rcBlob(right, rc.bottom - 4, right + 2, rc.bottom-2);
 			surface->FillRectangle(rcBlob, fore);
@@ -366,11 +366,11 @@ void LineMarker::Draw(Surface *surface, PRectangle &rcWhole, Font &fontForCharac
 		surface->PenColour(fore);
 		int right = centreX - 2;
 		const int armLength = dimOn2 - 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 		for (int b = 0; b<3; b++) {
 			surface->MoveTo(right, centreY);
 			surface->LineTo(right - armLength, centreY - armLength);

@@ -45,11 +45,11 @@ public:
 
             wxString filename;
             bool ret = dir.GetFirst(&filename);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             while (ret)
             {
                 files.push_back(filename);

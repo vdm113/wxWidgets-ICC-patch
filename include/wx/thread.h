@@ -355,11 +355,11 @@ public:
     template<typename Functor>
     wxCondError Wait(const Functor& predicate)
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while ( !predicate() )
         {
             wxCondError e = Wait();

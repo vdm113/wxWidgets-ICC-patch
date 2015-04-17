@@ -171,6 +171,11 @@ MRESULT CIDropTarget::DragOver ()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0; i < ulItems; i++)
     {
         m_pDragItem = ::DrgQueryDragitemPtr(m_pDragInfo, i);
@@ -246,6 +251,11 @@ MRESULT CIDropTarget::Drop ()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0; i < ulItems; i++)
     {
         m_pDragItem = ::DrgQueryDragitemPtr(m_pDragInfo, i);
@@ -343,6 +353,11 @@ wxDataFormat wxDropTarget::GetSupportedFormat (
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (n = 0; n < ulFormats; n++)
     {
         switch(pFormats[n].GetType())
@@ -410,6 +425,11 @@ wxDataFormat wxDropTarget::GetSupportedFormat (
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (i = 0; i < ulItems; i++)
         {
             pDragItem = ::DrgQueryDragitemPtr(pDataSource, i);
@@ -598,6 +618,11 @@ void wxDropSource::Init ()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (ULONG i = 0; i < m_ulItems; i++)
     {
         m_pDragItem[i].hwndItem          = m_pWindow->GetHWND();

@@ -306,6 +306,11 @@ bool wxCheckListBox::SetFont ( const wxFont& rFont )
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (unsigned int i = 0; i < m_aItems.GetCount(); i++)
         m_aItems[i]->SetFont(rFont);
     wxListBox::SetFont(rFont);

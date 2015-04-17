@@ -95,11 +95,11 @@ wxAcceleratorTable::wxAcceleratorTable(int n, const wxAcceleratorEntry entries[]
 {
     m_refData = new wxAccelRefData;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( int i = 0; i < n; i++ )
     {
         const wxAcceleratorEntry& entry = entries[i];
@@ -144,11 +144,11 @@ void wxAcceleratorTable::Remove(const wxAcceleratorEntry& entry)
     AllocExclusive();
 
     wxAccelList::compatibility_iterator node = M_ACCELDATA->m_accels.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( node )
     {
         const wxAcceleratorEntry *entryCur = node->GetData();
@@ -185,11 +185,11 @@ wxAcceleratorTable::GetEntry(const wxKeyEvent& event) const
     }
 
     wxAccelList::compatibility_iterator node = M_ACCELDATA->m_accels.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( node )
     {
         const wxAcceleratorEntry *entry = node->GetData();

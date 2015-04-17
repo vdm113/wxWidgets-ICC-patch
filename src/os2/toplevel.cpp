@@ -198,6 +198,11 @@ void wxTopLevelWindowOS2::OnActivate(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while (pWin)
         {
             if (pWin->IsTopLevel())

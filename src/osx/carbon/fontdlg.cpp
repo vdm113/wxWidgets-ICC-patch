@@ -180,11 +180,11 @@ wxMacCarbonFontPanelHandler(EventHandlerCallRef WXUNUSED(nextHandler),
                             ByteCount *sizePtr = (ByteCount *)CFDataGetBytePtr(sizesData);
                             UInt32 *bytePtr = (UInt32*)CFDataGetBytePtr(valuesData);
                             ATSUAttributeValuePtr valuesPtr = bytePtr ;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                             for ( ItemCount i = 0 ; i < count ; ++i)
                             {
                                 if ( tagPtr[i] == kATSUColorTag && sizePtr[i] == sizeof(RGBColor))
@@ -390,11 +390,11 @@ void wxFontColourSwatchCtrl::OnMouseEvent(wxMouseEvent& event)
     if (event.LeftDown())
     {
         wxWindow* parent = GetParent();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while (parent != NULL && !parent->IsKindOf(CLASSINFO(wxDialog)) && !parent->IsKindOf(CLASSINFO(wxFrame)))
             parent = parent->GetParent();
 

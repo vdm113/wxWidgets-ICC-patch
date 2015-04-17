@@ -557,11 +557,6 @@ public:
 
         The iteration stops when this function returns an invalid item, i.e.
         @code
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             for ( wxTreeListItem item = tree->GetFirstItem();
                   item.IsOk();
                   item = tree->GetNextItem(item) )

@@ -113,11 +113,11 @@ wxHtmlPageBreakCell::AdjustPagebreak(int* pagebreak,
     // required here is the total page offset, so m_PosY must be added
     // to the parent's offset and height.
     int total_height = m_PosY;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( wxHtmlCell *parent = GetParent(); parent; parent = parent->GetParent() )
     {
         total_height += parent->GetPosY();

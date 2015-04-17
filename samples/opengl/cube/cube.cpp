@@ -62,11 +62,11 @@ static void CheckGLError()
 {
     GLenum errLast = GL_NO_ERROR;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( ;; )
     {
         GLenum err = glGetError();
@@ -170,11 +170,11 @@ TestGLContext::TestGLContext(wxGLCanvas *canvas)
     // each texture could take many megabytes)
     glGenTextures(WXSIZEOF(m_textures), m_textures);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( unsigned i = 0; i < WXSIZEOF(m_textures); i++ )
     {
         glBindTexture(GL_TEXTURE_2D, m_textures[i]);
@@ -346,11 +346,11 @@ TestGLCanvas::TestGLCanvas(wxWindow *parent, int *attribList)
     if ( attribList )
     {
         int i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while ( attribList[i] != 0 )
         {
             if ( attribList[i] == WX_GL_STEREO )

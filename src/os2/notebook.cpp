@@ -468,6 +468,11 @@ bool wxNotebook::DeleteAllPages()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (nPage = 0; nPage < nPageCount; nPage++)
         delete m_pages[nPage];
     m_pages.Clear();
@@ -692,6 +697,11 @@ void wxNotebook::OnSelChange (
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (nSel = 0; nSel < nPageCount; nSel++)
         {
             if (ulOS2Sel == (ULONG)m_alPageId[nSel])
@@ -715,6 +725,11 @@ void wxNotebook::OnSelChange (
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (nSel = 0; nSel < nPageCount; nSel++)
         {
             if (ulOS2Sel == (ULONG)m_alPageId[nSel])

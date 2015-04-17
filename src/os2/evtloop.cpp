@@ -144,6 +144,11 @@ bool wxEventLoopImpl::PreProcessMessage(QMSG *pMsg)
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (hWnd && !pWndThis)
     {
         hWnd = ::WinQueryWindow(hWnd, QW_PARENT);
@@ -177,6 +182,11 @@ bool wxEventLoopImpl::PreProcessMessage(QMSG *pMsg)
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
            for(pWnd = pWndThis; pWnd; pWnd = pWnd->GetParent() )
            {
                if((bRc = pWnd->OS2TranslateMessage((WXMSG*)pMsg)) == TRUE)
@@ -272,6 +282,11 @@ int wxGUIEventLoop::Run()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( ;; )
     {
 #if wxUSE_THREADS
@@ -285,6 +300,11 @@ int wxGUIEventLoop::Run()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while ( !Pending() && m_impl->SendIdleMessage() )
         {
             wxTheApp->HandleSockets();
@@ -381,6 +401,11 @@ bool wxGUIEventLoop::Dispatch()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for ( size_t n = 0; n < count; n++ )
             {
                 QMSG& msg = s_aSavedMessages[n];
@@ -414,6 +439,11 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (::WinPeekMsg(vHab, &vMsg, (HWND)NULL, 0, 0, PM_NOREMOVE) && vMsg.msg != WM_QUIT)
     {
         // TODO: implement event filtering using the eventsToProcess mask

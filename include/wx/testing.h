@@ -333,11 +333,11 @@ public:
     // including messing up the order of errors in some cases.
     void CheckUnmetExpectations()
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while ( !m_expectations.empty() )
         {
             const wxModalExpectation *expect = m_expectations.front();
@@ -365,11 +365,11 @@ public:
 protected:
     virtual int Enter(wxDialog *dlg)
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while ( !m_expectations.empty() )
         {
             const wxModalExpectation *expect = m_expectations.front();

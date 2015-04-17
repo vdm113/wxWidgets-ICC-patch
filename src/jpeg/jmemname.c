@@ -104,11 +104,11 @@ select_file_name (char * fname)
   FILE * tfile;
 
   /* Keep generating file names till we find one that's not in use */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (;;) {
     next_file_num++;		/* advance counter */
     sprintf(fname, TEMP_FILE_NAME, TEMP_DIRECTORY, next_file_num);

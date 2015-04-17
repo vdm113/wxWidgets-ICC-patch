@@ -59,11 +59,11 @@ public:
         m_count = a.size();
         m_strings = new const gchar *[m_count + 1];
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( size_t n = 0; n < m_count; n++ )
         {
 #if wxUSE_UNICODE
@@ -90,11 +90,11 @@ public:
     ~GtkArray()
     {
 #if !wxUSE_UNICODE
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( size_t n = 0; n < m_count; n++ )
             free(const_cast<gchar *>(m_strings[n]));
 #endif
@@ -224,11 +224,11 @@ void wxAboutBox(const wxAboutDialogInfo& info, wxWindow* parent)
     {
         const wxArrayString& translators = info.GetTranslators();
         const size_t count = translators.size();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )
         {
             transCredits << translators[n] << wxT('\n');

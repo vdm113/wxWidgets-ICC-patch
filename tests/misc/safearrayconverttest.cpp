@@ -150,11 +150,11 @@ void SafeArrayConvertTestCase::VariantListReturnSafeArray()
 
     wxVariant variantItem;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( long i = 0; i < count; i++ )
     {
         CPPUNIT_ASSERT( safeArray.GetElement(&i, variantItem) );
@@ -203,11 +203,11 @@ void SafeArrayConvertTestCase::StringsReturnSafeArray()
 
     wxString str;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( long i = 0; i < count; i++ )
     {
         CPPUNIT_ASSERT( safeArray.GetElement(&i, str) );

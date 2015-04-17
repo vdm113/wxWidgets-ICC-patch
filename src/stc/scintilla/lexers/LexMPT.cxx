@@ -43,11 +43,11 @@ static int GetLotLineState(std::string &line) {
 		// Most of the time the first non-blank character in line determines that line's type
 		// Now finds the first non-blank character
 		unsigned i; // Declares counter here to make it persistent after the for loop
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 		for (i = 0; i < line.length(); ++i) {
 			if (!(IsASCII(line[i]) && isspace(line[i])))
 				break;
@@ -102,11 +102,11 @@ static void ColourizeLotDoc(unsigned int startPos, int length, int, WordList *[]
 
 	// Styles LOT document
 	unsigned int i;			// Declared here because it's used after the for loop
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (i = startPos; i < startPos + length; ++i) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);
@@ -150,11 +150,11 @@ static void FoldLotDoc(unsigned int startPos, int length, int, WordList *[], Acc
 	if (startPos > 1)
 		style = styler.StyleAt(startPos - 2);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

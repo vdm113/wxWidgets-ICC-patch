@@ -339,11 +339,11 @@ bool wxStatusBarGeneric::GetFieldRect(int n, wxRect& rect) const
         return false;
 
     rect.x = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( int i = 0; i < n; i++ )
         rect.x += m_widthsAbs[i];
     rect.x += m_borderX;
@@ -367,11 +367,11 @@ int wxStatusBarGeneric::GetFieldFromPoint(const wxPoint& pt) const
         return wxNOT_FOUND;
 
     int x = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( size_t i = 0; i < m_panes.GetCount(); i++ )
     {
         if (pt.x > x && pt.x < x+m_widthsAbs[i])
@@ -464,11 +464,11 @@ void wxStatusBarGeneric::OnPaint(wxPaintEvent& WXUNUSED(event) )
     int textHeight = dc.GetCharHeight();
 
     dc.SetBackgroundMode(wxBRUSHSTYLE_TRANSPARENT);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (size_t i = 0; i < m_panes.GetCount(); i ++)
         DrawField(dc, i, textHeight);
 }

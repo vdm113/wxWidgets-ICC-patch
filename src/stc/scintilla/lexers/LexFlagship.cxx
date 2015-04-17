@@ -68,11 +68,11 @@ static void ColouriseFlagShipDoc(unsigned int startPos, int length, int initStyl
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
 
 		// Determine if the current state should terminate.
@@ -329,11 +329,11 @@ static void FoldFlagShipDoc(unsigned int startPos, int length, int,
 	int spaceFlags = 0;
 	int indentCurrent = styler.IndentAmount(lineCurrent, &spaceFlags);
 	char chNext = styler[startPos];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

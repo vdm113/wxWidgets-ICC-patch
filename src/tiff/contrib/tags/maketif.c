@@ -67,11 +67,11 @@ void WriteImage(TIFF *tif)
 	char buffer[WIDTH];
 	
 	memset(buffer,0,sizeof(buffer));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (i=0;i<HEIGHT;i++)
 		if (!TIFFWriteScanline(tif, buffer, i, 0))
 			TIFFErrorExt(tif->tif_clientdata, "WriteImage","failure in WriteScanline\n");

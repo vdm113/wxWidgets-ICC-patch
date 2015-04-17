@@ -606,6 +606,11 @@ void wxRegionIterator::Reset(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                 for( LONG i = 0; i < m_lNumRects; i++)
                 {
                     m_pRects[i].x      = pRect[i].xLeft;

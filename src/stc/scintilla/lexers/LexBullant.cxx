@@ -33,11 +33,11 @@ using namespace Scintilla;
 static int classifyWordBullant(unsigned int start, unsigned int end, WordList &keywords, Accessor &styler) {
 	char s[100];
 	s[0] = '\0';
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (unsigned int i = 0; i < end - start + 1 && i < 30; i++) {
 		s[i] = static_cast<char>(tolower(styler[start + i]));
 		s[i + 1] = '\0';
@@ -90,11 +90,11 @@ static void ColouriseBullantDoc(unsigned int startPos, int length, int initStyle
 	int visibleChars = 0;
 	styler.StartSegment(startPos);
 	int endFoundThisLine = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

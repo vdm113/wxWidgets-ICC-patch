@@ -147,11 +147,11 @@ void LineLayout::SetLineStart(int line, int start) {
 	if ((line >= lenLineStarts) && (line != 0)) {
 		int newMaxLines = line + 20;
 		int *newLineStarts = new int[newMaxLines];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 		for (int i = 0; i < newMaxLines; i++) {
 			if (i < lenLineStarts)
 				newLineStarts[i] = lineStarts[i];
@@ -204,11 +204,11 @@ void LineLayout::RestoreBracesHighlight(Range rangeLine, Position braces[], bool
 }
 
 int LineLayout::FindBefore(XYPOSITION x, int lower, int upper) const {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	do {
 		int middle = (upper + lower + 1) / 2; 	// Round high
 		XYPOSITION posMiddle = positions[middle];
@@ -224,11 +224,11 @@ int LineLayout::FindBefore(XYPOSITION x, int lower, int upper) const {
 
 int LineLayout::FindPositionFromX(XYPOSITION x, Range range, bool charPosition) const {
 	int pos = FindBefore(x, range.start, range.end);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	while (pos < range.end) {
 		if (charPosition) {
 			if (x < (positions[pos + 1])) {
@@ -251,11 +251,11 @@ Point LineLayout::PointFromPosition(int posInLine, int lineHeight) const {
 		pt.x = positions[maxLineLength] - positions[LineStart(lines)];
 	}
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (int subLine = 0; subLine < lines; subLine++) {
 		const Range rangeSubLine = SubLineRange(subLine);
 		if (posInLine >= rangeSubLine.start) {
@@ -307,11 +307,11 @@ void LineLayoutCache::AllocateForLevel(int linesOnScreen, int linesInDoc) {
 		Allocate(lengthForLevel);
 	} else {
 		if (lengthForLevel < cache.size()) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 			for (size_t i = lengthForLevel; i < cache.size(); i++) {
 				delete cache[i];
 				cache[i] = 0;
@@ -324,11 +324,11 @@ void LineLayoutCache::AllocateForLevel(int linesOnScreen, int linesInDoc) {
 
 void LineLayoutCache::Deallocate() {
 	PLATFORM_ASSERT(useCount == 0);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (size_t i = 0; i < cache.size(); i++)
 		delete cache[i];
 	cache.clear();
@@ -336,11 +336,11 @@ void LineLayoutCache::Deallocate() {
 
 void LineLayoutCache::Invalidate(LineLayout::validLevel validity_) {
 	if (!cache.empty() && !allInvalidated) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 		for (size_t i = 0; i < cache.size(); i++) {
 			if (cache[i]) {
 				cache[i]->Invalidate(validity_);
@@ -424,11 +424,11 @@ void LineLayoutCache::Dispose(LineLayout *ll) {
 static inline int KeyFromString(const char *charBytes, size_t len) {
 	PLATFORM_ASSERT(len <= 4);
 	int k=0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (size_t i=0; i<len && charBytes[i]; i++) {
 		k = k * 0x100;
 		k += static_cast<unsigned char>(charBytes[i]);
@@ -511,11 +511,11 @@ BreakFinder::BreakFinder(LineLayout *ll_, int lineStart_, int lineEnd_, int posL
 	if (xStart > 0.0f)
 		nextBreak = ll->FindBefore(xStart, lineStart, lineEnd);
 	// Now back to a style break
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	while ((nextBreak > lineStart) && (ll->styles[nextBreak] == ll->styles[nextBreak - 1])) {
 		nextBreak--;
 	}
@@ -524,11 +524,11 @@ BreakFinder::BreakFinder(LineLayout *ll_, int lineStart_, int lineEnd_, int posL
 		SelectionPosition posStart(posLineStart);
 		SelectionPosition posEnd(posLineStart + lineEnd);
 		SelectionSegment segmentLine(posStart, posEnd);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 		for (size_t r=0; r<ll->psel->Count(); r++) {
 			SelectionSegment portion = ll->psel->Range(r).Intersect(segmentLine);
 			if (!(portion.start == portion.end)) {
@@ -551,11 +551,11 @@ BreakFinder::~BreakFinder() {
 TextSegment BreakFinder::Next() {
 	if (subBreak == -1) {
 		int prev = nextBreak;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 		while (nextBreak < lineEnd) {
 			int charWidth = 1;
 			if (encodingFamily == efUnicode)
@@ -566,11 +566,11 @@ TextSegment BreakFinder::Next() {
 			if (((nextBreak > 0) && (ll->styles[nextBreak] != ll->styles[nextBreak - 1])) ||
 					repr ||
 					(nextBreak == saeNext)) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 				while ((nextBreak >= saeNext) && (saeNext < lineEnd)) {
 					saeCurrentPos++;
 					saeNext = (saeCurrentPos < selAndEdge.size()) ? selAndEdge[saeCurrentPos] : lineEnd;
@@ -629,11 +629,11 @@ void PositionCacheEntry::Set(unsigned int styleNumber_, const char *s_,
 	clock = clock_;
 	if (s_ && positions_) {
 		positions = new XYPOSITION[len + (len / 4) + 1];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 		for (unsigned int i=0; i<len; i++) {
 			positions[i] = static_cast<XYPOSITION>(positions_[i]);
 		}
@@ -657,11 +657,11 @@ bool PositionCacheEntry::Retrieve(unsigned int styleNumber_, const char *s_,
 	unsigned int len_, XYPOSITION *positions_) const {
 	if ((styleNumber == styleNumber_) && (len == len_) &&
 		(memcmp(reinterpret_cast<char *>(positions + len), s_, len)== 0)) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 		for (unsigned int i=0; i<len; i++) {
 			positions_[i] = positions[i];
 		}
@@ -673,11 +673,11 @@ bool PositionCacheEntry::Retrieve(unsigned int styleNumber_, const char *s_,
 
 int PositionCacheEntry::Hash(unsigned int styleNumber_, const char *s, unsigned int len_) {
 	unsigned int ret = s[0] << 7;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (unsigned int i=0; i<len_; i++) {
 		ret *= 1000003;
 		ret ^= s[i];
@@ -711,11 +711,11 @@ PositionCache::~PositionCache() {
 
 void PositionCache::Clear() {
 	if (!allClear) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 		for (size_t i=0; i<pces.size(); i++) {
 			pces[i].Clear();
 		}
@@ -757,19 +757,19 @@ void PositionCache::MeasureWidths(Surface *surface, ViewStyle &vstyle, unsigned 
 		// Break up into segments
 		unsigned int startSegment = 0;
 		XYPOSITION xStartSegment = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 		while (startSegment < len) {
 			unsigned int lenSegment = pdoc->SafeSegment(s + startSegment, len - startSegment, BreakFinder::lengthEachSubdivision);
 			surface->MeasureWidths(vstyle.styles[styleNumber].font, s + startSegment, lenSegment, positions + startSegment);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 			for (unsigned int inSeg = 0; inSeg < lenSegment; inSeg++) {
 				positions[startSegment + inSeg] += xStartSegment;
 			}
@@ -784,11 +784,11 @@ void PositionCache::MeasureWidths(Surface *surface, ViewStyle &vstyle, unsigned 
 		if (clock > 60000) {
 			// Since there are only 16 bits for the clock, wrap it round and
 			// reset all cache entries so none get stuck with a high clock.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 			for (size_t i=0; i<pces.size(); i++) {
 				pces[i].ResetClock();
 			}

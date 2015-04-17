@@ -398,11 +398,6 @@ public:
 
             // Wait until the request completes or until we decide to give up
             bool waitmore = true;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             while ( !client->WaitOnConnect(seconds, millis) && waitmore )
             {
                 // possibly give some feedback to the user,

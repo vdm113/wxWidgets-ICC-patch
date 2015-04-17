@@ -48,11 +48,11 @@ static gint gtk_popup_button_press (GtkWidget *widget, GdkEvent *gdk_event, wxPo
      *  is not. */
     if (child != widget)
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while (child)
         {
             if (child == widget)
@@ -199,11 +199,11 @@ void wxPopupWindow::SetFocus()
 {
     // set the focus to the first child who wants it
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( node )
     {
         wxWindow *child = node->GetData();

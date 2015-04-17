@@ -196,11 +196,11 @@ void wxRegConfig::SetPath(const wxString& strPath)
         // recombine path parts in one variable
         wxString strRegPath;
         m_strPathAlt.Empty();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( size_t n = 0; n < aParts.Count(); n++ ) {
             strRegPath << '\\' << aParts[n];
             m_strPathAlt << wxCONFIG_PATH_SEPARATOR << aParts[n];
@@ -254,11 +254,11 @@ void wxRegConfig::SetPath(const wxString& strPath)
         wxChar *dst = buf;
         wxChar *start = dst;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( ; src < end; src++, dst++ )
         {
             if ( *src == wxCONFIG_PATH_SEPARATOR )
@@ -286,11 +286,11 @@ void wxRegConfig::SetPath(const wxString& strPath)
 
                             // this is more efficient than strrchr()
                             dst--;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                             while ( *dst != wxCONFIG_PATH_SEPARATOR )
                             {
                                 dst--;
@@ -374,11 +374,11 @@ void wxRegConfig::SetPath(const wxString& strPath)
         wxChar *dst = buf;
 
         const wxChar *end = src + len;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( ; src < end; src++, dst++ )
         {
             if ( *src == wxCONFIG_PATH_SEPARATOR )
@@ -442,11 +442,11 @@ bool wxRegConfig::GetNextGroup(wxString& str, long& lIndex) const
   // are we already enumerating local entries?
   if ( m_keyGlobal.IsOpened() && !IS_LOCAL_INDEX(lIndex) ) {
     // try to find a global entry which doesn't appear locally
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( m_keyGlobal.GetNextKey(str, lIndex) ) {
       if ( !m_keyLocal.Exists() || !LocalKey().HasSubKey(str) ) {
         // ok, found one - return it
@@ -482,11 +482,11 @@ bool wxRegConfig::GetNextEntry(wxString& str, long& lIndex) const
   // are we already enumerating local entries?
   if ( m_keyGlobal.IsOpened() && !IS_LOCAL_INDEX(lIndex) ) {
     // try to find a global entry which doesn't appear locally
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( m_keyGlobal.GetNextValue(str, lIndex) ) {
       if ( !m_keyLocal.Exists() || !LocalKey().HasValue(str) ) {
         // ok, found one - return it
@@ -519,11 +519,11 @@ size_t wxRegConfig::GetNumberOfEntries(bool WXUNUSED(bRecursive)) const
   wxString str;
   long l;
   bool bCont = ((wxRegConfig*)this)->GetFirstEntry(str, l);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while ( bCont ) {
     nEntries++;
 
@@ -541,11 +541,11 @@ size_t wxRegConfig::GetNumberOfGroups(bool WXUNUSED(bRecursive)) const
   wxString str;
   long l;
   bool bCont = ((wxRegConfig*)this)->GetFirstGroup(str, l);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while ( bCont ) {
     nGroups++;
 

@@ -99,11 +99,11 @@ bool wxClipboard::AddData( wxDataObject *data )
     // Unfortunately I cannot find a way to use the qt clipboard with 
     // a callback to select the data type, so I must copy it all here
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )
     {
         const wxDataFormat format(formats[i]);
@@ -144,11 +144,11 @@ bool wxClipboard::GetData( wxDataObject& data )
     wxDataFormatArray formats(count);
     data.GetAllFormats(formats.get(), wxDataObject::Set);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )
     {
         const wxDataFormat format(formats[i]);

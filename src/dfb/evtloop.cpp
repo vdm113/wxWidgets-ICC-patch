@@ -87,11 +87,11 @@ private:
 
 void wxDFBEventsHandler::OnReadWaiting()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( ;; )
     {
         int size = read(m_fd,
@@ -219,11 +219,11 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
     // TODO: implement event filtering using the eventsToProcess mask
 
     // process all pending events:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( Pending() )
         Dispatch();
 

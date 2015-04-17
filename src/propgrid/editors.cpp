@@ -1040,11 +1040,11 @@ wxWindow* wxPGChoiceEditor::CreateControlsBase( wxPropertyGrid* propGrid,
         }
 
         unsigned int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( i=0; i<cmnVals; i++ )
             labels.Add(propGrid->GetCommonValueLabel(i));
     }

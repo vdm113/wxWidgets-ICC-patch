@@ -198,11 +198,11 @@ int wxControlBase::FindAccelIndex(const wxString& label, wxString *labelOnly)
     }
 
     int indexAccel = -1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( wxString::const_iterator pc = label.begin(); pc != label.end(); ++pc )
     {
         if ( *pc == MNEMONIC_PREFIX )
@@ -444,11 +444,11 @@ wxString wxControlBase::DoEllipsizeSingleLine(const wxString& curLine, const wxD
         case wxELLIPSIZE_START:
             {
                 calc.Init(0, 1);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                 while ( !calc.IsShortEnough() )
                     calc.RemoveFromEnd();
 
@@ -474,11 +474,11 @@ wxString wxControlBase::DoEllipsizeSingleLine(const wxString& curLine, const wxD
 
                 bool removeFromStart = true;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                 while ( !calc.IsShortEnough() )
                 {
                     const bool canRemoveFromStart = calc.GetFirstRemoved() > 0;
@@ -518,11 +518,11 @@ wxString wxControlBase::DoEllipsizeSingleLine(const wxString& curLine, const wxD
         case wxELLIPSIZE_END:
             {
                 calc.Init(len - 1, 1);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                 while ( !calc.IsShortEnough() )
                     calc.RemoveFromStart();
 
@@ -556,11 +556,11 @@ wxString wxControlBase::Ellipsize(const wxString& label, const wxDC& dc,
 
     // NB: we must handle correctly labels with newlines:
     wxString curLine;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( wxString::const_iterator pc = label.begin(); ; ++pc )
     {
         if ( pc == label.end() || *pc == wxS('\n') )

@@ -188,6 +188,11 @@ bool wxListBox::Create( wxWindow* pParent,
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (lUi = 0; lUi < (LONG)n; lUi++)
     {
         Append(asChoices[lUi]);
@@ -295,6 +300,11 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter & items,
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (unsigned int i = 0; i < count; i++)
     {
         n = (int)::WinSendMsg(GetHwnd(), LM_INSERTITEM, (MPARAM)lIndexType, (MPARAM)items[i].wx_str());
@@ -414,6 +424,11 @@ int wxListBox::GetSelections( wxArrayInt& raSelections ) const
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             while ((lItem = LONGFROMMR(::WinSendMsg( GetHwnd()
                                                     ,LM_QUERYSELECTION
                                                     ,(MPARAM)lItem
@@ -437,6 +452,11 @@ int wxListBox::GetSelections( wxArrayInt& raSelections ) const
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             while ((lItem = LONGFROMMR(::WinSendMsg( GetHwnd()
                                                     ,LM_QUERYSELECTION
                                                     ,(MPARAM)lItem
@@ -573,6 +593,11 @@ wxSize wxListBox::DoGetBestSize() const
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (unsigned int i = 0; i < m_nNumItems; i++)
     {
         wxString vStr(GetString(i));

@@ -217,21 +217,21 @@ static bool isOpenStringVerbatim(int next, int &closingQuote){
 // Look ahead to see which colour "end" should have (takes colour after the following keyword)
 static void endLookAhead(char s[], LexAccessor &styler, int start) {
     char ch = styler.SafeGetCharAt(start, '\n');
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (' ' == ch) {
         start++;
         ch = styler.SafeGetCharAt(start, '\n');
     }
     int i = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (i < 100 && isLowerLetter(ch)){
         s[i] = ch;
         i++;
@@ -281,11 +281,11 @@ void SCI_METHOD LexerVisualProlog::Lex(unsigned int startPos, int length, int in
 
     // Truncate ppDefineHistory before current line
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (; sc.More(); sc.Forward()) {
 
         // Determine if the current state should terminate.
@@ -483,11 +483,11 @@ void SCI_METHOD LexerVisualProlog::Fold(unsigned int startPos, int length, int i
     char chNext = styler[startPos];
     int styleNext = styler.StyleAt(startPos);
     int style = initStyle;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (unsigned int i = startPos; i < endPos; i++) {
         char ch = chNext;
         chNext = styler.SafeGetCharAt(i + 1);

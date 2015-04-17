@@ -113,11 +113,11 @@ main()
 		goto failure;
 	}
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (i = 0; i < NTAGS; i++) {
 		if (!TIFFSetField(tif, ascii_tags[i].tag,
 				  ascii_tags[i].value)) {
@@ -154,11 +154,11 @@ main()
 		return 1;
 	}
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (i = 0; i < NTAGS; i++) {
 		if (!TIFFGetField(tif, ascii_tags[i].tag, &value)
 		    || strcmp(value, ascii_tags[i].value)) {

@@ -549,11 +549,11 @@ void VsnprintfTestCase::DoMisc(
 
     wxASSERT(max <= BUFSIZE);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (i = 0; i < BUFSIZE; i++)
         buf[i] = '*';
     buf[BUFSIZE] = 0;
@@ -582,11 +582,11 @@ void VsnprintfTestCase::DoMisc(
 
     CPPUNIT_ASSERT_MESSAGE(errMsg, expectedString == buf);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (i = max; i < BUFSIZE; i++)
         CPPUNIT_ASSERT_MESSAGE(overflowMsg, buf[i] == '*');
 }

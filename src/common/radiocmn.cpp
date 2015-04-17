@@ -145,11 +145,11 @@ int wxRadioBoxBase::GetNextItem(int item, wxDirection dir, long style) const
 
     bool horz = (style & wxRA_SPECIFY_COLS) != 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     do
     {
         switch ( dir )
@@ -311,11 +311,11 @@ wxRadioBoxBase::~wxRadioBoxBase()
     if ( m_itemsTooltips )
     {
         const size_t n = m_itemsTooltips->size();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( size_t i = 0; i < n; i++ )
             delete (*m_itemsTooltips)[i];
 

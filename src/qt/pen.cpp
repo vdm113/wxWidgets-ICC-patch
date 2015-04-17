@@ -318,11 +318,11 @@ void wxPen::SetDashes(int nb_dashes, const wxDash *dash)
     QVector<qreal> dashes;
     if (dash)
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (int i = 0; i < nb_dashes; i++)
             dashes << dash[i];
     }

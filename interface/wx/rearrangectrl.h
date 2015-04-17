@@ -260,11 +260,6 @@ public:
                               order, items);
         if ( dlg.ShowModal() == wxID_OK ) {
             order = dlg.GetOrder();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
             for ( size_t n = 0; n < order.size(); n++ ) {
                 if ( order[n] >= 0 ) {
                     wxLogMessage("Your most preferred item is \"%s\"",

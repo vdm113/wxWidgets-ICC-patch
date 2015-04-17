@@ -628,11 +628,11 @@ wxPalette *wxDIB::CreatePalette() const
     RGBQUAD *pRGB = (RGBQUAD*)rgb.data();
     SelectInHDC selectHandle(hDC, m_handle);
     ::GetDIBColorTable(hDC, 0, biClrUsed, pRGB);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( DWORD i = 0; i < biClrUsed; i++, pRGB++ )
     {
         pPalette->palPalEntry[i].peRed = pRGB->rgbRed;
@@ -690,11 +690,11 @@ bool wxDIB::Create(const wxImage& image, PixelFormat pf)
     const unsigned char *alpha = hasAlpha ? image.GetAlpha() + (h - 1)*w
                                           : NULL;
     unsigned char *dstLineStart = (unsigned char *)m_data;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( int y = 0; y < h; y++ )
     {
         // Copy one DIB line. Note that RGB components order is reversed in
@@ -709,11 +709,11 @@ bool wxDIB::Create(const wxImage& image, PixelFormat pf)
                 case PixelFormat_PreMultiplied:
                     // Pre-multiply pixel values so that the DIB could be used
                     // with ::AlphaBlend().
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                     for ( x = 0; x < w; x++ )
                     {
                         const unsigned char a = *alpha++;
@@ -727,11 +727,11 @@ bool wxDIB::Create(const wxImage& image, PixelFormat pf)
 
                 case PixelFormat_NotPreMultiplied:
                     // Just copy pixel data without changing it.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                     for ( x = 0; x < w; x++ )
                     {
                         *dst++ = src[2];
@@ -747,11 +747,11 @@ bool wxDIB::Create(const wxImage& image, PixelFormat pf)
         }
         else // no alpha channel
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for ( int x = 0; x < w; x++ )
             {
                 *dst++ = src[2];
@@ -813,20 +813,20 @@ wxImage wxDIB::ConvertToImage() const
     unsigned char *alpha = image.HasAlpha() ? image.GetAlpha() + (h - 1)*w
                                             : NULL;
     const unsigned char *srcLineStart = (unsigned char *)GetData();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( int y = 0; y < h; y++ )
     {
         // copy one DIB line
         const unsigned char *src = srcLineStart;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( int x = 0; x < w; x++ )
         {
             dst[2] = *src++;

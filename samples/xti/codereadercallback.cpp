@@ -128,11 +128,11 @@ public:
     {
         const wxClassInfo* ci = m_cti->GetClassInfo();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( int i = 0; i < ci->GetCreateParamCount(); ++i )
         {
             wxString name = ci->GetCreateParamName(i);
@@ -208,11 +208,11 @@ void wxObjectCodeReaderCallback::CreateObject(int objectID,
     int i;
     m_source += ( wxString::Format( wxT("\t%s->Create("), 
                        m_data->GetObjectName(objectID).c_str() ) );
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (i = 0; i < paramCount; i++)
     {
         if ( objectIDValues[i] != wxInvalidObjectID )
@@ -250,11 +250,11 @@ void wxObjectCodeReaderCallback::ConstructObject(int objectID,
     m_data->SetObjectName( objectID, objectName );
 
     int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (i = 0; i < paramCount; i++)
     {
         if ( objectIDValues[i] != wxInvalidObjectID )

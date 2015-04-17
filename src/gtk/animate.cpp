@@ -136,11 +136,11 @@ bool wxAnimation::Load(wxInputStream &stream, wxAnimationType type)
 
     guchar buf[2048];
     bool data_written = false;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (stream.IsOk())
     {
         // read a chunk of data

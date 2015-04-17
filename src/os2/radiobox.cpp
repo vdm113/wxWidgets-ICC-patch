@@ -93,6 +93,11 @@ wxRadioBox::~wxRadioBox()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (unsigned int i = 0; i < m_nNoItems; i++)
         {
             wxWindow* pWin = wxFindWinFromHandle((WXHWND)m_ahRadioButtons[i]);
@@ -124,6 +129,11 @@ bool wxRadioBox::ContainsHWND( WXHWND hWnd ) const
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0; i < nCount; i++)
     {
         if (GetRadioButtons()[i] == hWnd)
@@ -206,6 +216,11 @@ bool wxRadioBox::Create( wxWindow* pParent,
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (int i = 0; i < nNum; i++)
     {
         m_pnRadioWidth[i] = m_pnRadioHeight[i] = -1;
@@ -432,6 +447,11 @@ void wxRadioBox::DoSetSize(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (unsigned int i = 0; i < m_nNoItems; i++)
     {
         //
@@ -554,6 +574,11 @@ bool wxRadioBox::Enable(bool bEnable)
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (unsigned int i = 0; i < m_nNoItems; i++)
         ::WinEnableWindow((HWND)m_ahRadioButtons[i], bEnable);
     return true;
@@ -581,6 +606,11 @@ wxSize wxRadioBox::GetMaxButtonSize() const
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (unsigned int i = 0 ; i < m_nNoItems; i++)
     {
         int nWidth;
@@ -638,6 +668,11 @@ void wxRadioBox::GetSize( int* pnWidth, int* pnHeight ) const
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (unsigned int i = 0; i < m_nNoItems; i++)
         wxFindMaxSize( m_ahRadioButtons[i], &vRect );
 
@@ -736,6 +771,11 @@ bool wxRadioBox::OS2Command( WXUINT uCmd,
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (unsigned int i = 0; i < m_nNoItems; i++)
         {
             if (wId == wxGetWindowId(m_ahRadioButtons[i]))
@@ -803,6 +843,11 @@ bool wxRadioBox::SetFont(const wxFont& rFont)
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (unsigned int n = 0; n < m_nNoItems; n++)
     {
         HWND hWndBtn = (HWND)m_ahRadioButtons[n];
@@ -858,6 +903,11 @@ bool wxRadioBox::Show(bool bShow)
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (unsigned int i = 0; i < m_nNoItems; i++)
     {
         ::WinShowWindow((HWND)m_ahRadioButtons[i], (BOOL)bShow);

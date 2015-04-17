@@ -145,11 +145,11 @@ bool wxANIDecoder::DoCanRead(wxInputStream& stream) const
         return false;
 
     // we have a riff file:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( stream.IsOk() )
     {
         if ( FCC1 == anih32 )
@@ -207,11 +207,11 @@ struct wxANIHeader
         // to the file header!)
         wxInt32 * const start = (wxInt32 *)this;
         wxInt32 * const end = start + sizeof(wxANIHeader)/sizeof(wxInt32);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( wxInt32 *p = start; p != end; p++ )
         {
             *p = wxINT32_SWAP_ALWAYS(*p);
@@ -258,11 +258,11 @@ bool wxANIDecoder::Load( wxInputStream& stream )
     m_info.Clear();
 
     // we have a riff file:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( !stream.Eof() )
     {
         // we always have a data size:
@@ -313,11 +313,11 @@ bool wxANIDecoder::Load( wxInputStream& stream )
                 return false;       // rate chunks should always be placed after anih chunk
 
             wxASSERT(m_info.GetCount() == m_nFrames);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for (unsigned int i=0; i<m_nFrames; i++)
             {
                 if (!stream.Read(&FCC2, 4))
@@ -332,11 +332,11 @@ bool wxANIDecoder::Load( wxInputStream& stream )
                 return false;       // seq chunks should always be placed after anih chunk
 
             wxASSERT(m_info.GetCount() == m_nFrames);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for (unsigned int i=0; i<m_nFrames; i++)
             {
                 if (!stream.Read(&FCC2, 4))
@@ -377,11 +377,11 @@ bool wxANIDecoder::Load( wxInputStream& stream )
     {
         // if no SEQ chunk is available, display the frames in the order
         // they were loaded
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (unsigned int i=0; i<m_nFrames; i++)
             if (m_info[i].m_imageIndex == -1)
                 m_info[i].m_imageIndex = i;
@@ -389,11 +389,11 @@ bool wxANIDecoder::Load( wxInputStream& stream )
 
     // if some frame has an invalid delay, use the global delay given in the
     // ANI header
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (unsigned int i=0; i<m_nFrames; i++)
         if (m_info[i].m_delay == 0)
             m_info[i].m_delay = globaldelay;

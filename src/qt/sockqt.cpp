@@ -84,11 +84,11 @@ public:
     {
         QSocketNotifier::Type type = d == INPUT ? QSocketNotifier::Read :
                                                   QSocketNotifier::Write;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( wxVector<wxQtFDIONotifier*>::iterator it = m_qtNotifiers.begin();
               it != m_qtNotifiers.end(); ++it )
         {

@@ -137,11 +137,11 @@ DWORD WINAPI SocketThread(LPVOID data)
     HANDLE NetworkEvent = gs_WSACreateEvent();
     gs_WSAEventSelect(d->fd, NetworkEvent, d->lEvent);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while(socketHash[d->fd] == true)
     {
         if ((gs_WSAWaitForMultipleEvents(1, &NetworkEvent, FALSE,INFINITE, FALSE)) == WAIT_FAILED)
@@ -212,11 +212,11 @@ bool wxSocketMSWManager::OnInit()
       return false;
 
   /* Initialize socket list */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (i = 0; i < MAXSOCKETS; i++)
   {
     socketList[i] = NULL;
@@ -269,11 +269,11 @@ void wxSocketMSWManager::OnExit()
 {
 #ifdef __WXWINCE__
 /* Delete the threads here */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for(unsigned int i=0; i < currSocket; i++)
         CloseHandle(hThread[i]);
 #endif
@@ -295,11 +295,11 @@ wxSocketImplMSW::wxSocketImplMSW(wxSocketBase& wxsocket)
   wxCRIT_SECT_LOCKER(lock, gs_critical);
 
   int i = firstAvailable;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (socketList[i] != NULL)
   {
     i = (i + 1) % MAXSOCKETS;
@@ -326,11 +326,11 @@ wxSocketImplMSW::~wxSocketImplMSW()
       // them sent to a new socket which could reuse the same message number as
       // soon as we destroy this one
       MSG msg;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
       while ( ::PeekMessage(&msg, hWin, m_msgnumber, m_msgnumber, PM_REMOVE) )
           ;
 

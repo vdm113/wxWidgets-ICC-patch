@@ -177,6 +177,11 @@ wxString wxMenuItemBase::GetLabelText(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (const wxChar* zPc = rsText.c_str(); *zPc; zPc++)
     {
         if (*zPc == wxT('~') || *zPc == wxT('&'))
@@ -315,6 +320,11 @@ void wxMenuItem::Check(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (int n = nStart; n <= nEnd && node; n++)
         {
             if (n == nPos)

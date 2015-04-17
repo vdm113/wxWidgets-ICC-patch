@@ -56,11 +56,11 @@ public:
         wxNotebookPage *page;
         ControlTabInfoRecV1 info;
         
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (size_t ii = 0; ii < countPages; ii++)
         {
             page = (wxNotebookPage*) notebook.GetPage(ii);

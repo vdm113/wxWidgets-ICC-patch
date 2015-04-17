@@ -35,11 +35,11 @@ bool wxColourDialog::Create(wxWindow *parent, wxColourData *data )
 
     if ( m_data.GetChooseFull() )
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (int i=0; i<wxColourData::NUM_CUSTOM; i++)
             QColorDialog::setCustomColor(i, m_data.GetCustomColour(i).GetHandle());
     }
@@ -51,11 +51,11 @@ bool wxColourDialog::Create(wxWindow *parent, wxColourData *data )
 
 wxColourData &wxColourDialog::GetColourData()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (int i=0; i<wxColourData::NUM_CUSTOM; i++)
         m_data.SetCustomColour(i, GetHandle()->customColor(i));
     

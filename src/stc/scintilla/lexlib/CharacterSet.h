@@ -36,11 +36,11 @@ public:
 		size = size_;
 		valueAfter = valueAfter_;
 		bset = new bool[size];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 		for (int i=0; i < size; i++) {
 			bset[i] = false;
 		}
@@ -56,11 +56,11 @@ public:
 		size = other.size;
 		valueAfter = other.valueAfter;
 		bset = new bool[size];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 		for (int i=0; i < size; i++) {
 			bset[i] = other.bset[i];
 		}
@@ -73,11 +73,11 @@ public:
 	CharacterSet &operator=(const CharacterSet &other) {
 		if (this != &other) {
 			bool *bsetNew = new bool[other.size];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 			for (int i=0; i < other.size; i++) {
 				bsetNew[i] = other.bset[i];
 			}
@@ -94,11 +94,11 @@ public:
 		bset[val] = true;
 	}
 	void AddString(const char *setToAdd) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 		for (const char *cp=setToAdd; *cp; cp++) {
 			int val = static_cast<unsigned char>(*cp);
 			assert(val >= 0);

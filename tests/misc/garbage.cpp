@@ -68,20 +68,20 @@ void GarbageTestCase::LoadGarbage()
 
     wxInitAllImageHandlers();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (size_t size = 1; size < GARBAGE_DATA_SIZE; size *= size+1)
     {
         // first, generate some garbage data
         unsigned char *data = new unsigned char[size];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (size_t i = 0; i < size; i++)
             data[i] = rand();
 

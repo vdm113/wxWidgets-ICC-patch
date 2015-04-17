@@ -112,11 +112,11 @@ wxUniCharRef& wxUniCharRef::operator=(const wxUniChar& c)
         // same length, we can just replace it:
 
         iterator pos(m_pos);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( size_t i = 0; i < lenNew; ++i, ++pos )
             *pos = utf[i];
     }
@@ -140,11 +140,11 @@ wxUniCharRef& wxUniCharRef::operator=(const wxUniChar& c)
         size_t *indexes = indexes_a;
         size_t iterNum = 0;
         wxStringIteratorNode *it;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( it = m_str.m_iterators.ptr; it; it = it->m_next, ++iterNum )
         {
             wxASSERT( it->m_iter || it->m_citer );
@@ -154,11 +154,11 @@ wxUniCharRef& wxUniCharRef::operator=(const wxUniChar& c)
                 wxLogTrace( wxT("utf8"), wxT("unexpectedly many iterators") );
 
                 size_t total = iterNum + 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                 for ( wxStringIteratorNode *it2 = it; it2; it2 = it2->m_next )
                     total++;
                 indexes = new size_t[total];
@@ -185,11 +185,11 @@ wxUniCharRef& wxUniCharRef::operator=(const wxUniChar& c)
         // finally, set the iterators to valid values again (note that this
         // updates m_pos as well):
         size_t i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( i = 0, it = m_str.m_iterators.ptr; it; it = it->m_next, ++i )
         {
             wxASSERT( i < iterNum );

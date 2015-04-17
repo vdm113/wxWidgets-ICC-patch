@@ -294,11 +294,11 @@ void wxSpinCtrl::OnChar( wxKeyEvent &event )
     if (event.GetKeyCode() == WXK_RETURN)
     {
         wxWindow *top_frame = m_parent;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while (top_frame->GetParent() && !(top_frame->IsTopLevel()))
             top_frame = top_frame->GetParent();
 

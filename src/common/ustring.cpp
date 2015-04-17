@@ -36,11 +36,11 @@ wxUString &wxUString::assignFromAscii( const char *str )
    wxChar32 *ptr = buffer.data();
 
    size_type i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
    for (i = 0; i < len; i++)
    {
        *ptr = *str;
@@ -55,11 +55,11 @@ wxUString &wxUString::assignFromAscii( const char *str, size_type n )
 {
    size_type len = 0;
    const char *s = str;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
    while (len < n && *s)
    {
        len++;
@@ -70,11 +70,11 @@ wxUString &wxUString::assignFromAscii( const char *str, size_type n )
    wxChar32 *ptr = buffer.data();
 
    size_type i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
    for (i = 0; i < len; i++)
    {
        *ptr = *str;
@@ -131,11 +131,11 @@ wxUString &wxUString::assignFromUTF8( const char *str )
 
     size_type ucs4_len = 0;
     const char *p = str;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (*p)
     {
         unsigned char c = *p;
@@ -150,11 +150,11 @@ wxUString &wxUString::assignFromUTF8( const char *str )
     wxChar32 *out = buffer.data();
 
     p = str;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (*p)
     {
         unsigned char c = *p;
@@ -197,11 +197,11 @@ wxUString &wxUString::assignFromUTF8( const char *str )
 
             // all remaining bytes, if any, are handled in the same way
             // regardless of sequence's length:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for ( ; len; --len )
             {
                 c = *++p;
@@ -229,11 +229,11 @@ wxUString &wxUString::assignFromUTF8( const char *str, size_type n )
     size_type ucs4_len = 0;
     size_type utf8_pos = 0;
     const char *p = str;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (*p)
     {
         unsigned char c = *p;
@@ -252,11 +252,11 @@ wxUString &wxUString::assignFromUTF8( const char *str, size_type n )
 
     utf8_pos = 0;
     p = str;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (*p)
     {
         unsigned char c = *p;
@@ -306,11 +306,11 @@ wxUString &wxUString::assignFromUTF8( const char *str, size_type n )
 
             // all remaining bytes, if any, are handled in the same way
             // regardless of sequence's length:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for ( ; len; --len )
             {
                 c = *++p;
@@ -340,11 +340,11 @@ wxUString &wxUString::assignFromUTF16( const wxChar16* str, size_type n )
     size_type ucs4_len = 0;
     size_type utf16_pos = 0;
     const wxChar16 *p = str;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (*p)
     {
         size_type len;
@@ -375,11 +375,11 @@ wxUString &wxUString::assignFromUTF16( const wxChar16* str, size_type n )
     utf16_pos = 0;
 
     p = str;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (*p)
     {
         if ((*p < 0xd800) || (*p > 0xdfff))
@@ -413,11 +413,11 @@ wxUString &wxUString::assignFromUTF16( const wxChar16* str )
 
     size_type ucs4_len = 0;
     const wxChar16 *p = str;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (*p)
     {
         size_type len;
@@ -442,11 +442,11 @@ wxUString &wxUString::assignFromUTF16( const wxChar16* str )
     wxChar32 *out = buffer.data();
 
     p = str;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (*p)
     {
         if ((*p < 0xd800) || (*p > 0xdfff))
@@ -490,11 +490,11 @@ wxScopedCharBuffer wxUString::utf8_str() const
     size_type utf8_length = 0;
     const wxChar32 *ptr = data();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (*ptr)
     {
         wxChar32 code = *ptr;
@@ -527,11 +527,11 @@ wxScopedCharBuffer wxUString::utf8_str() const
     char *out = result.data();
 
     ptr = data();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (*ptr)
     {
         wxChar32 code = *ptr;
@@ -577,11 +577,11 @@ wxScopedU16CharBuffer wxUString::utf16_str() const
     size_type utf16_length = 0;
     const wxChar32 *ptr = data();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (*ptr)
     {
         wxChar32 code = *ptr;
@@ -600,11 +600,11 @@ wxScopedU16CharBuffer wxUString::utf16_str() const
 
     ptr = data();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (*ptr)
     {
         wxChar32 code = *ptr;

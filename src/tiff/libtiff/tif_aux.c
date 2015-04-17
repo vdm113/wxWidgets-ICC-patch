@@ -109,11 +109,11 @@ TIFFDefaultTransferFunction(TIFFDirectory* td)
 	if (!(tf[0] = (uint16 *)_TIFFmalloc(nbytes)))
 		return 0;
 	tf[0][0] = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (i = 1; i < n; i++) {
 		double t = (double)i/((double) n-1.);
 		tf[0][i] = (uint16)floor(65535.*pow(t, 2.2) + .5);
@@ -160,11 +160,11 @@ TIFFDefaultRefBlackWhite(TIFFDirectory* td)
 		/*
 		 * Assume RGB (Class R)
 		 */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 		for (i = 0; i < 3; i++) {
 		    td->td_refblackwhite[2*i+0] = 0;
 		    td->td_refblackwhite[2*i+1] =

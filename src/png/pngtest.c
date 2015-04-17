@@ -228,11 +228,11 @@ count_zero_samples(png_structp png_ptr, png_row_infop row_info, png_bytep data)
        int pos = 0;
        png_uint_32 n, nstop;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
        for (n = 0, nstop=row_info->width; n<nstop; n++)
        {
           if (row_info->bit_depth == 1)
@@ -290,18 +290,18 @@ count_zero_samples(png_structp png_ptr, png_row_infop row_info, png_bytep data)
        int color_channels = row_info->channels;
        if (row_info->color_type > 3)color_channels--;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
        for (n = 0, nstop=row_info->width; n<nstop; n++)
        {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
           for (channel = 0; channel < color_channels; channel++)
           {
              if (row_info->bit_depth == 8)
@@ -582,11 +582,11 @@ png_debug_free(png_structp png_ptr, png_voidp ptr)
    {
       memory_infop *ppinfo = &pinformation;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
       for (;;)
       {
          memory_infop pinfo = *ppinfo;
@@ -788,11 +788,11 @@ write_chunks(png_structp write_ptr, int location)
     * vpAg chunks, resulting in an error later.  This is not worth worrying
     * about - the chunks should not be duplicated!
     */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
    for (i=0; i<2; ++i)
    {
       if (user_chunk_data.location[i] == (location | have_sTER))
@@ -817,11 +817,11 @@ static void
 pngtest_check_text_support(png_const_structp png_ptr, png_textp text_ptr,
    int num_text)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
    while (num_text > 0)
    {
       switch (text_ptr[--num_text].compression)
@@ -1029,11 +1029,11 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
    {
       int i;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
       for (i = 0; i<256; i++)
          filters_used[i] = 0;
 
@@ -1275,11 +1275,11 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
             int i;
 
             printf("\n");
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for (i=0; i<num_text; i++)
             {
                printf("   Text compression[%d]=%d\n",
@@ -1352,11 +1352,11 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
           */
          {
             int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for (i = 0; i < num_unknowns; i++)
               png_set_unknown_chunk_location(write_ptr, write_info_ptr, i,
                 unknowns[i].location);
@@ -1405,19 +1405,19 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
    t_misc += (t_stop - t_start);
    t_start = t_stop;
 #endif
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
    for (pass = 0; pass < num_pass; pass++)
    {
       pngtest_debug1("Writing row data for pass %d", pass);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
       for (y = 0; y < height; y++)
       {
 #ifndef SINGLE_ROWBUF_ALLOC
@@ -1479,11 +1479,11 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
             int i;
 
             printf("\n");
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for (i=0; i<num_text; i++)
             {
                printf("   Text compression[%d]=%d\n",
@@ -1534,11 +1534,11 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
           */
          {
             int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for (i = 0; i < num_unknowns; i++)
               png_set_unknown_chunk_location(write_ptr, write_end_info_ptr, i,
                 unknowns[i].location);
@@ -1650,11 +1650,11 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
    {
       int wrote_question = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
       for (;;)
       {
          png_size_t num_in, num_out;
@@ -1855,11 +1855,11 @@ main(int argc, char *argv[])
 #if defined(PNG_USER_MEM_SUPPORTED) && PNG_DEBUG
       int allocation_now = current_allocation;
 #endif
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
       for (i=2; i<argc; ++i)
       {
          int kerror;
@@ -1877,11 +1877,11 @@ main(int argc, char *argv[])
             fprintf(STDERR, " PASS\n");
 #endif
 #ifdef PNG_READ_USER_TRANSFORM_SUPPORTED
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for (k = 0; k<256; k++)
                if (filters_used[k])
                   fprintf(STDERR, " Filter %d was used %lu times\n",
@@ -1912,11 +1912,11 @@ main(int argc, char *argv[])
             fprintf(STDERR, "MEMORY ERROR: %d bytes still allocated\n",
                current_allocation);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             while (pinfo != NULL)
             {
                fprintf(STDERR, " %lu bytes at %x\n",
@@ -1942,11 +1942,11 @@ main(int argc, char *argv[])
    else
    {
       int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
       for (i = 0; i<3; ++i)
       {
          int kerror;
@@ -1978,11 +1978,11 @@ main(int argc, char *argv[])
                 fprintf(STDERR, " PASS\n");
 #endif
 #ifdef PNG_READ_USER_TRANSFORM_SUPPORTED
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                 for (k = 0; k<256; k++)
                    if (filters_used[k])
                       fprintf(STDERR, " Filter %d was used %lu times\n",
@@ -2015,11 +2015,11 @@ main(int argc, char *argv[])
              fprintf(STDERR, "MEMORY ERROR: %d bytes still allocated\n",
                 current_allocation);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
              while (pinfo != NULL)
              {
                 fprintf(STDERR, " %lu bytes at %x\n",

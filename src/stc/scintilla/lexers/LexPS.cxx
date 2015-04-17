@@ -99,11 +99,11 @@ static void ColourisePSDoc(
         styler.StartSegment(startPos);
     }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (; sc.More(); sc.Forward()) {
         if (sc.atLineStart)
             lineCurrent = styler.GetLine(sc.currentPos);
@@ -309,11 +309,11 @@ static void FoldPSDoc(unsigned int startPos, int length, int, WordList *[],
     char chNext = styler[startPos];
     int styleNext = styler.StyleAt(startPos);
     int style;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (unsigned int i = startPos; i < endPos; i++) {
         char ch = chNext;
         chNext = styler.SafeGetCharAt(i + 1);

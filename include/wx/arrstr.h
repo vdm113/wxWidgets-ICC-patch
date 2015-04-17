@@ -109,11 +109,11 @@ public:
     {
         reserve(src.size());
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( size_t n = 0; n < src.size(); n++ )
             Add(src[n]);
     }
@@ -324,11 +324,11 @@ public:
   {
       clear();
       reserve(std::distance(first, last));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
       for(; first != last; ++first)
           push_back(*first);
   }
@@ -429,11 +429,11 @@ public:
         if( m_strings ) return m_strings;
         size_t count = m_array.GetCount();
         m_strings = new wxString[count];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for( size_t i = 0; i < count; ++i )
             m_strings[i] = m_array[i];
         return m_strings;

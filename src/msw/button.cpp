@@ -257,11 +257,11 @@ wxWindow *wxButton::SetDefault()
 // return NULL
 static wxTopLevelWindow *GetTLWParentIfNotBeingDeleted(wxWindow *win)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( ;; )
     {
         // IsTopLevel() will return false for a wxTLW being deleted, so we also

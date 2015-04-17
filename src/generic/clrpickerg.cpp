@@ -79,11 +79,11 @@ void wxGenericColourButton::InitColourData()
 {
     ms_data.SetChooseFull(true);
     unsigned char grey = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (int i = 0; i < 16; i++, grey += 16)
     {
         // fill with grey tones the custom colors palette

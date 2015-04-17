@@ -81,11 +81,11 @@ public:
         wxSharedPtr<wxGtkCollatableString> new_ptr( new wxGtkCollatableString( new_label, new_key ) );
 
         wxVector< wxSharedPtr<wxGtkCollatableString> >::iterator iter;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (iter = m_list.begin(); iter != m_list.end(); ++iter)
         {
             wxSharedPtr<wxGtkCollatableString> ptr = *iter;

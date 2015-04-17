@@ -373,11 +373,11 @@ bool wxSizerXmlHandler::ValidateGridSizerChildren()
     {
         // fixed number of cells, need to verify children count
         int children = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( wxXmlNode *n = m_node->GetChildren(); n; n = n->GetNext() )
         {
             if ( n->GetType() == wxXML_ELEMENT_NODE &&
@@ -463,11 +463,11 @@ void wxSizerXmlHandler::SetGrowables(wxFlexGridSizer* sizer,
     wxStringTokenizer tkn;
     tkn.SetString(GetParamValue(param), wxT(","));
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (tkn.HasMoreTokens())
     {
         wxString propStr;
@@ -614,11 +614,11 @@ int wxSizerXmlHandler::GetSizerFlags()
     int flags = 0;
 
     wxStringTokenizer tkn(s, wxS("| \t\n"), wxTOKEN_STRTOK);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( tkn.HasMoreTokens() )
     {
         const wxString flagName = tkn.GetNextToken();
@@ -708,11 +708,11 @@ int wxSizerXmlHandler::GetSizerFlags()
                 break;
         }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( int orient = 0; orient < Orient_Max; orient++ )
         {
             if ( !flagSpecifiesAlignIn[orient] )

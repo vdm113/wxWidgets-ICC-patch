@@ -99,11 +99,11 @@ int wxComboBox::DoInsertItems(const wxArrayStringsAdapter& items,
                               void **clientData, wxClientDataType type)
 {
     const unsigned int numItems = items.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for( unsigned int i = 0; i < numItems; ++i, ++pos )
     {
         unsigned int idx;
@@ -176,11 +176,11 @@ int wxComboBox::FindString(const wxString& s, bool bCase) const
 {
     if (!bCase)
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (unsigned i = 0; i < GetCount(); i++)
         {
             if (s.IsSameAs(GetString(i), false))

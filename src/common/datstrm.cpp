@@ -219,19 +219,19 @@ void DoReadLL(T *buffer, size_t size, wxInputStream *input, bool be_order)
     size_t idx_base = 0;
     if ( be_order )
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( size_t uiIndex = 0; uiIndex != size; ++uiIndex )
         {
             buffer[uiIndex] = 0l;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for ( unsigned ui = 0; ui != 8; ++ui )
             {
                 buffer[uiIndex] = buffer[uiIndex] * 256l +
@@ -243,19 +243,19 @@ void DoReadLL(T *buffer, size_t size, wxInputStream *input, bool be_order)
     }
     else // little endian
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( size_t uiIndex=0; uiIndex!=size; ++uiIndex )
         {
             buffer[uiIndex] = 0l;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for ( unsigned ui=0; ui!=8; ++ui )
                 buffer[uiIndex] = buffer[uiIndex] * 256l +
                     DataType((unsigned long) pchBuffer[idx_base + 7 - ui]);
@@ -273,19 +273,19 @@ static void DoWriteLL(const T *buffer, size_t size, wxOutputStream *output, bool
     size_t idx_base = 0;
     if ( be_order )
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( size_t uiIndex = 0; uiIndex != size; ++uiIndex )
         {
             DataType i64 = buffer[uiIndex];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for ( unsigned ui = 0; ui != 8; ++ui )
             {
                 pchBuffer[idx_base + 7 - ui] =
@@ -298,19 +298,19 @@ static void DoWriteLL(const T *buffer, size_t size, wxOutputStream *output, bool
     }
     else // little endian
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( size_t uiIndex=0; uiIndex != size; ++uiIndex )
         {
             DataType i64 = buffer[uiIndex];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for (unsigned ui=0; ui!=8; ++ui)
             {
                 pchBuffer[idx_base + ui] =
@@ -341,11 +341,11 @@ void DoReadI64(T *buffer, size_t size, wxInputStream *input, bool be_order)
     input->Read(pchBuffer, size * 8);
     if ( be_order )
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( wxUint32 i = 0; i < size; i++ )
         {
             DataType v = wxUINT64_SWAP_ON_LE(*buffer);
@@ -354,11 +354,11 @@ void DoReadI64(T *buffer, size_t size, wxInputStream *input, bool be_order)
     }
     else // little endian
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( wxUint32 i=0; i<size; i++ )
         {
             DataType v = wxUINT64_SWAP_ON_BE(*buffer);
@@ -374,11 +374,11 @@ void DoWriteI64(const T *buffer, size_t size, wxOutputStream *output, bool be_or
   typedef T DataType;
   if ( be_order )
   {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( size_t i = 0; i < size; i++ )
     {
       DataType i64 = wxUINT64_SWAP_ON_LE(*buffer);
@@ -388,11 +388,11 @@ void DoWriteI64(const T *buffer, size_t size, wxOutputStream *output, bool be_or
   }
   else // little endian
   {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( size_t i=0; i < size; i++ )
     {
       DataType i64 = wxUINT64_SWAP_ON_BE(*buffer);
@@ -462,11 +462,11 @@ void wxDataInputStream::Read32(wxUint32 *buffer, size_t size)
 
     if (m_be_order)
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (wxUint32 i=0; i<size; i++)
         {
             wxUint32 v = wxUINT32_SWAP_ON_LE(*buffer);
@@ -475,11 +475,11 @@ void wxDataInputStream::Read32(wxUint32 *buffer, size_t size)
     }
     else
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (wxUint32 i=0; i<size; i++)
         {
             wxUint32 v = wxUINT32_SWAP_ON_BE(*buffer);
@@ -494,11 +494,11 @@ void wxDataInputStream::Read16(wxUint16 *buffer, size_t size)
 
   if (m_be_order)
   {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (wxUint32 i=0; i<size; i++)
     {
       wxUint16 v = wxUINT16_SWAP_ON_LE(*buffer);
@@ -507,11 +507,11 @@ void wxDataInputStream::Read16(wxUint16 *buffer, size_t size)
   }
   else
   {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (wxUint32 i=0; i<size; i++)
     {
       wxUint16 v = wxUINT16_SWAP_ON_BE(*buffer);
@@ -527,11 +527,11 @@ void wxDataInputStream::Read8(wxUint8 *buffer, size_t size)
 
 void wxDataInputStream::ReadDouble(double *buffer, size_t size)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (wxUint32 i=0; i<size; i++)
   {
     *(buffer++) = ReadDouble();
@@ -540,11 +540,11 @@ void wxDataInputStream::ReadDouble(double *buffer, size_t size)
 
 void wxDataInputStream::ReadFloat(float *buffer, size_t size)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (wxUint32 i=0; i<size; i++)
   {
     *(buffer++) = ReadFloat();
@@ -801,11 +801,11 @@ void wxDataOutputStream::Write32(const wxUint32 *buffer, size_t size)
 {
   if (m_be_order)
   {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (wxUint32 i=0; i<size ;i++)
     {
       wxUint32 i32 = wxUINT32_SWAP_ON_LE(*buffer);
@@ -815,11 +815,11 @@ void wxDataOutputStream::Write32(const wxUint32 *buffer, size_t size)
   }
   else
   {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (wxUint32 i=0; i<size ;i++)
     {
       wxUint32 i32 = wxUINT32_SWAP_ON_BE(*buffer);
@@ -833,11 +833,11 @@ void wxDataOutputStream::Write16(const wxUint16 *buffer, size_t size)
 {
   if (m_be_order)
   {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (wxUint32 i=0; i<size ;i++)
     {
       wxUint16 i16 = wxUINT16_SWAP_ON_LE(*buffer);
@@ -847,11 +847,11 @@ void wxDataOutputStream::Write16(const wxUint16 *buffer, size_t size)
   }
   else
   {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (wxUint32 i=0; i<size ;i++)
     {
       wxUint16 i16 = wxUINT16_SWAP_ON_BE(*buffer);
@@ -868,11 +868,11 @@ void wxDataOutputStream::Write8(const wxUint8 *buffer, size_t size)
 
 void wxDataOutputStream::WriteDouble(const double *buffer, size_t size)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (wxUint32 i=0; i<size; i++)
   {
     WriteDouble(*(buffer++));
@@ -881,11 +881,11 @@ void wxDataOutputStream::WriteDouble(const double *buffer, size_t size)
 
 void wxDataOutputStream::WriteFloat(const float *buffer, size_t size)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (wxUint32 i=0; i<size; i++)
   {
     WriteFloat(*(buffer++));

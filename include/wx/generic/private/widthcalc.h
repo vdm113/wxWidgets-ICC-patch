@@ -77,11 +77,11 @@ public:
 
         size_t row = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( row = 0; row < top_part_end; row++ )
         {
 #if wxUSE_STOPWATCH
@@ -99,11 +99,11 @@ public:
 
             // add bottom N/2 items now:
             const size_t bottom_part_start = wxMax(row, count - row);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for ( row = bottom_part_start; row < count; row++ )
             {
                 UpdateWithRow(row);
@@ -113,11 +113,11 @@ public:
             first_visible = wxMax(first_visible, top_part_end);
             last_visible = wxMin(bottom_part_start, last_visible);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for ( row = first_visible; row < last_visible; row++ )
             {
                 UpdateWithRow(row);

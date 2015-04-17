@@ -106,11 +106,11 @@ wxAcceleratorTable::wxAcceleratorTable(int n, const wxAcceleratorEntry entries[]
     m_refData = new wxAcceleratorRefData;
 
     ACCEL* arr = new ACCEL[n];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( int i = 0; i < n; i++ )
     {
         int flags = entries[i].GetFlags();

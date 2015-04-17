@@ -754,11 +754,11 @@ wxMacTopLevelMouseEventHandler(EventHandlerCallRef WXUNUSED(handler),
 
         if (!gGlobalCursor.IsOk())
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             while ( cursorTarget && !cursorTarget->MacSetupCursor( cursorPoint ) )
             {
                 cursorTarget = cursorTarget->GetParent() ;

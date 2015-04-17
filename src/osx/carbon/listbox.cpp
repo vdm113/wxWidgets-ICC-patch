@@ -91,11 +91,11 @@ int wxMacDataBrowserListControl::DoListHitTest(const wxPoint& inpoint) const
     // search for the first visible item (note that the scroll guess above
     // is the low bounds of where the item might lie so we only use that as a
     // starting point - we should reach it within 1 or 2 iterations of the loop)
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( low <= high )
     {
         Rect bounds;
@@ -116,11 +116,11 @@ int wxMacDataBrowserListControl::DoListHitTest(const wxPoint& inpoint) const
 
     // NOW do a binary search for where the item lies, searching low again if
     // we hit an item that isn't visible
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( low <= high )
     {
         int mid = (low + high) / 2;
@@ -485,11 +485,11 @@ wxListWidgetColumn* wxMacDataBrowserListControl::InsertCheckColumn( unsigned pos
 
 wxMacDataBrowserColumn* wxMacDataBrowserListControl::GetColumnFromProperty( DataBrowserPropertyID property)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < m_columns.size() ; ++ i )
         if ( m_columns[i]->GetProperty() == property )
             return m_columns[i];
@@ -573,11 +573,11 @@ int wxMacDataBrowserListControl::ListGetSelections( wxArrayInt& aSelections ) co
 
     int count = selectedItems.GetCount();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( int i = 0; i < count; ++i)
     {
         aSelections.Add(GetLineFromItem(selectedItems[i]));

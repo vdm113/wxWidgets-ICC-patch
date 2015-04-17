@@ -59,11 +59,11 @@ void EventCloneTestCase::CheckAll()
     //       the executable currently running, which are not necessarily all
     //       wxWidgets event classes.
     const wxClassInfo *ci = wxClassInfo::GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (; ci; ci = ci->GetNext())
     {
         wxString cn = wxString(ci->GetClassName());

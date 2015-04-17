@@ -412,6 +412,11 @@ wxPaintDCInfo* wxPaintDCImpl::FindInCache(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (size_t n = 0; n < nCache; n++)
     {
         pInfo = &ms_cache[n];
@@ -438,6 +443,11 @@ WXHDC wxPaintDCImpl::FindDCInCache(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (size_t n = 0; n < nCache; n++)
     {
         pInfo = &ms_cache[n];

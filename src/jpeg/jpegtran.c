@@ -145,11 +145,11 @@ parse_switches (j_compress_ptr cinfo, int argc, char **argv,
 
   /* Scan command line options, adjust parameters */
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (argn = 1; argn < argc; argn++) {
     arg = argv[argn];
     if (*arg != '-') {

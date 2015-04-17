@@ -196,11 +196,11 @@ static bool IsIdentifierContinue(int ch) {
 }
 
 static void ScanWhitespace(Accessor& styler, int& pos, int max) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	while (IsWhitespace(styler.SafeGetCharAt(pos, '\0')) && pos < max) {
 		if (pos == styler.LineEnd(styler.GetLine(pos)))
 			styler.SetLineState(styler.GetLine(pos), 0);
@@ -210,11 +210,11 @@ static void ScanWhitespace(Accessor& styler, int& pos, int max) {
 }
 
 static void GrabString(char* s, Accessor& styler, int start, int len) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (int ii = 0; ii < len; ii++)
 		s[ii] = styler[ii + start];
 	s[len] = '\0';
@@ -222,11 +222,11 @@ static void GrabString(char* s, Accessor& styler, int start, int len) {
 
 static void ScanIdentifier(Accessor& styler, int& pos, WordList *keywords) {
 	int start = pos;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	while (IsIdentifierContinue(styler.SafeGetCharAt(pos, '\0')))
 		pos++;
 
@@ -239,11 +239,11 @@ static void ScanIdentifier(Accessor& styler, int& pos, WordList *keywords) {
 		len = len > MAX_RUST_IDENT_CHARS ? MAX_RUST_IDENT_CHARS : len;
 		GrabString(s, styler, start, len);
 		bool keyword = false;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 		for (int ii = 0; ii < NUM_RUST_KEYWORD_LISTS; ii++) {
 			if (keywords[ii].InList(s)) {
 				styler.ColourTo(pos - 1, SCE_RUST_WORD + ii);
@@ -258,11 +258,11 @@ static void ScanIdentifier(Accessor& styler, int& pos, WordList *keywords) {
 }
 
 static void ScanDigits(Accessor& styler, int& pos, int base) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (;;) {
 		int c = styler.SafeGetCharAt(pos, '\0');
 		if (IsADigit(c, base) || c == '_')
@@ -387,11 +387,11 @@ static bool IsValidStringEscape(int c) {
 }
 
 static bool ScanNumericEscape(Accessor &styler, int& pos, int num_digits, bool stop_asap) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (;;) {
 		int c = styler.SafeGetCharAt(pos, '\0');
 		if (!IsADigit(c, 16))
@@ -418,11 +418,11 @@ static void ScanCharacterLiteralOrLifetime(Accessor &styler, int& pos) {
 	bool valid_lifetime = IsIdentifierStart(c);
 	bool valid_char = true;
 	bool first = true;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	while (!done) {
 		switch (c) {
 			case '\\':
@@ -503,11 +503,11 @@ static void ResumeBlockComment(Accessor &styler, int& pos, int max, CommentState
 		maybe_doc_comment = true;
 	}
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (;;) {
 		int n = styler.SafeGetCharAt(pos + 1, '\0');
 		if (pos == styler.LineEnd(styler.GetLine(pos)))
@@ -566,11 +566,11 @@ static void ResumeLineComment(Accessor &styler, int& pos, int max, CommentState 
 		maybe_doc_comment = true;
 	}
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	while (pos < max && c != '\n') {
 		if (pos == styler.LineEnd(styler.GetLine(pos)))
 			styler.SetLineState(styler.GetLine(pos), 0);
@@ -597,11 +597,11 @@ static void ScanComments(Accessor &styler, int& pos, int max) {
 static void ResumeString(Accessor &styler, int& pos, int max) {
 	int c = styler.SafeGetCharAt(pos, '\0');
 	bool error = false;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	while (c != '"' && !error) {
 		if (pos >= max) {
 			error = true;
@@ -637,11 +637,11 @@ static void ResumeString(Accessor &styler, int& pos, int max) {
 }
 
 static void ResumeRawString(Accessor &styler, int& pos, int max, int num_hashes) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (;;) {
 		if (pos == styler.LineEnd(styler.GetLine(pos)))
 			styler.SetLineState(styler.GetLine(pos), num_hashes);
@@ -650,11 +650,11 @@ static void ResumeRawString(Accessor &styler, int& pos, int max, int num_hashes)
 		if (c == '"') {
 			pos++;
 			int trailing_num_hashes = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 			while (styler.SafeGetCharAt(pos, '\0') == '#' && trailing_num_hashes < num_hashes) {
 				trailing_num_hashes++;
 				pos++;
@@ -676,11 +676,11 @@ static void ResumeRawString(Accessor &styler, int& pos, int max, int num_hashes)
 static void ScanRawString(Accessor &styler, int& pos, int max) {
 	pos++;
 	int num_hashes = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	while (styler.SafeGetCharAt(pos, '\0') == '#') {
 		num_hashes++;
 		pos++;
@@ -712,11 +712,11 @@ void SCI_METHOD LexerRust::Lex(unsigned int startPos, int length, int initStyle,
 		ResumeRawString(styler, pos, max, styler.GetLineState(styler.GetLine(pos) - 1));
 	}
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	while (pos < max) {
 		int c = styler.SafeGetCharAt(pos, '\0');
 		int n = styler.SafeGetCharAt(pos + 1, '\0');
@@ -779,11 +779,11 @@ void SCI_METHOD LexerRust::Fold(unsigned int startPos, int length, int initStyle
 	int styleNext = styler.StyleAt(startPos);
 	int style = initStyle;
 	const bool userDefinedFoldMarkers = !options.foldExplicitStart.empty() && !options.foldExplicitEnd.empty();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

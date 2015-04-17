@@ -45,11 +45,11 @@ void GraphicsContextDrawingTestCase::RunPluginsDrawingCase (
         wxArrayString pluginsNameArray = wxSplit (pluginsListStr, ',', '\0');
         m_drawingPlugins.resize (pluginsNameArray.size());
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (size_t idx=0; idx<pluginsNameArray.size(); ++idx)
         {
             PluginInfo &pluginBeingLoaded = m_drawingPlugins[idx];
@@ -87,11 +87,11 @@ void GraphicsContextDrawingTestCase::RunPluginsDrawingCase (
     }
 
     // now execute the test case for each plugin
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (size_t idxp=0; idxp<m_drawingPlugins.size(); ++idxp)
     {
         RunIndividualDrawingCase (*m_drawingPlugins[idxp].gcFactory, testCase);

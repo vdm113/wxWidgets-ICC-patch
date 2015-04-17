@@ -70,20 +70,20 @@ void ImageRawTestCase::RGBImage()
 
     wxImagePixelData data(image);
     wxImagePixelData::Iterator p(data);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( int y = 0; y < HEIGHT; y++ )
     {
         const wxImagePixelData::Iterator rowStart = p;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( int x = 0; x < WIDTH; x++ )
         {
             p.Red() =

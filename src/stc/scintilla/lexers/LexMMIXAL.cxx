@@ -63,11 +63,11 @@ static void ColouriseMMIXALDoc(unsigned int startPos, int length, int initStyle,
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward())
 	{
 		// No EOL continuation
@@ -115,11 +115,11 @@ static void ColouriseMMIXALDoc(unsigned int startPos, int length, int initStyle,
 				char s[100];
 				sc.GetCurrent(s, sizeof(s));
 				if (*s == ':') {	// ignore base prefix for match
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 					for (size_t i = 0; i != sizeof(s); ++i) {
 						*(s+i) = *(s+i+1);
 					}

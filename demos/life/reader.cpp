@@ -62,11 +62,11 @@ LifeReader::LifeReader(wxInputStream& is)
     // read description
     m_description = wxEmptyString;
     line = text_is.ReadLine();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (buff_is.IsOk() && line.StartsWith(wxT("#D"), &rest))
     {
         m_description += rest.Trim(false);
@@ -82,11 +82,11 @@ LifeReader::LifeReader(wxInputStream& is)
     LIFE_CHECKVAL(_("Sorry, non-conway rules not supported yet"));
 
     // read shape
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (buff_is.IsOk())
     {
         line = ( text_is.ReadLine() ).Trim();

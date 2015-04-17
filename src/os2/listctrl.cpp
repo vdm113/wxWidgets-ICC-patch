@@ -219,6 +219,11 @@ PFIELDINFO FindOS2ListFieldByColNum (
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0; i < vCnrInfo.cFields; i++)
     {
         if (i == 0)
@@ -279,6 +284,11 @@ PMYRECORD FindOS2ListRecordByID (
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0; i < vCnrInfo.cRecords; i++)
     {
         if (i == 0)
@@ -327,6 +337,11 @@ void BumpRecordIds (
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while(pRecord)
     {
         pRecord = (PMYRECORD)PVOIDFROMMR(::WinSendMsg( hWnd
@@ -970,6 +985,11 @@ void wxListCtrl::FreeAllInternalData ()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (i = 0; i < n; i++)
             DeleteInternalData(this, (long)i);
         m_bAnyInternalData = false;
@@ -1717,6 +1737,11 @@ int wxListCtrl::GetSelectedItemCount () const
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (pRecord)
     {
         pRecord = (PMYRECORD)PVOIDFROMMR(::WinSendMsg( GetHWND()
@@ -1964,6 +1989,11 @@ bool wxListCtrl::DeleteAllColumns ()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (m_nColCount > 0)
     {
         DeleteColumn(m_nColCount - 1);
@@ -2127,6 +2157,11 @@ long wxListCtrl::FindItem (
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (lIdx < lCount)
     {
         if (GetItemData(lIdx) == lData)
@@ -2182,6 +2217,11 @@ long wxListCtrl::FindItem (
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = lStart + 1; i < vCnrInfo.cRecords; i++)
     {
         pRecord = (PMYRECORD)PVOIDFROMMR(::WinSendMsg( GetHWND()
@@ -2546,6 +2586,11 @@ void wxListCtrl::OnPaint ( wxPaintEvent& rEvent )
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (i = lTop; i < lTop + GetCountPerPage() + 1; i++)
         {
             if (GetItemRect( i
@@ -2594,6 +2639,11 @@ void wxListCtrl::OnPaint ( wxPaintEvent& rEvent )
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for (nCol = 0; nCol < GetColumnCount(); nCol++)
             {
                 int                 nColWidth = GetColumnWidth(nCol);

@@ -1418,11 +1418,6 @@ public:
 
                 result.Alloc(len);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
                 for ( size_t n = 0; n < len; n++ )
                 {
                     if ( strchr("aeuio", tolower(original[n])) == NULL )

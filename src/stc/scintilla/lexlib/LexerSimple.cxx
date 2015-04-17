@@ -38,11 +38,11 @@ using namespace Scintilla;
 #endif
 
 LexerSimple::LexerSimple(const LexerModule *module_) : module(module_) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (int wl = 0; wl < module->GetNumWordLists(); wl++) {
 		if (!wordLists.empty())
 			wordLists += "\n";

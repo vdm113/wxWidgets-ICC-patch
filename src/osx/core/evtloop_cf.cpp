@@ -194,11 +194,11 @@ void wxMacWakeUp()
 void wxCFEventLoop::DoYieldFor(long eventsToProcess)
 {
     // process all pending events:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( DoProcessEvents() == 1 )
         ;
 
@@ -277,11 +277,11 @@ int wxCFEventLoop::DoDispatchTimeout(unsigned long timeout)
 
 void wxCFEventLoop::OSXDoRun()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( ;; )
     {
         OnNextIteration();
@@ -295,11 +295,11 @@ void wxCFEventLoop::OSXDoRun()
         // Pending() returns true, do process them
         if ( m_shouldExit )
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             while ( DoProcessEvents() == 1 )
                 ;
 
@@ -323,11 +323,11 @@ int wxCFEventLoop::DoRun()
     // wxModalEventLoop depends on this (so we can't just use ON_BLOCK_EXIT or
     // something similar here)
 #if wxUSE_EXCEPTIONS
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( ;; )
     {
         try

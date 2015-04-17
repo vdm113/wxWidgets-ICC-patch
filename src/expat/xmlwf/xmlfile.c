@@ -170,11 +170,11 @@ processStream(const XML_Char *filename, XML_Parser parser)
       return 0;
     }
   }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (;;) {
     int nread;
     char *buf = (char *)XML_GetBuffer(parser, READ_SIZE);

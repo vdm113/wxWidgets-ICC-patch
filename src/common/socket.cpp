@@ -986,11 +986,11 @@ wxUint32 wxSocketBase::DoRead(void* buffer_, wxUint32 nbytes)
     nbytes -= total;
     buffer += total;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( nbytes )
     {
         // our socket is non-blocking so Read() will return immediately if
@@ -1108,11 +1108,11 @@ wxSocketBase& wxSocketBase::ReadMsg(void* buffer, wxUint32 nbytes)
                 long discard_len;
 
                 // NOTE: discarded bytes don't add to m_lcount.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                 do
                 {
                     discard_len = len2 > MAX_DISCARD_SIZE
@@ -1178,11 +1178,11 @@ wxUint32 wxSocketBase::DoWrite(const void *buffer_, wxUint32 nbytes)
     wxCHECK_MSG( buffer, 0, "NULL buffer" );
 
     wxUint32 total = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( nbytes )
     {
         if ( m_impl->m_stream && !m_connected )
@@ -1297,11 +1297,11 @@ wxSocketBase& wxSocketBase::Discard()
 
     wxSocketWaitModeChanger changeFlags(this, wxSOCKET_NOWAIT);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     do
     {
         ret = DoRead(buffer, MAX_DISCARD_SIZE);
@@ -1499,11 +1499,11 @@ wxSocketBase::DoWait(long timeout, wxSocketEventFlags flags)
     // (but note that we always execute the loop at least once, even if timeout
     // is 0 as this is used for polling)
     int rc = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( bool firstTime = true; !m_interrupt; firstTime = false )
     {
         long timeLeft = wxMilliClockToLong(timeEnd - wxGetLocalTimeMillis());

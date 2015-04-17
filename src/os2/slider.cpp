@@ -1108,6 +1108,11 @@ void wxSlider::DoSetTickFreq( int n )
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 1; i < (m_nRangeMax - m_nRangeMin)/n; i++)
     {
         nPixelPos = (int)(i * n * m_dPixelToRange);

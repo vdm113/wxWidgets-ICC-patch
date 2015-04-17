@@ -302,11 +302,11 @@ wxWindow *wxFindFocusedChild(wxWindowGTK *win)
     if ( winFocus == win )
         return (wxWindow *)win;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst();
           node;
           node = node->GetNext() )
@@ -586,11 +586,11 @@ static void gtk_window_draw_callback( GtkWidget *widget,
     if (win->GetThemeEnabled() && win->GetBackgroundStyle() == wxBG_STYLE_SYSTEM)
     {
         wxWindow *parent = win->GetParent();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while (parent && !parent->IsTopLevel())
             parent = parent->GetParent();
         if (!parent)
@@ -616,11 +616,11 @@ static void gtk_window_draw_callback( GtkWidget *widget,
 #ifndef __WXUNIVERSAL__
     // Redraw child widgets
     GList *children = pizza->children;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (children)
     {
         GtkPizzaChild *child = (GtkPizzaChild*) children->data;
@@ -1124,19 +1124,19 @@ static gint gtk_window_key_press_callback( GtkWidget *widget,
 
         // Implement OnCharHook by checking ancestor top level windows
         wxWindow *parent = win;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while (parent && !parent->IsTopLevel())
             parent = parent->GetParent();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for( const wxChar* pstr = string; *pstr; pstr++ )
         {
         #if wxUSE_UNICODE
@@ -1167,11 +1167,11 @@ static gint gtk_window_key_press_callback( GtkWidget *widget,
     if (!ret)
     {
         wxWindowGTK *ancestor = win;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while (ancestor)
         {
             int command = ancestor->GetAcceleratorTable()->GetCommand( event );
@@ -1218,11 +1218,11 @@ static gint gtk_window_key_press_callback( GtkWidget *widget,
 
             // Implement OnCharHook by checking ancestor top level windows
             wxWindow *parent = win;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             while (parent && !parent->IsTopLevel())
                 parent = parent->GetParent();
             if (parent)
@@ -1277,11 +1277,11 @@ static gint gtk_window_key_press_callback( GtkWidget *widget,
         // from another button which is not really expected
         wxWindow *winForCancel = win,
                  *btnCancel = NULL;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while ( winForCancel )
         {
             btnCancel = winForCancel->FindWindow(wxID_CANCEL);
@@ -1442,11 +1442,11 @@ wxWindowGTK *FindWindowForMouseEvent(wxWindowGTK *win, wxCoord& x, wxCoord& y)
     }
 
     wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (node)
     {
         wxWindowGTK *child = node->GetData();
@@ -3572,11 +3572,11 @@ void wxWindowGTK::GtkUpdate()
     // for consistency with other platforms (and also because it's convenient
     // to be able to update an entire TLW by calling Update() only once), we
     // should also update all our children here
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
           node;
           node = node->GetNext() )
@@ -3610,11 +3610,11 @@ void wxWindowGTK::GtkSendPaintEvents()
         if (GTK_WIDGET_MAPPED(parent->m_widget))
         {
             wxRegionIterator upd( m_updateRegion );
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             while (upd)
             {
                 GdkRectangle rect;
@@ -3655,11 +3655,11 @@ void wxWindowGTK::GtkSendPaintEvents()
             gdk_gc_set_foreground( g_eraseGC, GetBackgroundColour().GetColor() );
 
             wxRegionIterator upd( m_clearRegion );
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             while (upd)
             {
                 gdk_draw_rectangle( pizza->bin_window, g_eraseGC, 1,
@@ -3686,11 +3686,11 @@ void wxWindowGTK::GtkSendPaintEvents()
     // paint over the window-less widgets.
 
     GList *children = pizza->children;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (children)
     {
         GtkPizzaChild *child = (GtkPizzaChild*) children->data;
@@ -3709,11 +3709,11 @@ void wxWindowGTK::GtkSendPaintEvents()
             gdk_event.send_event = TRUE;
 
             wxRegionIterator upd( m_updateRegion );
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             while (upd)
             {
                 GdkRectangle rect;

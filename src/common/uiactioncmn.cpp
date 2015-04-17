@@ -137,11 +137,11 @@ static bool MapUnshifted(char& ch)
 
 bool wxUIActionSimulator::Text(const char *s)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( *s != '\0' )
     {
         char ch = *s++;
@@ -198,11 +198,11 @@ bool wxUIActionSimulator::Select(const wxString& text)
     }
 
     // And then go down in the control until we reach the item we want.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( ;; )
     {
         if ( container->GetStringSelection() == text )

@@ -336,11 +336,11 @@ bool wxRegExImpl::Compile(const wxString& expr, int flags)
             m_nMatches = 1;
 
             // and some more for bracketed subexperessions
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for ( const wxChar *cptr = expr.c_str(); *cptr; cptr++ )
             {
                 if ( *cptr == wxT('\\') )
@@ -522,11 +522,11 @@ int wxRegExImpl::Replace(wxString *text,
 
     // note that "^" shouldn't match after the first call to Matches() so we
     // use wxRE_NOTBOL to prevent it from happening
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( (!maxMatches || countRepl < maxMatches) &&
              Matches(
 #ifndef WXREGEX_CONVERT_TO_MB
@@ -545,11 +545,11 @@ int wxRegExImpl::Replace(wxString *text,
             textNew.clear();
             textNew.reserve(replacement.length());
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for ( const wxChar *p = replacement.c_str(); *p; p++ )
             {
                 size_t index = (size_t)-1;

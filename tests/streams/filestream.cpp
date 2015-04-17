@@ -124,11 +124,11 @@ wxString fileStream::GetInFileName() const
         wxFileOutputStream out(FILENAME_FILEINSTREAM);
 
         // Init the data buffer.
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (size_t i = 0; i < DATABUFFER_SIZE; i++)
             buf[i] = (i % 0xFF);
 

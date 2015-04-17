@@ -74,11 +74,6 @@ uses it to set the background of a window.
 @code
 wxColourData data;
 data.SetChooseFull(true);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 for (int i = 0; i < 16; i++)
 {
     wxColour colour(i*16, i*16, i*16);

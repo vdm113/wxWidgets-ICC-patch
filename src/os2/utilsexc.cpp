@@ -236,6 +236,11 @@ long wxExecute(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (*ppArgv != NULL)
     {
         wxString                    sArg((wxChar*)(*ppArgv++));

@@ -380,6 +380,11 @@ wxMimeTypesManagerImpl::GetFileTypeFromExtension(const wxString& ext)
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ ) {
         if ( m_fallbacks[n].GetExtensions().Index(ext) != wxNOT_FOUND ) {
             wxFileType *fileType = new wxFileType;

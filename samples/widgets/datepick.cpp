@@ -244,11 +244,11 @@ void DatePickerWidgetsPage::CreateDatePicker()
     const wxDateTime value = m_datePicker->GetValue();
 
     size_t count = m_sizerDatePicker->GetChildren().GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
         m_sizerDatePicker->Remove(0);

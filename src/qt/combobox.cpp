@@ -116,11 +116,11 @@ bool wxComboBox::Create(wxWindow *parent, wxWindowID id,
             const wxString& name )
 {
     m_qtComboBox = new wxQtComboBox( parent, this );
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( n-- > 0 )
         m_qtComboBox->addItem( wxQtConvertString( *choices++ ));
     m_qtComboBox->setEditText( wxQtConvertString( value ));

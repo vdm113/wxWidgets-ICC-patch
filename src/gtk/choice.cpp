@@ -129,11 +129,11 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter & items,
 
     int n = wxNOT_FOUND;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( int i = 0; i < count; ++i )
     {
         n = pos + i;
@@ -218,11 +218,11 @@ int wxChoice::FindString( const wxString &item, bool bCase ) const
     if (!gtk_list_store_iter_is_valid(GTK_LIST_STORE(model), &iter ))
         return -1;
     int count = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     do
     {
         GValue value = G_VALUE_INIT;
@@ -298,11 +298,11 @@ unsigned int wxChoice::GetCount() const
     if (!gtk_list_store_iter_is_valid(GTK_LIST_STORE(model), &iter ))
         return 0;
     unsigned int ret = 1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (gtk_tree_model_iter_next( model, &iter ))
         ret++;
     return ret;

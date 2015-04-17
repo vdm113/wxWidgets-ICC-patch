@@ -112,11 +112,11 @@ bool wxCheckListBox::Create(wxWindow *parent, wxWindowID id,
     ListView_SetItemCount( GetHwnd(), n );
 
     // initialize the contents
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( int i = 0; i < n; i++ )
     {
         Append(choices[i]);
@@ -198,11 +198,11 @@ void wxCheckListBox::DoClear()
 {
     unsigned int n = GetCount();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( n > 0 )
     {
         n--;
@@ -220,11 +220,11 @@ unsigned int wxCheckListBox::GetCount() const
 int wxCheckListBox::GetSelection() const
 {
     int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (i = 0; (unsigned int)i < GetCount(); i++)
     {
         int selState = ListView_GetItemState(GetHwnd(), i, LVIS_SELECTED);
@@ -238,11 +238,11 @@ int wxCheckListBox::GetSelection() const
 int wxCheckListBox::GetSelections(wxArrayInt& aSelections) const
 {
     int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (i = 0; (unsigned int)i < GetCount(); i++)
     {
         int selState = ListView_GetItemState(GetHwnd(), i, LVIS_SELECTED);
@@ -294,11 +294,11 @@ int wxCheckListBox::DoInsertItems(const wxArrayStringsAdapter & items,
 
     int n = wxNOT_FOUND;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for( unsigned int i = 0; i < count; i++ )
     {
         LVITEM newItem;

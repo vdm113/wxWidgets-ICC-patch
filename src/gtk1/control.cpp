@@ -136,11 +136,11 @@ wxString wxControl::GTKRemoveMnemonics(const wxString& label)
     const size_t len = label.length();
     wxString labelGTK;
     labelGTK.reserve(len);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( size_t i = 0; i < len; i++ )
     {
         wxChar ch = label[i];

@@ -26,11 +26,11 @@ namespace Scintilla {
 
 template <typename T, size_t count>
 void StringCopy(T (&dest)[count], const T* source) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (size_t i=0; i<count; i++) {
 		dest[i] = source[i];
 		if (!source[i])

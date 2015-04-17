@@ -525,11 +525,11 @@ void wxFrame::OnInternalIdle()
 
         // There may be controls in the status bar that
         // need to be updated
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( wxWindowList::compatibility_iterator node = m_frameStatusBar->GetChildren().GetFirst();
           node;
           node = node->GetNext() )

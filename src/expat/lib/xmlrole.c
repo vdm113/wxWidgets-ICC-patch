@@ -823,11 +823,11 @@ attlist2(PROLOG_STATE *state,
         KW_NMTOKENS,
       };
       int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
       for (i = 0; i < (int)(sizeof(types)/sizeof(types[0])); i++)
         if (XmlNameMatchesAscii(enc, ptr, end, types[i])) {
           state->handler = attlist8;

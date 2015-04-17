@@ -161,11 +161,11 @@ void ZLIB_INTERNAL zmemcpy(dest, source, len)
     uInt  len;
 {
     if (len == 0) return;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     do {
         *dest++ = *source++; /* ??? to be unrolled */
     } while (--len != 0);
@@ -178,11 +178,11 @@ int ZLIB_INTERNAL zmemcmp(s1, s2, len)
 {
     uInt j;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (j = 0; j < len; j++) {
         if (s1[j] != s2[j]) return 2*(s1[j] > s2[j])-1;
     }
@@ -194,11 +194,11 @@ void ZLIB_INTERNAL zmemzero(dest, len)
     uInt  len;
 {
     if (len == 0) return;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     do {
         *dest++ = 0;  /* ??? to be unrolled */
     } while (--len != 0);
@@ -270,20 +270,20 @@ void ZLIB_INTERNAL zcfree (voidpf opaque, voidpf ptr)
         return;
     }
     /* Find the original pointer */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (n = 0; n < next_ptr; n++) {
         if (ptr != table[n].new_ptr) continue;
 
         farfree(table[n].org_ptr);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while (++n < next_ptr) {
             table[n-1] = table[n];
         }

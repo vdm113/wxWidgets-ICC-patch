@@ -418,11 +418,11 @@ void MyFrame::PopulateToolbar(wxToolBarBase* toolBar)
         w *= 2;
         h *= 2;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( size_t n = Tool_new; n < WXSIZEOF(toolBarBitmaps); n++ )
         {
             toolBarBitmaps[n] =

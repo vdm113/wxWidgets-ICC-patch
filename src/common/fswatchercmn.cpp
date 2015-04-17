@@ -330,11 +330,11 @@ int wxFileSystemWatcherBase::GetWatchedPaths(wxArrayString* paths) const
     wxCHECK_MSG( paths != NULL, -1, "Null array passed to retrieve paths");
 
     wxFSWatchInfoMap::const_iterator it = m_watches.begin();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( ; it != m_watches.end(); ++it)
     {
         paths->push_back(it->first);

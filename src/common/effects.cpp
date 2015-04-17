@@ -113,18 +113,18 @@ bool wxEffectsImpl::TileBitmap(const wxRect& rect, wxDC& dc, const wxBitmap& bit
     dcMem.SelectObjectAsSource(bitmap);
 
     int i, j;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (i = rect.x; i < rect.x + rect.width; i += w)
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (j = rect.y; j < rect.y + rect.height; j+= h)
             dc.Blit(i, j, bitmap.GetWidth(), bitmap.GetHeight(), & dcMem, 0, 0);
     }

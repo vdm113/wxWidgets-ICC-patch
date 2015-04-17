@@ -129,11 +129,11 @@ void _XsMotifBase::_drawShadows (Position x, Position y, Dimension width,
    topShadowGC = (reverse == False) ? _topShadowGC : _bottomShadowGC;
    bottomShadowGC = (reverse == False) ? _bottomShadowGC : _topShadowGC;
    
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
    for (int loop = 0; loop < thick; loop++)
    {
 
@@ -2026,11 +2026,11 @@ _XsMotifMenu::_XsMotifMenu (const char *name, XsMotifWindow *win) :
    int   textWidth = 0;
    int   tmp;
    
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
    for (int loop = 0; loop < Num; loop++)
    {
       tmp = XTextWidth (_menuFont, _strings[loop], strlen (_strings[loop]));
@@ -2203,11 +2203,11 @@ void _XsMotifMenu::_processEvents ( )
    Display *dpy = XtDisplay (_base);
    int   done = 0;
       
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
    while (!done)
    {
       XtAppNextEvent (appContext, &event);
@@ -2232,11 +2232,11 @@ void _XsMotifMenu::_processEvents ( )
 
 // Process only the last motion event
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             while (XPending (dpy) > 0)
             {
                XPeekEvent (dpy, &next);
@@ -2387,11 +2387,11 @@ void _XsMotifMenu::_redrawMenu ( )
 
 // Cycle and draw all of the elements
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
    for (int loop = 0; loop < Num; loop++)
       _redrawItem ((Item)loop);
 }
@@ -2746,22 +2746,22 @@ XsMotifWindow::XsMotifWindow (const char *name) : XsMDIWindow (name)
    
 // Initialize
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
    for (loop = 0; loop < _XsMotifSide::Max; loop++)
    {
       _corners[loop] = 0;
       _sides[loop] = 0;
    }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
    for (loop = 0; loop < _XsMotifButton::Max; loop++)
       _buttons[loop] = 0;
 
@@ -2779,22 +2779,22 @@ XsMotifWindow::~XsMotifWindow ( )
 {
    int   loop;
    
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
    for (loop = 0; loop < _XsMotifSide::Max; loop++)
    {
       delete _corners[loop];
       delete _sides[loop];
    }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
    for (loop = 0; loop < _XsMotifButton::Max; loop++)
       delete _buttons[loop];
 
@@ -3397,11 +3397,11 @@ void XsMotifWindow::_createWindow (Widget parent)
 
    int   loop;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
    for (loop = 0; loop < _XsMotifSide::Max; loop++)
    {
       if (_corners[loop] != 0)
@@ -3410,11 +3410,11 @@ void XsMotifWindow::_createWindow (Widget parent)
          _sides[loop]->show ( );
    }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
    for (loop = 0; loop < _XsMotifButton::Max; loop++)
    {
       if (_buttons[loop] != 0)

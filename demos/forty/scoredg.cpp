@@ -65,11 +65,11 @@ ScoreCanvas::ScoreCanvas(wxWindow* parent, ScoreFile* scoreFile, const wxPoint& 
     wxString os;
 
     os << wxT("Player\tWins\tGames\tScore\n");
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (unsigned int i = 0; i < players.Count(); i++)
     {
         int wins, games, score;
@@ -110,21 +110,21 @@ void ScoreCanvas::OnDraw(wxDC& dc)
     }
 
     int y = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (*str)
     {
         wxChar text[256];
         wxChar* dest = text;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while (*str && *str >= ' ') *dest++ = *str++;
         *dest = '\0';
 
@@ -165,11 +165,11 @@ ScoreDialog::ScoreDialog(wxWindow* parent, ScoreFile* file) :
 #if USE_GRID_FOR_SCORE
     wxGrid* list = new wxGrid(this, wxID_ANY, wxDefaultPosition, sz, 0);
     list->CreateGrid(players.Count(), 4);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (unsigned int i = 0; i < players.Count(); i++)
     {
         int wins, games, score;

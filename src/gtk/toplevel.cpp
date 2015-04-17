@@ -1398,11 +1398,11 @@ void wxTopLevelWindowGTK::SetIcons( const wxIconBundle &icons )
     if (m_widget && gtk_widget_get_realized(m_widget))
     {
         GList* list = NULL;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (size_t i = icons.GetIconCount(); i--;)
             list = g_list_prepend(list, icons.GetIconByIndex(i).GetPixbuf());
         gtk_window_set_icon_list(GTK_WINDOW(m_widget), list);

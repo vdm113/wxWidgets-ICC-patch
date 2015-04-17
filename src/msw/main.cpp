@@ -229,11 +229,11 @@ struct wxMSWCommandLineArguments
 
         // +1 here for the terminating NULL
         argv = new wxChar *[argc + 1];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( int i = 0; i < argc; i++ )
         {
             argv[i] = wxStrdup(args[i].t_str());
@@ -248,11 +248,11 @@ struct wxMSWCommandLineArguments
         if ( !argc )
             return;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( int i = 0; i < argc; i++ )
         {
             free(argv[i]);

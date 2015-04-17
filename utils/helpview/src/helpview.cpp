@@ -96,11 +96,11 @@ bool hvApp::OnInit()
     //     such argument as service, second (if present) as window name,
     //     start service, open any books
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for( i=1; i<argc; i++ )
     {
         argStr = argv[i];
@@ -224,11 +224,11 @@ bool hvApp::OnInit()
 
     m_helpController->SetTitleFormat( titleFormat );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for( i=0; i<bookCount; i++ )
     {
         wxFileName fileName(book[i]);
@@ -249,11 +249,11 @@ int hvApp::OnExit()
 {
 #if wxUSE_IPC
     wxObjectList::compatibility_iterator node = m_connections.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (node)
     {
         wxObjectList::compatibility_iterator next = node->GetNext();

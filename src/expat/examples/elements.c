@@ -34,11 +34,11 @@ startElement(void *userData, const char *name, const char **atts)
 {
   int i;
   int *depthPtr = (int *)userData;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (i = 0; i < *depthPtr; i++)
     putchar('\t');
   puts(name);
@@ -61,11 +61,11 @@ main(int argc, char *argv[])
   int depth = 0;
   XML_SetUserData(parser, &depth);
   XML_SetElementHandler(parser, startElement, endElement);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   do {
     int len = (int)fread(buf, 1, sizeof(buf), stdin);
     done = len < sizeof(buf);

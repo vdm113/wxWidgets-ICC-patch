@@ -121,11 +121,11 @@ void wxStatusBarUniv::DoDraw(wxControlRenderer *renderer)
 
     // do draw the fields
     int flags = IsEnabled() ? 0 : (int)wxCONTROL_DISABLED;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( int n = 0; n < (int)m_panes.GetCount(); n++ )
     {
         rect.width = m_widthsAbs[n];
@@ -195,11 +195,11 @@ void wxStatusBarUniv::OnSize(wxSizeEvent& event)
     }
     else
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( field = 0; field < m_panes.GetCount(); field++ )
         {
             if ( m_panes[field].GetWidth() < 0 )
@@ -257,11 +257,11 @@ wxRect wxStatusBarUniv::DoGetFieldRect(int n) const
     wxCHECK_MSG( !m_widthsAbs.IsEmpty(), rect,
                  wxT("can't be called if we don't have the widths") );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( int i = 0; i <= n; i++ )
     {
         rect.width = m_widthsAbs[i];

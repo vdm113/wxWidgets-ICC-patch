@@ -267,11 +267,11 @@ Client::OnRun()
             switch(m_workMode)
             {
                 case THREADS:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                     for (i = 0; i < m_stressWorkers; i++) {
                         if (m_message.empty())
                             StartWorker(THREADS);
@@ -280,11 +280,11 @@ Client::OnRun()
                     }
                     break;
                 case EVENTS:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                     for (i = 0; i < m_stressWorkers; i++) {
                         if (m_message.empty())
                             StartWorker(EVENTS);
@@ -293,11 +293,11 @@ Client::OnRun()
                     }
                     break;
                 default:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                     for (i = 0; i < m_stressWorkers; i++) {
                         if (m_message.empty())
                             StartWorker(i % 5 == 0 ? THREADS : EVENTS);
@@ -321,11 +321,11 @@ Client::OnRun()
 int
 Client::OnExit()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for(EList::compatibility_iterator it = m_eventWorkers.GetFirst(); it ; it->GetNext()) {
         delete it->GetData();
     }
@@ -372,11 +372,11 @@ Client::StartWorker(workMode pMode) {
     char* buf = CreateBuffer(&msgsize);
 
     //fill data part of buffer with random bytes
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (int i = 2; i < (msgsize); i++) {
         buf[i] = i % 256;
     }
@@ -476,22 +476,22 @@ Client::OnWorkerEvent(WorkerEvent& pEvent) {
 
     if (pEvent.isFailed() || pEvent.m_eventType == WorkerEvent::DONE)
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for(TList::compatibility_iterator it = m_threadWorkers.GetFirst(); it ; it = it->GetNext()) {
             if (it->GetData() == pEvent.m_sender) {
                 m_threadWorkers.DeleteNode(it);
                 break;
             }
         }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for(EList::compatibility_iterator it2 = m_eventWorkers.GetFirst(); it2 ; it2 = it2->GetNext())
         {
             if (it2->GetData() == pEvent.m_sender) {
@@ -516,11 +516,11 @@ Client::OnWorkerEvent(WorkerEvent& pEvent) {
 
 void
 Client::RemoveEventWorker(EventWorker* p_worker) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for(EList::compatibility_iterator it = m_eventWorkers.GetFirst(); it ; it = it->GetNext()) {
         if (it->GetData() == p_worker) {
             //wxLogDebug(wxT("Deleting event worker"));
@@ -589,11 +589,11 @@ EventWorker::OnSocketEvent(wxSocketEvent& pEvent) {
     switch(pEvent.GetSocketEvent()) {
         case wxSOCKET_INPUT:
             //wxLogDebug(wxT("EventWorker: INPUT"));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             do {
                 if (m_readed == m_insize)
                     return; //event already posted
@@ -630,11 +630,11 @@ EventWorker::OnSocketEvent(wxSocketEvent& pEvent) {
         break;
         case wxSOCKET_OUTPUT:
             //wxLogDebug(wxT("EventWorker: OUTPUT"));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             do {
                 if (m_written == m_outsize)
                     return;
@@ -737,11 +737,11 @@ wxThread::ExitCode ThreadWorker::Entry()
         WorkerEvent e(this,etype);
         wxGetApp().AddPendingEvent(e);
         int to_process = m_outsize;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         do {
             m_clientSocket->Write(m_outbuf,m_outsize);
             if (m_clientSocket->Error()) {
@@ -757,11 +757,11 @@ wxThread::ExitCode ThreadWorker::Entry()
             WorkerEvent e(this,etype);
             wxGetApp().AddPendingEvent(e);
             to_process = m_insize;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             do {
                 m_clientSocket->Read(m_inbuf,m_insize);
                 if (m_clientSocket->Error()) {

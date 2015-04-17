@@ -220,6 +220,11 @@ inline void wxPNGReaderIter::SetRow(byte *buf, int n)
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
   for (int i=0; i<n; i++) IterImage[i] = buf[i];
 }
 
@@ -230,6 +235,11 @@ inline void wxPNGReaderIter::GetRow(byte *buf, int n)
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
   for (int i=0; i<n; i++) buf[i] = IterImage[i];
 }
 

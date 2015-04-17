@@ -269,6 +269,11 @@ wxSemaError wxSemaphoreInternal::WaitTimeout(unsigned long ulMilliseconds)
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     do {
         ulrc = ::DosWaitEventSem(m_vEvent, ulMilliseconds );
         switch ( ulrc )
@@ -759,6 +764,11 @@ wxThreadError wxThread::Delete(ExitCode *pRc, wxThreadWait WXUNUSED(waitMode))
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         do
         {
             if ( IsMain() )
@@ -834,6 +844,11 @@ wxThreadError wxThread::Delete(ExitCode *pRc, wxThreadWait WXUNUSED(waitMode))
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     do
     {
         if ( !::GetExitCodeThread(hThread, (LPDWORD)&rc) )

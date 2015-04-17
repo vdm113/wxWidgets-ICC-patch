@@ -40,11 +40,11 @@ bool wxFontEnumerator::EnumerateFacenames(wxFontEncoding encoding,
     bool found = false;
     const wxFontBundleList& list = wxFontsManager::Get()->GetBundles();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( wxFontBundleList::const_iterator f = list.begin(); f != list.end(); ++f )
     {
         if ( fixedWidthOnly && !(*f)->IsFixed() )

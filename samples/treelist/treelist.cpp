@@ -379,11 +379,11 @@ void MyFrame::InitImageList()
         wxART_FOLDER_OPEN
     };
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( unsigned n = 0; n < WXSIZEOF(icons); n++ )
     {
         m_imageList->Add
@@ -532,11 +532,11 @@ void MyFrame::OnDumpSelection(wxCommandEvent& WXUNUSED(event))
 
             default:
                 wxLogMessage("%u items selected:", numSelected);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                 for ( unsigned n = 0; n < numSelected; n++ )
                 {
                     wxLogMessage("\t%s", DumpItem(selections[n]));

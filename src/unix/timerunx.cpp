@@ -59,11 +59,11 @@ wxTimerScheduler *wxTimerScheduler::ms_instance = NULL;
 
 wxTimerScheduler::~wxTimerScheduler()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( wxTimerList::iterator node = m_timers.begin();
           node != m_timers.end();
           ++node )
@@ -81,11 +81,11 @@ void wxTimerScheduler::DoAddTimer(wxTimerSchedule *s)
 {
     // do an insertion sort to keep the list sorted in expiration order
     wxTimerList::iterator node;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( node = m_timers.begin(); node != m_timers.end(); ++node )
     {
         wxASSERT_MSG( (*node)->m_timer != s->m_timer,
@@ -106,11 +106,11 @@ void wxTimerScheduler::RemoveTimer(wxUnixTimerImpl *timer)
 {
     wxLogTrace(wxTrace_Timer, wxT("Removing timer %d"), timer->GetId());
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( wxTimerList::iterator node = m_timers.begin();
           node != m_timers.end();
           ++node )
@@ -152,11 +152,11 @@ bool wxTimerScheduler::NotifyExpired()
 
     typedef wxVector<wxUnixTimerImpl *> TimerImpls;
     TimerImpls toNotify;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( wxTimerList::iterator next,
             cur = m_timers.begin(); cur != m_timers.end(); cur = next )
     {
@@ -205,11 +205,11 @@ bool wxTimerScheduler::NotifyExpired()
     if ( toNotify.empty() )
         return false;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( TimerImpls::const_iterator i = toNotify.begin(),
                                      end = toNotify.end();
           i != end;

@@ -68,19 +68,19 @@ jpeg_CreateDecompress (j_decompress_ptr cinfo, int version, size_t structsize)
   cinfo->progress = NULL;
   cinfo->src = NULL;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (i = 0; i < NUM_QUANT_TBLS; i++)
     cinfo->quant_tbl_ptrs[i] = NULL;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (i = 0; i < NUM_HUFF_TBLS; i++) {
     cinfo->dc_huff_tbl_ptrs[i] = NULL;
     cinfo->ac_huff_tbl_ptrs[i] = NULL;
@@ -400,11 +400,11 @@ jpeg_finish_decompress (j_decompress_ptr cinfo)
     ERREXIT1(cinfo, JERR_BAD_STATE, cinfo->global_state);
   }
   /* Read until EOI */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (! cinfo->inputctl->eoi_reached) {
     if ((*cinfo->inputctl->consume_input) (cinfo) == JPEG_SUSPENDED)
       return FALSE;		/* Suspend, come back later */

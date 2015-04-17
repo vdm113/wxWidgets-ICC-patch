@@ -396,11 +396,11 @@ void BookWidgetsPage::RecreateBook()
         const int count = oldBook->GetPageCount();
 
         // recreate the pages
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( int n = 0; n < count; n++ )
         {
             m_book->AddPage(CreateNewPage(),

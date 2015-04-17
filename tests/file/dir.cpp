@@ -113,11 +113,11 @@ wxArrayString DirTestCase::DirEnumHelper(wxDir& dir,
 
     wxString filename;
     bool cont = dir.GetFirst(&filename, filespec, flags);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( cont )
     {
         ret.push_back(filename);
@@ -228,11 +228,11 @@ void DirTestCase::DirExists()
         homedrive = "c:";
 #endif // __WINDOWS__
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(testData); n++ )
     {
         wxString dirname = testData[n].dirname;

@@ -119,11 +119,11 @@ main(argc, argv)
     setbuf(stderr, NULL);
     pname = argv[0];
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (--argc) {
 	if ((++argv)[0][0] == '-') {
 	    switch (argv[0][1]) {
@@ -231,11 +231,11 @@ main(argc, argv)
     memset(blue, 0, sizeof(blue));
     if (depth == 8) {
 	TIFFSetField(tif, TIFFTAG_COLORMAP, red, green, blue);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (i = 0; i < Colormap.length; i++) {
 	    red[i] = SCALE(Colormap.map[0][i]);
 	    green[i] = SCALE(Colormap.map[1][i]);
@@ -245,11 +245,11 @@ main(argc, argv)
     if (Verbose)
 	fprintf(stderr, "%dx%dx%d image, ", width, height, depth);
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (row = 0; row < height; row++)
 	if (TIFFWriteScanline(tif,
 			      (u_char *) mprd_addr(mpr_d(pix), 0, row),

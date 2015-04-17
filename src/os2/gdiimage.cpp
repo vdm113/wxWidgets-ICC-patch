@@ -290,6 +290,11 @@ wxGDIImageHandler* wxGDIImage::FindHandler(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( pNode )
     {
         wxGDIImageHandler*          pHandler = pNode->GetData();
@@ -312,6 +317,11 @@ wxGDIImageHandler* wxGDIImage::FindHandler(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( pNode )
     {
         wxGDIImageHandler*          pHandler = pNode->GetData();
@@ -337,6 +347,11 @@ wxGDIImageHandler* wxGDIImage::FindHandler(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( pNode )
     {
         wxGDIImageHandler*          pHandler = pNode->GetData();
@@ -357,6 +372,11 @@ void wxGDIImage::CleanUpHandlers()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( pNode )
     {
         wxGDIImageHandler*                              pHandler = pNode->GetData();

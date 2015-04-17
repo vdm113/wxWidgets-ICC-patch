@@ -122,18 +122,18 @@ srunner_run_all(SRunner *runner, int verbosity)
     assert(runner != NULL);
     suite = runner->suite;
     tc = suite->tests;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (tc != NULL) {
         int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (i = 0; i < tc->ntests; ++i) {
             runner->nchecks++;
 

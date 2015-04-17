@@ -121,11 +121,11 @@ int wxSocketImplUnix::CheckForInput()
 {
     char c;
     int rc;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     do
     {
         rc = recv(m_fd, &c, 1, MSG_PEEK);

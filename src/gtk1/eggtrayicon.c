@@ -400,11 +400,11 @@ egg_tray_icon_send_message (EggTrayIcon *icon,
 
   /* Now to send the actual message */
   gdk_error_trap_push ();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (len > 0)
     {
       XClientMessageEvent ev;

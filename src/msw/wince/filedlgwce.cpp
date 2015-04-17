@@ -100,11 +100,11 @@ void wxFileDialog::GetPaths(wxArrayString& paths) const
         dir += wxT('\\');
 
     size_t count = m_fileNames.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
         if (wxFileName(m_fileNames[n]).IsAbsolute())

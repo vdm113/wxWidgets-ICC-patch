@@ -54,11 +54,11 @@ public:
     {
         QStringList wildCards = wxQtConvertString(wildCard).split("|");
         QStringList filters;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (int i=0; i<wildCards.size()-1; i+=2)
         {
             // discard everything after first (

@@ -54,11 +54,11 @@ bool wxApp::Initialize( int &argc, wxChar **argv )
 
     // Clone and store arguments
     m_qtArgv = new char *[argc + 1];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( int i = 0; i < argc; i++ )
     {
         m_qtArgv[i] = wxStrdupA(wxConvUTF8.cWX2MB(argv[i]));
@@ -82,11 +82,11 @@ bool wxApp::Initialize( int &argc, wxChar **argv )
         // Qt changed the arguments
         delete [] argv;
         argv = new wxChar *[qtArgs.size() + 1];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( int i = 0; i < qtArgs.size(); i++ )
         {
 #if wxUSE_UNICODE

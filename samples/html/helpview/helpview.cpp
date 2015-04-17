@@ -85,11 +85,11 @@ bool MyApp::OnInit()
         return false;
     }
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (int i = 1; i < argc; i++)
         help->AddBook(wxFileName(argv[i]));
 

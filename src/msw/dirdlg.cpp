@@ -212,11 +212,11 @@ void wxDirDialog::SetPath(const wxString& path)
     // SHBrowseForFolder doesn't like '/'s nor the trailing backslashes
     m_path.Replace(wxT("/"), wxT("\\"));
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( !m_path.empty() && (*(m_path.end() - 1) == wxT('\\')) )
     {
         m_path.erase(m_path.length() - 1);

@@ -75,11 +75,11 @@ wxSelectSets::Callback wxSelectSets::ms_handlers[wxSelectSets::Max] =
 
 wxSelectSets::wxSelectSets()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( int n = 0; n < Max; n++ )
     {
         wxFD_ZERO(&m_fds[n]);
@@ -88,11 +88,11 @@ wxSelectSets::wxSelectSets()
 
 bool wxSelectSets::HasFD(int fd) const
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( int n = 0; n < Max; n++ )
     {
         if ( wxFD_ISSET(fd, (fd_set*) &m_fds[n]) )
@@ -106,11 +106,11 @@ bool wxSelectSets::SetFD(int fd, int flags)
 {
     wxCHECK_MSG( fd >= 0, false, wxT("invalid descriptor") );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( int n = 0; n < Max; n++ )
     {
         if ( flags & ms_flags[n] )
@@ -133,11 +133,11 @@ int wxSelectSets::Select(int nfds, struct timeval *tv)
 
 bool wxSelectSets::Handle(int fd, wxFDIOHandler& handler) const
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( int n = 0; n < Max; n++ )
     {
         if ( wxFD_ISSET(fd, (fd_set*) &m_fds[n]) )
@@ -200,11 +200,11 @@ bool wxSelectDispatcher::UnregisterFD(int fd)
         {
             // need to find new max fd
             m_maxFD = -1;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for ( wxFDIOHandlerMap::const_iterator it = m_handlers.begin();
                   it != m_handlers.end();
                   ++it )
@@ -225,11 +225,11 @@ bool wxSelectDispatcher::UnregisterFD(int fd)
 int wxSelectDispatcher::ProcessSets(const wxSelectSets& sets)
 {
     int numEvents = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( int fd = 0; fd <= m_maxFD; fd++ )
     {
         if ( !sets.HasFD(fd) )

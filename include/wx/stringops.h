@@ -93,11 +93,11 @@ struct WXDLLIMPEXP_BASE wxStringOperationsUtf8
         // here, because we assume valid UTF-8 input for the purpose of
         // efficient implementation).
         --i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while ( ((*i) & 0xC0) == 0x80 /* 2 highest bits are '10' */ )
             --i;
     }
@@ -109,21 +109,21 @@ struct WXDLLIMPEXP_BASE wxStringOperationsUtf8
 
         if ( n > 0 )
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for ( ptrdiff_t j = 0; j < n; ++j )
                 IncIter(out);
         }
         else if ( n < 0 )
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for ( ptrdiff_t j = 0; j > n; --j )
                 DecIter(out);
         }
@@ -138,11 +138,11 @@ struct WXDLLIMPEXP_BASE wxStringOperationsUtf8
 
         if ( i1 < i2 )
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             while ( i1 != i2 )
             {
                 IncIter(i1);
@@ -151,11 +151,11 @@ struct WXDLLIMPEXP_BASE wxStringOperationsUtf8
         }
         else if ( i2 < i1 )
         {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             while ( i2 != i1 )
             {
                 IncIter(i2);

@@ -241,6 +241,11 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( Bench::Function *func = Bench::Function::GetFirst();
           func;
           func = func->GetNext() )
@@ -253,6 +258,11 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
         const wxString name = parser.GetParam(n);
@@ -279,6 +289,11 @@ int BenchApp::OnRun()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( Bench::Function *func = Bench::Function::GetFirst();
           func;
           func = func->GetNext() )
@@ -293,6 +308,11 @@ int BenchApp::OnRun()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for(std::vector<Bench::Function*>::iterator func=funcs.begin(); func!=funcs.end(); ++func) {
         wxString params;
         if ( m_numParam )
@@ -313,6 +333,11 @@ int BenchApp::OnRun()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( long a = 0; ok && a < m_avgCount; a++ )
         {
             wxStopWatch sw;
@@ -321,6 +346,11 @@ int BenchApp::OnRun()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for ( long n = 0; n < m_numRuns && ok; n++ )
             {
                 ok = (*func)->Run();
@@ -381,6 +411,11 @@ void BenchApp::ListBenchmarks()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( Bench::Function *func = Bench::Function::GetFirst();
           func;
           func = func->GetNext() )

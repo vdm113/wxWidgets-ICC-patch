@@ -114,11 +114,11 @@ unsigned int wxCheckListBoxBase::GetCheckedItems(wxArrayInt& checkedItems) const
     unsigned int const numberOfItems = GetCount();
 
     checkedItems.clear();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < numberOfItems; ++i )
     {
         if ( IsChecked(i) )

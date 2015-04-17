@@ -250,11 +250,11 @@ void MyClient::Notify()
 
 void MyClient::StartNextTestIfNecessary()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( !m_tests.empty() )
     {
         MyClientTestFunc testfunc = m_tests.front();

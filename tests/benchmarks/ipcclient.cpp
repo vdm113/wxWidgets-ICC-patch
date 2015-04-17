@@ -167,11 +167,11 @@ BENCHMARK_FUNC_WITH_INIT(IPCPokeAdvise, ConnInit, ConnDone)
     if ( !conn->Poke(IPC_BENCHMARK_ITEM, s) )
         return false;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( !conn->GotAdvised() )
         loop.Dispatch();
 

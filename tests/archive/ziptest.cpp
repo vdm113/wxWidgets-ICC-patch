@@ -202,11 +202,11 @@ void ZipPipeTestCase::runTest()
     char buf[64];
     size_t len = zip.Read(buf, sizeof(buf) - 1).LastRead();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (len > 0 && buf[len - 1] <= 32)
         --len;
     buf[len] = 0;
@@ -247,11 +247,11 @@ ArchiveTestSuite *ziptest::makeSuite()
 #if 0
     // zip doesn't support this any more so disabled
     if (IsInPath(wxT("zip")))
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (int options = 0; options <= PipeIn; options += PipeIn) {
             string name = Description(wxT("ZipPipeTestCase"), options,
                                       false, wxT(""), wxT("zip -q - -"));

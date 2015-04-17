@@ -1629,11 +1629,11 @@ IAccessible* wxIAccessible::GetChildStdAccessible(int id)
         this->get_accChildCount(& nChildren);
 
         int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (i = 0; i < nChildren; i++)
         {
             long obtained = 0;

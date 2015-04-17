@@ -1607,11 +1607,11 @@ void wxPreviewControlBar::SetZoomControl(int zoom)
     {
         int n, count = m_zoomControl->GetCount();
         long val;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (n=0; n<count; n++)
         {
             if (m_zoomControl->GetString(n).BeforeFirst(wxT('%')).ToLong(&val) &&

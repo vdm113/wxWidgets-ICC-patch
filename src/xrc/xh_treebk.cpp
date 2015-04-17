@@ -86,21 +86,21 @@ wxObject *wxTreebookXmlHandler::DoCreateResource()
 
         wxXmlNode *node = GetParamNode("object");
         int pageIndex = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (unsigned int i = 0; i < m_tbk->GetPageCount(); i++)
         {
             if ( m_tbk->GetPage(i) )
             {
                 wxXmlNode *child = node->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                 while (child)
                 {
                     if (child->GetName() == "expanded" && child->GetNodeContent() == "1")

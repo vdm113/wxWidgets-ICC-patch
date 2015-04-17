@@ -47,11 +47,11 @@ void CheckXml(const wxXmlNode *n, ...)
 
     wxXmlNode *child = n->GetChildren();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (;;)
     {
         const char *childName = va_arg(args, char*);

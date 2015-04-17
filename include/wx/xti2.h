@@ -279,11 +279,11 @@ void wxFromStringConverter( const wxString &s, wxAny &v)
 template<typename iter, typename collection_t > void wxListCollectionToAnyList( 
                                                                                const collection_t& coll, wxAnyList &value )
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( iter current = coll.GetFirst(); current; 
          current = current->GetNext() )
     {
@@ -294,11 +294,11 @@ template<typename iter, typename collection_t > void wxListCollectionToAnyList(
 template<typename collection_t> void wxArrayCollectionToVariantArray( 
                                                                      const collection_t& coll, wxAnyList &value )
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for( size_t i = 0; i < coll.GetCount(); i++ )
     {
         value.Append( new wxAny(coll[i]) );

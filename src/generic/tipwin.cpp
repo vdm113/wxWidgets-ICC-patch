@@ -275,11 +275,11 @@ void wxTipWindowView::Adjust(const wxString& text, wxCoord maxLength)
     m_parent->m_heightLine = 0;
 
     bool breakLine = false;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( const wxChar *p = text.c_str(); ; p++ )
     {
         if ( *p == wxT('\n') || *p == wxT('\0') )
@@ -354,11 +354,11 @@ void wxTipWindowView::OnPaint(wxPaintEvent& WXUNUSED(event))
     pt.x = TEXT_MARGIN_X;
     pt.y = TEXT_MARGIN_Y;
     size_t count = m_parent->m_textLines.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
         dc.DrawText(m_parent->m_textLines[n], pt);

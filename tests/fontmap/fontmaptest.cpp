@@ -115,11 +115,11 @@ void FontMapperTestCase::NamesAndDesc()
     };
 
     wxFontMapperBase& fmap = *wxFontMapperBase::Get();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(charsets); n++ )
     {
         wxFontEncoding enc = fmap.CharsetToEncoding(charsets[n]);

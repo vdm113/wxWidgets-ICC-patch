@@ -454,6 +454,11 @@ bool wxToolBar::Realize()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (node )
     {
         wxToolBarTool*              pTool = (wxToolBarTool *)node->GetData();
@@ -510,6 +515,11 @@ bool wxToolBar::Realize()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (node)
     {
         wxToolBarTool*              pTool = (wxToolBarTool *)node->GetData();
@@ -621,6 +631,11 @@ void wxToolBar::OnPaint (
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
           node;
           node = node->GetNext() )
@@ -975,6 +990,11 @@ wxToolBarToolBase* wxToolBar::FindToolForPosition(
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (node)
     {
         wxToolBarTool*              pTool = (wxToolBarTool *)node->GetData();

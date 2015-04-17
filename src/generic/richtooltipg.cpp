@@ -543,11 +543,11 @@ private:
 
             // Iterate over all rectangle rectPoints for the first 3 corners.
             unsigned n = pointStart;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for ( unsigned corner = 0; corner < 3; corner++ )
             {
                 const wxPoint2DDouble& pt1 = rectPoints[n];

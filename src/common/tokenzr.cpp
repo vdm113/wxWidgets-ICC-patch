@@ -55,11 +55,11 @@ find_first_of(const wxChar *delims, size_t len,
 {
     wxASSERT_MSG( from <= end,  wxT("invalid index") );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( wxString::const_iterator i = from; i != end; ++i )
     {
         if ( wxTmemchr(delims, *i, len) )
@@ -76,11 +76,11 @@ find_first_not_of(const wxChar *delims, size_t len,
 {
     wxASSERT_MSG( from <= end,  wxT("invalid index") );
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( wxString::const_iterator i = from; i != end; ++i )
     {
         if ( !wxTmemchr(delims, *i, len) )
@@ -127,11 +127,11 @@ void wxStringTokenizer::SetString(const wxString& str,
         // whitespace delimiters, strtok() behaviour is better because we want
         // to count consecutive spaces as one delimiter)
         wxString::const_iterator p;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( p = delims.begin(); p != delims.end(); ++p )
         {
             if ( !wxIsspace(*p) )
@@ -261,11 +261,11 @@ size_t wxStringTokenizer::CountTokens() const
     wxStringTokenizer tkz(wxString(m_pos, m_stringEnd), m_delims, m_mode);
 
     size_t count = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( tkz.HasMoreTokens() )
     {
         count++;
@@ -283,11 +283,11 @@ size_t wxStringTokenizer::CountTokens() const
 wxString wxStringTokenizer::GetNextToken()
 {
     wxString token;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     do
     {
         if ( !HasMoreTokens() )
@@ -345,11 +345,11 @@ wxArrayString wxStringTokenize(const wxString& str,
 {
     wxArrayString tokens;
     wxStringTokenizer tk(str, delims, mode);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( tk.HasMoreTokens() )
     {
         tokens.Add(tk.GetNextToken());

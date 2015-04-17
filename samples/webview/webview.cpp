@@ -891,11 +891,11 @@ void WebFrame::OnToolsClicked(wxCommandEvent& WXUNUSED(evt))
 
     //Firstly we clear the existing menu items, then we add the current ones
     wxMenuHistoryMap::const_iterator it;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for( it = m_histMenuItems.begin(); it != m_histMenuItems.end(); ++it )
     {
         m_tools_history_menu->Destroy(it->first);
@@ -908,11 +908,11 @@ void WebFrame::OnToolsClicked(wxCommandEvent& WXUNUSED(evt))
     wxMenuItem* item;
 
     unsigned int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for(i = 0; i < back.size(); i++)
     {
         item = m_tools_history_menu->AppendRadioItem(wxID_ANY, back[i]->GetTitle());
@@ -930,11 +930,11 @@ void WebFrame::OnToolsClicked(wxCommandEvent& WXUNUSED(evt))
     //No need to connect the current item
     m_histMenuItems[item->GetId()] = wxSharedPtr<wxWebViewHistoryItem>(new wxWebViewHistoryItem(m_browser->GetCurrentURL(), m_browser->GetCurrentTitle()));
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for(i = 0; i < forward.size(); i++)
     {
         item = m_tools_history_menu->AppendRadioItem(wxID_ANY, forward[i]->GetTitle());

@@ -486,22 +486,22 @@ wxRibbonArtProvider* wxRibbonMSWArtProvider::Clone() const
 void wxRibbonMSWArtProvider::CloneTo(wxRibbonMSWArtProvider* copy) const
 {
     int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for(i = 0; i < 4; ++i)
     {
         copy->m_gallery_up_bitmap[i] = m_gallery_up_bitmap[i];
         copy->m_gallery_down_bitmap[i] = m_gallery_down_bitmap[i];
         copy->m_gallery_extension_bitmap[i] = m_gallery_extension_bitmap[i];
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for(i = 0; i < 2; ++i)
     {
         copy->m_panel_extension_bitmap[i] = m_panel_extension_bitmap[i];
@@ -1435,11 +1435,11 @@ void wxRibbonMSWArtProvider::ReallyDrawTabSeparator(wxWindow* wnd, const wxRect&
     double g3 = m_tab_separator_gradient_colour.Green();
     double b3 = m_tab_separator_gradient_colour.Blue();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for(int i = 0; i < rect.height - 1; ++i)
     {
         double p = ((double)i)/h;
@@ -1825,11 +1825,11 @@ void wxRibbonMSWArtProvider::DrawPanelBackground(
             {
                 // Room for some characters and ...
                 // Display as many characters as possible and append ...
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                 for(size_t len = label.Len() - 1; len >= 3; --len)
                 {
                     new_label = label.Mid(0, len) + wxT("...");
@@ -2324,11 +2324,11 @@ void wxRibbonMSWArtProvider::DrawPartialPageBackground(
             parent = panel->GetExpandedDummy()->GetParent();
         }
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for(; parent; parent = parent->GetParent())
     {
         if(panel == NULL)
@@ -2529,11 +2529,11 @@ void wxRibbonMSWArtProvider::DrawButtonBarButtonForeground(
             else
             {
                 size_t breaki = label.Len();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                 do
                 {
                     --breaki;
@@ -2842,11 +2842,11 @@ int wxRibbonMSWArtProvider::GetTabCtrlHeight(
     if(m_flags & wxRIBBON_BAR_SHOW_PAGE_ICONS)
     {
         size_t numpages = pages.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for(size_t i = 0; i < numpages; ++i)
         {
             const wxRibbonPageTabInfo& info = pages.Item(i);
@@ -3117,11 +3117,11 @@ bool wxRibbonMSWArtProvider::GetButtonBarButtonSize(
                 last_line_extra_width += 8;
             }
             size_t i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for(i = 0; i < label.Len(); ++i)
             {
                 if(wxRibbonCanLabelBreakAtPosition(label, i))

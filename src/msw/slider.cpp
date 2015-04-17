@@ -155,11 +155,11 @@ bool wxSlider::Create(wxWindow *parent,
         m_labels = new wxSubwindows(SliderLabel_Last);
 
         HWND hwndParent = GetHwndOf(parent);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( size_t n = 0; n < SliderLabel_Last; n++ )
         {
             wxWindowIDRef lblid = NewControlId();

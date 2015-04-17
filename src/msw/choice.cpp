@@ -227,11 +227,11 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter& items,
 
     int n = wxNOT_FOUND;
     const unsigned numItems = items.GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( unsigned i = 0; i < numItems; ++i )
     {
         n = MSWInsertOrAppendItem(pos, items[i], msg);
@@ -317,11 +317,11 @@ int wxChoice::FindString(const wxString& s, bool bCase) const
    if ( s.empty() )
    {
        unsigned int count = GetCount();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
        for ( unsigned int i = 0; i < count; i++ )
        {
          if (GetString(i).empty())

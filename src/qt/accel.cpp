@@ -82,11 +82,11 @@ wxAcceleratorTable::wxAcceleratorTable(int n, const wxAcceleratorEntry entries[]
 {
     m_refData = new wxAccelRefData;
     
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( int i = 0; i < n; i++ )
     {
         M_ACCELDATA->m_accels.Append( new wxAcceleratorEntry( entries[i] ) );
@@ -97,11 +97,11 @@ QList< QShortcut* > wxAcceleratorTable::ConvertShortcutTable( QWidget *parent ) 
 {   
     QList< QShortcut* > qtList;
     
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( wxAccelList::Node *node = M_ACCELDATA->m_accels.GetFirst(); node; node = node->GetNext() )
     {
         qtList << ConvertAccelerator( node->GetData(), parent );

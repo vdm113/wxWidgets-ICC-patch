@@ -108,6 +108,11 @@ void wxFileDialog::GetPaths (
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < nCount; n++ )
     {
         rasPaths.Add(sDir + m_fileNames[n]);
@@ -166,6 +171,11 @@ int wxFileDialog::ShowModal()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( i = 0; i < nLen; i++ )
     {
         wxChar                      ch = m_dir[i];
@@ -187,6 +197,11 @@ int wxFileDialog::ShowModal()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                 while (i < nLen - 1)
                 {
                     wxChar          chNext = m_dir[i + 1];
@@ -224,6 +239,11 @@ int wxFileDialog::ShowModal()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while(pzFilterBuffer != NULL)
     {
         if (nCount > 0 && !(nCount % 2))
@@ -256,6 +276,11 @@ int wxFileDialog::ShowModal()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for (int i = 0; i < (int)vFileDlg.ulFQFCount; i++)
             {
                 if (i == 0)
@@ -308,6 +333,11 @@ int wxFileDialog::ShowModal()
 #   pragma swp
 #   pragma unroll
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                 for( int i = 0; i < (int)sFilterBuffer.length(); i++ )
                 {
                     //

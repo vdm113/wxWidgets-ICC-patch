@@ -121,11 +121,11 @@ static void wxInitGCPool()
 
 static void wxCleanUpGCPool()
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (int i = 0; i < GC_POOL_SIZE; i++)
     {
         if (wxGCPool[i].m_gc)
@@ -135,11 +135,11 @@ static void wxCleanUpGCPool()
 
 static GC wxGetPoolGC( Window window, wxPoolGCType type )
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (int i = 0; i < GC_POOL_SIZE; i++)
     {
         if (!wxGCPool[i].m_gc)
@@ -163,11 +163,11 @@ static GC wxGetPoolGC( Window window, wxPoolGCType type )
 
 static void wxFreePoolGC( GC gc )
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (int i = 0; i < GC_POOL_SIZE; i++)
     {
         if (wxGCPool[i].m_gc == gc)
@@ -492,17 +492,17 @@ void wxWindowDCImpl::DoDrawArc( wxCoord x1, wxCoord y1, wxCoord x2, wxCoord y2, 
     }
     wxCoord alpha1 = wxCoord(radius1 * 64.0);
     wxCoord alpha2 = wxCoord((radius2 - radius1) * 64.0);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (alpha2 <= 0) alpha2 += 360*64;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (alpha1 > 360*64) alpha1 -= 360*64;
 
     if (m_x11window)
@@ -674,11 +674,11 @@ void wxWindowDCImpl::DoDrawLines( int n, const wxPoint points[], wxCoord xoffset
     if (n <= 0) return;
 
     XPoint *xpoints = new XPoint[n];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (int i = 0; i < n; i++)
     {
         xpoints[i].x = XLOG2DEV (points[i].x + xoffset);
@@ -701,11 +701,11 @@ void wxWindowDCImpl::DoDrawPolygon( int n, const wxPoint points[],
 
     XPoint *xpoints = new XPoint[n + 1];
     int i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (i = 0; i < n; i++)
     {
         xpoints[i].x = XLOG2DEV (points[i].x + xoffset);
@@ -1276,11 +1276,11 @@ void wxWindowDCImpl::DoDrawBitmap( const wxBitmap &bitmap,
             }
 
             wxVector<XRectangle> rects;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for ( wxRegionIterator iter(m_currentClippingRegion);
                   iter;
                   ++iter )

@@ -133,11 +133,11 @@ WXGLPixelFormat WXGLChoosePixelFormat(const int *attribList)
         unsigned p = 0;
         data[p++] = AGL_MINIMUM_POLICY; // make _SIZE tags behave more like GLX
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( unsigned arg = 0; attribList[arg] !=0 && p < WXSIZEOF(data); )
         {
             switch ( attribList[arg++] )

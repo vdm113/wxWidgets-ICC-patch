@@ -104,11 +104,11 @@ bool wxCheckForInterrupt(wxWindow *wnd)
     wxCHECK( wnd, false );
 
     MSG msg;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ( ::PeekMessage(&msg, GetHwndOf(wnd), 0, 0, PM_REMOVE) )
     {
         ::TranslateMessage(&msg);
@@ -232,11 +232,11 @@ wxString WXDLLEXPORT wxGetWindowClass(WXHWND hWnd)
     {
         int len = 256; // some starting value
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( ;; )
         {
             int count = ::GetClassName((HWND)hWnd, wxStringBuffer(str, len), len);

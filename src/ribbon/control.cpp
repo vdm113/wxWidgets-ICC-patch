@@ -118,11 +118,11 @@ bool wxRibbonControl::Realize()
 
 wxRibbonBar* wxRibbonControl::GetAncestorRibbonBar()const
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( wxWindow* win = GetParent(); win; win = win->GetParent() )
     {
         wxRibbonBar* bar = wxDynamicCast(win, wxRibbonBar);

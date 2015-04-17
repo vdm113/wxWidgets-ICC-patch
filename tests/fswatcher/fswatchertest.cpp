@@ -169,11 +169,11 @@ public:
         static int ALFA_CNT = 'z' - 'a';
 
         wxString s;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (int i = 0 ; i < length; ++i)
         {
             char c = 'a' + (rand() % ALFA_CNT);
@@ -751,11 +751,11 @@ void FileSystemWatcherTestCase::TestTrees()
 
             // Create a branch of 5 numbered subdirs, each containing 3
             // numbered files
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for ( unsigned d = 0; d < subdirs; ++d )
             {
                 dir.AppendDir(wxString::Format("subdir%u", d+1));
@@ -763,11 +763,11 @@ void FileSystemWatcherTestCase::TestTrees()
 
                 const wxString prefix = dir.GetPathWithSep();
                 const wxString ext[] = { ".txt", ".log", "" };
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
                 for ( unsigned f = 0; f < files; ++f )
                 {
                     // Just create the files.

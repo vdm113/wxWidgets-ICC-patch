@@ -95,11 +95,11 @@ protected:
         if ( m_mirror )
         {
             points_alloc = new wxPoint[n];
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             for ( int i = 0; i < n; i++ )
             {
                 points_alloc[i].x = points[i].y;

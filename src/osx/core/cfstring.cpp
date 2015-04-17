@@ -34,11 +34,11 @@
 void wxMacConvertNewlines13To10( char * data )
 {
     char * buf = data ;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while( (buf=strchr(buf,0x0d)) != NULL )
     {
         *buf = 0x0a ;
@@ -49,11 +49,11 @@ void wxMacConvertNewlines13To10( char * data )
 void wxMacConvertNewlines10To13( char * data )
 {
     char * buf = data ;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while( (buf=strchr(buf,0x0a)) != NULL )
     {
         *buf = 0x0d ;

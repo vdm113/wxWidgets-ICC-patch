@@ -278,11 +278,11 @@ void wxGLCanvasX11::InitGLXContextAttribs(const int *wxattrs, int *wxctxattrs)
     int glVersionMajor = 3,
         glVersionMinor = 0;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( int arg = 0; wxattrs[arg] != 0; )
     {
         switch ( wxattrs[arg++] )
@@ -367,11 +367,11 @@ wxGLCanvasX11::ConvertWXAttrsToGL(const int *wxattrs, int *glattrs, size_t n)
     else // have non-default attributes
     {
         size_t p = 0;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( int arg = 0; wxattrs[arg] != 0; )
         {
             // check if we have any space left, knowing that we may insert 2

@@ -59,11 +59,6 @@
 
     wxString key_name;
     key.GetFirstKey(key_name, 1);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for(int i = 0; i < subkeys; i++)
     {
         wxMessageBox(key_name, "Subkey Name", wxOK);

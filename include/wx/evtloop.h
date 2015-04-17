@@ -327,11 +327,11 @@ public:
         // TODO: this is, of course, horribly inefficient and a proper wait with
         //       timeout should be implemented for all ports natively...
         const wxMilliClock_t timeEnd = wxGetLocalTimeMillis() + timeout;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( ;; )
         {
             if ( Pending() )

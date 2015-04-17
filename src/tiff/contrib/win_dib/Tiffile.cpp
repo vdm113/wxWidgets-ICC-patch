@@ -254,11 +254,11 @@ HANDLE TIFFRGBA2DIB(TIFFDibImage* dib, uint32* raster)
         long*     rgbTif = (long*)raster;
 
         // Swap the byte order while copying
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for ( int i = 0 ; i < sizeWords ; ++i )
         {
             rgbDib[i].rgbRed   = TIFFGetR(rgbTif[i]);
@@ -344,19 +344,14 @@ DECLAREContigPutFunc(putContig1bitTile)
     /* Conver 'w' to bytes from pixels (rounded up) */
     w = (w+7)/8;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (h-- > 0) {
         _TIFFmemcpy(ucp, pp, w);
         /*
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
         for (x = wb; x-- > 0;) {
             *cp++ = rgbi(Map[pp[0]], Map[pp[1]], Map[pp[2]]);
             pp += samplesperpixel;
@@ -441,11 +436,11 @@ getStripContig1Bit(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
     TIFFGetFieldDefaulted(tif, TIFFTAG_ROWSPERSTRIP, &rowsperstrip);
     scanline = TIFFScanlineSize(tif);
     fromskew = (w < imagewidth ? imagewidth - w : 0)/8;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (row = 0; row < h; row += nrow)
     {
         rowstoread = rowsperstrip - (row + img->row_offset) % rowsperstrip;

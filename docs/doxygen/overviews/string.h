@@ -256,11 +256,6 @@ access) like this:
 @code
 wxString s = "hello";
 wxString::const_iterator i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
 for (i = s.begin(); i != s.end(); ++i)
 {
     wxUniChar uni_ch = *i;
@@ -322,11 +317,6 @@ wxString DeleteAllVowels(const wxString& original)
     wxString vowels( "aeuioAEIOU" );
     wxString result;
     wxString::const_iterator i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif
     for ( i = original.begin(); i != original.end(); ++i )
     {
         if (vowels.Find( *i ) == wxNOT_FOUND)

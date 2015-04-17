@@ -73,11 +73,11 @@ wxObject *wxRadioBoxXmlHandler::DoCreateResource()
         SetupWindow(control);
 
         const unsigned count = m_labels.size();
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for( unsigned i = 0; i < count; i++ )
         {
 #if wxUSE_TOOLTIPS

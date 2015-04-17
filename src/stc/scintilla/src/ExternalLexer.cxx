@@ -75,11 +75,11 @@ LexerLibrary::LexerLibrary(const char *ModuleName) {
 
 			int nl = GetLexerCount();
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 			for (int i = 0; i < nl; i++) {
 				// Assign a buffer for the lexer name.
 				char lexname[100] = "";
@@ -117,11 +117,11 @@ void LexerLibrary::Release() {
 	LexerMinder *lm;
 	LexerMinder *lmNext;
 	lm = first;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	while (NULL != lm) {
 		lmNext = lm->next;
 		delete lm->self;
@@ -167,11 +167,11 @@ void LexerManager::Load(const char *path) {
 }
 
 void LexerManager::LoadLexerLibrary(const char *module) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 	for (LexerLibrary *ll = first; ll; ll= ll->next) {
 		if (strcmp(ll->m_sModuleName.c_str(), module) == 0)
 			return;
@@ -190,11 +190,11 @@ void LexerManager::Clear() {
 	if (NULL != first) {
 		LexerLibrary *cur = first;
 		LexerLibrary *next;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
 		while (cur) {
 			next = cur->next;
 			delete cur;

@@ -282,11 +282,11 @@ void wxStackWalker::WalkFrom(const CONTEXT *pCtx, size_t skip, size_t maxDepth)
 #endif // _M_IX86
 
     // iterate over all stack frames
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( size_t nLevel = 0; nLevel < maxDepth; nLevel++ )
     {
         // get the next stack frame

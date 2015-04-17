@@ -43,20 +43,20 @@ static wxImage ConvertImage( QImage qtImage )
 
     unsigned char *startAlpha = alpha;
     
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (int y = 0; y < qtImage.height(); y++)
     {
         QRgb *line = (QRgb*)qtImage.scanLine(y);
         
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (int x = 0; x < qtImage.width(); x++)
         {
             QRgb colour = line[x];
@@ -98,18 +98,18 @@ static QImage ConvertImage( const wxImage &image )
         maskedColour = ( r << 16 ) + ( g << 8 ) + b;
     }
     
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (int y = 0; y < image.GetHeight(); y++)
     {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (int x = 0; x < image.GetWidth(); x++)
         {
             if (hasAlpha)

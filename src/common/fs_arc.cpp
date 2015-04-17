@@ -113,11 +113,11 @@ wxArchiveFSCacheDataImpl::~wxArchiveFSCacheDataImpl()
 
     wxArchiveFSEntry *entry = m_begin;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (entry)
     {
         wxArchiveFSEntry *next = entry->next;
@@ -157,11 +157,11 @@ wxArchiveEntry *wxArchiveFSCacheDataImpl::Get(const wxString& name)
 
     wxArchiveEntry *entry;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while ((entry = m_archive->GetNextEntry()) != NULL)
     {
         AddToCache(entry);
@@ -496,11 +496,11 @@ wxString wxArchiveFSHandler::DoFind()
     wxString namestr, dir, filename;
     wxString match = wxEmptyString;
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (match == wxEmptyString)
     {
         m_FindEntry = m_Archive->GetNext(m_FindEntry);
@@ -516,11 +516,11 @@ wxString wxArchiveFSHandler::DoFind()
         if (m_AllowDirs)
         {
             dir = namestr.BeforeLast(wxT('/'));
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
             while (!dir.empty())
             {
                 if( m_DirsFound->find(dir) == m_DirsFound->end() )

@@ -106,11 +106,11 @@ PREFIX(scanComment)(const ENCODING *enc, const char *ptr,
       return XML_TOK_INVALID;
     }
     ptr += MINBPC(enc);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     while (ptr != end) {
       switch (BYTE_TYPE(enc, ptr)) {
       INVALID_CASES(ptr, nextTokPtr)
@@ -159,11 +159,11 @@ PREFIX(scanDecl)(const ENCODING *enc, const char *ptr,
     *nextTokPtr = ptr;
     return XML_TOK_INVALID;
   }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
     case BT_PERCNT:
@@ -250,11 +250,11 @@ PREFIX(scanPi)(const ENCODING *enc, const char *ptr,
     *nextTokPtr = ptr;
     return XML_TOK_INVALID;
   }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
     CHECK_NAME_CASES(enc, ptr, end, nextTokPtr)
@@ -264,11 +264,11 @@ PREFIX(scanPi)(const ENCODING *enc, const char *ptr,
         return XML_TOK_INVALID;
       }
       ptr += MINBPC(enc);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
       while (ptr != end) {
         switch (BYTE_TYPE(enc, ptr)) {
         INVALID_CASES(ptr, nextTokPtr)
@@ -318,11 +318,11 @@ PREFIX(scanCdataSection)(const ENCODING *enc, const char *ptr,
   /* CDATA[ */
   if (end - ptr < 6 * MINBPC(enc))
     return XML_TOK_PARTIAL;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (i = 0; i < 6; i++, ptr += MINBPC(enc)) {
     if (!CHAR_MATCHES(enc, ptr, CDATA_LSQB[i])) {
       *nextTokPtr = ptr;
@@ -380,11 +380,11 @@ PREFIX(cdataSectionTok)(const ENCODING *enc, const char *ptr,
     ptr += MINBPC(enc);
     break;
   }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
 #define LEAD_CASE(n) \
@@ -428,20 +428,20 @@ PREFIX(scanEndTag)(const ENCODING *enc, const char *ptr,
     *nextTokPtr = ptr;
     return XML_TOK_INVALID;
   }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
     CHECK_NAME_CASES(enc, ptr, end, nextTokPtr)
     case BT_S: case BT_CR: case BT_LF:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
       for (ptr += MINBPC(enc); ptr != end; ptr += MINBPC(enc)) {
         switch (BYTE_TYPE(enc, ptr)) {
         case BT_S: case BT_CR: case BT_LF:
@@ -488,11 +488,11 @@ PREFIX(scanHexCharRef)(const ENCODING *enc, const char *ptr,
       *nextTokPtr = ptr;
       return XML_TOK_INVALID;
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (ptr += MINBPC(enc); ptr != end; ptr += MINBPC(enc)) {
       switch (BYTE_TYPE(enc, ptr)) {
       case BT_DIGIT:
@@ -526,11 +526,11 @@ PREFIX(scanCharRef)(const ENCODING *enc, const char *ptr,
       *nextTokPtr = ptr;
       return XML_TOK_INVALID;
     }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (ptr += MINBPC(enc); ptr != end; ptr += MINBPC(enc)) {
       switch (BYTE_TYPE(enc, ptr)) {
       case BT_DIGIT:
@@ -563,11 +563,11 @@ PREFIX(scanRef)(const ENCODING *enc, const char *ptr, const char *end,
     *nextTokPtr = ptr;
     return XML_TOK_INVALID;
   }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
     CHECK_NAME_CASES(enc, ptr, end, nextTokPtr)
@@ -591,11 +591,11 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
 #ifdef XML_NS
   int hadColon = 0;
 #endif
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
     CHECK_NAME_CASES(enc, ptr, end, nextTokPtr)
@@ -618,11 +618,11 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
       break;
 #endif
     case BT_S: case BT_CR: case BT_LF:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
       for (;;) {
         int t;
 
@@ -649,11 +649,11 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
 #ifdef XML_NS
         hadColon = 0;
 #endif
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (;;) {
           ptr += MINBPC(enc);
           if (ptr == end)
@@ -673,11 +673,11 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
         }
         ptr += MINBPC(enc);
         /* in attribute value */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (;;) {
           int t;
           if (ptr == end)
@@ -722,11 +722,11 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
           return XML_TOK_INVALID;
         }
         /* ptr points to closing quote */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         for (;;) {
           ptr += MINBPC(enc);
           if (ptr == end)
@@ -803,11 +803,11 @@ PREFIX(scanLt)(const ENCODING *enc, const char *ptr, const char *end,
   hadColon = 0;
 #endif
   /* we have a start-tag */
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
     CHECK_NAME_CASES(enc, ptr, end, nextTokPtr)
@@ -832,11 +832,11 @@ PREFIX(scanLt)(const ENCODING *enc, const char *ptr, const char *end,
     case BT_S: case BT_CR: case BT_LF:
       {
         ptr += MINBPC(enc);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
         while (ptr != end) {
           switch (BYTE_TYPE(enc, ptr)) {
           CHECK_NMSTRT_CASES(enc, ptr, end, nextTokPtr)
@@ -929,11 +929,11 @@ PREFIX(contentTok)(const ENCODING *enc, const char *ptr, const char *end,
     ptr += MINBPC(enc);
     break;
   }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
 #define LEAD_CASE(n) \
@@ -997,11 +997,11 @@ PREFIX(scanPercent)(const ENCODING *enc, const char *ptr, const char *end,
     *nextTokPtr = ptr;
     return XML_TOK_INVALID;
   }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
     CHECK_NAME_CASES(enc, ptr, end, nextTokPtr)
@@ -1028,11 +1028,11 @@ PREFIX(scanPoundName)(const ENCODING *enc, const char *ptr, const char *end,
     *nextTokPtr = ptr;
     return XML_TOK_INVALID;
   }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
     CHECK_NAME_CASES(enc, ptr, end, nextTokPtr)
@@ -1053,11 +1053,11 @@ PREFIX(scanLit)(int open, const ENCODING *enc,
                 const char *ptr, const char *end,
                 const char **nextTokPtr)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (ptr != end) {
     int t = BYTE_TYPE(enc, ptr);
     switch (t) {
@@ -1136,11 +1136,11 @@ PREFIX(prologTok)(const ENCODING *enc, const char *ptr, const char *end,
     }
     /* fall through */
   case BT_S: case BT_LF:
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (;;) {
       ptr += MINBPC(enc);
       if (ptr == end)
@@ -1263,11 +1263,11 @@ PREFIX(prologTok)(const ENCODING *enc, const char *ptr, const char *end,
     *nextTokPtr = ptr;
     return XML_TOK_INVALID;
   }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
     CHECK_NAME_CASES(enc, ptr, end, nextTokPtr)
@@ -1334,11 +1334,11 @@ PREFIX(attributeValueTok)(const ENCODING *enc, const char *ptr,
   if (ptr == end)
     return XML_TOK_NONE;
   start = ptr;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
 #define LEAD_CASE(n) \
@@ -1397,11 +1397,11 @@ PREFIX(entityValueTok)(const ENCODING *enc, const char *ptr,
   if (ptr == end)
     return XML_TOK_NONE;
   start = ptr;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
 #define LEAD_CASE(n) \
@@ -1463,11 +1463,11 @@ PREFIX(ignoreSectionTok)(const ENCODING *enc, const char *ptr,
       end = ptr + n;
     }
   }
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
     INVALID_CASES(ptr, nextTokPtr)
@@ -1515,11 +1515,11 @@ PREFIX(isPublicId)(const ENCODING *enc, const char *ptr, const char *end,
 {
   ptr += MINBPC(enc);
   end -= MINBPC(enc);
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (; ptr != end; ptr += MINBPC(enc)) {
     switch (BYTE_TYPE(enc, ptr)) {
     case BT_DIGIT:
@@ -1583,11 +1583,11 @@ PREFIX(getAtts)(const ENCODING *enc, const char *ptr,
   int open = 0; /* defined when state == inValue;
                    initialization just to shut up compilers */
 
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (ptr += MINBPC(enc);; ptr += MINBPC(enc)) {
     switch (BYTE_TYPE(enc, ptr)) {
 #define START_NAME \
@@ -1679,11 +1679,11 @@ PREFIX(charRefNumber)(const ENCODING *enc, const char *ptr)
   /* skip &# */
   ptr += 2*MINBPC(enc);
   if (CHAR_MATCHES(enc, ptr, ASCII_x)) {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (ptr += MINBPC(enc);
          !CHAR_MATCHES(enc, ptr, ASCII_SEMI);
          ptr += MINBPC(enc)) {
@@ -1710,11 +1710,11 @@ PREFIX(charRefNumber)(const ENCODING *enc, const char *ptr)
     }
   }
   else {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for (; !CHAR_MATCHES(enc, ptr, ASCII_SEMI); ptr += MINBPC(enc)) {
       int c = BYTE_TO_ASCII(enc, ptr);
       result *= 10;
@@ -1783,11 +1783,11 @@ PREFIX(predefinedEntityName)(const ENCODING *enc, const char *ptr,
 static int PTRCALL
 PREFIX(sameName)(const ENCODING *enc, const char *ptr1, const char *ptr2)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (;;) {
     switch (BYTE_TYPE(enc, ptr1)) {
 #define LEAD_CASE(n) \
@@ -1853,11 +1853,11 @@ static int PTRCALL
 PREFIX(nameMatchesAscii)(const ENCODING *enc, const char *ptr1,
                          const char *end1, const char *ptr2)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (; *ptr2; ptr1 += MINBPC(enc), ptr2++) {
     if (ptr1 == end1)
       return 0;
@@ -1871,11 +1871,11 @@ static int PTRFASTCALL
 PREFIX(nameLength)(const ENCODING *enc, const char *ptr)
 {
   const char *start = ptr;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (;;) {
     switch (BYTE_TYPE(enc, ptr)) {
 #define LEAD_CASE(n) \
@@ -1902,11 +1902,11 @@ PREFIX(nameLength)(const ENCODING *enc, const char *ptr)
 static const char * PTRFASTCALL
 PREFIX(skipS)(const ENCODING *enc, const char *ptr)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (;;) {
     switch (BYTE_TYPE(enc, ptr)) {
     case BT_LF:
@@ -1926,11 +1926,11 @@ PREFIX(updatePosition)(const ENCODING *enc,
                        const char *end,
                        POSITION *pos)
 {
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   while (ptr < end) {
     switch (BYTE_TYPE(enc, ptr)) {
 #define LEAD_CASE(n) \

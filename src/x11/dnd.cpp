@@ -87,11 +87,11 @@ bool wxFileDropTarget::OnDropFiles( long x, long y, size_t nFiles, const char * 
   wxLogDebug( "Got %d dropped files.", (int)nFiles );
   wxLogDebug( "At x: %d, y: %d.", (int)x, (int)y );
   size_t i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (i = 0; i < nFiles; i++)
   {
     wxLogDebug( aszFiles[i] );
@@ -104,11 +104,11 @@ bool wxFileDropTarget::OnDrop(long x, long y, const void *data, size_t size )
   size_t number = 0;
   char *text = (char*) data;
   size_t i;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for (i = 0; i < size; i++)
     if (text[i] == 0) number++;
 
@@ -117,11 +117,11 @@ bool wxFileDropTarget::OnDrop(long x, long y, const void *data, size_t size )
   char **files = new char*[number];
 
   text = (char*) data;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
   for ( i = 0; i < number; i++)
   {
     files[i] = text;

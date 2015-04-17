@@ -82,11 +82,11 @@ wxRegion::wxRegion(const wxRect& rect)
 wxRegion::wxRegion(size_t n, const wxPoint *points, wxPolygonFillMode fillStyle)
 {
     QVector< QPoint > qtPoints;
-#if defined(__INTEL_COMPILER) && 1 // VDM auto patch
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#endif
+#endif /* VDM auto patch */
     for ( uint i = 0; i < n; i++)
     {
         qtPoints << wxQtConvertPoint( points[i] );
