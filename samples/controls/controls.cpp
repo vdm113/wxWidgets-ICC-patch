@@ -1315,7 +1315,7 @@ void MyPanel::OnChangeCheck(wxCommandEvent& event)
 #   pragma unroll
 #endif
     for (unsigned int n=0; n < m_listbox->GetCount(); n++) {
-        m_listbox->Check(n, event.GetInt());
+        m_listbox->Check(n, event.GetInt() != 0);
     }
 }
 
