@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/addremovectrl.cpp
 // Purpose:     wxAddRemoveCtrl implementation.
@@ -40,7 +47,7 @@
 // ----------------------------------------------------------------------------
 
 extern
-WXDLLIMPEXP_DATA_CORE(const char) wxAddRemoveCtrlNameStr[] = "wxAddRemoveCtrl";
+WXDLLIMPEXP_DATA_ADV(const char) wxAddRemoveCtrlNameStr[] = "wxAddRemoveCtrl";
 
 bool
 wxAddRemoveCtrl::Create(wxWindow* parent,
