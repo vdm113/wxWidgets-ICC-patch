@@ -1052,9 +1052,9 @@ objects. If sizer child is used, it sets
 @row3col{value, integer,
     Initial value of the control (default: 0).}
 @row3col{shadow, @ref overview_xrcformat_type_dimension,
-    Rendered shadow size (default: none; ignored by most platforms).}
+    Ignored, preserved only for compatibility.}
 @row3col{bezel, @ref overview_xrcformat_type_dimension,
-    Rendered bezel size (default: none; ignored by most platforms).}
+    Ignored, preserved only for compatibility.}
 @endTable
 
 @subsubsection xrc_wxgenericdirctrl wxGenericDirCtrl

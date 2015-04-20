@@ -163,13 +163,6 @@ wxSize wxGauge::DoGetBestSize() const
         return wxSize( 18, 100 );
 }
 
-void wxGauge::SetShadowWidth(int w)
-{
-    if (w == 0)
-        w = 1;
-    XtVaSetValues((Widget) m_mainWidget, XmNshadowThickness, w, NULL);
-}
-
 void wxGauge::SetRange(int r)
 {
     XtVaSetValues((Widget) m_mainWidget, XmNmaximum, r, NULL);
@@ -178,13 +171,6 @@ void wxGauge::SetRange(int r)
 void wxGauge::SetValue(int pos)
 {
     XtVaSetValues((Widget) m_mainWidget, XmNvalue, pos, NULL);
-}
-
-int wxGauge::GetShadowWidth() const
-{
-    Dimension w;
-    XtVaGetValues((Widget) m_mainWidget, XmNshadowThickness, &w, NULL);
-    return (int)w;
 }
 
 int wxGauge::GetRange() const
