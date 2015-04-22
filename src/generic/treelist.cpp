@@ -190,11 +190,6 @@ public:
 
         // As above, n is the index in the new column texts array and m is the
         // index in the old one.
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( unsigned n = 1, m = 1; n < numColumns - 1; n++, m++ )
         {
             if ( m == col )
