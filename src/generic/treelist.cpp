@@ -187,15 +187,15 @@ public:
 
         wxScopedArray<wxString> oldTexts(m_columnsTexts);
         m_columnsTexts = new wxString[numColumns - 2];
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
+
+        // As above, n is the index in the new column texts array and m is the
+        // index in the old one.
         for ( unsigned n = 1, m = 1; n < numColumns - 1; n++, m++ )
         {
-            if ( n == col )
+            if ( m == col )
             {
+                // Skip copying the deleted column and keep the new index the
+                // same (so compensate for "n++" done in the loop).
                 n--;
             }
             else // Not the deleted column.
