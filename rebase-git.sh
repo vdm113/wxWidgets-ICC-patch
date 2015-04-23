@@ -8,7 +8,8 @@ fi
 
 cd ../wxWidgets_vanilla_trunk/
 git reset --hard || exit 1
-git clone --mirror https://github.com/wxWidgets/wxWidgets || exit 1
+git pull --force https://github.com/wxWidgets/wxWidgets || exit 1
+git reset --hard || exit 1
 cd -
 git branch -D merge 2>/dev/null ; git fetch wx_git && git checkout -b merge && git rebase merge wx_git/master ; while true ; do ( for i in `grep -r '^<<<<<<< ' . | sort | uniq | awk 'BEGIN { FS=":"; } { print $1; }'` ; do echo "$i" ; awk 'BEGIN { ignore=0; } /^<<<<<<< / { ignore=1; next; } /^=======$/ { ignore=0; next; } /^>>>>>>> / { ignore=0; next; } { if(0==ignore) print $0; }' "$i" >"${i}.tmp"; mv -f "${i}.tmp" "$i"; done ) ; git add . ; git rebase --continue || git rebase --skip ; test -d ".git/rebase-merge" -o -d ".git/rebase-apply" || break ; done
 git branch -D merge 2>/dev/null
