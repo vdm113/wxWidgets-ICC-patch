@@ -56,7 +56,7 @@ const char * const EDITLBOX_ITEM_NAME = "item";
 // implementation
 // ============================================================================
 
-IMPLEMENT_DYNAMIC_CLASS(wxEditableListBoxXmlHandler, wxXmlResourceHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxEditableListBoxXmlHandler, wxXmlResourceHandler);
 
 wxEditableListBoxXmlHandler::wxEditableListBoxXmlHandler()
 {

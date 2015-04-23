@@ -36,7 +36,7 @@ wxDEFINE_EVENT( wxEVT_FILECTRL_FILEACTIVATED, wxFileCtrlEvent );
 wxDEFINE_EVENT( wxEVT_FILECTRL_FOLDERCHANGED, wxFileCtrlEvent );
 wxDEFINE_EVENT( wxEVT_FILECTRL_FILTERCHANGED, wxFileCtrlEvent );
 
-IMPLEMENT_DYNAMIC_CLASS( wxFileCtrlEvent, wxCommandEvent )
+wxIMPLEMENT_DYNAMIC_CLASS( wxFileCtrlEvent, wxCommandEvent );
 
 // some helper functions
 

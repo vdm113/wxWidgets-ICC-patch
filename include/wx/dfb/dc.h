@@ -168,7 +168,7 @@ protected:
 
     friend class WXDLLIMPEXP_FWD_CORE wxOverlayImpl; // for Init
 
-    DECLARE_ABSTRACT_CLASS(wxDFBDCImpl)
+    wxDECLARE_ABSTRACT_CLASS(wxDFBDCImpl);
 };
 
 #endif // _WX_DFB_DC_H_

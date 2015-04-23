@@ -149,7 +149,7 @@ private:
 
     friend class wxTarInputStream;
 
-    DECLARE_DYNAMIC_CLASS(wxTarEntry)
+    wxDECLARE_DYNAMIC_CLASS(wxTarEntry);
 };
 
 
@@ -351,7 +351,7 @@ protected:
         { return NewStream(stream); }
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxTarClassFactory)
+    wxDECLARE_DYNAMIC_CLASS(wxTarClassFactory);
 };
 
 

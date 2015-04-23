@@ -49,7 +49,7 @@
 // event tables and other macros
 // ----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(wxTextCtrl, wxControl)
+wxBEGIN_EVENT_TABLE(wxTextCtrl, wxControl)
     EVT_CHAR(wxTextCtrl::OnChar)
 
     EVT_MENU(wxID_CUT, wxTextCtrl::OnCut)
@@ -69,7 +69,7 @@ BEGIN_EVENT_TABLE(wxTextCtrl, wxControl)
     EVT_UPDATE_UI(wxID_SELECTALL, wxTextCtrl::OnUpdateSelectAll)
 
     EVT_SET_FOCUS(wxTextCtrl::OnSetFocus)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 // ----------------------------------------------------------------------------
 // constants

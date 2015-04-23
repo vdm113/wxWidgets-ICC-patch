@@ -49,7 +49,7 @@ private:
 
     wxDatePickerCtrl* m_datepicker;
 
-    DECLARE_NO_COPY_CLASS(DatePickerCtrlTestCase)
+    wxDECLARE_NO_COPY_CLASS(DatePickerCtrlTestCase);
 };
 
 // register in the unnamed registry so that these tests are run by default

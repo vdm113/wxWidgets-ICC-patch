@@ -277,7 +277,7 @@ private:
 
 
     wxDECLARE_NO_COPY_CLASS(wxDialogBase);
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 /*!
@@ -289,7 +289,7 @@ private:
 
 class WXDLLIMPEXP_CORE wxDialogLayoutAdapter: public wxObject
 {
-    DECLARE_CLASS(wxDialogLayoutAdapter)
+    wxDECLARE_CLASS(wxDialogLayoutAdapter);
 public:
     wxDialogLayoutAdapter() {}
 
@@ -307,7 +307,7 @@ public:
 
 class WXDLLIMPEXP_CORE wxStandardDialogLayoutAdapter: public wxDialogLayoutAdapter
 {
-    DECLARE_CLASS(wxStandardDialogLayoutAdapter)
+    wxDECLARE_CLASS(wxStandardDialogLayoutAdapter);
 public:
     wxStandardDialogLayoutAdapter() {}
 
@@ -387,7 +387,7 @@ public:
     virtual wxEvent *Clone() const wxOVERRIDE { return new wxWindowModalDialogEvent (*this); }
 
 private:
-    DECLARE_DYNAMIC_CLASS_NO_ASSIGN(wxWindowModalDialogEvent )
+    wxDECLARE_DYNAMIC_CLASS_NO_ASSIGN(wxWindowModalDialogEvent);
 };
 
 wxDECLARE_EXPORTED_EVENT(WXDLLIMPEXP_CORE, wxEVT_WINDOW_MODAL_DIALOG_CLOSED , wxWindowModalDialogEvent );

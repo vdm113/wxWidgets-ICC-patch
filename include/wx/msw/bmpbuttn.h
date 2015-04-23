@@ -49,8 +49,8 @@ public:
                 const wxString& name = wxButtonNameStr);
 
 protected:
-    DECLARE_EVENT_TABLE()
-    DECLARE_DYNAMIC_CLASS_NO_COPY(wxBitmapButton)
+    wxDECLARE_EVENT_TABLE();
+    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxBitmapButton);
 };
 
 #endif // _WX_BMPBUTTN_H_

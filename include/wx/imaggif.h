@@ -91,7 +91,7 @@ protected:
 #endif
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxGIFHandler)
+    wxDECLARE_DYNAMIC_CLASS(wxGIFHandler);
 };
 
 #endif // wxUSE_GIF

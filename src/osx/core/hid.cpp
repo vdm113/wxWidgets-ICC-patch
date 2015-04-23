@@ -663,9 +663,9 @@ void wxHIDKeyboard::DoBuildCookies(CFArrayRef Array)
 
 class wxHIDModule : public wxModule
 {
-    DECLARE_DYNAMIC_CLASS(wxHIDModule)
+    wxDECLARE_DYNAMIC_CLASS(wxHIDModule);
 
-    public:
+public:
         static wxArrayPtrVoid sm_keyboards;
         virtual bool OnInit() wxOVERRIDE
         {
@@ -684,7 +684,7 @@ class wxHIDModule : public wxModule
         }
 };
 
-IMPLEMENT_DYNAMIC_CLASS(wxHIDModule, wxModule)
+wxIMPLEMENT_DYNAMIC_CLASS(wxHIDModule, wxModule);
 
 wxArrayPtrVoid wxHIDModule::sm_keyboards;
 

@@ -225,7 +225,7 @@ private:
     typedef wxDList<wxDocument> DocsList;
     DocsList m_childDocuments;
 
-    DECLARE_ABSTRACT_CLASS(wxDocument)
+    wxDECLARE_ABSTRACT_CLASS(wxDocument);
     wxDECLARE_NO_COPY_CLASS(wxDocument);
 };
 
@@ -298,7 +298,7 @@ protected:
     wxDocChildFrameAnyBase *m_docChildFrame;
 
 private:
-    DECLARE_ABSTRACT_CLASS(wxView)
+    wxDECLARE_ABSTRACT_CLASS(wxView);
     wxDECLARE_NO_COPY_CLASS(wxView);
 };
 
@@ -383,7 +383,7 @@ protected:
     virtual wxView *DoCreateView();
 
 private:
-    DECLARE_CLASS(wxDocTemplate)
+    wxDECLARE_CLASS(wxDocTemplate);
     wxDECLARE_NO_COPY_CLASS(wxDocTemplate);
 };
 
@@ -569,8 +569,8 @@ protected:
     wxPageSetupDialogData m_pageSetupDialogData;
 #endif // wxUSE_PRINTING_ARCHITECTURE
 
-    DECLARE_EVENT_TABLE()
-    DECLARE_DYNAMIC_CLASS(wxDocManager)
+    wxDECLARE_EVENT_TABLE();
+    wxDECLARE_DYNAMIC_CLASS(wxDocManager);
     wxDECLARE_NO_COPY_CLASS(wxDocManager);
 };
 
@@ -805,7 +805,7 @@ public:
     }
 
 private:
-    DECLARE_CLASS(wxDocChildFrame)
+    wxDECLARE_CLASS(wxDocChildFrame);
     wxDECLARE_NO_COPY_CLASS(wxDocChildFrame);
 };
 
@@ -957,7 +957,7 @@ public:
     }
 
 private:
-    DECLARE_CLASS(wxDocParentFrame)
+    wxDECLARE_CLASS(wxDocParentFrame);
     wxDECLARE_NO_COPY_CLASS(wxDocParentFrame);
 };
 
@@ -984,7 +984,7 @@ protected:
     wxView*       m_printoutView;
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxDocPrintout)
+    wxDECLARE_DYNAMIC_CLASS(wxDocPrintout);
     wxDECLARE_NO_COPY_CLASS(wxDocPrintout);
 };
 #endif // wxUSE_PRINTING_ARCHITECTURE

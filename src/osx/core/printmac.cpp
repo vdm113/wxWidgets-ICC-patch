@@ -95,7 +95,7 @@ static PMResolution *GetSupportedResolutions(PMPrinter printer, UInt32 *count)
 
 
 
-IMPLEMENT_DYNAMIC_CLASS(wxOSXPrintData, wxPrintNativeDataBase)
+wxIMPLEMENT_DYNAMIC_CLASS(wxOSXPrintData, wxPrintNativeDataBase);
 
 bool wxOSXPrintData::IsOk() const
 {
@@ -563,7 +563,7 @@ wxPrintNativeDataBase* wxOSXCreatePrintData()
 * Printer
 */
 
-IMPLEMENT_DYNAMIC_CLASS(wxMacPrinter, wxPrinterBase)
+wxIMPLEMENT_DYNAMIC_CLASS(wxMacPrinter, wxPrinterBase);
 
 wxMacPrinter::wxMacPrinter(wxPrintDialogData *data):
 wxPrinterBase(data)
@@ -753,7 +753,7 @@ bool wxMacPrinter::Setup(wxWindow *WXUNUSED(parent))
 * Print preview
 */
 
-IMPLEMENT_CLASS(wxMacPrintPreview, wxPrintPreviewBase)
+wxIMPLEMENT_CLASS(wxMacPrintPreview, wxPrintPreviewBase);
 
 wxMacPrintPreview::wxMacPrintPreview(wxPrintout *printout,
                                      wxPrintout *printoutForPrinting,
@@ -835,7 +835,7 @@ void wxMacPrintPreview::DetermineScaling(void)
 
 #if wxOSX_USE_CARBON
 
-IMPLEMENT_DYNAMIC_CLASS(wxOSXCarbonPrintData, wxOSXPrintData)
+wxIMPLEMENT_DYNAMIC_CLASS(wxOSXCarbonPrintData, wxOSXPrintData);
 
 wxOSXCarbonPrintData::wxOSXCarbonPrintData()
 {

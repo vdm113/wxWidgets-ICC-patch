@@ -69,7 +69,7 @@ private:
     void GTKDoSetLabel(GTKLabelSetter setter, const wxString& label);
 
 
-    DECLARE_DYNAMIC_CLASS(wxStaticText)
+    wxDECLARE_DYNAMIC_CLASS(wxStaticText);
 };
 
 #endif

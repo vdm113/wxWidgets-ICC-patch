@@ -49,7 +49,7 @@ protected:
 
     wxColourData m_data;
 
-    DECLARE_DYNAMIC_CLASS(wxColourDialog)
+    wxDECLARE_DYNAMIC_CLASS(wxColourDialog);
 };
 
 #endif

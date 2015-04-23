@@ -40,7 +40,7 @@
 // wxHtmlWinParser
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_ABSTRACT_CLASS(wxHtmlWinParser, wxHtmlParser)
+wxIMPLEMENT_ABSTRACT_CLASS(wxHtmlWinParser, wxHtmlParser);
 
 wxList wxHtmlWinParser::m_Modules;
 
@@ -874,7 +874,7 @@ void wxHtmlWinParser::SetInputEncoding(wxFontEncoding enc)
 // wxHtmlWinTagHandler
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_ABSTRACT_CLASS(wxHtmlWinTagHandler, wxHtmlTagHandler)
+wxIMPLEMENT_ABSTRACT_CLASS(wxHtmlWinTagHandler, wxHtmlTagHandler);
 
 void wxHtmlWinTagHandler::ApplyStyle(const wxHtmlStyleParams &styleParams)
 {
@@ -993,7 +993,7 @@ void wxHtmlWinTagHandler::ApplyStyle(const wxHtmlStyleParams &styleParams)
 //     Do not add any winpars.cpp shutdown or initialization code to it,
 //     create a new module instead!
 
-IMPLEMENT_DYNAMIC_CLASS(wxHtmlTagsModule, wxModule)
+wxIMPLEMENT_DYNAMIC_CLASS(wxHtmlTagsModule, wxModule);
 
 bool wxHtmlTagsModule::OnInit()
 {

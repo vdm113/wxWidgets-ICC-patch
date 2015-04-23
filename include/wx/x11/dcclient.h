@@ -149,7 +149,7 @@ protected:
     void Destroy();
 
 private:
-    DECLARE_CLASS(wxWindowDCImpl)
+    wxDECLARE_CLASS(wxWindowDCImpl);
 };
 
 //-----------------------------------------------------------------------------
@@ -166,7 +166,7 @@ protected:
     virtual void DoGetSize(int *width, int *height) const;
 
 private:
-    DECLARE_CLASS(wxClientDCImpl)
+    wxDECLARE_CLASS(wxClientDCImpl);
 };
 
 //-----------------------------------------------------------------------------
@@ -180,7 +180,7 @@ public:
     wxPaintDCImpl( wxDC *owner, wxWindow *win );
 
 private:
-    DECLARE_CLASS(wxPaintDCImpl)
+    wxDECLARE_CLASS(wxPaintDCImpl);
 };
 
 #endif

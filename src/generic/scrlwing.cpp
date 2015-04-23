@@ -1587,4 +1587,4 @@ WXLRESULT wxScrolledT_Helper::FilterMSWWindowProc(WXUINT nMsg, WXLRESULT rc)
 
 // NB: skipping wxScrolled<T> in wxRTTI information because being a templte,
 //     it doesn't and can't implement wxRTTI support
-IMPLEMENT_DYNAMIC_CLASS(wxScrolledWindow, wxPanel)
+wxIMPLEMENT_DYNAMIC_CLASS(wxScrolledWindow, wxPanel);

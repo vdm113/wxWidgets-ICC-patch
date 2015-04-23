@@ -79,7 +79,7 @@ protected:
     // same as FreeResource() + RealizeResource()
     bool Recreate();
 
-    DECLARE_DYNAMIC_CLASS(wxPen)
+    wxDECLARE_DYNAMIC_CLASS(wxPen);
 };
 
 #endif // _WX_PEN_H_

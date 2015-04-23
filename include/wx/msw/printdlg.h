@@ -57,7 +57,7 @@ private:
     short m_customWindowsPaperId;
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxWindowsPrintNativeData)
+    wxDECLARE_DYNAMIC_CLASS(wxWindowsPrintNativeData);
 };
 
 // ---------------------------------------------------------------------------
@@ -93,8 +93,8 @@ private:
     void*             m_printDlg;
 
 private:
+    wxDECLARE_CLASS(wxWindowsPrintDialog);
     wxDECLARE_NO_COPY_CLASS(wxWindowsPrintDialog);
-    DECLARE_CLASS(wxWindowsPrintDialog)
 };
 
 // ---------------------------------------------------------------------------
@@ -123,7 +123,7 @@ private:
     void*                   m_pageDlg;
 
 private:
-    DECLARE_DYNAMIC_CLASS_NO_COPY(wxWindowsPageSetupDialog)
+    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxWindowsPageSetupDialog);
 };
 
 #endif // wxUSE_PRINTING_ARCHITECTURE

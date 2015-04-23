@@ -112,7 +112,7 @@ protected:
     void Init();
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxButton)
+    wxDECLARE_DYNAMIC_CLASS(wxButton);
 };
 
 #endif // _WX_UNIV_BUTTON_H_

@@ -50,7 +50,7 @@
 // wxWin macros
 // ----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxEnhMetaFile, wxObject)
+wxIMPLEMENT_DYNAMIC_CLASS(wxEnhMetaFile, wxObject);
 
 // ----------------------------------------------------------------------------
 // macros
@@ -340,7 +340,7 @@ wxEnhMetaFileDCImpl::~wxEnhMetaFileDCImpl()
 // wxEnhMetaFileDC
 // ----------------------------------------------------------------------------
 
-IMPLEMENT_ABSTRACT_CLASS(wxEnhMetaFileDC, wxDC)
+wxIMPLEMENT_ABSTRACT_CLASS(wxEnhMetaFileDC, wxDC);
 
 wxEnhMetaFileDC::wxEnhMetaFileDC(const wxString& filename,
                                  int width, int height,

@@ -103,7 +103,7 @@ private:
 //----------------------------------------------------------------------------
 // SimpleTransientPopup
 //----------------------------------------------------------------------------
-IMPLEMENT_CLASS(SimpleTransientPopup,wxPopupTransientWindow)
+wxIMPLEMENT_CLASS(SimpleTransientPopup,wxPopupTransientWindow);
 
 wxBEGIN_EVENT_TABLE(SimpleTransientPopup,wxPopupTransientWindow)
     EVT_MOUSE_EVENTS( SimpleTransientPopup::OnMouse )
@@ -311,7 +311,7 @@ public:
 // ----------------------------------------------------------------------------
 
 
-IMPLEMENT_APP(MyApp)
+wxIMPLEMENT_APP(MyApp);
 
 // 'Main program' equivalent: the program execution "starts" here
 bool MyApp::OnInit()

@@ -242,7 +242,7 @@ class WXDLLIMPEXP_HTML wxHtmlWindow : public wxScrolledWindow,
                                       public wxHtmlWindowInterface,
                                       public wxHtmlWindowMouseHelper
 {
-    DECLARE_DYNAMIC_CLASS(wxHtmlWindow)
+    wxDECLARE_DYNAMIC_CLASS(wxHtmlWindow);
     friend class wxHtmlWinModule;
 
 public:
@@ -562,7 +562,7 @@ private:
     static wxCursor *ms_cursorText;
     static wxCursor *ms_cursorDefault;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxHtmlWindow);
 };
 
@@ -609,7 +609,7 @@ private:
 
     bool m_bLinkWasClicked;
 
-    DECLARE_DYNAMIC_CLASS_NO_ASSIGN(wxHtmlCellEvent)
+    wxDECLARE_DYNAMIC_CLASS_NO_ASSIGN(wxHtmlCellEvent);
 };
 
 
@@ -636,7 +636,7 @@ public:
 private:
     wxHtmlLinkInfo m_linkInfo;
 
-    DECLARE_DYNAMIC_CLASS_NO_ASSIGN(wxHtmlLinkEvent)
+    wxDECLARE_DYNAMIC_CLASS_NO_ASSIGN(wxHtmlLinkEvent);
 };
 
 

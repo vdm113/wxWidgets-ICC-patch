@@ -90,7 +90,7 @@
 
 
 // Implement dynamic class for type value.
-IMPLEMENT_DYNAMIC_CLASS(wxColourPropertyValue, wxObject)
+wxIMPLEMENT_DYNAMIC_CLASS(wxColourPropertyValue, wxObject);
 
 bool operator == (const wxColourPropertyValue& a, const wxColourPropertyValue& b)
 {
@@ -453,7 +453,7 @@ bool wxPGSpinCtrlEditor::OnEvent( wxPropertyGrid* propgrid, wxPGProperty* proper
 
 class wxPGDatePickerCtrlEditor : public wxPGEditor
 {
-    DECLARE_DYNAMIC_CLASS(wxPGDatePickerCtrlEditor)
+    wxDECLARE_DYNAMIC_CLASS(wxPGDatePickerCtrlEditor);
 public:
     virtual ~wxPGDatePickerCtrlEditor();
 
@@ -1792,7 +1792,7 @@ static const long gs_cp_es_syscursors_values[NUM_CURSORS] = {
     wxCURSOR_ARROWWAIT
 };
 
-IMPLEMENT_DYNAMIC_CLASS(wxCursorProperty, wxEnumProperty)
+wxIMPLEMENT_DYNAMIC_CLASS(wxCursorProperty, wxEnumProperty);
 
 static wxPGChoices gs_wxCursorProperty_choicesCache;
 
@@ -1915,7 +1915,7 @@ const wxString& wxPGGetDefaultImageWildcard()
     return wxPGGlobalVars->m_pDefaultImageWildcard;
 }
 
-IMPLEMENT_DYNAMIC_CLASS(wxImageFileProperty, wxFileProperty)
+wxIMPLEMENT_DYNAMIC_CLASS(wxImageFileProperty, wxFileProperty);
 
 wxImageFileProperty::wxImageFileProperty( const wxString& label, const wxString& name,
     const wxString& value )

@@ -100,7 +100,7 @@ protected:
                                           const wxString& label);
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxToolBar)
+    wxDECLARE_DYNAMIC_CLASS(wxToolBar);
 };
 
 #endif // wxUSE_TOOLBAR

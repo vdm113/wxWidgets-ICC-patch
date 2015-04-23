@@ -29,6 +29,6 @@
 
 #include "wx/helpbase.h"
 
-IMPLEMENT_CLASS(wxHelpControllerBase, wxObject)
+wxIMPLEMENT_CLASS(wxHelpControllerBase, wxObject);
 
 #endif // wxUSE_HELP

@@ -276,7 +276,7 @@ static void wxFreePoolGC( GdkGC *gc )
 // wxWindowDC
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_ABSTRACT_CLASS(wxWindowDCImpl, wxGTKDCImpl)
+wxIMPLEMENT_ABSTRACT_CLASS(wxWindowDCImpl, wxGTKDCImpl);
 
 wxWindowDCImpl::wxWindowDCImpl( wxDC *owner ) :
    wxGTKDCImpl( owner )
@@ -2084,7 +2084,7 @@ int wxWindowDCImpl::GetDepth() const
 // wxClientDCImpl
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_ABSTRACT_CLASS(wxClientDCImpl, wxWindowDCImpl)
+wxIMPLEMENT_ABSTRACT_CLASS(wxClientDCImpl, wxWindowDCImpl);
 
 wxClientDCImpl::wxClientDCImpl( wxDC *owner )
           : wxWindowDCImpl( owner )
@@ -2116,7 +2116,7 @@ void wxClientDCImpl::DoGetSize(int *width, int *height) const
 // wxPaintDCImpl
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_ABSTRACT_CLASS(wxPaintDCImpl, wxClientDCImpl)
+wxIMPLEMENT_ABSTRACT_CLASS(wxPaintDCImpl, wxClientDCImpl);
 
 // Limit the paint region to the window size. Sometimes
 // the paint region is too big, and this risks X11 errors
@@ -2181,10 +2181,10 @@ public:
     void OnExit() wxOVERRIDE;
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxDCModule)
+    wxDECLARE_DYNAMIC_CLASS(wxDCModule);
 };
 
-IMPLEMENT_DYNAMIC_CLASS(wxDCModule, wxModule)
+wxIMPLEMENT_DYNAMIC_CLASS(wxDCModule, wxModule);
 
 bool wxDCModule::OnInit()
 {

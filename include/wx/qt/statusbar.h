@@ -51,7 +51,7 @@ private:
     QStatusBar *m_qtStatusBar;
     QList< QLabel* > m_qtPanes;
 
-    DECLARE_DYNAMIC_CLASS( wxStatusBar )
+    wxDECLARE_DYNAMIC_CLASS(wxStatusBar);
 };
 
 

@@ -146,7 +146,7 @@ public:
     virtual void OnExit() wxOVERRIDE { wxDELETE(gs_dispatcher); }
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxFDIODispatcherModule)
+    wxDECLARE_DYNAMIC_CLASS(wxFDIODispatcherModule);
 };
 
-IMPLEMENT_DYNAMIC_CLASS(wxFDIODispatcherModule, wxModule)
+wxIMPLEMENT_DYNAMIC_CLASS(wxFDIODispatcherModule, wxModule);

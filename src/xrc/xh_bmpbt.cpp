@@ -29,7 +29,7 @@
     #include "wx/bmpbuttn.h"
 #endif
 
-IMPLEMENT_DYNAMIC_CLASS(wxBitmapButtonXmlHandler, wxXmlResourceHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxBitmapButtonXmlHandler, wxXmlResourceHandler);
 
 wxBitmapButtonXmlHandler::wxBitmapButtonXmlHandler()
 : wxXmlResourceHandler()

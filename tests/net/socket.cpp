@@ -114,7 +114,7 @@ private:
 
     static bool ms_useLoop;
 
-    DECLARE_NO_COPY_CLASS(SocketTestCase)
+    wxDECLARE_NO_COPY_CLASS(SocketTestCase);
 };
 
 bool SocketTestCase::ms_useLoop = false;

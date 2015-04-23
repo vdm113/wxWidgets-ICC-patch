@@ -50,7 +50,7 @@
 // wxDFBDCImpl
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_ABSTRACT_CLASS(wxDFBDCImpl, wxDCImpl)
+wxIMPLEMENT_ABSTRACT_CLASS(wxDFBDCImpl, wxDCImpl);
 
 void wxDFBDCImpl::DFBInit(const wxIDirectFBSurfacePtr& surface)
 {

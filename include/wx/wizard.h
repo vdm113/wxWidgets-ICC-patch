@@ -113,7 +113,7 @@ protected:
     wxBitmap m_bitmap;
 
 private:
-    DECLARE_DYNAMIC_CLASS_NO_COPY(wxWizardPage)
+    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxWizardPage);
 };
 
 // ----------------------------------------------------------------------------
@@ -187,7 +187,7 @@ private:
     wxWizardPage *m_prev,
                  *m_next;
 
-    DECLARE_DYNAMIC_CLASS_NO_COPY(wxWizardPageSimple)
+    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxWizardPageSimple);
 };
 
 // ----------------------------------------------------------------------------
@@ -292,7 +292,7 @@ private:
     bool m_direction;
     wxWizardPage*    m_page;
 
-    DECLARE_DYNAMIC_CLASS_NO_ASSIGN(wxWizardEvent)
+    wxDECLARE_DYNAMIC_CLASS_NO_ASSIGN(wxWizardEvent);
 };
 
 // ----------------------------------------------------------------------------

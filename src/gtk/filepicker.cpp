@@ -43,7 +43,7 @@
 // wxFileButton
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxFileButton, wxButton)
+wxIMPLEMENT_DYNAMIC_CLASS(wxFileButton, wxButton);
 
 bool wxFileButton::Create( wxWindow *parent, wxWindowID id,
                         const wxString &label, const wxString &path,
@@ -227,7 +227,7 @@ static void selection_changed(GtkFileChooser* chooser, wxDirButton* win)
 // wxDirButtonGTK
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxDirButton, wxButton)
+wxIMPLEMENT_DYNAMIC_CLASS(wxDirButton, wxButton);
 
 bool wxDirButton::Create( wxWindow *parent, wxWindowID id,
                         const wxString &label, const wxString &path,

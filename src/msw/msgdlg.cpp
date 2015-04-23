@@ -69,7 +69,7 @@
 
 using namespace wxMSWMessageDialog;
 
-IMPLEMENT_CLASS(wxMessageDialog, wxDialog)
+wxIMPLEMENT_CLASS(wxMessageDialog, wxDialog);
 
 #if wxUSE_MSGBOX_HOOK
 

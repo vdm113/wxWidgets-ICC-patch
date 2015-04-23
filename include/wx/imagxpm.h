@@ -43,7 +43,7 @@ protected:
 #endif
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxXPMHandler)
+    wxDECLARE_DYNAMIC_CLASS(wxXPMHandler);
 };
 
 #endif // wxUSE_XPM

@@ -28,7 +28,7 @@ public:
 private:
     QGLContext *m_glContext;
 
-    DECLARE_CLASS(wxGLContext)
+    wxDECLARE_CLASS(wxGLContext);
 };
 
 // ----------------------------------------------------------------------------
@@ -65,8 +65,8 @@ public:
 
 private:
 
-//    DECLARE_EVENT_TABLE()
-    DECLARE_CLASS(wxGLCanvas)
+//    wxDECLARE_EVENT_TABLE();
+    wxDECLARE_CLASS(wxGLCanvas);
 };
 
 #endif // _WX_GLCANVAS_H_

@@ -44,7 +44,7 @@ private:
 
     friend class wxOverlayImpl; // for m_shouldFlip;
 
-    DECLARE_DYNAMIC_CLASS(wxWindowDCImpl)
+    wxDECLARE_DYNAMIC_CLASS(wxWindowDCImpl);
     wxDECLARE_NO_COPY_CLASS(wxWindowDCImpl);
 };
 
@@ -58,7 +58,7 @@ public:
     wxClientDCImpl(wxDC *owner) : wxWindowDCImpl(owner) { }
     wxClientDCImpl(wxDC *owner, wxWindow *win);
 
-    DECLARE_DYNAMIC_CLASS(wxClientDCImpl)
+    wxDECLARE_DYNAMIC_CLASS(wxClientDCImpl);
     wxDECLARE_NO_COPY_CLASS(wxClientDCImpl);
 };
 
@@ -73,7 +73,7 @@ public:
     wxPaintDCImpl(wxDC *owner) : wxClientDCImpl(owner) { }
     wxPaintDCImpl(wxDC *owner, wxWindow *win) : wxClientDCImpl(owner, win) { }
 
-    DECLARE_DYNAMIC_CLASS(wxPaintDCImpl)
+    wxDECLARE_DYNAMIC_CLASS(wxPaintDCImpl);
     wxDECLARE_NO_COPY_CLASS(wxPaintDCImpl);
 };
 

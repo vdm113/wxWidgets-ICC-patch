@@ -80,7 +80,7 @@ public:
  */
 
 
-IMPLEMENT_DYNAMIC_CLASS(wxContextHelp, wxObject)
+wxIMPLEMENT_DYNAMIC_CLASS(wxContextHelp, wxObject);
 
 wxContextHelp::wxContextHelp(wxWindow* win, bool beginHelp)
 {
@@ -284,11 +284,11 @@ static const char * csquery_xpm[] = {
 "            "};
 
 
-IMPLEMENT_CLASS(wxContextHelpButton, wxBitmapButton)
+wxIMPLEMENT_CLASS(wxContextHelpButton, wxBitmapButton);
 
-BEGIN_EVENT_TABLE(wxContextHelpButton, wxBitmapButton)
+wxBEGIN_EVENT_TABLE(wxContextHelpButton, wxBitmapButton)
     EVT_BUTTON(wxID_CONTEXT_HELP, wxContextHelpButton::OnContextHelp)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 bool wxContextHelpButton::Create(wxWindow* parent,
                                          wxWindowID id,
@@ -493,10 +493,10 @@ public:
     void OnExit() wxOVERRIDE;
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxHelpProviderModule)
+    wxDECLARE_DYNAMIC_CLASS(wxHelpProviderModule);
 };
 
-IMPLEMENT_DYNAMIC_CLASS(wxHelpProviderModule, wxModule)
+wxIMPLEMENT_DYNAMIC_CLASS(wxHelpProviderModule, wxModule);
 
 bool wxHelpProviderModule::OnInit()
 {

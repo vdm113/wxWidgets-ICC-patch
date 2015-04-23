@@ -188,7 +188,7 @@ protected:
     wxBoxSizer *m_sizer;
 
 private:
-    DECLARE_ABSTRACT_CLASS(wxPickerBase)
+    wxDECLARE_ABSTRACT_CLASS(wxPickerBase);
 };
 
 

@@ -95,7 +95,7 @@ wxFLAGS_MEMBER(wxMAXIMIZE_BOX)
 wxFLAGS_MEMBER(wxMINIMIZE_BOX)
 wxEND_FLAGS( wxDialogStyle )
 
-wxIMPLEMENT_DYNAMIC_CLASS_XTI(wxDialog, wxTopLevelWindow, "wx/dialog.h")
+wxIMPLEMENT_DYNAMIC_CLASS_XTI(wxDialog, wxTopLevelWindow, "wx/dialog.h");
 
 wxBEGIN_PROPERTIES_TABLE(wxDialog)
 wxPROPERTY( Title, wxString, SetTitle, GetTitle, wxString(), \
@@ -115,13 +115,13 @@ wxCONSTRUCTOR_6( wxDialog, wxWindow*, Parent, wxWindowID, Id, \
 // wxDialogBase
 // ----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(wxDialogBase, wxTopLevelWindow)
+wxBEGIN_EVENT_TABLE(wxDialogBase, wxTopLevelWindow)
     EVT_BUTTON(wxID_ANY, wxDialogBase::OnButton)
 
     EVT_CLOSE(wxDialogBase::OnCloseWindow)
 
     EVT_CHAR_HOOK(wxDialogBase::OnCharHook)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 wxDialogLayoutAdapter* wxDialogBase::sm_layoutAdapter = NULL;
 bool wxDialogBase::sm_layoutAdaptation = false;
@@ -514,7 +514,7 @@ void wxDialogBase::OnButton(wxCommandEvent& event)
 
 wxDEFINE_EVENT( wxEVT_WINDOW_MODAL_DIALOG_CLOSED , wxWindowModalDialogEvent  );
 
-IMPLEMENT_DYNAMIC_CLASS(wxWindowModalDialogEvent, wxCommandEvent)
+wxIMPLEMENT_DYNAMIC_CLASS(wxWindowModalDialogEvent, wxCommandEvent);
 
 void wxDialogBase::ShowWindowModal ()
 {
@@ -639,9 +639,9 @@ wxDialogLayoutAdapter* wxDialogBase::SetLayoutAdapter(wxDialogLayoutAdapter* ada
  * Standard adapter
  */
 
-IMPLEMENT_CLASS(wxDialogLayoutAdapter, wxObject)
+wxIMPLEMENT_CLASS(wxDialogLayoutAdapter, wxObject);
 
-IMPLEMENT_CLASS(wxStandardDialogLayoutAdapter, wxDialogLayoutAdapter)
+wxIMPLEMENT_CLASS(wxStandardDialogLayoutAdapter, wxDialogLayoutAdapter);
 
 // Allow for caption size on wxWidgets < 2.9
 #if defined(__WXGTK__) && !wxCHECK_VERSION(2,9,0)
@@ -1041,11 +1041,11 @@ bool wxStandardDialogLayoutAdapter::DoFitWithScrolling(wxDialog* dialog, wxWindo
 
 class wxDialogLayoutAdapterModule: public wxModule
 {
-    DECLARE_DYNAMIC_CLASS(wxDialogLayoutAdapterModule)
+    wxDECLARE_DYNAMIC_CLASS(wxDialogLayoutAdapterModule);
 public:
     wxDialogLayoutAdapterModule() {}
     virtual void OnExit() wxOVERRIDE { delete wxDialogBase::SetLayoutAdapter(NULL); }
     virtual bool OnInit() wxOVERRIDE { wxDialogBase::SetLayoutAdapter(new wxStandardDialogLayoutAdapter); return true; }
 };
 
-IMPLEMENT_DYNAMIC_CLASS(wxDialogLayoutAdapterModule, wxModule)
+wxIMPLEMENT_DYNAMIC_CLASS(wxDialogLayoutAdapterModule, wxModule);

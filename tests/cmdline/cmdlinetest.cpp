@@ -56,7 +56,7 @@ private:
     void Usage();
     void Found();
 
-    DECLARE_NO_COPY_CLASS(CmdLineTestCase)
+    wxDECLARE_NO_COPY_CLASS(CmdLineTestCase);
 };
 
 // register in the unnamed registry so that these tests are run by default

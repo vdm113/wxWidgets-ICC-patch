@@ -50,7 +50,7 @@
 #include "wx/spinbutt.h"
 
 #ifndef wxHAS_NATIVE_TIMEPICKERCTRL
-    IMPLEMENT_DYNAMIC_CLASS(wxTimePickerCtrl, wxControl)
+wxIMPLEMENT_DYNAMIC_CLASS(wxTimePickerCtrl, wxControl);
 #endif
 
 // ----------------------------------------------------------------------------

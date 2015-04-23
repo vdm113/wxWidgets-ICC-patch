@@ -214,7 +214,7 @@ public:
     SourceViewDialog(wxWindow* parent, wxString source);
 };
 
-IMPLEMENT_APP(WebApp)
+wxIMPLEMENT_APP(WebApp);
 
 // ============================================================================
 // implementation

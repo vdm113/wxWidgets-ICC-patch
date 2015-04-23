@@ -118,7 +118,7 @@ private:
     wxArrayInt m_order;
 
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxRearrangeList);
 };
 
@@ -175,7 +175,7 @@ private:
     wxRearrangeList *m_list;
 
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxRearrangeCtrl);
 };
 

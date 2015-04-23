@@ -26,7 +26,7 @@
 #include "wx/xrc/xh_grid.h"
 #include "wx/grid.h"
 
-IMPLEMENT_DYNAMIC_CLASS(wxGridXmlHandler, wxXmlResourceHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxGridXmlHandler, wxXmlResourceHandler);
 
 wxGridXmlHandler::wxGridXmlHandler()
                 : wxXmlResourceHandler()

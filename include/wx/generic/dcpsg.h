@@ -42,7 +42,7 @@ public:
     wxPostScriptDC(const wxPrintData& printData);
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxPostScriptDC)
+    wxDECLARE_DYNAMIC_CLASS(wxPostScriptDC);
 };
 
 class WXDLLIMPEXP_CORE wxPostScriptDCImpl : public wxDCImpl
@@ -156,7 +156,7 @@ protected:
     double            m_pageHeight;
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxPostScriptDCImpl)
+    wxDECLARE_DYNAMIC_CLASS(wxPostScriptDCImpl);
 };
 
 #endif

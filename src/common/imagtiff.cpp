@@ -102,7 +102,7 @@ TIFFwxErrorHandler(const char* module, const char *fmt, va_list ap)
 // wxTIFFHandler
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxTIFFHandler,wxImageHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxTIFFHandler,wxImageHandler);
 
 wxTIFFHandler::wxTIFFHandler()
 {

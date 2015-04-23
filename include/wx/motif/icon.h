@@ -62,7 +62,7 @@ public:
     void CopyFromBitmap(const wxBitmap& bmp);
 
 
-    DECLARE_DYNAMIC_CLASS(wxIcon)
+    wxDECLARE_DYNAMIC_CLASS(wxIcon);
 };
 
 #endif // _WX_ICON_H_

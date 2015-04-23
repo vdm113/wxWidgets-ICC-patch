@@ -121,7 +121,7 @@ public:
                                        = wxSTREAM_PROTOCOL) const wxOVERRIDE;
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxZlibClassFactory)
+    wxDECLARE_DYNAMIC_CLASS(wxZlibClassFactory);
 };
 
 class WXDLLIMPEXP_BASE wxGzipClassFactory: public wxFilterClassFactory
@@ -142,7 +142,7 @@ public:
                                        = wxSTREAM_PROTOCOL) const wxOVERRIDE;
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxGzipClassFactory)
+    wxDECLARE_DYNAMIC_CLASS(wxGzipClassFactory);
 };
 
 WXDLLIMPEXP_BASE wxVersionInfo wxGetZlibVersionInfo();

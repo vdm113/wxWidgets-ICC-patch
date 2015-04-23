@@ -73,7 +73,7 @@ private:
     void UnRef();
 
     typedef wxAnimationBase base_type;
-    DECLARE_DYNAMIC_CLASS(wxAnimation)
+    wxDECLARE_DYNAMIC_CLASS(wxAnimation);
 };
 
 
@@ -153,8 +153,8 @@ private:
 
     void Init();
 
-    DECLARE_DYNAMIC_CLASS(wxAnimationCtrl)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(wxAnimationCtrl);
+    wxDECLARE_EVENT_TABLE();
 };
 
 #endif // _WX_GTKANIMATEH__

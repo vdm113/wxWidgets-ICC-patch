@@ -74,7 +74,7 @@ public:
     wxDataObject     *m_receivedData;
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxClipboard)
+    wxDECLARE_DYNAMIC_CLASS(wxClipboard);
 
 };
 

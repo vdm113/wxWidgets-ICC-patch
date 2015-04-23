@@ -33,9 +33,9 @@
 #define wxFIELD_TEXT_MARGIN 2
 
 
-BEGIN_EVENT_TABLE(wxStatusBarMac, wxStatusBarGeneric)
+wxBEGIN_EVENT_TABLE(wxStatusBarMac, wxStatusBarGeneric)
     EVT_PAINT(wxStatusBarMac::OnPaint)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 
 wxStatusBarMac::wxStatusBarMac(wxWindow *parent,

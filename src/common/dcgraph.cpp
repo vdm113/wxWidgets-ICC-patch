@@ -87,7 +87,7 @@ static wxCompositionMode TranslateRasterOp(wxRasterOperationMode function)
 // wxDC bridge class
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxGCDC, wxDC)
+wxIMPLEMENT_DYNAMIC_CLASS(wxGCDC, wxDC);
 
 wxGCDC::wxGCDC(const wxWindowDC& dc) :
   wxDC( new wxGCDCImpl( this, dc ) )
@@ -142,7 +142,7 @@ void wxGCDC::SetGraphicsContext( wxGraphicsContext* ctx )
     gc_impl->SetGraphicsContext( ctx );
 }
 
-IMPLEMENT_ABSTRACT_CLASS(wxGCDCImpl, wxDCImpl)
+wxIMPLEMENT_ABSTRACT_CLASS(wxGCDCImpl, wxDCImpl);
 
 wxGCDCImpl::wxGCDCImpl( wxDC *owner ) :
    wxDCImpl( owner )

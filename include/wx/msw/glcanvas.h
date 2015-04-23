@@ -42,7 +42,7 @@ protected:
     HGLRC m_glContext;
 
 private:
-    DECLARE_CLASS(wxGLContext)
+    wxDECLARE_CLASS(wxGLContext);
 };
 
 // ----------------------------------------------------------------------------
@@ -158,8 +158,8 @@ protected:
     HDC m_hDC;
 
 private:
-    DECLARE_EVENT_TABLE()
-    DECLARE_CLASS(wxGLCanvas)
+    wxDECLARE_EVENT_TABLE();
+    wxDECLARE_CLASS(wxGLCanvas);
 };
 
 #endif // _WX_GLCANVAS_H_

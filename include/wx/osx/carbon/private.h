@@ -447,7 +447,7 @@ protected :
     ControlRef  m_controlRef;
     wxFont      m_font;
     long        m_windowStyle;
-    DECLARE_DYNAMIC_CLASS_NO_COPY(wxMacControl)
+    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxMacControl);
 };
 
 // ============================================================================
@@ -588,7 +588,7 @@ protected :
     virtual Boolean CompareItems(DataBrowserItemID itemOneID,
         DataBrowserItemID itemTwoID,
         DataBrowserPropertyID sortProperty) = 0;
-    DECLARE_ABSTRACT_CLASS(wxMacDataBrowserControl)
+    wxDECLARE_ABSTRACT_CLASS(wxMacDataBrowserControl);
 };
 
 // ============================================================================
@@ -762,7 +762,7 @@ protected:
 private :
 
     bool m_suppressSelection;
-    DECLARE_DYNAMIC_CLASS_NO_COPY(wxMacDataItemBrowserControl)
+    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxMacDataItemBrowserControl);
 };
 
 class WXDLLIMPEXP_CORE wxMacDataItemBrowserSelectionSuppressor
@@ -901,7 +901,7 @@ private:
     wxArrayMacDataBrowserColumns m_columns;
     int m_nextColumnId ;
 
-    DECLARE_DYNAMIC_CLASS_NO_COPY(wxMacDataBrowserListControl)
+    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxMacDataBrowserListControl);
 };
 
 // ============================================================================
@@ -1045,7 +1045,7 @@ protected :
     WXEVENTHANDLERREF   m_macEventHandler ;
     WindowRef           m_macWindow;
     void *              m_macFullScreenData ;
-    DECLARE_DYNAMIC_CLASS_NO_COPY(wxNonOwnedWindowCarbonImpl)
+    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxNonOwnedWindowCarbonImpl);
 };
 
 #endif // wxUSE_GUI

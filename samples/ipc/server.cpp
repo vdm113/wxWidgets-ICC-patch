@@ -50,7 +50,7 @@
 // wxWin macros
 // ----------------------------------------------------------------------------
 
-IMPLEMENT_APP(MyApp)
+wxIMPLEMENT_APP(MyApp);
 
 wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
     EVT_CLOSE( MyFrame::OnClose )

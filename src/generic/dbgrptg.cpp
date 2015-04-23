@@ -148,17 +148,17 @@ private:
     void OnBrowse(wxCommandEvent& event);
 #endif // wxUSE_FILEDLG
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxDumpOpenExternalDlg);
 };
 
-BEGIN_EVENT_TABLE(wxDumpOpenExternalDlg, wxDialog)
+wxBEGIN_EVENT_TABLE(wxDumpOpenExternalDlg, wxDialog)
 
 #if wxUSE_FILEDLG
     EVT_BUTTON(wxID_MORE, wxDumpOpenExternalDlg::OnBrowse)
 #endif
 
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 
 wxDumpOpenExternalDlg::wxDumpOpenExternalDlg(wxWindow *parent,
@@ -282,7 +282,7 @@ private:
 
     wxArrayString m_files;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxDebugReportDialog);
 };
 
@@ -290,12 +290,12 @@ private:
 // wxDebugReportDialog implementation
 // ============================================================================
 
-BEGIN_EVENT_TABLE(wxDebugReportDialog, wxDialog)
+wxBEGIN_EVENT_TABLE(wxDebugReportDialog, wxDialog)
     EVT_BUTTON(wxID_VIEW_DETAILS, wxDebugReportDialog::OnView)
     EVT_UPDATE_UI(wxID_VIEW_DETAILS, wxDebugReportDialog::OnViewUpdate)
     EVT_BUTTON(wxID_OPEN, wxDebugReportDialog::OnOpen)
     EVT_UPDATE_UI(wxID_OPEN, wxDebugReportDialog::OnViewUpdate)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 
 // ----------------------------------------------------------------------------

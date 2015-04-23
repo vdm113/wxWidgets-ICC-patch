@@ -74,7 +74,7 @@ private:
 // wxWrapSizer implementation
 // ============================================================================
 
-IMPLEMENT_DYNAMIC_CLASS(wxWrapSizer, wxBoxSizer)
+wxIMPLEMENT_DYNAMIC_CLASS(wxWrapSizer, wxBoxSizer);
 
 wxWrapSizer::wxWrapSizer(int orient, int flags)
            : wxBoxSizer(orient),

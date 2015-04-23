@@ -63,7 +63,7 @@
 
 #include "mdi.h"
 
-IMPLEMENT_APP(MyApp)
+wxIMPLEMENT_APP(MyApp);
 
 // ---------------------------------------------------------------------------
 // event tables

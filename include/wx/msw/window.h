@@ -732,9 +732,9 @@ private:
     bool        m_contextMenuEnabled;
 #endif
 
-    DECLARE_DYNAMIC_CLASS(wxWindowMSW)
+    wxDECLARE_DYNAMIC_CLASS(wxWindowMSW);
     wxDECLARE_NO_COPY_CLASS(wxWindowMSW);
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 // window creation helper class: before creating a new HWND, instantiate an

@@ -46,9 +46,9 @@
 #include "wx/artprov.h"
 #include "wx/scopeguard.h"
 
-BEGIN_EVENT_TABLE(wxInfoBarGeneric, wxInfoBarBase)
+wxBEGIN_EVENT_TABLE(wxInfoBarGeneric, wxInfoBarBase)
     EVT_BUTTON(wxID_ANY, wxInfoBarGeneric::OnButton)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 // ============================================================================
 // implementation

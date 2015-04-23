@@ -71,7 +71,7 @@ gtkcombobox_popupshown_callback(GObject *WXUNUSED(gobject),
 // wxComboBox
 //-----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(wxComboBox, wxChoice)
+wxBEGIN_EVENT_TABLE(wxComboBox, wxChoice)
     EVT_CHAR(wxComboBox::OnChar)
 
     EVT_MENU(wxID_CUT, wxComboBox::OnCut)
@@ -89,7 +89,7 @@ BEGIN_EVENT_TABLE(wxComboBox, wxChoice)
     EVT_UPDATE_UI(wxID_REDO, wxComboBox::OnUpdateRedo)
     EVT_UPDATE_UI(wxID_CLEAR, wxComboBox::OnUpdateDelete)
     EVT_UPDATE_UI(wxID_SELECTALL, wxComboBox::OnUpdateSelectAll)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 wxComboBox::~wxComboBox()
 {

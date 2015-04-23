@@ -160,7 +160,7 @@ private:
 // wxToolBar implementation
 // ============================================================================
 
-IMPLEMENT_DYNAMIC_CLASS(wxToolBar, wxControl)
+wxIMPLEMENT_DYNAMIC_CLASS(wxToolBar, wxControl);
 
 // ----------------------------------------------------------------------------
 // wxToolBar creation

@@ -46,7 +46,7 @@ public:
     virtual QPushButton *GetHandle() const;
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxBitmapToggleButton)
+    wxDECLARE_DYNAMIC_CLASS(wxBitmapToggleButton);
 
 };
 

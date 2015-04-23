@@ -54,7 +54,7 @@
 
 #include "wx/osx/private.h"
 
-BEGIN_EVENT_TABLE(wxTextCtrl, wxTextCtrlBase)
+wxBEGIN_EVENT_TABLE(wxTextCtrl, wxTextCtrlBase)
     EVT_DROP_FILES(wxTextCtrl::OnDropFiles)
     EVT_CHAR(wxTextCtrl::OnChar)
     EVT_KEY_DOWN(wxTextCtrl::OnKeyDown)
@@ -75,7 +75,7 @@ BEGIN_EVENT_TABLE(wxTextCtrl, wxTextCtrlBase)
     EVT_UPDATE_UI(wxID_REDO, wxTextCtrl::OnUpdateRedo)
     EVT_UPDATE_UI(wxID_CLEAR, wxTextCtrl::OnUpdateDelete)
     EVT_UPDATE_UI(wxID_SELECTALL, wxTextCtrl::OnUpdateSelectAll)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 
 void wxTextCtrl::Init()

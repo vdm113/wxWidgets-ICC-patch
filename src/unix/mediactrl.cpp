@@ -233,7 +233,7 @@ public:
 
     friend class wxGStreamerMediaEventHandler;
     friend class wxGStreamerLoadWaitTimer;
-    DECLARE_DYNAMIC_CLASS(wxGStreamerMediaBackend)
+    wxDECLARE_DYNAMIC_CLASS(wxGStreamerMediaBackend);
 };
 
 //-----------------------------------------------------------------------------
@@ -263,7 +263,7 @@ class wxGStreamerMediaEventHandler : public wxEvtHandler
 // Implementation
 //=============================================================================
 
-IMPLEMENT_DYNAMIC_CLASS(wxGStreamerMediaBackend, wxMediaBackend)
+wxIMPLEMENT_DYNAMIC_CLASS(wxGStreamerMediaBackend, wxMediaBackend);
 
 //-----------------------------------------------------------------------------
 //

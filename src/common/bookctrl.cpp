@@ -44,14 +44,14 @@
 // event table
 // ----------------------------------------------------------------------------
 
-IMPLEMENT_ABSTRACT_CLASS(wxBookCtrlBase, wxControl)
+wxIMPLEMENT_ABSTRACT_CLASS(wxBookCtrlBase, wxControl);
 
-BEGIN_EVENT_TABLE(wxBookCtrlBase, wxControl)
+wxBEGIN_EVENT_TABLE(wxBookCtrlBase, wxControl)
     EVT_SIZE(wxBookCtrlBase::OnSize)
 #if wxUSE_HELP
     EVT_HELP(wxID_ANY, wxBookCtrlBase::OnHelp)
 #endif // wxUSE_HELP
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 // ----------------------------------------------------------------------------
 // constructors and destructors
@@ -549,6 +549,6 @@ int wxBookCtrlBase::DoSetSelection(size_t n, int flags)
     return oldSel;
 }
 
-IMPLEMENT_DYNAMIC_CLASS(wxBookCtrlEvent, wxNotifyEvent)
+wxIMPLEMENT_DYNAMIC_CLASS(wxBookCtrlEvent, wxNotifyEvent);
 
 #endif // wxUSE_BOOKCTRL

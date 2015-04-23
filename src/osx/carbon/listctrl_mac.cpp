@@ -211,7 +211,7 @@ protected:
     wxClientDataType m_clientDataItemsType;
     bool m_isVirtual;
     int m_flags;
-    DECLARE_DYNAMIC_CLASS_NO_COPY(wxMacDataBrowserListCtrlControl)
+    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxMacDataBrowserListCtrlControl);
 };
 
 class wxMacListCtrlEventDelegate : public wxEvtHandler
@@ -305,7 +305,7 @@ private:
     bool                m_finished;
     bool                m_aboutToFinish;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 //-----------------------------------------------------------------------------
@@ -326,11 +326,11 @@ void wxListCtrlRenameTimer::Notify()
 // wxListCtrlTextCtrlWrapper (internal)
 //-----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(wxListCtrlTextCtrlWrapper, wxEvtHandler)
+wxBEGIN_EVENT_TABLE(wxListCtrlTextCtrlWrapper, wxEvtHandler)
     EVT_CHAR           (wxListCtrlTextCtrlWrapper::OnChar)
     EVT_KEY_UP         (wxListCtrlTextCtrlWrapper::OnKeyUp)
     EVT_KILL_FOCUS     (wxListCtrlTextCtrlWrapper::OnKillFocus)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 wxListCtrlTextCtrlWrapper::wxListCtrlTextCtrlWrapper(wxListCtrl *owner,
                                              wxTextCtrl *text,
@@ -2589,7 +2589,7 @@ void wxMacListCtrlItem::Notification(wxMacDataItemBrowserControl *owner ,
 
 }
 
-IMPLEMENT_DYNAMIC_CLASS(wxMacDataBrowserListCtrlControl, wxMacDataItemBrowserControl )
+wxIMPLEMENT_DYNAMIC_CLASS(wxMacDataBrowserListCtrlControl, wxMacDataItemBrowserControl);
 
 wxMacDataBrowserListCtrlControl::wxMacDataBrowserListCtrlControl( wxWindow *peer, const wxPoint& pos, const wxSize& size, long style)
     : wxMacDataItemBrowserControl( peer, pos, size, style )

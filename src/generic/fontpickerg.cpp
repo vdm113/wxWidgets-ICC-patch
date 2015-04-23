@@ -41,7 +41,7 @@
 // implementation
 // ============================================================================
 
-IMPLEMENT_DYNAMIC_CLASS(wxGenericFontButton, wxButton)
+wxIMPLEMENT_DYNAMIC_CLASS(wxGenericFontButton, wxButton);
 
 // ----------------------------------------------------------------------------
 // wxGenericFontButton

@@ -385,7 +385,7 @@ bool wxDirItemData::HasFiles(const wxString& WXUNUSED(spec)) const
 // wxGenericDirCtrl
 //-----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(wxGenericDirCtrl, wxControl)
+wxBEGIN_EVENT_TABLE(wxGenericDirCtrl, wxControl)
   EVT_TREE_ITEM_EXPANDING     (wxID_TREECTRL, wxGenericDirCtrl::OnExpandItem)
   EVT_TREE_ITEM_COLLAPSED     (wxID_TREECTRL, wxGenericDirCtrl::OnCollapseItem)
   EVT_TREE_BEGIN_LABEL_EDIT   (wxID_TREECTRL, wxGenericDirCtrl::OnBeginEditItem)
@@ -393,7 +393,7 @@ BEGIN_EVENT_TABLE(wxGenericDirCtrl, wxControl)
   EVT_TREE_SEL_CHANGED        (wxID_TREECTRL, wxGenericDirCtrl::OnTreeSelChange)
   EVT_TREE_ITEM_ACTIVATED     (wxID_TREECTRL, wxGenericDirCtrl::OnItemActivated)
   EVT_SIZE                    (wxGenericDirCtrl::OnSize)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 wxGenericDirCtrl::wxGenericDirCtrl(void)
 {
@@ -1393,11 +1393,11 @@ wxTreeItemId wxGenericDirCtrl::AppendItem (const wxTreeItemId & parent,
 // wxDirFilterListCtrl
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_CLASS(wxDirFilterListCtrl, wxChoice)
+wxIMPLEMENT_CLASS(wxDirFilterListCtrl, wxChoice);
 
-BEGIN_EVENT_TABLE(wxDirFilterListCtrl, wxChoice)
+wxBEGIN_EVENT_TABLE(wxDirFilterListCtrl, wxChoice)
     EVT_CHOICE(wxID_ANY, wxDirFilterListCtrl::OnSelFilter)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 bool wxDirFilterListCtrl::Create(wxGenericDirCtrl* parent,
                                  const wxWindowID treeid,
@@ -1564,7 +1564,7 @@ wxFileIconsTable* wxTheFileIconsTable = NULL;
 
 class wxFileIconsTableModule: public wxModule
 {
-DECLARE_DYNAMIC_CLASS(wxFileIconsTableModule)
+    wxDECLARE_DYNAMIC_CLASS(wxFileIconsTableModule);
 public:
     wxFileIconsTableModule() {}
     bool OnInit() wxOVERRIDE { wxTheFileIconsTable = new wxFileIconsTable; return true; }
@@ -1574,7 +1574,7 @@ public:
     }
 };
 
-IMPLEMENT_DYNAMIC_CLASS(wxFileIconsTableModule, wxModule)
+wxIMPLEMENT_DYNAMIC_CLASS(wxFileIconsTableModule, wxModule);
 
 class wxFileIconEntry : public wxObject
 {

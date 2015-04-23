@@ -98,7 +98,7 @@ private:
 
     wxMenuImpl* m_peer;
 
-    DECLARE_DYNAMIC_CLASS(wxMenu)
+    wxDECLARE_DYNAMIC_CLASS(wxMenu);
 };
 
 #if wxOSX_USE_COCOA_OR_CARBON
@@ -185,7 +185,7 @@ private:
     wxMenu* m_rootMenu;
     wxMenu* m_appleMenu;
 
-    DECLARE_DYNAMIC_CLASS(wxMenuBar)
+    wxDECLARE_DYNAMIC_CLASS(wxMenuBar);
 };
 
 #endif

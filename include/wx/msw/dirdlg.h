@@ -39,7 +39,7 @@ private:
     int ShowSHBrowseForFolder(WXHWND owner);
     int ShowIFileDialog(WXHWND owner);
 
-    DECLARE_DYNAMIC_CLASS_NO_COPY(wxDirDialog)
+    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxDirDialog);
 };
 
 #endif

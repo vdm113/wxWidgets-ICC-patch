@@ -388,10 +388,10 @@ public:
         wxFontMapperBase::Reset();
     }
 
-    DECLARE_DYNAMIC_CLASS(wxFontMapperModule)
+    wxDECLARE_DYNAMIC_CLASS(wxFontMapperModule);
 };
 
-IMPLEMENT_DYNAMIC_CLASS(wxFontMapperModule, wxModule)
+wxIMPLEMENT_DYNAMIC_CLASS(wxFontMapperModule, wxModule);
 
 
 // ============================================================================

@@ -137,7 +137,7 @@ private:
 
     // it calls out OnDismiss()
     friend class wxPopupMenuWindow;
-    DECLARE_DYNAMIC_CLASS(wxMenu)
+    wxDECLARE_DYNAMIC_CLASS(wxMenu);
 };
 
 // ----------------------------------------------------------------------------
@@ -274,8 +274,8 @@ private:
     // it calls out ProcessMouseEvent()
     friend class wxPopupMenuWindow;
 
-    DECLARE_EVENT_TABLE()
-    DECLARE_DYNAMIC_CLASS(wxMenuBar)
+    wxDECLARE_EVENT_TABLE();
+    wxDECLARE_DYNAMIC_CLASS(wxMenuBar);
 };
 
 #endif // _WX_UNIV_MENU_H_

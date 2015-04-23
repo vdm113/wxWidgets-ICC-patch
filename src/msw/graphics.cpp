@@ -601,7 +601,7 @@ private :
     int m_loaded;
     ULONG_PTR m_gditoken;
 
-    DECLARE_DYNAMIC_CLASS_NO_COPY(wxGDIPlusRenderer)
+    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxGDIPlusRenderer);
 } ;
 
 //-----------------------------------------------------------------------------
@@ -2055,7 +2055,7 @@ wxGDIPlusPrintingContext::wxGDIPlusPrintingContext( wxGraphicsRenderer* renderer
 // wxGDIPlusRenderer implementation
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxGDIPlusRenderer,wxGraphicsRenderer)
+wxIMPLEMENT_DYNAMIC_CLASS(wxGDIPlusRenderer, wxGraphicsRenderer);
 
 static wxGDIPlusRenderer gs_GDIPlusRenderer;
 
@@ -2411,10 +2411,10 @@ public:
     }
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxGDIPlusRendererModule)
+    wxDECLARE_DYNAMIC_CLASS(wxGDIPlusRendererModule);
 };
 
-IMPLEMENT_DYNAMIC_CLASS(wxGDIPlusRendererModule, wxModule)
+wxIMPLEMENT_DYNAMIC_CLASS(wxGDIPlusRendererModule, wxModule);
 
 // ----------------------------------------------------------------------------
 // wxMSW-specific parts of wxGCDC

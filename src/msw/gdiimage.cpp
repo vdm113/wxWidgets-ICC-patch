@@ -92,7 +92,7 @@ public:
                           const wxPalette *palette = NULL) const;
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxBMPFileHandler)
+    wxDECLARE_DYNAMIC_CLASS(wxBMPFileHandler);
 };
 
 class WXDLLEXPORT wxBMPResourceHandler: public wxBitmapHandler
@@ -109,7 +109,7 @@ public:
                           int desiredWidth, int desiredHeight);
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxBMPResourceHandler)
+    wxDECLARE_DYNAMIC_CLASS(wxBMPResourceHandler);
 };
 
 class WXDLLEXPORT wxIconHandler : public wxGDIImageHandler
@@ -170,7 +170,7 @@ protected:
                           int desiredWidth = -1, int desiredHeight = -1);
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxICOFileHandler)
+    wxDECLARE_DYNAMIC_CLASS(wxICOFileHandler);
 };
 
 class WXDLLEXPORT wxICOResourceHandler: public wxIconHandler
@@ -188,7 +188,7 @@ protected:
                           int desiredWidth = -1, int desiredHeight = -1);
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxICOResourceHandler)
+    wxDECLARE_DYNAMIC_CLASS(wxICOResourceHandler);
 };
 
 #if wxUSE_PNG_RESOURCE_HANDLER
@@ -216,12 +216,12 @@ private:
 // wxWin macros
 // ----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxBMPFileHandler, wxBitmapHandler)
-IMPLEMENT_DYNAMIC_CLASS(wxBMPResourceHandler, wxBitmapHandler)
-IMPLEMENT_DYNAMIC_CLASS(wxICOFileHandler, wxObject)
-IMPLEMENT_DYNAMIC_CLASS(wxICOResourceHandler, wxObject)
+wxIMPLEMENT_DYNAMIC_CLASS(wxBMPFileHandler, wxBitmapHandler);
+wxIMPLEMENT_DYNAMIC_CLASS(wxBMPResourceHandler, wxBitmapHandler);
+wxIMPLEMENT_DYNAMIC_CLASS(wxICOFileHandler, wxObject);
+wxIMPLEMENT_DYNAMIC_CLASS(wxICOResourceHandler, wxObject);
 #if wxUSE_PNG_RESOURCE_HANDLER
-IMPLEMENT_DYNAMIC_CLASS(wxPNGResourceHandler, wxBitmapHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxPNGResourceHandler, wxBitmapHandler);
 #endif // wxUSE_PNG_RESOURCE_HANDLER
 
 // ----------------------------------------------------------------------------

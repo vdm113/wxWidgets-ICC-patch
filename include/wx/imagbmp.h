@@ -72,7 +72,7 @@ protected:
 #endif // wxUSE_STREAMS
 
 private:
-     DECLARE_DYNAMIC_CLASS(wxBMPHandler)
+    wxDECLARE_DYNAMIC_CLASS(wxBMPHandler);
 };
 
 #if wxUSE_ICO_CUR
@@ -102,7 +102,7 @@ protected:
 #endif // wxUSE_STREAMS
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxICOHandler)
+    wxDECLARE_DYNAMIC_CLASS(wxICOHandler);
 };
 
 
@@ -131,7 +131,7 @@ protected:
 #endif // wxUSE_STREAMS
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxCURHandler)
+    wxDECLARE_DYNAMIC_CLASS(wxCURHandler);
 };
 // ----------------------------------------------------------------------------
 // wxANIHandler
@@ -159,7 +159,7 @@ protected:
 #endif // wxUSE_STREAMS
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxANIHandler)
+    wxDECLARE_DYNAMIC_CLASS(wxANIHandler);
 };
 
 #endif // wxUSE_ICO_CUR

@@ -34,7 +34,7 @@
 
 #include "wx/xml/xml.h"
 
-IMPLEMENT_DYNAMIC_CLASS(wxBitmapComboBoxXmlHandler, wxXmlResourceHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxBitmapComboBoxXmlHandler, wxXmlResourceHandler);
 
 wxBitmapComboBoxXmlHandler::wxBitmapComboBoxXmlHandler()
                      :wxXmlResourceHandler()

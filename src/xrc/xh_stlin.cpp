@@ -26,7 +26,7 @@
 #include "wx/xrc/xh_stlin.h"
 #include "wx/statline.h"
 
-IMPLEMENT_DYNAMIC_CLASS(wxStaticLineXmlHandler, wxXmlResourceHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxStaticLineXmlHandler, wxXmlResourceHandler);
 
 wxStaticLineXmlHandler::wxStaticLineXmlHandler()
 : wxXmlResourceHandler()

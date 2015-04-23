@@ -37,7 +37,7 @@ private:
 
     wxBitmap m_bmp;
 
-    DECLARE_DYNAMIC_CLASS(wxMemoryDCImpl)
+    wxDECLARE_DYNAMIC_CLASS(wxMemoryDCImpl);
 };
 
 #endif // _WX_DFB_DCMEMORY_H_

@@ -2133,8 +2133,8 @@ wxArrayString wxResourceTranslationsLoader::GetAvailableTranslations(const wxStr
 
 class wxTranslationsModule: public wxModule
 {
-    DECLARE_DYNAMIC_CLASS(wxTranslationsModule)
-    public:
+    wxDECLARE_DYNAMIC_CLASS(wxTranslationsModule);
+public:
         wxTranslationsModule() {}
 
         bool OnInit() wxOVERRIDE
@@ -2151,6 +2151,6 @@ class wxTranslationsModule: public wxModule
         }
 };
 
-IMPLEMENT_DYNAMIC_CLASS(wxTranslationsModule, wxModule)
+wxIMPLEMENT_DYNAMIC_CLASS(wxTranslationsModule, wxModule);
 
 #endif // wxUSE_INTL

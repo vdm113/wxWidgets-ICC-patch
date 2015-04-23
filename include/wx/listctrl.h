@@ -109,7 +109,7 @@ public:
     void ClearColumnImage(int col) { SetColumnImage(col, -1); }
 
 private:
-    DECLARE_DYNAMIC_CLASS_NO_COPY(wxListView)
+    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxListView);
 };
 
 #endif // wxUSE_LISTCTRL

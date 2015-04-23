@@ -62,7 +62,7 @@ private:
 
     GtkWidget* m_menubar;
 
-    DECLARE_DYNAMIC_CLASS(wxMenuBar)
+    wxDECLARE_DYNAMIC_CLASS(wxMenuBar);
 };
 
 //-----------------------------------------------------------------------------
@@ -110,7 +110,7 @@ private:
     void GtkAppend(wxMenuItem* item, int pos = -1);
 
 
-    DECLARE_DYNAMIC_CLASS(wxMenu)
+    wxDECLARE_DYNAMIC_CLASS(wxMenu);
 };
 
 #endif

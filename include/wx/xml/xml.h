@@ -324,7 +324,7 @@ private:
 
     void DoCopy(const wxXmlDocument& doc);
 
-    DECLARE_CLASS(wxXmlDocument)
+    wxDECLARE_CLASS(wxXmlDocument);
 };
 
 #endif // wxUSE_XML

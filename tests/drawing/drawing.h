@@ -183,7 +183,7 @@ private:
 
     wxVector<PluginInfo> m_drawingPlugins;
 
-    DECLARE_NO_COPY_CLASS(GraphicsContextDrawingTestCase)
+    wxDECLARE_NO_COPY_CLASS(GraphicsContextDrawingTestCase);
 };
 
 

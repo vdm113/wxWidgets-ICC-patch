@@ -133,7 +133,7 @@ private:
     // delete all icons
     void DeleteIcons();
 
-    DECLARE_DYNAMIC_CLASS(wxIconBundle)
+    wxDECLARE_DYNAMIC_CLASS(wxIconBundle);
 };
 
 #endif // _WX_ICONBNDL_H_

@@ -281,4 +281,4 @@ public:
     }
 };
 
-IMPLEMENT_APP(MyApp)
+wxIMPLEMENT_APP(MyApp);

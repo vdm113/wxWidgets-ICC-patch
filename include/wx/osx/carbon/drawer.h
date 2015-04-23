@@ -31,7 +31,7 @@
 
 class WXDLLIMPEXP_ADV wxDrawerWindow : public wxTopLevelWindow
 {
-    DECLARE_DYNAMIC_CLASS(wxDrawerWindow)
+    wxDECLARE_DYNAMIC_CLASS(wxDrawerWindow);
 
 public:
 

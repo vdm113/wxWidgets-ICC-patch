@@ -61,7 +61,7 @@ protected:
     virtual wxObjectRefData *CloneRefData(const wxObjectRefData *data) const;
     
 private:  
-    DECLARE_DYNAMIC_CLASS(wxAcceleratorTable)
+    wxDECLARE_DYNAMIC_CLASS(wxAcceleratorTable);
 };
 
 #endif // _WX_QT_ACCEL_H_

@@ -113,9 +113,9 @@ private:
     int         m_animFlags;
 #endif
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 
-    DECLARE_DYNAMIC_CLASS(wxComboCtrl)
+    wxDECLARE_DYNAMIC_CLASS(wxComboCtrl);
 };
 
 

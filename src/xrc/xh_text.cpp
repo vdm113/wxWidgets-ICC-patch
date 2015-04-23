@@ -29,7 +29,7 @@
     #include "wx/textctrl.h"
 #endif
 
-IMPLEMENT_DYNAMIC_CLASS(wxTextCtrlXmlHandler, wxXmlResourceHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxTextCtrlXmlHandler, wxXmlResourceHandler);
 
 wxTextCtrlXmlHandler::wxTextCtrlXmlHandler() : wxXmlResourceHandler()
 {

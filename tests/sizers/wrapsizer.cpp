@@ -53,7 +53,7 @@ private:
     wxWindow *m_win;
     wxSizer *m_sizer;
 
-    DECLARE_NO_COPY_CLASS(WrapSizerTestCase)
+    wxDECLARE_NO_COPY_CLASS(WrapSizerTestCase);
 };
 
 // register in the unnamed registry so that these tests are run by default

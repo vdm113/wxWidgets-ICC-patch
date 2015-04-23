@@ -382,7 +382,7 @@ private:
     // it wasn't vetoed, i.e. if we should proceed
     bool SendListEvent(wxEventType type, const wxPoint& pos);
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 //-----------------------------------------------------------------------------
@@ -465,7 +465,7 @@ private:
     size_t              m_itemEdited;
     bool                m_aboutToFinish;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 //-----------------------------------------------------------------------------
@@ -867,7 +867,7 @@ private:
     wxListTextCtrlWrapper *m_textctrlWrapper;
 
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 
     friend class wxGenericListCtrl;
     friend class wxListCtrlMaxWidthCalculator;

@@ -318,7 +318,7 @@ private:
 // Property sheet dialog
 class SettingsDialog: public wxPropertySheetDialog
 {
-DECLARE_CLASS(SettingsDialog)
+    wxDECLARE_CLASS(SettingsDialog);
 public:
     SettingsDialog(wxWindow* parent, int dialogType);
     ~SettingsDialog();
@@ -341,7 +341,7 @@ protected:
 
     wxImageList*    m_imageList;
 
-DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 #endif // USE_SETTINGS_DIALOG

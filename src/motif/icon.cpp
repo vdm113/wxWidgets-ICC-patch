@@ -20,7 +20,7 @@
 
 #include "wx/icon.h"
 
-IMPLEMENT_DYNAMIC_CLASS(wxIcon, wxBitmap)
+wxIMPLEMENT_DYNAMIC_CLASS(wxIcon, wxBitmap);
 
 // ============================================================================
 // Icons

@@ -1952,7 +1952,7 @@ wxLocale *wxSetLocale(wxLocale *pLocale)
 
 class wxLocaleModule: public wxModule
 {
-    DECLARE_DYNAMIC_CLASS(wxLocaleModule)
+    wxDECLARE_DYNAMIC_CLASS(wxLocaleModule);
     public:
         wxLocaleModule() {}
 
@@ -1967,6 +1967,6 @@ class wxLocaleModule: public wxModule
         }
 };
 
-IMPLEMENT_DYNAMIC_CLASS(wxLocaleModule, wxModule)
+wxIMPLEMENT_DYNAMIC_CLASS(wxLocaleModule, wxModule);
 
 #endif // wxUSE_INTL

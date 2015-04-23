@@ -144,10 +144,10 @@ public:
     }
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxDateTimeHolidaysModule)
+    wxDECLARE_DYNAMIC_CLASS(wxDateTimeHolidaysModule);
 };
 
-IMPLEMENT_DYNAMIC_CLASS(wxDateTimeHolidaysModule, wxModule)
+wxIMPLEMENT_DYNAMIC_CLASS(wxDateTimeHolidaysModule, wxModule);
 
 // ----------------------------------------------------------------------------
 // constants

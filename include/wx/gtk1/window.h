@@ -271,7 +271,7 @@ protected:
     virtual void DoApplyWidgetStyle(GtkRcStyle *style);
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxWindowGTK)
+    wxDECLARE_DYNAMIC_CLASS(wxWindowGTK);
     wxDECLARE_NO_COPY_CLASS(wxWindowGTK);
 };
 

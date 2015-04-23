@@ -47,7 +47,7 @@
 // implementation
 // ============================================================================
 
-IMPLEMENT_ABSTRACT_CLASS(wxPickerBase, wxControl)
+wxIMPLEMENT_ABSTRACT_CLASS(wxPickerBase, wxControl);
 
 // ----------------------------------------------------------------------------
 // wxPickerBase

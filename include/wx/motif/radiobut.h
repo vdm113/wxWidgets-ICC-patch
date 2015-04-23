@@ -20,7 +20,7 @@
 
 class WXDLLIMPEXP_CORE wxRadioButton: public wxControl
 {
-    DECLARE_DYNAMIC_CLASS(wxRadioButton)
+    wxDECLARE_DYNAMIC_CLASS(wxRadioButton);
 public:
     wxRadioButton();
     virtual ~wxRadioButton() { RemoveFromCycle(); }

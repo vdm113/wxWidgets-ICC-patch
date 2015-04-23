@@ -670,7 +670,7 @@ enum
     ID_SHOWTHUMBNAIL
 };
 
-IMPLEMENT_DYNAMIC_CLASS( MyFrame, wxFrame )
+wxIMPLEMENT_DYNAMIC_CLASS( MyFrame, wxFrame );
 wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
     EVT_MENU    (ID_ABOUT, MyFrame::OnAbout)
     EVT_MENU    (ID_QUIT,  MyFrame::OnQuit)
@@ -1016,7 +1016,7 @@ void MyFrame::OnThumbnail( wxCommandEvent &WXUNUSED(event) )
 // MyApp
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_APP(MyApp)
+wxIMPLEMENT_APP(MyApp);
 
 bool MyApp::OnInit()
 {

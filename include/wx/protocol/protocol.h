@@ -135,7 +135,7 @@ protected:
 private:
     wxProtocolLog *m_log;
 
-    DECLARE_DYNAMIC_CLASS_NO_COPY(wxProtocol)
+    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxProtocol);
 };
 
 // ----------------------------------------------------------------------------
@@ -175,7 +175,7 @@ protected:
 
     friend class wxURL;
 
-    DECLARE_DYNAMIC_CLASS(wxProtoInfo)
+    wxDECLARE_DYNAMIC_CLASS(wxProtoInfo);
     wxDECLARE_NO_COPY_CLASS(wxProtoInfo);
 };
 

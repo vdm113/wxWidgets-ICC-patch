@@ -59,7 +59,7 @@ static MyDialog *gs_dialog = NULL;
 // MyApp
 // ----------------------------------------------------------------------------
 
-IMPLEMENT_APP(MyApp)
+wxIMPLEMENT_APP(MyApp);
 
 bool MyApp::OnInit()
 {

@@ -373,7 +373,7 @@ protected:
     wxListItemAttr *m_attr;     // optional pointer to the items style
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxListItem)
+    wxDECLARE_DYNAMIC_CLASS(wxListItem);
 };
 
 // ----------------------------------------------------------------------------
@@ -540,7 +540,7 @@ protected:
     bool          m_editCancelled;
 
 private:
-    DECLARE_DYNAMIC_CLASS_NO_ASSIGN(wxListEvent)
+    wxDECLARE_DYNAMIC_CLASS_NO_ASSIGN(wxListEvent);
 };
 
 // ----------------------------------------------------------------------------

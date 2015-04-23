@@ -41,7 +41,7 @@ class WXDLLIMPEXP_FWD_HTML wxHtmlTagsModule;
 
 class WXDLLIMPEXP_HTML wxHtmlWinParser : public wxHtmlParser
 {
-    DECLARE_ABSTRACT_CLASS(wxHtmlWinParser)
+    wxDECLARE_ABSTRACT_CLASS(wxHtmlWinParser);
     friend class wxHtmlWindow;
 
 public:
@@ -265,7 +265,7 @@ class WXDLLIMPEXP_FWD_HTML wxHtmlStyleParams;
 
 class WXDLLIMPEXP_HTML wxHtmlWinTagHandler : public wxHtmlTagHandler
 {
-    DECLARE_ABSTRACT_CLASS(wxHtmlWinTagHandler)
+    wxDECLARE_ABSTRACT_CLASS(wxHtmlWinTagHandler);
 
 public:
     wxHtmlWinTagHandler() : wxHtmlTagHandler() {}
@@ -295,7 +295,7 @@ protected:
 
 class WXDLLIMPEXP_HTML wxHtmlTagsModule : public wxModule
 {
-    DECLARE_DYNAMIC_CLASS(wxHtmlTagsModule)
+    wxDECLARE_DYNAMIC_CLASS(wxHtmlTagsModule);
 
 public:
     wxHtmlTagsModule() : wxModule() {}

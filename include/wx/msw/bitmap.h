@@ -237,7 +237,7 @@ private:
                          wxBitmapTransparency transp = wxBitmapTransparency_Auto);
 
 
-    DECLARE_DYNAMIC_CLASS(wxBitmap)
+    wxDECLARE_DYNAMIC_CLASS(wxBitmap);
 };
 
 // ----------------------------------------------------------------------------
@@ -281,7 +281,7 @@ public:
 protected:
     WXHBITMAP m_maskBitmap;
 
-    DECLARE_DYNAMIC_CLASS(wxMask)
+    wxDECLARE_DYNAMIC_CLASS(wxMask);
 };
 
 
@@ -329,7 +329,7 @@ public:
                           const wxPalette *palette = NULL) const;
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxBitmapHandler)
+    wxDECLARE_DYNAMIC_CLASS(wxBitmapHandler);
 };
 
 #endif

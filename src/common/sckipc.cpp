@@ -133,7 +133,7 @@ public:
 private:
     void HandleDisconnect(wxTCPConnection *connection);
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxTCPEventHandler);
 };
 
@@ -168,11 +168,11 @@ public:
 private:
     static wxTCPEventHandler *ms_handler;
 
-    DECLARE_DYNAMIC_CLASS(wxTCPEventHandlerModule)
+    wxDECLARE_DYNAMIC_CLASS(wxTCPEventHandlerModule);
     wxDECLARE_NO_COPY_CLASS(wxTCPEventHandlerModule);
 };
 
-IMPLEMENT_DYNAMIC_CLASS(wxTCPEventHandlerModule, wxModule)
+wxIMPLEMENT_DYNAMIC_CLASS(wxTCPEventHandlerModule, wxModule);
 
 wxTCPEventHandler *wxTCPEventHandlerModule::ms_handler = NULL;
 
@@ -356,9 +356,9 @@ private:
 // implementation
 // ==========================================================================
 
-IMPLEMENT_DYNAMIC_CLASS(wxTCPServer, wxServerBase)
-IMPLEMENT_DYNAMIC_CLASS(wxTCPClient, wxClientBase)
-IMPLEMENT_CLASS(wxTCPConnection, wxConnectionBase)
+wxIMPLEMENT_DYNAMIC_CLASS(wxTCPServer, wxServerBase);
+wxIMPLEMENT_DYNAMIC_CLASS(wxTCPClient, wxClientBase);
+wxIMPLEMENT_CLASS(wxTCPConnection, wxConnectionBase);
 
 // --------------------------------------------------------------------------
 // wxTCPClient
@@ -690,10 +690,10 @@ bool wxTCPConnection::DoAdvise(const wxString& item,
 // wxTCPEventHandler (private class)
 // --------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(wxTCPEventHandler, wxEvtHandler)
+wxBEGIN_EVENT_TABLE(wxTCPEventHandler, wxEvtHandler)
     EVT_SOCKET(_CLIENT_ONREQUEST_ID, wxTCPEventHandler::Client_OnRequest)
     EVT_SOCKET(_SERVER_ONREQUEST_ID, wxTCPEventHandler::Server_OnRequest)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 void wxTCPEventHandler::HandleDisconnect(wxTCPConnection *connection)
 {

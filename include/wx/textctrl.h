@@ -766,7 +766,7 @@ protected:
     virtual wxWindow *GetEditableWindow() wxOVERRIDE { return this; }
 
     wxDECLARE_NO_COPY_CLASS(wxTextCtrlBase);
-    DECLARE_ABSTRACT_CLASS(wxTextCtrlBase)
+    wxDECLARE_ABSTRACT_CLASS(wxTextCtrlBase);
 };
 
 // ----------------------------------------------------------------------------
@@ -838,7 +838,7 @@ protected:
          m_end;
 
 private:
-    DECLARE_DYNAMIC_CLASS_NO_ASSIGN(wxTextUrlEvent)
+    wxDECLARE_DYNAMIC_CLASS_NO_ASSIGN(wxTextUrlEvent);
 
 public:
     // for wxWin RTTI only, don't use

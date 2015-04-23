@@ -134,7 +134,7 @@ private:
     wxTextCtrl *m_text;
     wxCheckBox *m_checkbox;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxTipDialog);
 };
 
@@ -217,9 +217,9 @@ wxString wxFileTipProvider::GetTip()
 // wxTipDialog
 // ----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(wxTipDialog, wxDialog)
+wxBEGIN_EVENT_TABLE(wxTipDialog, wxDialog)
     EVT_BUTTON(wxID_NEXT_TIP, wxTipDialog::OnNextTip)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 wxTipDialog::wxTipDialog(wxWindow *parent,
                          wxTipProvider *tipProvider,

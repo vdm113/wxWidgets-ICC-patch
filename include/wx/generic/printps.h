@@ -38,7 +38,7 @@ public:
     virtual bool Setup(wxWindow *parent) wxOVERRIDE;
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxPostScriptPrinter)
+    wxDECLARE_DYNAMIC_CLASS(wxPostScriptPrinter);
 };
 
 // ----------------------------------------------------------------------------
@@ -65,7 +65,7 @@ private:
     void Init(wxPrintout *printout, wxPrintout *printoutForPrinting);
 
 private:
-    DECLARE_CLASS(wxPostScriptPrintPreview)
+    wxDECLARE_CLASS(wxPostScriptPrintPreview);
 };
 
 #endif

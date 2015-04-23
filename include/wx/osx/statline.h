@@ -56,7 +56,7 @@ protected:
     // we implement the static line using a static box
     wxStaticBox *m_statbox;
 
-    DECLARE_DYNAMIC_CLASS(wxStaticLine)
+    wxDECLARE_DYNAMIC_CLASS(wxStaticLine);
 };
 
 #endif // _WX_GENERIC_STATLINE_H_

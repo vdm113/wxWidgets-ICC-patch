@@ -76,7 +76,7 @@ protected:
     virtual wxVisualAttributes GetDefaultAttributes() const;
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxGauge)
+    wxDECLARE_DYNAMIC_CLASS(wxGauge);
 };
 
 #endif

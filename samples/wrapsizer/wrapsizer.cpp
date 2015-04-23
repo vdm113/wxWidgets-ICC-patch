@@ -87,7 +87,7 @@ public:
     }
 };
 
-IMPLEMENT_APP(WrapSizerApp);
+wxIMPLEMENT_APP(WrapSizerApp);
 
 
 // ----------------------------------------------------------------------------

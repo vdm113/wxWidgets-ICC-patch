@@ -37,7 +37,7 @@ private:
 
     GLXContext m_glContext;
 
-    DECLARE_CLASS(wxGLContext)
+    wxDECLARE_CLASS(wxGLContext);
 };
 
 // ----------------------------------------------------------------------------
@@ -180,7 +180,7 @@ public:
     }
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxGLApp)
+    wxDECLARE_DYNAMIC_CLASS(wxGLApp);
 };
 
 #endif // _WX_UNIX_GLX11_H_

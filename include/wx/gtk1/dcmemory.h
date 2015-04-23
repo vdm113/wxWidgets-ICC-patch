@@ -68,7 +68,7 @@ public:
 private:
     void Init();
 
-    DECLARE_DYNAMIC_CLASS(wxMemoryDCImpl)
+    wxDECLARE_DYNAMIC_CLASS(wxMemoryDCImpl);
 };
 
 #endif // __GTKDCMEMORYH__

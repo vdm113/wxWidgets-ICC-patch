@@ -32,7 +32,7 @@
     #include "wx/dialog.h"
 #endif
 
-IMPLEMENT_DYNAMIC_CLASS(wxDialogXmlHandler, wxXmlResourceHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxDialogXmlHandler, wxXmlResourceHandler);
 
 wxDialogXmlHandler::wxDialogXmlHandler() : wxXmlResourceHandler()
 {

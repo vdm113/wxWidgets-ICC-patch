@@ -161,7 +161,7 @@ private:
         long wxExecuteReturnCode;
     };
 
-    DECLARE_NO_COPY_CLASS(ExecTestCase)
+    wxDECLARE_NO_COPY_CLASS(ExecTestCase);
 };
 
 // register in the unnamed registry so that these tests are run by default

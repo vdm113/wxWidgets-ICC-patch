@@ -5017,8 +5017,8 @@ protected:
     void NotifyParent(SCNotification* scn);
 
 private:
-    DECLARE_EVENT_TABLE()
-    DECLARE_DYNAMIC_CLASS(wxStyledTextCtrl)
+    wxDECLARE_EVENT_TABLE();
+    wxDECLARE_DYNAMIC_CLASS(wxStyledTextCtrl);
 
 protected:
 
@@ -5121,7 +5121,7 @@ public:
 
 #ifndef SWIG
 private:
-    DECLARE_DYNAMIC_CLASS(wxStyledTextEvent)
+    wxDECLARE_DYNAMIC_CLASS(wxStyledTextEvent);
 
     int  m_position;
     int  m_key;

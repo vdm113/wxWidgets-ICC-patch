@@ -46,7 +46,7 @@ protected:
                                   const wxSize& size);
 };
 
-IMPLEMENT_APP(hvApp)
+wxIMPLEMENT_APP(hvApp);
 
 hvApp::hvApp()
 {

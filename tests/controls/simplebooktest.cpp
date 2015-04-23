@@ -52,7 +52,7 @@ private:
 
     wxSimplebook *m_simplebook;
 
-    DECLARE_NO_COPY_CLASS(SimplebookTestCase)
+    wxDECLARE_NO_COPY_CLASS(SimplebookTestCase);
 };
 
 // register in the unnamed registry so that these tests are run by default

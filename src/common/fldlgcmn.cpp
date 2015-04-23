@@ -48,7 +48,7 @@ extern WXDLLEXPORT_DATA(const char) wxFileSelectorDefaultWildcardStr[] =
 // wxFileDialogBase
 //----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxFileDialogBase, wxDialog)
+wxIMPLEMENT_DYNAMIC_CLASS(wxFileDialogBase, wxDialog);
 
 void wxFileDialogBase::Init()
 {

@@ -80,7 +80,7 @@ enum
 // implementation
 // ============================================================================
 
-IMPLEMENT_DYNAMIC_CLASS(wxTGAHandler, wxImageHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxTGAHandler, wxImageHandler);
 
 #if wxUSE_STREAMS
 

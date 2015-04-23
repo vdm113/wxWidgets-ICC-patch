@@ -65,7 +65,7 @@ protected:
     wxRect GetBorderGeometry() const;
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxStaticBox)
+    wxDECLARE_DYNAMIC_CLASS(wxStaticBox);
 };
 
 #endif // _WX_UNIV_STATBOX_H_

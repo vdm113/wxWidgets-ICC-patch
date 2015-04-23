@@ -526,7 +526,7 @@ bool wxGetClipboardFormatName(wxDataFormat dataFormat,
 // wxClipboard
 // ---------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxClipboard, wxObject)
+wxIMPLEMENT_DYNAMIC_CLASS(wxClipboard, wxObject);
 
 wxClipboard::wxClipboard()
 {
