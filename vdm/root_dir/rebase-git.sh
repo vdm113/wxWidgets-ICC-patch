@@ -27,6 +27,14 @@ git commit -a --signoff -m 'restore our project files'
 mv -f README.md README_orig_wx.md
 cp -f ./vdm/root_dir/* ./vdm/root_dir/.??* .
 git add README.md
+
+git branch -d origin/wx_git
+git branch -d wx_git
+git branch -d wx_svn
+git branch -d origin/HEAD
+git branch -d origin/master
+git branch -d wx_git/master
+
 export DATE=`date`
 git commit -a --signoff -m "restore our support files: ${DATE}"
 detached_head=`git rev-parse HEAD`
