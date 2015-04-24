@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/xrc/xh_activityindicator.cpp
 // Purpose:     Implementation of wxActivityIndicator XRC handler.
@@ -19,7 +26,7 @@
 #include "wx/xrc/xh_activityindicator.h"
 #include "wx/activityindicator.h"
 
-IMPLEMENT_DYNAMIC_CLASS(wxActivityIndicatorXmlHandler, wxXmlResourceHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxActivityIndicatorXmlHandler, wxXmlResourceHandler);
 
 wxActivityIndicatorXmlHandler::wxActivityIndicatorXmlHandler()
 {
