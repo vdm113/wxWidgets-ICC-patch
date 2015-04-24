@@ -154,7 +154,7 @@ protected:
     wxEdge otherEdge;
     bool done;
 
-    DECLARE_DYNAMIC_CLASS(wxIndividualLayoutConstraint)
+    wxDECLARE_DYNAMIC_CLASS(wxIndividualLayoutConstraint);
 };
 
 // ----------------------------------------------------------------------------
@@ -189,7 +189,7 @@ public:
                width.GetDone() && height.GetDone();
     }
 
-    DECLARE_DYNAMIC_CLASS(wxLayoutConstraints)
+    wxDECLARE_DYNAMIC_CLASS(wxLayoutConstraints);
 };
 
 #endif // wxUSE_CONSTRAINTS

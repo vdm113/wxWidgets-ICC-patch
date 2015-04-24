@@ -333,7 +333,7 @@ extern "C"
 
 // wxGtkFileCtrl implementation
 
-IMPLEMENT_DYNAMIC_CLASS( wxGtkFileCtrl, wxControl )
+wxIMPLEMENT_DYNAMIC_CLASS(wxGtkFileCtrl, wxControl);
 
 wxGtkFileCtrl::~wxGtkFileCtrl()
 {

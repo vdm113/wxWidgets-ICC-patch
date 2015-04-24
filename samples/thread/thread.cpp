@@ -303,7 +303,7 @@ private:
 // ----------------------------------------------------------------------------
 
 // Create a new application object
-IMPLEMENT_APP(MyApp)
+wxIMPLEMENT_APP(MyApp);
 
 MyApp::MyApp()
 {

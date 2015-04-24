@@ -102,8 +102,8 @@ protected:
     bool m_scroll_buttons_visible;
 
 #ifndef SWIG
-    DECLARE_CLASS(wxRibbonPage)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_CLASS(wxRibbonPage);
+    wxDECLARE_EVENT_TABLE();
 #endif
 };
 

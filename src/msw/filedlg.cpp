@@ -81,7 +81,7 @@ static wxRect gs_rectDialog(0, 0, 428, 266);
 // implementation
 // ============================================================================
 
-IMPLEMENT_CLASS(wxFileDialog, wxFileDialogBase)
+wxIMPLEMENT_CLASS(wxFileDialog, wxFileDialogBase);
 
 // ----------------------------------------------------------------------------
 

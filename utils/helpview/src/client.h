@@ -29,7 +29,7 @@ public:
 #endif
 };
 
-DECLARE_APP(MyApp)
+wxDECLARE_APP(MyApp);
 
 // Define a new frame
 class MyFrame: public wxFrame
@@ -55,7 +55,7 @@ private:
     wxPanel *m_panel;
     wxButton *m_modalbutton;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 class MyModalDialog : public wxDialog
@@ -70,7 +70,7 @@ private:
     wxButton *m_book1;
     wxButton *m_book2;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 

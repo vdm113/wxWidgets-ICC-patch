@@ -60,9 +60,9 @@
 // macros
 // ----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(wxBitmapButton, wxBitmapButtonBase)
+wxBEGIN_EVENT_TABLE(wxBitmapButton, wxBitmapButtonBase)
     EVT_SYS_COLOUR_CHANGED(wxBitmapButton::OnSysColourChanged)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 /*
 TODO PROPERTIES :

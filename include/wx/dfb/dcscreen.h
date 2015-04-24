@@ -24,7 +24,7 @@ class WXDLLIMPEXP_CORE wxScreenDCImpl : public wxDFBDCImpl
 public:
     wxScreenDCImpl(wxScreenDC *owner);
 
-    DECLARE_DYNAMIC_CLASS(wxScreenDCImpl)
+    wxDECLARE_DYNAMIC_CLASS(wxScreenDCImpl);
 };
 
 #endif // _WX_DFB_DCSCREEN_H_

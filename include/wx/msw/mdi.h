@@ -160,8 +160,8 @@ private:
 
     friend class WXDLLIMPEXP_FWD_CORE wxMDIChildFrame;
 
-    DECLARE_EVENT_TABLE()
-    DECLARE_DYNAMIC_CLASS(wxMDIParentFrame)
+    wxDECLARE_EVENT_TABLE();
+    wxDECLARE_DYNAMIC_CLASS(wxMDIParentFrame);
     wxDECLARE_NO_COPY_CLASS(wxMDIParentFrame);
 };
 
@@ -240,8 +240,8 @@ protected:
 private:
     bool m_needsResize; // flag which tells us to artificially resize the frame
 
-    DECLARE_EVENT_TABLE()
-    DECLARE_DYNAMIC_CLASS_NO_COPY(wxMDIChildFrame)
+    wxDECLARE_EVENT_TABLE();
+    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxMDIChildFrame);
 };
 
 // ---------------------------------------------------------------------------
@@ -270,8 +270,8 @@ protected:
     int m_scrollX, m_scrollY;
 
 private:
-    DECLARE_EVENT_TABLE()
-    DECLARE_DYNAMIC_CLASS_NO_COPY(wxMDIClientWindow)
+    wxDECLARE_EVENT_TABLE();
+    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxMDIClientWindow);
 };
 
 #endif // _WX_MSW_MDI_H_

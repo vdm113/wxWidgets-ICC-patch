@@ -40,7 +40,7 @@ private:
     wxFont    m_testFont;
 };
 
-DECLARE_APP(MyApp)
+wxDECLARE_APP(MyApp);
 class MyCanvas;
 
 // Define a new canvas and frame

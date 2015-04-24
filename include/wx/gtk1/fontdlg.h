@@ -40,7 +40,7 @@ protected:
     virtual bool DoCreate(wxWindow *parent);
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxFontDialog)
+    wxDECLARE_DYNAMIC_CLASS(wxFontDialog);
 };
 
 #endif

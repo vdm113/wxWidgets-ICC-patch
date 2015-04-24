@@ -25,7 +25,7 @@ class WXDLLIMPEXP_FWD_CORE wxPalette;
 // Palette for one display
 class wxXPalette : public wxObject
 {
-    DECLARE_DYNAMIC_CLASS(wxXPalette)
+    wxDECLARE_DYNAMIC_CLASS(wxXPalette);
 
 public:
     wxXPalette();
@@ -55,7 +55,7 @@ protected:
 
 class WXDLLIMPEXP_CORE wxPalette : public wxPaletteBase
 {
-    DECLARE_DYNAMIC_CLASS(wxPalette)
+    wxDECLARE_DYNAMIC_CLASS(wxPalette);
 
 public:
     wxPalette();

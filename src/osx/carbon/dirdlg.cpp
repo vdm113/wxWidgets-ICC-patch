@@ -31,7 +31,7 @@
 
 #include "wx/osx/private.h"
 
-IMPLEMENT_CLASS(wxDirDialog, wxDialog)
+wxIMPLEMENT_CLASS(wxDirDialog, wxDialog);
 
 static pascal void NavEventProc(
                                 NavEventCallbackMessage inSelector,

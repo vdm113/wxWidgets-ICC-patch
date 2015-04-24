@@ -47,7 +47,7 @@
 // wxSizerXmlHandler
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxSizerXmlHandler, wxXmlResourceHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxSizerXmlHandler, wxXmlResourceHandler);
 
 wxSizerXmlHandler::wxSizerXmlHandler()
                   :wxXmlResourceHandler(),
@@ -909,7 +909,7 @@ void wxSizerXmlHandler::AddSizerItem(wxSizerItem* sitem)
 //-----------------------------------------------------------------------------
 #if wxUSE_BUTTON
 
-IMPLEMENT_DYNAMIC_CLASS(wxStdDialogButtonSizerXmlHandler, wxXmlResourceHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxStdDialogButtonSizerXmlHandler, wxXmlResourceHandler);
 
 wxStdDialogButtonSizerXmlHandler::wxStdDialogButtonSizerXmlHandler()
     : m_isInside(false), m_parentSizer(NULL)

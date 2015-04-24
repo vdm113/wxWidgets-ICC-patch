@@ -38,7 +38,7 @@
 // wxWindowDCImpl
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_ABSTRACT_CLASS(wxWindowDCImpl, wxGCDCImpl)
+wxIMPLEMENT_ABSTRACT_CLASS(wxWindowDCImpl, wxGCDCImpl);
 
 wxWindowDCImpl::wxWindowDCImpl( wxDC *owner )
    : wxGCDCImpl( owner )
@@ -156,7 +156,7 @@ wxBitmap wxWindowDCImpl::DoGetAsBitmap(const wxRect *subrect) const
  * wxClientDCImpl
  */
 
-IMPLEMENT_ABSTRACT_CLASS(wxClientDCImpl, wxWindowDCImpl)
+wxIMPLEMENT_ABSTRACT_CLASS(wxClientDCImpl, wxWindowDCImpl);
 
 wxClientDCImpl::wxClientDCImpl( wxDC *owner )
  : wxWindowDCImpl( owner )
@@ -189,7 +189,7 @@ wxClientDCImpl::~wxClientDCImpl()
  * wxPaintDCImpl
  */
 
-IMPLEMENT_ABSTRACT_CLASS(wxPaintDCImpl, wxWindowDCImpl)
+wxIMPLEMENT_ABSTRACT_CLASS(wxPaintDCImpl, wxWindowDCImpl);
 
 wxPaintDCImpl::wxPaintDCImpl( wxDC *owner )
  : wxWindowDCImpl( owner )

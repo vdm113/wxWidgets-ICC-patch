@@ -76,7 +76,7 @@ private:
     long m_creationTime;
 #endif // !wxUSE_POPUPWIN
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxTipWindowView);
 };
 
@@ -88,7 +88,7 @@ private:
 // event tables
 // ----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(wxTipWindow, wxTipWindowBase)
+wxBEGIN_EVENT_TABLE(wxTipWindow, wxTipWindowBase)
     EVT_LEFT_DOWN(wxTipWindow::OnMouseClick)
     EVT_RIGHT_DOWN(wxTipWindow::OnMouseClick)
     EVT_MIDDLE_DOWN(wxTipWindow::OnMouseClick)
@@ -97,9 +97,9 @@ BEGIN_EVENT_TABLE(wxTipWindow, wxTipWindowBase)
     EVT_KILL_FOCUS(wxTipWindow::OnKillFocus)
     EVT_ACTIVATE(wxTipWindow::OnActivate)
 #endif // !wxUSE_POPUPWIN
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
-BEGIN_EVENT_TABLE(wxTipWindowView, wxWindow)
+wxBEGIN_EVENT_TABLE(wxTipWindowView, wxWindow)
     EVT_PAINT(wxTipWindowView::OnPaint)
 
     EVT_LEFT_DOWN(wxTipWindowView::OnMouseClick)
@@ -111,7 +111,7 @@ BEGIN_EVENT_TABLE(wxTipWindowView, wxWindow)
 #if !wxUSE_POPUPWIN
     EVT_KILL_FOCUS(wxTipWindowView::OnKillFocus)
 #endif // !wxUSE_POPUPWIN
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 // ----------------------------------------------------------------------------
 // wxTipWindow

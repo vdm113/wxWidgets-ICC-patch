@@ -23,7 +23,7 @@
     #include "wx/utils.h"
 #endif
 
-IMPLEMENT_DYNAMIC_CLASS(wxPen, wxGDIObject)
+wxIMPLEMENT_DYNAMIC_CLASS(wxPen, wxGDIObject);
 
 class WXDLLEXPORT wxPenRefData : public wxGDIRefData
 {

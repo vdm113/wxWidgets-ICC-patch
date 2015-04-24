@@ -123,7 +123,7 @@ static bool HasTroubleWithNonTopTabs()
 // event table
 // ----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(wxNotebook, wxBookCtrlBase)
+wxBEGIN_EVENT_TABLE(wxNotebook, wxBookCtrlBase)
     EVT_SIZE(wxNotebook::OnSize)
     EVT_NAVIGATION_KEY(wxNotebook::OnNavigationKey)
 
@@ -131,7 +131,7 @@ BEGIN_EVENT_TABLE(wxNotebook, wxBookCtrlBase)
     EVT_ERASE_BACKGROUND(wxNotebook::OnEraseBackground)
     EVT_PAINT(wxNotebook::OnPaint)
 #endif // USE_NOTEBOOK_ANTIFLICKER
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 // ============================================================================
 // implementation

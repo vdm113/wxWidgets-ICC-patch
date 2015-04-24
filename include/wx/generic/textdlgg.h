@@ -91,8 +91,8 @@ protected:
     long        m_dialogStyle;
 
 private:
-    DECLARE_EVENT_TABLE()
-    DECLARE_DYNAMIC_CLASS(wxTextEntryDialog)
+    wxDECLARE_EVENT_TABLE();
+    wxDECLARE_DYNAMIC_CLASS(wxTextEntryDialog);
     wxDECLARE_NO_COPY_CLASS(wxTextEntryDialog);
 };
 
@@ -123,7 +123,7 @@ public:
 
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxPasswordEntryDialog)
+    wxDECLARE_DYNAMIC_CLASS(wxPasswordEntryDialog);
     wxDECLARE_NO_COPY_CLASS(wxPasswordEntryDialog);
 };
 

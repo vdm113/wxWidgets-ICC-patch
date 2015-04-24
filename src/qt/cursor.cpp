@@ -43,7 +43,7 @@ void wxEndBusyCursor()
 }
 
 
-IMPLEMENT_DYNAMIC_CLASS( wxCursor, wxGDIObject )
+wxIMPLEMENT_DYNAMIC_CLASS(wxCursor, wxGDIObject);
 
 wxCursor::wxCursor( const wxCursor &cursor )
 {

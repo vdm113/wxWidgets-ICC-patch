@@ -80,7 +80,7 @@ protected:
 private:
     wxArchiveNotifier *m_notifier;
 
-    DECLARE_ABSTRACT_CLASS(wxArchiveEntry)
+    wxDECLARE_ABSTRACT_CLASS(wxArchiveEntry);
 };
 
 
@@ -377,7 +377,7 @@ private:
     static wxArchiveClassFactory *sm_first;
     wxArchiveClassFactory *m_next;
 
-    DECLARE_ABSTRACT_CLASS(wxArchiveClassFactory)
+    wxDECLARE_ABSTRACT_CLASS(wxArchiveClassFactory);
 };
 
 #endif // wxUSE_STREAMS && wxUSE_ARCHIVE_STREAMS

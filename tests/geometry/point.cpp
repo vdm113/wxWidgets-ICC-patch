@@ -45,7 +45,7 @@ private:
 
     void Operators();
 
-    DECLARE_NO_COPY_CLASS(PointTestCase)
+    wxDECLARE_NO_COPY_CLASS(PointTestCase);
 };
 
 class RealPointTestCase : public CppUnit::TestCase
@@ -60,7 +60,7 @@ private:
 
     void Operators();
 
-    DECLARE_NO_COPY_CLASS(RealPointTestCase)
+    wxDECLARE_NO_COPY_CLASS(RealPointTestCase);
 };
 
 // register in the unnamed registry so that these tests are run by default

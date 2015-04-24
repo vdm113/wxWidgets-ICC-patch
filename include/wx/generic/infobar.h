@@ -138,7 +138,7 @@ private:
                  m_hideEffect;
     int m_effectDuration;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxInfoBarGeneric);
 };
 

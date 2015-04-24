@@ -36,7 +36,7 @@ public:
     wxInputStream *GetInputStream(const wxString& path) wxOVERRIDE;
 
 protected:
-    DECLARE_DYNAMIC_CLASS_NO_COPY(wxFileProto)
+    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxFileProto);
     DECLARE_PROTOCOL(wxFileProto)
 };
 

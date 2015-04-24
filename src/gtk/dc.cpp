@@ -377,7 +377,7 @@ wxGTKCairoDC::wxGTKCairoDC(cairo_t* cr)
 // wxGTKDCImpl
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_ABSTRACT_CLASS(wxGTKDCImpl, wxDCImpl)
+wxIMPLEMENT_ABSTRACT_CLASS(wxGTKDCImpl, wxDCImpl);
 
 wxGTKDCImpl::wxGTKDCImpl( wxDC *owner )
    : wxDCImpl( owner )

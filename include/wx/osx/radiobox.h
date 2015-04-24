@@ -25,7 +25,7 @@ class WXDLLIMPEXP_FWD_CORE wxRadioButton ;
 
 class WXDLLIMPEXP_CORE wxRadioBox: public wxControl, public wxRadioBoxBase
 {
-    DECLARE_DYNAMIC_CLASS(wxRadioBox)
+    wxDECLARE_DYNAMIC_CLASS(wxRadioBox);
 public:
 // Constructors & destructor
     wxRadioBox();
@@ -109,7 +109,7 @@ protected:
                            int width, int height,
                            int sizeFlags = wxSIZE_AUTO);
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 #endif

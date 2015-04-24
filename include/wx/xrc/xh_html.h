@@ -23,7 +23,7 @@
 
 class WXDLLIMPEXP_XRC wxHtmlWindowXmlHandler : public wxXmlResourceHandler
 {
-    DECLARE_DYNAMIC_CLASS(wxHtmlWindowXmlHandler)
+    wxDECLARE_DYNAMIC_CLASS(wxHtmlWindowXmlHandler);
 
 public:
     wxHtmlWindowXmlHandler();

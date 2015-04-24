@@ -36,7 +36,7 @@
 #include "wx/statline.h"
 
 
-IMPLEMENT_DYNAMIC_CLASS(wxMacPrintDialog, wxPrintDialogBase)
+wxIMPLEMENT_DYNAMIC_CLASS(wxMacPrintDialog, wxPrintDialogBase);
 
 wxMacPrintDialog::wxMacPrintDialog()
 {
@@ -84,7 +84,7 @@ wxDC *wxMacPrintDialog::GetPrintDC()
     return new wxPrinterDC( m_printDialogData.GetPrintData() );
 }
 
-IMPLEMENT_CLASS(wxMacPageSetupDialog, wxPageSetupDialogBase)
+wxIMPLEMENT_CLASS(wxMacPageSetupDialog, wxPageSetupDialogBase);
 
 wxMacPageSetupDialog::wxMacPageSetupDialog( wxWindow *p, wxPageSetupDialogData *data )
     : wxPageSetupDialogBase()
@@ -111,7 +111,7 @@ wxPageSetupDialogData& wxMacPageSetupDialog::GetPageSetupDialogData()
     return m_pageSetupData;
 }
 
-IMPLEMENT_CLASS(wxMacPageMarginsDialog, wxDialog)
+wxIMPLEMENT_CLASS(wxMacPageMarginsDialog, wxDialog);
 
 wxMacPageMarginsDialog::wxMacPageMarginsDialog(wxFrame *parent, wxPageSetupDialogData *data) :
   wxDialog(parent, wxID_ANY, wxString(wxT("Page Margins"))),

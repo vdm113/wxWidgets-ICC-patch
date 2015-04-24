@@ -505,7 +505,7 @@ protected:
     wxObject    *m_userData;
 
 private:
-    DECLARE_CLASS(wxSizerItem)
+    wxDECLARE_CLASS(wxSizerItem);
     wxDECLARE_NO_COPY_CLASS(wxSizerItem);
 };
 
@@ -759,7 +759,7 @@ protected:
     virtual wxSizerItem* DoInsert(size_t index, wxSizerItem *item);
 
 private:
-    DECLARE_CLASS(wxSizer)
+    wxDECLARE_CLASS(wxSizer);
 };
 
 //---------------------------------------------------------------------------
@@ -846,7 +846,7 @@ protected:
     }
 
 private:
-    DECLARE_CLASS(wxGridSizer)
+    wxDECLARE_CLASS(wxGridSizer);
 };
 
 //---------------------------------------------------------------------------
@@ -938,7 +938,7 @@ protected:
     wxSize m_calculatedMinSize;
 
 private:
-    DECLARE_CLASS(wxFlexGridSizer)
+    wxDECLARE_CLASS(wxFlexGridSizer);
     wxDECLARE_NO_COPY_CLASS(wxFlexGridSizer);
 };
 
@@ -1031,7 +1031,7 @@ protected:
     wxSize m_minSize;
 
 private:
-    DECLARE_CLASS(wxBoxSizer)
+    wxDECLARE_CLASS(wxBoxSizer);
 };
 
 //---------------------------------------------------------------------------
@@ -1067,7 +1067,7 @@ protected:
     wxStaticBox   *m_staticBox;
 
 private:
-    DECLARE_CLASS(wxStaticBoxSizer)
+    wxDECLARE_CLASS(wxStaticBoxSizer);
     wxDECLARE_NO_COPY_CLASS(wxStaticBoxSizer);
 };
 
@@ -1119,7 +1119,7 @@ protected:
     wxButton *m_buttonHelp;         // wxID_HELP, wxID_CONTEXT_HELP
 
 private:
-    DECLARE_CLASS(wxStdDialogButtonSizer)
+    wxDECLARE_CLASS(wxStdDialogButtonSizer);
     wxDECLARE_NO_COPY_CLASS(wxStdDialogButtonSizer);
 };
 

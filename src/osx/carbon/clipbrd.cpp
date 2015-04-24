@@ -44,7 +44,7 @@
 // (there will be a *lot* of them!)
 #define TRACE_CLIPBOARD wxT("clipboard")
 
-IMPLEMENT_DYNAMIC_CLASS(wxClipboard, wxObject)
+wxIMPLEMENT_DYNAMIC_CLASS(wxClipboard, wxObject);
 
 wxClipboard::wxClipboard()
 {

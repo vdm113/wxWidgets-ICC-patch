@@ -476,7 +476,7 @@ public:
     void GTKSizeRevalidate();
 #endif
 
-    DECLARE_DYNAMIC_CLASS(wxWindowGTK)
+    wxDECLARE_DYNAMIC_CLASS(wxWindowGTK);
     wxDECLARE_NO_COPY_CLASS(wxWindowGTK);
 };
 

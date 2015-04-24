@@ -33,7 +33,7 @@
 #include "wx/combo.h"
 
 
-IMPLEMENT_DYNAMIC_CLASS(wxComboCtrlXmlHandler, wxXmlResourceHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxComboCtrlXmlHandler, wxXmlResourceHandler);
 
 wxComboCtrlXmlHandler::wxComboCtrlXmlHandler()
                      : wxXmlResourceHandler()

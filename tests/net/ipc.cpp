@@ -65,7 +65,7 @@ public:
     }
 
 private:
-    DECLARE_NO_COPY_CLASS(IPCTestConnection)
+    wxDECLARE_NO_COPY_CLASS(IPCTestConnection);
 };
 
 // ----------------------------------------------------------------------------
@@ -90,7 +90,7 @@ protected:
         return NULL;
     }
 
-    DECLARE_NO_COPY_CLASS(EventThread)
+    wxDECLARE_NO_COPY_CLASS(EventThread);
 };
 
 // ----------------------------------------------------------------------------
@@ -142,7 +142,7 @@ private:
     EventThread *m_thread;
     IPCTestConnection *m_conn;
 
-    DECLARE_NO_COPY_CLASS(IPCTestServer)
+    wxDECLARE_NO_COPY_CLASS(IPCTestServer);
 };
 
 static IPCTestServer *gs_server = NULL;
@@ -191,7 +191,7 @@ public:
 private:
     wxConnectionBase *m_conn;
 
-    DECLARE_NO_COPY_CLASS(IPCTestClient)
+    wxDECLARE_NO_COPY_CLASS(IPCTestClient);
 };
 
 static IPCTestClient *gs_client = NULL;
@@ -216,7 +216,7 @@ private:
     void Execute();
     void Disconnect();
 
-    DECLARE_NO_COPY_CLASS(IPCTestCase)
+    wxDECLARE_NO_COPY_CLASS(IPCTestCase);
 };
 
 CPPUNIT_TEST_SUITE_REGISTRATION( IPCTestCase );

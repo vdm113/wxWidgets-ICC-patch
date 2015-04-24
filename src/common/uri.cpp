@@ -41,7 +41,7 @@
 // definitions
 // ---------------------------------------------------------------------------
 
-IMPLEMENT_CLASS(wxURI, wxObject)
+wxIMPLEMENT_CLASS(wxURI, wxObject);
 
 // ===========================================================================
 // wxURI implementation

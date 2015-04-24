@@ -77,8 +77,8 @@ private:
     wxAuiManager m_mgr;
 
 #ifndef SWIG
-    DECLARE_EVENT_TABLE()
-    DECLARE_CLASS(wxAuiFloatingFrame)
+    wxDECLARE_EVENT_TABLE();
+    wxDECLARE_CLASS(wxAuiFloatingFrame);
 #endif // SWIG
 };
 

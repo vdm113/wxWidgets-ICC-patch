@@ -33,7 +33,7 @@
 
 #include "wx/xml/xml.h"
 
-IMPLEMENT_DYNAMIC_CLASS(wxComboBoxXmlHandler, wxXmlResourceHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxComboBoxXmlHandler, wxXmlResourceHandler);
 
 wxComboBoxXmlHandler::wxComboBoxXmlHandler()
                      :wxXmlResourceHandler()

@@ -31,7 +31,7 @@
 
 #include "wx/wizard.h"
 
-IMPLEMENT_DYNAMIC_CLASS(wxWizardXmlHandler, wxXmlResourceHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxWizardXmlHandler, wxXmlResourceHandler);
 
 wxWizardXmlHandler::wxWizardXmlHandler() : wxXmlResourceHandler()
 {

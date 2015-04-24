@@ -40,7 +40,7 @@
 // wxPCXHandler
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxPCXHandler,wxImageHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxPCXHandler,wxImageHandler);
 
 #if wxUSE_STREAMS
 

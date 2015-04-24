@@ -102,7 +102,7 @@ public:
                           wxEvent& event ) const wxOVERRIDE;
 };
 
-IMPLEMENT_DYNAMIC_CLASS(wxSampleMultiButtonEditor, wxPGTextCtrlEditor)
+wxIMPLEMENT_DYNAMIC_CLASS(wxSampleMultiButtonEditor, wxPGTextCtrlEditor);
 
 wxPGWindowList wxSampleMultiButtonEditor::CreateControls( wxPropertyGrid* propGrid,
                                                           wxPGProperty* property,
@@ -3132,7 +3132,7 @@ FormMain::~FormMain()
 
 // -----------------------------------------------------------------------
 
-IMPLEMENT_APP(cxApplication)
+wxIMPLEMENT_APP(cxApplication);
 
 bool cxApplication::OnInit()
 {
@@ -3346,7 +3346,7 @@ struct PropertyGridPopup : wxPopupWindow
     wxDECLARE_EVENT_TABLE();
 };
 
-IMPLEMENT_CLASS(PropertyGridPopup, wxPopupWindow)
+wxIMPLEMENT_CLASS(PropertyGridPopup, wxPopupWindow);
 wxBEGIN_EVENT_TABLE(PropertyGridPopup, wxPopupWindow)
     EVT_PG_ITEM_COLLAPSED(ID_POPUPGRID, PropertyGridPopup::OnCollapse)
     EVT_PG_ITEM_EXPANDED(ID_POPUPGRID, PropertyGridPopup::OnExpand)

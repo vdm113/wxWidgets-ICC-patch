@@ -39,7 +39,7 @@ protected:
     MyFrame *m_frame;
 };
 
-DECLARE_APP(MyApp)
+wxDECLARE_APP(MyApp);
 
 // Define a new frame
 class MyFrame : public wxFrame

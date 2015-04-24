@@ -163,7 +163,7 @@ protected:
         { m_path = wxStaticCast(p, wxFileDialog)->GetPath(); }
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxGenericFileButton)
+    wxDECLARE_DYNAMIC_CLASS(wxGenericFileButton);
 };
 
 
@@ -218,7 +218,7 @@ protected:
         { m_path = wxStaticCast(p, wxDirDialog)->GetPath(); }
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxGenericDirButton)
+    wxDECLARE_DYNAMIC_CLASS(wxGenericDirButton);
 };
 
 // old wxEVT_COMMAND_* constants

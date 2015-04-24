@@ -43,7 +43,7 @@ class WXDLLIMPEXP_FWD_HTML wxHtmlHelpWindow;
 
 class WXDLLIMPEXP_HTML wxHtmlHelpDialog : public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS(wxHtmlHelpDialog)
+    wxDECLARE_DYNAMIC_CLASS(wxHtmlHelpDialog);
 
 public:
     wxHtmlHelpDialog(wxHtmlHelpData* data = NULL) { Init(data); }
@@ -86,7 +86,7 @@ protected:
     wxHtmlHelpWindow *m_HtmlHelpWin;
     wxHtmlHelpController* m_helpController;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxHtmlHelpDialog);
 };
 

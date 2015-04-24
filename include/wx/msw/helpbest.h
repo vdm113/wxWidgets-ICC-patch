@@ -125,7 +125,7 @@ protected:
     wxHelpControllerBase* m_helpController;
     int m_style;
 
-    DECLARE_DYNAMIC_CLASS(wxBestHelpController)
+    wxDECLARE_DYNAMIC_CLASS(wxBestHelpController);
     wxDECLARE_NO_COPY_CLASS(wxBestHelpController);
 };
 

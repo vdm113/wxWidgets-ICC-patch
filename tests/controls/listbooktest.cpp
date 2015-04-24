@@ -56,7 +56,7 @@ private:
 
     wxListbook *m_listbook;
 
-    DECLARE_NO_COPY_CLASS(ListbookTestCase)
+    wxDECLARE_NO_COPY_CLASS(ListbookTestCase);
 };
 
 // register in the unnamed registry so that these tests are run by default

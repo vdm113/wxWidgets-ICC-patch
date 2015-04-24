@@ -48,7 +48,7 @@ public:
 
 private:
     // any class wishing to process wxWidgets events must use this macro
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 
     // draw a cell (parametrized by DC)
     void DrawCell(wxInt32 i, wxInt32 j, wxDC &dc);
@@ -100,7 +100,7 @@ public:
 
 private:
     // any class wishing to process wxWidgets events must use this macro
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 
     // event handlers
     void OnClose(wxCloseEvent& event);
@@ -124,7 +124,7 @@ public:
 
 private:
     // any class wishing to process wxWidgets events must use this macro
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 
     // event handlers
     void OnMenu(wxCommandEvent& event);

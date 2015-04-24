@@ -28,7 +28,7 @@ public:
 
 private:
 
-    DECLARE_ABSTRACT_CLASS(wxScreenDCImpl)
+    wxDECLARE_ABSTRACT_CLASS(wxScreenDCImpl);
 };
 
 #endif // _WX_QT_DCSCREEN_H_

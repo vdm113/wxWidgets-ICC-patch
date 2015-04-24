@@ -188,7 +188,7 @@ protected:
     int m_selectedButton;
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxRadioBox)
+    wxDECLARE_DYNAMIC_CLASS(wxRadioBox);
     wxDECLARE_NO_COPY_CLASS(wxRadioBox);
 };
 

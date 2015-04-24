@@ -58,7 +58,7 @@ protected:
 
     void DoApplyWidgetStyle(GtkRcStyle *style) wxOVERRIDE;
 
-    DECLARE_DYNAMIC_CLASS(wxStaticBox)
+    wxDECLARE_DYNAMIC_CLASS(wxStaticBox);
 };
 
 #endif // _WX_GTKSTATICBOX_H_

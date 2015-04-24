@@ -408,12 +408,12 @@ public:
     {
         Close();
     }
-    DECLARE_EVENT_TABLE();
+    wxDECLARE_EVENT_TABLE();
 };
 
-BEGIN_EVENT_TABLE(TestWnd,TestWnd_Base)
+wxBEGIN_EVENT_TABLE(TestWnd,TestWnd_Base)
     EVT_BUTTON(XRCID("B"), TestWnd::OnBPressed)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 @endcode
 
 It is also possible to access the wxSizerItem of a sizer that is part of a
@@ -458,7 +458,7 @@ public:
     virtual bool CanHandle(wxXmlNode *node);
 
     // Register with wxWidgets' dynamic class subsystem.
-    DECLARE_DYNAMIC_CLASS(MyControlXmlHandler)
+    wxDECLARE_DYNAMIC_CLASS(MyControlXmlHandler);
 };
 @endcode
 
@@ -466,7 +466,7 @@ The implementation of your custom XML handler will typically look as:
 
 @code
 // Register with wxWidgets' dynamic class subsystem.
-IMPLEMENT_DYNAMIC_CLASS(MyControlXmlHandler, wxXmlResourceHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(MyControlXmlHandler, wxXmlResourceHandler);
 
 MyControlXmlHandler::MyControlXmlHandler()
 {

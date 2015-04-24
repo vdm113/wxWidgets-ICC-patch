@@ -164,11 +164,11 @@ static const char* const gs_xpm_defpage[] = {
 // -----------------------------------------------------------------------
 
 
-IMPLEMENT_CLASS(wxPropertyGridPage, wxEvtHandler)
+wxIMPLEMENT_CLASS(wxPropertyGridPage, wxEvtHandler);
 
 
-BEGIN_EVENT_TABLE(wxPropertyGridPage, wxEvtHandler)
-END_EVENT_TABLE()
+wxBEGIN_EVENT_TABLE(wxPropertyGridPage, wxEvtHandler)
+wxEND_EVENT_TABLE()
 
 
 wxPropertyGridPage::wxPropertyGridPage()
@@ -440,11 +440,11 @@ private:
 
 // -----------------------------------------------------------------------
 
-IMPLEMENT_CLASS(wxPropertyGridManager, wxPanel)
+wxIMPLEMENT_CLASS(wxPropertyGridManager, wxPanel);
 
 // -----------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(wxPropertyGridManager, wxPanel)
+wxBEGIN_EVENT_TABLE(wxPropertyGridManager, wxPanel)
   EVT_MOTION(wxPropertyGridManager::OnMouseMove)
   EVT_SIZE(wxPropertyGridManager::OnResize)
   EVT_PAINT(wxPropertyGridManager::OnPaint)
@@ -452,7 +452,7 @@ BEGIN_EVENT_TABLE(wxPropertyGridManager, wxPanel)
   EVT_LEFT_UP(wxPropertyGridManager::OnMouseUp)
   EVT_LEAVE_WINDOW(wxPropertyGridManager::OnMouseEntry)
   //EVT_ENTER_WINDOW(wxPropertyGridManager::OnMouseEntry)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 // -----------------------------------------------------------------------
 

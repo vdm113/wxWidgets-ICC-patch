@@ -23,7 +23,7 @@
 
 class WXDLLIMPEXP_XRC wxCalendarCtrlXmlHandler : public wxXmlResourceHandler
 {
-    DECLARE_DYNAMIC_CLASS(wxCalendarCtrlXmlHandler)
+    wxDECLARE_DYNAMIC_CLASS(wxCalendarCtrlXmlHandler);
 
 public:
     wxCalendarCtrlXmlHandler();

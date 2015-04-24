@@ -29,7 +29,7 @@
     #include "wx/statbmp.h"
 #endif
 
-IMPLEMENT_DYNAMIC_CLASS(wxStaticBitmapXmlHandler, wxXmlResourceHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxStaticBitmapXmlHandler, wxXmlResourceHandler);
 
 wxStaticBitmapXmlHandler::wxStaticBitmapXmlHandler()
                          :wxXmlResourceHandler()

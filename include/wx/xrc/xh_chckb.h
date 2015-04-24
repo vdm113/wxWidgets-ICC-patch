@@ -23,7 +23,7 @@
 
 class WXDLLIMPEXP_XRC wxCheckBoxXmlHandler : public wxXmlResourceHandler
 {
-    DECLARE_DYNAMIC_CLASS(wxCheckBoxXmlHandler)
+    wxDECLARE_DYNAMIC_CLASS(wxCheckBoxXmlHandler);
 
 public:
     wxCheckBoxXmlHandler();

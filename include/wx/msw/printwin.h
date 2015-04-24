@@ -26,7 +26,7 @@
 
 class WXDLLIMPEXP_CORE wxWindowsPrinter : public wxPrinterBase
 {
-    DECLARE_DYNAMIC_CLASS(wxWindowsPrinter)
+    wxDECLARE_DYNAMIC_CLASS(wxWindowsPrinter);
 
 public:
     wxWindowsPrinter(wxPrintDialogData *data = NULL);
@@ -66,7 +66,7 @@ protected:
     virtual bool RenderPageIntoBitmap(wxBitmap& bmp, int pageNum);
 #endif
 
-    DECLARE_DYNAMIC_CLASS_NO_COPY(wxWindowsPrintPreview)
+    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxWindowsPrintPreview);
 };
 
 #endif

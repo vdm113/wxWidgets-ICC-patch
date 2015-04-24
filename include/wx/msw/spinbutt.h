@@ -73,7 +73,7 @@ protected:
    virtual void NormalizeValue();
 
 private:
-    DECLARE_DYNAMIC_CLASS_NO_COPY(wxSpinButton)
+    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxSpinButton);
 };
 
 #endif // wxUSE_SPINBTN

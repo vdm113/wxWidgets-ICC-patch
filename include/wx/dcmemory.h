@@ -43,7 +43,7 @@ public:
     wxBitmap& GetSelectedBitmap();
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxMemoryDC)
+    wxDECLARE_DYNAMIC_CLASS(wxMemoryDC);
 };
 
 

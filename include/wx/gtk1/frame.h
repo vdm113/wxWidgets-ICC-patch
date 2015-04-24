@@ -107,7 +107,7 @@ public:
 
 #endif // wxUSE_MENUS_NATIVE
 
-    DECLARE_DYNAMIC_CLASS(wxFrame)
+    wxDECLARE_DYNAMIC_CLASS(wxFrame);
 };
 
 #endif // __GTKFRAMEH__

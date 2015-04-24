@@ -56,9 +56,9 @@
 // implementation
 // ============================================================================
 
-IMPLEMENT_DYNAMIC_CLASS(wxGenericFindReplaceDialog, wxDialog)
+wxIMPLEMENT_DYNAMIC_CLASS(wxGenericFindReplaceDialog, wxDialog);
 
-BEGIN_EVENT_TABLE(wxGenericFindReplaceDialog, wxDialog)
+wxBEGIN_EVENT_TABLE(wxGenericFindReplaceDialog, wxDialog)
     EVT_BUTTON(wxID_FIND, wxGenericFindReplaceDialog::OnFind)
     EVT_BUTTON(wxID_REPLACE, wxGenericFindReplaceDialog::OnReplace)
     EVT_BUTTON(wxID_REPLACE_ALL, wxGenericFindReplaceDialog::OnReplaceAll)
@@ -69,7 +69,7 @@ BEGIN_EVENT_TABLE(wxGenericFindReplaceDialog, wxDialog)
     EVT_UPDATE_UI(wxID_REPLACE_ALL, wxGenericFindReplaceDialog::OnUpdateFindUI)
 
     EVT_CLOSE(wxGenericFindReplaceDialog::OnCloseWindow)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 // ----------------------------------------------------------------------------
 // wxGenericFindReplaceDialog

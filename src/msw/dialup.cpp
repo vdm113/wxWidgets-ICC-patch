@@ -308,10 +308,10 @@ public:
     }
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxDialUpManagerModule)
+    wxDECLARE_DYNAMIC_CLASS(wxDialUpManagerModule);
 };
 
-IMPLEMENT_DYNAMIC_CLASS(wxDialUpManagerModule, wxModule)
+wxIMPLEMENT_DYNAMIC_CLASS(wxDialUpManagerModule, wxModule);
 
 // ----------------------------------------------------------------------------
 // private functions

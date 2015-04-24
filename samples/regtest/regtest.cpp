@@ -350,7 +350,7 @@ wxMenu *CreateRegistryMenu()
 // ----------------------------------------------------------------------------
 // application class
 // ----------------------------------------------------------------------------
-IMPLEMENT_APP(RegApp)
+wxIMPLEMENT_APP(RegApp);
 
 // `Main program' equivalent, creating windows and returning main app frame
 bool RegApp::OnInit()

@@ -156,8 +156,8 @@ protected:
     wxPopupWindowHandler *m_handlerPopup;
     wxPopupFocusHandler  *m_handlerFocus;
 
-    DECLARE_EVENT_TABLE()
-    DECLARE_DYNAMIC_CLASS(wxPopupTransientWindow)
+    wxDECLARE_EVENT_TABLE();
+    wxDECLARE_DYNAMIC_CLASS(wxPopupTransientWindow);
     wxDECLARE_NO_COPY_CLASS(wxPopupTransientWindow);
 };
 
@@ -191,8 +191,8 @@ protected:
     // the parent combobox
     wxComboCtrl *m_combo;
 
-    DECLARE_EVENT_TABLE()
-    DECLARE_DYNAMIC_CLASS(wxPopupComboWindow)
+    wxDECLARE_EVENT_TABLE();
+    wxDECLARE_DYNAMIC_CLASS(wxPopupComboWindow);
 };
 
 #endif // wxUSE_COMBOBOX && defined(__WXUNIVERSAL__)

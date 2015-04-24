@@ -60,7 +60,7 @@ WX_DEFINE_LIST(wxVariantList)
  * wxVariant
  */
 
-IMPLEMENT_DYNAMIC_CLASS(wxVariant, wxObject)
+wxIMPLEMENT_DYNAMIC_CLASS(wxVariant, wxObject);
 
 wxVariant::wxVariant()
     : wxObject()

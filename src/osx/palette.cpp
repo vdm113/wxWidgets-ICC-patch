@@ -22,7 +22,7 @@
 #include "wx/palette.h"
 #include "wx/colour.h"
 
-IMPLEMENT_DYNAMIC_CLASS(wxPalette, wxGDIObject)
+wxIMPLEMENT_DYNAMIC_CLASS(wxPalette, wxGDIObject);
 
 // ============================================================================
 // wxPaletteRefData

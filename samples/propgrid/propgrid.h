@@ -283,7 +283,7 @@ private:
     FormMain    *Form1;
 };
 
-DECLARE_APP(cxApplication)
+wxDECLARE_APP(cxApplication);
 
 // -----------------------------------------------------------------------
 

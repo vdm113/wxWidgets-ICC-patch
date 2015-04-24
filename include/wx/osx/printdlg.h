@@ -53,7 +53,7 @@ private:
     wxWindow*           m_dialogParent;
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxPrintDialog)
+    wxDECLARE_DYNAMIC_CLASS(wxPrintDialog);
 };
 
 /*
@@ -77,7 +77,7 @@ private:
     wxWindow*               m_dialogParent;
 
 private:
-    DECLARE_DYNAMIC_CLASS_NO_COPY(wxMacPageSetupDialog)
+    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxMacPageSetupDialog);
 };
 
 class WXDLLIMPEXP_FWD_CORE wxTextCtrl;
@@ -111,7 +111,7 @@ private:
     bool CheckValue(wxTextCtrl* textCtrl, int *value, int minValue, const wxString& name);
 
 private:
-    DECLARE_DYNAMIC_CLASS_NO_COPY(wxMacPageMarginsDialog)
+    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxMacPageMarginsDialog);
 };
 
 

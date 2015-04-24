@@ -81,7 +81,7 @@ private:
 
     wxBitmapComboBox *m_combo;
 
-    DECLARE_NO_COPY_CLASS(BitmapComboBoxTestCase)
+    wxDECLARE_NO_COPY_CLASS(BitmapComboBoxTestCase);
 };
 
 // register in the unnamed registry so that these tests are run by default

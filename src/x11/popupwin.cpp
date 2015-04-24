@@ -34,8 +34,8 @@
 // wxPopupWindow
 //-----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(wxPopupWindow,wxPopupWindowBase)
-END_EVENT_TABLE()
+wxBEGIN_EVENT_TABLE(wxPopupWindow,wxPopupWindowBase)
+wxEND_EVENT_TABLE()
 
 wxPopupWindow::~wxPopupWindow()
 {

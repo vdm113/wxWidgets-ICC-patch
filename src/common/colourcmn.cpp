@@ -82,9 +82,9 @@ wxEMPTY_HANDLERS_TABLE(wxColour)
 #else
 
 #if wxCOLOUR_IS_GDIOBJECT
-wxIMPLEMENT_DYNAMIC_CLASS(wxColour, wxGDIObject)
+wxIMPLEMENT_DYNAMIC_CLASS(wxColour, wxGDIObject);
 #else
-wxIMPLEMENT_DYNAMIC_CLASS(wxColour, wxObject)
+wxIMPLEMENT_DYNAMIC_CLASS(wxColour, wxObject);
 #endif
 
 #endif

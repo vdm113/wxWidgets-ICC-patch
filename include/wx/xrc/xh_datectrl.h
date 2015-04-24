@@ -23,7 +23,7 @@
 
 class WXDLLIMPEXP_XRC wxDateCtrlXmlHandler : public wxXmlResourceHandler
 {
-    DECLARE_DYNAMIC_CLASS(wxDateCtrlXmlHandler)
+    wxDECLARE_DYNAMIC_CLASS(wxDateCtrlXmlHandler);
 
 public:
     wxDateCtrlXmlHandler();

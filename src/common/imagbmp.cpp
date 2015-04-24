@@ -61,7 +61,7 @@ static bool CanReadICOOrCUR(wxInputStream *stream, wxUint16 resourceType);
 // wxBMPHandler
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxBMPHandler,wxImageHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxBMPHandler,wxImageHandler);
 
 #if wxUSE_STREAMS
 
@@ -1359,7 +1359,7 @@ bool wxBMPHandler::DoCanRead(wxInputStream& stream)
 // wxICOHandler
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxICOHandler, wxBMPHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxICOHandler, wxBMPHandler);
 
 #if wxUSE_STREAMS
 
@@ -1877,7 +1877,7 @@ bool wxICOHandler::DoCanRead(wxInputStream& stream)
 // wxCURHandler
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxCURHandler, wxICOHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxCURHandler, wxICOHandler);
 
 #if wxUSE_STREAMS
 
@@ -1892,7 +1892,7 @@ bool wxCURHandler::DoCanRead(wxInputStream& stream)
 // wxANIHandler
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxANIHandler, wxCURHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxANIHandler, wxCURHandler);
 
 #if wxUSE_STREAMS
 

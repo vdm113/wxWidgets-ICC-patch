@@ -33,7 +33,7 @@ static const long DEFAULT_VALUE = 0;
 static const long DEFAULT_MIN = 0;
 static const long DEFAULT_MAX = 100;
 
-IMPLEMENT_DYNAMIC_CLASS(wxSpinButtonXmlHandler, wxXmlResourceHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxSpinButtonXmlHandler, wxXmlResourceHandler);
 
 wxSpinButtonXmlHandler::wxSpinButtonXmlHandler()
 : wxXmlResourceHandler()
@@ -74,7 +74,7 @@ bool wxSpinButtonXmlHandler::CanHandle(wxXmlNode *node)
 
 #include "wx/spinctrl.h"
 
-IMPLEMENT_DYNAMIC_CLASS(wxSpinCtrlXmlHandler, wxXmlResourceHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxSpinCtrlXmlHandler, wxXmlResourceHandler);
 
 wxSpinCtrlXmlHandler::wxSpinCtrlXmlHandler()
 : wxXmlResourceHandler()

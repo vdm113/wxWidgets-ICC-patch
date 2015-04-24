@@ -31,7 +31,7 @@
 
 static const long DEFAULT_RANGE = 100;
 
-IMPLEMENT_DYNAMIC_CLASS(wxGaugeXmlHandler, wxXmlResourceHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxGaugeXmlHandler, wxXmlResourceHandler);
 
 wxGaugeXmlHandler::wxGaugeXmlHandler()
                   :wxXmlResourceHandler()

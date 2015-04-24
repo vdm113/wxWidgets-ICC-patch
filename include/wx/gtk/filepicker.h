@@ -112,7 +112,7 @@ private:
     // common part of all ctors
     void Init() { m_dialog = NULL; }
 
-    DECLARE_DYNAMIC_CLASS(wxFileButton)
+    wxDECLARE_DYNAMIC_CLASS(wxFileButton);
 };
 
 
@@ -190,7 +190,7 @@ private:
         m_bIgnoreNextChange = false;
     }
 
-    DECLARE_DYNAMIC_CLASS(wxDirButton)
+    wxDECLARE_DYNAMIC_CLASS(wxDirButton);
 };
 
 #undef FILEDIRBTN_OVERRIDES

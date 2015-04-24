@@ -118,7 +118,7 @@ public:
 
 
     // Put this class on wxWidget's RTTI table
-    DECLARE_DYNAMIC_CLASS(wxMediaEvent)
+    wxDECLARE_DYNAMIC_CLASS(wxMediaEvent);
 };
 
 // ----------------------------------------------------------------------------
@@ -235,7 +235,7 @@ protected:
     class wxMediaBackend* m_imp;
     bool m_bLoaded;
 
-    DECLARE_DYNAMIC_CLASS(wxMediaCtrl)
+    wxDECLARE_DYNAMIC_CLASS(wxMediaCtrl);
 };
 
 // ----------------------------------------------------------------------------
@@ -243,7 +243,7 @@ protected:
 // wxMediaBackend
 //
 // Derive from this and use standard wxWidgets RTTI
-// (DECLARE_DYNAMIC_CLASS and IMPLEMENT_CLASS) to make a backend
+// (wxDECLARE_DYNAMIC_CLASS and wxIMPLEMENT_CLASS) to make a backend
 // for wxMediaCtrl.  Backends are searched alphabetically -
 // the one with the earliest letter is tried first.
 //
@@ -327,7 +327,7 @@ public:
     {                                   }
     virtual void RESERVED9() {}
 
-    DECLARE_DYNAMIC_CLASS(wxMediaBackend)
+    wxDECLARE_DYNAMIC_CLASS(wxMediaBackend);
 };
 
 

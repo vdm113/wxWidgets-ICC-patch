@@ -465,7 +465,7 @@ bool wxDockTaskBarIcon::PopupMenu(wxMenu *menu)
 //
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-IMPLEMENT_DYNAMIC_CLASS(wxTaskBarIcon, wxEvtHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxTaskBarIcon, wxEvtHandler);
 
 //-----------------------------------------------------------------------------
 // wxTaskBarIcon Constructor

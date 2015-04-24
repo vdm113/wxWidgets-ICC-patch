@@ -44,7 +44,7 @@
 // ============================================================================
 
 
-IMPLEMENT_DYNAMIC_CLASS(wxBitmapComboBox, wxComboBox)
+wxIMPLEMENT_DYNAMIC_CLASS(wxBitmapComboBox, wxComboBox);
 
 
 // ----------------------------------------------------------------------------

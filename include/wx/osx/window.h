@@ -37,7 +37,7 @@ class WXDLLIMPEXP_FWD_CORE wxNonOwnedWindow;
 
 class WXDLLIMPEXP_CORE wxWindowMac: public wxWindowBase
 {
-    DECLARE_DYNAMIC_CLASS(wxWindowMac)
+    wxDECLARE_DYNAMIC_CLASS(wxWindowMac);
 
     friend class wxDC;
     friend class wxPaintDC;
@@ -404,7 +404,7 @@ private:
     void DoUpdateScrollbarVisibility();
 
     wxDECLARE_NO_COPY_CLASS(wxWindowMac);
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 #endif // _WX_WINDOW_H_

@@ -65,7 +65,7 @@
 // macros
 // ----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxDragImage, wxObject)
+wxIMPLEMENT_DYNAMIC_CLASS(wxDragImage, wxObject);
 
 #define GetHimageList() ((HIMAGELIST) m_hImageList)
 

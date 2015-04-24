@@ -35,7 +35,7 @@ protected:
     virtual void DoGetSize(int *width, int *height) const;
 
 private:
-    DECLARE_CLASS(wxScreenDCImpl)
+    wxDECLARE_CLASS(wxScreenDCImpl);
 };
 
 

@@ -42,7 +42,7 @@ private:
     static int sm_overlayWindowX;
     static int sm_overlayWindowY;
 
-    DECLARE_DYNAMIC_CLASS(wxScreenDCImpl)
+    wxDECLARE_DYNAMIC_CLASS(wxScreenDCImpl);
 };
 
 #endif // _WX_DCSCREEN_H_

@@ -156,7 +156,7 @@ protected:
         { return (style & wxCLRP_SHOW_LABEL); }
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxColourPickerCtrl)
+    wxDECLARE_DYNAMIC_CLASS(wxColourPickerCtrl);
 };
 
 
@@ -187,7 +187,7 @@ public:
 private:
     wxColour m_colour;
 
-    DECLARE_DYNAMIC_CLASS_NO_ASSIGN(wxColourPickerEvent)
+    wxDECLARE_DYNAMIC_CLASS_NO_ASSIGN(wxColourPickerEvent);
 };
 
 // ----------------------------------------------------------------------------

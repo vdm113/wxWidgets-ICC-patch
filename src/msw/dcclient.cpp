@@ -163,7 +163,7 @@ PaintDCInfos gs_PaintDCInfos;
 // wxMSWWindowDCImpl
 // ----------------------------------------------------------------------------
 
-IMPLEMENT_ABSTRACT_CLASS(wxWindowDCImpl, wxMSWDCImpl)
+wxIMPLEMENT_ABSTRACT_CLASS(wxWindowDCImpl, wxMSWDCImpl);
 
 wxWindowDCImpl::wxWindowDCImpl( wxDC *owner ) :
    wxMSWDCImpl( owner )
@@ -206,7 +206,7 @@ void wxWindowDCImpl::DoGetSize(int *width, int *height) const
 // wxClientDCImpl
 // ----------------------------------------------------------------------------
 
-IMPLEMENT_ABSTRACT_CLASS(wxClientDCImpl, wxWindowDCImpl)
+wxIMPLEMENT_ABSTRACT_CLASS(wxClientDCImpl, wxWindowDCImpl);
 
 wxClientDCImpl::wxClientDCImpl( wxDC *owner ) :
    wxWindowDCImpl( owner )
@@ -266,7 +266,7 @@ void wxClientDCImpl::DoGetSize(int *width, int *height) const
 // wxPaintDCImpl
 // ----------------------------------------------------------------------------
 
-IMPLEMENT_ABSTRACT_CLASS(wxPaintDCImpl, wxClientDCImpl)
+wxIMPLEMENT_ABSTRACT_CLASS(wxPaintDCImpl, wxClientDCImpl);
 
 wxPaintDCImpl::wxPaintDCImpl( wxDC *owner ) :
    wxClientDCImpl( owner )
@@ -370,7 +370,7 @@ public:
 };
 
 
-IMPLEMENT_ABSTRACT_CLASS(wxPaintDCEx,wxPaintDC)
+wxIMPLEMENT_ABSTRACT_CLASS(wxPaintDCEx, wxPaintDC);
 
 wxPaintDCEx::wxPaintDCEx(wxWindow *window, WXHDC dc)
            : wxPaintDC(new wxPaintDCExImpl(this, window, dc))

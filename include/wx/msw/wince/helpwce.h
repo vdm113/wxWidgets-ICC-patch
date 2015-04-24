@@ -55,7 +55,7 @@ protected:
 private:
     wxString m_helpFile;
 
-    DECLARE_CLASS(wxWinceHelpController)
+    wxDECLARE_CLASS(wxWinceHelpController);
 };
 
 #endif // wxUSE_MS_HTML_HELP

@@ -43,7 +43,7 @@ protected:
     // initialize the newly created DC
     void Init();
 
-    DECLARE_CLASS(wxMemoryDCImpl)
+    wxDECLARE_CLASS(wxMemoryDCImpl);
     wxDECLARE_NO_COPY_CLASS(wxMemoryDCImpl);
 };
 

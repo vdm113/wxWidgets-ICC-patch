@@ -50,7 +50,7 @@ public:
 protected:
     virtual int GetColourIndex(const wxColour& col);
 
-    DECLARE_CLASS(wxGLCanvas)
+    wxDECLARE_CLASS(wxGLCanvas);
 };
 
 #endif // _WX_GLCANVAS_H_

@@ -297,7 +297,7 @@ private:
 
     wxVector<wxGridHeaderColumn> m_columns;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxGridHeaderCtrl);
 };
 
@@ -327,7 +327,7 @@ protected:
 
     wxGrid *m_owner;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxGridSubwindow);
 };
 
@@ -345,7 +345,7 @@ private:
     void OnMouseEvent( wxMouseEvent& event );
     void OnMouseWheel( wxMouseEvent& event );
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxGridRowLabelWindow);
 };
 
@@ -364,7 +364,7 @@ private:
     void OnMouseEvent( wxMouseEvent& event );
     void OnMouseWheel( wxMouseEvent& event );
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxGridColLabelWindow);
 };
 
@@ -382,7 +382,7 @@ private:
     void OnMouseWheel( wxMouseEvent& event );
     void OnPaint( wxPaintEvent& event );
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxGridCornerLabelWindow);
 };
 
@@ -411,7 +411,7 @@ private:
     void OnEraseBackground( wxEraseEvent& );
     void OnFocus( wxFocusEvent& );
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxGridWindow);
 };
 

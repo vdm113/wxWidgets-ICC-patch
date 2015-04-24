@@ -62,7 +62,7 @@ static wxRect gs_rectDialog(0, 0, 222, 324);
 // wxWin macros
 // ----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxColourDialog, wxDialog)
+wxIMPLEMENT_DYNAMIC_CLASS(wxColourDialog, wxDialog);
 
 // ============================================================================
 // implementation

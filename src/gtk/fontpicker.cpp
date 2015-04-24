@@ -56,7 +56,7 @@ static void gtk_fontbutton_setfont_callback(GtkFontButton *widget,
 // wxFontButton
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxFontButton, wxButton)
+wxIMPLEMENT_DYNAMIC_CLASS(wxFontButton, wxButton);
 
 bool wxFontButton::Create( wxWindow *parent, wxWindowID id,
                         const wxFont &initial,

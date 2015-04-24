@@ -72,10 +72,10 @@
           virtual void OnExit() { ... }
 
       private:
-          wxDECLARE_DYNAMIC_CLASS(MyModule2)
+          wxDECLARE_DYNAMIC_CLASS(MyModule2);
       };
 
-      wxIMPLEMENT_DYNAMIC_CLASS(MyModule2, wxModule)
+      wxIMPLEMENT_DYNAMIC_CLASS(MyModule2, wxModule);
     @endcode
 
     @library{wxbase}

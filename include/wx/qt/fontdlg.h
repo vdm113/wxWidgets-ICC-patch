@@ -33,7 +33,7 @@ private:
 
     wxFontData m_data;
 
-    DECLARE_DYNAMIC_CLASS(wxFontDialog)
+    wxDECLARE_DYNAMIC_CLASS(wxFontDialog);
 };
 
 #endif // _WX_QT_FONTDLG_H_

@@ -45,7 +45,7 @@
 // wxHTTP
 // ----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxHTTP, wxProtocol)
+wxIMPLEMENT_DYNAMIC_CLASS(wxHTTP, wxProtocol);
 IMPLEMENT_PROTOCOL(wxHTTP, wxT("http"), wxT("80"), true)
 
 wxHTTP::wxHTTP()

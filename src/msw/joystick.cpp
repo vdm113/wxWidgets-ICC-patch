@@ -44,7 +44,7 @@
 
 #include <regstr.h>
 
-IMPLEMENT_DYNAMIC_CLASS(wxJoystick, wxObject)
+wxIMPLEMENT_DYNAMIC_CLASS(wxJoystick, wxObject);
 
 // Attributes
 ////////////////////////////////////////////////////////////////////////////

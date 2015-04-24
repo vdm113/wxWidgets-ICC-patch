@@ -1859,7 +1859,7 @@ WX_DECLARE_USER_EXPORTED_OBJARRAY(wxRect, wxRichTextRectArray, WXDLLIMPEXP_RICHT
 
 class WXDLLIMPEXP_RICHTEXT wxRichTextProperties: public wxObject
 {
-DECLARE_DYNAMIC_CLASS(wxRichTextProperties)
+    wxDECLARE_DYNAMIC_CLASS(wxRichTextProperties);
 public:
 
     /**
@@ -2085,7 +2085,7 @@ protected:
 
     double m_fontScale;
 
-    DECLARE_DYNAMIC_CLASS(wxRichTextFontTable)
+    wxDECLARE_DYNAMIC_CLASS(wxRichTextFontTable);
 };
 
 /**
@@ -2402,7 +2402,7 @@ public:
 
 class WXDLLIMPEXP_RICHTEXT wxRichTextDrawingContext: public wxObject
 {
-    DECLARE_CLASS(wxRichTextDrawingContext)
+    wxDECLARE_CLASS(wxRichTextDrawingContext);
 public:
 
     /**
@@ -2526,7 +2526,7 @@ public:
 
 class WXDLLIMPEXP_RICHTEXT wxRichTextObject: public wxObject
 {
-    DECLARE_CLASS(wxRichTextObject)
+    wxDECLARE_CLASS(wxRichTextObject);
 public:
     /**
         Constructor, taking an optional parent pointer.
@@ -3113,7 +3113,7 @@ WX_DECLARE_LIST_WITH_DECL( wxRichTextObject, wxRichTextObjectList, class WXDLLIM
 
 class WXDLLIMPEXP_RICHTEXT wxRichTextCompositeObject: public wxRichTextObject
 {
-    DECLARE_CLASS(wxRichTextCompositeObject)
+    wxDECLARE_CLASS(wxRichTextCompositeObject);
 public:
 // Constructors
 
@@ -3233,7 +3233,7 @@ protected:
 
 class WXDLLIMPEXP_RICHTEXT wxRichTextParagraphLayoutBox: public wxRichTextCompositeObject
 {
-    DECLARE_DYNAMIC_CLASS(wxRichTextParagraphLayoutBox)
+    wxDECLARE_DYNAMIC_CLASS(wxRichTextParagraphLayoutBox);
 public:
 // Constructors
 
@@ -3838,7 +3838,7 @@ protected:
 
 class WXDLLIMPEXP_RICHTEXT wxRichTextBox: public wxRichTextParagraphLayoutBox
 {
-    DECLARE_DYNAMIC_CLASS(wxRichTextBox)
+    wxDECLARE_DYNAMIC_CLASS(wxRichTextBox);
 public:
 // Constructors
 
@@ -3920,7 +3920,7 @@ protected:
 
 class WXDLLIMPEXP_RICHTEXT wxRichTextField: public wxRichTextParagraphLayoutBox
 {
-    DECLARE_DYNAMIC_CLASS(wxRichTextField)
+    wxDECLARE_DYNAMIC_CLASS(wxRichTextField);
 public:
 // Constructors
 
@@ -4004,7 +4004,7 @@ protected:
 
 class WXDLLIMPEXP_RICHTEXT wxRichTextFieldType: public wxObject
 {
-    DECLARE_CLASS(wxRichTextFieldType)
+    wxDECLARE_CLASS(wxRichTextFieldType);
 public:
     /**
         Creates a field type definition.
@@ -4118,7 +4118,7 @@ WX_DECLARE_STRING_HASH_MAP(wxRichTextFieldType*, wxRichTextFieldTypeHashMap);
 
 class WXDLLIMPEXP_RICHTEXT wxRichTextFieldTypeStandard: public wxRichTextFieldType
 {
-    DECLARE_CLASS(wxRichTextFieldTypeStandard)
+    wxDECLARE_CLASS(wxRichTextFieldTypeStandard);
 public:
 
     // Display style types
@@ -4494,7 +4494,7 @@ WX_DECLARE_LIST_WITH_DECL( wxRichTextLine, wxRichTextLineList , class WXDLLIMPEX
 
 class WXDLLIMPEXP_RICHTEXT wxRichTextParagraph: public wxRichTextCompositeObject
 {
-    DECLARE_DYNAMIC_CLASS(wxRichTextParagraph)
+    wxDECLARE_DYNAMIC_CLASS(wxRichTextParagraph);
 public:
 // Constructors
 
@@ -4681,7 +4681,7 @@ friend class wxRichTextFloatCollector;
 
 class WXDLLIMPEXP_RICHTEXT wxRichTextPlainText: public wxRichTextObject
 {
-    DECLARE_DYNAMIC_CLASS(wxRichTextPlainText)
+    wxDECLARE_DYNAMIC_CLASS(wxRichTextPlainText);
 public:
 // Constructors
 
@@ -4953,7 +4953,7 @@ protected:
 
 class WXDLLIMPEXP_RICHTEXT wxRichTextImage: public wxRichTextObject
 {
-    DECLARE_DYNAMIC_CLASS(wxRichTextImage)
+    wxDECLARE_DYNAMIC_CLASS(wxRichTextImage);
 public:
     enum { ImageState_Unloaded, ImageState_Loaded, ImageState_Bad };
 
@@ -5116,7 +5116,7 @@ class WXDLLIMPEXP_FWD_RICHTEXT wxRichTextAction;
 
 class WXDLLIMPEXP_RICHTEXT wxRichTextBuffer: public wxRichTextParagraphLayoutBox
 {
-    DECLARE_DYNAMIC_CLASS(wxRichTextBuffer)
+    wxDECLARE_DYNAMIC_CLASS(wxRichTextBuffer);
 public:
 // Constructors
 
@@ -5928,7 +5928,7 @@ protected:
 
 class WXDLLIMPEXP_RICHTEXT wxRichTextCell: public wxRichTextBox
 {
-    DECLARE_DYNAMIC_CLASS(wxRichTextCell)
+    wxDECLARE_DYNAMIC_CLASS(wxRichTextCell);
 public:
 // Constructors
 
@@ -6005,7 +6005,7 @@ WX_DECLARE_USER_EXPORTED_OBJARRAY(wxRichTextObjectPtrArray, wxRichTextObjectPtrA
 
 class WXDLLIMPEXP_RICHTEXT wxRichTextTable: public wxRichTextBox
 {
-    DECLARE_DYNAMIC_CLASS(wxRichTextTable)
+    wxDECLARE_DYNAMIC_CLASS(wxRichTextTable);
 public:
 
 // Constructors
@@ -6627,7 +6627,7 @@ protected:
 
 class WXDLLIMPEXP_RICHTEXT wxRichTextFileHandler: public wxObject
 {
-    DECLARE_CLASS(wxRichTextFileHandler)
+    wxDECLARE_CLASS(wxRichTextFileHandler);
 public:
     /**
         Creates a file handler object.
@@ -6782,7 +6782,7 @@ protected:
 
 class WXDLLIMPEXP_RICHTEXT wxRichTextPlainTextHandler: public wxRichTextFileHandler
 {
-    DECLARE_CLASS(wxRichTextPlainTextHandler)
+    wxDECLARE_CLASS(wxRichTextPlainTextHandler);
 public:
     wxRichTextPlainTextHandler(const wxString& name = wxT("Text"),
                                const wxString& ext = wxT("txt"),
@@ -6819,7 +6819,7 @@ protected:
 
 class WXDLLIMPEXP_RICHTEXT wxRichTextDrawingHandler: public wxObject
 {
-    DECLARE_CLASS(wxRichTextDrawingHandler)
+    wxDECLARE_CLASS(wxRichTextDrawingHandler);
 public:
     /**
         Creates a drawing handler object.

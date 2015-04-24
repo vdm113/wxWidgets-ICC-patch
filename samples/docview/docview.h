@@ -94,6 +94,6 @@ private:
     wxDECLARE_NO_COPY_CLASS(MyApp);
 };
 
-DECLARE_APP(MyApp)
+wxDECLARE_APP(MyApp);
 
 #endif // _WX_SAMPLES_DOCVIEW_DOCVIEW_H_

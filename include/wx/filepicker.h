@@ -62,7 +62,7 @@ public:
 private:
     wxString m_path;
 
-    DECLARE_DYNAMIC_CLASS_NO_ASSIGN(wxFileDirPickerEvent)
+    wxDECLARE_DYNAMIC_CLASS_NO_ASSIGN(wxFileDirPickerEvent);
 };
 
 wxDECLARE_EXPORTED_EVENT( WXDLLIMPEXP_CORE, wxEVT_FILEPICKER_CHANGED, wxFileDirPickerEvent );
@@ -317,7 +317,7 @@ protected:
     }
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxFilePickerCtrl)
+    wxDECLARE_DYNAMIC_CLASS(wxFilePickerCtrl);
 };
 
 #endif      // wxUSE_FILEPICKERCTRL
@@ -414,7 +414,7 @@ protected:
     }
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxDirPickerCtrl)
+    wxDECLARE_DYNAMIC_CLASS(wxDirPickerCtrl);
 };
 
 #endif      // wxUSE_DIRPICKERCTRL

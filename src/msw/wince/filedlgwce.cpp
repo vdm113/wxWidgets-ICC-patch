@@ -63,7 +63,7 @@
 // wxWin macros
 // ----------------------------------------------------------------------------
 
-IMPLEMENT_CLASS(wxFileDialog, wxDialog)
+wxIMPLEMENT_CLASS(wxFileDialog, wxDialog);
 
 // ----------------------------------------------------------------------------
 // wxFileDialog

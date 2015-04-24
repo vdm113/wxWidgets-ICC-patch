@@ -30,7 +30,7 @@
     #include "wx/scrolwin.h"
 #endif
 
-IMPLEMENT_DYNAMIC_CLASS(wxScrolledWindowXmlHandler, wxXmlResourceHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxScrolledWindowXmlHandler, wxXmlResourceHandler);
 
 wxScrolledWindowXmlHandler::wxScrolledWindowXmlHandler()
 : wxXmlResourceHandler()

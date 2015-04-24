@@ -35,7 +35,7 @@
 
 #include "wx/xml/xml.h"
 
-IMPLEMENT_DYNAMIC_CLASS(wxToolbookXmlHandler, wxXmlResourceHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxToolbookXmlHandler, wxXmlResourceHandler);
 
 wxToolbookXmlHandler::wxToolbookXmlHandler()
                      :wxXmlResourceHandler(),

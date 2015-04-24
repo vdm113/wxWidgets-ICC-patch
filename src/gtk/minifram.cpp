@@ -318,7 +318,7 @@ static unsigned char close_bits[]={
     0x07, 0xf0, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
 
 
-IMPLEMENT_DYNAMIC_CLASS(wxMiniFrame,wxFrame)
+wxIMPLEMENT_DYNAMIC_CLASS(wxMiniFrame, wxFrame);
 
 wxMiniFrame::~wxMiniFrame()
 {

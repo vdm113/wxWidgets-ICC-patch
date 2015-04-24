@@ -37,7 +37,7 @@ private :
 
 };
 
-DECLARE_APP(BombsApp)
+wxDECLARE_APP(BombsApp);
 
 class BombsCanvas;
 
@@ -69,7 +69,7 @@ private:
     // Subwindows for reference within the program.
     BombsCanvas *m_canvas;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 // App specific menu identifiers
@@ -113,7 +113,7 @@ private:
     int m_cellWidth;
     int m_cellHeight;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 /* The following sizes should probably be redefined */

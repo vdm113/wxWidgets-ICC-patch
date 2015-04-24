@@ -308,8 +308,8 @@ protected:
     bool        m_isHot:1;
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxSplitterWindow)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(wxSplitterWindow);
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxSplitterWindow);
 };
 
@@ -393,7 +393,7 @@ private:
         } pt;               // position of double click for DCLICK event
     } m_data;
 
-    DECLARE_DYNAMIC_CLASS_NO_ASSIGN(wxSplitterEvent)
+    wxDECLARE_DYNAMIC_CLASS_NO_ASSIGN(wxSplitterEvent);
 };
 
 typedef void (wxEvtHandler::*wxSplitterEventFunction)(wxSplitterEvent&);

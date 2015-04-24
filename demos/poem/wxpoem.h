@@ -32,7 +32,7 @@ public:
     int OnExit();
 };
 
-DECLARE_APP(MyApp)
+wxDECLARE_APP(MyApp);
 
 // Define a new canvas which can receive some events
 class MyCanvas: public wxWindow
@@ -48,7 +48,7 @@ public:
 private:
     wxMenu *m_popupMenu;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 // Define a new frame
@@ -101,7 +101,7 @@ private:
     // Icons
     wxIcon *m_corners[4];
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 // Menu items

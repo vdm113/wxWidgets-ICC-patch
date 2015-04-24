@@ -85,7 +85,7 @@ public:
 // wxAcceleratorTable ctors
 // ----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxAcceleratorTable, wxObject)
+wxIMPLEMENT_DYNAMIC_CLASS(wxAcceleratorTable, wxObject);
 
 wxAcceleratorTable::wxAcceleratorTable()
 {

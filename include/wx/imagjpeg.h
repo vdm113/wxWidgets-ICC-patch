@@ -50,7 +50,7 @@ protected:
 #endif
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxJPEGHandler)
+    wxDECLARE_DYNAMIC_CLASS(wxJPEGHandler);
 };
 
 #endif // wxUSE_LIBJPEG

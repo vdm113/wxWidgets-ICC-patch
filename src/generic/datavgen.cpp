@@ -382,11 +382,11 @@ private:
                         event.GetNewOrder());
     }
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxDataViewHeaderWindow);
 };
 
-BEGIN_EVENT_TABLE(wxDataViewHeaderWindow, wxHeaderCtrl)
+wxBEGIN_EVENT_TABLE(wxDataViewHeaderWindow, wxHeaderCtrl)
     EVT_HEADER_CLICK(wxID_ANY, wxDataViewHeaderWindow::OnClick)
     EVT_HEADER_RIGHT_CLICK(wxID_ANY, wxDataViewHeaderWindow::OnRClick)
 
@@ -394,7 +394,7 @@ BEGIN_EVENT_TABLE(wxDataViewHeaderWindow, wxHeaderCtrl)
     EVT_HEADER_END_RESIZE(wxID_ANY, wxDataViewHeaderWindow::OnResize)
 
     EVT_HEADER_END_REORDER(wxID_ANY, wxDataViewHeaderWindow::OnEndReorder)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 //-----------------------------------------------------------------------------
 // wxDataViewRenameTimer
@@ -951,8 +951,8 @@ private:
     wxDataViewRenderer* m_editorRenderer;
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxDataViewMainWindow)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(wxDataViewMainWindow);
+    wxDECLARE_EVENT_TABLE();
 };
 
 // ---------------------------------------------------------
@@ -985,7 +985,7 @@ public:
 // wxDataViewRenderer
 // ---------------------------------------------------------
 
-IMPLEMENT_ABSTRACT_CLASS(wxDataViewRenderer, wxDataViewRendererBase)
+wxIMPLEMENT_ABSTRACT_CLASS(wxDataViewRenderer, wxDataViewRendererBase);
 
 wxDataViewRenderer::wxDataViewRenderer( const wxString &varianttype,
                                         wxDataViewCellMode mode,
@@ -1031,7 +1031,7 @@ int wxDataViewRenderer::GetAlignment() const
 // wxDataViewCustomRenderer
 // ---------------------------------------------------------
 
-IMPLEMENT_ABSTRACT_CLASS(wxDataViewCustomRenderer, wxDataViewRenderer)
+wxIMPLEMENT_ABSTRACT_CLASS(wxDataViewCustomRenderer, wxDataViewRenderer);
 
 wxDataViewCustomRenderer::wxDataViewCustomRenderer( const wxString &varianttype,
                         wxDataViewCellMode mode, int align ) :
@@ -1043,7 +1043,7 @@ wxDataViewCustomRenderer::wxDataViewCustomRenderer( const wxString &varianttype,
 // wxDataViewTextRenderer
 // ---------------------------------------------------------
 
-IMPLEMENT_CLASS(wxDataViewTextRenderer, wxDataViewRenderer)
+wxIMPLEMENT_CLASS(wxDataViewTextRenderer, wxDataViewRenderer);
 
 wxDataViewTextRenderer::wxDataViewTextRenderer( const wxString &varianttype,
                                                 wxDataViewCellMode mode, int align ) :
@@ -1099,7 +1099,7 @@ wxSize wxDataViewTextRenderer::GetSize() const
 // wxDataViewBitmapRenderer
 // ---------------------------------------------------------
 
-IMPLEMENT_CLASS(wxDataViewBitmapRenderer, wxDataViewRenderer)
+wxIMPLEMENT_CLASS(wxDataViewBitmapRenderer, wxDataViewRenderer);
 
 wxDataViewBitmapRenderer::wxDataViewBitmapRenderer( const wxString &varianttype,
                                                     wxDataViewCellMode mode, int align ) :
@@ -1146,7 +1146,7 @@ wxSize wxDataViewBitmapRenderer::GetSize() const
 // wxDataViewToggleRenderer
 // ---------------------------------------------------------
 
-IMPLEMENT_ABSTRACT_CLASS(wxDataViewToggleRenderer, wxDataViewRenderer)
+wxIMPLEMENT_ABSTRACT_CLASS(wxDataViewToggleRenderer, wxDataViewRenderer);
 
 wxDataViewToggleRenderer::wxDataViewToggleRenderer( const wxString &varianttype,
                         wxDataViewCellMode mode, int align ) :
@@ -1222,7 +1222,7 @@ wxSize wxDataViewToggleRenderer::GetSize() const
 // wxDataViewProgressRenderer
 // ---------------------------------------------------------
 
-IMPLEMENT_ABSTRACT_CLASS(wxDataViewProgressRenderer, wxDataViewRenderer)
+wxIMPLEMENT_ABSTRACT_CLASS(wxDataViewProgressRenderer, wxDataViewRenderer);
 
 wxDataViewProgressRenderer::wxDataViewProgressRenderer( const wxString &label,
     const wxString &varianttype, wxDataViewCellMode mode, int align ) :
@@ -1274,7 +1274,7 @@ wxSize wxDataViewProgressRenderer::GetSize() const
 // wxDataViewIconTextRenderer
 // ---------------------------------------------------------
 
-IMPLEMENT_CLASS(wxDataViewIconTextRenderer, wxDataViewRenderer)
+wxIMPLEMENT_CLASS(wxDataViewIconTextRenderer, wxDataViewRenderer);
 
 wxDataViewIconTextRenderer::wxDataViewIconTextRenderer(
 const wxString &varianttype, wxDataViewCellMode mode, int align ) :
@@ -1509,16 +1509,16 @@ void wxDataViewRenameTimer::Notify()
 static void BuildTreeHelper( const wxDataViewModel * model,  const wxDataViewItem & item,
                              wxDataViewTreeNode * node);
 
-IMPLEMENT_ABSTRACT_CLASS(wxDataViewMainWindow, wxWindow)
+wxIMPLEMENT_ABSTRACT_CLASS(wxDataViewMainWindow, wxWindow);
 
-BEGIN_EVENT_TABLE(wxDataViewMainWindow,wxWindow)
+wxBEGIN_EVENT_TABLE(wxDataViewMainWindow,wxWindow)
     EVT_PAINT         (wxDataViewMainWindow::OnPaint)
     EVT_MOUSE_EVENTS  (wxDataViewMainWindow::OnMouse)
     EVT_SET_FOCUS     (wxDataViewMainWindow::OnSetFocus)
     EVT_KILL_FOCUS    (wxDataViewMainWindow::OnKillFocus)
     EVT_CHAR_HOOK     (wxDataViewMainWindow::OnCharHook)
     EVT_CHAR          (wxDataViewMainWindow::OnChar)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 wxDataViewMainWindow::wxDataViewMainWindow( wxDataViewCtrl *parent, wxWindowID id,
     const wxPoint &pos, const wxSize &size, const wxString &name ) :
@@ -4775,10 +4775,10 @@ void wxDataViewMainWindow::UpdateColumnSizes()
 
 WX_DEFINE_LIST(wxDataViewColumnList)
 
-IMPLEMENT_DYNAMIC_CLASS(wxDataViewCtrl, wxDataViewCtrlBase)
-BEGIN_EVENT_TABLE(wxDataViewCtrl, wxDataViewCtrlBase)
+wxIMPLEMENT_DYNAMIC_CLASS(wxDataViewCtrl, wxDataViewCtrlBase);
+wxBEGIN_EVENT_TABLE(wxDataViewCtrl, wxDataViewCtrlBase)
     EVT_SIZE(wxDataViewCtrl::OnSize)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 wxDataViewCtrl::~wxDataViewCtrl()
 {

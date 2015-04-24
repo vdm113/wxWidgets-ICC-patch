@@ -88,7 +88,7 @@ protected:
 
     friend class wxStreamBuffer;
 
-    DECLARE_ABSTRACT_CLASS(wxStreamBase)
+    wxDECLARE_ABSTRACT_CLASS(wxStreamBase);
     wxDECLARE_NO_COPY_CLASS(wxStreamBase);
 };
 
@@ -228,7 +228,7 @@ protected:
 
     friend class wxStreamBuffer;
 
-    DECLARE_ABSTRACT_CLASS(wxInputStream)
+    wxDECLARE_ABSTRACT_CLASS(wxInputStream);
     wxDECLARE_NO_COPY_CLASS(wxInputStream);
 };
 
@@ -270,7 +270,7 @@ protected:
 
     friend class wxStreamBuffer;
 
-    DECLARE_ABSTRACT_CLASS(wxOutputStream)
+    wxDECLARE_ABSTRACT_CLASS(wxOutputStream);
     wxDECLARE_NO_COPY_CLASS(wxOutputStream);
 };
 
@@ -299,7 +299,7 @@ protected:
     size_t m_currentPos,
            m_lastPos;
 
-    DECLARE_DYNAMIC_CLASS(wxCountingOutputStream)
+    wxDECLARE_DYNAMIC_CLASS(wxCountingOutputStream);
     wxDECLARE_NO_COPY_CLASS(wxCountingOutputStream);
 };
 
@@ -325,7 +325,7 @@ protected:
     wxInputStream *m_parent_i_stream;
     bool m_owns;
 
-    DECLARE_ABSTRACT_CLASS(wxFilterInputStream)
+    wxDECLARE_ABSTRACT_CLASS(wxFilterInputStream);
     wxDECLARE_NO_COPY_CLASS(wxFilterInputStream);
 };
 
@@ -347,7 +347,7 @@ protected:
     wxOutputStream *m_parent_o_stream;
     bool m_owns;
 
-    DECLARE_ABSTRACT_CLASS(wxFilterOutputStream)
+    wxDECLARE_ABSTRACT_CLASS(wxFilterOutputStream);
     wxDECLARE_NO_COPY_CLASS(wxFilterOutputStream);
 };
 
@@ -379,7 +379,7 @@ public:
 protected:
     wxString::size_type FindExtension(const wxString& location) const;
 
-    DECLARE_ABSTRACT_CLASS(wxFilterClassFactoryBase)
+    wxDECLARE_ABSTRACT_CLASS(wxFilterClassFactoryBase);
 };
 
 class WXDLLIMPEXP_BASE wxFilterClassFactory : public wxFilterClassFactoryBase
@@ -412,7 +412,7 @@ private:
     static wxFilterClassFactory *sm_first;
     wxFilterClassFactory *m_next;
 
-    DECLARE_ABSTRACT_CLASS(wxFilterClassFactory)
+    wxDECLARE_ABSTRACT_CLASS(wxFilterClassFactory);
 };
 
 // ============================================================================

@@ -115,7 +115,7 @@ protected:
 };
 
 // created dynamically by wxWidgets
-DECLARE_APP (App);
+wxDECLARE_APP(App);
 
 //----------------------------------------------------------------------------
 //! frame of the application APP_VENDOR-APP_NAME.
@@ -197,7 +197,7 @@ private:
 // implementation
 //============================================================================
 
-IMPLEMENT_APP (App)
+wxIMPLEMENT_APP(App);
 
 
 wxBEGIN_EVENT_TABLE(App, wxApp)

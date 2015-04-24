@@ -40,8 +40,8 @@ wxDEFINE_EVENT(wxEVT_RIBBONGALLERY_HOVER_CHANGED, wxRibbonGalleryEvent);
 wxDEFINE_EVENT(wxEVT_RIBBONGALLERY_SELECTED, wxRibbonGalleryEvent);
 wxDEFINE_EVENT(wxEVT_RIBBONGALLERY_CLICKED, wxRibbonGalleryEvent);
 
-IMPLEMENT_DYNAMIC_CLASS(wxRibbonGalleryEvent, wxCommandEvent)
-IMPLEMENT_CLASS(wxRibbonGallery, wxRibbonControl)
+wxIMPLEMENT_DYNAMIC_CLASS(wxRibbonGalleryEvent, wxCommandEvent);
+wxIMPLEMENT_CLASS(wxRibbonGallery, wxRibbonControl);
 
 class wxRibbonGalleryItem
 {
@@ -76,7 +76,7 @@ protected:
     bool m_is_visible;
 };
 
-BEGIN_EVENT_TABLE(wxRibbonGallery, wxRibbonControl)
+wxBEGIN_EVENT_TABLE(wxRibbonGallery, wxRibbonControl)
     EVT_ENTER_WINDOW(wxRibbonGallery::OnMouseEnter)
     EVT_ERASE_BACKGROUND(wxRibbonGallery::OnEraseBackground)
     EVT_LEAVE_WINDOW(wxRibbonGallery::OnMouseLeave)
@@ -86,7 +86,7 @@ BEGIN_EVENT_TABLE(wxRibbonGallery, wxRibbonControl)
     EVT_MOTION(wxRibbonGallery::OnMouseMove)
     EVT_PAINT(wxRibbonGallery::OnPaint)
     EVT_SIZE(wxRibbonGallery::OnSize)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 wxRibbonGallery::wxRibbonGallery()
 {

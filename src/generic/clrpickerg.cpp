@@ -42,7 +42,7 @@
 // ============================================================================
 
 wxColourData wxGenericColourButton::ms_data;
-IMPLEMENT_DYNAMIC_CLASS(wxGenericColourButton, wxBitmapButton)
+wxIMPLEMENT_DYNAMIC_CLASS(wxGenericColourButton, wxBitmapButton);
 
 // ----------------------------------------------------------------------------
 // wxGenericColourButton

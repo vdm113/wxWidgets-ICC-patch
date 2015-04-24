@@ -43,7 +43,7 @@
 // wxGraphicsObject
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxGraphicsObject, wxObject)
+wxIMPLEMENT_DYNAMIC_CLASS(wxGraphicsObject, wxObject);
 
 wxGraphicsObjectRefData::wxGraphicsObjectRefData( wxGraphicsRenderer* renderer )
 {
@@ -107,10 +107,10 @@ wxObjectRefData* wxGraphicsObject::CloneRefData(const wxObjectRefData* data) con
 // pens etc.
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxGraphicsPen, wxGraphicsObject)
-IMPLEMENT_DYNAMIC_CLASS(wxGraphicsBrush, wxGraphicsObject)
-IMPLEMENT_DYNAMIC_CLASS(wxGraphicsFont, wxGraphicsObject)
-IMPLEMENT_DYNAMIC_CLASS(wxGraphicsBitmap, wxGraphicsObject)
+wxIMPLEMENT_DYNAMIC_CLASS(wxGraphicsPen, wxGraphicsObject);
+wxIMPLEMENT_DYNAMIC_CLASS(wxGraphicsBrush, wxGraphicsObject);
+wxIMPLEMENT_DYNAMIC_CLASS(wxGraphicsFont, wxGraphicsObject);
+wxIMPLEMENT_DYNAMIC_CLASS(wxGraphicsBitmap, wxGraphicsObject);
 
 WXDLLIMPEXP_DATA_CORE(wxGraphicsPen) wxNullGraphicsPen;
 WXDLLIMPEXP_DATA_CORE(wxGraphicsBrush) wxNullGraphicsBrush;
@@ -121,7 +121,7 @@ WXDLLIMPEXP_DATA_CORE(wxGraphicsBitmap) wxNullGraphicsBitmap;
 // matrix
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxGraphicsMatrix, wxGraphicsObject)
+wxIMPLEMENT_DYNAMIC_CLASS(wxGraphicsMatrix, wxGraphicsObject);
 WXDLLIMPEXP_DATA_CORE(wxGraphicsMatrix) wxNullGraphicsMatrix;
 
 // concatenates the matrix
@@ -212,7 +212,7 @@ void * wxGraphicsMatrix::GetNativeMatrix() const
 // path
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxGraphicsPath, wxGraphicsObject)
+wxIMPLEMENT_DYNAMIC_CLASS(wxGraphicsPath, wxGraphicsObject);
 WXDLLIMPEXP_DATA_CORE(wxGraphicsPath) wxNullGraphicsPath;
 
 // convenience functions, for using wxPoint2DDouble etc
@@ -536,7 +536,7 @@ void * wxGraphicsBitmap::GetNativeBitmap() const
 // wxGraphicsContext Convenience Methods
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_ABSTRACT_CLASS(wxGraphicsContext, wxObject)
+wxIMPLEMENT_ABSTRACT_CLASS(wxGraphicsContext, wxObject);
 
 
 wxGraphicsContext::wxGraphicsContext(wxGraphicsRenderer* renderer) :
@@ -949,6 +949,6 @@ wxGraphicsContext* wxGraphicsContext::Create()
 // wxGraphicsRenderer
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_ABSTRACT_CLASS(wxGraphicsRenderer, wxObject)
+wxIMPLEMENT_ABSTRACT_CLASS(wxGraphicsRenderer, wxObject);
 
 #endif // wxUSE_GRAPHICS_CONTEXT

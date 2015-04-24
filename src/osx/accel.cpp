@@ -25,7 +25,7 @@
     #include "wx/string.h"
 #endif
 
-IMPLEMENT_DYNAMIC_CLASS(wxAcceleratorTable, wxObject)
+wxIMPLEMENT_DYNAMIC_CLASS(wxAcceleratorTable, wxObject);
 
 // ----------------------------------------------------------------------------
 // wxAccelList: a list of wxAcceleratorEntries

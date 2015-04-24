@@ -231,7 +231,7 @@ wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
 
 wxEND_EVENT_TABLE()
 
-IMPLEMENT_APP(MyApp)
+wxIMPLEMENT_APP(MyApp);
 
 // ============================================================================
 // MyFrame
@@ -574,7 +574,7 @@ void MyFrame::OnLboxSelect(wxCommandEvent& event)
 // MyHtmlListBox
 // ============================================================================
 
-IMPLEMENT_DYNAMIC_CLASS(MyHtmlListBox, wxHtmlListBox)
+wxIMPLEMENT_DYNAMIC_CLASS(MyHtmlListBox, wxHtmlListBox);
 
 MyHtmlListBox::MyHtmlListBox(wxWindow *parent, bool multi)
              : wxHtmlListBox(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize,

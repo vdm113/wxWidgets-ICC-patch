@@ -80,7 +80,7 @@ protected:
 private:
     void Init() { m_rangeMax = m_gaugePos = 0; }
 
-    DECLARE_DYNAMIC_CLASS(wxGauge)
+    wxDECLARE_DYNAMIC_CLASS(wxGauge);
 };
 
 #endif

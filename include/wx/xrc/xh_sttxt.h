@@ -23,7 +23,7 @@
 
 class WXDLLIMPEXP_XRC wxStaticTextXmlHandler : public wxXmlResourceHandler
 {
-    DECLARE_DYNAMIC_CLASS(wxStaticTextXmlHandler)
+    wxDECLARE_DYNAMIC_CLASS(wxStaticTextXmlHandler);
 
 public:
     wxStaticTextXmlHandler();

@@ -48,7 +48,7 @@
 // wxMemoryInputStream
 // ----------------------------------------------------------------------------
 
-IMPLEMENT_ABSTRACT_CLASS(wxMemoryInputStream, wxInputStream)
+wxIMPLEMENT_ABSTRACT_CLASS(wxMemoryInputStream, wxInputStream);
 
 wxMemoryInputStream::wxMemoryInputStream(const void *data, size_t len)
 {
@@ -159,7 +159,7 @@ wxFileOffset wxMemoryInputStream::OnSysTell() const
 // wxMemoryOutputStream
 // ----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxMemoryOutputStream, wxOutputStream)
+wxIMPLEMENT_DYNAMIC_CLASS(wxMemoryOutputStream, wxOutputStream);
 
 wxMemoryOutputStream::wxMemoryOutputStream(void *data, size_t len)
 {

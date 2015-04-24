@@ -739,7 +739,7 @@ protected:
 
 private:
     wxDECLARE_NO_COPY_CLASS(wxVScrolledWindow);
-    DECLARE_ABSTRACT_CLASS(wxVScrolledWindow)
+    wxDECLARE_ABSTRACT_CLASS(wxVScrolledWindow);
 };
 
 
@@ -806,7 +806,7 @@ protected:
 
 private:
     wxDECLARE_NO_COPY_CLASS(wxHScrolledWindow);
-    DECLARE_ABSTRACT_CLASS(wxHScrolledWindow)
+    wxDECLARE_ABSTRACT_CLASS(wxHScrolledWindow);
 };
 
 
@@ -871,7 +871,7 @@ protected:
 
 private:
     wxDECLARE_NO_COPY_CLASS(wxHVScrolledWindow);
-    DECLARE_ABSTRACT_CLASS(wxHVScrolledWindow)
+    wxDECLARE_ABSTRACT_CLASS(wxHVScrolledWindow);
 };
 
 #endif // _WX_VSCROLL_H_

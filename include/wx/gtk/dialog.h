@@ -53,7 +53,7 @@ private:
     bool m_modalShowing;
     wxGUIEventLoop *m_modalLoop;
 
-    DECLARE_DYNAMIC_CLASS(wxDialog)
+    wxDECLARE_DYNAMIC_CLASS(wxDialog);
 };
 
 #endif // _WX_GTKDIALOG_H_

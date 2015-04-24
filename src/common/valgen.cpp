@@ -56,7 +56,7 @@
 
 #include "wx/valgen.h"
 
-IMPLEMENT_CLASS(wxGenericValidator, wxValidator)
+wxIMPLEMENT_CLASS(wxGenericValidator, wxValidator);
 
 wxGenericValidator::wxGenericValidator(bool *val)
 {

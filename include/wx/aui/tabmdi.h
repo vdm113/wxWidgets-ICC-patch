@@ -114,8 +114,8 @@ protected:
     virtual void DoGetClientSize(int *width, int *height) const;
 
 private:
-    DECLARE_EVENT_TABLE()
-    DECLARE_DYNAMIC_CLASS(wxAuiMDIParentFrame)
+    wxDECLARE_EVENT_TABLE();
+    wxDECLARE_DYNAMIC_CLASS(wxAuiMDIParentFrame);
 };
 
 //-----------------------------------------------------------------------------
@@ -235,8 +235,8 @@ protected:
 
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxAuiMDIChildFrame)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(wxAuiMDIChildFrame);
+    wxDECLARE_EVENT_TABLE();
 
     friend class wxAuiMDIClientWindow;
 };
@@ -269,8 +269,8 @@ protected:
     void OnSize(wxSizeEvent& evt);
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxAuiMDIClientWindow)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_DYNAMIC_CLASS(wxAuiMDIClientWindow);
+    wxDECLARE_EVENT_TABLE();
 };
 #endif // wxUSE_AUI
 

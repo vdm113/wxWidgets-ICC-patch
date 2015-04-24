@@ -134,7 +134,7 @@ public:
     }
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxColourPropertyValue)
+    wxDECLARE_DYNAMIC_CLASS(wxColourPropertyValue);
 };
 
 
@@ -295,7 +295,7 @@ private:
 */
 class WXDLLIMPEXP_PROPGRID wxCursorProperty : public wxEnumProperty
 {
-    DECLARE_DYNAMIC_CLASS(wxCursorProperty)
+    wxDECLARE_DYNAMIC_CLASS(wxCursorProperty);
 
     wxCursorProperty( const wxString& label= wxPG_LABEL,
                       const wxString& name= wxPG_LABEL,
@@ -319,7 +319,7 @@ WXDLLIMPEXP_PROPGRID const wxString& wxPGGetDefaultImageWildcard();
 */
 class WXDLLIMPEXP_PROPGRID wxImageFileProperty : public wxFileProperty
 {
-    DECLARE_DYNAMIC_CLASS(wxImageFileProperty)
+    wxDECLARE_DYNAMIC_CLASS(wxImageFileProperty);
 public:
 
     wxImageFileProperty( const wxString& label= wxPG_LABEL,
@@ -501,7 +501,7 @@ protected:
 //   used for event handling here.
 class WXDLLIMPEXP_PROPGRID wxPGSpinCtrlEditor : public wxPGTextCtrlEditor
 {
-    DECLARE_DYNAMIC_CLASS(wxPGSpinCtrlEditor)
+    wxDECLARE_DYNAMIC_CLASS(wxPGSpinCtrlEditor);
 public:
     virtual ~wxPGSpinCtrlEditor();
 

@@ -35,7 +35,7 @@
 #include "wx/html/helpctrl.h"
 #include "wx/msw/helpbest.h"
 
-IMPLEMENT_DYNAMIC_CLASS( wxBestHelpController, wxHelpControllerBase )
+wxIMPLEMENT_DYNAMIC_CLASS(wxBestHelpController, wxHelpControllerBase);
 
 bool wxBestHelpController::Initialize( const wxString& filename )
 {

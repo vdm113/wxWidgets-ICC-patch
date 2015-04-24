@@ -42,7 +42,7 @@ public:
     virtual WXHWND MSWGetParent() const;
 
 protected:
-    DECLARE_DYNAMIC_CLASS_NO_COPY(wxPopupWindow)
+    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxPopupWindow);
 };
 
 #endif // _WX_MSW_POPUPWIN_H_

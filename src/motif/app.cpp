@@ -72,7 +72,7 @@ extern bool wxAddIdleCallback();
 
 wxHashTable *wxWidgetHashTable = NULL;
 
-IMPLEMENT_DYNAMIC_CLASS(wxApp, wxEvtHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxApp, wxEvtHandler);
 
 extern "C"
 {

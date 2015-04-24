@@ -124,8 +124,8 @@ protected:
     bool m_hovered;
 
 #ifndef SWIG
-    DECLARE_CLASS(wxRibbonGallery)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_CLASS(wxRibbonGallery);
+    wxDECLARE_EVENT_TABLE();
 #endif
 };
 
@@ -160,7 +160,7 @@ protected:
 
 #ifndef SWIG
 private:
-    DECLARE_DYNAMIC_CLASS_NO_ASSIGN(wxRibbonGalleryEvent)
+    wxDECLARE_DYNAMIC_CLASS_NO_ASSIGN(wxRibbonGalleryEvent);
 #endif
 };
 

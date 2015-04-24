@@ -49,7 +49,7 @@ protected:
     void DoSet3StateValue(wxCheckBoxState val);
     virtual wxCheckBoxState DoGet3StateValue() const;
 
-    DECLARE_DYNAMIC_CLASS(wxCheckBox)
+    wxDECLARE_DYNAMIC_CLASS(wxCheckBox);
 };
 
 class WXDLLIMPEXP_FWD_CORE wxBitmap;
@@ -83,7 +83,7 @@ public:
     virtual void SetLabel(const wxBitmap *bitmap);
     virtual void SetLabel( const wxString & WXUNUSED(name) ) {}
 
-    DECLARE_DYNAMIC_CLASS(wxBitmapCheckBox)
+    wxDECLARE_DYNAMIC_CLASS(wxBitmapCheckBox);
 };
 #endif
     // _WX_CHECKBOX_H_

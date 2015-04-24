@@ -98,7 +98,7 @@ private:
     wxUint32 m_holidays;
 
 
-    DECLARE_DYNAMIC_CLASS(wxCalendarCtrl)
+    wxDECLARE_DYNAMIC_CLASS(wxCalendarCtrl);
     wxDECLARE_NO_COPY_CLASS(wxCalendarCtrl);
 };
 

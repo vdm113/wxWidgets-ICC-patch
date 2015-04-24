@@ -57,8 +57,8 @@ wxDEFINE_EVENT( wxEVT_AUITOOLBAR_MIDDLE_CLICK, wxAuiToolBarEvent );
 wxDEFINE_EVENT( wxEVT_AUITOOLBAR_BEGIN_DRAG, wxAuiToolBarEvent );
 
 
-IMPLEMENT_CLASS(wxAuiToolBar, wxControl)
-IMPLEMENT_DYNAMIC_CLASS(wxAuiToolBarEvent, wxEvent)
+wxIMPLEMENT_CLASS(wxAuiToolBar, wxControl);
+wxIMPLEMENT_DYNAMIC_CLASS(wxAuiToolBarEvent, wxEvent);
 
 
 // missing wxITEM_* items
@@ -807,7 +807,7 @@ static wxOrientation GetOrientation(long style)
     }
 }
 
-BEGIN_EVENT_TABLE(wxAuiToolBar, wxControl)
+wxBEGIN_EVENT_TABLE(wxAuiToolBar, wxControl)
     EVT_SIZE(wxAuiToolBar::OnSize)
     EVT_IDLE(wxAuiToolBar::OnIdle)
     EVT_ERASE_BACKGROUND(wxAuiToolBar::OnEraseBackground)
@@ -825,7 +825,7 @@ BEGIN_EVENT_TABLE(wxAuiToolBar, wxControl)
     EVT_LEAVE_WINDOW(wxAuiToolBar::OnLeaveWindow)
     EVT_MOUSE_CAPTURE_LOST(wxAuiToolBar::OnCaptureLost)
     EVT_SET_CURSOR(wxAuiToolBar::OnSetCursor)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 void wxAuiToolBar::Init()
 {

@@ -58,7 +58,7 @@ private:
 
     void Init();
 
-    DECLARE_ABSTRACT_CLASS(wxMemoryDCImpl)
+    wxDECLARE_ABSTRACT_CLASS(wxMemoryDCImpl);
 };
 
 #endif

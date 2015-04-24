@@ -68,7 +68,7 @@ static wxString GetFSWEventChangeTypeName(int type)
 // wxFileSystemWatcherEvent implementation
 // ============================================================================
 
-IMPLEMENT_DYNAMIC_CLASS(wxFileSystemWatcherEvent, wxEvent);
+wxIMPLEMENT_DYNAMIC_CLASS(wxFileSystemWatcherEvent, wxEvent);
 
 wxString wxFileSystemWatcherEvent::ToString() const
 {

@@ -73,7 +73,7 @@ private:
     // default events handling, calls CreatePopupMenu:
     void OnRightButtonDown(wxTaskBarIconEvent& event);
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxTaskBarIconBase);
 };
 

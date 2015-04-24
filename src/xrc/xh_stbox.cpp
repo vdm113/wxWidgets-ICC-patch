@@ -29,7 +29,7 @@
     #include "wx/statbox.h"
 #endif
 
-IMPLEMENT_DYNAMIC_CLASS(wxStaticBoxXmlHandler, wxXmlResourceHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxStaticBoxXmlHandler, wxXmlResourceHandler);
 
 wxStaticBoxXmlHandler::wxStaticBoxXmlHandler()
                       :wxXmlResourceHandler()

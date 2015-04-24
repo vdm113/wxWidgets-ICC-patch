@@ -71,7 +71,7 @@ protected:
 
 private:
     void Init();
-    DECLARE_ABSTRACT_CLASS(wxSockAddress)
+    wxDECLARE_ABSTRACT_CLASS(wxSockAddress);
 };
 
 // An IP address (either IPv4 or IPv6)
@@ -120,7 +120,7 @@ private:
     virtual void DoInitImpl() = 0;
 
 
-    DECLARE_ABSTRACT_CLASS(wxIPaddress)
+    wxDECLARE_ABSTRACT_CLASS(wxIPaddress);
 };
 
 // An IPv4 address
@@ -152,7 +152,7 @@ public:
 private:
     virtual void DoInitImpl();
 
-    DECLARE_DYNAMIC_CLASS(wxIPV4address)
+    wxDECLARE_DYNAMIC_CLASS(wxIPV4address);
 };
 
 
@@ -183,7 +183,7 @@ public:
 private:
     virtual void DoInitImpl();
 
-    DECLARE_DYNAMIC_CLASS(wxIPV6address)
+    wxDECLARE_DYNAMIC_CLASS(wxIPV6address);
 };
 
 #endif // wxUSE_IPV6
@@ -215,7 +215,7 @@ private:
         return const_cast<wxUNIXaddress *>(this)->GetUNIX();
     }
 
-    DECLARE_DYNAMIC_CLASS(wxUNIXaddress)
+    wxDECLARE_DYNAMIC_CLASS(wxUNIXaddress);
 };
 
 #endif // wxHAS_UNIX_DOMAIN_SOCKETS

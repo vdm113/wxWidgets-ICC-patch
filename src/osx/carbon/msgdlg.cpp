@@ -29,7 +29,7 @@
 #include "wx/osx/uma.h"
 
 
-IMPLEMENT_CLASS(wxMessageDialog, wxDialog)
+wxIMPLEMENT_CLASS(wxMessageDialog, wxDialog);
 
 
 wxMessageDialog::wxMessageDialog(wxWindow *parent,

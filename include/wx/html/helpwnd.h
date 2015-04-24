@@ -83,7 +83,7 @@ class WXDLLIMPEXP_FWD_HTML wxHtmlHelpController;
 
 class WXDLLIMPEXP_HTML wxHtmlHelpWindow : public wxWindow
 {
-    DECLARE_DYNAMIC_CLASS(wxHtmlHelpWindow)
+    wxDECLARE_DYNAMIC_CLASS(wxHtmlHelpWindow);
 
 public:
     wxHtmlHelpWindow(wxHtmlHelpData* data = NULL) { Init(data); }
@@ -268,7 +268,7 @@ private:
     void DisplayIndexItem(const wxHtmlHelpMergedIndexItem *it);
     wxHtmlHelpMergedIndex *m_mergedIndex;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxHtmlHelpWindow);
 };
 

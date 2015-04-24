@@ -79,7 +79,7 @@ private:
     void Init() { m_art = NULL; }
 
 #ifndef SWIG
-    DECLARE_CLASS(wxRibbonControl)
+    wxDECLARE_CLASS(wxRibbonControl);
 #endif
 };
 

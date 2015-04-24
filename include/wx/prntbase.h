@@ -182,7 +182,7 @@ public:
     int  m_ref;
 
 private:
-    DECLARE_CLASS(wxPrintNativeDataBase)
+    wxDECLARE_CLASS(wxPrintNativeDataBase);
     wxDECLARE_NO_COPY_CLASS(wxPrintNativeDataBase);
 };
 
@@ -226,7 +226,7 @@ public:
     static bool           sm_abortIt;
 
 private:
-    DECLARE_CLASS(wxPrinterBase)
+    wxDECLARE_CLASS(wxPrinterBase);
     wxDECLARE_NO_COPY_CLASS(wxPrinterBase);
 };
 
@@ -253,7 +253,7 @@ protected:
     wxPrinterBase    *m_pimpl;
 
 private:
-    DECLARE_CLASS(wxPrinter)
+    wxDECLARE_CLASS(wxPrinter);
     wxDECLARE_NO_COPY_CLASS(wxPrinter);
 };
 
@@ -347,7 +347,7 @@ private:
     wxRect           m_paperRectPixels;
 
 private:
-    DECLARE_ABSTRACT_CLASS(wxPrintout)
+    wxDECLARE_ABSTRACT_CLASS(wxPrintout);
     wxDECLARE_NO_COPY_CLASS(wxPrintout);
 };
 
@@ -385,8 +385,8 @@ private:
 
     wxPrintPreviewBase* m_printPreview;
 
-    DECLARE_CLASS(wxPreviewCanvas)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_CLASS(wxPreviewCanvas);
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxPreviewCanvas);
 };
 
@@ -447,8 +447,8 @@ protected:
 private:
     void OnChar(wxKeyEvent& event);
 
-    DECLARE_EVENT_TABLE()
-    DECLARE_CLASS(wxPreviewFrame)
+    wxDECLARE_EVENT_TABLE();
+    wxDECLARE_CLASS(wxPreviewFrame);
     wxDECLARE_NO_COPY_CLASS(wxPreviewFrame);
 };
 
@@ -487,7 +487,7 @@ private:
 
 class WXDLLIMPEXP_CORE wxPreviewControlBar: public wxPanel
 {
-    DECLARE_CLASS(wxPreviewControlBar)
+    wxDECLARE_CLASS(wxPreviewControlBar);
 
 public:
     wxPreviewControlBar(wxPrintPreviewBase *preview,
@@ -565,7 +565,7 @@ private:
     void OnZoomOutButton(wxCommandEvent & WXUNUSED(event)) { DoZoomOut(); }
     void OnZoomChoice(wxCommandEvent& WXUNUSED(event)) { DoZoom(); }
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxPreviewControlBar);
 };
 
@@ -681,7 +681,7 @@ private:
     void Init(wxPrintout *printout, wxPrintout *printoutForPrinting);
 
     wxDECLARE_NO_COPY_CLASS(wxPrintPreviewBase);
-    DECLARE_CLASS(wxPrintPreviewBase)
+    wxDECLARE_CLASS(wxPrintPreviewBase);
 };
 
 //----------------------------------------------------------------------------
@@ -733,7 +733,7 @@ private:
     wxPrintPreviewBase *m_pimpl;
 
 private:
-    DECLARE_CLASS(wxPrintPreview)
+    wxDECLARE_CLASS(wxPrintPreview);
     wxDECLARE_NO_COPY_CLASS(wxPrintPreview);
 };
 
@@ -759,7 +759,7 @@ public:
 private:
     wxStaticText *m_progress;
 
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
     wxDECLARE_NO_COPY_CLASS(wxPrintAbortDialog);
 };
 

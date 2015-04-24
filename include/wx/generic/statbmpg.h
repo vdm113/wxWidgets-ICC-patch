@@ -75,7 +75,7 @@ private:
 
     wxBitmap m_bitmap;
 
-    DECLARE_DYNAMIC_CLASS(wxGenericStaticBitmap)
+    wxDECLARE_DYNAMIC_CLASS(wxGenericStaticBitmap);
 };
 
 

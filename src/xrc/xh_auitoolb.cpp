@@ -34,7 +34,7 @@
 
 #include "wx/xrc/xh_auitoolb.h"
 
-IMPLEMENT_DYNAMIC_CLASS(wxAuiToolBarXmlHandler, wxXmlResourceHandler)
+wxIMPLEMENT_DYNAMIC_CLASS(wxAuiToolBarXmlHandler, wxXmlResourceHandler);
 
 wxAuiToolBarXmlHandler::wxAuiToolBarXmlHandler()
     : wxXmlResourceHandler()

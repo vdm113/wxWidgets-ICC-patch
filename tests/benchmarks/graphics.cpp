@@ -589,4 +589,4 @@ public:
     }
 };
 
-IMPLEMENT_APP_CONSOLE(GraphicsBenchmarkApp)
+wxIMPLEMENT_APP_CONSOLE(GraphicsBenchmarkApp);

@@ -129,7 +129,7 @@ public:
 class WXDLLIMPEXP_RICHTEXT wxRichTextFormattingDialog: public wxPropertySheetDialog,
                                                        public wxWithImages
 {
-DECLARE_CLASS(wxRichTextFormattingDialog)
+    wxDECLARE_CLASS(wxRichTextFormattingDialog);
 DECLARE_HELP_PROVISION()
 
 public:
@@ -280,7 +280,7 @@ protected:
     static bool                                 sm_restoreLastPage;
     static int                                  sm_lastPage;
 
-DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 //-----------------------------------------------------------------------------
@@ -299,7 +299,7 @@ private:
     int m_textEffects;
 
     void OnPaint(wxPaintEvent& event);
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 /*
@@ -308,7 +308,7 @@ private:
 
 class WXDLLIMPEXP_RICHTEXT wxRichTextColourSwatchCtrl: public wxControl
 {
-    DECLARE_CLASS(wxRichTextColourSwatchCtrl)
+    wxDECLARE_CLASS(wxRichTextColourSwatchCtrl);
 public:
     wxRichTextColourSwatchCtrl(wxWindow* parent, wxWindowID id, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = 0);
     ~wxRichTextColourSwatchCtrl();
@@ -324,7 +324,7 @@ public:
 protected:
     wxColour    m_colour;
 
-DECLARE_EVENT_TABLE()
+    wxDECLARE_EVENT_TABLE();
 };
 
 /*!
@@ -334,8 +334,8 @@ DECLARE_EVENT_TABLE()
 
 class WXDLLIMPEXP_RICHTEXT wxRichTextFontListBox: public wxHtmlListBox
 {
-    DECLARE_CLASS(wxRichTextFontListBox)
-    DECLARE_EVENT_TABLE()
+    wxDECLARE_CLASS(wxRichTextFontListBox);
+    wxDECLARE_EVENT_TABLE();
 
 public:
     wxRichTextFontListBox()

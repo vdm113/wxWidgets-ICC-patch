@@ -60,7 +60,7 @@
 // wxWin macros
 // ----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(wxComboBox, wxControl)
+wxBEGIN_EVENT_TABLE(wxComboBox, wxControl)
     EVT_MENU(wxID_CUT, wxComboBox::OnCut)
     EVT_MENU(wxID_COPY, wxComboBox::OnCopy)
     EVT_MENU(wxID_PASTE, wxComboBox::OnPaste)
@@ -76,7 +76,7 @@ BEGIN_EVENT_TABLE(wxComboBox, wxControl)
     EVT_UPDATE_UI(wxID_REDO, wxComboBox::OnUpdateRedo)
     EVT_UPDATE_UI(wxID_CLEAR, wxComboBox::OnUpdateDelete)
     EVT_UPDATE_UI(wxID_SELECTALL, wxComboBox::OnUpdateSelectAll)
-END_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 // ----------------------------------------------------------------------------
 // function prototypes
