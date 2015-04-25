@@ -61,15 +61,6 @@ unsigned int UTF8Length(const wchar_t *uptr, unsigned int tlen) {
 
 void UTF8FromUTF16(const wchar_t *uptr, unsigned int tlen, char *putf, unsigned int len) {
 	unsigned int k = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 	for (unsigned int i = 0; i < tlen && uptr[i];) {
 		unsigned int uch = uptr[i];
 		if (uch < 0x80) {
@@ -112,15 +103,6 @@ unsigned int UTF8CharLength(unsigned char ch) {
 size_t UTF16Length(const char *s, size_t len) {
 	size_t ulen = 0;
 	size_t charLen;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 	for (size_t i = 0; i<len;) {
 		unsigned char ch = static_cast<unsigned char>(s[i]);
 		if (ch < 0x80) {
@@ -143,15 +125,6 @@ size_t UTF16FromUTF8(const char *s, size_t len, wchar_t *tbuf, size_t tlen) {
 	size_t ui = 0;
 	const unsigned char *us = reinterpret_cast<const unsigned char *>(s);
 	size_t i = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 	while ((i<len) && (ui<tlen)) {
 		unsigned char ch = us[i++];
 		if (ch < 0x80) {
