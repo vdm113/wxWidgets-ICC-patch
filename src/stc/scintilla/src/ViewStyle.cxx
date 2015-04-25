@@ -148,15 +148,6 @@ ViewStyle::ViewStyle(const ViewStyle &source) {
 	CalcLargestMarkerHeight();
 	indicatorsDynamic = 0;
 	indicatorsSetFore = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 	for (int ind=0; ind<=INDIC_MAX; ind++) {
 		indicators[ind] = source.indicators[ind];
 		if (indicators[ind].IsDynamic())
@@ -454,15 +445,6 @@ void ViewStyle::Refresh(Surface &surface, int tabInChars) {
 	}
 	indicatorsDynamic = 0;
 	indicatorsSetFore = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 	for (int ind = 0; ind <= INDIC_MAX; ind++) {
 		if (indicators[ind].IsDynamic())
 			indicatorsDynamic++;
