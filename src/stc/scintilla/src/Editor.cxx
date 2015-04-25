@@ -17,7 +17,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include <math.h>
 #include <assert.h>
 #include <ctype.h>
 
@@ -6411,15 +6410,6 @@ void Editor::SetHoverIndicatorPosition(int position) {
 	if (vs.indicatorsDynamic == 0)
 		return;
 	if (position != INVALID_POSITION) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 		for (Decoration *deco = pdoc->decorations.root; deco; deco = deco->next) {
 			if (vs.indicators[deco->indicator].IsDynamic()) {
 				if (pdoc->decorations.ValueAt(deco->indicator, position)) {
@@ -8138,15 +8128,6 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 				return 0;
 			Sci_TextRange *tr = reinterpret_cast<Sci_TextRange *>(lParam);
 			int iPlace = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 			for (long iChar = tr->chrg.cpMin; iChar < tr->chrg.cpMax; iChar++) {
 				tr->lpstrText[iPlace++] = pdoc->CharAt(static_cast<int>(iChar));
 				tr->lpstrText[iPlace++] = pdoc->StyleAt(static_cast<int>(iChar));
