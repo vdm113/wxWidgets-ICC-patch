@@ -83,15 +83,6 @@ static void ColouriseVHDLDoc(
   StyleContext sc(startPos, length, initStyle, styler);
   bool isExtendedId = false;    // true when parsing an extended identifier
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
   for (; sc.More(); sc.Forward())
   {
 

@@ -97,15 +97,6 @@ static void ColouriseTCLDoc(unsigned int startPos, int length, int , WordList *k
 
 	int previousLevel = currentLevel;
 	StyleContext sc(startPos, length, SCE_TCL_DEFAULT, styler);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 	for (; ; sc.Forward()) {
 next:
 		if (sc.ch=='\r' && sc.chNext == '\n') // only ignore \r on PC process on the mac
@@ -167,15 +158,6 @@ next:
 				sc.GetCurrent(w, sizeof(w));
 				if (w[strlen(w)-1]=='\r')
 					w[strlen(w)-1]=0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 				while (*s == ':') // ignore leading : like in ::set a 10
 					++s;
 				bool quote = sc.state == SCE_TCL_IN_QUOTE;
@@ -379,18 +361,18 @@ next:
 	sc.Complete();
 }
 
-static const char * const tclWordListDesc[] = {
-            "TCL Keywords",
-            "TK Keywords",
-            "iTCL Keywords",
-            "tkCommands",
-            "expand",
-            "user1",
-            "user2",
-            "user3",
-            "user4",
-            0
-        };
+static const char *const tclWordListDesc[] = {
+	"TCL Keywords",
+	"TK Keywords",
+	"iTCL Keywords",
+	"tkCommands",
+	"expand",
+	"user1",
+	"user2",
+	"user3",
+	"user4",
+	0
+};
 
 // this code supports folding in the colourizer
 LexerModule lmTCL(SCLEX_TCL, ColouriseTCLDoc, "tcl", 0, tclWordListDesc);
