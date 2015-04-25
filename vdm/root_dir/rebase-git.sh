@@ -35,6 +35,7 @@ git branch -d wx_svn
 git branch -d origin/HEAD
 git branch -d origin/master
 git branch -d wx_git/master
+git branch -d origin/wx_git
 
 export DATE=`date`
 git commit -a --signoff -m "restore our support files: ${DATE}"
