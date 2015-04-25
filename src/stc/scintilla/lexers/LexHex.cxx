@@ -1,12 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
-#   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
-#   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
-#endif
-
 // Scintilla source code edit control
 /** @file LexHex.cxx
  ** Lexers for Motorola S-Record, Intel HEX and Tektronix extended HEX.
@@ -232,15 +223,6 @@ static int GetHexaChar(unsigned int pos, Accessor &styler)
 // is malformed (too short).
 static bool ForwardWithinLine(StyleContext &sc, int nb)
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 	for (int i = 0; i < nb; i++) {
 		if (sc.atLineEnd) {
 			// line is too short
@@ -271,15 +253,6 @@ static int CountByteCount(unsigned int startPos, int uncountedDigits, Accessor &
 
 	pos = startPos;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 	while (!IsNewline(styler.SafeGetCharAt(pos, '\n'))) {
 		pos++;
 	}
@@ -306,15 +279,6 @@ static int CalcChecksum(unsigned int startPos, int cnt, bool twosCompl, Accessor
 {
 	int cs = 0;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 	for (unsigned int pos = startPos; pos < startPos + cnt; pos += 2) {
 		int val = GetHexaChar(pos, styler);
 
@@ -339,15 +303,6 @@ static int CalcChecksum(unsigned int startPos, int cnt, bool twosCompl, Accessor
 // the record around position <pos>.
 static unsigned int GetSrecRecStartPosition(unsigned int pos, Accessor &styler)
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 	while (styler.SafeGetCharAt(pos) != 'S') {
 		pos--;
 	}
@@ -494,15 +449,6 @@ static int CalcSrecChecksum(unsigned int recStartPos, Accessor &styler)
 // the record around position <pos>.
 static unsigned int GetIHexRecStartPosition(unsigned int pos, Accessor &styler)
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 	while (styler.SafeGetCharAt(pos) != ':') {
 		pos--;
 	}
@@ -642,15 +588,6 @@ static int CountTEHexDigitCount(unsigned int recStartPos, Accessor &styler)
 
 	pos = recStartPos+1;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 	while (!IsNewline(styler.SafeGetCharAt(pos, '\n'))) {
 		pos++;
 	}
@@ -692,15 +629,6 @@ static int CalcTEHexChecksum(unsigned int recStartPos, Accessor &styler)
 
 	pos += 2;// jump over CS field
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 	for (; pos <= recStartPos + length; ++pos) {
 		int val = GetHexaNibble(styler.SafeGetCharAt(pos));
 
@@ -721,15 +649,6 @@ static void ColouriseSrecDoc(unsigned int startPos, int length, int initStyle, W
 {
 	StyleContext sc(startPos, length, initStyle, styler);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 	while (sc.More()) {
 		unsigned int recStartPos;
 		int byteCount, reqByteCount, addrFieldSize, addrFieldType, dataFieldSize, dataFieldType;
@@ -800,15 +719,6 @@ static void ColouriseSrecDoc(unsigned int startPos, int length, int initStyle, W
 				sc.SetState(dataFieldType);
 
 				if (dataFieldType == SCE_HEX_DATA_ODD) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 					for (int i = 0; i < dataFieldSize * 2; i++) {
 						if ((i & 0x3) == 0) {
 							sc.SetState(SCE_HEX_DATA_ODD);
@@ -863,15 +773,6 @@ static void ColouriseIHexDoc(unsigned int startPos, int length, int initStyle, W
 {
 	StyleContext sc(startPos, length, initStyle, styler);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 	while (sc.More()) {
 		unsigned int recStartPos;
 		int byteCount, addrFieldType, dataFieldSize, dataFieldType;
@@ -937,15 +838,6 @@ static void ColouriseIHexDoc(unsigned int startPos, int length, int initStyle, W
 				sc.SetState(dataFieldType);
 
 				if (dataFieldType == SCE_HEX_DATA_ODD) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 					for (int i = 0; i < dataFieldSize * 2; i++) {
 						if ((i & 0x3) == 0) {
 							sc.SetState(SCE_HEX_DATA_ODD);
@@ -1010,15 +902,6 @@ static void FoldIHexDoc(unsigned int startPos, int length, int, WordList *[], Ac
 	unsigned int lineStartNext = styler.LineStart(lineCurrent + 1);
 	int levelNext = SC_FOLDLEVELBASE; // default if no specific line found
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
 		bool atEOL = i == (lineStartNext - 1);
 		int style = styler.StyleAt(i);
@@ -1054,15 +937,6 @@ static void ColouriseTEHexDoc(unsigned int startPos, int length, int initStyle, 
 {
 	StyleContext sc(startPos, length, initStyle, styler);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 	while (sc.More()) {
 		unsigned int recStartPos;
 		int digitCount, addrFieldType;
@@ -1136,15 +1010,6 @@ static void ColouriseTEHexDoc(unsigned int startPos, int length, int initStyle, 
 
 				sc.SetState(SCE_HEX_DATA_ODD);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 				for (int i = 0; i < digitCount; i++) {
 					if ((i & 0x3) == 0) {
 						sc.SetState(SCE_HEX_DATA_ODD);
