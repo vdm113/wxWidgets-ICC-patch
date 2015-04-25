@@ -32,8 +32,15 @@ static PRectangle PixelGridAlign(const PRectangle &rc) {
 	return PRectangle::FromInts(int(rc.left + 0.5), int(rc.top), int(rc.right + 0.5), int(rc.bottom));
 }
 
-void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &rcLine) const {
-	surface->PenColour(fore);
+void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &rcLine, DrawState drawState, int value) const {
+	StyleAndColour sacDraw = sacNormal;
+	if (Flags() & SC_INDICFLAG_VALUEFORE) {
+		sacDraw.fore = value & SC_INDICVALUEMASK;
+	}
+	if (drawState == drawHover) {
+		sacDraw = sacHover;
+	}
+	surface->PenColour(sacDraw.fore);
 	int ymid = static_cast<int>(rc.bottom + rc.top) / 2;
 	if (sacDraw.style == INDIC_SQUIGGLE) {
 		int x = int(rc.left+0.5);
