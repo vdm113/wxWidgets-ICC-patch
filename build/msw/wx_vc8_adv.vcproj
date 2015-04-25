@@ -972,7 +972,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\generic\editlbox.cpp"
+				RelativePath="..\..\src\stc\scintilla\lexers\LexHex.cxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\stc\scintilla\lexers\LexInno.cxx"
 				>
 			</File>
 			<File
