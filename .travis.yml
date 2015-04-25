@@ -4,19 +4,26 @@
 # root directory of the project.
 language: cpp
 
-compiler: gcc
+compiler:
+    - gcc
 
 branches:
     only:
         - master
-        - WX_3_0_BRANCH
 
 notifications:
     email:
         recipients:
-            - vadim@wxwidgets.org
+            - vdm113@gmail.com
         on_success: change
-        on_failure: change
+        on_failure: always
+        on_start: always
+
+os:
+    - linux
+    - osx
+
+osx_image: xcode61
 
 before_install:
     - sudo apt-get install -y libcppunit-dev
@@ -26,6 +33,7 @@ env:
     - wxCONFIGURE_FLAGS="--disable-shared"
     - wxCONFIGURE_FLAGS="--disable-precomp-headers --enable-monolithic"
     - wxCONFIGURE_FLAGS="--enable-stl" CXXFLAGS=-std=c++0x
+    - wxCONFIGURE_FLAGS="--disable-precomp-headers --enable-monolithic --enable-stl" CXXFLAGS=-std=c++0x
 
 script:
     - ./configure --disable-optimise $wxCONFIGURE_FLAGS
