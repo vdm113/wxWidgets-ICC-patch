@@ -59,7 +59,7 @@ public:
 	int Flags() const {
 		return attributes;
 	}
-	void Draw(Surface *surface, const PRectangle &rc, const PRectangle &rcLine) const;
+	void SetFlags(int attributes_);
 };
 
 #ifdef SCI_NAMESPACE
