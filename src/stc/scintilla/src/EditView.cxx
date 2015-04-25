@@ -564,15 +564,6 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 		bool lastSegItalics = false;
 
 		BreakFinder bfLayout(ll, NULL, Range(0, numCharsInLine), posLineStart, 0, false, model.pdoc, &model.reprs, NULL);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 		while (bfLayout.More()) {
 
 			const TextSegment ts = bfLayout.Next();
@@ -1737,15 +1728,6 @@ void EditView::DrawForeground(Surface *surface, const EditModel &model, const Vi
 	BreakFinder bfFore(ll, &model.sel, lineRange, posLineStart, xStartVisible,
 		(((phasesDraw == phasesOne) && selBackDrawn) || vsDraw.selColours.fore.isSet), model.pdoc, &model.reprs, &vsDraw);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 	while (bfFore.More()) {
 
 		const TextSegment ts = bfFore.Next();
@@ -1769,15 +1751,6 @@ void EditView::DrawForeground(Surface *surface, const EditModel &model, const Vi
 			}
 			if (vsDraw.indicatorsSetFore > 0) {
 				// At least one indicator sets the text colour so see if it applies to this segment
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 				for (Decoration *deco = model.pdoc->decorations.root; deco; deco = deco->next) {
 					const int indicatorValue = deco->rs.ValueAt(ts.start + posLineStart);
 					if (indicatorValue) {
