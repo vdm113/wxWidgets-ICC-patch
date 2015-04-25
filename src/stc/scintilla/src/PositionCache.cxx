@@ -520,8 +520,8 @@ void BreakFinder::Insert(int val) {
 	}
 }
 
-BreakFinder::BreakFinder(const LineLayout *ll_, const Selection *psel, int lineStart_, int lineEnd_, int posLineStart_,
-	int xStart, bool breakForSelection, const Document *pdoc_, const SpecialRepresentations *preprs_) :
+BreakFinder::BreakFinder(const LineLayout *ll_, const Selection *psel, Range lineRange_, int posLineStart_,
+	int xStart, bool breakForSelection, const Document *pdoc_, const SpecialRepresentations *preprs_, const ViewStyle *pvsDraw) :
 	ll(ll_),
 	lineRange(lineRange_),
 	posLineStart(posLineStart_),
@@ -566,27 +566,9 @@ BreakFinder::BreakFinder(const LineLayout *ll_, const Selection *psel, int lineS
 		}
 	}
 	if (pvsDraw && pvsDraw->indicatorsSetFore > 0) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 		for (Decoration *deco = pdoc->decorations.root; deco; deco = deco->next) {
 			if (pvsDraw->indicators[deco->indicator].OverridesTextFore()) {
 				int startPos = deco->rs.EndRun(posLineStart);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
 				while (startPos < (posLineStart + lineRange.end)) {
 					Insert(startPos - posLineStart);
 					startPos = deco->rs.EndRun(startPos);
