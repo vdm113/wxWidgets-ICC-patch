@@ -355,7 +355,7 @@ void ODComboboxWidgetsPage::CreateContent()
     wxButton *btn = new wxButton(this, ODComboPage_Reset, wxT("&Reset"));
     sizerStyle->Add(btn, 0, wxALIGN_CENTRE_HORIZONTAL | wxALL, 3);
 
-    sizerLeft->Add(sizerStyle, 0, wxGROW | wxALIGN_CENTRE_HORIZONTAL);
+    sizerLeft->Add(sizerStyle, wxSizerFlags().Expand());
 
     // left pane - popup adjustment box
     box = new wxStaticBox(this, wxID_ANY, wxT("Adjust &popup"));
@@ -376,7 +376,7 @@ void ODComboboxWidgetsPage::CreateContent()
 
     m_chkAlignpopupright = CreateCheckBoxAndAddToSizer(sizerPopupPos, wxT("Align Right"));
 
-    sizerLeft->Add(sizerPopupPos, 0, wxGROW | wxALIGN_CENTRE_HORIZONTAL | wxTOP, 2);
+    sizerLeft->Add(sizerPopupPos, wxSizerFlags().Expand().Border(wxTOP, 2));
 
     // left pane - button adjustment box
     box = new wxStaticBox(this, wxID_ANY, wxT("Adjust &button"));
@@ -403,7 +403,7 @@ void ODComboboxWidgetsPage::CreateContent()
 
     m_chkAlignbutleft = CreateCheckBoxAndAddToSizer(sizerButtonPos, wxT("Align Left"));
 
-    sizerLeft->Add(sizerButtonPos, 0, wxGROW | wxALIGN_CENTRE_HORIZONTAL | wxTOP, 2);
+    sizerLeft->Add(sizerButtonPos, wxSizerFlags().Expand().Border(wxTOP, 2));
 
     // middle pane
     wxStaticBox *box2 = new wxStaticBox(this, wxID_ANY,
