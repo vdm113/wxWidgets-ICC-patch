@@ -41,6 +41,8 @@ public:
     virtual void EnableEllipsize(wxEllipsizeMode mode = wxELLIPSIZE_MIDDLE);
     virtual wxEllipsizeMode GetEllipsizeMode() const;
 
+    virtual bool FinishEditing() wxOVERRIDE;
+
     // GTK-specific implementation
     // ---------------------------
 
