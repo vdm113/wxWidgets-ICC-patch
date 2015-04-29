@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/gifdecod.cpp
 // Purpose:     wxGIFDecoder, GIF reader for wxImage and wxAnimation
@@ -112,11 +105,6 @@ wxGIFDecoder::~wxGIFDecoder()
 void wxGIFDecoder::Destroy()
 {
     wxASSERT(m_nFrames==m_frames.GetCount());
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (unsigned int i=0; i<m_nFrames; i++)
     {
         GIFImage *f = (GIFImage*)m_frames[i];
@@ -161,11 +149,6 @@ bool wxGIFDecoder::ConvertToImage(unsigned int frame, wxImage *image) const
     // set transparent colour mask
     if (transparent != -1)
     {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (i = 0; i < GetNcolours(frame); i++)
         {
             if ((pal[3 * i + 0] == 255) &&
@@ -190,11 +173,6 @@ bool wxGIFDecoder::ConvertToImage(unsigned int frame, wxImage *image) const
     unsigned char g[256];
     unsigned char b[256];
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (i = 0; i < 256; i++)
     {
         r[i] = pal[3*i + 0];
@@ -207,11 +185,6 @@ bool wxGIFDecoder::ConvertToImage(unsigned int frame, wxImage *image) const
 
     // copy image data
     unsigned long npixel = sz.GetWidth() * sz.GetHeight();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (i = 0; i < npixel; i++, src++)
     {
         *(dst++) = pal[3 * (*src) + 0];
@@ -291,11 +264,6 @@ int wxGIFDecoder::getcode(wxInputStream& stream, int bits, int ab_fin)
     code = (m_lastbyte >> (8 - m_restbits)) & mask;
 
     // keep reading new bytes while needed
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (bits > m_restbits)
     {
         // if no bytes left in this block, read the next block
@@ -392,11 +360,6 @@ wxGIFDecoder::dgif(wxInputStream& stream, GIFImage *img, int interl, int bits)
     m_restbyte = 0;
     m_lastbyte = 0;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     do
     {
         // get next code
@@ -427,11 +390,6 @@ wxGIFDecoder::dgif(wxInputStream& stream, GIFImage *img, int interl, int bits)
         }
 
         // build the string for this code in the stack
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while (code > ab_clr)
         {
             stack[pos++] = ab_tail[code];
@@ -479,11 +437,6 @@ wxGIFDecoder::dgif(wxInputStream& stream, GIFImage *img, int interl, int bits)
         }
 
         // dump stack data to the image buffer
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while (pos >= 0)
         {
             (img->p)[x + (y * (img->w))] = (char) stack[pos];
@@ -514,11 +467,6 @@ wxGIFDecoder::dgif(wxInputStream& stream, GIFImage *img, int interl, int bits)
                     on the height of the image. This would cause out of
                     bounds writing.
                     */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                     while (y >= (img->h))
                     {
                         switch (++pass)
@@ -706,11 +654,6 @@ wxGIFErrorCode wxGIFDecoder::LoadGIF(wxInputStream& stream)
     wxString comment;
 
     bool done = false;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (!done)
     {
         type = stream.GetC();
@@ -765,11 +708,6 @@ wxGIFErrorCode wxGIFDecoder::LoadGIF(wxInputStream& stream)
                     case GIF_MARKER_EXT_COMMENT:
                     {
                         int len = stream.GetC();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                         while (len)
                         {
                             if ( stream.Eof() )
@@ -795,11 +733,6 @@ wxGIFErrorCode wxGIFDecoder::LoadGIF(wxInputStream& stream)
                     }
                     default:
                         // other extension, skip
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                         while ((i = stream.GetC()) != 0)
                         {
                             if (stream.Eof() || (stream.LastRead() == 0) ||
@@ -925,11 +858,6 @@ wxGIFErrorCode wxGIFDecoder::LoadGIF(wxInputStream& stream)
     }
 
     // try to read to the end of the stream
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (type != GIF_MARKER_ENDOFDATA)
     {
         if (!stream.IsOk())
@@ -944,11 +872,6 @@ wxGIFErrorCode wxGIFDecoder::LoadGIF(wxInputStream& stream)
                 (void) stream.GetC();
 
                 // skip all data
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                 while ((i = stream.GetC()) != 0)
                 {
                     if (stream.Eof() || (stream.LastRead() == 0) ||
@@ -991,11 +914,6 @@ wxGIFErrorCode wxGIFDecoder::LoadGIF(wxInputStream& stream)
                 }
 
                 // skip all data
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                 while ((i = stream.GetC()) != 0)
                 {
                     if (stream.Eof() || (stream.LastRead() == 0) ||

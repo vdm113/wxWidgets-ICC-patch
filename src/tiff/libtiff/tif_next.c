@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 
 /*
  * Copyright (c) 1988-1997 Sam Leffler
@@ -66,11 +59,6 @@ NeXTDecode(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 	 * white (we assume a PhotometricInterpretation
 	 * of ``min-is-black'').
 	 */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (op = (unsigned char*) buf, cc = occ; cc-- > 0;)
 		*op++ = 0xff;
 
@@ -82,11 +70,6 @@ NeXTDecode(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 		TIFFErrorExt(tif->tif_clientdata, module, "Fractional scanlines cannot be read");
 		return (0);
 	}
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (row = buf; occ > 0; occ -= scanline, row += scanline) {
 		n = *bp++, cc--;
 		switch (n) {
@@ -126,11 +109,6 @@ NeXTDecode(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 			 * <color><npixels> until we've filled the scanline.
 			 */
 			op = row;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 			for (;;) {
 				grey = (uint32)((n>>6) & 0x3);
 				n &= 0x3f;
@@ -139,11 +117,6 @@ NeXTDecode(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 				 * bounds, potentially resulting in a security
 				 * issue.
 				 */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 				while (n-- > 0 && npixels < imagewidth)
 					SETPIXEL(op, grey);
 				if (npixels >= imagewidth)

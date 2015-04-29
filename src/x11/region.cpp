@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // File:      src/x11/region.cpp
 // Purpose:   Region class
@@ -93,11 +86,6 @@ void wxRegion::InitRect(wxCoord x, wxCoord y, wxCoord w, wxCoord h)
 wxRegion::wxRegion( size_t n, const wxPoint *points, wxPolygonFillMode fillStyle )
 {
     XPoint *xpoints = new XPoint[n];
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( size_t i = 0 ; i < n ; i++ )
     {
         xpoints[i].x = points[i].x;
@@ -407,11 +395,6 @@ void wxRIRefData::CreateRects( const wxRegion& region )
         if (m_numRects)
         {
             m_rects = new wxRect[m_numRects];
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for (size_t i=0; i < m_numRects; ++i)
             {
                 _XBox &xr = r->rects[i];

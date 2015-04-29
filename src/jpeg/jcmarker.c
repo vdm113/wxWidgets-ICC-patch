@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /*
  * jcmarker.c
  *
@@ -160,11 +153,6 @@ emit_dqt (j_compress_ptr cinfo, int index)
     ERREXIT1(cinfo, JERR_NO_QUANT_TABLE, index);
 
   prec = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   for (i = 0; i < DCTSIZE2; i++) {
     if (qtbl->quantval[i] > 255)
       prec = 1;
@@ -177,11 +165,6 @@ emit_dqt (j_compress_ptr cinfo, int index)
 
     emit_byte(cinfo, index + (prec<<4));
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (i = 0; i < DCTSIZE2; i++) {
       /* The table entries must be emitted in zigzag order. */
       unsigned int qval = qtbl->quantval[jpeg_natural_order[i]];
@@ -218,30 +201,15 @@ emit_dht (j_compress_ptr cinfo, int index, wxjpeg_boolean is_ac)
     emit_marker(cinfo, M_DHT);
     
     length = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (i = 1; i <= 16; i++)
       length += htbl->bits[i];
     
     emit_2bytes(cinfo, length + 2 + 1 + 16);
     emit_byte(cinfo, index);
     
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (i = 1; i <= 16; i++)
       emit_byte(cinfo, htbl->bits[i]);
     
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (i = 0; i < length; i++)
       emit_byte(cinfo, htbl->huffval[i]);
     
@@ -262,19 +230,9 @@ emit_dac (j_compress_ptr cinfo)
   int length, i;
   jpeg_component_info *compptr;
   
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   for (i = 0; i < NUM_ARITH_TBLS; i++)
     dc_in_use[i] = ac_in_use[i] = 0;
   
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   for (i = 0; i < cinfo->comps_in_scan; i++) {
     compptr = cinfo->cur_comp_info[i];
     dc_in_use[compptr->dc_tbl_no] = 1;
@@ -282,11 +240,6 @@ emit_dac (j_compress_ptr cinfo)
   }
   
   length = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   for (i = 0; i < NUM_ARITH_TBLS; i++)
     length += dc_in_use[i] + ac_in_use[i];
   
@@ -294,11 +247,6 @@ emit_dac (j_compress_ptr cinfo)
   
   emit_2bytes(cinfo, length*2 + 2);
   
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   for (i = 0; i < NUM_ARITH_TBLS; i++) {
     if (dc_in_use[i]) {
       emit_byte(cinfo, i);
@@ -347,11 +295,6 @@ emit_sof (j_compress_ptr cinfo, JPEG_MARKER code)
 
   emit_byte(cinfo, cinfo->num_components);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
     emit_byte(cinfo, compptr->component_id);
@@ -374,11 +317,6 @@ emit_sos (j_compress_ptr cinfo)
   
   emit_byte(cinfo, cinfo->comps_in_scan);
   
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   for (i = 0; i < cinfo->comps_in_scan; i++) {
     compptr = cinfo->cur_comp_info[i];
     emit_byte(cinfo, compptr->component_id);
@@ -563,11 +501,6 @@ write_frame_header (j_compress_ptr cinfo)
    * Note that emit_dqt() suppresses any duplicate tables.
    */
   prec = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
     prec += emit_dqt(cinfo, compptr->quant_tbl_no);
@@ -582,11 +515,6 @@ write_frame_header (j_compress_ptr cinfo)
     is_baseline = FALSE;
   } else {
     is_baseline = TRUE;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
 	 ci++, compptr++) {
       if (compptr->dc_tbl_no > 1 || compptr->ac_tbl_no > 1)
@@ -636,11 +564,6 @@ write_scan_header (j_compress_ptr cinfo)
     /* Emit Huffman tables.
      * Note that emit_dht() suppresses any duplicate tables.
      */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (i = 0; i < cinfo->comps_in_scan; i++) {
       compptr = cinfo->cur_comp_info[i];
       if (cinfo->progressive_mode) {
@@ -696,22 +619,12 @@ write_tables_only (j_compress_ptr cinfo)
 
   emit_marker(cinfo, M_SOI);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   for (i = 0; i < NUM_QUANT_TBLS; i++) {
     if (cinfo->quant_tbl_ptrs[i] != NULL)
       (void) emit_dqt(cinfo, i);
   }
 
   if (! cinfo->arith_code) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (i = 0; i < NUM_HUFF_TBLS; i++) {
       if (cinfo->dc_huff_tbl_ptrs[i] != NULL)
 	emit_dht(cinfo, i, FALSE);

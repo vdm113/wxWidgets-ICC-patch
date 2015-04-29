@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file LexAda.cxx
  ** Lexer for Ada 95
@@ -92,11 +85,6 @@ static void ColouriseCharacter(StyleContext& sc, bool& apostropheStartsAttribute
 }
 
 static void ColouriseContext(StyleContext& sc, char chEnd, int stateEOL) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (!sc.atLineEnd && !sc.Match(chEnd)) {
 		sc.Forward();
 	}
@@ -113,11 +101,6 @@ static void ColouriseComment(StyleContext& sc, bool& /*apostropheStartsAttribute
 
 	sc.SetState(SCE_ADA_COMMENTLINE);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (!sc.atLineEnd) {
 		sc.Forward();
 	}
@@ -140,11 +123,6 @@ static void ColouriseLabel(StyleContext& sc, WordList& keywords, bool& apostroph
 
 	std::string identifier;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (!sc.atLineEnd && !IsSeparatorOrDelimiterCharacter(sc.ch)) {
 		identifier += static_cast<char>(tolower(sc.ch));
 		sc.Forward();
@@ -175,11 +153,6 @@ static void ColouriseNumber(StyleContext& sc, bool& apostropheStartsAttribute) {
 
 	// Get all characters up to a delimiter or a separator, including points, but excluding
 	// double points (ranges).
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (!IsSeparatorOrDelimiterCharacter(sc.ch) || (sc.ch == '.' && sc.chNext != '.')) {
 		number += static_cast<char>(sc.ch);
 		sc.Forward();
@@ -191,11 +164,6 @@ static void ColouriseNumber(StyleContext& sc, bool& apostropheStartsAttribute) {
 		number += static_cast<char>(sc.ch);
 		sc.Forward ();
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		while (!IsSeparatorOrDelimiterCharacter(sc.ch)) {
 			number += static_cast<char>(sc.ch);
 			sc.Forward();
@@ -230,11 +198,6 @@ static void ColouriseWord(StyleContext& sc, WordList& keywords, bool& apostrophe
 
 	std::string word;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (!sc.atLineEnd && !IsSeparatorOrDelimiterCharacter(sc.ch)) {
 		word += static_cast<char>(tolower(sc.ch));
 		sc.Forward();
@@ -271,11 +234,6 @@ static void ColouriseDocument(
 	int lineCurrent = styler.GetLine(startPos);
 	bool apostropheStartsAttribute = (styler.GetLineState(lineCurrent) & 1) != 0;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (sc.More()) {
 		if (sc.atLineEnd) {
 			// Go to the next line
@@ -371,11 +329,6 @@ static bool IsValidIdentifier(const std::string& identifier) {
 	}
 
 	// Check for only valid characters and no double underscores
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (size_t i = 0; i < length; i++) {
 		if (!IsWordCharacter(identifier[i]) ||
 		        (identifier[i] == '_' && lastWasUnderscore)) {
@@ -407,11 +360,6 @@ static bool IsValidNumber(const std::string& number) {
 	if (hashPos == std::string::npos) {
 		bool canBeSpecial = false;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		for (; i < length; i++) {
 			if (number[i] == '_') {
 				if (!canBeSpecial) {
@@ -439,11 +387,6 @@ static bool IsValidNumber(const std::string& number) {
 		int base = 0;
 
 		// Parse base
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		for (; i < length; i++) {
 			int ch = number[i];
 			if (ch == '_') {
@@ -472,11 +415,6 @@ static bool IsValidNumber(const std::string& number) {
 		// Parse number
 		canBeSpecial = false;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		for (; i < length; i++) {
 			int ch = tolower(number[i]);
 
@@ -547,11 +485,6 @@ static bool IsValidNumber(const std::string& number) {
 
 		bool canBeSpecial = false;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		for (; i < length; i++) {
 			if (number[i] == '_') {
 				if (!canBeSpecial) {

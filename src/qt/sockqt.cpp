@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/qt/sockqt.cpp
 // Purpose:     implementation of wxQT-specific socket event handling
@@ -84,11 +77,6 @@ public:
     {
         QSocketNotifier::Type type = d == INPUT ? QSocketNotifier::Read :
                                                   QSocketNotifier::Write;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( wxVector<wxQtFDIONotifier*>::iterator it = m_qtNotifiers.begin();
               it != m_qtNotifiers.end(); ++it )
         {

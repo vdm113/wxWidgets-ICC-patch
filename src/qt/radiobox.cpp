@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/qt/radiobox.cpp
 // Author:      Peter Most, Mariano Reingart
@@ -117,11 +110,6 @@ template < typename Button >
 static void AddChoices( QButtonGroup *qtButtonGroup, QBoxLayout *qtBoxLayout, int count, const wxString choices[] )
 {
     Button *btn;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( count-- > 0 )
     {
         btn = new Button( wxQtConvertString( *choices++ ));

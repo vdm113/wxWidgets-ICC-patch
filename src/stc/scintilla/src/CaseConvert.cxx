@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 // Encoding: UTF-8
 /** @file CaseConvert.cxx
@@ -419,11 +412,6 @@ public:
 		size_t lenConverted = 0;
 		size_t mixedPos = 0;
 		unsigned char bytes[UTF8MaxBytes + 1];
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		while (mixedPos < lenMixed) {
 			const unsigned char leadByte = static_cast<unsigned char>(mixed[mixedPos]);
 			const char *caseConverted = 0;
@@ -433,11 +421,6 @@ public:
 			} else {
 				bytes[0] = leadByte;
 				const int widthCharBytes = UTF8BytesOfLead[leadByte];
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 				for (int b=1; b<widthCharBytes; b++) {
 					bytes[b] = (mixedPos+b < lenMixed) ? mixed[mixedPos+b] : 0;
 				}
@@ -451,11 +434,6 @@ public:
 			}
 			if (caseConverted) {
 				// Character has a conversion so copy that conversion in
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 				while (*caseConverted) {
 					converted[lenConverted++] = *caseConverted++;
 					if (lenConverted >= sizeConverted)
@@ -463,11 +441,6 @@ public:
 				}
 			} else {
 				// Character has no conversion so copy the input to output
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 				for (size_t i=0; i<lenMixedChar; i++) {
 					converted[lenConverted++] = mixed[mixedPos+i];
 					if (lenConverted >= sizeConverted)
@@ -482,11 +455,6 @@ public:
 		std::sort(characterToConversion.begin(), characterToConversion.end());
 		characters.reserve(characterToConversion.size());
 		conversions.reserve(characterToConversion.size());
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		for (CharacterToConversion::iterator it = characterToConversion.begin(); it != characterToConversion.end(); ++it) {
 			characters.push_back(it->character);
 			conversions.push_back(it->conversion);
@@ -541,31 +509,16 @@ void AddSymmetric(enum CaseConversion conversion, int lower,int upper) {
 
 void SetupConversions(enum CaseConversion conversion) {
 	// First initialize for the symmetric ranges
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (size_t i=0; i<ELEMENTS(symmetricCaseConversionRanges);) {
 		int lower = symmetricCaseConversionRanges[i++];
 		int upper = symmetricCaseConversionRanges[i++];
 		int length = symmetricCaseConversionRanges[i++];
 		int pitch = symmetricCaseConversionRanges[i++];
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		for (int j=0; j<length*pitch; j+=pitch) {
 			AddSymmetric(conversion, lower+j, upper+j);
 		}
 	}
 	// Add the symmetric singletons
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (size_t i=0; i<ELEMENTS(symmetricCaseConversions);) {
 		int lower = symmetricCaseConversions[i++];
 		int upper = symmetricCaseConversions[i++];
@@ -573,11 +526,6 @@ void SetupConversions(enum CaseConversion conversion) {
 	}
 	// Add the complex cases
 	const char *sComplex = complexCaseConversions;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (*sComplex) {
 		// Longest ligature is 3 character so 5 for safety
 		const size_t lenUTF8 = 5*UTF8MaxBytes+1;
@@ -586,11 +534,6 @@ void SetupConversions(enum CaseConversion conversion) {
 		char lowerUTF8[lenUTF8];
 		char upperUTF8[lenUTF8];
 		size_t i = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		while (*sComplex && *sComplex != '|') {
 			originUTF8[i++] = *sComplex;
 			sComplex++;
@@ -598,11 +541,6 @@ void SetupConversions(enum CaseConversion conversion) {
 		sComplex++;
 		originUTF8[i] = 0;
 		i = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		while (*sComplex && *sComplex != '|') {
 			foldedUTF8[i++] = *sComplex;
 			sComplex++;
@@ -610,11 +548,6 @@ void SetupConversions(enum CaseConversion conversion) {
 		sComplex++;
 		foldedUTF8[i] = 0;
 		i = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		while (*sComplex && *sComplex != '|') {
 			upperUTF8[i++] = *sComplex;
 			sComplex++;
@@ -622,11 +555,6 @@ void SetupConversions(enum CaseConversion conversion) {
 		sComplex++;
 		upperUTF8[i] = 0;
 		i = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		while (*sComplex && *sComplex != '|') {
 			lowerUTF8[i++] = *sComplex;
 			sComplex++;

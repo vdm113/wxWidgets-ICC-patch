@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/richtext/richtextstylepage.cpp
 // Purpose:     Implements the rich text formatting dialog style name tab.
@@ -190,11 +183,6 @@ bool wxRichTextStylePage::TransferDataToWindow()
                 if (sheet)
                 {
                     size_t i;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                     for (i = 0; i < sheet->GetListStyleCount(); i++)
                     {
                         wxRichTextListStyleDefinition* p = wxDynamicCast(sheet->GetListStyle(i), wxRichTextListStyleDefinition);
@@ -212,11 +200,6 @@ bool wxRichTextStylePage::TransferDataToWindow()
                 if (sheet)
                 {
                     size_t i;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                     for (i = 0; i < sheet->GetParagraphStyleCount(); i++)
                     {
                         wxRichTextParagraphStyleDefinition* p = wxDynamicCast(sheet->GetParagraphStyle(i), wxRichTextParagraphStyleDefinition);
@@ -235,11 +218,6 @@ bool wxRichTextStylePage::TransferDataToWindow()
                 if (listDef)
                 {
                     size_t i;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                     for (i = 0; i < sheet->GetListStyleCount(); i++)
                     {
                         wxRichTextListStyleDefinition* p = wxDynamicCast(sheet->GetListStyle(i), wxRichTextListStyleDefinition);
@@ -250,11 +228,6 @@ bool wxRichTextStylePage::TransferDataToWindow()
                 else if (paraDef)
                 {
                     size_t i;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                     for (i = 0; i < sheet->GetParagraphStyleCount(); i++)
                     {
                         wxRichTextParagraphStyleDefinition* p = wxDynamicCast(sheet->GetParagraphStyle(i), wxRichTextParagraphStyleDefinition);
@@ -265,11 +238,6 @@ bool wxRichTextStylePage::TransferDataToWindow()
                 else if (boxDef)
                 {
                     size_t i;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                     for (i = 0; i < sheet->GetBoxStyleCount(); i++)
                     {
                         wxRichTextBoxStyleDefinition* p = wxDynamicCast(sheet->GetBoxStyle(i), wxRichTextBoxStyleDefinition);
@@ -280,11 +248,6 @@ bool wxRichTextStylePage::TransferDataToWindow()
                 else if (charDef)
                 {
                     size_t i;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                     for (i = 0; i < sheet->GetCharacterStyleCount(); i++)
                     {
                         wxRichTextCharacterStyleDefinition* p = wxDynamicCast(sheet->GetCharacterStyle(i), wxRichTextCharacterStyleDefinition);

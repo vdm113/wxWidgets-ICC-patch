@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        tests/benchmarks/strings.cpp
 // Purpose:     String-related benchmarks
@@ -58,11 +51,6 @@ const wxString& GetTestAsciiString()
         if ( !num )
             num = 1;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( long n = 0; n < num; n++ )
             testString += wxString::FromAscii(asciistr);
     }
@@ -208,11 +196,6 @@ BENCHMARK_FUNC(FromAsciiWithLen)
 // baseline
 BENCHMARK_FUNC(ForCString)
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(asciistr); n++ )
     {
         if ( asciistr[n] == '~' )
@@ -226,11 +209,6 @@ BENCHMARK_FUNC(ForStringIndex)
 {
     const wxString& s = GetTestAsciiString();
     const size_t len = s.length();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( size_t n = 0; n < len; n++ )
     {
         if ( s[n] == '~' )
@@ -244,11 +222,6 @@ BENCHMARK_FUNC(ForStringIter)
 {
     const wxString& s = GetTestAsciiString();
     const wxString::const_iterator end = s.end();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( wxString::const_iterator i = s.begin(); i != end; ++i )
     {
         if ( *i == '~' )
@@ -262,11 +235,6 @@ BENCHMARK_FUNC(ForStringRIter)
 {
     const wxString& s = GetTestAsciiString();
     const wxString::const_reverse_iterator rend = s.rend();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( wxString::const_reverse_iterator i = s.rbegin(); i != rend; ++i )
     {
         if ( *i == '~' )
@@ -285,11 +253,6 @@ const size_t ASCIISTR_LEN = strlen(asciistr);
 BENCHMARK_FUNC(ReplaceLoop)
 {
     wxString str('x', ASCIISTR_LEN);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( size_t n = 0; n < ASCIISTR_LEN; n++ )
     {
         if ( str[n] == 'a' )
@@ -482,11 +445,6 @@ BENCHMARK_FUNC(ParseHTML)
         if ( !num )
             num = 1;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( long n = 0; n < num; n++ )
             html += html1;
     }

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        samples/propgrid/sampleprops.cpp
 // Purpose:     wxPropertyGrid Sample Properties
@@ -476,11 +469,6 @@ bool operator == (const wxArrayDouble& a, const wxArrayDouble& b)
 
     size_t i;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( i=0; i<a.GetCount(); i++ )
     {
         // Can't do direct equality comparison with floating point numbers.
@@ -564,11 +552,6 @@ void wxArrayDoubleProperty::GenerateValueAsString( wxString& target, int prec, b
     if (removeZeroes)
         style = wxNumberFormatter::Style_NoTrailingZeroes;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( i=0; i<value.GetCount(); i++ )
     {
         target += wxNumberFormatter::ToString(value[i], prec, style);

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/dcgraph.cpp
 // Purpose:     graphics context methods common to all platforms
@@ -205,20 +198,10 @@ wxGCDCImpl::wxGCDCImpl( wxDC *owner, const wxMemoryDC& dc ) :
                 if ( data )
                 {
                     wxAlphaPixelData::Iterator p(data);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                     for ( int y = 0; y < data.GetHeight(); y++ )
                     {
                         wxAlphaPixelData::Iterator rowStart = p;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                         for ( int x = 0; x < data.GetWidth(); x++ )
                         {
                             p.Alpha() = wxALPHA_OPAQUE;
@@ -723,11 +706,6 @@ void wxGCDCImpl::DoDrawLines(int n, const wxPoint points[],
     int maxY = minY;
 
     wxPoint2DDouble* pointsD = new wxPoint2DDouble[n];
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for( int i = 0; i < n; ++i)
     {
         wxPoint p = points[i];
@@ -779,19 +757,9 @@ void wxGCDCImpl::DoDrawSpline(const wxPointList *points)
     path.AddLineToPoint( cx1 , cy1 );
 #if !wxUSE_STD_CONTAINERS
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ((node = node->GetNext()) != NULL)
 #else
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ((node = node->GetNext()))
 #endif // !wxUSE_STD_CONTAINERS
 
@@ -844,11 +812,6 @@ void wxGCDCImpl::DoDrawPolygon( int n, const wxPoint points[],
     int maxY = minY;
 
     wxPoint2DDouble* pointsD = new wxPoint2DDouble[n+(closeIt?1:0)];
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for( int i = 0; i < n; ++i)
     {
         wxPoint p = points[i];
@@ -881,22 +844,12 @@ void wxGCDCImpl::DoDrawPolyPolygon(int n,
     wxGraphicsPath path = m_graphicContext->CreatePath();
 
     int i = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( int j = 0; j < n; ++j)
     {
         wxPoint start = points[i];
         path.MoveToPoint( start.x+ xoffset, start.y+ yoffset);
         ++i;
         int l = count[j];
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( int k = 1; k < l; ++k)
         {
             path.AddLineToPoint( points[i].x+ xoffset, points[i].y+ yoffset);
@@ -1125,11 +1078,6 @@ void wxGCDCImpl::DoDrawRotatedText(const wxString& text, wxCoord x, wxCoord y,
     
     // Draw all text line by line
     const wxArrayString lines = wxSplit(text, '\n', '\0');
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( size_t lineNum = 0; lineNum < lines.size(); lineNum++ )
     {
         // Calculate origin for each line to avoid accumulation of
@@ -1236,11 +1184,6 @@ bool wxGCDCImpl::DoGetPartialTextExtents(const wxString& text, wxArrayInt& width
     wxArrayDouble widthsD;
 
     m_graphicContext->GetPartialTextExtents( text, widthsD );
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( size_t i = 0; i < widths.GetCount(); ++i )
         widths[i] = (wxCoord)(widthsD[i] + 0.5);
 

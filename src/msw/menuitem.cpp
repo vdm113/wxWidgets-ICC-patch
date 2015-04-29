@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/menuitem.cpp
 // Purpose:     wxMenuItem implementation
@@ -641,11 +634,6 @@ void wxMenuItem::Check(bool check)
 
             // also uncheck all the other items in this radio group
             wxMenuItemList::compatibility_iterator node = items.Item(start);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for ( int n = start; n <= end && node; n++ )
             {
                 if ( n != pos )
@@ -1424,11 +1412,6 @@ int wxMenuItem::MSGetMenuItemPos() const
 
     const UINT id = GetMSWId();
     const int menuItems = ::GetMenuItemCount(hMenu);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( int i = 0; i < menuItems; i++ )
     {
         const UINT state = ::GetMenuState(hMenu, i, MF_BYPOSITION);

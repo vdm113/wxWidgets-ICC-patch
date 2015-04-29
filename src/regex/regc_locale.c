@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /* 
  * regc_locale.c --
  *
@@ -710,11 +703,6 @@ element(v, startp, endp)
     NOTE(REG_ULOCALE);
 
     /* search table */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (cn=cnames; cn->name!=NULL; cn++) {
 	if (wxCRT_StrlenNative(cn->name)==len && wxCRT_StrncmpNative(cn->name, startp, len)==0) {
 	    break;			/* NOTE BREAK OUT */
@@ -768,11 +756,6 @@ range(v, a, b, cases)
     cv = getcvec(v, nchrs, 0, 0);
     NOERRN();
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (c=a; c<=b; c++) {
 	addchr(cv, c);
 	lc = Tcl_UniCharToLower((chr)c);
@@ -899,11 +882,6 @@ cclass(v, startp, endp, cases)
      */
 
     index = -1;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (namePtr=classNames,i=0 ; *namePtr!=NULL ; namePtr++,i++) {
 	if ((wxCRT_StrlenNative(*namePtr) == len) && (wxCRT_StrncmpNative(*namePtr, np, len) == 0)) {
 	    index = i;
@@ -924,28 +902,13 @@ cclass(v, startp, endp, cases)
     case CC_ALNUM:
 	cv = getcvec(v, NUM_ALPHA_CHAR, NUM_DIGIT_RANGE + NUM_ALPHA_RANGE, 0);
 	if (cv) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_ALPHA_CHAR ; i++) {
 		addchr(cv, alphaCharTable[i]);
 	    }
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_ALPHA_RANGE ; i++) {
 		addrange(cv, alphaRangeTable[i].start,
 			alphaRangeTable[i].end);
 	    }
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_DIGIT_RANGE ; i++) {
 		addrange(cv, digitRangeTable[i].start,
 			digitRangeTable[i].end);
@@ -955,20 +918,10 @@ cclass(v, startp, endp, cases)
     case CC_ALPHA:
 	cv = getcvec(v, NUM_ALPHA_CHAR, NUM_ALPHA_RANGE, 0);
 	if (cv) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_ALPHA_RANGE ; i++) {
 		addrange(cv, alphaRangeTable[i].start,
 			alphaRangeTable[i].end);
 	    }
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_ALPHA_CHAR ; i++) {
 		addchr(cv, alphaCharTable[i]);
 	    }
@@ -993,11 +946,6 @@ cclass(v, startp, endp, cases)
     case CC_DIGIT:
 	cv = getcvec(v, 0, NUM_DIGIT_RANGE, 0);
 	if (cv) {	
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_DIGIT_RANGE ; i++) {
 		addrange(cv, digitRangeTable[i].start,
 			digitRangeTable[i].end);
@@ -1007,20 +955,10 @@ cclass(v, startp, endp, cases)
     case CC_PUNCT:
 	cv = getcvec(v, NUM_PUNCT_CHAR, NUM_PUNCT_RANGE, 0);
 	if (cv) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_PUNCT_RANGE ; i++) {
 		addrange(cv, punctRangeTable[i].start,
 			punctRangeTable[i].end);
 	    }
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_PUNCT_CHAR ; i++) {
 		addchr(cv, punctCharTable[i]);
 	    }
@@ -1046,20 +984,10 @@ cclass(v, startp, endp, cases)
     case CC_SPACE:
 	cv = getcvec(v, NUM_SPACE_CHAR, NUM_SPACE_RANGE, 0);
 	if (cv) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_SPACE_RANGE ; i++) {
 		addrange(cv, spaceRangeTable[i].start,
 			spaceRangeTable[i].end);
 	    }
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_SPACE_CHAR ; i++) {
 		addchr(cv, spaceCharTable[i]);
 	    }
@@ -1068,20 +996,10 @@ cclass(v, startp, endp, cases)
     case CC_LOWER:
 	cv  = getcvec(v, NUM_LOWER_CHAR, NUM_LOWER_RANGE, 0);
 	if (cv) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_LOWER_RANGE ; i++) {
 		addrange(cv, lowerRangeTable[i].start,
 			lowerRangeTable[i].end);
 	    }
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_LOWER_CHAR ; i++) {
 		addchr(cv, lowerCharTable[i]);
 	    }
@@ -1090,20 +1008,10 @@ cclass(v, startp, endp, cases)
     case CC_UPPER:
 	cv  = getcvec(v, NUM_UPPER_CHAR, NUM_UPPER_RANGE, 0);
 	if (cv) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_UPPER_RANGE ; i++) {
 		addrange(cv, upperRangeTable[i].start,
 			upperRangeTable[i].end);
 	    }
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_UPPER_CHAR ; i++) {
 		addchr(cv, upperCharTable[i]);
 	    }
@@ -1112,20 +1020,10 @@ cclass(v, startp, endp, cases)
     case CC_GRAPH:
 	cv  = getcvec(v, NUM_GRAPH_CHAR, NUM_GRAPH_RANGE, 0);
 	if (cv) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_GRAPH_RANGE ; i++) {
 		addrange(cv, graphRangeTable[i].start,
 			graphRangeTable[i].end);
 	    }
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_GRAPH_CHAR ; i++) {
 		addchr(cv, graphCharTable[i]);
 	    }
@@ -1163,11 +1061,6 @@ int cases;                      /* case-independent? */
     if (cases && len == 5 && (wxCRT_StrncmpNative(wxT("lower"), np, 5) == 0 ||
                                     wxCRT_StrncmpNative(wxT("upper"), np, 5) == 0))
             np = wxT("alpha");
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (cc = cclasses; cc->name != NULL; cc++)
             if (wxCRT_StrlenNative(cc->name) == len && wxCRT_StrncmpNative(cc->name, np, len) == 0)
                     break;          /* NOTE BREAK OUT */
@@ -1188,22 +1081,12 @@ int cases;                      /* case-independent? */
         }
 
         /* fill it in */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (p = cc->chars; *p != '\0'; p++)
                 addchr(cv, (chr)*p);
     }
     else
     {
         count = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (i = 0; i < 256; i++)
             if (cc->isfunc(i))
                 buf[count++] = i;
@@ -1216,11 +1099,6 @@ int cases;                      /* case-independent? */
         }
 
         /* fill it in */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (i = 0; i < count; i++)
             addchr(cv, buf[i]);
     }
@@ -1292,11 +1170,6 @@ casecmp(x, y, len)
     CONST chr *x, *y;			/* strings to compare */
     size_t len;				/* exact length of comparison */
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (; len > 0; len--, x++, y++) {
 	if ((*x!=*y) && (Tcl_UniCharToLower(*x) != Tcl_UniCharToLower(*y))) {
 	    return 1;

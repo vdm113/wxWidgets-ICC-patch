@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/evtloopcmn.cpp
 // Purpose:     common wxEventLoop-related stuff
@@ -253,11 +246,6 @@ int wxEventLoopManual::DoRun()
     // wxModalEventLoop depends on this (so we can't just use ON_BLOCK_EXIT or
     // something similar here)
 #if wxUSE_EXCEPTIONS
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( ;; )
     {
         try
@@ -265,11 +253,6 @@ int wxEventLoopManual::DoRun()
 #endif // wxUSE_EXCEPTIONS
 
             // this is the event loop itself
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for ( ;; )
             {
                 // give them the possibility to do whatever they want
@@ -277,11 +260,6 @@ int wxEventLoopManual::DoRun()
 
                 // generate and process idle events for as long as we don't
                 // have anything else to do
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                 while ( !m_shouldExit && !Pending() && ProcessIdle() )
                     ;
 
@@ -307,11 +285,6 @@ int wxEventLoopManual::DoRun()
             // handlers endlessly generate new events but they shouldn't do
             // this in a well-behaved program and we shouldn't just discard the
             // events we already have, they might be important.
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for ( ;; )
             {
                 bool hasMoreEvents = false;

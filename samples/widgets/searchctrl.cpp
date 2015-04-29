@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Program:     wxWidgets Widgets Sample
 // Name:        searchctrl.cpp
@@ -195,11 +188,6 @@ wxMenu* SearchCtrlWidgetsPage::CreateTestMenu()
     const int SEARCH_MENU_SIZE = 5;
     wxMenuItem* menuItem = menu->Append(wxID_ANY, wxT("Recent Searches"), wxT(""), wxITEM_NORMAL);
     menuItem->Enable(false);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( int i = 0; i < SEARCH_MENU_SIZE; i++ )
     {
         wxString itemText = wxString::Format(wxT("item %i"),i);

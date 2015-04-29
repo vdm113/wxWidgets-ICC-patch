@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/x11/utils.cpp
 // Purpose:     Various utilities
@@ -332,11 +325,6 @@ void wxAllocNearestColor(Display *d,Colormap cmp,XColor *xc)
     int num_colors = DisplayCells(d,screen);
 
     XColor *color_defs = new XColor[num_colors];
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for(llp = 0;llp < num_colors;llp++) color_defs[llp].pixel = llp;
     XQueryColors(d,cmp,color_defs,num_colors);
 
@@ -345,11 +333,6 @@ void wxAllocNearestColor(Display *d,Colormap cmp,XColor *xc)
 
     int diff, min_diff = 0, pixel = 0;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for(llp = 0;llp < num_colors;llp++)
     {
         wxXColorToHSV(&hsv_defs,&color_defs[llp]);

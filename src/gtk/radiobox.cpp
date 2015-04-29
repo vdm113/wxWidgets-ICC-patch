@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/radiobox.cpp
 // Purpose:
@@ -108,11 +101,6 @@ static gint gtk_radiobox_keypress_callback( GtkWidget *widget, GdkEventKey *gdk_
     }
 
     wxRadioBoxButtonsInfoList::compatibility_iterator node = rb->m_buttonsInfo.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while( node && GTK_WIDGET( node->GetData()->button ) != widget )
     {
         node = node->GetNext();
@@ -183,11 +171,6 @@ static void gtk_radiobutton_size_allocate( GtkWidget *widget,
                                            GtkAllocation * alloc,
                                            wxRadioBox *win )
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( wxRadioBoxButtonsInfoList::compatibility_iterator node = win->m_buttonsInfo.GetFirst();
           node;
           node = node->GetNext())
@@ -265,22 +248,12 @@ bool wxRadioBox::Create( wxWindow *parent, wxWindowID id, const wxString& title,
 
     wxString label;
     GSList *radio_button_group = NULL;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (unsigned int i = 0; i < (unsigned int)n; i++)
     {
         if ( i != 0 )
             radio_button_group = gtk_radio_button_get_group( GTK_RADIO_BUTTON(rbtn) );
 
         label.Empty();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( wxString::const_iterator pc = choices[i].begin();
               pc != choices[i].end(); ++pc )
         {
@@ -340,11 +313,6 @@ bool wxRadioBox::Create( wxWindow *parent, wxWindowID id, const wxString& title,
 wxRadioBox::~wxRadioBox()
 {
     wxRadioBoxButtonsInfoList::compatibility_iterator node = m_buttonsInfo.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (node)
     {
         GtkWidget *button = GTK_WIDGET( node->GetData()->button );
@@ -369,11 +337,6 @@ bool wxRadioBox::Show( bool show )
         gtk_widget_hide( m_widget );
 
     wxRadioBoxButtonsInfoList::compatibility_iterator node = m_buttonsInfo.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (node)
     {
         GtkWidget *button = GTK_WIDGET( node->GetData()->button );
@@ -413,11 +376,6 @@ int wxRadioBox::GetSelection(void) const
     int count = 0;
 
     wxRadioBoxButtonsInfoList::compatibility_iterator node = m_buttonsInfo.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (node)
     {
         GtkToggleButton *button = GTK_TOGGLE_BUTTON( node->GetData()->button );
@@ -472,11 +430,6 @@ bool wxRadioBox::Enable( bool enable )
         return false;
 
     wxRadioBoxButtonsInfoList::compatibility_iterator node = m_buttonsInfo.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (node)
     {
         GtkButton *button = GTK_BUTTON( node->GetData()->button );
@@ -564,11 +517,6 @@ unsigned int wxRadioBox::GetCount() const
 void wxRadioBox::GtkDisableEvents()
 {
     wxRadioBoxButtonsInfoList::compatibility_iterator node = m_buttonsInfo.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (node)
     {
         g_signal_handlers_block_by_func(node->GetData()->button,
@@ -581,11 +529,6 @@ void wxRadioBox::GtkDisableEvents()
 void wxRadioBox::GtkEnableEvents()
 {
     wxRadioBoxButtonsInfoList::compatibility_iterator node = m_buttonsInfo.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (node)
     {
         g_signal_handlers_unblock_by_func(node->GetData()->button,
@@ -600,11 +543,6 @@ void wxRadioBox::DoApplyWidgetStyle(GtkRcStyle *style)
     GTKFrameApplyWidgetStyle(GTK_FRAME(m_widget), style);
 
     wxRadioBoxButtonsInfoList::compatibility_iterator node = m_buttonsInfo.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (node)
     {
         GtkWidget *widget = GTK_WIDGET( node->GetData()->button );
@@ -631,11 +569,6 @@ void wxRadioBox::GTKApplyToolTip(const char* tip)
 {
     // set this tooltip for all radiobuttons which don't have their own tips
     unsigned n = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( wxRadioBoxButtonsInfoList::compatibility_iterator node = m_buttonsInfo.GetFirst();
           node;
           node = node->GetNext(), n++ )
@@ -665,11 +598,6 @@ GdkWindow *wxRadioBox::GTKGetWindow(wxArrayGdkWindows& windows) const
     windows.push_back(gtk_widget_get_window(m_widget));
 
     wxRadioBoxButtonsInfoList::compatibility_iterator node = m_buttonsInfo.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (node)
     {
         GtkWidget *button = GTK_WIDGET( node->GetData()->button );
@@ -695,11 +623,6 @@ int wxRadioBox::GetItemFromPoint(const wxPoint& point) const
 {
     const wxPoint pt = ScreenToClient(point);
     unsigned n = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( wxRadioBoxButtonsInfoList::compatibility_iterator
             node = m_buttonsInfo.GetFirst(); node; node = node->GetNext(), n++ )
     {

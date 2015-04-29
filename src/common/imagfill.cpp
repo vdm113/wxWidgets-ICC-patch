@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/imagfill.cpp
 // Purpose:     FloodFill for wxImage
@@ -103,11 +96,6 @@ wxImageFloodFill(wxImage *image,
         //temporary x and y locations
         int xt, yt;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (int i=0; i < qSz; i++)
             qst[i] = 0;
 
@@ -121,11 +109,6 @@ wxImageFloodFill(wxImage *image,
         image->SetRGB(xt,yt,r,g,b);
 
         //Main queue loop
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while(qr!=qs)
         {
             //Add new members to queue
@@ -208,11 +191,6 @@ wxImageFloodFill(wxImage *image,
         //temporary x and y locations
         int xt, yt;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (int i=0; i < qSz; i++)
             qst[i] = 0;
 
@@ -226,11 +204,6 @@ wxImageFloodFill(wxImage *image,
         image->SetRGB(xt,yt,r,g,b);
 
         //Main queue loop
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while (qr!=qs)
         {
             //Add new members to queue

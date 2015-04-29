@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk1/dcclient.cpp
 // Purpose:
@@ -186,11 +179,6 @@ static void wxInitGCPool()
 
 static void wxCleanUpGCPool()
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (int i = 0; i < wxGCPoolSize; i++)
     {
         if (wxGCPool[i].m_gc)
@@ -207,11 +195,6 @@ static GdkGC* wxGetPoolGC( GdkWindow *window, wxPoolGCType type )
     wxGC *pptr;
 
     // Look for an available GC.
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (int i = 0; i < wxGCPoolSize; i++)
     {
         if (!wxGCPool[i].m_gc)
@@ -260,11 +243,6 @@ static GdkGC* wxGetPoolGC( GdkWindow *window, wxPoolGCType type )
 
 static void wxFreePoolGC( GdkGC *gc )
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (int i = 0; i < wxGCPoolSize; i++)
     {
         if (wxGCPool[i].m_gc == gc)
@@ -542,17 +520,7 @@ void wxWindowDCImpl::DoDrawArc( wxCoord x1, wxCoord y1, wxCoord x2, wxCoord y2,
     }
     wxCoord alpha1 = wxCoord(radius1 * 64.0);
     wxCoord alpha2 = wxCoord((radius2 - radius1) * 64.0);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (alpha2 <= 0) alpha2 += 360*64;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (alpha1 > 360*64) alpha1 -= 360*64;
 
     if (m_window)
@@ -693,11 +661,6 @@ void wxWindowDCImpl::DoDrawLines( int n, const wxPoint points[], wxCoord xoffset
         return;
     }
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (int i = 0; i < n; i++)
     {
         wxCoord x = points[i].x + xoffset,
@@ -722,11 +685,6 @@ void wxWindowDCImpl::DoDrawPolygon( int n, const wxPoint points[], wxCoord xoffs
 
     GdkPoint * const gpts = new GdkPoint[n];
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (int i = 0 ; i < n ; i++)
     {
         wxCoord x = points[i].x + xoffset,
@@ -1783,11 +1741,6 @@ void wxWindowDCImpl::SetPen( const wxPen &pen )
         wxGTKDash *real_req_dash = new wxGTKDash[req_nb_dash];
         if (real_req_dash)
         {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for (int i = 0; i < req_nb_dash; i++)
                 real_req_dash[i] = req_dash[i] * width;
             gdk_gc_set_dashes( m_penGC, 0, real_req_dash, req_nb_dash );

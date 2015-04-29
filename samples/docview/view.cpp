@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        samples/docview/view.cpp
 // Purpose:     View classes implementation
@@ -83,21 +76,11 @@ void DrawingView::OnDraw(wxDC *dc)
 
     // simply draw all lines of all segments
     const DoodleSegments& segments = GetDocument()->GetSegments();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( DoodleSegments::const_iterator i = segments.begin();
           i != segments.end();
           ++i )
     {
         const DoodleLines& lines = i->GetLines();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( DoodleLines::const_iterator j = lines.begin();
               j != lines.end();
               ++j )

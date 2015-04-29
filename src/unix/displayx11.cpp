@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/displayx11.cpp
 // Purpose:     Unix/X11 implementation of wxDisplay class
@@ -147,11 +140,6 @@ int wxDisplayFactoryX11::GetFromPoint(const wxPoint& p)
     ScreensInfo screens;
 
     const unsigned numscreens(screens.GetCount());
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( unsigned i = 0; i < numscreens; ++i )
     {
         const ScreenInfo& s = screens[i];
@@ -206,11 +194,6 @@ wxArrayVideoModes wxXF86VidMode_GetModes(const wxVideoMode& mode, Display* displ
 
     if (XF86VidModeGetAllModeLines(display, nScreen, &nNumModes, &ppXModes))
     {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (int i = 0; i < nNumModes; ++i)
         {
             XF86VidModeModeInfo& info = *ppXModes[i];
@@ -257,11 +240,6 @@ bool wxXF86VidMode_ChangeMode(const wxVideoMode& mode, Display* display, int nSc
     {
         bRet = XF86VidModeSwitchToMode(display, nScreen, ppXModes[0]) != 0;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (int i = 0; i < nNumModes; ++i)
         {
             wxClearXVM((*ppXModes[i]));
@@ -270,11 +248,6 @@ bool wxXF86VidMode_ChangeMode(const wxVideoMode& mode, Display* display, int nSc
     }
     else
     {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (int i = 0; i < nNumModes; ++i)
         {
             if (!bRet &&
@@ -328,11 +301,6 @@ wxArrayVideoModes wxX11_GetModes(const wxDisplayImpl* impl, const wxVideoMode& m
     if ( depths )
     {
         const wxRect rect = impl->GetGeometry();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( int x = 0; x < count_return; ++x )
         {
             wxVideoMode mode(rect.width, rect.height, depths[x]);

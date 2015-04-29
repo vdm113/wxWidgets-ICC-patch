@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/mnemonics.cpp
 // Purpose:     implementation of GTK mnemonics conversion functions
@@ -66,11 +59,6 @@ static wxString GTKProcessMnemonics(const wxString& label, MnemonicsFlag flag)
 {
     wxString labelGTK;
     labelGTK.reserve(label.length());
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( wxString::const_iterator i = label.begin(); i != label.end(); ++i )
     {
         wxChar ch = *i;
@@ -91,11 +79,6 @@ static wxString GTKProcessMnemonics(const wxString& label, MnemonicsFlag flag)
                     size_t distanceFromEnd = label.end() - i;
 
                     // is this ampersand introducing a mnemonic or rather an entity?
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                     for (size_t j=0; j < WXSIZEOF(entitiesNames); j++)
                     {
                         const char *entity = entitiesNames[j];
@@ -186,11 +169,6 @@ wxString wxConvertMnemonicsToGTKMarkup(const wxString& label)
 wxString wxConvertMnemonicsFromGTK(const wxString& gtkLabel)
 {
     wxString label;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( const wxChar *pc = gtkLabel.c_str(); *pc; pc++ )
     {
         // '_' is the escape character for GTK+.

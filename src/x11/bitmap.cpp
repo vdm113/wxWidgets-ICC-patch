@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/x11/bitmap.cpp
 // Purpose:     wxBitmap
@@ -169,20 +162,10 @@ bool wxMask::Create( const wxBitmap& bitmap,
 
     int width = image.GetWidth();
     int height = image.GetHeight();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (int j = 0; j < height; j++)
     {
         int start_x = -1;
         int i;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (i = 0; i < width; i++)
         {
             if ((data[index] == red) &&
@@ -538,18 +521,8 @@ bool wxBitmap::CreateFromImage( const wxImage& image, int depth )
     GR_COLOR lastMaskColour = 0;
 
     int i, j;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (i = 0; i < w; i++)
     {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (j = 0; j < h; j++)
         {
             unsigned char red = image.GetRed(i, j);
@@ -696,18 +669,8 @@ bool wxBitmap::CreateFromImage( const wxImage& image, int depth )
             wxTheApp->GetVisualInfo(M_BMPDATA->m_display)->m_colorCube;
 
         int index = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (int y = 0; y < height; y++)
         {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for (int x = 0; x < width; x++)
             {
                 int r = data[index];
@@ -917,18 +880,8 @@ wxImage wxBitmap::ConvertToImage() const
     int width = GetWidth();
     int height = GetHeight();
     long pos = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (int j = 0; j < height; j++)
     {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (int i = 0; i < width; i++)
         {
             unsigned long pixel = XGetPixel( x_image, i, j );
@@ -1250,11 +1203,6 @@ bool wxGetImageFromDrawable(GR_DRAW_ID drawable, int srcX, int srcY, int width, 
             pixels);
 
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for(x = 0; x < sinfo.cols; x++) {
 
         pp = (unsigned char *)pixels +

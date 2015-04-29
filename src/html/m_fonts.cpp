@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/html/m_fonts.cpp
 // Purpose:     wxHtml module for fonts & colors of fonts
@@ -78,11 +71,6 @@ TAG_HANDLER_BEGIN(FONT, "FONT" )
             wxStringTokenizer tk(faces, wxT(","));
             int index;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             while (tk.HasMoreTokens())
             {
                 if ((index = m_Faces.Index(tk.GetNextToken(), false)) != wxNOT_FOUND)

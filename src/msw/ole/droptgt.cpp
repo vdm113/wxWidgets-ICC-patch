@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/ole/droptgt.cpp
 // Purpose:     wxDropTarget implementation
@@ -205,11 +198,6 @@ STDMETHODIMP wxIDropTarget::DragEnter(IDataObject *pIDataSource,
     if ( SUCCEEDED(pIDataSource->EnumFormatEtc(DATADIR_GET, &penumFmt)) )
     {
         FORMATETC fmt;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while ( penumFmt->Next(1, &fmt, NULL) == S_OK )
         {
             wxLogDebug(wxT("Drop source supports format %s"),
@@ -575,11 +563,6 @@ wxDataFormat wxDropTarget::MSWGetSupportedFormat(IDataObject *pIDataSource) cons
 
     // cycle through all supported formats
     size_t n;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( n = 0; n < nFormats; n++ ) {
         s_fmtMemory.cfFormat = formats[n];
 

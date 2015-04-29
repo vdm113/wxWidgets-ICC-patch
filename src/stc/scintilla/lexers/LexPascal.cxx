@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file LexPascal.cxx
  ** Lexer for Pascal.
@@ -145,11 +138,6 @@ static void GetRangeLowered(unsigned int start,
 		char *s,
 		unsigned int len) {
 	unsigned int i = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while ((i < end - start + 1) && (i < len-1)) {
 		s[i] = static_cast<char>(tolower(styler[start + i]));
 		i++;
@@ -163,11 +151,6 @@ static void GetForwardRangeLowered(unsigned int start,
 		char *s,
 		unsigned int len) {
 	unsigned int i = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while ((i < len-1) && charSet.Contains(styler.SafeGetCharAt(start + i))) {
 		s[i] = static_cast<char>(tolower(styler.SafeGetCharAt(start + i)));
 		i++;
@@ -246,11 +229,6 @@ static void ColourisePascalDoc(unsigned int startPos, int length, int initStyle,
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
 		if (sc.atLineEnd) {
 			// Update the line state, so it can be seen by next line
@@ -372,11 +350,6 @@ static bool IsStreamCommentStyle(int style) {
 static bool IsCommentLine(int line, Accessor &styler) {
 	int pos = styler.LineStart(line);
 	int eolPos = styler.LineStart(line + 1) - 1;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (int i = pos; i < eolPos; i++) {
 		char ch = styler[i];
 		char chNext = styler.SafeGetCharAt(i + 1);
@@ -437,11 +410,6 @@ static unsigned int SkipWhiteSpace(unsigned int currentPos, unsigned int endPos,
 	CharacterSet setWord(CharacterSet::setAlphaNum, "_");
 	unsigned int j = currentPos + 1;
 	char ch = styler.SafeGetCharAt(j);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while ((j < endPos) && (IsASpaceOrTab(ch) || ch == '\r' || ch == '\n' ||
 		IsStreamCommentStyle(styler.StyleAt(j)) || (includeChars && setWord.Contains(ch)))) {
 		j++;
@@ -510,11 +478,6 @@ static void ClassifyPascalWordFoldPoint(int &levelCurrent, int &lineFoldStateCur
 		bool ignoreKeyword = true;
 		int j = lastStart - 1;
 		char ch = styler.SafeGetCharAt(j);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		while ((j >= startPos) && (IsASpaceOrTab(ch) || ch == '\r' || ch == '\n' ||
 			IsStreamCommentStyle(styler.StyleAt(j)))) {
 			j--;
@@ -571,11 +534,6 @@ static void FoldPascalDoc(unsigned int startPos, int length, int initStyle, Word
 	int lastStart = 0;
 	CharacterSet setWord(CharacterSet::setAlphaNum, "_", 0x80, true);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

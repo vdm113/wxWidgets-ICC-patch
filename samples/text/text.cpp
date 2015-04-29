@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        text.cpp
 // Purpose:     TextCtrl wxWidgets sample
@@ -346,11 +339,6 @@ private:
 
         text->Clear();
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( int i = 0; i < 100; i++ )
         {
             text->AppendText(wxString::Format(wxT("Line %i\n"), i));
@@ -1646,19 +1634,9 @@ RichTextFrame::RichTextFrame(wxWindow* parent, const wxString& title):
 
     wxString value;
     int i;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (i = 0; i < 10; i++)
     {
         int j;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (j = 0; j < 10; j++)
         {
             value << wxT("Hello, welcome to a very simple rich text editor. You can set some character and paragraph styles from the Edit menu. ");
@@ -1775,11 +1753,6 @@ void RichTextFrame::OnChangeTextColour(wxCommandEvent& WXUNUSED(event))
     wxColourData data;
     data.SetColour(* wxBLACK);
     data.SetChooseFull(true);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (int i = 0; i < 16; i++)
     {
         wxColour colour((unsigned char)(i*16), (unsigned char)(i*16), (unsigned char)(i*16));
@@ -1809,11 +1782,6 @@ void RichTextFrame::OnChangeBackgroundColour(wxCommandEvent& WXUNUSED(event))
     wxColourData data;
     data.SetColour(* wxWHITE);
     data.SetChooseFull(true);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (int i = 0; i < 16; i++)
     {
         wxColour colour((unsigned char)(i*16), (unsigned char)(i*16), (unsigned char)(i*16));
@@ -1899,11 +1867,6 @@ void RichTextFrame::OnTabStops(wxCommandEvent& WXUNUSED(event))
     wxArrayInt tabs;
 
     wxStringTokenizer tokens(tabsStr, wxT(" "));
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (tokens.HasMoreTokens())
     {
         wxString token = tokens.GetNextToken();

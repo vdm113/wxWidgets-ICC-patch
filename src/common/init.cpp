@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/init.cpp
 // Purpose:     initialisation for the library
@@ -191,11 +184,6 @@ static void ConvertArgsToUnicode(int argc, char **argv)
     gs_initData.argv = new wchar_t *[argc + 1];
 
     int wargc = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( int i = 0; i < argc; i++ )
     {
 #ifdef __DARWIN__
@@ -223,11 +211,6 @@ static void FreeConvertedArgs()
 {
     if ( gs_initData.argvOrig )
     {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( int i = 0; i < gs_initData.argcOrig; i++ )
         {
             free(gs_initData.argvOrig[i]);

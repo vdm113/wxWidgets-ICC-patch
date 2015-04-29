@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/qt/window.cpp
 // Author:      Peter Most, Javier Torres, Mariano Reingart
@@ -922,11 +915,6 @@ void wxWindowQt::SetAcceleratorTable( const wxAcceleratorTable& accel )
     wxWindowBase::SetAcceleratorTable( accel );
 
     // Disable previously set accelerators
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( !m_qtShortcuts.isEmpty() )
         delete m_qtShortcuts.takeFirst();
 

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // SciTE - Scintilla based Text Editor
 /** @file PropSetSimple.cxx
  ** A Java style properties file module.
@@ -61,19 +54,9 @@ static bool IsASpaceCharacter(unsigned int ch) {
 }
 
 void PropSetSimple::Set(const char *keyVal) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (IsASpaceCharacter(*keyVal))
 		keyVal++;
 	const char *endVal = keyVal;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (*endVal && (*endVal != '\n'))
 		endVal++;
 	const char *eqAt = strchr(keyVal, '=');
@@ -87,11 +70,6 @@ void PropSetSimple::Set(const char *keyVal) {
 
 void PropSetSimple::SetMultiple(const char *s) {
 	const char *eol = strchr(s, '\n');
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (eol) {
 		Set(s);
 		s = eol + 1;
@@ -129,11 +107,6 @@ struct VarChain {
 
 static int ExpandAllInPlace(const PropSetSimple &props, std::string &withVars, int maxExpands, const VarChain &blankVars) {
 	size_t varStart = withVars.find("$(");
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while ((varStart != std::string::npos) && (maxExpands > 0)) {
 		size_t varEnd = withVars.find(")", varStart+2);
 		if (varEnd == std::string::npos) {
@@ -143,11 +116,6 @@ static int ExpandAllInPlace(const PropSetSimple &props, std::string &withVars, i
 		// For consistency, when we see '$(ab$(cde))', expand the inner variable first,
 		// regardless whether there is actually a degenerate variable named 'ab$(cde'.
 		size_t innerVarStart = withVars.find("$(", varStart+2);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		while ((innerVarStart != std::string::npos) && (innerVarStart > varStart) && (innerVarStart < varEnd)) {
 			varStart = innerVarStart;
 			innerVarStart = withVars.find("$(", varStart+2);

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /*
  * DFA routines
  * This file is #included by regexec.c.
@@ -80,11 +73,6 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 
 	/* main loop */
 	if (v->eflags&REG_FTRACE)
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		while (cp < realstop) {
 			FDEBUG(("+++ at c%d +++\n", css - d->ssets));
 			co = GETCOLOR(cm, *cp);
@@ -100,11 +88,6 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 			css = ss;
 		}
 	else
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		while (cp < realstop) {
 			co = GETCOLOR(cm, *cp);
 			ss = css->outs[co];
@@ -135,11 +118,6 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 
 	/* find last match, if any */
 	post = d->lastpost;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (ss = d->ssets, i = d->nssused; i > 0; ss++, i--)
 		if ((ss->flags&POSTSTATE) && post != ss->lastseen &&
 					(post == NULL || post < ss->lastseen))
@@ -196,11 +174,6 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 
 	/* main loop */
 	if (v->eflags&REG_FTRACE)
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		while (cp < realmax) {
 			FDEBUG(("--- at c%d ---\n", css - d->ssets));
 			co = GETCOLOR(cm, *cp);
@@ -218,11 +191,6 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 				break;		/* NOTE BREAK OUT */
 		}
 	else
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		while (cp < realmax) {
 			co = GETCOLOR(cm, *cp);
 			ss = css->outs[co];
@@ -278,11 +246,6 @@ struct dfa *d;
 	nopr = d->lastnopr;
 	if (nopr == NULL)
 		nopr = v->start;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (ss = d->ssets, i = d->nssused; i > 0; ss++, i--)
 		if ((ss->flags&NOPROGRESS) && nopr < ss->lastseen)
 			nopr = ss->lastseen;
@@ -409,11 +372,6 @@ int n;
 	unsigned h;
 
 	h = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (i = 0; i < n; i++)
 		h ^= uv[i];
 	return h;
@@ -437,11 +395,6 @@ chr *start;
 		ss = &d->ssets[0];
 	else {				/* no, must (re)build it */
 		ss = getvacant(v, d, start, start);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		for (i = 0; i < d->wordsper; i++)
 			ss->states[i] = 0;
 		BSET(ss->states, d->cnfa->pre);
@@ -451,11 +404,6 @@ chr *start;
 		/* lastseen dealt with below */
 	}
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (i = 0; i < d->nssused; i++)
 		d->ssets[i].lastseen = NULL;
 	ss->lastseen = start;		/* maybe untrue, but harmless */
@@ -497,28 +445,13 @@ chr *start;			/* where the attempt got started */
 	FDEBUG(("miss\n"));
 
 	/* first, what set of states would we end up in? */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (i = 0; i < d->wordsper; i++)
 		d->work[i] = 0;
 	ispost = 0;
 	noprogress = 1;
 	gotstate = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (i = 0; i < d->nstates; i++)
 		if (ISBSET(css->states, i))
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 			for (ca = cnfa->states[i]+1; ca->co != COLORLESS; ca++)
 				if (ca->co == co) {
 					BSET(d->work, ca->to);
@@ -531,25 +464,10 @@ chr *start;			/* where the attempt got started */
 				}
 	dolacons = (gotstate) ? (cnfa->flags&HASLACONS) : 0;
 	sawlacons = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (dolacons) {		/* transitive closure */
 		dolacons = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		for (i = 0; i < d->nstates; i++)
 			if (ISBSET(d->work, i))
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 				for (ca = cnfa->states[i]+1; ca->co != COLORLESS;
 									ca++) {
 					if (ca->co <= cnfa->ncolors)
@@ -573,11 +491,6 @@ chr *start;			/* where the attempt got started */
 	h = HASH(d->work, d->wordsper);
 
 	/* next, is that in the cache? */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (p = d->ssets, i = d->nssused; i > 0; p++, i--)
 		if (HIT(h, d->work, p, d->wordsper)) {
 			FDEBUG(("cached c%d\n", p - d->ssets));
@@ -586,11 +499,6 @@ chr *start;			/* where the attempt got started */
 	if (i == 0) {		/* nope, need a new cache entry */
 		p = getvacant(v, d, cp, start);
 		assert(p != css);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		for (i = 0; i < d->wordsper; i++)
 			p->states[i] = d->work[i];
 		p->hash = h;
@@ -667,11 +575,6 @@ chr *start;
 
 	/* clear out its inarcs, including self-referential ones */
 	ap = ss->ins;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while ((p = ap.ss) != NULL) {
 		co = ap.co;
 		FDEBUG(("zapping c%d's %ld outarc\n", p - d->ssets, (long)co));
@@ -682,11 +585,6 @@ chr *start;
 	ss->ins.ss = NULL;
 
 	/* take it off the inarc chains of the ssets reached by its outarcs */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (i = 0; i < d->ncolors; i++) {
 		p = ss->outs[i];
 		assert(p != ss);		/* not self-referential */
@@ -697,11 +595,6 @@ chr *start;
 			p->ins = ss->inchain[i];
 		else {
 			assert(p->ins.ss != NULL);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 			for (ap = p->ins; ap.ss != NULL &&
 						!(ap.ss == ss && ap.co == i);
 						ap = ap.ss->inchain[ap.co])
@@ -755,11 +648,6 @@ chr *start;
 		ss->ins.co = WHITE;		/* give it some value */
 		ss->outs = &d->outsarea[i * d->ncolors];
 		ss->inchain = &d->incarea[i * d->ncolors];
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		for (i = 0; i < d->ncolors; i++) {
 			ss->outs[i] = NULL;
 			ss->inchain[i].ss = NULL;
@@ -772,11 +660,6 @@ chr *start;
 		ancient = cp - d->nssets*2/3;
 	else
 		ancient = start;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (ss = d->search, end = &d->ssets[d->nssets]; ss < end; ss++)
 		if ((ss->lastseen == NULL || ss->lastseen < ancient) &&
 							!(ss->flags&LOCKED)) {
@@ -784,11 +667,6 @@ chr *start;
 			FDEBUG(("replacing c%d\n", ss - d->ssets));
 			return ss;
 		}
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (ss = d->ssets, end = d->search; ss < end; ss++)
 		if ((ss->lastseen == NULL || ss->lastseen < ancient) &&
 							!(ss->flags&LOCKED)) {

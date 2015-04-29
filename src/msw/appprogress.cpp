@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/appprog.cpp
 // Purpose:     Implementation of wxAppProgressIndicator.
@@ -37,11 +30,6 @@ wxAppProgressIndicator::wxAppProgressIndicator(wxWindow* parent, int maxValue)
 {
     if ( parent == NULL )
     {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( wxWindowList::const_iterator it = wxTopLevelWindows.begin();
               it != wxTopLevelWindows.end();
               ++it )
@@ -66,11 +54,6 @@ wxAppProgressIndicator::~wxAppProgressIndicator()
 {
     Reset();
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( size_t i = 0; i < m_taskBarButtons.size(); ++i )
     {
         delete m_taskBarButtons[i];
@@ -86,11 +69,6 @@ void wxAppProgressIndicator::SetValue(int value)
 {
     wxASSERT_MSG( value <= m_maxValue, wxT("invalid progress value") );
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( size_t i = 0; i < m_taskBarButtons.size(); ++i )
     {
         m_taskBarButtons[i]->SetProgressValue(value);
@@ -101,11 +79,6 @@ void wxAppProgressIndicator::SetRange(int range)
 {
     m_maxValue = range;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( size_t i = 0; i < m_taskBarButtons.size(); ++i )
     {
         m_taskBarButtons[i]->SetProgressRange(range);
@@ -114,11 +87,6 @@ void wxAppProgressIndicator::SetRange(int range)
 
 void wxAppProgressIndicator::Pulse()
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( size_t i = 0; i < m_taskBarButtons.size(); ++i )
     {
         m_taskBarButtons[i]->PulseProgress();
@@ -127,11 +95,6 @@ void wxAppProgressIndicator::Pulse()
 
 void wxAppProgressIndicator::Reset()
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( size_t i = 0; i < m_taskBarButtons.size(); ++i )
     {
         m_taskBarButtons[i]->SetProgressState(wxTASKBAR_BUTTON_NO_PROGRESS);
