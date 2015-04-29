@@ -21,6 +21,7 @@ for i in ${files} ; do cp -f "../wxWidgets_vanilla_trunk/${i}" "./${i}" ; done
 cd wxWidgets_vdm_patch && ./X64/Release/wxWidgets_vdm_patch.exe -p --no-wait && cd ..
 for i in `find build/msw/ -type f -maxdepth 1` ; do ( git rm -f "${i}" 2>/dev/null ) ; ( rm -f "${i}" 2>/dev/null ) ; done
 git commit -a --signoff -m 'sync with upstream (GIT); patched for ICC; removed files we do not support'
+rm -rf ./vdm/build/*
 cp -rf ./vdm/build .
 git add build/msw/
 git commit -a --signoff -m 'restore our project files'
