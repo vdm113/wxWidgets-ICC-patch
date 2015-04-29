@@ -20,8 +20,10 @@ for i in ${dirs} ; do mkdir ${i} 2>/dev/null ; done
 for i in ${files} ; do cp -f "../wxWidgets_vanilla_trunk/${i}" "./${i}" ; done
 cd wxWidgets_vdm_patch && ./X64/Release/wxWidgets_vdm_patch.exe -p --no-wait && cd ..
 for i in `find build/msw/ -type f -maxdepth 1` ; do ( git rm -f "${i}" 2>/dev/null ) ; ( rm -f "${i}" 2>/dev/null ) ; done
+mkdir build/msw/
 git commit -a --signoff -m 'sync with upstream (GIT); patched for ICC'
 git clean -f -d
+mkdir build/msw/
 git commit -a --signoff -m 'restore our project files and remove unsupported files'
 git reset --hard
 git clean -f -d
@@ -30,8 +32,7 @@ mkdir build/msw/
 git commit -a --signoff -m 'remove obsolete project files we do not support'
 mv -f README.md README_orig_wx.md
 
-git add README.md
-git commit -a --signoff -m 'restore our project files and remove unsupported files #2'
+git add --all README.md
 
 git branch -d WX_3_0_0
 git branch -d origin/wx_git
