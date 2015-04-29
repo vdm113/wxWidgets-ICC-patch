@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 
 /*
  * Copyright (c) 1988-1997 Sam Leffler
@@ -57,11 +50,6 @@ _tiffReadProc(thandle_t fd, void* buf, tmsize_t size)
 	ma=(uint8*)buf;
 	mb=size;
 	p=0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (mb>0)
 	{
 		n=0x80000000UL;
@@ -92,11 +80,6 @@ _tiffWriteProc(thandle_t fd, void* buf, tmsize_t size)
 	ma=(uint8*)buf;
 	mb=size;
 	p=0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (mb>0)
 	{
 		n=0x80000000UL;
@@ -227,11 +210,6 @@ TIFFFdOpen(int ifd, const char* name, const char* mode)
 	int fSuppressMap;
 	int m;
 	fSuppressMap=0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (m=0; mode[m]!=0; m++)
 	{
 		if (mode[m]=='u')

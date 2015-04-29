@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/gauge.h
 // Purpose:     wxGauge implementation for MSW
@@ -78,7 +71,7 @@ private:
     void SetIndeterminateMode();
     void SetDeterminateMode();
 
-    DECLARE_DYNAMIC_CLASS_NO_COPY(wxGauge)
+    wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxGauge);
 };
 
 #endif // wxUSE_GAUGE

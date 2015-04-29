@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/generic/private/widthcalc.h
 // Purpose:     wxMaxWidthCalculatorBase helper class.
@@ -77,11 +70,6 @@ public:
 
         size_t row = 0;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( row = 0; row < top_part_end; row++ )
         {
 #if wxUSE_STOPWATCH
@@ -99,11 +87,6 @@ public:
 
             // add bottom N/2 items now:
             const size_t bottom_part_start = wxMax(row, count - row);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for ( row = bottom_part_start; row < count; row++ )
             {
                 UpdateWithRow(row);
@@ -113,11 +96,6 @@ public:
             first_visible = wxMax(first_visible, top_part_end);
             last_visible = wxMin(bottom_part_start, last_visible);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for ( row = first_visible; row < last_visible; row++ )
             {
                 UpdateWithRow(row);

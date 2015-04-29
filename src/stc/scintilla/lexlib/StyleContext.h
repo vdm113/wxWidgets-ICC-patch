@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file StyleContext.h
  ** Lexer infrastructure.
@@ -139,22 +132,12 @@ public:
 		}
 	}
 	void Forward(int nb) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		for (int i = 0; i < nb; i++) {
 			Forward();
 		}
 	}
 	void ForwardBytes(int nb) {
 		size_t forwardPos = currentPos + nb;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		while (forwardPos > currentPos) {
 			Forward();
 		}
@@ -214,11 +197,6 @@ public:
 		if (chNext != static_cast<unsigned char>(*s))
 			return false;
 		s++;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		for (int n=2; *s; n++) {
 			if (*s != styler.SafeGetCharAt(currentPos+n, 0))
 				return false;
@@ -233,11 +211,6 @@ public:
 		if (MakeLowerCase(chNext) != static_cast<unsigned char>(*s))
 			return false;
 		s++;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		for (int n=2; *s; n++) {
 			if (static_cast<unsigned char>(*s) !=
 				MakeLowerCase(static_cast<unsigned char>(styler.SafeGetCharAt(currentPos+n, 0))))

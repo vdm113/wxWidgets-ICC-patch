@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/toplvcmn.cpp
 // Purpose:     common (for all platforms) wxTopLevelWindow functions
@@ -78,11 +71,6 @@ wxTopLevelWindowBase::~wxTopLevelWindowBase()
     // on the stack) immediately afterwards and before the child TLW was really
     // destroyed -- not destroying it now would leave it alive with a dangling
     // parent pointer and result in a crash later
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( wxObjectList::iterator i = wxPendingDelete.begin();
           i != wxPendingDelete.end();
           )
@@ -134,11 +122,6 @@ bool wxTopLevelWindowBase::Destroy()
     // any more as no events will be sent to the hidden window and without idle
     // events we won't prune wxPendingDelete list and the application won't
     // terminate
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( wxWindowList::const_iterator i = wxTopLevelWindows.begin(),
                                      end = wxTopLevelWindows.end();
           i != end;
@@ -177,11 +160,6 @@ bool wxTopLevelWindowBase::IsLastBeforeExit() const
     const wxWindowList::const_iterator end = wxTopLevelWindows.end();
 
     // then decide whether we should exit at all
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( i = wxTopLevelWindows.begin(); i != end; ++i )
     {
         wxTopLevelWindow * const win = static_cast<wxTopLevelWindow *>(*i);
@@ -193,11 +171,6 @@ bool wxTopLevelWindowBase::IsLastBeforeExit() const
     }
 
     // if yes, close all the other windows: this could still fail
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( i = wxTopLevelWindows.begin(); i != end; ++i )
     {
         // don't close twice the windows which are already marked for deletion
@@ -422,11 +395,6 @@ void wxTopLevelWindowBase::DoLayout()
     {
         // do we have _exactly_ one child?
         wxWindow *child = NULL;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
               node;
               node = node->GetNext() )

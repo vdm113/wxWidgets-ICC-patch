@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/motif/textctrl.cpp
 // Purpose:     wxTextCtrl
@@ -276,11 +269,6 @@ int wxTextCtrl::GetNumberOfLines() const
         long i = 0;
         int currentLine = 0;
         bool finished = false;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while (!finished)
         {
             int ch = s[i];
@@ -313,11 +301,6 @@ long wxTextCtrl::XYToPosition(long x, long y) const
     */
     /* Now a little workaround: */
     long r=0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (int i=0; i<y; i++) r+=(GetLineLength(i)+1);
     return r+x;
 }
@@ -355,21 +338,11 @@ wxString wxTextCtrl::GetLineText(long lineNo) const
         wxString buf;
         long i;
         int currentLine = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (i = 0; currentLine != lineNo && s[i]; i++ )
             if (s[i] == '\n')
                 currentLine++;
             // Now get the text
             int j;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for (j = 0; s[i] && s[i] != '\n'; i++, j++ )
                 buf += s[i];
 
@@ -595,30 +568,15 @@ static void MergeChangesIntoString(wxString& value,
         // Copy (old) text from passwd, up to the start posn of the change.
         int i;
         const char * p = passwd;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (i = 0; i < cbs->startPos; ++i)
             *dest++ = *p++;
 
         // Copy the text to be inserted).
         if (insert)
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             while (*insert)
                 *dest++ = *insert++;
 
         // Finally, copy into newS any remaining text from passwd[endPos] on.
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (p = passwd + cbs->endPos; *p; )
             *dest++ = *p++;
         *dest = 0;
@@ -658,11 +616,6 @@ wxTextWindowModifyProc (Widget WXUNUSED(w), XtPointer clientData, XmTextVerifyCa
         if ( cbs->text->length > 0 )
         {
             int i;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for (i = 0; i < cbs->text->length; ++i)
                 cbs->text->ptr[i] = '*';
             cbs->text->ptr[i] = '\0';

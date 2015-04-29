@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/streams/filestream.cpp
 // Purpose:     Test wxFileInputStream/wxFileOutputStream
@@ -124,11 +117,6 @@ wxString fileStream::GetInFileName() const
         wxFileOutputStream out(FILENAME_FILEINSTREAM);
 
         // Init the data buffer.
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (size_t i = 0; i < DATABUFFER_SIZE; i++)
             buf[i] = (i % 0xFF);
 

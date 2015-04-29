@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        validate.cpp
 // Purpose:     wxWidgets validator sample
@@ -214,11 +207,6 @@ void MyFrame::OnTestDialog(wxCommandEvent& WXUNUSED(event))
         m_listbox->Append(wxString(wxT("string: ")) + g_data.m_string);
         m_listbox->Append(wxString(wxT("string #2: ")) + g_data.m_string2);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for(unsigned int i = 0; i < g_data.m_listbox_choices.GetCount(); ++i)
         {
             int j = g_data.m_listbox_choices[i];

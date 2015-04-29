@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/motif/font.cpp
 // Purpose:     wxFont class
@@ -207,11 +200,6 @@ void wxFontRefData::Init(int pointSize,
 wxFontRefData::~wxFontRefData()
 {
     wxList::compatibility_iterator node = m_fonts.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (node)
     {
         wxXFont* f = (wxXFont*) node->GetData();
@@ -525,11 +513,6 @@ wxXFont* wxFont::GetInternalFont(double scale, WXDisplay* display) const
 
     // search existing fonts first
     wxList::compatibility_iterator node = M_FONTDATA->m_fonts.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (node)
     {
         wxXFont* f = (wxXFont*) node->GetData();

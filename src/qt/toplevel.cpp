@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/qt/toplevel.cpp
 // Author:      Peter Most, Javier Torres, Sean D'Epagnier, Mariano Reingart
@@ -116,11 +109,6 @@ void wxTopLevelWindowQt::SetIcons( const wxIconBundle& icons )
     wxTopLevelWindowBase::SetIcons( icons );
     
     QIcon qtIcons;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( size_t i = 0; i < icons.GetIconCount(); i++ )
     {
         qtIcons.addPixmap( *icons.GetIconByIndex( i ).GetHandle() );

@@ -8,9 +8,9 @@
 -->
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="9.00"
 	Name="webview"
-	ProjectGUID="{51173FB3-6227-51D7-8807-1FC9CD18781C}"
+	ProjectGUID="{A8E8442A-078A-5FC5-B495-8D71BA77EE6E}"
 	>
 	<Platforms>
 		<Platform
@@ -52,10 +52,10 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\lib\vc_lib\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING"
-				MinimalRebuild="true"
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -68,7 +68,6 @@
 				ProgramDataBaseFileName="..\..\lib\vc_lib\wxmsw31ud_webview.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -99,7 +98,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_lib\wx_vc8_webview.bsc"
+				OutputFile="..\..\lib\vc_lib\wx_vc9_webview.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -137,6 +136,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="2"
 				AdditionalIncludeDirectories="..\..\lib\vc_lib\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING"
@@ -150,7 +150,6 @@
 				ProgramDataBaseFileName="..\..\lib\vc_lib\wxmsw31u_webview.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -181,7 +180,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_lib\wx_vc8_webview.bsc"
+				OutputFile="..\..\lib\vc_lib\wx_vc9_webview.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -219,10 +218,10 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\lib\vc_dll\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 				PreprocessorDefinitions="WIN32;_USRDLL;DLL_EXPORTS;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_WEBVIEW"
-				MinimalRebuild="true"
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -235,7 +234,6 @@
 				ProgramDataBaseFileName="..\..\lib\vc_dll\wxmsw310ud_webview_vc_custom.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -275,7 +273,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_dll\wx_vc8_webview.bsc"
+				OutputFile="..\..\lib\vc_dll\wx_vc9_webview.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -313,6 +311,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="2"
 				AdditionalIncludeDirectories="..\..\lib\vc_dll\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 				PreprocessorDefinitions="WIN32;_USRDLL;DLL_EXPORTS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_WEBVIEW"
@@ -326,7 +325,6 @@
 				ProgramDataBaseFileName="..\..\lib\vc_dll\wxmsw310u_webview_vc_custom.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -368,7 +366,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_dll\wx_vc8_webview.bsc"
+				OutputFile="..\..\lib\vc_dll\wx_vc9_webview.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -406,10 +404,10 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\lib\vc_x64_lib\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING"
-				MinimalRebuild="true"
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -422,7 +420,6 @@
 				ProgramDataBaseFileName="..\..\lib\vc_x64_lib\wxmsw31ud_webview.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -453,7 +450,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_x64_lib\wx_vc8_webview.bsc"
+				OutputFile="..\..\lib\vc_x64_lib\wx_vc9_webview.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -491,6 +488,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="2"
 				AdditionalIncludeDirectories="..\..\lib\vc_x64_lib\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 				PreprocessorDefinitions="WIN32;_LIB;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING"
@@ -504,7 +502,6 @@
 				ProgramDataBaseFileName="..\..\lib\vc_x64_lib\wxmsw31u_webview.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -535,7 +532,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_x64_lib\wx_vc8_webview.bsc"
+				OutputFile="..\..\lib\vc_x64_lib\wx_vc9_webview.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -573,10 +570,10 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\lib\vc_x64_dll\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 				PreprocessorDefinitions="WIN32;_USRDLL;DLL_EXPORTS;_DEBUG;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_WEBVIEW"
-				MinimalRebuild="true"
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -589,7 +586,6 @@
 				ProgramDataBaseFileName="..\..\lib\vc_x64_dll\wxmsw310ud_webview_vc_custom.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -629,7 +625,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_x64_dll\wx_vc8_webview.bsc"
+				OutputFile="..\..\lib\vc_x64_dll\wx_vc9_webview.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -667,6 +663,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="2"
 				AdditionalIncludeDirectories="..\..\lib\vc_x64_dll\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib"
 				PreprocessorDefinitions="WIN32;_USRDLL;DLL_EXPORTS;_CRT_SECURE_NO_DEPRECATE=1;_CRT_NON_CONFORMING_SWPRINTFS=1;_SCL_SECURE_NO_WARNINGS=1;__WXMSW__;NDEBUG;_UNICODE;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_WEBVIEW"
@@ -680,7 +677,6 @@
 				ProgramDataBaseFileName="..\..\lib\vc_x64_dll\wxmsw310u_webview_vc_custom.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -722,7 +718,7 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				OutputFile="..\..\lib\vc_x64_dll\wx_vc8_webview.bsc"
+				OutputFile="..\..\lib\vc_x64_dll\wx_vc9_webview.bsc"
 				SuppressStartupBanner="true"
 			/>
 			<Tool

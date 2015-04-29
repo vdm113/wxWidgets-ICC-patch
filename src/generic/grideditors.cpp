@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/grideditors.cpp
 // Purpose:     wxGridCellEditorEvtHandler and wxGrid editors
@@ -158,11 +151,6 @@ void wxGridCellEditorEvtHandler::OnChar(wxKeyEvent& event)
 
             // get the widths of all cells previous to this one
             int colXPos = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for ( int i = 0; i < col; i++ )
             {
                 colXPos += m_grid->GetColSize(i);
@@ -217,11 +205,6 @@ void wxGridCellEditorEvtHandler::OnChar(wxKeyEvent& event)
 
             // get the widths of all cells previous to this one
             int colXPos = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for ( int i = 0; i < col; i++ )
             {
                 colXPos += m_grid->GetColSize(i);
@@ -1434,11 +1417,6 @@ wxGridCellChoiceEditor::wxGridCellChoiceEditor(size_t count,
     if ( count )
     {
         m_choices.Alloc(count);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )
         {
             m_choices.Add(choices[n]);
@@ -1597,11 +1575,6 @@ void wxGridCellChoiceEditor::SetParameters(const wxString& params)
     m_choices.Empty();
 
     wxStringTokenizer tk(params, wxT(','));
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( tk.HasMoreTokens() )
     {
         m_choices.Add(tk.GetNextToken());

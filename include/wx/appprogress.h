@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/appprogress.h
 // Purpose:     wxAppProgressIndicator interface.
@@ -38,7 +31,7 @@ private:
 
 #if defined(__WXMSW__) && wxUSE_TASKBARBUTTON
     #include "wx/msw/appprogress.h"
-#elif defined(__WXOSX__)
+#elif defined(__WXOSX_COCOA__)
     #include "wx/osx/appprogress.h"
 #else
     class wxAppProgressIndicator : public wxAppProgressIndicatorBase

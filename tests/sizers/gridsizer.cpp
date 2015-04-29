@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/sizers/gridsizer.cpp
 // Purpose:     Unit tests for wxGridSizer and wxFlexGridSizer.
@@ -98,11 +91,6 @@ void GridSizerTestCase::SetChildren(const wxVector<wxWindow*>& children,
                                     const wxSizerFlags& flags)
 {
     m_sizer->Clear();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( wxVector<wxWindow*>::const_iterator i = children.begin();
           i != children.end();
           ++i )
@@ -125,11 +113,6 @@ void GridSizerTestCase::Expand()
                           sizeTotal.y - sizeTotal.y / 4);
 
     wxVector<wxWindow*> children;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( int n = 0; n < 4; n++ )
     {
         children.push_back(new wxWindow(m_win, wxID_ANY, wxDefaultPosition,

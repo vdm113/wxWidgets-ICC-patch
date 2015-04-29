@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        samples/sockbase/client.cpp
 // Purpose:     Sockets sample for wxBase
@@ -353,11 +346,6 @@ bool Server::OnInit()
 
 int Server::OnExit()
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( TList::compatibility_iterator it = m_threadWorkers.GetFirst();
           it;
           it = it->GetNext() )
@@ -366,11 +354,6 @@ int Server::OnExit()
         delete it->GetData();
     }
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( EList::compatibility_iterator it2 = m_eventWorkers.GetFirst();
           it2;
           it2->GetNext() )
@@ -446,11 +429,6 @@ void Server::OnSocketEvent(wxSocketEvent& pEvent)
 void  Server::OnWorkerEvent(WorkerEvent& pEvent)
 {
     //wxLogMessage("Got worker event");
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for(TList::compatibility_iterator it = m_threadWorkers.GetFirst(); it ; it = it->GetNext())
     {
         if (it->GetData() == pEvent.m_sender)
@@ -467,11 +445,6 @@ void  Server::OnWorkerEvent(WorkerEvent& pEvent)
             break;
         }
     }
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for(EList::compatibility_iterator it2 = m_eventWorkers.GetFirst(); it2 ; it2 = it2->GetNext())
     {
         if (it2->GetData() == pEvent.m_sender)
@@ -531,11 +504,6 @@ wxThread::ExitCode ThreadWorker::Entry()
         unsigned char signature[2];
         LogWorker("ThreadWorker: reading for data");
         to_process = 2;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         do
         {
             m_socket->Read(&signature,to_process);
@@ -571,11 +539,6 @@ wxThread::ExitCode ThreadWorker::Entry()
         to_process = size;
         LogWorker(wxString::Format("ThreadWorker: reading %d bytes of data",to_process));
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         do
         {
             m_socket->Read(buf,to_process);
@@ -593,11 +556,6 @@ wxThread::ExitCode ThreadWorker::Entry()
 
         to_process = size;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         do
         {
             m_socket->Write(buf,to_process);
@@ -646,11 +604,6 @@ EventWorker::DoRead()
     if (m_inbuf == NULL)
     {
         //read message header
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         do
         {
             m_socket->Read(m_signature + m_infill, 2 - m_infill);
@@ -700,11 +653,6 @@ EventWorker::DoRead()
     if (m_inbuf == NULL)
         return;
     //read message data
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     do
     {
         if (m_size == m_infill)
@@ -768,11 +716,6 @@ void EventWorker::OnSocketEvent(wxSocketEvent& pEvent)
 
 void  EventWorker::DoWrite()
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     do
     {
         if (m_written == m_size)

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/utilsunx.cpp
 // Purpose:     generic Unix implementation of many wx functions (for wxBase)
@@ -405,11 +398,6 @@ public:
     {
         Init(args.size());
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( int i = 0; i < m_argc; i++ )
         {
             m_argv[i] = wxStrdup(args[i]);
@@ -420,21 +408,11 @@ public:
     ArgsArray(wchar_t **wargv)
     {
         int argc = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while ( wargv[argc] )
             argc++;
 
         Init(argc);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( int i = 0; i < m_argc; i++ )
         {
             m_argv[i] = wxSafeConvertWX2MB(wargv[i]).release();
@@ -444,11 +422,6 @@ public:
 
     ~ArgsArray()
     {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( int i = 0; i < m_argc; i++ )
         {
             free(m_argv[i]);
@@ -566,11 +539,6 @@ int BlockUntilChildExit(wxExecuteData& execData)
 #endif // wxUSE_STREAMS
 
     // And dispatch until the PID is reset from wxExecuteData::OnExit().
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( execData.pid )
     {
         dispatcher.Dispatch();
@@ -726,11 +694,6 @@ long wxExecute(char **argv, int flags, wxProcess *process,
         //       above a certain threshold but non-portable solutions exist for
         //       most platforms, see [http://stackoverflow.com/questions/899038/
         //          getting-the-highest-allocated-file-descriptor]
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( int fd = 0; fd < (int)FD_SETSIZE; ++fd )
         {
             if ( fd != STDIN_FILENO  &&
@@ -764,11 +727,6 @@ long wxExecute(char **argv, int flags, wxProcess *process,
 
                 // Remove unwanted variables
                 wxEnvVariableHashMap::const_iterator it;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                 for ( it = oldenv.begin(); it != oldenv.end(); ++it )
                 {
                     if ( env->env.find(it->first) == env->env.end() )
@@ -776,11 +734,6 @@ long wxExecute(char **argv, int flags, wxProcess *process,
                 }
 
                 // And add the new ones (possibly replacing the old values)
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                 for ( it = env->env.begin(); it != env->env.end(); ++it )
                     wxSetEnv(it->first, it->second);
             }
@@ -789,11 +742,6 @@ long wxExecute(char **argv, int flags, wxProcess *process,
         execvp(*argv, argv);
 
         fprintf(stderr, "execvp(");
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( char **a = argv; *a; a++ )
             fprintf(stderr, "%s%s", a == argv ? "" : ", ", *a);
         fprintf(stderr, ") failed with error %d!\n", errno);
@@ -979,11 +927,6 @@ wxGetCommandOutput(const wxString &cmd, wxMBConv& conv = wxConvISO8859_1)
 
     wxString s;
     char buf[256];
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( !feof(f) )
     {
         if ( !fgets(buf, sizeof(buf), f) )
@@ -1328,11 +1271,6 @@ public:
     virtual bool OnInit() { return true; }
     virtual void OnExit()
     {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( wxEnvVars::const_iterator i = gs_envVars.begin();
               i != gs_envVars.end();
               ++i )
@@ -1570,11 +1508,6 @@ bool CheckForChildExit(int pid, int* exitcodeOut)
     int status, rc;
 
     // loop while we're getting EINTR
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( ;; )
     {
         rc = waitpid(pid, &status, WNOHANG);
@@ -1637,11 +1570,6 @@ void wxExecuteData::OnSomeChildExited(int WXUNUSED(sig))
     // Make a copy of the list before iterating over it to avoid problems due
     // to deleting entries from it in the process.
     const ChildProcessesData allChildProcesses = ms_childProcesses;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( ChildProcessesData::const_iterator it = allChildProcesses.begin();
           it != allChildProcesses.end();
           ++it )

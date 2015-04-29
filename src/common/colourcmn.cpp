@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/colourcmn.cpp
 // Purpose:     wxColourBase implementation
@@ -119,11 +112,6 @@ bool wxColourBase::FromString(const wxString& str)
             wxCharBuffer alphaBuf(len);
             char * const alphaPtr = alphaBuf.data();
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for ( unsigned n = 0; n < len; n++ )
                 alphaPtr[n] = '\0';
 

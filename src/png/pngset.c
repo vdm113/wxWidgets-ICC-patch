@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 
 /* pngset.c - storage of image information into info struct
  *
@@ -201,11 +194,6 @@ png_set_hIST(png_const_structrp png_ptr, png_inforp info_ptr,
 
    info_ptr->free_me |= PNG_FREE_HIST;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
    for (i = 0; i < info_ptr->num_palette; i++)
       info_ptr->hist[i] = hist[i];
 
@@ -308,11 +296,6 @@ png_set_pCAL(png_const_structrp png_ptr, png_inforp info_ptr,
       png_error(png_ptr, "Invalid pCAL parameter count");
 
    /* Validate params[nparams] */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
    for (i=0; i<nparams; ++i)
       if (params[i] == NULL ||
          !png_check_fp_string(params[i], strlen(params[i])))
@@ -361,11 +344,6 @@ png_set_pCAL(png_const_structrp png_ptr, png_inforp info_ptr,
 
    memset(info_ptr->pcal_params, 0, (nparams + 1) * (sizeof (png_charp)));
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
    for (i = 0; i < nparams; i++)
    {
       length = strlen(params[i]) + 1;
@@ -782,11 +760,6 @@ png_set_text_2(png_const_structrp png_ptr, png_inforp info_ptr,
       png_debug1(3, "allocated %d entries for info_ptr->text", max_text);
    }
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
    for (i = 0; i < num_text; i++)
    {
       size_t text_length, key_len;
@@ -1041,11 +1014,6 @@ png_set_sPLT(png_const_structrp png_ptr,
 
    np += info_ptr->splt_palettes_num;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
    do
    {
       png_size_t length;
@@ -1135,11 +1103,6 @@ check_location(png_const_structrp png_ptr, int location)
    /* Now reduce the location to the top-most set bit by removing each least
     * significant bit in turn.
     */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
    while (location != (location & -location))
       location &= ~(location & -location);
 
@@ -1207,11 +1170,6 @@ png_set_unknown_chunks(png_const_structrp png_ptr,
    /* Increment unknown_chunks_num each time round the loop to protect the
     * just-allocated chunk data.
     */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
    for (; num_unknowns > 0; --num_unknowns, ++unknowns)
    {
       memcpy(np->name, unknowns->name, (sizeof np->name));
@@ -1304,11 +1262,6 @@ add_one_chunk(png_bytep list, unsigned int count, png_const_bytep add, int keep)
    /* Utility function: update the 'keep' state of a chunk if it is already in
     * the list, otherwise add it to the list.
     */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
    for (i=0; i<count; ++i, list += 5) if (memcmp(list, add, 4) == 0)
    {
       list[4] = (png_byte)keep;
@@ -1435,22 +1388,12 @@ png_set_keep_unknown_chunks(png_structrp png_ptr, int keep,
       png_bytep outlist;
       unsigned int i;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
       for (i=0; i<num_chunks; ++i)
          old_num_chunks = add_one_chunk(new_list, old_num_chunks,
             chunk_list+5*i, keep);
 
       /* Now remove any spurious 'default' entries. */
       num_chunks = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
       for (i=0, inlist=outlist=new_list; i<old_num_chunks; ++i, inlist += 5)
          if (inlist[4])
          {

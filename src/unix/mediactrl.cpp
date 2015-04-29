@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/mediactrl.cpp
 // Purpose:     GStreamer backend for Unix
@@ -623,11 +616,6 @@ bool wxGStreamerMediaBackend::QueryVideoSizeFromElement(GstElement* element)
     const GList *list = NULL;
     g_object_get (G_OBJECT (element), "stream-info", &list, NULL);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( ; list != NULL; list = list->next)
     {
         GObject *info = (GObject *) list->data;
@@ -792,11 +780,6 @@ bool wxGStreamerMediaBackend::SyncStateChange(GstElement* element,
          bSuccess = false;
     gint64 llTimeWaited = 0;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     do
     {
 #if 1
@@ -867,11 +850,6 @@ bool wxGStreamerMediaBackend::SyncStateChange(GstElement* element,
                                               gint64 llTimeout)
 {
     gint64 llTimeWaited = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while(GST_STATE(element) != desiredstate)
     {
         if(llTimeWaited >= llTimeout)
@@ -1017,11 +995,6 @@ bool wxGStreamerMediaBackend::CheckForErrors()
     if ( m_errors.empty() )
         return false;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( unsigned n = 0; n < m_errors.size(); n++ )
     {
         const Error& err = m_errors[n];
@@ -1057,11 +1030,6 @@ bool wxGStreamerMediaBackend::CreateControl(wxControl* ctrl, wxWindow* parent,
 #if wxUSE_UNICODE
     int i;
     char **argvGST = new char*[wxTheApp->argc + 1];
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( i = 0; i < wxTheApp->argc; i++ )
     {
         argvGST[i] = wxStrdupA(wxTheApp->argv[i].utf8_str());
@@ -1086,11 +1054,6 @@ bool wxGStreamerMediaBackend::CreateControl(wxControl* ctrl, wxWindow* parent,
 
     // Cleanup arguments for unicode case
 #if wxUSE_UNICODE
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( i = 0; i < argcGST; i++ )
     {
         free(argvGST[i]);

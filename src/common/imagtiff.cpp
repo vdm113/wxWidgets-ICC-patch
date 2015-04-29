@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/imagtiff.cpp
 // Purpose:     wxImage TIFF handler
@@ -220,11 +213,6 @@ wxTIFFSeekOProc(thandle_t handle, toff_t off, int whence)
            return (toff_t) -1;
        }
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
        for (wxFileOffset i = 0; i < (wxFileOffset) off - streamLength; ++i)
        {
            stream->PutC(0);
@@ -431,11 +419,6 @@ bool wxTIFFHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbos
         wxImage, later on expects (normally TIFFReadRGBAImageOriented is
         used to decode which uses an ABGR layout).
         */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (uint32 y = 0; y < h; ++y)
         {
             if (TIFFReadScanline(tif, buf, y, 0) != 1)
@@ -446,11 +429,6 @@ bool wxTIFFHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbos
 
             if (isGreyScale)
             {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                 for (uint32 x = 0; x < w; ++x)
                 {
                     uint8 val = minIsWhite ? 255 - buf[x*2] : buf[x*2];
@@ -462,11 +440,6 @@ bool wxTIFFHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbos
             }
             else
             {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                 for (uint32 x = 0; x < w; ++x)
                 {
                     int mask = buf[x*2/8] << ((x*2)%8);
@@ -508,18 +481,8 @@ bool wxTIFFHandler::LoadFile( wxImage *image, wxInputStream& stream, bool verbos
 
     uint32 pos = 0;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (uint32 i = 0; i < h; i++)
     {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (uint32 j = 0; j < w; j++)
         {
             *(ptr++) = (unsigned char)TIFFGetR(raster[pos]);
@@ -622,11 +585,6 @@ int wxTIFFHandler::DoGetImageCount( wxInputStream& stream )
         return 0;
 
     int dircount = 0;  // according to the libtiff docs, dircount should be set to 1 here???
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     do {
         dircount++;
     } while (TIFFReadDirectory(tif));
@@ -809,11 +767,6 @@ bool wxTIFFHandler::SaveFile( wxImage *image, wxOutputStream& stream, bool verbo
 
     const bool minIsWhite = (photometric == PHOTOMETRIC_MINISWHITE);
     unsigned char *ptr = image->GetData();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( int row = 0; row < image->GetHeight(); row++ )
     {
         if ( buf )
@@ -823,11 +776,6 @@ bool wxTIFFHandler::SaveFile( wxImage *image, wxOutputStream& stream, bool verbo
                 // colour image
                 if (hasAlpha)
                 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                     for ( int column = 0; column < imageWidth; column++ )
                     {
                         buf[column*4    ] = ptr[column*3    ];
@@ -843,11 +791,6 @@ bool wxTIFFHandler::SaveFile( wxImage *image, wxOutputStream& stream, bool verbo
             }
             else if (spp * bps == 8) // greyscale image
             {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                 for ( int column = 0; column < imageWidth; column++ )
                 {
                     uint8 value = ptr[column*3 + 1];
@@ -868,22 +811,12 @@ bool wxTIFFHandler::SaveFile( wxImage *image, wxOutputStream& stream, bool verbo
             }
             else // black and white image
             {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                 for ( int column = 0; column < linebytes; column++ )
                 {
                     uint8 reverse = 0;
                     int pixelsPerByteCount = (column + 1 != linebytes)
                         ? pixelsPerByte
                         : remainingPixelCount;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                     for ( int bp = 0; bp < pixelsPerByteCount; bp++ )
                     {
                         if ( (ptr[column * 3 * pixelsPerByte + bp*3 + 1] <=127)

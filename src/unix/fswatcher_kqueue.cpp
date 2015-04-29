@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/fswatcher_kqueue.cpp
 // Purpose:     kqueue-based wxFileSystemWatcher implementation
@@ -167,11 +160,6 @@ public:
     virtual bool RemoveAll() wxOVERRIDE
     {
         wxFSWatchEntries::iterator it = m_watches.begin();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( ; it != m_watches.end(); ++it )
         {
             (void) DoRemove(it->second);
@@ -187,11 +175,6 @@ public:
                     "Kqueue not initialized or invalid kqueue descriptor" );
 
         // read events
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         do
         {
             struct kevent event;
@@ -237,11 +220,6 @@ protected:
         // iterate over old/curr file lists and compute changes
         wxArrayString::iterator oit = old.files.begin();
         wxArrayString::iterator cit = curr.files.begin();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( ; oit != old.files.end() && cit != curr.files.end(); )
         {
             if ( *cit == *oit )
@@ -266,11 +244,6 @@ protected:
         // border conditions
         if ( oit == old.files.end() )
         {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for ( ; cit != curr.files.end(); ++cit )
             {
                 changedFiles.push_back( *cit );
@@ -279,11 +252,6 @@ protected:
         }
         else if ( cit == curr.files.end() )
         {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for ( ; oit != old.files.end(); ++oit )
             {
                 changedFiles.push_back( *oit );
@@ -297,11 +265,6 @@ protected:
         wxLogTrace(wxTRACE_FSWATCHER, "Changed files:");
         wxArrayString::iterator it = changedFiles.begin();
         wxArrayInt::iterator it2 = changedFlags.begin();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( ; it != changedFiles.end(); ++it, ++it2)
         {
             wxString action = (*it2 == wxFSW_EVENT_CREATE) ?
@@ -329,11 +292,6 @@ protected:
 
         // TODO ignore events we didn't ask for + refactor this cascade ifs
         // check for events
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while ( nflags )
         {
             // when monitoring dir, this means create/delete
@@ -352,11 +310,6 @@ protected:
 
                 wxArrayString::iterator it = changedFiles.begin();
                 wxArrayInt::iterator changeType = changedFlags.begin();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                 for ( ; it != changedFiles.end(); ++it, ++changeType )
                 {
                     const wxString fullpath = w.GetPath() +

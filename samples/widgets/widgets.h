@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Program:     wxWidgets Widgets Sample
 // Name:        widgets.h
@@ -106,6 +99,7 @@ struct WidgetAttributes
 #endif // wxUSE_TOOLTIPS
         m_enabled = true;
         m_dir = wxLayout_LeftToRight;
+        m_variant = wxWINDOW_VARIANT_NORMAL;
         m_cursor = *wxSTANDARD_CURSOR;
         m_defaultFlags = wxBORDER_DEFAULT;
     }
@@ -121,6 +115,7 @@ struct WidgetAttributes
     wxColour m_colPageBg;
     bool m_enabled;
     wxLayoutDirection m_dir;
+    wxWindowVariant m_variant;
     wxCursor m_cursor;
     // the default flags, currently only contains border flags
     int m_defaultFlags;

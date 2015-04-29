@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file LexKVIrc.cxx
  ** Lexer for KVIrc script.
@@ -71,11 +64,6 @@ static void ColouriseKVIrcDoc(unsigned int startPos, int length,
      * when asked for (transitions leaving strings and keywords do this
      * already) */
     bool next = true;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for( ; sc.More(); next ? sc.Forward() : (void)0 )
     {
         /* Resetting next */
@@ -329,11 +317,6 @@ static void ColouriseKVIrcDoc(unsigned int startPos, int length,
                     if (wordLen > 99)
                         wordLen = 99;  /* Include '\0' in buffer */
                     int i;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                     for( i = 0; i < wordLen; ++i )
                     {
                         s[i] = styler.SafeGetCharAt( styler.GetStartSegment() + i );
@@ -403,11 +386,6 @@ static void FoldKVIrcDoc(unsigned int startPos, int length, int /*initStyle - un
     int nextLevel = currentLevel;
 
     // Looping for characters in range
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (unsigned int i = safeStartPos; i < startPos + length; ++i)
     {
         /* Folding occurs after syntax highlighting, meaning Scintilla

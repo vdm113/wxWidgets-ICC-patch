@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file LexHTML.cxx
  ** Lexer for HTML.
@@ -66,11 +59,6 @@ inline bool IsOperator(int ch) {
 
 static void GetTextSegment(Accessor &styler, unsigned int start, unsigned int end, char *s, size_t len) {
 	unsigned int i = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (; (i < end - start + 1) && (i < len-1); i++) {
 		s[i] = static_cast<char>(MakeLowerCase(styler[start + i]));
 	}
@@ -80,11 +68,6 @@ static void GetTextSegment(Accessor &styler, unsigned int start, unsigned int en
 static const char *GetNextWord(Accessor &styler, unsigned int start, char *s, size_t sLen) {
 
 	unsigned int i = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (; i < sLen-1; i++) {
 		char ch = static_cast<char>(styler.SafeGetCharAt(start + i));
 		if ((i == 0) && !IsAWordStart(ch))
@@ -116,11 +99,6 @@ static script_type segIsScriptingIndicator(Accessor &styler, unsigned int start,
 		return eScriptPHP;
 	if (strstr(s, "xml")) {
 		const char *xml = strstr(s, "xml");
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		for (const char *t=s; t<xml; t++) {
 			if (!IsASpace(*t)) {
 				return prevValue;
@@ -288,11 +266,6 @@ static int classifyTagHTML(unsigned int start, unsigned int end,
 	const char *s = withSpace + 1;
 	// Copy after the '<'
 	unsigned int i = 1;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (unsigned int cPos = start; cPos <= end && i < 30; cPos++) {
 		char ch = styler[cPos];
 		if ((ch != '<') && (ch != '/')) {
@@ -325,11 +298,6 @@ static int classifyTagHTML(unsigned int start, unsigned int end,
 		if (allowScripts && 0 == strcmp(s, "script")) {
 			// check to see if this is a self-closing tag by sniffing ahead
 			bool isSelfClose = false;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 			for (unsigned int cPos = end; cPos <= end + 200; cPos++) {
 				char ch = styler.SafeGetCharAt(cPos, '\0');
 				if (ch == '\0' || ch == '>')
@@ -354,11 +322,6 @@ static void classifyWordHTJS(unsigned int start, unsigned int end,
                              WordList &keywords, Accessor &styler, script_mode inScriptType) {
 	char s[30 + 1];
 	unsigned int i = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (; i < end - start + 1 && i < 30; i++) {
 		s[i] = styler[start + i];
 	}
@@ -399,11 +362,6 @@ static void classifyWordHTPy(unsigned int start, unsigned int end, WordList &key
 	bool wordIsNumber = IsADigit(styler[start]);
 	char s[30 + 1];
 	unsigned int i = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (; i < end - start + 1 && i < 30; i++) {
 		s[i] = styler[start + i];
 	}
@@ -442,11 +400,6 @@ static void classifyWordHTPHP(unsigned int start, unsigned int end, WordList &ke
 static bool isWordHSGML(unsigned int start, unsigned int end, WordList &keywords, Accessor &styler) {
 	char s[30 + 1];
 	unsigned int i = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (; i < end - start + 1 && i < 30; i++) {
 		s[i] = styler[start + i];
 	}
@@ -457,11 +410,6 @@ static bool isWordHSGML(unsigned int start, unsigned int end, WordList &keywords
 static bool isWordCdata(unsigned int start, unsigned int end, Accessor &styler) {
 	char s[30 + 1];
 	unsigned int i = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (; i < end - start + 1 && i < 30; i++) {
 		s[i] = styler[start + i];
 	}
@@ -577,11 +525,6 @@ static int FindPhpStringDelimiter(char *phpStringDelimiter, const int phpStringD
 	const int beginning = i - 1;
 	bool isValidSimpleString = false;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (i < lengthDoc && (styler[i] == ' ' || styler[i] == '\t'))
 		i++;
 
@@ -600,11 +543,6 @@ static int FindPhpStringDelimiter(char *phpStringDelimiter, const int phpStringD
 	phpStringDelimiter[0] = ch;
 	i++;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (j = i; j < lengthDoc && !isLineEnd(styler[j]); j++) {
 		if (!IsPhpWordChar(styler[j])) {
 			if (isSimpleString && (styler[j] == '\'') && isLineEnd(styler.SafeGetCharAt(j + 1))) {
@@ -654,11 +592,6 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 
 	// If inside a tag, it may be a script tag, so reread from the start of line starting tag to ensure any language tags are seen
 	if (InTagState(state)) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		while ((startPos > 0) && (InTagState(styler.StyleAt(startPos - 1)))) {
 			int backLineStart = styler.LineStart(styler.GetLine(startPos-1));
 			length += startPos - backLineStart;
@@ -668,11 +601,6 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 	}
 	// String can be heredoc, must find a delimiter first. Reread from beginning of line containing the string, to get the correct lineState
 	if (isPHPStringState(state)) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		while (startPos > 0 && (isPHPStringState(state) || !isLineEnd(styler[startPos - 1]))) {
 			startPos--;
 			length++;
@@ -770,11 +698,6 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 	if (scriptLanguage == eScriptJS && startPos > 0) {
 		int back = startPos;
 		int style = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		while (--back) {
 			style = styler.StyleAt(back);
 			if (style < SCE_HJ_DEFAULT || style > SCE_HJ_COMMENTDOC)
@@ -788,11 +711,6 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 
 	styler.StartSegment(startPos);
 	const int lengthDoc = startPos + length;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (int i = startPos; i < lengthDoc; i++) {
 		const int chPrev2 = chPrev;
 		chPrev = ch;
@@ -830,11 +748,6 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 				//if ((state == SCE_HPHP_OPERATOR) || (state == SCE_HPHP_DEFAULT) || (state == SCE_HJ_SYMBOLS) || (state == SCE_HJ_START) || (state == SCE_HJ_DEFAULT)) {
 					if (ch == '#') {
 						int j = i + 1;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 						while ((j < lengthDoc) && IsASpaceOrTab(styler.SafeGetCharAt(j))) {
 							j++;
 						}
@@ -857,11 +770,6 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 					} else if ((ch == '\n') && !((chNext == '\r') && (chNext2 == '\n')) && (chNext != '\n')) {
 						// check if the number of tabs is lower than the level
 						int Findlevel = (levelCurrent & ~SC_FOLDLEVELBASE) * 8;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 						for (int j = 0; Findlevel > 0; j++) {
 							char chTmp = styler.SafeGetCharAt(i + j + 1);
 							if (chTmp == '\t') {
@@ -962,11 +870,6 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 						state == SCE_H_COMMENT ? "comment" : 0) {
 					int j = i + 2;
 					int chr;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 					do {
 						chr = static_cast<int>(*tag++);
 					} while (chr != 0 && chr == MakeLowerCase(styler.SafeGetCharAt(j++)));
@@ -1391,11 +1294,6 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 				}
 				// find the length of the word
 				int size = 1;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 				while (setHTMLWord.Contains(static_cast<unsigned char>(styler.SafeGetCharAt(i + size))))
 					size++;
 				styler.ColourTo(i + size - 1, StateToPrint);
@@ -1806,11 +1704,6 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 		case SCE_HJ_REGEX:
 			if (ch == '\r' || ch == '\n' || ch == '/') {
 				if (ch == '/') {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 					while (IsASCII(chNext) && islower(chNext)) {   // gobble regex flags
 						i++;
 						ch = chNext;

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 
 /*
  * Copyright (c) 1991-1997 Sam Leffler
@@ -327,21 +320,11 @@ FillTable(TIFFFaxTabEnt *T, int Size, struct proto *P, int State)
 {
     int limit = 1 << Size;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (P->val) {
 	int width = P->val & 15;
 	int param = P->val >> 4;
 	int incr = 1 << width;
 	int code;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (code = P->code; code < limit; code += incr) {
 	    TIFFFaxTabEnt *E = T+code;
 	    E->State = State;
@@ -368,11 +351,6 @@ WriteTable(FILE* fd, const TIFFFaxTabEnt* T, int Size, const char* name)
 	storage_class, const_class, name, Size);
     if (packoutput) {
 	sep = "\n";
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (i = 0; i < Size; i++) {
 	    fprintf(fd, "%s%s%d,%d,%d%s",
 		sep, prebrace, T->State, T->Width, (int) T->Param, postbrace);
@@ -384,11 +362,6 @@ WriteTable(FILE* fd, const TIFFFaxTabEnt* T, int Size, const char* name)
 	}
     } else {
 	sep = "\n ";
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (i = 0; i < Size; i++) {
 	    fprintf(fd, "%s%s%3d,%3d,%4d%s",
 		sep, prebrace, T->State, T->Width, (int) T->Param, postbrace);
@@ -412,11 +385,6 @@ main(int argc, char* argv[])
     extern int optind;
     extern char* optarg;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ((c = getopt(argc, argv, "c:s:bp")) != -1)
 	switch (c) {
 	case 'c':

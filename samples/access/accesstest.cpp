@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        accesstest.cpp
 // Purpose:     wxWidgets accessibility sample
@@ -442,11 +435,6 @@ void MyFrame::OnQuery(wxCommandEvent& WXUNUSED(event))
         long obtained = 0;
         VARIANT *var = new VARIANT[childCount];
         int i;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (i = 0; i < childCount; i++)
         {
             VariantInit(& (var[i]));
@@ -455,11 +443,6 @@ void MyFrame::OnQuery(wxCommandEvent& WXUNUSED(event))
 
         if (S_OK == AccessibleChildren(accessibleFrame, 0, childCount, var, &obtained))
         {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for (i = 0; i < childCount; i++)
             {
                 IAccessible* childAccessible = NULL;
@@ -532,11 +515,6 @@ void MyFrame::LogObject(int indent, IAccessible* obj)
     }
 
     int i;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (i = 1; i <= childCount; i++)
     {
         GetInfo(obj, i, name, role);

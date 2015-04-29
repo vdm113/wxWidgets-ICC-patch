@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 
 /*
  * Copyright (c) 2007, Frank Warmerdam <warmerdam@pobox.com>
@@ -97,11 +90,6 @@ int test_packbits()
         goto failure;
     }
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (i = 0; i < length; i++ )
     {
         if( !TIFFWriteEncodedStrip( tif, i, buf, 10 ) )
@@ -200,11 +188,6 @@ int rewrite_test( const char *filename, int length, int bigtiff,
         goto failure;
     }
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (i = 0; i < length; i++ )
     {
         if( !TIFFWriteScanline( tif, buf, i, 0 ) )
@@ -236,11 +219,6 @@ int rewrite_test( const char *filename, int length, int bigtiff,
     }
 
     upd_rowoffset = (uint64 *) _TIFFmalloc(sizeof(uint64) * length);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for( i = 0; i < length; i++ )
         upd_rowoffset[i] = base_value + i*10;
 
@@ -254,11 +232,6 @@ int rewrite_test( const char *filename, int length, int bigtiff,
     _TIFFfree( upd_rowoffset );
 
     upd_bytecount = (uint64 *) _TIFFmalloc(sizeof(uint64) * length);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for( i = 0; i < length; i++ )
         upd_bytecount[i] = 100 + i*10;
 
@@ -287,11 +260,6 @@ int rewrite_test( const char *filename, int length, int bigtiff,
         goto failure;
     }
         
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for( i = 0; i < length; i++ )
     {
         uint64 expect = base_value + i*10;
@@ -315,11 +283,6 @@ int rewrite_test( const char *filename, int length, int bigtiff,
         goto failure;
     }
         
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for( i = 0; i < length; i++ )
     {
         uint64 expect = 100 + i*10;

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/html/htmlwin.cpp
 // Purpose:     wxHtmlWindow class for parsing & displaying HTML (implementation)
@@ -105,11 +98,6 @@ void wxHtmlWinAutoScrollTimer::Notify()
             // the mouse event coordinates should be client, not screen as
             // returned by wxGetMousePosition
             wxWindow *parentTop = m_win;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             while ( parentTop->GetParent() )
                 parentTop = parentTop->GetParent();
             wxPoint ptOrig = parentTop->GetPosition();
@@ -472,11 +460,6 @@ bool wxHtmlWindow::DoSetPage(const wxString& source)
         //     decreasing priority, we "merge-sort" the lists on-line by
         //     processing that one of the two heads that has higher priority
         //     in every iteration
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while (nodeL || nodeG)
         {
             prL = (nodeL) ? nodeL->GetData()->GetPriority() : -1;
@@ -613,11 +596,6 @@ bool wxHtmlWindow::LoadPage(const wxString& location)
 #endif // wxUSE_STATUSBAR
 
             node = m_Filters.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             while (node)
             {
                 wxHtmlFilter *h = (wxHtmlFilter*) node->GetData();
@@ -662,11 +640,6 @@ bool wxHtmlWindow::LoadPage(const wxString& location)
             (*m_History)[m_HistoryPos].GetAnchor() != m_OpenedAnchor)
         {
             m_HistoryPos++;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for (int i = 0; i < c; i++)
                 m_History->RemoveAt(m_HistoryPos);
             m_History->Add(new wxHtmlHistoryItem(m_OpenedPage, m_OpenedAnchor));
@@ -710,11 +683,6 @@ bool wxHtmlWindow::ScrollToAnchor(const wxString& anchor)
         // there's better chance of using a suitable cell for upper Y
         // coordinate value. See bug #11406 for additional discussion.
         const wxHtmlCell *c_save = c;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while ( c && c->IsFormattingCell() )
             c = c->GetNext();
         if ( !c )
@@ -722,11 +690,6 @@ bool wxHtmlWindow::ScrollToAnchor(const wxString& anchor)
 
         int y;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (y = 0; c != NULL; c = c->GetParent()) y += c->GetPosY();
         Scroll(-1, y / wxHTML_SCROLL_STEP);
         m_OpenedAnchor = anchor;
@@ -873,11 +836,6 @@ void wxHtmlWindow::ReadCustomization(wxConfigBase *cfg, wxString path)
     m_Borders = cfg->Read(wxT("wxHtmlWindow/Borders"), m_Borders);
     p_fff = cfg->Read(wxT("wxHtmlWindow/FontFaceFixed"), m_Parser->m_FontFaceFixed);
     p_ffn = cfg->Read(wxT("wxHtmlWindow/FontFaceNormal"), m_Parser->m_FontFaceNormal);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (int i = 0; i < 7; i++)
     {
         tmp.Printf(wxT("wxHtmlWindow/FontsSize%i"), i);
@@ -905,11 +863,6 @@ void wxHtmlWindow::WriteCustomization(wxConfigBase *cfg, wxString path)
     cfg->Write(wxT("wxHtmlWindow/Borders"), (long) m_Borders);
     cfg->Write(wxT("wxHtmlWindow/FontFaceFixed"), m_Parser->m_FontFaceFixed);
     cfg->Write(wxT("wxHtmlWindow/FontFaceNormal"), m_Parser->m_FontFaceNormal);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (int i = 0; i < 7; i++)
     {
         tmp.Printf(wxT("wxHtmlWindow/FontsSize%i"), i);
@@ -1000,11 +953,6 @@ void wxHtmlWindow::AddProcessor(wxHtmlProcessor *processor)
     }
     wxHtmlProcessorList::compatibility_iterator node;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (node = m_Processors->GetFirst(); node; node = node->GetNext())
     {
         if (processor->GetPriority() > node->GetData()->GetPriority())
@@ -1024,11 +972,6 @@ void wxHtmlWindow::AddProcessor(wxHtmlProcessor *processor)
     }
     wxHtmlProcessorList::compatibility_iterator node;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (node = m_GlobalProcessors->GetFirst(); node; node = node->GetNext())
     {
         if (processor->GetPriority() > node->GetData()->GetPriority())
@@ -1070,11 +1013,6 @@ wxString wxHtmlWindow::DoSelectionToText(wxHtmlSelection *sel)
     wxHtmlTerminalCellsInterator i(sel->GetFromCell(), sel->GetToCell());
     const wxHtmlCell *prev = NULL;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( i )
     {
         // When converting HTML content to plain text, the entire paragraph
@@ -1175,18 +1113,8 @@ void wxHtmlWindow::DoEraseBackground(wxDC& dc)
         // draw the background bitmap tiling it over the entire window area
         const wxSize sz = GetVirtualSize();
         const wxSize sizeBmp(m_bmpBg.GetWidth(), m_bmpBg.GetHeight());
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( wxCoord x = 0; x < sz.x; x += sizeBmp.x )
         {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for ( wxCoord y = 0; y < sz.y; y += sizeBmp.y )
             {
                 dc.DrawBitmap(m_bmpBg, x, y, true /* use mask */);
@@ -1704,11 +1632,6 @@ void wxHtmlWindow::SelectLine(const wxPoint& pos)
             const wxHtmlCell *after = NULL;
 
             // find last cell of line:
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for ( c = cell->GetNext(); c; c = c->GetNext())
             {
                 y = c->GetAbsPos().y;
@@ -1721,11 +1644,6 @@ void wxHtmlWindow::SelectLine(const wxPoint& pos)
                 after = cell;
 
             // find first cell of line:
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for ( c = cell->GetParent()->GetFirstChild();
                     c && c != cell; c = c->GetNext())
             {

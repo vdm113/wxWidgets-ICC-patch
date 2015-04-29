@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file LexECL.cxx
  ** Lexer for ECL.
@@ -114,11 +107,6 @@ static void ColouriseEclDoc(unsigned int startPos, int length, int initStyle, Wo
 	// look back to set chPrevNonWhite properly for better regex colouring
 	if (startPos > 0) {
 		int back = startPos;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		while (--back && IsSpaceEquiv(styler.StyleAt(back)))
 			;
 		if (styler.StyleAt(back) == SCE_ECL_OPERATOR) {
@@ -128,11 +116,6 @@ static void ColouriseEclDoc(unsigned int startPos, int length, int initStyle, Wo
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
 		if (sc.atLineStart) {
 			if (sc.state == SCE_ECL_STRING) {
@@ -195,11 +178,6 @@ static void ColouriseEclDoc(unsigned int startPos, int length, int initStyle, Wo
 					else	//Data types are of from KEYWORD## 
 					{
 						int i = static_cast<int>(strlen(s)) - 1;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 						while(i >= 0 && (isdigit(s[i]) || s[i] == '_'))
 							--i;
 
@@ -301,11 +279,6 @@ static void ColouriseEclDoc(unsigned int startPos, int length, int initStyle, Wo
 					sc.SetState(SCE_ECL_DEFAULT);
 				} else if (sc.ch == '/') {
 					sc.Forward();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 					while ((sc.ch < 0x80) && islower(sc.ch))
 						sc.Forward();    // gobble regex flags
 					sc.SetState(SCE_ECL_DEFAULT);

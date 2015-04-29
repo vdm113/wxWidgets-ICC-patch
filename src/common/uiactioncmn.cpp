@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/uiactioncmn.cpp
 // Purpose:     wxUIActionSimulator common implementation
@@ -137,11 +130,6 @@ static bool MapUnshifted(char& ch)
 
 bool wxUIActionSimulator::Text(const char *s)
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( *s != '\0' )
     {
         char ch = *s++;
@@ -198,11 +186,6 @@ bool wxUIActionSimulator::Select(const wxString& text)
     }
 
     // And then go down in the control until we reach the item we want.
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( ;; )
     {
         if ( container->GetStringSelection() == text )

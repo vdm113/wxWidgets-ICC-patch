@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /* Copyright (c) 1998, 1999 Thai Open Source Software Center Ltd
    See the file COPYING for copying permission.
 */
@@ -35,11 +28,6 @@ static void XMLCALL
 characterData(void *userData, const XML_Char *s, int len)
 {
   FILE *fp = (FILE *)userData;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   for (; len > 0; --len, ++s) {
     switch (*s) {
     case T('&'):
@@ -77,11 +65,6 @@ attributeValue(FILE *fp, const XML_Char *s)
 {
   puttc(T('='), fp);
   puttc(T('"'), fp);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   for (;;) {
     switch (*s) {
     case 0:
@@ -144,21 +127,11 @@ startElement(void *userData, const XML_Char *name, const XML_Char **atts)
   fputts(name, fp);
 
   p = atts;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   while (*p)
     ++p;
   nAtts = (int)((p - atts) >> 1);
   if (nAtts > 1)
     qsort((void *)atts, nAtts, sizeof(XML_Char *) * 2, attcmp);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   while (*atts) {
     puttc(T(' '), fp);
     fputts(*atts++, fp);
@@ -214,21 +187,11 @@ startElementNS(void *userData, const XML_Char *name, const XML_Char **atts)
   }
 
   p = atts;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   while (*p)
     ++p;
   nAtts = (int)((p - atts) >> 1);
   if (nAtts > 1)
     qsort((void *)atts, nAtts, sizeof(XML_Char *) * 2, nsattcmp);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   while (*atts) {
     name = *atts++;
     sep = tcsrchr(name, NSSEP);
@@ -335,11 +298,6 @@ static void XMLCALL
 markup(void *userData, const XML_Char *s, int len)
 {
   FILE *fp = (FILE *)XML_GetUserData((XML_Parser) userData);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   for (; len > 0; --len, ++s)
     puttc(*s, fp);
 }
@@ -390,11 +348,6 @@ metaStartElement(void *userData, const XML_Char *name,
   metaLocation(parser);
   if (*atts) {
     fputts(T(">\n"), fp);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     do {
       ftprintf(fp, T("<attribute name=\"%s\" value=\""), atts[0]);
       characterData(fp, atts[1], (int)tcslen(atts[1]));
@@ -612,21 +565,11 @@ unknownEncoding(void *userData, const XML_Char *name, XML_Encoding *info)
   static const XML_Char prefixU[] = T("WINDOWS-");
   int i;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   for (i = 0; prefixU[i]; i++)
     if (name[i] != prefixU[i] && name[i] != prefixL[i])
       return 0;
   
   cp = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   for (; name[i]; i++) {
     static const XML_Char digits[] = T("0123456789");
     const XML_Char *s = tcschr(digits, name[i]);
@@ -662,11 +605,6 @@ showVersion(XML_Char *prog)
   XML_Char *s = prog;
   XML_Char ch;
   const XML_Feature *features = XML_GetFeatureList();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   while ((ch = *s) != 0) {
     if (ch == '/'
 #if (defined(WIN32) || defined(__WATCOMC__))
@@ -682,11 +620,6 @@ showVersion(XML_Char *prog)
     ftprintf(stdout, T("%s"), features[0].name);
     if (features[0].value)
       ftprintf(stdout, T("=%ld"), features[0].value);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (features[i].feature != XML_FEATURE_END) {
       ftprintf(stdout, T(", %s"), features[i].name);
       if (features[i].value)
@@ -727,11 +660,6 @@ tmain(int argc, XML_Char **argv)
 
   i = 1;
   j = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   while (i < argc) {
     if (j == 0) {
       if (argv[i][0] != T('-'))
@@ -823,11 +751,6 @@ tmain(int argc, XML_Char **argv)
     processFlags &= ~XML_MAP_FILE;
     i--;
   }
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   for (; i < argc; i++) {
     FILE *fp = 0;
     XML_Char *outName = 0;

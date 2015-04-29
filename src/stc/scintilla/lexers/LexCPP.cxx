@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file LexCPP.cxx
  ** Lexer for C++, C, Java, and JavaScript.
@@ -59,11 +52,6 @@ static bool IsSpaceEquiv(int state) {
 // fixes this, and is highly recommended for readability anyway.
 static bool FollowsPostfixOperator(StyleContext &sc, LexAccessor &styler) {
 	int pos = (int) sc.currentPos;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (--pos > 0) {
 		char ch = styler[pos];
 		if (ch == '+' || ch == '-') {
@@ -78,11 +66,6 @@ static bool followsReturnKeyword(StyleContext &sc, LexAccessor &styler) {
 	int pos = (int) sc.currentPos;
 	int currentLine = styler.GetLine(pos);
 	int lineStartPos = styler.LineStart(currentLine);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (--pos > lineStartPos) {
 		char ch = styler.SafeGetCharAt(pos);
 		if (ch != ' ' && ch != '\t') {
@@ -91,11 +74,6 @@ static bool followsReturnKeyword(StyleContext &sc, LexAccessor &styler) {
 	}
 	const char *retBack = "nruter";
 	const char *s = retBack;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (*s
 		&& pos >= lineStartPos
 		&& styler.SafeGetCharAt(pos) == *s) {
@@ -110,11 +88,6 @@ static std::string GetRestOfLine(LexAccessor &styler, int start, bool allowSpace
 	int i =0;
 	char ch = styler.SafeGetCharAt(start, '\n');
 	int endLine = styler.LineEnd(styler.GetLine(start));
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (((start+i) < endLine) && (ch != '\r')) {
 		char chNext = styler.SafeGetCharAt(start + i + 1, '\n');
 		if (ch == '/' && (chNext == '/' || chNext == '*'))
@@ -138,11 +111,6 @@ static std::vector<std::string> Tokenize(const std::string &s) {
 	// Break into space separated tokens
 	std::string word;
 	std::vector<std::string> tokens;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (const char *cp = s.c_str(); *cp; cp++) {
 		if ((*cp == ' ') || (*cp == '\t')) {
 			if (!word.empty()) {

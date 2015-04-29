@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/aui/tabmdi.cpp
 // Purpose:     Generic MDI (Multiple Document Interface) classes
@@ -351,11 +344,6 @@ void wxAuiMDIParentFrame::DoHandleMenu(wxCommandEvent& event)
         case wxWINDOWCLOSEALL:
         {
             wxAuiMDIChildFrame* pActiveChild;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             while ((pActiveChild = GetActiveChild()) != NULL)
             {
                 if (!pActiveChild->Close())
@@ -562,11 +550,6 @@ bool wxAuiMDIChildFrame::Destroy()
     }
 
     size_t page_count = pClientWindow->GetPageCount();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (size_t pos = 0; pos < page_count; pos++)
     {
         if (pClientWindow->GetPage(pos) == this)
@@ -615,11 +598,6 @@ void wxAuiMDIChildFrame::SetTitle(const wxString& title)
     if (pClientWindow != NULL)
     {
         size_t pos;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (pos = 0; pos < pClientWindow->GetPageCount(); pos++)
         {
             if (pClientWindow->GetPage(pos) == this)
@@ -686,11 +664,6 @@ void wxAuiMDIChildFrame::Activate()
     if (pClientWindow != NULL)
     {
         size_t pos;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (pos = 0; pos < pClientWindow->GetPageCount(); pos++)
         {
             if (pClientWindow->GetPage(pos) == this)
@@ -922,11 +895,6 @@ void wxAuiMDIClientWindow::OnSize(wxSizeEvent& evt)
 {
     wxAuiNotebook::OnSize(evt);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (size_t pos = 0; pos < GetPageCount(); pos++)
         ((wxAuiMDIChildFrame *)GetPage(pos))->ApplyMDIChildFrameRect();
 }

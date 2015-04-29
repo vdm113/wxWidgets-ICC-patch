@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk1/notebook.cpp
 // Purpose:
@@ -492,11 +485,6 @@ bool wxNotebook::SetPageImage( size_t page, int image )
         /* Case 2) or 4). There is already an image in the gtkhbox. Let's find it */
 
         GList *child = gtk_container_children(GTK_CONTAINER(nb_page->m_box));
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while (child)
         {
             if (GTK_IS_PIXMAP(child->data))
@@ -564,11 +552,6 @@ void wxNotebook::SetPadding( const wxSize &padding )
     m_padding = padding.GetWidth();
 
     int i;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (i=0; i<int(GetPageCount()); i++)
     {
         wxGtkNotebookPage* nb_page = GetNotebookPage(i);
@@ -598,11 +581,6 @@ bool wxNotebook::DeleteAllPages()
 {
     wxCHECK_MSG( m_widget != NULL, FALSE, wxT("invalid notebook") );
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (m_pagesData.GetCount() > 0)
         DeletePage( m_pagesData.GetCount()-1 );
 
@@ -777,11 +755,6 @@ int wxNotebook::HitTest(const wxPoint& pt, long *flags) const
         i = g_list_position( notebook->children, notebook->first_tab );
 #endif
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( ; i < count; i++ )
     {
         wxGtkNotebookPage* nb_page = GetNotebookPage(i);
@@ -797,11 +770,6 @@ int wxNotebook::HitTest(const wxPoint& pt, long *flags) const
                 GtkWidget *pixmap = NULL;
 
                 GList *children = gtk_container_children(GTK_CONTAINER(box));
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                 for ( GList *child = children; child; child = child->next )
                 {
                     if ( GTK_IS_PIXMAP(child->data) )
@@ -866,11 +834,6 @@ void wxNotebook::DoApplyWidgetStyle(GtkRcStyle *style)
 {
     gtk_widget_modify_style(m_widget, style);
     size_t cnt = m_pagesData.GetCount();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (size_t i = 0; i < cnt; i++)
         gtk_widget_modify_style(GTK_WIDGET(GetNotebookPage(i)->m_label), style);
 }

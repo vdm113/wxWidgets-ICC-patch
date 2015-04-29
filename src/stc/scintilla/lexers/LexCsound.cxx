@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file LexCsound.cxx
  ** Lexer for Csound (Orchestra & Score)
@@ -71,11 +64,6 @@ static void ColouriseCsoundDoc(unsigned int startPos, int length, int initStyle,
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward())
 	{
 		// Handle line continuation generically.
@@ -172,11 +160,6 @@ static void FoldCsoundInstruments(unsigned int startPos, int length, int /* init
 	char chNext = styler[startPos];
 	int stylePrev = 0;
 	int styleNext = styler.StyleAt(startPos);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);
@@ -186,11 +169,6 @@ static void FoldCsoundInstruments(unsigned int startPos, int length, int /* init
 		if ((stylePrev != SCE_CSOUND_OPCODE) && (style == SCE_CSOUND_OPCODE)) {
 			char s[20];
 			unsigned int j = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 			while ((j < (sizeof(s) - 1)) && (iswordchar(styler[i + j]))) {
 				s[j] = styler[i + j];
 				j++;

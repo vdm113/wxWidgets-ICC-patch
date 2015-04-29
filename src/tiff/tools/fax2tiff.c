@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 
 /*
  * Copyright (c) 1990-1997 Sam Leffler
@@ -105,11 +98,6 @@ main(int argc, char* argv[])
 	extern char* optarg;
 
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while ((c = getopt(argc, argv, "R:X:o:1234ABLMPUW5678abcflmprsuvwz?")) != -1)
 		switch (c) {
 			/* input-related options */
@@ -268,11 +256,6 @@ main(int argc, char* argv[])
 		TIFFSetField(faxTIFF, TIFFTAG_GROUP3OPTIONS, group3options_in);
 	else if (compression_in == COMPRESSION_CCITTFAX4)
 		TIFFSetField(faxTIFF, TIFFTAG_GROUP4OPTIONS, group4options_in);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (pn = 0; optind < argc; pn++, optind++) {
 		in = fopen(argv[optind], "rb");
 		if (in == NULL) {
@@ -389,11 +372,6 @@ copyFaxFile(TIFF* tifin, TIFF* tifout)
 	_TIFFmemset(refbuf, 0, linesize);
 	row = 0;
 	badrun = 0;		/* current run of bad lines */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (tifin->tif_rawcc > 0) {
 		ok = (*tifin->tif_decoderow)(tifin, (tdata_t) rowbuf, 
 					     linesize, 0);
@@ -475,11 +453,6 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(EXIT_FAILURE);

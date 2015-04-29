@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/compositewin.h
 // Purpose:     wxCompositeWindow<> declaration
@@ -171,11 +164,6 @@ private:
         // is pressed in the inline editor, but not when it's pressed in a
         // popup dialog it opens.
         wxWindow *win = child;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while ( win && win != this )
         {
             if ( win->IsTopLevel() )
@@ -198,11 +186,6 @@ private:
     {
         // Ignore focus changes within the composite control:
         wxWindow *win = event.GetWindow();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while ( win )
         {
             if ( win == this )
@@ -228,11 +211,6 @@ private:
     {
         // Simply call the setters for all parts of this composite window.
         const wxWindowList parts = GetCompositeWindowParts();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( wxWindowList::const_iterator i = parts.begin();
               i != parts.end();
               ++i )
