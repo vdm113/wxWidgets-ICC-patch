@@ -24,8 +24,8 @@ git commit -a --signoff -m 'sync with upstream (GIT); patched for ICC'
 for i in `find build/msw/ -type f -maxdepth 1` ; do ( git rm -f "${i}" 2>/dev/null ) ; ( rm -f "${i}" 2>/dev/null ) ; done
 git commit -a --signoff -m 'restore our project files'
 git reset --hard
-git add build/msw/
 git clean -f -d
+git add build/msw/
 gin commit -a --signoff -m 'remove obsolete project files we do not support'
 mv -f README.md README_orig_wx.md
 cp -f ./vdm/root_dir/* ./vdm/root_dir/.??* .
