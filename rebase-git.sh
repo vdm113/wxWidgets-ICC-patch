@@ -27,7 +27,7 @@ git reset --hard
 git clean -f -d
 mkdir build/msw/
 git add build/msw/
-gin commit -a --signoff -m 'remove obsolete project files we do not support'
+git commit -a --signoff -m 'remove obsolete project files we do not support'
 mv -f README.md README_orig_wx.md
 cp -f ./vdm/root_dir/* ./vdm/root_dir/.??* .
 git add README.md
