@@ -1635,8 +1635,10 @@ bool wxTranslations::LoadCatalog(const wxString& domain, const wxString& lang, c
     {
         // add it to the head of the list so that in GetString it will
         // be searched before the catalogs added earlier
+
         cat->m_pNext = m_pMsgCat;
         m_pMsgCat = cat;
+        m_catalogMap[domain] = cat;
 
         return true;
     }
@@ -1807,23 +1809,12 @@ wxString wxTranslations::GetHeaderValue(const wxString& header,
 }
 
 
-// find catalog by name in a linked list, return NULL if !found
+// find catalog by name
 wxMsgCatalog *wxTranslations::FindCatalog(const wxString& domain) const
 {
-    // linear search in the linked list
-    wxMsgCatalog *pMsgCat;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
-    for ( pMsgCat = m_pMsgCat; pMsgCat != NULL; pMsgCat = pMsgCat->m_pNext )
-    {
-        if ( pMsgCat->GetDomain() == domain )
-            return pMsgCat;
-    }
+    const wxMsgCatalogMap::const_iterator found = m_catalogMap.find(domain);
 
-    return NULL;
+    return found == m_catalogMap.end() ? NULL : found->second;
 }
 
 // ----------------------------------------------------------------------------
