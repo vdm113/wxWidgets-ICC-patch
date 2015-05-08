@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        samples/fswatcher/fswatcher.cpp
 // Purpose:     wxFileSystemWatcher sample
@@ -495,6 +502,11 @@ void MyFrame::OnFileSystemEvent(wxFileSystemWatcherEvent& event)
         // otherwise there'll be asserts if later we try to remove it
         wxString eventpath = event.GetPath().GetFullPath();
         bool found(false);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (size_t n = m_filesList->GetItemCount(); n > 0; --n)
         {
             wxString path, foo = m_filesList->GetItemText(n-1);

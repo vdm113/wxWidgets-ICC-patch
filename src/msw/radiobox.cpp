@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/radiobox.cpp
 // Purpose:     wxRadioBox implementation
@@ -191,6 +198,11 @@ bool wxRadioBox::Create(wxWindow *parent,
     m_radioWidth = new int[n];
     m_radioHeight = new int[n];
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( int i = 0; i < n; i++ )
     {
         m_radioWidth[i] =
@@ -290,6 +302,11 @@ wxRadioBox::~wxRadioBox()
     // HWNDs from the global map. Notice that we need to unsubclass because
     // otherwise we'd need the entries in gs_boxFromButton for the buttons
     // being deleted to handle the messages generated during their destruction.
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t item = 0; item < m_radioButtons->GetCount(); item++ )
     {
         HWND hwnd = m_radioButtons->Get(item);
@@ -337,6 +354,11 @@ bool wxRadioBox::MSWCommand(WXUINT cmd, WXWORD id_)
         int selectedButton = wxNOT_FOUND;
 
         const unsigned int count = GetCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( unsigned int i = 0; i < count; i++ )
         {
             const HWND hwndBtn = (*m_radioButtons)[i];
@@ -453,6 +475,11 @@ bool wxRadioBox::CanBeFocused() const
         return false;
 
     // Otherwise, check if we have any buttons that can be focused.
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t item = 0; item < m_radioButtons->GetCount(); item++ )
     {
         if ( IsItemEnabled(item) && IsItemShown(item) )
@@ -541,6 +568,11 @@ bool wxRadioBox::Reparent(wxWindowBase *newParent)
     }
 
     HWND hwndParent = GetHwndOf(GetParent());
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t item = 0; item < m_radioButtons->GetCount(); item++ )
     {
         ::SetParent((*m_radioButtons)[item], hwndParent);
@@ -564,6 +596,11 @@ wxSize wxRadioBox::GetMaxButtonSize() const
     int widthMax = 0,
         heightMax = 0;
     const unsigned int count = GetCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( unsigned int i = 0 ; i < count; i++ )
     {
         int width, height;
@@ -690,6 +727,11 @@ wxRadioBox::PositionAllButtons(int x, int y, int width, int WXUNUSED(height))
     int startY = y_offset;
 
     const unsigned int count = GetCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (unsigned int i = 0; i < count; i++)
     {
         // the last button in the row may be wider than the other ones as the
@@ -766,6 +808,11 @@ wxRadioBox::PositionAllButtons(int x, int y, int width, int WXUNUSED(height))
 int wxRadioBox::GetItemFromPoint(const wxPoint& pt) const
 {
     const unsigned int count = GetCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < count; i++ )
     {
         RECT rect = wxGetWindowRect((*m_radioButtons)[i]);
@@ -793,6 +840,11 @@ WXHRGN wxRadioBox::MSWGetRegionWithoutChildren()
     HRGN hrgn = ::CreateRectRgn(rc.left, rc.top, rc.right + 1, rc.bottom + 1);
 
     const unsigned int count = GetCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < count; ++i )
     {
         // don't clip out hidden children
@@ -913,6 +965,11 @@ LRESULT APIENTRY _EXPORT wxRadioBtnWndProc(HWND hwnd,
                 HELPINFO* info = (HELPINFO*) lParam;
                 if ( info->iContextType == HELPINFO_WINDOW )
                 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                     for ( wxWindow* subjectOfHelp = radiobox;
                           subjectOfHelp;
                           subjectOfHelp = subjectOfHelp->GetParent() )

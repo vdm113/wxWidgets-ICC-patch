@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:         src/common/dynload.cpp
 // Purpose:      Dynamic loading framework
@@ -88,6 +95,11 @@ wxPluginLibrary::wxPluginLibrary(const wxString &libname, int flags)
     // the backwards direction:
     if ( m_ourFirst != oldFirst )
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( const wxClassInfo* info = m_ourFirst; ; info = info->GetNext() )
         {
             if ( info->GetNext() == oldFirst )
@@ -156,6 +168,11 @@ void wxPluginLibrary::UpdateClasses()
     if ( !m_ourFirst )
         return;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( const wxClassInfo *info = m_ourFirst; ; info = info->GetNext() )
     {
         if( info->GetClassName() )
@@ -179,6 +196,11 @@ void wxPluginLibrary::RestoreClasses()
     if ( !m_ourFirst )
         return;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( const wxClassInfo *info = m_ourFirst; ; info = info->GetNext() )
     {
         ms_classes->erase(ms_classes->find(info->GetClassName()));
@@ -203,6 +225,11 @@ void wxPluginLibrary::RegisterModules()
 
     if ( m_ourFirst )
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( const wxClassInfo *info = m_ourFirst; ; info = info->GetNext() )
         {
             if( info->IsKindOf(wxCLASSINFO(wxModule)) )
@@ -222,6 +249,11 @@ void wxPluginLibrary::RegisterModules()
 
     // FIXME: Likewise this is (well was) very similar to InitializeModules()
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxModuleList::iterator it = m_wxmodules.begin();
           it != m_wxmodules.end();
           ++it)
@@ -238,6 +270,11 @@ void wxPluginLibrary::RegisterModules()
             // shortly).
 
             wxModuleList::iterator oldNode = m_wxmodules.end();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             do {
                 ++it;
                 if( oldNode != m_wxmodules.end() )
@@ -256,9 +293,19 @@ void wxPluginLibrary::UnregisterModules()
 {
     wxModuleList::iterator it;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( it = m_wxmodules.begin(); it != m_wxmodules.end(); ++it )
         (*it)->Exit();
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( it = m_wxmodules.begin(); it != m_wxmodules.end(); ++it )
         wxModule::UnregisterModule( *it );
 
@@ -383,6 +430,11 @@ void wxPluginManager::Unload()
 {
     wxCHECK_RET( m_entry, wxT("unloading an invalid wxPluginManager?") );
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxDLManifest::iterator i = ms_manifest->begin();
           i != ms_manifest->end();
           ++i )

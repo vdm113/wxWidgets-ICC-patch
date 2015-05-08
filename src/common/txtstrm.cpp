@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/txtstrm.cpp
 // Purpose:     Text stream classes
@@ -55,6 +62,11 @@ wxTextInputStream::~wxTextInputStream()
 void wxTextInputStream::UngetLast()
 {
     size_t byteCount = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while(m_lastBytes[byteCount]) // pseudo ANSI strlen (even for Unicode!)
         byteCount++;
     m_input.Ungetch(m_lastBytes, byteCount);
@@ -66,6 +78,11 @@ wxChar wxTextInputStream::NextChar()
 #if wxUSE_UNICODE
     wxChar wbuf[2];
     memset((void*)m_lastBytes, 0, 10);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for(size_t inlen = 0; inlen < 9; inlen++)
     {
         // actually read the next character
@@ -117,6 +134,11 @@ wxChar wxTextInputStream::NextChar()
 
 wxChar wxTextInputStream::NextNonSeparators()
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (;;)
     {
         wxChar c = NextChar();
@@ -231,6 +253,11 @@ wxString wxTextInputStream::ReadLine()
 {
     wxString line;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( !m_input.Eof() )
     {
         wxChar c = NextChar();
@@ -259,6 +286,11 @@ wxString wxTextInputStream::ReadWord()
 
     word += c;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( !m_input.Eof() )
     {
         c = NextChar();
@@ -440,6 +472,11 @@ void wxTextOutputStream::WriteString(const wxString& string)
     wxString out;
     out.reserve(len);
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t i = 0; i < len; i++ )
     {
         const wxChar c = string[i];

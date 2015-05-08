@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/dnd_osx.cpp
 // Purpose:     Mac common wxDropTarget, wxDropSource implementations
@@ -75,6 +82,11 @@ bool wxDropTarget::CurrentDragHasSupportedFormat()
             size_t formatcount = data->GetFormatCount();
             wxDataFormat *array = new wxDataFormat[formatcount];
             data->GetAllFormats( array );
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for (size_t i = 0; !supported && i < formatcount; i++)
             {
                 wxDataFormat format = array[i];
@@ -115,6 +127,11 @@ bool wxDropTarget::GetData()
             size_t formatcount = data->GetFormatCount();
             wxDataFormat *array = new wxDataFormat[formatcount];
             data->GetAllFormats( array );
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for (size_t i = 0; !transferred && i < formatcount; i++)
             {
                 wxDataFormat format = array[i];

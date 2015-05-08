@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/listbox_osx.cpp
 // Purpose:     wxListBox
@@ -245,6 +252,11 @@ wxSize wxListBox::DoGetBestSize() const
         dc.SetFont(GetFont());
 
         // Find the widest line
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (unsigned int i = 0; i < GetCount(); i++)
         {
             wxString str( GetString( i ) );
@@ -348,6 +360,11 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter& items,
     unsigned int startpos = pos;
 
     const unsigned int numItems = items.GetCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < numItems; ++i )
     {
         const wxString& item = items[i];

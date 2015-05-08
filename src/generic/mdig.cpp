@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/mdig.cpp
 // Purpose:     Generic MDI (Multiple Document Interface) classes
@@ -130,6 +137,11 @@ bool wxGenericMDIParentFrame::CloseAll()
         return true; // none of the windows left
 
     wxBookCtrlBase * const book = client->GetBookCtrl();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( book->GetPageCount() )
     {
         wxGenericMDIChildFrame * const child = client->GetChild(0);
@@ -563,6 +575,11 @@ int wxGenericMDIClientWindow::FindChild(wxGenericMDIChildFrame *child) const
 {
     wxBookCtrlBase * const book = GetBookCtrl();
     const size_t count = book->GetPageCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t pos = 0; pos < count; pos++ )
     {
         if ( book->GetPage(pos) == child )

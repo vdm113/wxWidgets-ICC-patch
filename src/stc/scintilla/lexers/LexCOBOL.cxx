@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexCOBOL.cxx
  ** Lexer for COBOL
@@ -56,6 +63,11 @@ inline bool isCOBOLwordstart(char ch)
 static int CountBits(int nBits)
 	{
 	int count = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (int i = 0; i < 32; ++i)
 		{
 		count += nBits & 1;
@@ -70,6 +82,11 @@ static void getRange(unsigned int start,
         char *s,
         unsigned int len) {
     unsigned int i = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ((i < end - start + 1) && (i < len-1)) {
         s[i] = static_cast<char>(tolower(styler[start + i]));
         i++;
@@ -98,6 +115,11 @@ static int classifyWordCOBOL(unsigned int start, unsigned int end, /*WordList &k
     if (isdigit(s[0]) || (s[0] == '.') || (s[0] == 'v')) {
         chAttr = SCE_C_NUMBER;
 		char *p = s + 1;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 		while (*p) {
 			if ((!isdigit(*p) && (*p) != 'v') && isCOBOLwordchar(*p)) {
 				chAttr = SCE_C_IDENTIFIER;
@@ -170,6 +192,11 @@ static void ColouriseCOBOLDoc(unsigned int startPos, int length, int initStyle, 
     bool bNewLine = true;
     bool bAarea = !isspacechar(chNext);
 	int column = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (unsigned int i = startPos; i < lengthDoc; i++) {
         char ch = chNext;
 
@@ -322,6 +349,11 @@ static void FoldCOBOLDoc(unsigned int startPos, int length, int, WordList *[],
     bool bAarea = !isspacechar(chNext);
 	int column = 0;
 	bool bComment = false;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (unsigned int i = startPos; i < endPos; i++) {
         char ch = chNext;
         chNext = styler.SafeGetCharAt(i + 1);

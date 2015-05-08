@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/motif/colour.cpp
 // Purpose:     wxColour class
@@ -151,6 +158,11 @@ WXPixel wxGetBestMatchingPixel(Display *display, XColor *desiredColor, Colormap 
     int blue = desiredColor->blue >> 8;
     const int threshold = 2 * 2 * 3;    // allow an error of up to 2 in R,G & B
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (int pixelcount = 0; pixelcount < numPixVals; pixelcount++)
     {
         XColor matching_color;

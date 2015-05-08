@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/accel.cpp
 // Purpose:     wxAcceleratorTable
@@ -68,6 +75,11 @@ wxAcceleratorTable::wxAcceleratorTable(int n, const wxAcceleratorEntry entries[]
 {
     m_refData = new wxAcceleratorRefData;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (int i = 0; i < n; i++)
     {
         int flag    = entries[i].GetFlags();
@@ -88,6 +100,11 @@ int wxAcceleratorTable::GetCommand( wxKeyEvent &event )
     if (!IsOk()) return -1;
 
     wxAccelList::compatibility_iterator node = M_ACCELDATA->m_accels.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (node)
     {
         wxAcceleratorEntry *entry = node->GetData();

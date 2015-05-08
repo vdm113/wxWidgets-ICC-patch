@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ////////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/list.cpp
 // Purpose:     wxList implementation
@@ -125,6 +132,11 @@ int wxNodeBase::IndexOf() const
     int i;
     wxNodeBase *prev = m_previous;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for( i = 0; prev; i++ )
     {
         prev = prev->m_previous;
@@ -150,6 +162,11 @@ wxListBase::wxListBase(size_t count, void *elements[])
 {
   Init();
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
   for ( size_t n = 0; n < count; n++ )
   {
       Append(elements[n]);
@@ -170,6 +187,11 @@ void wxListBase::DoCopy(const wxListBase& list)
     {
         case wxKEY_INTEGER:
             {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                 for ( wxNodeBase *node = list.GetFirst(); node; node = node->GetNext() )
                 {
                     Append(node->GetKeyInteger(), node->GetData());
@@ -179,6 +201,11 @@ void wxListBase::DoCopy(const wxListBase& list)
 
         case wxKEY_STRING:
             {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                 for ( wxNodeBase *node = list.GetFirst(); node; node = node->GetNext() )
                 {
                     Append(node->GetKeyString(), node->GetData());
@@ -188,6 +215,11 @@ void wxListBase::DoCopy(const wxListBase& list)
 
         default:
             {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                 for ( wxNodeBase *node = list.GetFirst(); node; node = node->GetNext() )
                 {
                     Append(node->GetData());
@@ -202,6 +234,11 @@ void wxListBase::DoCopy(const wxListBase& list)
 wxListBase::~wxListBase()
 {
   wxNodeBase *each = m_nodeFirst;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
   while ( each != NULL )
   {
       wxNodeBase *next = each->GetNext();
@@ -306,6 +343,11 @@ wxNodeBase *wxListBase::Insert(wxNodeBase *position, void *object)
 
 wxNodeBase *wxListBase::Item(size_t n) const
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxNodeBase *current = GetFirst(); current; current = current->GetNext() )
     {
         if ( n-- == 0 )
@@ -324,6 +366,11 @@ wxNodeBase *wxListBase::Find(const wxListKey& key) const
     wxASSERT_MSG( m_keyType == key.GetKeyType(),
                   wxT("this list is not keyed on the type of this key") );
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxNodeBase *current = GetFirst(); current; current = current->GetNext() )
     {
         if ( key == current->m_key )
@@ -338,6 +385,11 @@ wxNodeBase *wxListBase::Find(const wxListKey& key) const
 
 wxNodeBase *wxListBase::Find(const void *object) const
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxNodeBase *current = GetFirst(); current; current = current->GetNext() )
     {
         if ( current->GetData() == object )
@@ -408,6 +460,11 @@ bool wxListBase::DeleteNode(wxNodeBase *node)
 
 bool wxListBase::DeleteObject(void *object)
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxNodeBase *current = GetFirst(); current; current = current->GetNext() )
     {
         if ( current->GetData() == object )
@@ -424,6 +481,11 @@ bool wxListBase::DeleteObject(void *object)
 void wxListBase::Clear()
 {
     wxNodeBase *current = m_nodeFirst;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( current )
     {
         wxNodeBase *next = current->GetNext();
@@ -439,6 +501,11 @@ void wxListBase::Clear()
 
 void wxListBase::ForEach(wxListIterateFunction F)
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxNodeBase *current = GetFirst(); current; current = current->GetNext() )
     {
         (*F)(current->GetData());
@@ -447,6 +514,11 @@ void wxListBase::ForEach(wxListIterateFunction F)
 
 void *wxListBase::FirstThat(wxListIterateFunction F)
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxNodeBase *current = GetFirst(); current; current = current->GetNext() )
     {
         if ( (*F)(current->GetData()) )
@@ -458,6 +530,11 @@ void *wxListBase::FirstThat(wxListIterateFunction F)
 
 void *wxListBase::LastThat(wxListIterateFunction F)
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxNodeBase *current = GetLast(); current; current = current->GetPrevious() )
     {
         if ( (*F)(current->GetData()) )
@@ -504,6 +581,11 @@ void wxListBase::Sort(const wxSortCompareFunction compfunc)
 
     // go through the list and put the pointers into the array
     wxNodeBase *node;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( node = GetFirst(); node; node = node->GetNext() )
     {
         *objPtr++ = node->GetData();
@@ -518,6 +600,11 @@ void wxListBase::Sort(const wxSortCompareFunction compfunc)
 
     // put the sorted pointers back into the list
     objPtr = objArray;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( node = GetFirst(); node; node = node->GetNext() )
     {
         node->SetData(*objPtr++);
@@ -532,6 +619,11 @@ void wxListBase::Reverse()
     wxNodeBase* node = m_nodeFirst;
     wxNodeBase* tmp;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (node)
     {
         // swap prev and next pointers
@@ -551,6 +643,11 @@ void wxListBase::DeleteNodes(wxNodeBase* first, wxNodeBase* last)
 {
     wxNodeBase* node = first;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (node != last)
     {
         wxNodeBase* next = node->GetNext();
@@ -600,6 +697,11 @@ bool wxStringList::Delete(const wxChar *s)
 {
     wxStringListNode *current;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( current = GetFirst(); current; current = current->GetNext() )
     {
         if ( wxStrcmp(current->GetData(), s) == 0 )
@@ -618,6 +720,11 @@ void wxStringList::DoCopy(const wxStringList& other)
     wxASSERT( GetCount() == 0 );    // this list must be empty before copying!
 
     size_t count = other.GetCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
         Add(other.Item(n)->GetData());
@@ -641,6 +748,11 @@ wxStringList::wxStringList (const wxChar *first, ...)
   va_start(ap, first);
 
   const wxChar *s = first;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
   for (;;)
   {
       Add(s);
@@ -669,6 +781,11 @@ wxChar **wxStringList::ListToArray(bool new_copies) const
 {
     wxChar **string_array = new wxChar *[GetCount()];
     wxStringListNode *node = GetFirst();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (size_t i = 0; i < GetCount(); i++)
     {
         wxChar *s = node->GetData();
@@ -685,6 +802,11 @@ wxChar **wxStringList::ListToArray(bool new_copies) const
 // Checks whether s is a member of the list
 bool wxStringList::Member(const wxChar *s) const
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxStringListNode *node = GetFirst(); node; node = node->GetNext() )
     {
         const wxChar *s1 = node->GetData();
@@ -723,6 +845,11 @@ void wxStringList::Sort()
     wxStringListNode *node;
 
     size_t i = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( node = GetFirst(); node; node = node->GetNext() )
     {
         array[i++] = node->GetData();
@@ -731,6 +858,11 @@ void wxStringList::Sort()
     qsort (array, N, sizeof (wxChar *), wx_comparestrings);
 
     i = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( node = GetFirst(); node; node = node->GetNext() )
         node->SetData( array[i++] );
 

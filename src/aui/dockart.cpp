@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/aui/dockart.cpp
 // Purpose:     wxaui: wx advanced user interface - docking window manager
@@ -105,6 +112,11 @@ static void DrawGradientRectangle(wxDC& dc,
     else
         high = rect.GetWidth()-1;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (int i = 0; i <= high; ++i)
     {
         int r,g,b;
@@ -137,6 +149,11 @@ wxString wxAuiChopText(wxDC& dc, const wxString& text, int max_size)
 
     size_t i, len = text.Length();
     size_t last_good_length = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0; i < len; ++i)
     {
         wxString s = text.Left(i);
@@ -487,6 +504,11 @@ void wxAuiDefaultDockArt::DrawBorder(wxDC& dc, wxWindow* window, const wxRect& _
 
     if (pane.IsToolbar())
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (i = 0; i < border_width; ++i)
         {
             dc.SetPen(*wxWHITE_PEN);
@@ -512,6 +534,11 @@ void wxAuiDefaultDockArt::DrawBorder(wxDC& dc, wxWindow* window, const wxRect& _
             art->DrawBorder(dc, window, rect);
         else
         {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for (i = 0; i < border_width; ++i)
             {
                 dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
@@ -637,6 +664,11 @@ void wxAuiDefaultDockArt::DrawGripper(wxDC& dc, wxWindow *WXUNUSED(window),
     if (!pane.HasGripperTop())
     {
         int y = 5;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while (1)
         {
             dc.SetPen(m_gripperPen1);
@@ -657,6 +689,11 @@ void wxAuiDefaultDockArt::DrawGripper(wxDC& dc, wxWindow *WXUNUSED(window),
     else
     {
         int x = 5;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while (1)
         {
             dc.SetPen(m_gripperPen1);

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/dlist.h
 // Purpose:     wxDList<T> which is a template version of wxList
@@ -190,6 +197,11 @@ public:
         if ( m_destroy )
         {
             iterator it, en;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for ( it = this->begin(), en = this->end(); it != en; ++it )
                 delete *it;
         }
@@ -248,6 +260,11 @@ public:
 
             int i;
             Node *prev = m_previous;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for( i = 0; prev; i++ )
                 prev = prev->m_previous;
             return i;
@@ -314,6 +331,11 @@ public:
     {
         Init();
         size_t n;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (n = 0; n < count; n++)
             Append( elements[n] );
     }
@@ -328,6 +350,11 @@ public:
     ~wxDList()
     {
         nodetype *each = m_nodeFirst;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while ( each != NULL )
         {
             nodetype *next = each->GetNext();
@@ -345,6 +372,11 @@ public:
         m_nodeFirst = NULL;
         m_nodeLast = NULL;
         nodetype* node;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (node = list.GetFirst(); node; node = node->GetNext() )
             Append(node->GetData());
         wxASSERT_MSG( m_count == list.m_count, "logic error in Assign()" );
@@ -418,6 +450,11 @@ public:
 
     nodetype *Item(size_t index) const
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( nodetype *current = GetFirst(); current; current = current->GetNext() )
         {
             if ( index-- == 0 )
@@ -466,6 +503,11 @@ public:
 
     bool DeleteObject( T *object )
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( nodetype *current = GetFirst(); current; current = current->GetNext() )
         {
             if ( current->GetData() == object )
@@ -480,6 +522,11 @@ public:
 
     nodetype *Find(const T *object) const
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( nodetype *current = GetFirst(); current; current = current->GetNext() )
         {
             if ( current->GetData() == object )
@@ -492,6 +539,11 @@ public:
     int IndexOf(const T *object) const
     {
         int n = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( nodetype *current = GetFirst(); current; current = current->GetNext() )
         {
             if ( current->GetData() == object )
@@ -504,6 +556,11 @@ public:
     void Clear()
     {
         nodetype *current = m_nodeFirst;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while ( current )
         {
             nodetype *next = current->GetNext();
@@ -519,6 +576,11 @@ public:
     {
         nodetype * node = m_nodeFirst;
         nodetype* tmp;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while (node)
         {
             // swap prev and next pointers
@@ -535,6 +597,11 @@ public:
     void DeleteNodes(nodetype* first, nodetype* last)
     {
         nodetype * node = first;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while (node != last)
         {
             nodetype* next = node->GetNext();
@@ -545,12 +612,22 @@ public:
 
     void ForEach(wxListIterateFunction F)
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( nodetype *current = GetFirst(); current; current = current->GetNext() )
             (*F)(current->GetData());
     }
 
     T *FirstThat(wxListIterateFunction F)
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( nodetype *current = GetFirst(); current; current = current->GetNext() )
         {
             if ( (*F)(current->GetData()) )
@@ -561,6 +638,11 @@ public:
 
     T *LastThat(wxListIterateFunction F)
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( nodetype *current = GetLast(); current; current = current->GetPrevious() )
         {
             if ( (*F)(current->GetData()) )
@@ -757,8 +839,18 @@ public:
         { return const_reverse_iterator(NULL, GetFirst()); }
     void resize(size_type n, value_type v = value_type())
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while (n < size())
             pop_back();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while (n > size())
             push_back(v);
     }
@@ -778,12 +870,22 @@ public:
     void assign(const_iterator first, const const_iterator& last)
     {
         clear();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for(; first != last; ++first)
             Append(*first);
     }
     void assign(size_type n, const_reference v = value_type())
     {
         clear();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for(size_type i = 0; i < n; ++i)
             Append(v);
     }
@@ -798,11 +900,21 @@ public:
     }
     void insert(const iterator& it, size_type n, const_reference v)
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for(size_type i = 0; i < n; ++i)
             Insert(it.m_node, v);
     }
     void insert(const iterator& it, const_iterator first, const const_iterator& last)
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for(; first != last; ++first)
             Insert(it.m_node, *first);
     }

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/any.cpp
 // Purpose:     wxAny class, container for any type
@@ -79,6 +86,11 @@ public:
 
         // Not found, handle pre-registrations
         size_t i = m_anyToVariantRegs.size();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while ( i > 0 )
         {
             i--;
@@ -101,6 +113,11 @@ public:
             return it->second;
 
         // Finally, attempt to find a compatible type
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( it = anyToVariant.begin(); it != anyToVariant.end(); it++ )
         {
             if ( type->IsSameType(it->first) )

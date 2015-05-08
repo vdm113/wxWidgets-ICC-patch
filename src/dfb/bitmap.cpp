@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/dfb/bitmap.cpp
 // Purpose:     wxBitmap implementation
@@ -50,8 +57,18 @@ void CopyPixelsAndSwapRGB(unsigned w, unsigned h,
 {
     unsigned src_advance = src_pitch - SrcPixSize * w;
     unsigned dst_advance = dst_pitch - DstPixSize * w;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( unsigned y = 0; y < h; y++, src += src_advance, dst += dst_advance )
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( unsigned x = 0; x < w; x++, src += SrcPixSize, dst += DstPixSize )
         {
             // copy with RGB -> BGR translation:
@@ -110,7 +127,17 @@ void CopySurfaceToImage(const wxIDirectFBSurfacePtr& surface, wxImage& image)
         // NB: "+3" is to get pointer to alpha component
         const unsigned char *src = ((unsigned char*)locked.ptr) + 3;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( unsigned y = 0; y < height; y++, src += advance )
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for ( unsigned x = 0; x < width; x++, src += 4 )
                 *(alpha++) = *src;
     }
@@ -163,7 +190,17 @@ void CopyImageToSurface(const wxImage& image,
         // NB: "+3" is to get pointer to alpha component
         unsigned char *dest = ((unsigned char*)locked.ptr) + 3;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( unsigned y = 0; y < height; y++, dest += advance )
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for ( unsigned x = 0; x < width; x++, dest += 4 )
                 *dest = *(alpha++);
     }
@@ -277,10 +314,20 @@ CopyBits(int width,
 
     // we operate with sizeof(T), not 1, bytes at once
     T *dst = static_cast<T *>(locked.ptr);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( src < srcEnd )
     {
         unsigned char val = *src++;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( int bit = 0; bit < BITS_PER_BYTE; bit++ )
         {
             *dst++ = val & 1 ? White : Black;

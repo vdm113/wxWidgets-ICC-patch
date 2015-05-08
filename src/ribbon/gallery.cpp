@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/ribbon/gallery.cpp
 // Purpose:     Ribbon control which displays a gallery of items to choose from
@@ -172,6 +179,11 @@ void wxRibbonGallery::OnMouseMove(wxMouseEvent& evt)
 
         size_t item_count = m_items.Count();
         size_t item_i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for(item_i = 0; item_i < item_count; ++item_i)
         {
             wxRibbonGalleryItem *item = m_items.Item(item_i);
@@ -270,6 +282,11 @@ void wxRibbonGallery::OnMouseDown(wxMouseEvent& evt)
             pos.y += m_scroll_amount;
         size_t item_count = m_items.Count();
         size_t item_i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for(item_i = 0; item_i < item_count; ++item_i)
         {
             wxRibbonGalleryItem *item = m_items.Item(item_i);
@@ -513,6 +530,11 @@ void wxRibbonGallery::OnPaint(wxPaintEvent& WXUNUSED(evt))
         offset_vertical = false;
     size_t item_count = m_items.Count();
     size_t item_i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for(item_i = 0; item_i < item_count; ++item_i)
     {
         wxRibbonGalleryItem *item = m_items.Item(item_i);
@@ -576,6 +598,11 @@ void wxRibbonGallery::Clear()
 {
     size_t item_count = m_items.Count();
     size_t item_i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for(item_i = 0; item_i < item_count; ++item_i)
     {
         wxRibbonGalleryItem *item = m_items.Item(item_i);
@@ -638,6 +665,11 @@ bool wxRibbonGallery::Layout()
     size_t item_count = m_items.Count();
     size_t item_i;
     long art_flags = m_art->GetFlags();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for(item_i = 0; item_i < item_count; ++item_i)
     {
         wxRibbonGalleryItem *item = m_items.Item(item_i);
@@ -669,6 +701,11 @@ bool wxRibbonGallery::Layout()
             x_cursor += m_bitmap_padded_size.x;
         }
     }
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for(; item_i < item_count; ++item_i)
     {
         wxRibbonGalleryItem *item = m_items.Item(item_i);

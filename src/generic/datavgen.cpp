@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/datavgen.cpp
 // Purpose:     wxDataViewCtrl generic implementation
@@ -428,6 +435,11 @@ public:
         if ( m_branchData )
         {
             wxDataViewTreeNodes& nodes = m_branchData->children;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for ( wxDataViewTreeNodes::iterator i = nodes.begin();
                   i != nodes.end();
                   ++i )
@@ -481,6 +493,11 @@ public:
 
         const wxDataViewTreeNodes& nodes = m_branchData->children;
         const int len = nodes.size();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( int i = 0; i < len; i++ )
         {
             if ( nodes[i]->m_item == item )
@@ -496,6 +513,11 @@ public:
     {
         int ret = 0;
         const wxDataViewTreeNode * node = this;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while( node->GetParent()->GetParent() != NULL )
         {
             node = node->GetParent();
@@ -522,6 +544,11 @@ public:
 
         const wxDataViewTreeNodes& nodes = m_branchData->children;
         const int len = nodes.GetCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( int i = 0;i < len; i ++)
             sum += 1 + nodes[i]->GetSubTreeCount();
 
@@ -591,6 +618,11 @@ public:
 
             nodes.Sort( &wxGenericTreeModelNodeCmp );
             int len = nodes.GetCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for (int i = 0; i < len; i ++)
             {
                 if ( nodes[i]->HasChildren() )
@@ -1703,6 +1735,11 @@ wxBitmap wxDataViewMainWindow::CreateItemBitmap( unsigned int row, int &indent )
     int width = 0;
     unsigned int cols = GetOwner()->GetColumnCount();
     unsigned int col;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (col = 0; col < cols; col++)
     {
         wxDataViewColumn *column = GetOwner()->GetColumnAt(col);
@@ -1734,6 +1771,11 @@ wxBitmap wxDataViewMainWindow::CreateItemBitmap( unsigned int row, int &indent )
         expander = GetExpanderColumnOrFirstOne(GetOwner());
 
     int x = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (col = 0; col < cols; col++)
     {
         wxDataViewColumn *column = GetOwner()->GetColumnAt( col );
@@ -1786,18 +1828,38 @@ static void DrawSelectedCellFocusRect(wxDC& dc, const wxRect& rect)
     wxDCPenChanger pen(dc, wxSystemSettings::GetColour(wxSYS_COLOUR_HIGHLIGHTTEXT));
 
     wxCoord z;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( z = x1 + 1; z < x2; z += 2 )
         dc.DrawPoint(z, rect.GetTop());
 
     wxCoord shift = z == x2 ? 0 : 1;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( z = y1 + shift; z < y2; z += 2 )
         dc.DrawPoint(x2, z);
 
     shift = z == y2 ? 0 : 1;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( z = x2 - shift; z > x1; z -= 2 )
         dc.DrawPoint(z, y2);
 
     shift = z == x1 ? 0 : 1;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( z = y2 - shift; z > y1; z -= 2 )
         dc.DrawPoint(x1, z);
 }
@@ -1852,6 +1914,11 @@ void wxDataViewMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 
     unsigned int col_start = 0;
     unsigned int x_start;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (x_start = 0; col_start < cols; col_start++)
     {
         wxDataViewColumn *col = GetOwner()->GetColumnAt(col_start);
@@ -1867,6 +1934,11 @@ void wxDataViewMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 
     unsigned int col_last = col_start;
     unsigned int x_last = x_start;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (; col_last < cols; col_last++)
     {
         wxDataViewColumn *col = GetOwner()->GetColumnAt(col_last);
@@ -1901,6 +1973,11 @@ void wxDataViewMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
         // We only need to draw the visible part, so limit the rectangle to it.
         const int xRect = m_owner->CalcUnscrolledPosition(wxPoint(0, 0)).x;
         const int widthRect = size.x;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (unsigned int item = item_start; item < item_last; item++)
         {
             if ( item % 2 )
@@ -1919,6 +1996,11 @@ void wxDataViewMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
         dc.SetPen(m_penRule);
         dc.SetBrush(*wxTRANSPARENT_BRUSH);
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (unsigned int i = item_start; i <= item_last; i++)
         {
             int y = GetLineStart( i );
@@ -1938,6 +2020,11 @@ void wxDataViewMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
         //     rule at the most-left side of the control.
 
         int x = x_start - 1;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (unsigned int i = col_start; i < col_last; i++)
         {
             wxDataViewColumn *col = GetOwner()->GetColumnAt(i);
@@ -1952,6 +2039,11 @@ void wxDataViewMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
     }
 
     // redraw the background for the items which are selected/current
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (unsigned int item = item_start; item < item_last; item++)
     {
         bool selected = m_selection.IsSelected(item);
@@ -1997,6 +2089,11 @@ void wxDataViewMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 
                 if ( renderColumnFocus )
                 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                     for ( unsigned int i = col_start; i < col_last; i++ )
                     {
                         wxDataViewColumn *col = GetOwner()->GetColumnAt(i);
@@ -2066,6 +2163,11 @@ void wxDataViewMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
     // redraw all cells for all rows which must be repainted and all columns
     wxRect cell_rect;
     cell_rect.x = x_start;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (unsigned int i = col_start; i < col_last; i++)
     {
         wxDataViewColumn *col = GetOwner()->GetColumnAt( i );
@@ -2075,6 +2177,11 @@ void wxDataViewMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
         if ( col->IsHidden() || cell_rect.width <= 0 )
             continue;       // skip it!
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (unsigned int item = item_start; item < item_last; item++)
         {
             // get the cell value and set it into the renderer
@@ -2292,6 +2399,11 @@ bool Walker( wxDataViewTreeNode * node, DoJob & func )
     {
         const wxDataViewTreeNodes& nodes = node->GetChildNodes();
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( wxDataViewTreeNodes::const_iterator i = nodes.begin();
               i != nodes.end();
               ++i )
@@ -2361,6 +2473,11 @@ bool wxDataViewMainWindow::ItemAdded(const wxDataViewItem & parent, const wxData
             // append to the end if we won't find a better position:
             nodePos = nodeSiblingsSize;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for ( int nextItemPos = posInModel + 1;
                   nextItemPos < modelSiblingsSize;
                   nextItemPos++ )
@@ -2417,6 +2534,11 @@ bool wxDataViewMainWindow::ItemDeleted(const wxDataViewItem& parent,
         // later use.
         int itemPosInNode = 0;
         wxDataViewTreeNode *itemNode = NULL;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( wxDataViewTreeNodes::const_iterator i = parentsChildren.begin();
               i != parentsChildren.end();
               ++i, ++itemPosInNode )
@@ -2634,6 +2756,11 @@ void wxDataViewMainWindow::ScrollTo( int rows, int column )
         int x_start, w = 0;
         int xx, yy, xe;
         m_owner->CalcUnscrolledPosition( rect.x, rect.y, &xx, &yy );
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (x_start = 0; colnum < column; colnum++)
         {
             wxDataViewColumn *col = GetOwner()->GetColumnAt(colnum);
@@ -2668,6 +2795,11 @@ int wxDataViewMainWindow::GetEndOfLastCol() const
 {
     int width = 0;
     unsigned int i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0; i < GetOwner()->GetColumnCount(); i++)
     {
         const wxDataViewColumn *c =
@@ -2731,6 +2863,11 @@ void wxDataViewMainWindow::SelectAllRows( bool on )
     }
     else if (!m_selection.IsEmpty())
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (unsigned i = GetFirstVisibleRow(); i <= GetLastVisibleRow(); i++)
         {
             if (m_selection.IsSelected(i))
@@ -2751,6 +2888,11 @@ void wxDataViewMainWindow::SelectRows( unsigned int from, unsigned int to )
     wxArrayInt changed;
     if ( m_selection.SelectRange(from, to, true, &changed) )
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (unsigned i = 0; i < changed.size(); i++)
             RefreshRow(changed[i]);
     }
@@ -2762,6 +2904,11 @@ void wxDataViewMainWindow::SelectRows( unsigned int from, unsigned int to )
 
 void wxDataViewMainWindow::Select( const wxArrayInt& aSelections )
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (size_t i=0; i < aSelections.GetCount(); i++)
     {
         int n = aSelections[i];
@@ -2859,6 +3006,11 @@ int wxDataViewMainWindow::GetLineStart( unsigned int row ) const
         int start = 0;
 
         unsigned int r;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (r = 0; r < row; r++)
         {
             const wxDataViewTreeNode* node = GetTreeNodeByRow(r);
@@ -2869,6 +3021,11 @@ int wxDataViewMainWindow::GetLineStart( unsigned int row ) const
             unsigned int cols = GetOwner()->GetColumnCount();
             unsigned int col;
             int height = m_lineHeight;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for (col = 0; col < cols; col++)
             {
                 const wxDataViewColumn *column = GetOwner()->GetColumn(col);
@@ -2909,6 +3066,11 @@ int wxDataViewMainWindow::GetLineAt( unsigned int y ) const
     // TODO make more efficient
     unsigned int row = 0;
     unsigned int yy = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (;;)
     {
         const wxDataViewTreeNode* node = GetTreeNodeByRow(row);
@@ -2923,6 +3085,11 @@ int wxDataViewMainWindow::GetLineAt( unsigned int y ) const
         unsigned int cols = GetOwner()->GetColumnCount();
         unsigned int col;
         int height = m_lineHeight;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (col = 0; col < cols; col++)
         {
             const wxDataViewColumn *column = GetOwner()->GetColumn(col);
@@ -2967,6 +3134,11 @@ int wxDataViewMainWindow::GetLineHeight( unsigned int row ) const
 
         unsigned int cols = GetOwner()->GetColumnCount();
         unsigned int col;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (col = 0; col < cols; col++)
         {
             const wxDataViewColumn *column = GetOwner()->GetColumn(col);
@@ -3234,6 +3406,11 @@ wxDataViewTreeNode * wxDataViewMainWindow::FindNode( const wxDataViewItem & item
     // Compose the parent-chain for the item we are looking for
     wxVector<wxDataViewItem> parentChain;
     wxDataViewItem it( item );
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while( it.IsOk() )
     {
         parentChain.push_back(it);
@@ -3243,6 +3420,11 @@ wxDataViewTreeNode * wxDataViewMainWindow::FindNode( const wxDataViewItem & item
     // Find the item along the parent-chain.
     // This algorithm is designed to speed up the node-finding method
     wxDataViewTreeNode* node = m_root;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for( unsigned iter = parentChain.size()-1; ; --iter )
     {
         if( node->HasChildren() )
@@ -3259,6 +3441,11 @@ wxDataViewTreeNode * wxDataViewMainWindow::FindNode( const wxDataViewItem & item
             const wxDataViewTreeNodes& nodes = node->GetChildNodes();
             bool found = false;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for (unsigned i = 0; i < nodes.GetCount(); ++i)
             {
                 wxDataViewTreeNode* currentNode = nodes[i];
@@ -3292,6 +3479,11 @@ void wxDataViewMainWindow::HitTest( const wxPoint & point, wxDataViewItem & item
     unsigned int colnum = 0;
     int x, y;
     m_owner->CalcUnscrolledPosition( point.x, point.y, &x, &y );
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (unsigned x_start = 0; colnum < cols; colnum++)
     {
         col = GetOwner()->GetColumnAt(colnum);
@@ -3318,6 +3510,11 @@ wxRect wxDataViewMainWindow::GetItemRect( const wxDataViewItem & item,
     unsigned int cols = GetOwner()->GetColumnCount();
     // If column is null the loop will compute the combined width of all columns.
     // Otherwise, it will compute the x position of the column we are looking for.
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (unsigned int i = 0; i < cols; i++)
     {
         wxDataViewColumn* col = GetOwner()->GetColumnAt( i );
@@ -3446,6 +3643,11 @@ int wxDataViewMainWindow::GetRowByItem(const wxDataViewItem & item) const
         // Compose the parent-chain of the item we are looking for
         wxVector<wxDataViewItem> parentChain;
         wxDataViewItem it( item );
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while( it.IsOk() )
         {
             parentChain.push_back(it);
@@ -3472,6 +3674,11 @@ static void BuildTreeHelper( const wxDataViewModel * model,  const wxDataViewIte
     wxDataViewItemArray children;
     unsigned int num = model->GetChildren( item, children);
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( unsigned int index = 0; index < num; index++ )
     {
         wxDataViewTreeNode *n = new wxDataViewTreeNode(node, children[index]);
@@ -3544,6 +3751,11 @@ wxDataViewMainWindow::FindColumnForEditing(const wxDataViewItem& item, wxDataVie
     if ( !candidate )
     {
         const unsigned cols = GetOwner()->GetColumnCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( unsigned i = 0; i < cols; i++ )
         {
             wxDataViewColumn *c = GetOwner()->GetColumnAt(i);
@@ -4046,6 +4258,11 @@ void wxDataViewMainWindow::OnMouse( wxMouseEvent &event )
     int xpos = 0;
     unsigned int cols = GetOwner()->GetColumnCount();
     unsigned int i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0; i < cols; i++)
     {
         wxDataViewColumn *c = GetOwner()->GetColumnAt( i );
@@ -4500,6 +4717,11 @@ void wxDataViewMainWindow::OnColumnsCountChanged()
     int editableCount = 0;
 
     const unsigned cols = GetOwner()->GetColumnCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( unsigned i = 0; i < cols; i++ )
     {
         wxDataViewColumn *c = GetOwner()->GetColumnAt(i);
@@ -4862,6 +5084,11 @@ wxDataViewColumn *wxDataViewCtrl::GetColumnAt(unsigned int pos) const
 int wxDataViewCtrl::GetColumnIndex(const wxDataViewColumn *column) const
 {
     const unsigned count = m_cols.size();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( unsigned n = 0; n < count; n++ )
     {
         if ( m_cols[n] == column )
@@ -4874,6 +5101,11 @@ int wxDataViewCtrl::GetColumnIndex(const wxDataViewColumn *column) const
 int wxDataViewCtrl::GetModelColumnIndex( unsigned int model_column ) const
 {
     const int count = GetColumnCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( int index = 0; index < count; index++ )
     {
         wxDataViewColumn* column = GetColumn(index);
@@ -5032,6 +5264,11 @@ void wxDataViewCtrl::UpdateColWidths()
         return;
 
     const unsigned len = m_colsBestWidths.size();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( unsigned i = 0; i < len; i++ )
     {
         // Note that we have to have an explicit 'dirty' flag here instead of
@@ -5061,6 +5298,11 @@ void wxDataViewCtrl::OnInternalIdle()
 int wxDataViewCtrl::GetColumnPosition( const wxDataViewColumn *column ) const
 {
     unsigned int len = GetColumnCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < len; i++ )
     {
         wxDataViewColumn * col = GetColumnAt(i);
@@ -5083,6 +5325,11 @@ wxVector<wxDataViewColumn *> wxDataViewCtrl::GetSortingColumns() const
 {
     wxVector<wxDataViewColumn *> out;
     
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxVector<int>::const_iterator it = m_sortingColumnIdxs.begin(),
                                        end = m_sortingColumnIdxs.end();
           it != end;
@@ -5128,6 +5375,11 @@ int wxDataViewCtrl::GetSelections( wxDataViewItemArray & sel ) const
     const wxSelectionStore& selections = m_clientArea->GetSelections();
 
     wxSelectionStore::IterationState cookie;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( unsigned row = selections.GetFirstSelectedItem(cookie);
           row != wxSelectionStore::NO_SELECTION;
           row = selections.GetNextSelectedItem(cookie) )
@@ -5152,6 +5404,11 @@ void wxDataViewCtrl::SetSelections( const wxDataViewItemArray & sel )
 
     wxDataViewItem last_parent;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t i = 0; i < sel.size(); i++ )
     {
         wxDataViewItem item = sel[i];
@@ -5311,6 +5568,11 @@ void wxDataViewCtrl::ResetAllSortColumns()
 {
     // Must make copy, because unsorting will remove it from original vector
     wxVector<int> const copy(m_sortingColumnIdxs);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxVector<int>::const_iterator it = copy.begin(),
                                        end = copy.end();
           it != end;
@@ -5344,6 +5606,11 @@ bool wxDataViewCtrl::AllowMultiColumnSort(bool allow)
 
 bool wxDataViewCtrl::IsColumnSorted(int idx) const
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxVector<int>::const_iterator it = m_sortingColumnIdxs.begin(),
                                        end = m_sortingColumnIdxs.end();
           it != end;
@@ -5363,6 +5630,11 @@ void wxDataViewCtrl::UseColumnForSorting(int idx )
 
 void wxDataViewCtrl::DontUseColumnForSorting(int idx)
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxVector<int>::iterator it = m_sortingColumnIdxs.begin(),
                                  end = m_sortingColumnIdxs.end();
           it != end;

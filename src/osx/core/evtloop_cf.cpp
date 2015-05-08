@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/core/evtloop_cf.cpp
 // Purpose:     wxEventLoop implementation common to both Carbon and Cocoa
@@ -187,6 +194,11 @@ void wxMacWakeUp()
 void wxCFEventLoop::DoYieldFor(long eventsToProcess)
 {
     // process all pending events:
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( DoProcessEvents() == 1 )
         ;
 
@@ -265,6 +277,11 @@ int wxCFEventLoop::DoDispatchTimeout(unsigned long timeout)
 
 void wxCFEventLoop::OSXDoRun()
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( ;; )
     {
         OnNextIteration();
@@ -278,6 +295,11 @@ void wxCFEventLoop::OSXDoRun()
         // Pending() returns true, do process them
         if ( m_shouldExit )
         {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             while ( DoProcessEvents() == 1 )
                 ;
 
@@ -301,6 +323,11 @@ int wxCFEventLoop::DoRun()
     // wxModalEventLoop depends on this (so we can't just use ON_BLOCK_EXIT or
     // something similar here)
 #if wxUSE_EXCEPTIONS
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( ;; )
     {
         try

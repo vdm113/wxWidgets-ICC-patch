@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/qt/toolbar.cpp
 // Author:      Sean D'Epagnier, Mariano Reingart, Peter Most
@@ -186,6 +193,11 @@ void wxToolBar::SetWindowStyleFlag( long style )
     Qt::ToolButtonStyle buttonStyle = GetButtonStyle();
 
     // bring the initial state of all the toolbar items in line with the
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxToolBarToolsList::const_iterator i = m_tools.begin();
           i != m_tools.end();         ++i )
     {
@@ -203,6 +215,11 @@ bool wxToolBar::Realize()
         return false;
 
     // bring the initial state of all the toolbar items in line with the
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxToolBarToolsList::const_iterator i = m_tools.begin();
           i != m_tools.end();         ++i )
     {

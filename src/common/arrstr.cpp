@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/arrstr.cpp
 // Purpose:     wxArrayString class
@@ -36,6 +43,11 @@ wxArrayString::wxArrayString(size_t sz, const char** a)
 #if !wxUSE_STD_CONTAINERS
     Init(false);
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (size_t i=0; i < sz; i++)
         Add(a[i]);
 }
@@ -45,6 +57,11 @@ wxArrayString::wxArrayString(size_t sz, const wchar_t** a)
 #if !wxUSE_STD_CONTAINERS
     Init(false);
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (size_t i=0; i < sz; i++)
         Add(a[i]);
 }
@@ -54,6 +71,11 @@ wxArrayString::wxArrayString(size_t sz, const wxString* a)
 #if !wxUSE_STD_CONTAINERS
     Init(false);
 #endif
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (size_t i=0; i < sz; i++)
         Add(a[i]);
 }
@@ -103,6 +125,11 @@ void wxArrayString::Copy(const wxArrayString& src)
   if ( src.m_nCount > ARRAY_DEFAULT_INITIAL_SIZE )
     Alloc(src.m_nCount);
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
   for ( size_t n = 0; n < src.m_nCount; n++ )
     Add(src[n]);
 }
@@ -146,6 +173,11 @@ wxString *wxArrayString::Grow(size_t nIncrement)
       wxString *pNew = new wxString[m_nSize];
 
       // copy data to new location
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
       for ( size_t j = 0; j < m_nCount; j++ )
           pNew[j] = m_pItems[j];
 
@@ -192,6 +224,11 @@ void wxArrayString::Alloc(size_t nSize)
     if ( !pNew )
         return;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t j = 0; j < m_nCount; j++ )
         pNew[j] = m_pItems[j];
     delete [] m_pItems;
@@ -210,6 +247,11 @@ void wxArrayString::Shrink()
     wxString *pNew = new wxString[m_nCount];
 
     // copy data to new location
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t j = 0; j < m_nCount; j++ )
         pNew[j] = m_pItems[j];
     delete [] m_pItems;
@@ -230,6 +272,11 @@ int wxArrayString::Index(const wxString& str, bool bCase, bool bFromEnd) const
            lo = 0,
            hi = m_nCount;
     int res;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( lo < hi ) {
       i = (lo + hi)/2;
 
@@ -249,6 +296,11 @@ int wxArrayString::Index(const wxString& str, bool bCase, bool bFromEnd) const
     if ( bFromEnd ) {
       if ( m_nCount > 0 ) {
         size_t ui = m_nCount;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         do {
           if ( m_pItems[--ui].IsSameAs(str, bCase) )
             return ui;
@@ -257,6 +309,11 @@ int wxArrayString::Index(const wxString& str, bool bCase, bool bFromEnd) const
       }
     }
     else {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
       for( size_t ui = 0; ui < m_nCount; ui++ ) {
         if( m_pItems[ui].IsSameAs(str, bCase) )
           return ui;
@@ -276,6 +333,11 @@ size_t wxArrayString::Add(const wxString& str, size_t nInsert)
            lo = 0,
            hi = m_nCount;
     int res;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( lo < hi ) {
       i = (lo + hi)/2;
 
@@ -302,6 +364,11 @@ size_t wxArrayString::Add(const wxString& str, size_t nInsert)
     // of our own strings.
     wxScopedArray<wxString> oldStrings(Grow(nInsert));
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (size_t i = 0; i < nInsert; i++)
     {
         // just append
@@ -322,9 +389,19 @@ void wxArrayString::Insert(const wxString& str, size_t nIndex, size_t nInsert)
 
   wxScopedArray<wxString> oldStrings(Grow(nInsert));
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
   for (int j = m_nCount - nIndex - 1; j >= 0; j--)
       m_pItems[nIndex + nInsert + j] = m_pItems[nIndex + j];
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
   for (size_t i = 0; i < nInsert; i++)
   {
       m_pItems[nIndex + i] = str;
@@ -344,6 +421,11 @@ wxArrayString::insert(iterator it, const_iterator first, const_iterator last)
     // reset "it" since it can change inside Grow()
     it = begin() + idx;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( first != last )
     {
         it = insert(it, *first);
@@ -370,6 +452,11 @@ void wxArrayString::SetCount(size_t count)
     Alloc(count);
 
     wxString s;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( m_nCount < count )
         m_pItems[m_nCount++] = s;
 }
@@ -381,6 +468,11 @@ void wxArrayString::RemoveAt(size_t nIndex, size_t nRemove)
   wxCHECK_RET( nIndex + nRemove <= m_nCount,
                wxT("removing too many elements in wxArrayString::Remove") );
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
   for ( size_t j =  0; j < m_nCount - nIndex -nRemove; j++)
       m_pItems[nIndex + j] = m_pItems[nIndex + nRemove + j];
 
@@ -464,6 +556,11 @@ bool wxArrayString::operator==(const wxArrayString& a) const
     if ( m_nCount != a.m_nCount )
         return false;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < m_nCount; n++ )
     {
         if ( Item(n) != a[n] )
@@ -497,6 +594,11 @@ wxString wxJoin(const wxArrayString& arr, const wxChar sep, const wxChar escape)
     if ( escape == wxT('\0') )
     {
         // escaping is disabled:
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( size_t i = 0; i < count; i++ )
         {
             if ( i )
@@ -506,11 +608,21 @@ wxString wxJoin(const wxArrayString& arr, const wxChar sep, const wxChar escape)
     }
     else // use escape character
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )
         {
             if ( n )
                 str += sep;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for ( wxString::const_iterator i = arr[n].begin(),
                                          end = arr[n].end();
                   i != end;
@@ -540,6 +652,11 @@ wxArrayString wxSplit(const wxString& str, const wxChar sep, const wxChar escape
     wxString curr;
     wxChar prev = wxT('\0');
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxString::const_iterator i = str.begin(),
                                  end = str.end();
           i != end;

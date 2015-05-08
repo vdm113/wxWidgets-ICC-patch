@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/cmdproc.cpp
 // Purpose:     wxCommand and wxCommandProcessor classes
@@ -118,6 +125,11 @@ void wxCommandProcessor::Store(wxCommand *command)
     else
     {
         wxList::compatibility_iterator node = m_currentCommand->GetNext();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while (node)
         {
             wxList::compatibility_iterator next = node->GetNext();
@@ -315,6 +327,11 @@ wxString wxCommandProcessor::GetRedoMenuLabel() const
 void wxCommandProcessor::ClearCommands()
 {
     wxList::compatibility_iterator node = m_commands.GetFirst();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (node)
     {
         wxCommand *command = (wxCommand *)node->GetData();

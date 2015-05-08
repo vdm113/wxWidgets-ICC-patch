@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/fldlgcmn.cpp
 // Purpose:     wxFileDialog common functions
@@ -231,6 +238,11 @@ void wxFileDialogBase::SetFilterIndexFromExt(const wxString& ext)
         wxArrayString descriptions, filters;
         // don't care about errors, handled already by wxFileDialog
         (void)wxParseCommonDialogsFilter(m_wildCard, descriptions, filters);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (size_t n=0; n<filters.GetCount(); n++)
         {
             if (filters[n].Contains(ext))

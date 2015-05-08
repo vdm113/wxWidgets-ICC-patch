@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 /*
  * Copyright (c) 1988-1997 Sam Leffler
@@ -245,6 +252,11 @@ TIFFRewriteDirectory( TIFF *tif )
 		{
 			uint32 nextdir;
 			nextdir = tif->tif_header.classic.tiff_diroff;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 			while(1) {
 				uint16 dircount;
 				uint32 nextnextdir;
@@ -303,6 +315,11 @@ TIFFRewriteDirectory( TIFF *tif )
 		{
 			uint64 nextdir;
 			nextdir = tif->tif_header.big.tiff_diroff;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 			while(1) {
 				uint64 dircount64;
 				uint16 dircount;
@@ -421,6 +438,11 @@ TIFFWriteDirectorySec(TIFF* tif, int isimage, int imagedone, uint64* pdiroff)
 	dir=NULL;
 	dirmem=NULL;
 	dirsize=0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	while (1)
 	{
 		ndir=0;
@@ -628,6 +650,11 @@ TIFFWriteDirectorySec(TIFF* tif, int isimage, int imagedone, uint64* pdiroff)
 			}
 			{
 				uint32 n;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 				for (n=0; n<tif->tif_nfields; n++) {
 					const TIFFField* o;
 					o = tif->tif_fields[n];
@@ -690,6 +717,11 @@ TIFFWriteDirectorySec(TIFF* tif, int isimage, int imagedone, uint64* pdiroff)
 				}
 			}
 		}
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 		for (m=0; m<(uint32)(tif->tif_dir.td_customValueCount); m++)
 		{
 			switch (tif->tif_dir.td_customValues[m].info->field_type)
@@ -803,6 +835,11 @@ TIFFWriteDirectorySec(TIFF* tif, int isimage, int imagedone, uint64* pdiroff)
 		{
 			uint32 na;
 			TIFFDirEntry* nb;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 			for (na=0, nb=dir; ; na++, nb++)
 			{
 				assert(na<ndir);
@@ -832,6 +869,11 @@ TIFFWriteDirectorySec(TIFF* tif, int isimage, int imagedone, uint64* pdiroff)
 			TIFFSwabShort((uint16*)n);
 		n+=2;
 		o=dir;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 		for (m=0; m<ndir; m++)
 		{
 			*(uint16*)n=o->tdir_tag;
@@ -868,6 +910,11 @@ TIFFWriteDirectorySec(TIFF* tif, int isimage, int imagedone, uint64* pdiroff)
 			TIFFSwabLong8((uint64*)n);
 		n+=8;
 		o=dir;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 		for (m=0; m<ndir; m++)
 		{
 			*(uint16*)n=o->tdir_tag;
@@ -943,6 +990,11 @@ TIFFWriteDirectoryTagSampleformatArray(TIFF* tif, uint32* ndir, TIFFDirEntry* di
 		case SAMPLEFORMAT_IEEEFP:
 			if (tif->tif_dir.td_bitspersample<=32)
 			{
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 				for (i = 0; i < count; ++i)
 					((float*)conv)[i] = (float)value[i];
 				ok = TIFFWriteDirectoryTagFloatArray(tif,ndir,dir,tag,count,(float*)conv);
@@ -955,18 +1007,33 @@ TIFFWriteDirectoryTagSampleformatArray(TIFF* tif, uint32* ndir, TIFFDirEntry* di
 		case SAMPLEFORMAT_INT:
 			if (tif->tif_dir.td_bitspersample<=8)
 			{
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 				for (i = 0; i < count; ++i)
 					((int8*)conv)[i] = (int8)value[i];
 				ok = TIFFWriteDirectoryTagSbyteArray(tif,ndir,dir,tag,count,(int8*)conv);
 			}
 			else if (tif->tif_dir.td_bitspersample<=16)
 			{
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 				for (i = 0; i < count; ++i)
 					((int16*)conv)[i] = (int16)value[i];
 				ok = TIFFWriteDirectoryTagSshortArray(tif,ndir,dir,tag,count,(int16*)conv);
 			}
 			else
 			{
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 				for (i = 0; i < count; ++i)
 					((int32*)conv)[i] = (int32)value[i];
 				ok = TIFFWriteDirectoryTagSlongArray(tif,ndir,dir,tag,count,(int32*)conv);
@@ -975,18 +1042,33 @@ TIFFWriteDirectoryTagSampleformatArray(TIFF* tif, uint32* ndir, TIFFDirEntry* di
 		case SAMPLEFORMAT_UINT:
 			if (tif->tif_dir.td_bitspersample<=8)
 			{
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 				for (i = 0; i < count; ++i)
 					((uint8*)conv)[i] = (uint8)value[i];
 				ok = TIFFWriteDirectoryTagByteArray(tif,ndir,dir,tag,count,(uint8*)conv);
 			}
 			else if (tif->tif_dir.td_bitspersample<=16)
 			{
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 				for (i = 0; i < count; ++i)
 					((uint16*)conv)[i] = (uint16)value[i];
 				ok = TIFFWriteDirectoryTagShortArray(tif,ndir,dir,tag,count,(uint16*)conv);
 			}
 			else
 			{
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 				for (i = 0; i < count; ++i)
 					((uint32*)conv)[i] = (uint32)value[i];
 				ok = TIFFWriteDirectoryTagLongArray(tif,ndir,dir,tag,count,(uint32*)conv);
@@ -1097,6 +1179,11 @@ TIFFWriteDirectoryTagBytePerSample(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, u
 		TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 		return(0);
 	}
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
 		*na=value;
 	o=TIFFWriteDirectoryTagCheckedByteArray(tif,ndir,dir,tag,tif->tif_dir.td_samplesperpixel,m);
@@ -1149,6 +1236,11 @@ TIFFWriteDirectoryTagSbytePerSample(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, 
 		TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 		return(0);
 	}
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
 		*na=value;
 	o=TIFFWriteDirectoryTagCheckedSbyteArray(tif,ndir,dir,tag,tif->tif_dir.td_samplesperpixel,m);
@@ -1198,6 +1290,11 @@ TIFFWriteDirectoryTagShortPerSample(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, 
 		TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 		return(0);
 	}
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
 		*na=value;
 	o=TIFFWriteDirectoryTagCheckedShortArray(tif,ndir,dir,tag,tif->tif_dir.td_samplesperpixel,m);
@@ -1249,6 +1346,11 @@ TIFFWriteDirectoryTagSshortPerSample(TIFF* tif, uint32* ndir, TIFFDirEntry* dir,
 		TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 		return(0);
 	}
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
 		*na=value;
 	o=TIFFWriteDirectoryTagCheckedSshortArray(tif,ndir,dir,tag,tif->tif_dir.td_samplesperpixel,m);
@@ -1299,6 +1401,11 @@ TIFFWriteDirectoryTagLongPerSample(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, u
 		TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 		return(0);
 	}
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
 		*na=value;
 	o=TIFFWriteDirectoryTagCheckedLongArray(tif,ndir,dir,tag,tif->tif_dir.td_samplesperpixel,m);
@@ -1351,6 +1458,11 @@ TIFFWriteDirectoryTagSlongPerSample(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, 
 		TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 		return(0);
 	}
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
 		*na=value;
 	o=TIFFWriteDirectoryTagCheckedSlongArray(tif,ndir,dir,tag,tif->tif_dir.td_samplesperpixel,m);
@@ -1481,6 +1593,11 @@ static int TIFFWriteDirectoryTagFloatPerSample(TIFF* tif, uint32* ndir, TIFFDirE
 		TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 		return(0);
 	}
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
 		*na=value;
 	o=TIFFWriteDirectoryTagCheckedFloatArray(tif,ndir,dir,tag,tif->tif_dir.td_samplesperpixel,m);
@@ -1530,6 +1647,11 @@ static int TIFFWriteDirectoryTagDoublePerSample(TIFF* tif, uint32* ndir, TIFFDir
 		TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 		return(0);
 	}
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (na=m, nb=0; nb<tif->tif_dir.td_samplesperpixel; na++, nb++)
 		*na=value;
 	o=TIFFWriteDirectoryTagCheckedDoubleArray(tif,ndir,dir,tag,tif->tif_dir.td_samplesperpixel,m);
@@ -1617,6 +1739,11 @@ TIFFWriteDirectoryTagLongLong8Array(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, 
         return(0);
     }
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (q=p, ma=value, mb=0; mb<count; ma++, mb++, q++)
     {
         if (*ma>0xFFFFFFFF)
@@ -1675,6 +1802,11 @@ TIFFWriteDirectoryTagIfdIfd8Array(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, ui
         return(0);
     }
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (q=p, ma=value, mb=0; mb<count; ma++, mb++, q++)
     {
         if (*ma>0xFFFFFFFF)
@@ -1708,6 +1840,11 @@ TIFFWriteDirectoryTagShortLongLong8Array(TIFF* tif, uint32* ndir, TIFFDirEntry* 
 		return(1);
 	}
 	n=0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (ma=value, mb=0; mb<count; ma++, mb++)
 	{
 		if ((n==0)&&(*ma>0xFFFF))
@@ -1728,6 +1865,11 @@ TIFFWriteDirectoryTagShortLongLong8Array(TIFF* tif, uint32* ndir, TIFFDirEntry* 
 			TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 			return(0);
 		}
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 		for (ma=value, mb=0, q=p; mb<count; ma++, mb++, q++)
 			*q=(uint16)(*ma);
 		o=TIFFWriteDirectoryTagCheckedShortArray(tif,ndir,dir,tag,count,p);
@@ -1743,6 +1885,11 @@ TIFFWriteDirectoryTagShortLongLong8Array(TIFF* tif, uint32* ndir, TIFFDirEntry* 
 			TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 			return(0);
 		}
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 		for (ma=value, mb=0, q=p; mb<count; ma++, mb++, q++)
 			*q=(uint32)(*ma);
 		o=TIFFWriteDirectoryTagCheckedLongArray(tif,ndir,dir,tag,count,p);
@@ -1862,6 +2009,11 @@ TIFFWriteDirectoryTagSubifd(TIFF* tif, uint32* ndir, TIFFDirEntry* dir)
 		}
 		pa=tif->tif_dir.td_subifd;
 		pb=o;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 		for (p=0; p < tif->tif_dir.td_nsubifd; p++)
 		{
                         assert(pa != 0);
@@ -2126,6 +2278,11 @@ TIFFWriteDirectoryTagCheckedRationalArray(TIFF* tif, uint32* ndir, TIFFDirEntry*
 		TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 		return(0);
 	}
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (na=value, nb=m, nc=0; nc<count; na++, nb+=2, nc++)
 	{
 		if (*na<=0.0)
@@ -2172,6 +2329,11 @@ TIFFWriteDirectoryTagCheckedSrationalArray(TIFF* tif, uint32* ndir, TIFFDirEntry
 		TIFFErrorExt(tif->tif_clientdata,module,"Out of memory");
 		return(0);
 	}
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (na=value, nb=m, nc=0; nc<count; na++, nb+=2, nc++)
 	{
 		if (*na<0.0)
@@ -2295,6 +2457,11 @@ TIFFWriteDirectoryTagData(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, uint16 tag
 	static const char module[] = "TIFFWriteDirectoryTagData";
 	uint32 m;
 	m=0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	while (m<(*ndir))
 	{
 		assert(dir[m].tdir_tag!=tag);
@@ -2305,6 +2472,11 @@ TIFFWriteDirectoryTagData(TIFF* tif, uint32* ndir, TIFFDirEntry* dir, uint16 tag
 	if (m<(*ndir))
 	{
 		uint32 n;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 		for (n=*ndir; n>m; n--)
 			dir[n]=dir[n-1];
 	}
@@ -2446,6 +2618,11 @@ TIFFLinkDirectory(TIFF* tif)
 		 * Not the first directory, search to the last and append.
 		 */
 		nextdir = tif->tif_header.classic.tiff_diroff;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 		while(1) {
 			uint16 dircount;
 			uint32 nextnextdir;
@@ -2505,6 +2682,11 @@ TIFFLinkDirectory(TIFF* tif)
 		 * Not the first directory, search to the last and append.
 		 */
 		nextdir = tif->tif_header.big.tiff_diroff;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 		while(1) {
 			uint64 dircount64;
 			uint16 dircount;
@@ -2646,6 +2828,11 @@ _TIFFRewriteField(TIFF* tif, uint16 tag, TIFFDataType in_datatype,
 /* -------------------------------------------------------------------- */
 /*      Read through directory to find target tag.                      */
 /* -------------------------------------------------------------------- */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while( dircount > 0 )
     {
         if (!ReadOK(tif, direntry_raw, dirsize)) {
@@ -2738,6 +2925,11 @@ _TIFFRewriteField(TIFF* tif, uint16 tag, TIFFDataType in_datatype,
     {
 	tmsize_t i;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for( i = 0; i < count; i++ )
         {
             ((int32 *) buf_to_write)[i] = 
@@ -2756,6 +2948,11 @@ _TIFFRewriteField(TIFF* tif, uint16 tag, TIFFDataType in_datatype,
     {
 	tmsize_t i;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for( i = 0; i < count; i++ )
         {
             ((uint32 *) buf_to_write)[i] = 

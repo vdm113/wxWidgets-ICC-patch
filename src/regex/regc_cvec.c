@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /*
  * Utility functions for handling cvecs
  * This file is #included by regcomp.c.
@@ -76,6 +83,11 @@ clearcvec(cv)
     cv->nmcces = 0;
     cv->nmccechrs = 0;
     cv->nranges = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0; i < cv->mccespace; i++) {
 	cv->mcces[i] = NULL;
     }
@@ -136,6 +148,11 @@ addmcce(cv, startp, endp)
     assert(cv->nmcces < cv->mccespace);
     d = &cv->chrs[cv->chrspace - cv->nmccechrs - len - 1];
     cv->mcces[cv->nmcces++] = d;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (s = startp, i = len; i > 0; s++, i--) {
 	*d++ = *s;
     }
@@ -156,11 +173,21 @@ haschr(cv, c)
     int i;
     chr *p;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (p = cv->chrs, i = cv->nchrs; i > 0; p++, i--) {
 	if (*p == c) {
 	    return 1;
 	}
     }
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (p = cv->ranges, i = cv->nranges; i > 0; p += 2, i--) {
 	if ((*p <= c) && (c <= *(p+1))) {
 	    return 1;

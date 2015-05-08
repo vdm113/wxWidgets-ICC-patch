@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/wxcrt.h
 // Purpose:     Type-safe ANSI and Unicode builds compatible wrappers for
@@ -68,6 +75,11 @@ WXDLLIMPEXP_BASE size_t wxWC2MB(char *buf, const wchar_t *psz, size_t n);
     //implement our own wmem variants
     inline wxChar* wxTmemchr(const wxChar* s, wxChar c, size_t l)
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for(;l && *s != c;--l, ++s) {}
 
         if(l)
@@ -77,6 +89,11 @@ WXDLLIMPEXP_BASE size_t wxWC2MB(char *buf, const wchar_t *psz, size_t n);
 
     inline int wxTmemcmp(const wxChar* sz1, const wxChar* sz2, size_t len)
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for(; *sz1 == *sz2 && len; --len, ++sz1, ++sz2) {}
 
         if(len)
@@ -99,6 +116,11 @@ WXDLLIMPEXP_BASE size_t wxWC2MB(char *buf, const wchar_t *psz, size_t n);
     {
         wxChar* szRet = szOut;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while (len--)
             *szOut++ = cIn;
 
@@ -175,6 +197,11 @@ inline size_t wxStrnlen(const char *str, size_t maxlen) { return wxCRT_StrnlenA(
 inline size_t wxStrnlen(const char *str, size_t maxlen)
 {
     size_t n;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( n = 0; n < maxlen; n++ )
         if ( !str[n] )
             break;
@@ -189,6 +216,11 @@ inline size_t wxStrnlen(const wchar_t *str, size_t maxlen) { return wxCRT_Strnle
 inline size_t wxStrnlen(const wchar_t *str, size_t maxlen)
 {
     size_t n;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( n = 0; n < maxlen; n++ )
         if ( !str[n] )
             break;

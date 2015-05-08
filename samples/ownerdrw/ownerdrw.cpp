@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        ownerdrw.cpp
 // Purpose:     Owner-draw sample, for Windows
@@ -283,6 +290,11 @@ OwnerDrawnFrame::OwnerDrawnFrame(wxFrame *frame, const wxString& title,
 
     wxString *astrChoices = new wxString[WXSIZEOF(aszChoices)];
     unsigned int ui;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( ui = 0; ui < WXSIZEOF(aszChoices); ui++ )
         astrChoices[ui] = aszChoices[ui];
 
@@ -298,6 +310,11 @@ OwnerDrawnFrame::OwnerDrawnFrame(wxFrame *frame, const wxString& title,
 
     delete [] astrChoices;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( ui = 0; ui < WXSIZEOF(aszChoices); ui += 2 )
     {
 #if defined(__WXMSW__) && !defined(__WXUNIVERSAL__)
@@ -314,6 +331,11 @@ OwnerDrawnFrame::OwnerDrawnFrame(wxFrame *frame, const wxString& title,
 
     astrChoices = new wxString[WXSIZEOF(aszColors)];
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( ui = 0; ui < WXSIZEOF(aszColors); ui++ )
     {
         astrChoices[ui] = aszColors[ui];
@@ -339,6 +361,11 @@ OwnerDrawnFrame::OwnerDrawnFrame(wxFrame *frame, const wxString& title,
             {0,0,0}, {128,0,255}
         };
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( ui = 0; ui < WXSIZEOF(aszColors); ui++ )
     {
         pListBox->GetItem(ui)->SetTextColour(wxColor(aColors[ui].r,

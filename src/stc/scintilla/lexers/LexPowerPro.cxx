@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 // @file LexPowerPro.cxx
 // PowerPro utility, written by Bruce Switzer, is available from http://powerpro.webeddie.com
@@ -61,6 +68,11 @@ static bool IsContinuationLine(unsigned int szLine, Accessor &styler)
 {
 	int startPos = styler.LineStart(szLine);
 	int endPos = styler.LineStart(szLine + 1) - 2;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	while (startPos < endPos)
 	{
 		char stylech = styler.StyleAt(startPos);
@@ -84,6 +96,11 @@ static int GetStyleFirstWord(int szLine, Accessor &styler)
 	int endPos = styler.LineStart(szLine + 1) - 1;
 	char ch = styler.SafeGetCharAt(startPos);
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	while (ch > 0 && isspacechar(ch) && startPos < endPos)
 	{
 		startPos++; // skip to next char
@@ -105,6 +122,11 @@ static bool IsFunction(Accessor &styler, unsigned int currentPos) {
 
 	//compare each character with the letters in the function array
 	//return false if ALL don't match
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (unsigned int i = 0; i < numberOfCharacters; i++) {
 		char c = styler.SafeGetCharAt(position++);
 		if (c != function[i])
@@ -114,6 +136,11 @@ static bool IsFunction(Accessor &styler, unsigned int currentPos) {
 	//make sure that there are only spaces (or tabs) between the beginning
 	//of the line and the function declaration
 	position = currentPos - numberOfCharacters - 1; 		//-1 to move to char before 'function'
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (unsigned int j = 0; j < 16; j++) {					//check up to 16 preceeding characters
 		char c = styler.SafeGetCharAt(position--, '\0');	//if can't read char, return NUL (past beginning of document)
 		if (c <= 0)	//reached beginning of document
@@ -146,6 +173,11 @@ static void ColourisePowerProDoc(unsigned int startPos, int length, int initStyl
 	//are there only spaces between the first letter of the line and the beginning of the line
 	bool onlySpaces = true;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
 
 		// save the total current word for eof processing
@@ -391,6 +423,11 @@ static void FoldPowerProDoc(unsigned int startPos, int length, int, WordList *[]
 	int stylePrev = 0;
 
 	// find the first previous line without continuation character at the end
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	while ((lineCurrent > 0 && IsContinuationLine(lineCurrent, styler))
 	       || (lineCurrent > 1 && IsContinuationLine(lineCurrent - 1, styler))) {
 		lineCurrent--;
@@ -427,6 +464,11 @@ static void FoldPowerProDoc(unsigned int startPos, int length, int, WordList *[]
 	char chPrevPrev = '\0';
 	char chPrevPrevPrev = '\0';
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (int i = startPos; i < endPos; i++) {
 
 		char ch = chNext;
@@ -588,6 +630,11 @@ static void FoldPowerProDoc(unsigned int startPos, int length, int, WordList *[]
 				isDoLastWord = false;
 
 				//blank out first word
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 				for (unsigned int i = 0; i < FIRST_WORD_MAX_LEN; i++)
 					szFirstWord[i] = '\0';
 			}

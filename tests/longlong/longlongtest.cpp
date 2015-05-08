@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/longlong/longlong.cpp
 // Purpose:     wxLongLong unit test
@@ -97,6 +104,11 @@ LongLongTestCase::LongLongTestCase()
 
 void LongLongTestCase::Conversion()
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < ITEMS; n++ )
     {
         wxLongLong a = RAND_LL();
@@ -128,8 +140,18 @@ void LongLongTestCase::Comparison()
     lls[0] = ls[0];
     lls[1] = ls[1];
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(testLongs); n++ )
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( size_t m = 0; m < WXSIZEOF(lls); m++ )
         {
             CPPUNIT_ASSERT( (lls[m] < testLongs[n]) == (ls[m] < testLongs[n]) );
@@ -144,6 +166,11 @@ void LongLongTestCase::Comparison()
 
 void LongLongTestCase::Addition()
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < ITEMS; n++ )
     {
         wxLongLong a = RAND_LL();
@@ -168,6 +195,11 @@ void LongLongTestCase::Addition()
 
 void LongLongTestCase::Multiplication()
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < ITEMS; n++ )
     {
         wxLongLong a = RAND_LL();
@@ -197,6 +229,11 @@ void LongLongTestCase::Multiplication()
 
 void LongLongTestCase::Division()
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < ITEMS; n++ )
     {
         // get a random wxLongLong (shifting by 12 the MSB ensures that the
@@ -205,6 +242,11 @@ void LongLongTestCase::Division()
 
         // get a random (but non null) long (not wxLongLong for now) divider
         long l;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         do
         {
            l = rand();
@@ -238,10 +280,20 @@ void LongLongTestCase::Division()
 
 void LongLongTestCase::BitOperations()
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t m = 0; m < ITEMS; m++ )
     {
         wxLongLong a = RAND_LL();
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( size_t n = 0; n < 33; n++ )
         {
             wxLongLong b(a.GetHi(), a.GetLo()), c, d = b, e;
@@ -279,6 +331,11 @@ void LongLongTestCase::ToString()
 {
     wxString s1, s2;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(testLongs); n++ )
     {
         wxLongLong a = testLongs[n];

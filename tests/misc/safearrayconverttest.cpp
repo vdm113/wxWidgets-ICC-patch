@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/misc/safearrayconverttest.cpp
 // Purpose:     Test conversions between wxVariant and OLE VARIANT using SAFEARRAYs
@@ -143,6 +150,11 @@ void SafeArrayConvertTestCase::VariantListReturnSafeArray()
 
     wxVariant variantItem;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( long i = 0; i < count; i++ )
     {
         CPPUNIT_ASSERT( safeArray.GetElement(&i, variantItem) );
@@ -191,6 +203,11 @@ void SafeArrayConvertTestCase::StringsReturnSafeArray()
 
     wxString str;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( long i = 0; i < count; i++ )
     {
         CPPUNIT_ASSERT( safeArray.GetElement(&i, str) );

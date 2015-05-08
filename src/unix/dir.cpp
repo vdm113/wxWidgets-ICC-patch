@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/dir.cpp
 // Purpose:     wxDir implementation for Unix/POSIX systems
@@ -93,6 +100,11 @@ wxDirData::wxDirData(const wxString& dirname)
     size_t n = m_dirname.length();
     wxCHECK_RET( n, wxT("empty dir name in wxDir") );
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( n > 0 && m_dirname[--n] == '/' )
         ;
 
@@ -125,6 +137,11 @@ bool wxDirData::Read(wxString *filename)
 
     wxString de_d_name;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( !matches )
     {
         de = readdir(m_dir);

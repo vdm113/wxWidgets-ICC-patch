@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/choice_osx.cpp
 // Purpose:     wxChoice
@@ -27,6 +34,11 @@ wxChoice::~wxChoice()
     {
         unsigned int i, max = GetCount();
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( i = 0; i < max; ++i )
             delete GetClientObject( i );
     }
@@ -111,6 +123,11 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter & items,
                             void **clientData, wxClientDataType type)
 {
     const unsigned int numItems = items.GetCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for( unsigned int i = 0; i < numItems; ++i, ++pos )
     {
         unsigned int idx;
@@ -160,6 +177,11 @@ void wxChoice::DoDeleteOneItem(unsigned int n)
 
 void wxChoice::DoClear()
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( unsigned int i = 0 ; i < GetCount() ; i++ )
     {
         m_popUpMenu->Delete( m_popUpMenu->FindItemByPosition( 0 ) );

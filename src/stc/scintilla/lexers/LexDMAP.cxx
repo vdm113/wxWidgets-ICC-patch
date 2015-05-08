@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexDMAP.cxx
  ** Lexer for MSC Nastran DMAP.
@@ -48,6 +55,11 @@ static void ColouriseDMAPDoc(unsigned int startPos, int length, int initStyle,
     int endPos = startPos + length;
     /***************************************/
     // backtrack to the nearest keyword
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ((startPos > 1) && (styler.StyleAt(startPos) != SCE_DMAP_WORD)) {
         startPos--;
     }
@@ -55,6 +67,11 @@ static void ColouriseDMAPDoc(unsigned int startPos, int length, int initStyle,
     initStyle = styler.StyleAt(startPos - 1);
     StyleContext sc(startPos, endPos-startPos, initStyle, styler);
     /***************************************/
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (; sc.More(); sc.Forward()) {
         // remember the start position of the line
         if (sc.atLineStart) {
@@ -68,6 +85,11 @@ static void ColouriseDMAPDoc(unsigned int startPos, int length, int initStyle,
         int toLineStart = sc.currentPos - posLineStart;
         if (toLineStart >= 72 || sc.ch == '$') {
             sc.SetState(SCE_DMAP_COMMENT);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             while (!sc.atLineEnd && sc.More()) sc.Forward(); // Until line end
             continue;
         }
@@ -170,6 +192,11 @@ static void FoldDMAPDoc(unsigned int startPos, int length, int initStyle,
     int lastStart = 0;
     char prevWord[32] = "";
     /***************************************/
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (unsigned int i = startPos; i < endPos; i++) {
         char ch = chNext;
         chNext = styler.SafeGetCharAt(i + 1);
@@ -187,6 +214,11 @@ static void FoldDMAPDoc(unsigned int startPos, int length, int initStyle,
             if(iswordchar(ch) && !iswordchar(chNext)) {
                 char s[32];
                 unsigned int k;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                 for(k=0; (k<31 ) && (k<i-lastStart+1 ); k++) {
                     s[k] = static_cast<char>(tolower(styler[lastStart+k]));
                 }

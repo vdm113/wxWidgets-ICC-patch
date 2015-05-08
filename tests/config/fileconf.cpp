@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/fileconf/fileconf.cpp
 // Purpose:     wxFileConf unit test
@@ -185,6 +192,11 @@ FileConfigTestCase::CheckGroupEntries(const wxFileConfig& fc,
 
     long cookie;
     wxString name;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( bool cont = fc.GetFirstEntry(name, cookie);
           cont;
           cont = fc.GetNextEntry(name, cookie), nEntries-- )
@@ -212,6 +224,11 @@ FileConfigTestCase::CheckGroupSubgroups(const wxFileConfig& fc,
 
     long cookie;
     wxString name;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( bool cont = fc.GetFirstGroup(name, cookie);
           cont;
           cont = fc.GetNextGroup(name, cookie), nGroups-- )

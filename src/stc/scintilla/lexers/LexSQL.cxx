@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 //-*- coding: utf-8 -*-
 // Scintilla source code edit control
 /** @file LexSQL.cxx
@@ -375,6 +382,11 @@ private:
 	bool IsCommentLine (int line, LexAccessor &styler) {
 		int pos = styler.LineStart(line);
 		int eol_pos = styler.LineStart(line + 1) - 1;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 		for (int i = pos; i + 1 < eol_pos; i++) {
 			int style = styler.StyleAt(i);
 			// MySQL needs -- comments to be followed by space or control char
@@ -444,6 +456,11 @@ void SCI_METHOD LexerSQL::Lex(unsigned int startPos, int length, int initStyle, 
 	StyleContext sc(startPos, length, initStyle, styler);
 	int styleBeforeDCKeyword = SCE_SQL_DEFAULT;
 	int offset = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward(), offset++) {
 		// Determine if the current state should terminate.
 		switch (sc.state) {

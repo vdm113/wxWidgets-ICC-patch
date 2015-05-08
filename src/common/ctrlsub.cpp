@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/ctrlsub.cpp
 // Purpose:     wxItemContainer implementation
@@ -73,6 +80,11 @@ wxArrayString wxItemContainerImmutable::GetStrings() const
 
     const unsigned int count = GetCount();
     result.Alloc(count);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( unsigned int n = 0; n < count; n++ )
         result.Add(GetString(n));
 
@@ -97,6 +109,11 @@ void wxItemContainer::Clear()
     if ( HasClientObjectData() )
     {
         const unsigned count = GetCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( unsigned i = 0; i < count; ++i )
             ResetItemClientObject(i);
     }
@@ -133,6 +150,11 @@ int wxItemContainer::DoInsertItemsInLoop(const wxArrayStringsAdapter& items,
     int n = wxNOT_FOUND;
 
     const unsigned int count = items.GetCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < count; ++i )
     {
         n = DoInsertOneItem(items[i], pos++);

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/generic/private/grid.h
 // Purpose:     Private wxGrid structures
@@ -185,6 +192,11 @@ private:
         else // new columns added
         {
             // add columns for the new elements
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for ( unsigned n = countOld; n < count; n++ )
                 m_columns.push_back(wxGridHeaderColumn(GetOwner(), n));
         }
@@ -792,6 +804,11 @@ public:
         wxASSERT_MSG( m_oper.Select(coords) >= 0, "invalid row/column" );
 
         int pos = GetLinePos(coords);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while ( pos )
         {
             // Check the previous line.
@@ -811,6 +828,11 @@ public:
     virtual void Advance(wxGridCellCoords& coords) const
     {
         int pos = GetLinePos(coords);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( ;; )
         {
             // This is not supposed to happen if IsAtBoundary() returned false.
@@ -848,6 +870,11 @@ public:
         wxASSERT_MSG( m_oper.Select(coords) < m_numLines, "invalid row/column" );
 
         int pos = GetLinePos(coords);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while ( pos < m_numLines - 1 )
         {
             int line = GetLineAt(++pos);
@@ -861,6 +888,11 @@ public:
     virtual void Advance(wxGridCellCoords& coords) const
     {
         int pos = GetLinePos(coords);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( ;; )
         {
             wxCHECK_RET( pos < m_numLines - 1,

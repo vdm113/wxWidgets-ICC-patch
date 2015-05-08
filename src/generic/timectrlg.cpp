@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/timectrl.cpp
 // Purpose:     Generic implementation of wxTimePickerCtrl.
@@ -289,6 +296,11 @@ private:
 
             case wxTE_HT_ON_TEXT:
                 // Find the field containing this position.
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                 for ( field = Field_Hour; field <= GetLastField(); )
                 {
                     const CharRange range = GetFieldRange(field);

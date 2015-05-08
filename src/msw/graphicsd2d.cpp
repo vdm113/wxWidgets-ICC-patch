@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/graphicsd2d.cpp
 // Purpose:     Implementation of Direct2D Render Context
@@ -350,12 +357,22 @@ public:
     void ReleaseResources()
     {
         ListType::iterator it;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (it = m_resources.begin(); it != m_resources.end(); ++it)
         {
             (*it)->ReleaseResource();
         }
 
         // Check that all resources were released
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (it = m_resources.begin(); it != m_resources.end(); ++it)
         {
             wxCHECK_RET(!(*it)->IsResourceAcquired(), "One or more device-dependent resources failed to release");
@@ -364,6 +381,11 @@ public:
 
     virtual ~wxD2DResourceManager()
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while (!m_resources.empty())
         {
             m_resources.front()->ReleaseResource();
@@ -712,6 +734,11 @@ wxCOMPtr<ID2D1Geometry> wxD2DConvertRegionToGeometry(ID2D1Factory* direct2dFacto
 
     // Count the number of rectangles which compose the region
     int rectCount = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while(regionIterator++)
         rectCount++;
 
@@ -720,6 +747,11 @@ wxCOMPtr<ID2D1Geometry> wxD2DConvertRegionToGeometry(ID2D1Factory* direct2dFacto
     regionIterator.Reset(region);
 
     int i = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while(regionIterator)
     {
         geometries[i] = NULL;
@@ -744,6 +776,11 @@ wxCOMPtr<ID2D1Geometry> wxD2DConvertRegionToGeometry(ID2D1Factory* direct2dFacto
         &resultGeometry);
 
     // Cleanup temporaries
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (int i = 0; i < rectCount; ++i)
     {
         geometries[i]->Release();
@@ -1166,6 +1203,11 @@ void wxD2DPathData::AddArc(wxDouble x, wxDouble y, wxDouble r, wxDouble startAng
         angle = 360 - angle;
     }
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (abs(angle) > 360)
     {
         angle -= (angle / abs(angle)) * 360;
@@ -1468,8 +1510,18 @@ private:
 
         int k = 0;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (int i = 0; i < 8; ++i)
         {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for (int j = 7; j >= 0; --j)
             {
                 bool isColorBit = (pattern[i] & (1 << j)) > 0;
@@ -1560,6 +1612,11 @@ protected:
                 static const wxPBGRAColor transparentColor(wxTransparentColour);
 
                 // Create the result bitmap
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                 for (int i = 0; i < w * h * 4; i += 4)
                 {
                     wxPBGRAColor color(colorBuffer + i);
@@ -1652,6 +1709,11 @@ public:
 
         D2D1_GRADIENT_STOP* gradientStopArray = new D2D1_GRADIENT_STOP[stopCount];
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (int i = 0; i < stopCount; ++i)
         {
             gradientStopArray[i].color = wxD2DConvertColour(gradientStops.Item(i).GetColour());
@@ -2003,6 +2065,11 @@ void wxD2DPenData::CreateStrokeStyle(ID2D1Factory* const direct2dfactory)
         dashCount = m_sourcePen.GetDashCount();
         dashes = new FLOAT[dashCount];
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (int i = 0; i < dashCount; ++i)
         {
             dashes[i] = m_sourcePen.GetDash()[i];
@@ -2081,6 +2148,11 @@ wxD2DFontData::wxD2DFontData(wxGraphicsRenderer* renderer, ID2D1Factory* d2dFact
     // Ensure the LOGFONT object contains the correct font face name
     if (logfont.lfFaceName[0] == '\0')
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (unsigned int i = 0; i < font.GetFaceName().Length(); ++i)
         {
             logfont.lfFaceName[i] = font.GetFaceName().GetChar(i);
@@ -2273,6 +2345,11 @@ private:
         unsigned char* dest = m_resultImage->GetData();
 
         int k = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while (k < width * height)
         {
             wxPBGRAColor color = wxPBGRAColor(buffer + k * 4);
@@ -2644,6 +2721,11 @@ public:
 
     static void GetPartialTextExtents(wxD2DFontData* fontData, const wxString& text, wxArrayDouble& widths)
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (unsigned int i = 0; i < text.Length(); ++i)
         {
             wxDouble width;
@@ -2862,6 +2944,11 @@ wxD2DContext::~wxD2DContext()
 {
     ResetClip();
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (!m_layers.empty())
     {
         EndLayer();

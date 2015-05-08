@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/filehistorycmn.cpp
 // Purpose:     wxFileHistory class
@@ -94,6 +101,11 @@ void wxFileHistoryBase::AddFileToHistory(const wxString& file)
     const wxString newFile = NormalizeFileName(fnNew);
     size_t i,
            numFiles = m_fileHistory.size();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( i = 0; i < numFiles; i++ )
     {
         if ( newFile == NormalizeFileName(m_fileHistory[i]) )
@@ -112,6 +124,11 @@ void wxFileHistoryBase::AddFileToHistory(const wxString& file)
     }
 
     // add a new menu item to all file menus (they will be updated below)
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxList::compatibility_iterator node = m_fileMenus.GetFirst();
         node;
         node = node->GetNext() )
@@ -131,6 +148,11 @@ void wxFileHistoryBase::AddFileToHistory(const wxString& file)
     numFiles++;
 
     // update the labels in all menus
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( i = 0; i < numFiles; i++ )
     {
         // if in same directory just show the filename; otherwise the full path
@@ -147,6 +169,11 @@ void wxFileHistoryBase::AddFileToHistory(const wxString& file)
             pathInMenu = m_fileHistory[i];
         }
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( wxList::compatibility_iterator node = m_fileMenus.GetFirst();
               node;
               node = node->GetNext() )
@@ -168,6 +195,11 @@ void wxFileHistoryBase::RemoveFileFromHistory(size_t i)
     m_fileHistory.RemoveAt(i);
     numFiles--;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxList::compatibility_iterator node = m_fileMenus.GetFirst();
           node;
           node = node->GetNext() )
@@ -175,6 +207,11 @@ void wxFileHistoryBase::RemoveFileFromHistory(size_t i)
         wxMenu * const menu = (wxMenu *) node->GetData();
 
         // shift filenames up
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( size_t j = i; j < numFiles; j++ )
         {
             menu->SetLabel(m_idBase + j, GetMRUEntryLabel(j, m_fileHistory[j]));
@@ -223,6 +260,11 @@ void wxFileHistoryBase::Load(const wxConfigBase& config)
     buf.Printf(wxT("file%d"), 1);
 
     wxString historyFile;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ((m_fileHistory.GetCount() < m_fileMaxFiles) &&
            config.Read(buf, &historyFile) && !historyFile.empty())
     {
@@ -238,6 +280,11 @@ void wxFileHistoryBase::Load(const wxConfigBase& config)
 void wxFileHistoryBase::Save(wxConfigBase& config)
 {
     size_t i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0; i < m_fileMaxFiles; i++)
     {
         wxString buf;
@@ -255,6 +302,11 @@ void wxFileHistoryBase::AddFilesToMenu()
     if ( m_fileHistory.empty() )
         return;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxList::compatibility_iterator node = m_fileMenus.GetFirst();
           node;
           node = node->GetNext() )
@@ -271,6 +323,11 @@ void wxFileHistoryBase::AddFilesToMenu(wxMenu* menu)
     if ( menu->GetMenuItemCount() )
         menu->AppendSeparator();
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t i = 0; i < m_fileHistory.GetCount(); i++ )
     {
         menu->Append(m_idBase + i, GetMRUEntryLabel(i, m_fileHistory[i]));
@@ -283,6 +340,11 @@ void wxFileHistoryBase::RemoveExistingHistory()
     if ( !count )
         return;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxList::compatibility_iterator node = m_fileMenus.GetFirst();
           node;
           node = node->GetNext() )
@@ -291,6 +353,11 @@ void wxFileHistoryBase::RemoveExistingHistory()
 
         // Notice that we remove count+1 items from the menu as we also remove
         // the separator preceding them.
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( size_t n = 0; n <= count; n++ )
         {
             const wxMenuItemList::compatibility_iterator

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/textfile/textfile.cpp
 // Purpose:     wxTextFile unit test
@@ -219,6 +226,11 @@ void TextFileTestCase::ReadMixed()
 
 void TextFileTestCase::ReadMixedWithFuzzing()
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( int iteration = 0; iteration < 100; iteration++)
     {
         // Create a random buffer with lots of newlines. This is intended to catch
@@ -231,6 +243,11 @@ void TextFileTestCase::ReadMixedWithFuzzing()
         data[0] = 'X';
         data[BUF_LEN] = '\0';
         unsigned linesCnt = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( size_t i = 1; i < BUF_LEN; i++ )
         {
             char ch = CHOICES[rand() % WXSIZEOF(CHOICES)];
@@ -263,6 +280,11 @@ void TextFileTestCase::ReadCRCRLF()
     CPPUNIT_ASSERT( f.Open(wxString::FromAscii(GetTestFileName())) );
 
     wxString all;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxString str = f.GetFirstLine(); !f.Eof(); str = f.GetNextLine() )
         all += str;
 
@@ -318,6 +340,11 @@ void TextFileTestCase::ReadBig()
 
     {
         wxFFile f(GetTestFileName(), "w");
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( size_t n = 0; n < NUM_LINES; n++ )
         {
             fprintf(f.fp(), "Line %lu\n", (unsigned long)n + 1);

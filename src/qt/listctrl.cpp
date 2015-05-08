@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/qt/listctrl.cpp
 // Author:      Mariano Reingart, Peter Most
@@ -331,6 +338,11 @@ bool wxListCtrl::SetItem(wxListItem& info)
                 qitem->setIcon( info.GetColumn(), QIcon() );
             }
         }
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (int col=0; col<GetColumnCount(); col++)
         {
             if ( info.GetFont().IsOk() )
@@ -594,6 +606,11 @@ long wxListCtrl::GetNextItem(long item, int WXUNUSED(geometry), int state) const
         return (size_t)ret;
 
     size_t count = GetItemCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t line = (size_t)ret; line < count; line++ )
     {
         if ( GetItemState(line, state) )
@@ -751,6 +768,11 @@ long wxListCtrl::FindItem(long start, const wxString& str, bool partial)
     QList <QTreeWidgetItem *> qitems = m_qtTreeWidget->findItems(
                 wxQtConvertString(str),
                 !partial ? Qt::MatchExactly : Qt::MatchContains );
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (int i=0; i<qitems.length(); i++)
     {
         ret = m_qtTreeWidget->indexOfTopLevelItem(qitems.at(0));

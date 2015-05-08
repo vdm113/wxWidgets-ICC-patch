@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexPowerShell.cxx
  ** Lexer for PowerShell scripts.
@@ -46,6 +53,11 @@ static void ColourisePowerShellDoc(unsigned int startPos, int length, int initSt
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
 
 		if (sc.state == SCE_POWERSHELL_COMMENT) {
@@ -54,6 +66,11 @@ static void ColourisePowerShellDoc(unsigned int startPos, int length, int initSt
 			}
 		} else if (sc.state == SCE_POWERSHELL_COMMENTSTREAM) {
 			if(sc.atLineStart) {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 				while(IsASpaceOrTab(sc.ch)) {
 					sc.Forward();
 				}
@@ -174,6 +191,11 @@ static void FoldPowerShellDoc(unsigned int startPos, int length, int initStyle,
 	char chNext = styler[startPos];
 	int styleNext = styler.StyleAt(startPos);
 	int style = initStyle;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);
@@ -201,6 +223,11 @@ static void FoldPowerShellDoc(unsigned int startPos, int length, int initStyle,
 		} else if (foldComment && style == SCE_POWERSHELL_COMMENT) {
 			if (ch == '#') {
 				unsigned int j = i + 1;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 				while ((j < endPos) && IsASpaceOrTab(styler.SafeGetCharAt(j))) {
 					j++;
 				}

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/menucmn.cpp
 // Purpose:     wxMenu and wxMenuBar methods common to all ports
@@ -147,6 +154,11 @@ const wxMenuInfoHelperList& wxMenuBarBase::GetMenuInfos() const
 {
     wxMenuInfoHelperList* list = const_cast< wxMenuInfoHelperList* > (& m_menuInfos);
     WX_CLEAR_LIST( wxMenuInfoHelperList, *list);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (size_t i = 0 ; i < GetMenuCount(); ++i)
     {
         wxMenuInfoHelper* info = new wxMenuInfoHelper();
@@ -497,6 +509,11 @@ bool wxMenuBase::DoDestroy(wxMenuItem *item)
 int wxMenuBase::FindItem(const wxString& text) const
 {
     wxString label = wxMenuItem::GetLabelText(text);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxMenuItemList::compatibility_iterator node = m_items.GetFirst();
           node;
           node = node->GetNext() )
@@ -528,6 +545,11 @@ wxMenuItem *wxMenuBase::FindItem(int itemId, wxMenu **itemMenu) const
         *itemMenu = NULL;
 
     wxMenuItem *item = NULL;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxMenuItemList::compatibility_iterator node = m_items.GetFirst();
           node && !item;
           node = node->GetNext() )
@@ -560,6 +582,11 @@ wxMenuItem *wxMenuBase::FindChildItem(int itemid, size_t *ppos) const
     wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
 
     size_t pos;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( pos = 0; node; pos++ )
     {
         if ( node->GetData()->GetId() == itemid )
@@ -608,6 +635,11 @@ void wxMenuBase::UpdateUI(wxEvtHandler* source)
         source = this;
 
     wxMenuItemList::compatibility_iterator  node = GetMenuItems().GetFirst();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( node )
     {
         wxMenuItem* item = node->GetData();
@@ -759,6 +791,11 @@ wxWindow *wxMenuBase::GetWindow() const
     // only the top level menus have non-NULL invoking window or a pointer to
     // the menu bar so recurse upwards until we find it
     const wxMenuBase *menu = this;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( menu->GetParent() )
     {
         menu = menu->GetParent();
@@ -938,6 +975,11 @@ int wxMenuBarBase::FindMenu(const wxString& title) const
     wxString label = wxMenuItem::GetLabelText(title);
 
     size_t count = GetMenuCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )
     {
         wxString title2 = GetMenuLabel(i);
@@ -985,6 +1027,11 @@ wxMenuItem *wxMenuBarBase::FindItem(int itemid, wxMenu **menu) const
     wxMenuItem *item = NULL;
     size_t count = GetMenuCount(), i;
     wxMenuList::const_iterator it;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( i = 0, it = m_menus.begin(); !item && (i < count); i++, it++ )
     {
         item = (*it)->FindItem(itemid, menu);
@@ -999,6 +1046,11 @@ int wxMenuBarBase::FindMenuItem(const wxString& menu, const wxString& item) cons
 
     int i = 0;
     wxMenuList::compatibility_iterator node;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( node = m_menus.GetFirst(); node; node = node->GetNext(), i++ )
     {
         if ( label == wxMenuItem::GetLabelText(GetMenuLabel(i)) )
@@ -1091,6 +1143,11 @@ void wxMenuBarBase::UpdateMenus()
 {
     wxMenu* menu;
     int nCount = GetMenuCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (int n = 0; n < nCount; n++)
     {
         menu = GetMenu( n );

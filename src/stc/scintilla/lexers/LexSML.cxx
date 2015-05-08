@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexSML.cxx
  ** Lexer for SML.
@@ -52,6 +59,11 @@ void ColouriseSMLDoc(
 	WordList& keywords3 = *keywordlists[2];
 	const int useMagic = styler.GetPropertyInt("lexer.caml.magic", 0);
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	while (sc.More()) {
 		int state2 = -1;
 		int chColor = sc.currentPos - 1;
@@ -92,6 +104,11 @@ void ColouriseSMLDoc(
 				const int n = sc.currentPos - chToken;
 				if (n < 24) {
 					char t[24];
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 					for (int i = -n; i < 0; i++)
 						t[n + i] = static_cast<char>(sc.GetRelative(i));
 					t[n] = '\0';

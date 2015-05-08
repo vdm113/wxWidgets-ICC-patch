@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/richtext/richtexthtml.cpp
 // Purpose:     HTML I/O for wxRichTextCtrl
@@ -116,6 +123,11 @@ bool wxRichTextHTMLHandler::DoSaveFile(wxRichTextBuffer *buffer, wxOutputStream&
         m_listTypes.Clear();
 
         wxRichTextObjectList::compatibility_iterator node = buffer->GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while (node)
         {
             wxRichTextParagraph* para = wxDynamicCast(node->GetData(), wxRichTextParagraph);
@@ -128,6 +140,11 @@ bool wxRichTextHTMLHandler::DoSaveFile(wxRichTextBuffer *buffer, wxOutputStream&
                 BeginParagraphFormatting(currentParaStyle, paraStyle, str);
 
                 wxRichTextObjectList::compatibility_iterator node2 = para->GetChildren().GetFirst();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                 while (node2)
                 {
                     wxRichTextObject* obj = node2->GetData();
@@ -423,6 +440,11 @@ void wxRichTextHTMLHandler::CloseLists(int level, wxTextOutputStream& str)
 {
     // Close levels high than this
     int i = m_indents.GetCount()-1;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (i >= 0)
     {
         int l = m_indents[i];
@@ -588,6 +610,11 @@ long wxRichTextHTMLHandler::PtToSize(long size)
 {
     int i;
     int len = m_fontSizeMapping.GetCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0; i < len; i++)
         if (size <= m_fontSizeMapping[i])
             return i+1;
@@ -597,6 +624,11 @@ long wxRichTextHTMLHandler::PtToSize(long size)
 wxString wxRichTextHTMLHandler::SymbolicIndent(long indent)
 {
     wxString in;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for(;indent > 0; indent -= 20)
         in.Append( wxT("&nbsp;") );
     return in;
@@ -632,6 +664,11 @@ wxChar* wxRichTextHTMLHandler::b64enc( unsigned char* input, size_t in_len )
     wxChar* output = new wxChar[4*((in_len+2)/3)+1];
     wxChar* p = output;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while( in_len-- > 0 )
     {
         wxChar a, b;
@@ -682,6 +719,11 @@ bool wxRichTextHTMLHandler::DeleteTemporaryImages()
 bool wxRichTextHTMLHandler::DeleteTemporaryImages(int flags, const wxArrayString& imageLocations)
 {
     size_t i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0; i < imageLocations.GetCount(); i++)
     {
         wxString location = imageLocations[i];

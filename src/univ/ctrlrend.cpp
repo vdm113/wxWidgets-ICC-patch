@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/univ/ctrlrend.cpp
 // Purpose:     wxControlRenderer implementation
@@ -168,8 +175,18 @@ void wxControlRenderer::DrawBitmap(wxDC &dc,
     if ( stretch & wxTILE )
     {
         // tile the bitmap
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( ; x < rect.width; x += width )
         {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for ( y = 0; y < rect.height; y += height )
             {
                 // no need to use mask here as we cover the entire window area
@@ -257,6 +274,11 @@ void wxControlRenderer::DrawScrollbar(const wxScrollBar *scrollbar,
                                                    : wxHORIZONTAL;
 
     // the shaft
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( int nBar = 0; nBar < 2; nBar++ )
     {
         wxScrollBar::Element elem =
@@ -282,6 +304,11 @@ void wxControlRenderer::DrawScrollbar(const wxScrollBar *scrollbar,
     }
 
     // arrows
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( int nArrow = 0; nArrow < 2; nArrow++ )
     {
         wxScrollBar::Element elem =
@@ -391,6 +418,11 @@ void wxControlRenderer::DoDrawItems(const wxListBox *lbox,
     int itemCurrent = wxWindow::FindFocus() == (wxWindow *)lbox // cast needed
                         ? lbox->GetCurrentItem()
                         : -1;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t n = itemFirst; n < itemLast; n++ )
     {
         int flags = 0;
@@ -525,6 +557,11 @@ void wxControlRenderer::DrawProgressBar(const wxGauge *gauge)
             dx = 1;
         }
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( int n = 0; n < steps; n++ )
         {
             wxRect rectSegment = rect;

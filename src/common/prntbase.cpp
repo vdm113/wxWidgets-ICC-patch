@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/prntbase.cpp
 // Purpose:     Printing framework base class implementation
@@ -1600,6 +1607,11 @@ void wxPreviewControlBar::SetZoomControl(int zoom)
     {
         int n, count = m_zoomControl->GetCount();
         long val;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (n=0; n<count; n++)
         {
             if (m_zoomControl->GetString(n).BeforeFirst(wxT('%')).ToLong(&val) &&

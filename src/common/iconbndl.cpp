@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/iconbndl.cpp
 // Purpose:     wxIconBundle
@@ -122,6 +129,11 @@ void DoAddIcon(wxIconBundle& bundle,
     const wxFileOffset posOrig = input.TellI();
 
     const size_t count = wxImage::GetImageCount(input, type);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t i = 0; i < count; ++i )
     {
         if ( i )
@@ -227,6 +239,11 @@ wxIcon wxIconBundle::GetIcon(const wxSize& size, int flags) const
     const size_t count = GetIconCount();
 
     const wxIconArray& iconArray = M_ICONBUNDLEDATA->m_icons;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )
     {
         const wxIcon& icon = iconArray[i];
@@ -298,6 +315,11 @@ void wxIconBundle::AddIcon(const wxIcon& icon)
 
     // replace existing icon with the same size if we already have it
     const size_t count = iconArray.size();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t i = 0; i < count; ++i )
     {
         wxIcon& tmp = iconArray[i];

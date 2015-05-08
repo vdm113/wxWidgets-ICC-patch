@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/cmdline.cpp
 // Purpose:     wxCmdLineParser implementation
@@ -433,6 +440,11 @@ void wxCmdLineParserData::SetArguments(int argc, char **argv)
     SetAllLocaleFacets("");
     wxON_BLOCK_EXIT1( SetAllLocaleFacets, locOld );
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( int n = 0; n < argc; n++ )
     {
         // try to interpret the string as being in the current locale
@@ -453,6 +465,11 @@ void wxCmdLineParserData::SetArguments(int argc, wxChar **argv)
 {
     m_arguments.clear();
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( int n = 0; n < argc; n++ )
     {
         m_arguments.push_back(argv[n]);
@@ -486,6 +503,11 @@ int wxCmdLineParserData::FindOption(const wxString& name)
     if ( !name.empty() )
     {
         size_t count = m_options.GetCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )
         {
             if ( m_options[n].shortName == name )
@@ -502,6 +524,11 @@ int wxCmdLineParserData::FindOption(const wxString& name)
 int wxCmdLineParserData::FindOptionByLongName(const wxString& name)
 {
     size_t count = m_options.GetCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
         if ( m_options[n].longName == name )
@@ -600,6 +627,11 @@ void wxCmdLineParser::SetLogo(const wxString& logo)
 
 void wxCmdLineParser::SetDesc(const wxCmdLineEntryDesc *desc)
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( ;; desc++ )
     {
         switch ( desc->kind )
@@ -798,6 +830,11 @@ wxString wxCmdLineParser::GetParam(size_t n) const
 // Resets switches and options
 void wxCmdLineParser::Reset()
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t i = 0; i < m_data->m_options.GetCount(); i++ )
     {
         m_data->m_options[i].Reset();
@@ -829,6 +866,11 @@ int wxCmdLineParser::Parse(bool showUsage)
     m_data->m_parameters.clear();
     wxString arg;
     size_t count = m_data->m_arguments.size();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t n = 1; ok && (n < count); n++ )    // 0 is program name
     {
         arg = m_data->m_arguments[n];
@@ -942,6 +984,11 @@ int wxCmdLineParser::Parse(bool showUsage)
                 name = GetShortOptionName(p, arg.end());
 
                 size_t len = name.length();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                 do
                 {
                     if ( len == 0 )
@@ -1204,6 +1251,11 @@ int wxCmdLineParser::Parse(bool showUsage)
     if ( ok )
     {
         size_t countOpt = m_data->m_options.GetCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( size_t n = 0; ok && (n < countOpt); n++ )
         {
             wxCmdLineOption& opt = m_data->m_options[n];
@@ -1237,6 +1289,11 @@ int wxCmdLineParser::Parse(bool showUsage)
             }
         }
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( ; ok && (currentParam < countParam); currentParam++ )
         {
             wxCmdLineParam& param = m_data->m_paramDesc[currentParam];
@@ -1332,6 +1389,11 @@ wxString wxCmdLineParser::GetUsageString() const
 
     bool areLongOptionsEnabled = AreLongOptionsEnabled();
     size_t n, count = m_data->m_options.GetCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
     {
         wxCmdLineOption& opt = m_data->m_options[n];
@@ -1399,6 +1461,11 @@ wxString wxCmdLineParser::GetUsageString() const
     }
 
     count = m_data->m_paramDesc.GetCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
     {
         wxCmdLineParam& param = m_data->m_paramDesc[n];
@@ -1435,6 +1502,11 @@ wxString wxCmdLineParser::GetUsageString() const
 
     // now construct the detailed help message
     size_t len, lenMax = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( n = 0; n < namesOptions.size(); n++ )
     {
         len = namesOptions[n].length();
@@ -1442,6 +1514,11 @@ wxString wxCmdLineParser::GetUsageString() const
             lenMax = len;
     }
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( n = 0; n < namesOptions.size(); n++ )
     {
         if ( n == count )
@@ -1513,6 +1590,11 @@ static wxString GetOptionName(wxString::const_iterator p,
 {
     wxString argName;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( p != end && (wxIsalnum(*p) || wxStrchr(allowedChars, *p)) )
     {
         argName += *p++;
@@ -1587,9 +1669,19 @@ wxCmdLineParser::ConvertStringToArgs(const wxString& cmdline,
     const wxString::const_iterator end = cmdline.end();
     wxString::const_iterator p = cmdline.begin();
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( ;; )
     {
         // skip white space
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while ( p != end && (*p == ' ' || *p == '\t') )
             ++p;
 
@@ -1601,6 +1693,11 @@ wxCmdLineParser::ConvertStringToArgs(const wxString& cmdline,
         bool lastBS = false,
              isInsideQuotes = false;
         wxChar chDelim = '\0';
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( arg.clear(); p != end; ++p )
         {
             const wxChar ch = *p;

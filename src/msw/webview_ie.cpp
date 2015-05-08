@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/webview_ie.cpp
 // Purpose:     wxMSW wxWebViewIE class implementation for web view component
@@ -126,6 +133,11 @@ wxWebViewIE::~wxWebViewIE()
             wxFAIL_MSG("Could not retrive internet session");
         }
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for(unsigned int i = 0; i < m_factories.size(); i++)
         {
             session->UnregisterNameSpace(m_factories[i], 
@@ -434,6 +446,11 @@ bool wxWebViewIE::CanGoForward() const
 void wxWebViewIE::LoadHistoryItem(wxSharedPtr<wxWebViewHistoryItem> item)
 {
     int pos = -1;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for(unsigned int i = 0; i < m_historyList.size(); i++)
     {
         //We compare the actual pointers to find the correct item
@@ -452,6 +469,11 @@ wxVector<wxSharedPtr<wxWebViewHistoryItem> > wxWebViewIE::GetBackwardHistory()
     wxVector<wxSharedPtr<wxWebViewHistoryItem> > backhist;
     //As we don't have std::copy or an iterator constructor in the wxwidgets
     //native vector we construct it by hand
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for(int i = 0; i < m_historyPosition; i++)
     {
         backhist.push_back(m_historyList[i]);
@@ -464,6 +486,11 @@ wxVector<wxSharedPtr<wxWebViewHistoryItem> > wxWebViewIE::GetForwardHistory()
     wxVector<wxSharedPtr<wxWebViewHistoryItem> > forwardhist;
     //As we don't have std::copy or an iterator constructor in the wxwidgets
     //native vector we construct it by hand
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for(int i = m_historyPosition + 1; i < static_cast<int>(m_historyList.size()); i++)
     {
         forwardhist.push_back(m_historyList[i]);
@@ -950,6 +977,11 @@ bool wxWebViewIE::IsElementVisible(wxCOMPtr<IHTMLElement> elm)
     bool is_visible = true;
     //This method is not perfect but it does discover most of the hidden elements.
     //so if a better solution is found, then please do improve.
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while(elm1)
     {
         wxCOMPtr<wxIHTMLElement2> elm2;
@@ -1026,6 +1058,11 @@ void wxWebViewIE::FindInternal(const wxString& text, int flags, int internal_fla
                m_findPointers.reserve(text.Len() == 1 ? 1000 : 500);
             }
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             while(ptrBegin->FindText(text_bstr, find_flag, ptrEnd, NULL) == S_OK)
             {
                 wxCOMPtr<IHTMLElement> elm;
@@ -1151,6 +1188,11 @@ void wxWebViewIE::FindClear()
     //remove elements from m_findPointers without calling release first
     //or you will get a memory leak.
     size_t count = m_findPointers.size();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for(size_t i = 0; i < count; i++)
     {
         m_findPointers[i].begin->Release();

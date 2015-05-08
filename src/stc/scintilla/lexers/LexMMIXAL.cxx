@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexMMIXAL.cxx
  ** Lexer for MMIX Assembler Language.
@@ -56,6 +63,11 @@ static void ColouriseMMIXALDoc(unsigned int startPos, int length, int initStyle,
 
 	StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward())
 	{
 		// No EOL continuation
@@ -103,6 +115,11 @@ static void ColouriseMMIXALDoc(unsigned int startPos, int length, int initStyle,
 				char s[100];
 				sc.GetCurrent(s, sizeof(s));
 				if (*s == ':') {	// ignore base prefix for match
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 					for (size_t i = 0; i != sizeof(s); ++i) {
 						*(s+i) = *(s+i+1);
 					}
