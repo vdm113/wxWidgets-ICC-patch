@@ -546,6 +546,7 @@
     <ClCompile Include="..\..\src\common\odcombocmn.cpp" />
     <ClCompile Include="..\..\src\common\richtooltipcmn.cpp" />
     <ClCompile Include="..\..\src\common\taskbarcmn.cpp" />
+    <ClCompile Include="..\..\src\generic\activityindicator.cpp" />
     <ClCompile Include="..\..\src\msw\aboutdlg.cpp" />
     <ClCompile Include="..\..\src\msw\bmpcbox.cpp" />
     <ClCompile Include="..\..\src\msw\calctrl.cpp" />
@@ -607,6 +608,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </CustomBuild>
+    <ClInclude Include="..\..\include\wx\generic\activityindicator.h" />
     <ClInclude Include="..\..\include\wx\msw\bmpcbox.h" />
     <ClInclude Include="..\..\include\wx\msw\calctrl.h" />
     <ClInclude Include="..\..\include\wx\msw\commandlinkbutton.h" />

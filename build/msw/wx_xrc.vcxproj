@@ -537,6 +537,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\xrc\xh_activityindicator.cpp" />
     <ClCompile Include="..\..\src\xrc\xh_animatctrl.cpp" />
     <ClCompile Include="..\..\src\xrc\xh_bannerwindow.cpp" />
     <ClCompile Include="..\..\src\xrc\xh_bmp.cpp" />
