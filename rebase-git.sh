@@ -24,6 +24,7 @@ mkdir build/msw/
 git commit -a --signoff -m 'sync with upstream (GIT); patched for ICC'
 git clean -f -d
 mkdir build/msw/
+cp -a vdm/build/msw/* build/msw/
 git commit -a --signoff -m 'restore our project files and remove unsupported files'
 git reset --hard
 git clean -f -d
