@@ -25,15 +25,9 @@ git commit -a --signoff -m 'sync with upstream (GIT); patched for ICC'
 git clean -f -d
 mkdir build/msw/
 cp -a vdm/build/msw/* build/msw/
-git commit -a --signoff -m 'restore our project files and remove unsupported files'
-git reset --hard
-git clean -f -d
-mkdir build/msw/
-
-git commit -a --signoff -m 'remove obsolete project files we do not support'
 mv -f README.md README_orig_wx.md
-
-git add --all README.md
+git add --all
+git commit -a --signoff -m 'restore our project files and remove unsupported files'
 
 git branch -d WX_3_0_0
 git branch -d origin/wx_git
