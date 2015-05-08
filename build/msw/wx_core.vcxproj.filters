@@ -1906,7 +1906,8 @@
     <ClInclude Include="..\..\include\wx\msw\taskbarbutton.h">
       <Filter>Generic Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\addremovectrl.h" />
+    <ClInclude Include="..\..\include\wx\msw\appprogress.h" />
+    <ClInclude Include="..\..\include\wx\appprogress.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\include\wx\msw\setup.h">
