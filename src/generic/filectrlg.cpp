@@ -1221,7 +1221,7 @@ bool wxGenericFileCtrl::SetFilename( const wxString& name )
             for ( ;; )
             {
                 itemIndex = m_list->GetNextItem( itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED );
-                if ( itemIndex == -1 )
+                if ( itemIndex == wxNOT_FOUND )
                     break;
 
                 m_list->SetItemState( itemIndex, 0, wxLIST_STATE_SELECTED );
