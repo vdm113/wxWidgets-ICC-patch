@@ -197,12 +197,4 @@ bool wxToggleButton::MSWCommand(WXUINT param, WXWORD WXUNUSED(id))
     return true;
 }
 
-wxAnyButton::State wxToggleButton::GetNormalState() const
-{
-    if ( GetValue() )
-        return State_Pressed;
-    else
-        return State_Normal;
-}
-
 #endif // wxUSE_TOGGLEBTN
