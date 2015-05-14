@@ -1996,6 +1996,11 @@ wxPGProperty* wxPropertyGridPageState::DoInsert( wxPGProperty* parent, int index
     property->UpdateParentValues();
 
     // Update editor controls of all parents if they are containers of composed values.
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for( wxPGProperty *p = property->GetParent();
          p && !p->IsRoot() && !p->IsCategory() && p->HasFlag(wxPG_PROP_COMPOSED_VALUE);
          p = p->GetParent() )
