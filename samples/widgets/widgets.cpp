@@ -943,6 +943,28 @@ void WidgetsFrame::OnSetBorder(wxCommandEvent& event)
 
 void WidgetsFrame::OnSetVariant(wxCommandEvent& event)
 {
+    wxWindowVariant v;
+    switch ( event.GetId() )
+    {
+        case Widgets_VariantSmall:  v = wxWINDOW_VARIANT_SMALL; break;
+        case Widgets_VariantMini:   v = wxWINDOW_VARIANT_MINI; break;
+        case Widgets_VariantLarge:  v = wxWINDOW_VARIANT_LARGE; break;
+
+        default:
+            wxFAIL_MSG( "unknown window variant" );
+            wxFALLTHROUGH;
+
+        case Widgets_VariantNormal: v = wxWINDOW_VARIANT_NORMAL; break;
+    }
+
+    WidgetsPage::GetAttrs().m_variant = v;
+
+    CurrentPage()->SetUpWidget();
+    CurrentPage()->Layout();
+}
+
+void WidgetsFrame::OnToggleLayoutDirection(wxCommandEvent& event)
+{
     WidgetsPage::GetAttrs().m_dir = event.IsChecked() ? wxLayout_RightToLeft
                                        : wxLayout_LeftToRight;
 
@@ -1299,10 +1321,17 @@ void WidgetsPage::SetUpWidget()
 {
     const Widgets widgets = GetWidgets();
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( Widgets::const_iterator it = widgets.begin();
             it != widgets.end();
             ++it )
     {
+        wxCHECK_RET(*it, "NULL widget");
+
 #if wxUSE_TOOLTIPS
         (*it)->SetToolTip(GetAttrs().m_tooltip);
 #endif // wxUSE_TOOLTIPS
@@ -1329,6 +1358,8 @@ void WidgetsPage::SetUpWidget()
         {
             (*it)->SetCursor(GetAttrs().m_cursor);
         }
+
+        (*it)->SetWindowVariant(GetAttrs().m_variant);
 
         (*it)->Refresh();
     }
