@@ -526,12 +526,12 @@ void wxPropertyGridInterface::GetPropertiesWithFlag( wxArrayPGProperty* targetAr
 
         if ( !inverse )
         {
-            if ( (property->GetFlags() & flags) == flags )
+            if ( property->HasFlagsExact(flags) )
                 targetArr->push_back((wxPGProperty*)property);
         }
         else
         {
-            if ( (property->GetFlags() & flags) != flags )
+            if ( !property->HasFlagsExact(flags) )
                 targetArr->push_back((wxPGProperty*)property);
         }
     }
