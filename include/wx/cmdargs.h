@@ -135,7 +135,7 @@ public:
 
 private:
     template <typename T>
-    void Free(T **args)
+    void Free(T**& args)
     {
         if ( !args )
             return;
@@ -150,6 +150,7 @@ private:
             free(args[n]);
 
         delete [] args;
+        args = NULL;
     }
 
     void FreeArgs()
