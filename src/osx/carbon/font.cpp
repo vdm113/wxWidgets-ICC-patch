@@ -416,6 +416,7 @@ void wxFontRefData::CreateATSUFont()
         kATSUQDUnderlineTag ,
         kATSUQDCondensedTag ,
         kATSUQDExtendedTag ,
+        kATSUStyleStrikeThroughTag
     };
     ByteCount atsuSizes[WXSIZEOF(atsuTags)] =
     {
@@ -427,6 +428,7 @@ void wxFontRefData::CreateATSUFont()
         sizeof( Boolean ) ,
         sizeof( Boolean ) ,
         sizeof( Boolean ) ,
+        sizeof( Boolean )
     };
 
     Boolean kTrue = true ;
@@ -445,6 +447,7 @@ void wxFontRefData::CreateATSUFont()
         (addQDStyle & underline) ? &kTrue : &kFalse ,
         (addQDStyle & condense) ? &kTrue : &kFalse ,
         (addQDStyle & extend) ? &kTrue : &kFalse ,
+        m_info.m_strikethrough ? & kTrue : &kFalse
     };
 
     status = ::ATSUSetAttributes(
