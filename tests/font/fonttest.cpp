@@ -234,12 +234,9 @@ void FontTestCase::GetSet()
 
         // test Get/SetStrikethrough()
 
-        // Strike through support not implemented in wxOSX currently.
-#ifndef __WXOSX__
         test.SetStrikethrough(true);
         CPPUNIT_ASSERT( test.IsOk() );
         CPPUNIT_ASSERT_EQUAL( true, test.GetStrikethrough() );
-#endif // !__WXOSX__
 
 
         // test Get/SetWeight()
