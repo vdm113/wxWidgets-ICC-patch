@@ -1058,12 +1058,12 @@ wxPropertyGridPage* wxPropertyGridManager::InsertPage( int index,
         if ( !m_pToolbar )
             RecreateControls();
 
-        if ( !(GetExtraStyle()&wxPG_EX_HIDE_PAGE_BUTTONS) )
+        if ( !HasExtraStyle(wxPG_EX_HIDE_PAGE_BUTTONS) )
         {
             wxASSERT( m_pToolbar );
 
             // Add separator before first page.
-            if ( GetPageCount() < 2 && (GetExtraStyle()&wxPG_EX_MODE_BUTTONS) &&
+            if ( GetPageCount() < 2 && HasExtraStyle(wxPG_EX_MODE_BUTTONS) &&
                  m_pToolbar->GetToolsCount() < 3 )
                 m_pToolbar->AddSeparator();
 
@@ -1234,11 +1234,11 @@ bool wxPropertyGridManager::RemovePage( int page )
     {
         wxASSERT( m_pToolbar );
 
-        int toolPos = GetExtraStyle() & wxPG_EX_MODE_BUTTONS ? 3 : 0;
+        int toolPos = HasExtraStyle(wxPG_EX_MODE_BUTTONS) ? 3 : 0;
         toolPos += page;
 
         // Delete separator as well, for consistency
-        if ( (GetExtraStyle() & wxPG_EX_MODE_BUTTONS) &&
+        if ( HasExtraStyle(wxPG_EX_MODE_BUTTONS) &&
              GetPageCount() == 1 )
             m_pToolbar->DeleteToolByPos(2);
 
@@ -1380,7 +1380,7 @@ void wxPropertyGridManager::RecalculatePositions( int width, int height )
         m_pToolbar->SetSize(0, 0, width, -1);
         propgridY += m_pToolbar->GetSize().y;
 
-        if (GetExtraStyle() & wxPG_EX_TOOLBAR_SEPARATOR)
+        if ( HasExtraStyle(wxPG_EX_TOOLBAR_SEPARATOR) )
             propgridY += 1;
     }
 #endif
@@ -1471,7 +1471,7 @@ void wxPropertyGridManager::OnPaint( wxPaintEvent& WXUNUSED(event) )
     // Update everything inside the box
     wxRect r = GetUpdateRegion().GetBox();
 
-    if (GetExtraStyle() & wxPG_EX_TOOLBAR_SEPARATOR)
+    if ( HasExtraStyle(wxPG_EX_TOOLBAR_SEPARATOR) )
     {
         if (m_pToolbar && m_pPropGrid)
         {
@@ -1526,8 +1526,8 @@ void wxPropertyGridManager::RecreateControls()
         // Has toolbar.
         if ( !m_pToolbar )
         {
-            long toolBarFlags = ((GetExtraStyle()&wxPG_EX_NO_FLAT_TOOLBAR)?0:wxTB_FLAT);
-            if (GetExtraStyle() & wxPG_EX_NO_TOOLBAR_DIVIDER)
+            long toolBarFlags = HasExtraStyle(wxPG_EX_NO_FLAT_TOOLBAR)? 0: wxTB_FLAT;
+            if ( HasExtraStyle(wxPG_EX_NO_TOOLBAR_DIVIDER) )
                 toolBarFlags |= wxTB_NODIVIDER;
 
             m_pToolbar = new wxToolBar(this, wxID_ANY,
@@ -1559,7 +1559,7 @@ void wxPropertyGridManager::RecreateControls()
             m_alphabeticModeToolId = -1;
         }
 
-        if ( (GetExtraStyle()&wxPG_EX_MODE_BUTTONS) )
+        if ( HasExtraStyle(wxPG_EX_MODE_BUTTONS) )
         {
             // Add buttons if they don't already exist.
             if (m_categorizedModeToolId == -1)
@@ -1640,7 +1640,7 @@ void wxPropertyGridManager::RecreateControls()
             m_pToolbar->Realize();
         }
 
-        if ( (GetExtraStyle() & wxPG_EX_MODE_BUTTONS) )
+        if ( HasExtraStyle(wxPG_EX_MODE_BUTTONS) )
         {
             // Toggle correct mode button.
             // TODO: This doesn't work in wxMSW (when changing,

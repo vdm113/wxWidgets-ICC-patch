@@ -569,7 +569,7 @@ wxPropertyGrid::~wxPropertyGrid()
         ReleaseMouse();
 
     // Call with NULL to disconnect event handling
-    if ( GetExtraStyle() & wxPG_EX_ENABLE_TLP_TRACKING )
+    if ( HasExtraStyle(wxPG_EX_ENABLE_TLP_TRACKING) )
     {
         OnTLPChanging(NULL);
 
@@ -747,7 +747,7 @@ bool wxPropertyGrid::DoAddToSelection( wxPGProperty* prop, int selFlags )
 {
     wxCHECK( prop, false );
 
-    if ( !(GetExtraStyle() & wxPG_EX_MULTIPLE_SELECTION) )
+    if ( !HasExtraStyle(wxPG_EX_MULTIPLE_SELECTION) )
         return DoSelectProperty(prop, selFlags);
 
     wxArrayPGProperty& selection = m_pState->m_selection;
@@ -856,7 +856,7 @@ bool wxPropertyGrid::AddToSelectionFromInputEvent( wxPGProperty* prop,
     // Set to 2 if also add all items in between
     int addToExistingSelection = 0;
 
-    if ( GetExtraStyle() & wxPG_EX_MULTIPLE_SELECTION )
+    if ( HasExtraStyle(wxPG_EX_MULTIPLE_SELECTION) )
     {
         if ( mouseEvent )
         {
@@ -1925,7 +1925,7 @@ wxPGProperty* wxPropertyGrid::DoGetItemAtY( int y ) const
 void wxPropertyGrid::OnPaint( wxPaintEvent& WXUNUSED(event) )
 {
     wxDC* dcPtr = NULL;
-    if ( !(GetExtraStyle() & wxPG_EX_NATIVE_DOUBLE_BUFFERING) )
+    if ( !HasExtraStyle(wxPG_EX_NATIVE_DOUBLE_BUFFERING) )
     {
         if ( m_doubleBuffer )
         {
@@ -4478,7 +4478,7 @@ bool wxPropertyGrid::DoSelectProperty( wxPGProperty* p, unsigned int flags )
     if ( p )
         pHelpString = &p->GetHelpString();
 
-    if ( !(GetExtraStyle() & wxPG_EX_HELP_AS_TOOLTIPS) )
+    if ( !HasExtraStyle(wxPG_EX_HELP_AS_TOOLTIPS) )
     {
 #if wxUSE_STATUSBAR
 
@@ -4787,7 +4787,7 @@ void wxPropertyGrid::OnResize( wxSizeEvent& event )
     m_width = width;
     m_height = height;
 
-    if ( !(GetExtraStyle() & wxPG_EX_NATIVE_DOUBLE_BUFFERING) )
+    if ( !HasExtraStyle(wxPG_EX_NATIVE_DOUBLE_BUFFERING) )
     {
         int dblh = (m_lineHeight*2);
         if ( !m_doubleBuffer )
@@ -5244,7 +5244,7 @@ bool wxPropertyGrid::HandleMouseMove( int x, unsigned int y,
                 if ( m_propHover && !m_propHover->IsCategory() )
                 {
 
-                    if ( GetExtraStyle() & wxPG_EX_HELP_AS_TOOLTIPS )
+                    if ( HasExtraStyle(wxPG_EX_HELP_AS_TOOLTIPS) )
                     {
                         // Show help string as a tooltip
                         wxString tipString = m_propHover->GetHelpString();
@@ -5333,7 +5333,7 @@ bool wxPropertyGrid::HandleMouseMove( int x, unsigned int y,
         //
         // Multi select by dragging
         //
-        if ( (GetExtraStyle() & wxPG_EX_MULTIPLE_SELECTION) &&
+        if ( HasExtraStyle(wxPG_EX_MULTIPLE_SELECTION) &&
              event.LeftIsDown() &&
              m_propHover &&
              GetSelection() &&
@@ -6043,7 +6043,7 @@ void wxPropertyGrid::OnIdle( wxIdleEvent& WXUNUSED(event) )
 
     //
     // Check if top-level parent has changed
-    if ( GetExtraStyle() & wxPG_EX_ENABLE_TLP_TRACKING )
+    if ( HasExtraStyle(wxPG_EX_ENABLE_TLP_TRACKING) )
     {
         wxWindow* tlp = ::wxGetTopLevelParent(this);
         if ( tlp != m_tlp )
