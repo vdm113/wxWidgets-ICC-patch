@@ -495,7 +495,7 @@ void AppFrame::CreateMenu ()
     menuEdit->Append (myID_SELECTLINE, _("Select &line\tCtrl+L"));
 
     // highlight submenu
-    wxMenu *menuHighlight = new wxMenu;
+    wxMenu *menuHilight = new wxMenu;
     int Nr;
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
@@ -518,7 +518,7 @@ void AppFrame::CreateMenu ()
 
     // View menu
     wxMenu *menuView = new wxMenu;
-    menuView->Append (myID_HIGHLIGHTLANG, _("&Highlight language .."), menuHighlight);
+    menuView->Append (myID_HILIGHTLANG, _("&Highlight language .."), menuHilight);
     menuView->AppendSeparator();
     menuView->AppendCheckItem (myID_FOLDTOGGLE, _("&Toggle current fold\tCtrl+T"));
     menuView->AppendCheckItem (myID_OVERTYPE, _("&Overwrite mode\tIns"));
