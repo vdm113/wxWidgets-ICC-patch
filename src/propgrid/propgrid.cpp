@@ -4960,14 +4960,6 @@ void wxPropertyGrid::SetFocusOnCanvas()
         if ( focus )
         {
             wxWindow* parent = focus->GetParent();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd
-#   endif
-#endif /* VDM auto patch */
             while ( parent )
             {
                 if ( parent == this )
