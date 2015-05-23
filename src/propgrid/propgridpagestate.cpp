@@ -906,12 +906,8 @@ int wxPropertyGridPageState::GetColumnFullWidth( wxClientDC &dc, wxPGProperty *p
 int wxPropertyGridPageState::DoGetSplitterPosition( int splitterColumn ) const
 {
     int n = GetGrid()->GetMarginWidth();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
-    for ( int i = 0; i <= splitterColumn; i++ )
+    int i;
+    for ( i=0; i<=splitterColumn; i++ )
         n += m_colWidths[i];
     return n;
 }
@@ -1132,11 +1128,6 @@ void wxPropertyGridPageState::CheckColumnWidths( int widthChange )
     }
 
     int colsWidth = pg->GetMarginWidth();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( i=0; i<m_colWidths.size(); i++ )
         colsWidth += m_colWidths[i];
 
