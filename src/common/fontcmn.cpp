@@ -819,7 +819,7 @@ wxString wxNativeFontInfo::ToUserString() const
 
     if ( GetStrikethrough() )
     {
-        desc << _("strikethrough");
+        desc << _(" strikethrough");
     }
 
     switch ( GetWeight() )
