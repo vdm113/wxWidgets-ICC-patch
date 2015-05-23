@@ -607,7 +607,7 @@ void wxPropertyGridManager::Init2( int style )
 
     m_pPropGrid->SetId(useId);
 
-    m_pPropGrid->m_iFlags |= wxPG_FL_IN_MANAGER;
+    m_pPropGrid->SetInternalFlag(wxPG_FL_IN_MANAGER);
 
     m_pState = m_pPropGrid->m_pState;
 
@@ -1699,7 +1699,7 @@ void wxPropertyGridManager::RecreateControls()
     if ( m_windowStyle & wxPG_DESCRIPTION )
     {
         // Has help box.
-        m_pPropGrid->m_iFlags |= (wxPG_FL_NOSTATUSBARHELP);
+        m_pPropGrid->SetInternalFlag(wxPG_FL_NOSTATUSBARHELP);
 
         if ( !m_pTxtHelpCaption )
         {
@@ -1728,7 +1728,7 @@ void wxPropertyGridManager::RecreateControls()
     else
     {
         // No help box.
-        m_pPropGrid->m_iFlags &= ~(wxPG_FL_NOSTATUSBARHELP);
+        m_pPropGrid->ClearInternalFlag(wxPG_FL_NOSTATUSBARHELP);
 
         if ( m_pTxtHelpCaption )
             m_pTxtHelpCaption->Destroy();
