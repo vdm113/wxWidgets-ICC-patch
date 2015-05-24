@@ -1234,7 +1234,7 @@ wxEnumProperty::wxEnumProperty( const wxString& label, const wxString& name,
 {
     SetIndex(0);
 
-    if ( &labels && labels.size() )
+    if ( &labels && !labels.empty() )
     {
         m_choices.Set(labels, values);
 
@@ -1637,7 +1637,7 @@ wxFlagsProperty::wxFlagsProperty( const wxString& label, const wxString& name,
 {
     m_oldChoicesData = NULL;
 
-    if ( &labels && labels.size() )
+    if ( &labels && !labels.empty() )
     {
         m_choices.Set(labels,values);
 

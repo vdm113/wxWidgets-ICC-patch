@@ -754,7 +754,7 @@ bool wxPropertyGrid::DoAddToSelection( wxPGProperty* prop, int selFlags )
 
     wxArrayPGProperty& selection = m_pState->m_selection;
 
-    if ( !selection.size() )
+    if ( selection.empty() )
     {
         return DoSelectProperty(prop, selFlags);
     }
@@ -977,7 +977,7 @@ bool wxPropertyGrid::AddToSelectionFromInputEvent( wxPGProperty* prop,
 void wxPropertyGrid::DoSetSelection( const wxArrayPGProperty& newSelection,
                                      int selFlags )
 {
-    if ( newSelection.size() > 0 )
+    if ( !newSelection.empty() )
     {
         if ( !DoSelectProperty(newSelection[0], selFlags) )
             return;
@@ -4192,10 +4192,7 @@ bool wxPropertyGrid::DoSelectProperty( wxPGProperty* p, unsigned int flags )
     wxArrayPGProperty prevSelection = m_pState->m_selection;
     wxPGProperty* prevFirstSel;
 
-    if ( prevSelection.size() > 0 )
-        prevFirstSel = prevSelection[0];
-    else
-        prevFirstSel = NULL;
+    prevFirstSel = prevSelection.empty()? NULL: prevSelection[0];
 
     if ( prevFirstSel && prevFirstSel->HasFlag(wxPG_PROP_BEING_DELETED) )
         prevFirstSel = NULL;
@@ -6423,7 +6420,7 @@ void wxPGChoicesData::Clear()
 
 void wxPGChoicesData::CopyDataFrom( wxPGChoicesData* data )
 {
-    wxASSERT( m_items.size() == 0 );
+    wxASSERT( m_items.empty() );
 
     m_items = data->m_items;
 }
