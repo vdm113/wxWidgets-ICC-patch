@@ -1260,11 +1260,6 @@ wxSize wxPropertyGrid::DoGetBestSize() const
 
     wxClientDC dc(const_cast<wxPropertyGrid *>(this));
     int width = m_marginWidth;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < m_pState->GetColumnCount(); i++ )
     {
         width += m_pState->GetColumnFitWidth(dc, m_pState->DoGetRoot(), i, true);
@@ -2347,11 +2342,6 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
         unsigned int si;
         int sx = x;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( si = 0; si < colCount; si++ )
         {
             sx += colWidths[si];
@@ -2490,11 +2480,6 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
         // Calculate cellRect.x for the last cell
         unsigned int ci = 0;
         int cellX = x + 1;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( ci = 0; ci < colCount; ci++ )
             cellX += colWidths[ci];
         cellRect.x = cellX;
@@ -2503,11 +2488,6 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
         // cell on the right was empty from text
         bool prevFilled = true;
         ci = colCount;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         do
         {
             ci--;
