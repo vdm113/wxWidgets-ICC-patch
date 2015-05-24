@@ -818,7 +818,7 @@ wxPGProperty* wxPropertyGridPageState::DoGetItemAtY( int y ) const
         return NULL;
 
     unsigned int a = 0;
-    return m_properties->GetItemAtY(y, GetGrid()->m_lineHeight, &a);
+    return m_properties->GetItemAtY(y, GetGrid()->GetRowHeight(), &a);
 }
 
 // -----------------------------------------------------------------------
@@ -908,7 +908,7 @@ int wxPropertyGridPageState::GetColumnFullWidth( wxClientDC &dc, wxPGProperty *p
 
 int wxPropertyGridPageState::DoGetSplitterPosition( int splitterColumn ) const
 {
-    int n = GetGrid()->m_marginWidth;
+    int n = GetGrid()->GetMarginWidth();
     int i;
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
@@ -1035,7 +1035,7 @@ void wxPropertyGridPageState::SetSplitterLeft( bool subProps )
 
     if ( maxW > 0 )
     {
-        maxW += pg->m_marginWidth;
+        maxW += pg->GetMarginWidth();
         DoSetSplitterPosition( maxW );
     }
 
@@ -1048,7 +1048,7 @@ wxSize wxPropertyGridPageState::DoFitColumns( bool WXUNUSED(allowGridResize) )
     wxClientDC dc(pg);
     dc.SetFont(pg->GetFont());
 
-    int marginWidth = pg->m_marginWidth;
+    int marginWidth = pg->GetMarginWidth();
     int accWid = marginWidth;
     int maxColWidth = 500;
 
@@ -1135,7 +1135,7 @@ void wxPropertyGridPageState::CheckColumnWidths( int widthChange )
         }
     }
 
-    int colsWidth = pg->m_marginWidth;
+    int colsWidth = pg->GetMarginWidth();
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
@@ -1333,7 +1333,7 @@ void wxPropertyGridPageState::DoSetColumnProportion( unsigned int column,
 // Returns column index, -1 for margin
 int wxPropertyGridPageState::HitTestH( int x, int* pSplitterHit, int* pSplitterHitOffset ) const
 {
-    int cx = GetGrid()->m_marginWidth;
+    int cx = GetGrid()->GetMarginWidth();
     int col = -1;
     int prevSplitter = -1;
 
