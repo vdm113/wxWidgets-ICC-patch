@@ -2151,7 +2151,7 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
         return itemsRect->y;
 
     wxCHECK_MSG( !m_pState->m_itemsAdded, itemsRect->y,
-                 wxS("no items added") );
+                 "no items added" );
     wxASSERT( m_pState->DoGetRoot()->GetChildCount() );
 
     int lh = m_lineHeight;
