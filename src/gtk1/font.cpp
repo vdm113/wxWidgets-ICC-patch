@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk1/font.cpp
 // Purpose:
@@ -306,11 +299,6 @@ wxFontRefData::wxFontRefData(const wxString& fontname)
 
 void wxFontRefData::ClearGdkFonts()
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( wxScaledFontList::iterator i = m_scaled_xfonts.begin();
           i != m_scaled_xfonts.end();
           ++i )

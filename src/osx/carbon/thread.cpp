@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/thread.cpp
 // Purpose:     wxThread Implementation
@@ -450,11 +443,6 @@ wxCondError wxConditionInternal::Broadcast()
 {
     wxCriticalSectionLocker lock(m_csWaiters);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( m_numWaiters > 0 )
     {
         if ( m_semaphore.Post() != wxSEMA_NO_ERROR )

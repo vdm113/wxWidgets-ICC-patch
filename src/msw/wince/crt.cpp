@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/wince/crt.cpp
 // Purpose:     Implementation of CRT functions missing under Windows CE
@@ -36,11 +29,6 @@ bsearch(const void *key, const void *base, size_t num, size_t size,
 
     char *lo = (char *)base;
     char *hi = lo + num*size;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( lo < hi )
     {
         mid = lo + (hi - lo)/2;

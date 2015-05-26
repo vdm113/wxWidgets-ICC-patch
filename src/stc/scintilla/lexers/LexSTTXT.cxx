@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file LexSTTXT.cxx
  ** Lexer for Structured Text language.
@@ -79,11 +72,6 @@ static void ColouriseSTTXTDoc (unsigned int startPos, int length, int initStyle,
 	CharacterSet setOperator(CharacterSet::setNone,",.+-*/:;<=>[]()%&");
 	CharacterSet setDataTime(CharacterSet::setDigits,"_.-:dmshDMSH");
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for ( ; sc.More() ; sc.Forward())
 	{
 		if(sc.atLineStart && sc.state != SCE_STTXT_COMMENT)
@@ -216,11 +204,6 @@ static bool IsCommentLine(int line, Accessor &styler, bool type)
 	int pos = styler.LineStart(line);
 	int eolPos = styler.LineStart(line + 1) - 1;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (int i = pos; i < eolPos; i++)
 	{
 		char ch = styler[i];
@@ -238,11 +221,6 @@ static bool IsCommentLine(int line, Accessor &styler, bool type)
 			return false;
 	}
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (int i = eolPos-2; i>pos; i--)
 	{
 		char ch = styler[i];
@@ -263,11 +241,6 @@ static bool IsPragmaLine(int line, Accessor &styler)
 	int pos = styler.LineStart(line);
 	int eolPos = styler.LineStart(line+1) - 1;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (int i = pos ; i < eolPos ; i++)
 	{
 		char ch = styler[i];
@@ -284,11 +257,6 @@ static bool IsPragmaLine(int line, Accessor &styler)
 static void GetRangeUpper(unsigned int start,unsigned int end,Accessor &styler,char *s,unsigned int len)
 {
 	unsigned int i = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while ((i < end - start + 1) && (i < len-1)) {
 		s[i] = static_cast<char>(toupper(styler[start + i]));
 		i++;
@@ -370,11 +338,6 @@ static void FoldSTTXTDoc(unsigned int startPos, int length, int initStyle, WordL
 
 	CharacterSet setWord(CharacterSet::setAlphaNum, "_", 0x80, true);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++)
 	{
 		char ch = chNext;

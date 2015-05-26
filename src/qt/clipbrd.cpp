@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/qt/toolbar.h
 // Author:      Sean D'Epagnier
@@ -99,11 +92,6 @@ bool wxClipboard::AddData( wxDataObject *data )
     // Unfortunately I cannot find a way to use the qt clipboard with 
     // a callback to select the data type, so I must copy it all here
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )
     {
         const wxDataFormat format(formats[i]);
@@ -144,11 +132,6 @@ bool wxClipboard::GetData( wxDataObject& data )
     wxDataFormatArray formats(count);
     data.GetAllFormats(formats.get(), wxDataObject::Set);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )
     {
         const wxDataFormat format(formats[i]);

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/taskbar.cpp
 // Purpose:     wxTaskBarIcon
@@ -277,11 +270,6 @@ wxMenu * wxDeepCopyMenu( wxMenu *menu )
     // create the main menu
     wxMenu *m_pMenu = new wxMenu(menu->GetTitle());
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (theNode != NULL)
     {
         wxMenuItem* theItem = theNode->GetData();

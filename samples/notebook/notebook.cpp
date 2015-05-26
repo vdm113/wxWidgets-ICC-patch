@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        samples/notebook/notebook.cpp
 // Purpose:     a sample demonstrating notebook usage
@@ -588,11 +581,6 @@ void MyFrame::RecreateBook()
 #endif // wxUSE_TREEBOOK
 
         const int count = oldBook->GetPageCount();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( int n = 0; n < count; n++ )
         {
             const int image = GetIconIndex(m_bookCtrl);
@@ -1041,11 +1029,6 @@ void MyFrame::OnBookCtrl(wxBookCtrlBaseEvent& event)
     const wxBookCtrlBase * const
         book = static_cast<wxBookCtrlBase *>(event.GetEventObject());
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(events); n++ )
     {
         const EventInfo& ei = events[n];

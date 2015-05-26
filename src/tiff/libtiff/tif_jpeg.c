@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 
 /*
  * Copyright (c) 1994-1997 Sam Leffler
@@ -651,11 +644,6 @@ alloc_downsampled_buffers(TIFF* tif, jpeg_component_info* comp_info,
 	JSAMPARRAY buf;
 	int samples_per_clump = 0;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (ci = 0, compptr = comp_info; ci < num_components;
 	     ci++, compptr++) {
 		samples_per_clump += compptr->h_samp_factor *
@@ -784,18 +772,8 @@ JPEGFixupTagsSubsamplingSec(struct JPEGFixupTagsSubsamplingData* data)
 {
 	static const char module[] = "JPEGFixupTagsSubsamplingSec";
 	uint8 m;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (1)
 	{
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		while (1)
 		{
 			if (!JPEGFixupTagsSubsamplingReadByte(data,&m))
@@ -803,11 +781,6 @@ JPEGFixupTagsSubsamplingSec(struct JPEGFixupTagsSubsamplingData* data)
 			if (m==255)
 				break;
 		}
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		while (1)
 		{
 			if (!JPEGFixupTagsSubsamplingReadByte(data,&m))
@@ -871,11 +844,6 @@ JPEGFixupTagsSubsamplingSec(struct JPEGFixupTagsSubsamplingData* data)
 					ph=(p>>4);
 					pv=(p&15);
 					JPEGFixupTagsSubsamplingSkip(data,1);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 					for (o=1; o<data->tif->tif_dir.td_samplesperpixel; o++)
 					{
 						JPEGFixupTagsSubsamplingSkip(data,1);
@@ -1146,11 +1114,6 @@ JPEGPreDecode(TIFF* tif, uint16 s)
 			return (0);
 		}
 		/* Rest should have sampling factors 1,1 */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		for (ci = 1; ci < sp->cinfo.d.num_components; ci++) {
 			if (sp->cinfo.d.comp_info[ci].h_samp_factor != 1 ||
 			    sp->cinfo.d.comp_info[ci].v_samp_factor != 1) {
@@ -1257,11 +1220,6 @@ JPEGDecode(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 			    * sp->cinfo.d.num_components );
 		}
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		do {
 			if( line_work_buf != NULL )
 			{
@@ -1279,11 +1237,6 @@ JPEGDecode(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 					    * sp->cinfo.d.num_components) / 2;
 					int iPair;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 					for( iPair = 0; iPair < value_pairs; iPair++ )
 					{
 						unsigned char *out_ptr =
@@ -1302,11 +1255,6 @@ JPEGDecode(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 					    * sp->cinfo.d.num_components);
 					int iValue;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 					for( iValue = 0; iValue < value_count; iValue++ )
 					{
 						((unsigned char *) buf)[iValue] =
@@ -1386,11 +1334,6 @@ JPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
                 }
 #endif
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		do {
 			jpeg_component_info *compptr;
 			int ci, clumpoffset;
@@ -1413,11 +1356,6 @@ JPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 			 * over the scanline for each row of each component.
 			 */
 			clumpoffset = 0;    /* first sample in clump */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 			for (ci = 0, compptr = sp->cinfo.d.comp_info;
 			     ci < sp->cinfo.d.num_components;
 			     ci++, compptr++) {
@@ -1425,11 +1363,6 @@ JPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 				int vsamp = compptr->v_samp_factor;
 				int ypos;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 				for (ypos = 0; ypos < vsamp; ypos++) {
 					JSAMPLE *inptr = sp->ds_buffer[ci][sp->scancount*vsamp + ypos];
 					JDIMENSION nclump;
@@ -1446,11 +1379,6 @@ JPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 
 					if (hsamp == 1) {
 						/* fast path for at least Cb and Cr */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 						for (nclump = clumps_per_line; nclump-- > 0; ) {
 							outptr[0] = *inptr++;
 							outptr += samples_per_clump;
@@ -1459,17 +1387,7 @@ JPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 						int xpos;
 
 						/* general case */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 						for (nclump = clumps_per_line; nclump-- > 0; ) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 							for (xpos = 0; xpos < hsamp; xpos++)
 								outptr[xpos] = *inptr++;
 							outptr += samples_per_clump;
@@ -1485,11 +1403,6 @@ JPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 				{
 					int i=0;
 					int len = sp->cinfo.d.output_width * sp->cinfo.d.num_components;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 					for (i=0; i<len; i++)
 					{
 						((unsigned char*)buf)[i] = tmpbuf[i] & 0xff;
@@ -1500,11 +1413,6 @@ JPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 					int value_pairs = (sp->cinfo.d.output_width
 							   * sp->cinfo.d.num_components) / 2;
 					int iPair;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 					for( iPair = 0; iPair < value_pairs; iPair++ )
 					{
 						unsigned char *out_ptr = ((unsigned char *) buf) + iPair * 3;
@@ -1896,11 +1804,6 @@ JPEGEncode(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 	    // FIXME: undiagnosed malloc failure
         }
             
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (nrows-- > 0) {
 
             if( sp->cinfo.c.data_precision == 12 )
@@ -1911,11 +1814,6 @@ JPEGEncode(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 
 		bufptr[0] = (JSAMPROW) line16;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                 for( iPair = 0; iPair < value_pairs; iPair++ )
                 {
                     unsigned char *in_ptr =
@@ -1978,22 +1876,12 @@ JPEGEncodeRaw(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 	/* Cb,Cr both have sampling factors 1, so this is correct */
 	clumps_per_line = sp->cinfo.c.comp_info[1].downsampled_width;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (nrows > 0) {
 		/*
 		 * Fastest way to separate the data is to make one pass
 		 * over the scanline for each row of each component.
 		 */
 		clumpoffset = 0;		/* first sample in clump */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		for (ci = 0, compptr = sp->cinfo.c.comp_info;
 		     ci < sp->cinfo.c.num_components;
 		     ci++, compptr++) {
@@ -2001,49 +1889,24 @@ JPEGEncodeRaw(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 		    int vsamp = compptr->v_samp_factor;
 		    int padding = (int) (compptr->width_in_blocks * DCTSIZE -
 					 clumps_per_line * hsamp);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		    for (ypos = 0; ypos < vsamp; ypos++) {
 			inptr = ((JSAMPLE*) buf) + clumpoffset;
 			outptr = sp->ds_buffer[ci][sp->scancount*vsamp + ypos];
 			if (hsamp == 1) {
 			    /* fast path for at least Cb and Cr */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 			    for (nclump = clumps_per_line; nclump-- > 0; ) {
 				*outptr++ = inptr[0];
 				inptr += samples_per_clump;
 			    }
 			} else {
 			    /* general case */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 			    for (nclump = clumps_per_line; nclump-- > 0; ) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 				for (xpos = 0; xpos < hsamp; xpos++)
 				    *outptr++ = inptr[xpos];
 				inptr += samples_per_clump;
 			    }
 			}
 			/* pad each scanline as needed */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 			for (xpos = 0; xpos < padding; xpos++) {
 			    *outptr = outptr[-1];
 			    outptr++;
@@ -2081,22 +1944,12 @@ JPEGPostEncode(TIFF* tif)
 		int ci, ypos, n;
 		jpeg_component_info* compptr;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		for (ci = 0, compptr = sp->cinfo.c.comp_info;
 		     ci < sp->cinfo.c.num_components;
 		     ci++, compptr++) {
 			int vsamp = compptr->v_samp_factor;
 			tmsize_t row_width = compptr->width_in_blocks * DCTSIZE
 				* sizeof(JSAMPLE);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 			for (ypos = sp->scancount * vsamp;
 			     ypos < DCTSIZE * vsamp; ypos++) {
 				_TIFFmemcpy((void*)sp->ds_buffer[ci][ypos],

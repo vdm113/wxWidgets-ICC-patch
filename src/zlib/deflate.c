@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /* deflate.c -- compress data using the deflation algorithm
  * Copyright (C) 1995-2013 Jean-loup Gailly and Mark Adler
  * For conditions of distribution and use, see copyright notice in zlib.h
@@ -367,19 +360,9 @@ int ZEXPORT deflateSetDictionary (strm, dictionary, dictLength)
     strm->avail_in = dictLength;
     strm->next_in = (z_const Bytef *)dictionary;
     fill_window(s);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (s->lookahead >= MIN_MATCH) {
         str = s->strstart;
         n = s->lookahead - (MIN_MATCH-1);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         do {
             UPDATE_HASH(s, s->ins_h, s->window[str + MIN_MATCH-1]);
 #ifndef FASTEST
@@ -489,11 +472,6 @@ int ZEXPORT deflatePrime (strm, bits, value)
     s = strm->state;
     if ((Bytef *)(s->d_buf) < s->pending_out + ((Buf_size + 7) >> 3))
         return Z_BUF_ERROR;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     do {
         put = Buf_size - s->bi_valid;
         if (put > bits)
@@ -616,21 +594,11 @@ uLong ZEXPORT deflateBound(strm, sourceLen)
                 wraplen += 2 + s->gzhead->extra_len;
             str = s->gzhead->name;
             if (str != Z_NULL)
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                 do {
                     wraplen++;
                 } while (*str++);
             str = s->gzhead->comment;
             if (str != Z_NULL)
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                 do {
                     wraplen++;
                 } while (*str++);
@@ -797,11 +765,6 @@ int ZEXPORT deflate (strm, flush)
         if (s->gzhead->extra != Z_NULL) {
             uInt beg = s->pending;  /* start of bytes to update crc */
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             while (s->gzindex < (s->gzhead->extra_len & 0xffff)) {
                 if (s->pending == s->pending_buf_size) {
                     if (s->gzhead->hcrc && s->pending > beg)
@@ -831,11 +794,6 @@ int ZEXPORT deflate (strm, flush)
             uInt beg = s->pending;  /* start of bytes to update crc */
             int val;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             do {
                 if (s->pending == s->pending_buf_size) {
                     if (s->gzhead->hcrc && s->pending > beg)
@@ -867,11 +825,6 @@ int ZEXPORT deflate (strm, flush)
             uInt beg = s->pending;  /* start of bytes to update crc */
             int val;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             do {
                 if (s->pending == s->pending_buf_size) {
                     if (s->gzhead->hcrc && s->pending > beg)
@@ -1238,11 +1191,6 @@ local uInt longest_match(s, cur_match)
 
     Assert((ulg)s->strstart <= s->window_size-MIN_LOOKAHEAD, "need lookahead");
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     do {
         Assert(cur_match < s->strstart, "no future");
         match = s->window + cur_match;
@@ -1273,11 +1221,6 @@ local uInt longest_match(s, cur_match)
          */
         Assert(scan[2] == match[2], "scan[2]?");
         scan++, match++;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         do {
         } while (*(ushf*)(scan+=2) == *(ushf*)(match+=2) &&
                  *(ushf*)(scan+=2) == *(ushf*)(match+=2) &&
@@ -1312,11 +1255,6 @@ local uInt longest_match(s, cur_match)
         /* We check for insufficient lookahead only every 8th comparison;
          * the 256th check will be made at strstart+258.
          */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         do {
         } while (*++scan == *++match && *++scan == *++match &&
                  *++scan == *++match && *++scan == *++match &&
@@ -1391,11 +1329,6 @@ local uInt longest_match(s, cur_match)
     /* We check for insufficient lookahead only every 8th comparison;
      * the 256th check will be made at strstart+258.
      */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     do {
     } while (*++scan == *++match && *++scan == *++match &&
              *++scan == *++match && *++scan == *++match &&
@@ -1429,11 +1362,6 @@ local void check_match(s, start, match, length)
                 s->window + start, length) != EQUAL) {
         fprintf(stderr, " start %u, match %u, length %d\n",
                 start, match, length);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         do {
             fprintf(stderr, "%c%c", s->window[match++], s->window[start++]);
         } while (--length != 0);
@@ -1468,11 +1396,6 @@ local void fill_window(s)
 
     Assert(s->lookahead < MIN_LOOKAHEAD, "already enough lookahead");
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     do {
         more = (unsigned)(s->window_size -(ulg)s->lookahead -(ulg)s->strstart);
 
@@ -1507,11 +1430,6 @@ local void fill_window(s)
              */
             n = s->hash_size;
             p = &s->head[n];
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             do {
                 m = *--p;
                 *p = (Pos)(m >= wsize ? m-wsize : NIL);
@@ -1520,11 +1438,6 @@ local void fill_window(s)
             n = wsize;
 #ifndef FASTEST
             p = &s->prev[n];
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             do {
                 m = *--p;
                 *p = (Pos)(m >= wsize ? m-wsize : NIL);
@@ -1561,11 +1474,6 @@ local void fill_window(s)
 #if MIN_MATCH != 3
             Call UPDATE_HASH() MIN_MATCH-3 more times
 #endif
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             while (s->insert) {
                 UPDATE_HASH(s, s->ins_h, s->window[str + MIN_MATCH-1]);
 #ifndef FASTEST
@@ -1667,11 +1575,6 @@ local block_state deflate_stored(s, flush)
     }
 
     /* Copy as much as possible from input to output: */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (;;) {
         /* Fill the window as much as possible: */
         if (s->lookahead <= 1) {
@@ -1728,11 +1631,6 @@ local block_state deflate_fast(s, flush)
     IPos hash_head;       /* head of the hash chain */
     int bflush;           /* set if current block must be flushed */
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (;;) {
         /* Make sure that we always have enough lookahead, except
          * at the end of the input file. We need MAX_MATCH bytes
@@ -1781,11 +1679,6 @@ local block_state deflate_fast(s, flush)
             if (s->match_length <= s->max_insert_length &&
                 s->lookahead >= MIN_MATCH) {
                 s->match_length--; /* string at strstart already in table */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                 do {
                     s->strstart++;
                     INSERT_STRING(s, s->strstart, hash_head);
@@ -1841,11 +1734,6 @@ local block_state deflate_slow(s, flush)
     int bflush;              /* set if current block must be flushed */
 
     /* Process the input block. */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (;;) {
         /* Make sure that we always have enough lookahead, except
          * at the end of the input file. We need MAX_MATCH bytes
@@ -1914,11 +1802,6 @@ local block_state deflate_slow(s, flush)
              */
             s->lookahead -= s->prev_length-1;
             s->prev_length -= 2;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             do {
                 if (++s->strstart <= max_insert) {
                     INSERT_STRING(s, s->strstart, hash_head);
@@ -1982,11 +1865,6 @@ local block_state deflate_rle(s, flush)
     uInt prev;              /* byte at distance one to match */
     Bytef *scan, *strend;   /* scan goes up to strend for length of run */
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (;;) {
         /* Make sure that we always have enough lookahead, except
          * at the end of the input file. We need MAX_MATCH bytes
@@ -2007,11 +1885,6 @@ local block_state deflate_rle(s, flush)
             prev = *scan;
             if (prev == *++scan && prev == *++scan && prev == *++scan) {
                 strend = s->window + s->strstart + MAX_MATCH;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                 do {
                 } while (prev == *++scan && prev == *++scan &&
                          prev == *++scan && prev == *++scan &&
@@ -2063,11 +1936,6 @@ local block_state deflate_huff(s, flush)
 {
     int bflush;             /* set if current block must be flushed */
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (;;) {
         /* Make sure that we have a literal to write. */
         if (s->lookahead == 0) {

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /*
  * jdcolor.c
  *
@@ -93,11 +86,6 @@ build_ycc_rgb_table (j_decompress_ptr cinfo)
     (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_IMAGE,
 				(MAXJSAMPLE+1) * SIZEOF(JPEG_INT32));
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   for (i = 0, x = -CENTERJSAMPLE; i <= MAXJSAMPLE; i++, x++) {
     /* i is the actual input pixel value, in the range 0..MAXJSAMPLE */
     /* The Cb or Cr value we are thinking of is x = i - CENTERJSAMPLE */
@@ -146,22 +134,12 @@ ycc_rgb_convert (j_decompress_ptr cinfo,
   register JPEG_INT32 * Cbgtab = cconvert->Cb_g_tab;
   SHIFT_TEMPS
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   while (--num_rows >= 0) {
     inptr0 = input_buf[0][input_row];
     inptr1 = input_buf[1][input_row];
     inptr2 = input_buf[2][input_row];
     input_row++;
     outptr = *output_buf++;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (col = 0; col < num_cols; col++) {
       y  = GETJSAMPLE(inptr0[col]);
       cb = GETJSAMPLE(inptr1[col]);
@@ -197,25 +175,10 @@ null_convert (j_decompress_ptr cinfo,
   JDIMENSION num_cols = cinfo->output_width;
   int ci;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   while (--num_rows >= 0) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (ci = 0; ci < num_components; ci++) {
       inptr = input_buf[ci][input_row];
       outptr = output_buf[0] + ci;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
       for (count = num_cols; count > 0; count--) {
 	*outptr = *inptr++;	/* needn't bother with GETJSAMPLE() here */
 	outptr += num_components;
@@ -258,19 +221,9 @@ gray_rgb_convert (j_decompress_ptr cinfo,
   register JDIMENSION col;
   JDIMENSION num_cols = cinfo->output_width;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   while (--num_rows >= 0) {
     inptr = input_buf[0][input_row++];
     outptr = *output_buf++;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (col = 0; col < num_cols; col++) {
       /* We can dispense with GETJSAMPLE() here */
       outptr[RGB_RED] = outptr[RGB_GREEN] = outptr[RGB_BLUE] = inptr[col];
@@ -306,11 +259,6 @@ ycck_cmyk_convert (j_decompress_ptr cinfo,
   register JPEG_INT32 * Cbgtab = cconvert->Cb_g_tab;
   SHIFT_TEMPS
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
   while (--num_rows >= 0) {
     inptr0 = input_buf[0][input_row];
     inptr1 = input_buf[1][input_row];
@@ -318,11 +266,6 @@ ycck_cmyk_convert (j_decompress_ptr cinfo,
     inptr3 = input_buf[3][input_row];
     input_row++;
     outptr = *output_buf++;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (col = 0; col < num_cols; col++) {
       y  = GETJSAMPLE(inptr0[col]);
       cb = GETJSAMPLE(inptr1[col]);
@@ -405,11 +348,6 @@ jinit_color_deconverter (j_decompress_ptr cinfo)
 	cinfo->jpeg_color_space == JCS_YCbCr) {
       cconvert->pub.color_convert = grayscale_convert;
       /* For color->grayscale conversion, only the Y (0) component is needed */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
       for (ci = 1; ci < cinfo->num_components; ci++)
 	cinfo->comp_info[ci].component_needed = FALSE;
     } else

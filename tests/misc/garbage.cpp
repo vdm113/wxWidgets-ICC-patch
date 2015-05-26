@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/misc/garbage.cpp
 // Purpose:     test if loading garbage fails
@@ -68,20 +61,10 @@ void GarbageTestCase::LoadGarbage()
 
     wxInitAllImageHandlers();
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (size_t size = 1; size < GARBAGE_DATA_SIZE; size *= size+1)
     {
         // first, generate some garbage data
         unsigned char *data = new unsigned char[size];
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (size_t i = 0; i < size; i++)
             data[i] = rand();
 
@@ -109,7 +92,6 @@ void GarbageTestCase::LoadGarbage()
 // Execute the given macro with the given first and second parameters and
 // bitmap type as its third parameter for all bitmap types.
 #define wxFOR_ALL_VALID_BITMAP_TYPES(m, p1, p2) \
-VDM_MACRO_PRAGMA_IVDEP \
     for ( wxBitmapType type = wxBitmapType(wxBITMAP_TYPE_INVALID + 1); \
           type < wxBITMAP_TYPE_MAX; \
           type = (wxBitmapType)(type + 1) ) \
@@ -117,7 +99,6 @@ VDM_MACRO_PRAGMA_IVDEP \
 
 // Similar to above but for animation types.
 #define wxFOR_ALL_VALID_ANIMATION_TYPES(m, p1, p2) \
-VDM_MACRO_PRAGMA_IVDEP \
     for ( wxAnimationType type = wxAnimationType(wxANIMATION_TYPE_INVALID + 1); \
           type < wxANIMATION_TYPE_ANY; \
           type = (wxAnimationType)(type + 1) ) \

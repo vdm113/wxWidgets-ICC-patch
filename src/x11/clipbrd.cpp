@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/x11/clipbrd.cpp
 // Purpose:     Clipboard functionality
@@ -228,11 +221,6 @@ unsigned char *GetClipboardDataByFormat(Display* disp, Window win, Atom clipbrdT
 
     XConvertSelection(disp, XA_CLIPBOARD, target, XA_CLIPBOARD, win, CurrentTime);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     do
     {
         if ( clipbrddata != 0 )
@@ -277,11 +265,6 @@ void GetClipboardData(Display* disp, Window win, wxDataObject &data, wxDataForma
 
             // check the four atoms in clipboard, try to find whether there has data
             // stored in one of these atom.
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for ( unsigned i = 0; i < atomVector.size(); i++ )
             {
 
@@ -369,11 +352,6 @@ extern "C" void wxClipboardHandleSelectionRequest(XEvent event)
     wxDataFormat dfFormat = wxDF_TEXT;
 #endif
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( unsigned i = 0; i <= atomVector.size(); i++ )
     {
         if ( target == atomVector.at(i) )
@@ -573,11 +551,6 @@ bool wxClipboard::GetData( wxDataObject& data )
     Window window = RootWindow(xdisplay, xscreen);
 
     // retrieve the data in each format.
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for( size_t i = 0; i < count; ++i )
     {
         GetClipboardData(xdisplay, window, data, dfarr[i]);

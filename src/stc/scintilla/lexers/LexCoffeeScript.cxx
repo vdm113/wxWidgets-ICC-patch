@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file LexCoffeeScript.cxx
  ** Lexer for CoffeeScript.
@@ -59,11 +52,6 @@ static bool IsSpaceEquiv(int state) {
 // fixes this, and is highly recommended for readability anyway.
 static bool FollowsPostfixOperator(StyleContext &sc, Accessor &styler) {
 	int pos = (int) sc.currentPos;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (--pos > 0) {
 		char ch = styler[pos];
 		if (ch == '+' || ch == '-') {
@@ -78,11 +66,6 @@ static bool followsReturnKeyword(StyleContext &sc, Accessor &styler) {
 	int pos = (int) sc.currentPos;
 	int currentLine = styler.GetLine(pos);
 	int lineStartPos = styler.LineStart(currentLine);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (--pos > lineStartPos) {
 		char ch = styler.SafeGetCharAt(pos);
 		if (ch != ' ' && ch != '\t') {
@@ -91,11 +74,6 @@ static bool followsReturnKeyword(StyleContext &sc, Accessor &styler) {
 	}
 	const char *retBack = "nruter";
 	const char *s = retBack;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (*s
 	       && pos >= lineStartPos
 	       && styler.SafeGetCharAt(pos) == *s) {
@@ -161,11 +139,6 @@ static void ColouriseCoffeeScriptDoc(unsigned int startPos, int length, int init
         if (startPos > 0 && IsSpaceEquiv(initStyle)) {
 		unsigned int back = startPos;
 		styler.Flush();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		while (back > 0 && IsSpaceEquiv(styler.StyleAt(--back)))
 			;
 		if (styler.StyleAt(back) == SCE_COFFEESCRIPT_OPERATOR) {
@@ -182,11 +155,6 @@ static void ColouriseCoffeeScriptDoc(unsigned int startPos, int length, int init
 
 	StyleContext sc(startPos, endPos - startPos, initStyle, styler);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
 
 		if (sc.atLineStart) {
@@ -331,11 +299,6 @@ static void ColouriseCoffeeScriptDoc(unsigned int startPos, int length, int init
 					sc.SetState(SCE_COFFEESCRIPT_DEFAULT);
 				} else if (sc.ch == '/') {
 					sc.Forward();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 					while ((sc.ch < 0x80) && islower(sc.ch))
 						sc.Forward();    // gobble regex flags
 					sc.SetState(SCE_COFFEESCRIPT_DEFAULT);

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/univ/stdrend.cpp
 // Purpose:     implementation of wxStdRenderer
@@ -223,38 +216,18 @@ wxStdRenderer::DrawFocusRect(wxWindow* WXUNUSED(win), wxDC& dc, const wxRect& re
     dc.SetLogicalFunction(wxAND_REVERSE);
 
     wxCoord z;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( z = x1 + 1; z < x2; z += 2 )
         dc.DrawPoint(z, rect.GetTop());
 
     wxCoord shift = z == x2 ? 0 : 1;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( z = y1 + shift; z < y2; z += 2 )
         dc.DrawPoint(x2, z);
 
     shift = z == y2 ? 0 : 1;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( z = x2 - shift; z > x1; z -= 2 )
         dc.DrawPoint(z, y2);
 
     shift = z == x1 ? 0 : 1;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( z = y2 - shift; z > y1; z -= 2 )
         dc.DrawPoint(x1, z);
 
@@ -1150,11 +1123,6 @@ void wxStdRenderer::DrawFrameTitle(wxDC& dc,
         }
 
         s.Alloc(len);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (size_t i = 0; i < len; i++)
         {
             dc.GetTextExtent(title[i], &letterW, NULL);

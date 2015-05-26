@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 // PlatWX.cxx - implementation of platform facilities on wxWidgets
 // Copyright 1998-1999 by Neil Hodgson <neilh@scintilla.org>
@@ -326,11 +319,6 @@ void SurfaceImpl::Polygon(Point *pts, int npts, ColourDesired fore, ColourDesire
     BrushColour(back);
     wxPoint *p = new wxPoint[npts];
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (int i=0; i<npts; i++) {
         p[i].x = pts[i].x;
         p[i].y = pts[i].y;
@@ -409,18 +397,8 @@ void SurfaceImpl::AlphaRectangle(PRectangle rc, int cornerSize,
         int blue  = cdf.GetBlue();
 
         wxAlphaPixelData::Iterator p(pixData);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (y=0; y<r.height; y++) {
             p.MoveTo(pixData, 0, y);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for (x=0; x<r.width; x++) {
                 p.Red()   = wxPy_premultiply(red,   alphaFill);
                 p.Green() = wxPy_premultiply(green, alphaFill);
@@ -435,11 +413,6 @@ void SurfaceImpl::AlphaRectangle(PRectangle rc, int cornerSize,
         red   = cdo.GetRed();
         green = cdo.GetGreen();
         blue  = cdo.GetBlue();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (x=0; x<r.width; x++) {
             p.MoveTo(pixData, x, 0);
             p.Red()   = wxPy_premultiply(red,   alphaOutline);
@@ -453,11 +426,6 @@ void SurfaceImpl::AlphaRectangle(PRectangle rc, int cornerSize,
             p.Alpha() = alphaOutline;
         }
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (y=0; y<r.height; y++) {
             p.MoveTo(pixData, 0, y);
             p.Red()   = wxPy_premultiply(red,   alphaOutline);
@@ -492,18 +460,8 @@ wxBitmap BitmapFromRGBAImage(int width, int height, const unsigned char *pixelsI
     wxAlphaPixelData pixData(bmp);
 
     wxAlphaPixelData::Iterator p(pixData);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (y=0; y<height; y++) {
         p.MoveTo(pixData, 0, y);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (x=0; x<width; x++) {
             unsigned char red   = *pixelsImage++;
             unsigned char green = *pixelsImage++;
@@ -602,11 +560,6 @@ void SurfaceImpl::MeasureWidths(Font &font, const char *s, int len, XYPOSITION *
 #if wxUSE_UNICODE
     // Map the widths back to the UTF-8 input string
     size_t utf8i = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (size_t wxi = 0; wxi < str.size(); ++wxi) {
         wxUniChar c = str[wxi];
 
@@ -633,11 +586,6 @@ void SurfaceImpl::MeasureWidths(Font &font, const char *s, int len, XYPOSITION *
     }
 #else // !wxUSE_UNICODE
     // If not unicode then just use the widths we have
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (int i = 0; i < len; i++) {
         positions[i] = tpos[i];
     }
@@ -1352,11 +1300,6 @@ void ListBoxImpl::SetList(const char* list, char separator, char typesep) {
     GETLB(wid)->Freeze();
     Clear();
     wxStringTokenizer tkzr(stc2wx(list), (wxChar)separator);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( tkzr.HasMoreTokens() ) {
         wxString token = tkzr.GetNextToken();
         long type = -1;

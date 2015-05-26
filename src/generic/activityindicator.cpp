@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/activityindicator.cpp
 // Purpose:     Generic wxActivityIndicator implementation.
@@ -158,11 +151,6 @@ private:
         gc->Rotate(m_frame*angle);
 
         const bool isEnabled = m_win->IsThisEnabled();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( int n = 0; n < NUM_DOTS; n++ )
         {
             // Draw all dots uniformly grey when the window is disabled,

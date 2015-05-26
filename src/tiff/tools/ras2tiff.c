@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 
 /*
  * Copyright (c) 1988-1997 Sam Leffler
@@ -78,11 +71,6 @@ main(int argc, char* argv[])
 	extern int optind;
 	extern char* optarg;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while ((c = getopt(argc, argv, "c:r:h")) != -1)
 		switch (c) {
 		case 'c':		/* compression scheme */
@@ -174,18 +162,8 @@ main(int argc, char* argv[])
 			return (-8);
 		}
 		map = red;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 		for (j = 0; j < 3; j++) {
 #define	SCALE(x)	(((x)*((1L<<16)-1))/255)
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 			for (i = h.ras_maplength/3; i-- > 0;)
 				*map++ = SCALE(*buf++);
 			if ((i = h.ras_maplength/3) < mapsize) {
@@ -231,11 +209,6 @@ main(int argc, char* argv[])
 		buf = (unsigned char *)_TIFFmalloc(linebytes);
 	TIFFSetField(out, TIFFTAG_ROWSPERSTRIP,
 	    TIFFDefaultStripSize(out, rowsperstrip));
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (row = 0; row < h.ras_height; row++) {
 		if (fread(buf, linebytes, 1, in) != 1) {
 			fprintf(stderr, "%s: scanline %ld: Read error.\n",
@@ -246,11 +219,6 @@ main(int argc, char* argv[])
 			tsize_t cc = h.ras_width;
 			unsigned char* cp = buf;
 #define	SWAP(a,b)	{ unsigned char t = (a); (a) = (b); (b) = t; }
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 			do {
 				SWAP(cp[0], cp[2]);
 				cp += 3;
@@ -275,11 +243,6 @@ processCompressOptions(char* opt)
 		char* cp = strchr(opt, ':');
 
                 compression = COMPRESSION_JPEG;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                 while( cp )
                 {
                     if (isdigit((int)cp[1]))
@@ -337,11 +300,6 @@ usage(void)
 
 	setbuf(stderr, buf);
         fprintf(stderr, "%s\n\n", TIFFGetVersion());
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
 	exit(-1);

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/qt/combobox.cpp
 // Author:      Peter Most, Mariano Reingart
@@ -116,11 +109,6 @@ bool wxComboBox::Create(wxWindow *parent, wxWindowID id,
             const wxString& name )
 {
     m_qtComboBox = new wxQtComboBox( parent, this );
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( n-- > 0 )
         m_qtComboBox->addItem( wxQtConvertString( *choices++ ));
     m_qtComboBox->setEditText( wxQtConvertString( value ));

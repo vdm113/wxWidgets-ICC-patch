@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/animateg.cpp
 // Purpose:     wxAnimation and wxAnimationCtrl
@@ -132,11 +125,6 @@ bool wxAnimation::Load(wxInputStream &stream, wxAnimationType type)
     const wxAnimationDecoder *handler;
     if ( type == wxANIMATION_TYPE_ANY )
     {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( wxAnimationDecoderList::compatibility_iterator node = sm_handlers.GetFirst();
               node; node = node->GetNext() )
         {
@@ -222,11 +210,6 @@ void wxAnimation::InsertHandler( wxAnimationDecoder *handler )
 const wxAnimationDecoder *wxAnimation::FindHandler( wxAnimationType animType )
 {
     wxAnimationDecoderList::compatibility_iterator node = sm_handlers.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (node)
     {
         const wxAnimationDecoder *handler = (const wxAnimationDecoder *)node->GetData();
@@ -249,11 +232,6 @@ void wxAnimation::InitStandardHandlers()
 void wxAnimation::CleanUpHandlers()
 {
     wxAnimationDecoderList::compatibility_iterator node = sm_handlers.GetFirst();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (node)
     {
         wxAnimationDecoder *handler = (wxAnimationDecoder *)node->GetData();
@@ -479,11 +457,6 @@ bool wxAnimationCtrl::RebuildBackingStoreUpToFrame(unsigned int frame)
     DisposeToBackground(dc);
 
     // Draw all intermediate frames that haven't been removed from the animation
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (unsigned int i = 0; i < frame; i++)
     {
         if (m_animation.GetDisposalMethod(i) == wxANIM_DONOTREMOVE ||

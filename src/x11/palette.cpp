@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/x11/palette.cpp
 // Purpose:     wxPalette
@@ -87,11 +80,6 @@ wxPaletteRefData::~wxPaletteRefData()
 
     wxList::compatibility_iterator node, next;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (node = m_palettes.GetFirst(); node; node = next) {
         wxXPalette *c = (wxXPalette *)node->GetData();
         unsigned long *pix_array = c->m_pix_array;
@@ -109,24 +97,9 @@ wxPaletteRefData::~wxPaletteRefData()
             //      XFreeColors(display, cmap, pix_array, pix_array_n, 0);
             // Be careful not to free '0' pixels...
             int i, j;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for(i=j=0; i<pix_array_n; i=j) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                 while(j<pix_array_n && pix_array[j]!=0) j++;
                 if(j > i) XFreeColors(display, cmap, &pix_array[i], j-i, 0);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                 while(j<pix_array_n && pix_array[j]==0) j++;
             }
 #endif
@@ -203,11 +176,6 @@ bool wxPalette::Create(int n, const unsigned char *red, const unsigned char *gre
 
     pix_array_n = n;
     xcol.flags = DoRed | DoGreen | DoBlue;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for(int i = 0; i < n; i++) {
         xcol.red = (unsigned short)red[i] << 8;
         xcol.green = (unsigned short)green[i] << 8;
@@ -298,11 +266,6 @@ WXColormap wxPalette::GetXColormap(WXDisplay* display) const
         wxXPalette* p = (wxXPalette*) node->GetData();
         return p->m_cmap;
     }
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (node)
     {
         wxXPalette* p = (wxXPalette*) node->GetData();
@@ -326,11 +289,6 @@ WXColormap wxPalette::GetXColormap(WXDisplay* display) const
 
     xcol.flags = DoRed | DoGreen | DoBlue;
     int i;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (i = 0; i < pix_array_n; i++)
     {
         xcol.pixel = first->m_pix_array[i];
@@ -354,11 +312,6 @@ bool wxPalette::TransferBitmap(void *data, int depth, int size)
             unsigned char *uptr = (unsigned char *)data;
             int pix_array_n;
             unsigned long *pix_array = GetXPixArray((Display*) wxGetDisplay(), &pix_array_n);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             while(size-- > 0)
             {
                 if((int)*uptr < pix_array_n)
@@ -381,11 +334,6 @@ bool wxPalette::TransferBitmap8(unsigned char *data, unsigned long sz,
     switch(bpp) {
     case 8: {
         unsigned char *dptr = (unsigned char *)dest;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while(sz-- > 0) {
             if((int)*data < pix_array_n)
                 *dptr = (unsigned char)pix_array[*data];
@@ -396,11 +344,6 @@ bool wxPalette::TransferBitmap8(unsigned char *data, unsigned long sz,
             }
     case 16: {
         unsigned short *dptr = (unsigned short *)dest;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while(sz-- > 0) {
             if((int)*data < pix_array_n)
                 *dptr = (unsigned short)pix_array[*data];
@@ -411,11 +354,6 @@ bool wxPalette::TransferBitmap8(unsigned char *data, unsigned long sz,
              }
     case 24: {
         struct rgb24 { unsigned char r, g, b; } *dptr = (struct rgb24 *)dest;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while(sz-- > 0) {
             if((int)*data < pix_array_n) {
                 dptr->r = pix_array[*data] & 0xFF;
@@ -429,11 +367,6 @@ bool wxPalette::TransferBitmap8(unsigned char *data, unsigned long sz,
              }
     case 32: {
         unsigned long *dptr = (unsigned long *)dest;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while(sz-- > 0) {
             if((int)*data < pix_array_n)
                 *dptr = pix_array[*data];
@@ -454,11 +387,6 @@ unsigned long *wxPalette::GetXPixArray(WXDisplay *display, int *n)
         return (unsigned long*) 0;
     wxList::compatibility_iterator node;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (node = M_PALETTEDATA->m_palettes.GetFirst(); node; node = node->GetNext())
     {
         wxXPalette *c = (wxXPalette *)node->GetData();

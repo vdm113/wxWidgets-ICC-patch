@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/region.cpp
 // Purpose:
@@ -125,11 +118,6 @@ wxRegion::wxRegion( size_t n, const wxPoint *points,
     int min_y = points[0].y;
     int max_y = min_y;
     size_t i;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (i = 1; i < n; i++)
     {
         const int x = points[i].x;
@@ -157,11 +145,6 @@ wxRegion::wxRegion( size_t n, const wxPoint *points,
         cairo_set_fill_rule(cr, CAIRO_FILL_RULE_EVEN_ODD);
     // make path
     cairo_move_to(cr, points[0].x, points[0].y);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (i = 1; i < n; i++)
         cairo_line_to(cr, points[i].x, points[i].y);
     cairo_close_path(cr);
@@ -173,11 +156,6 @@ wxRegion::wxRegion( size_t n, const wxPoint *points,
     cairo_surface_destroy(surface);
 #else
     GdkPoint *gdkpoints = new GdkPoint[n];
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( size_t i = 0 ; i < n ; i++ )
     {
         gdkpoints[i].x = points[i].x;
@@ -500,11 +478,6 @@ void wxRegionIterator::CreateRects( const wxRegion& region )
     if (m_numRects)
     {
         m_rects = new wxRect[m_numRects];
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (int i = 0; i < m_numRects; i++)
         {
             GdkRectangle gr;
@@ -527,11 +500,6 @@ void wxRegionIterator::CreateRects( const wxRegion& region )
     if (m_numRects)
     {
         m_rects = new wxRect[m_numRects];
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (int i = 0; i < m_numRects; ++i)
         {
             GdkRectangle &gr = gdkrects[i];

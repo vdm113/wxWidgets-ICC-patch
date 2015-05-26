@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk1/clipbrd.cpp
 // Purpose:
@@ -106,11 +99,6 @@ targets_selection_received( GtkWidget *WXUNUSED(widget),
         // the atoms we received, holding a list of targets (= formats)
         GdkAtom *atoms = (GdkAtom *)selection_data->data;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (unsigned int i=0; i<selection_data->length/sizeof(GdkAtom); i++)
         {
             wxDataFormat format( atoms[i] );
@@ -380,11 +368,6 @@ void wxClipboard::Clear()
             gtk_selection_owner_set( NULL, g_clipboardAtom,
                                      (guint32) GDK_CURRENT_TIME );
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             while (m_waiting) gtk_main_iteration();
         }
 
@@ -395,11 +378,6 @@ void wxClipboard::Clear()
             gtk_selection_owner_set( NULL, GDK_SELECTION_PRIMARY,
                                      (guint32) GDK_CURRENT_TIME );
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             while (m_waiting) gtk_main_iteration();
         }
 
@@ -459,11 +437,6 @@ bool wxClipboard::AddData( wxDataObject *data )
                               g_timestampAtom,
                               0 );
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (size_t i = 0; i < m_data->GetFormatCount(); i++)
     {
         wxLogTrace( TRACE_CLIPBOARD,
@@ -551,11 +524,6 @@ bool wxClipboard::IsSupported( const wxDataFormat& format )
                            g_targetsAtom,
                            (guint32) GDK_CURRENT_TIME );
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (m_waiting) gtk_main_iteration();
 
     return m_formatSupported;
@@ -569,11 +537,6 @@ bool wxClipboard::GetData( wxDataObject& data )
     wxDataFormat *array = new wxDataFormat[ data.GetFormatCount() ];
     data.GetAllFormats( array );
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (size_t i = 0; i < data.GetFormatCount(); i++)
     {
         wxDataFormat format( array[i] );
@@ -607,11 +570,6 @@ bool wxClipboard::GetData( wxDataObject& data )
                            g_targetsAtom,
                            (guint32) GDK_CURRENT_TIME );
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while (m_waiting) gtk_main_iteration();
 
         if (!m_formatSupported) continue;
@@ -647,11 +605,6 @@ bool wxClipboard::GetData( wxDataObject& data )
                                m_targetRequested,
                                (guint32) GDK_CURRENT_TIME );
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while (m_waiting) gtk_main_iteration();
 
         /*

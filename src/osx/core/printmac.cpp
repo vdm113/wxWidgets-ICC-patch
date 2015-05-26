@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/core/printmac.cpp
 // Purpose:     wxMacPrinter framework
@@ -71,11 +64,6 @@ static PMResolution *GetSupportedResolutions(PMPrinter printer, UInt32 *count)
     {
         resolutions = (PMResolution *)malloc(sizeof(PMResolution) * (*count));
         UInt32 realCount = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (UInt32 i = 0; i < *count; i++)
         {
             if (PMPrinterGetIndexedPrinterResolution(printer, i + 1, &res) == noErr)
@@ -132,11 +120,6 @@ void wxOSXPrintData::TransferPrinterNameFrom( const wxPrintData &data )
     {
         PMPrinter printer = NULL;
         count = CFArrayGetCount(printerList);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (index = 0; index < count; index++)
         {
             printer = (PMPrinter)CFArrayGetValueAtIndex(printerList, index);
@@ -195,11 +178,6 @@ void wxOSXPrintData::TransferPaperInfoFrom( const wxPrintData &data )
             {
                 PMPaper bestPaper = kPMNoData ;
                 CFIndex top = CFArrayGetCount(paperlist);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                 for ( CFIndex i = 0 ; i < top ; ++ i )
                 {
                     PMPaper paper = (PMPaper) CFArrayGetValueAtIndex( paperlist, i );
@@ -420,11 +398,6 @@ void wxOSXPrintData::TransferResolutionTo( wxPrintData &data )
         if ( valid )
         {
             UInt32 i;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for (i = 0; i < resCount; i++)
             {
                 if ((resolutions[i].hRes == res.hRes) && (resolutions[i].vRes = res.vRes))
@@ -679,11 +652,6 @@ bool wxMacPrinter::Print(wxWindow *parent, wxPrintout *printout, bool prompt)
     }
 
     int pn;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (pn = m_printDialogData.GetFromPage();
         keepGoing && (pn <= m_printDialogData.GetToPage()) && printout->HasPage(pn);
         pn++)

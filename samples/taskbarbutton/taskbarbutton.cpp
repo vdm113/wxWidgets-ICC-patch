@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        taskbarbutton.cpp
 // Purpose:     wxTaskBarButton sample
@@ -186,11 +179,6 @@ bool MyApp::OnInit()
     const wxTaskBarJumpListCategory& frequentCategory =
         jumpList.GetFrequentCategory();
     const wxTaskBarJumpListItems& frequentItems = frequentCategory.GetItems();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( size_t i = 0; i < frequentItems.size(); ++i )
     {
         wxLogMessage(frequentItems[i]->GetFilePath());
@@ -199,11 +187,6 @@ bool MyApp::OnInit()
     const wxTaskBarJumpListCategory& recentCategory =
         jumpList.GetRecentCategory();
     const wxTaskBarJumpListItems& recentItems = recentCategory.GetItems();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( size_t i = 0; i < recentItems.size(); ++i )
     {
         wxLogMessage(recentItems[i]->GetFilePath());

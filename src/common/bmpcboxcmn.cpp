@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/bmpcboxcmn.cpp
 // Purpose:     wxBitmapComboBox
@@ -77,11 +70,6 @@ void wxBitmapComboBoxBase::UpdateInternals()
 {
     m_fontHeight = GetControl()->GetCharHeight() + EXTRA_FONT_HEIGHT;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( m_bitmaps.GetCount() < GetItemContainer()->GetCount() )
         m_bitmaps.Add( new wxBitmap() );
 }
@@ -108,11 +96,6 @@ wxBitmap wxBitmapComboBoxBase::GetItemBitmap(unsigned int n) const
 
 void wxBitmapComboBoxBase::BCBDoClear()
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( unsigned i = 0; i < m_bitmaps.size(); i++ )
         delete GetBitmapPtr(i);
 

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/imagxpm.cpp
 // Purpose:     wxXPMHandler
@@ -121,11 +114,6 @@ MakeValidCIdent(wxString* str)
 {
     const wxChar chUnderscore = wxT('_');
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( wxString::iterator it = str->begin(); it != str->end(); ++it )
     {
         const wxChar ch = *it;
@@ -167,11 +155,6 @@ bool wxXPMHandler::SaveFile(wxImage * image,
     int cols = int(image->ComputeHistogram(histogram));
 
     int chars_per_pixel = 1;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( k = MaxCixels; cols > k; k *= MaxCixels)
         chars_per_pixel++;
 
@@ -211,11 +194,6 @@ bool wxXPMHandler::SaveFile(wxImage * image,
                    (image->GetMaskGreen() << 8) | image->GetMaskBlue();
 
     // 2b. generate colour table:
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (wxImageHistogram::iterator entry = histogram.begin();
          entry != histogram.end(); ++entry )
     {
@@ -223,11 +201,6 @@ bool wxXPMHandler::SaveFile(wxImage * image,
         symbols[index] = symbols_data + index * (chars_per_pixel+1);
         char *sym = symbols[index];
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (j = 0; j < chars_per_pixel; j++)
         {
             sym[j] = Cixel[index % MaxCixels];
@@ -254,20 +227,10 @@ bool wxXPMHandler::SaveFile(wxImage * image,
     stream.Write("/* pixels */\n", 13);
 
     unsigned char *data = image->GetData();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (j = 0; j < image->GetHeight(); j++)
     {
         char tmp_c;
         tmp_c = '\"'; stream.Write(&tmp_c, 1);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (i = 0; i < image->GetWidth(); i++, data += 3)
         {
             unsigned long key = (data[0] << 16) | (data[1] << 8) | (data[2]);

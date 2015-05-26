@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 //////////////////////////////////////////////////////////////////////////////
 // File:        contrib/samples/stc/edit.cpp
 // Purpose:     STC test module
@@ -346,11 +339,6 @@ void Edit::OnUseCharset (wxCommandEvent &event) {
         case myID_CHARSETANSI: {charset = wxSTC_CHARSET_ANSI; break;}
         case myID_CHARSETMAC: {charset = wxSTC_CHARSET_ANSI; break;}
     }
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (Nr = 0; Nr < wxSTC_STYLE_LASTPREDEFINED; Nr++) {
         StyleSetCharacterSet (Nr, charset);
     }
@@ -509,20 +497,10 @@ wxString Edit::DeterminePrefs (const wxString &filename) {
 
     // determine language from filepatterns
     int languageNr;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (languageNr = 0; languageNr < g_LanguagePrefsSize; languageNr++) {
         curInfo = &g_LanguagePrefs [languageNr];
         wxString filepattern = curInfo->filepattern;
         filepattern.Lower();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while (!filepattern.empty()) {
             wxString cur = filepattern.BeforeFirst (';');
             if ((cur == filename) ||
@@ -546,11 +524,6 @@ bool Edit::InitializePrefs (const wxString &name) {
     // determine language
     bool found = false;
     int languageNr;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (languageNr = 0; languageNr < g_LanguagePrefsSize; languageNr++) {
         curInfo = &g_LanguagePrefs [languageNr];
         if (curInfo->name == name) {
@@ -578,11 +551,6 @@ bool Edit::InitializePrefs (const wxString &name) {
 
     // default fonts for all styles!
     int Nr;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (Nr = 0; Nr < wxSTC_STYLE_LASTPREDEFINED; Nr++) {
         wxFont font(wxFontInfo(10).Family(wxFONTFAMILY_MODERN));
         StyleSetFont (Nr, font);
@@ -595,11 +563,6 @@ bool Edit::InitializePrefs (const wxString &name) {
     // initialize settings
     if (g_CommonPrefs.syntaxEnable) {
         int keywordnr = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (Nr = 0; Nr < STYLE_TYPES_COUNT; Nr++) {
             if (curInfo->styles[Nr].type == -1) continue;
             const StyleInfo &curType = g_StylePrefs [curInfo->styles[Nr].type];
@@ -951,11 +914,6 @@ void EditPrint::GetPageInfo (int *minPage, int *maxPage, int *selPageFrom, int *
                           page.y - (top + bottom));
 
     // count pages
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (HasPage (*maxPage)) {
         m_printed = m_edit->FormatRange (0, m_printed, m_edit->GetLength(),
                                        dc, dc, m_printRect, m_pageRect);

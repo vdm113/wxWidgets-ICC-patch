@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/nativdlg.cpp
 // Purpose:     Native dialog loading code (part of wxWindow)
@@ -77,11 +70,6 @@ bool wxWindow::LoadNativeDialog(wxWindow* parent, wxWindowID id)
     if (hWndNext)
         CreateWindowFromHWND(this, (WXHWND) hWndNext);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (hWndNext != (HWND) NULL)
     {
         hWndNext = ::GetWindow(hWndNext, GW_HWNDNEXT);
@@ -119,11 +107,6 @@ bool wxWindow::LoadNativeDialog(wxWindow* parent, const wxString& name)
     if (hWndNext)
         CreateWindowFromHWND(this, (WXHWND) hWndNext);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (hWndNext != (HWND) NULL)
     {
         hWndNext = ::GetWindow(hWndNext, GW_HWNDNEXT);
@@ -144,11 +127,6 @@ wxWindow* wxWindow::GetWindowChild1(wxWindowID id)
         return this;
 
     wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( node )
     {
         wxWindow* child = node->GetData();

@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 // Scintilla source code edit control
 /** @file LexClw.cxx
  ** Lexer for Clarion.
@@ -55,11 +48,6 @@ static char CharacterUpper(char chChar) {
 // Convert string to uppercase
 static void StringUpper(char *szString) {
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while (*szString) {
 		*szString = CharacterUpper(*szString);
 		szString++;
@@ -131,11 +119,6 @@ inline bool SetNumericConstantState(StyleContext &scDoc) {
 	// Buffer the current numberic string
 	scDoc.GetCurrent(cNumericString, sizeof(cNumericString));
 	// Loop through the string until end of string (NULL termination)
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (int iIndex = 0; cNumericString[iIndex] != '\0'; iIndex++) {
 		// Depending on the character
 		switch (cNumericString[iIndex]) {
@@ -164,11 +147,6 @@ inline bool GetNextWordUpper(Accessor &styler, unsigned int uiStartPos, int iLen
 	unsigned int iIndex = 0;		// Buffer Index
 
 	// Loop through the remaining string from the current position
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (int iOffset = uiStartPos; iOffset < iLength; iOffset++) {
 		// Get the character from the buffer using the offset
 		char cCharacter = styler[iOffset];
@@ -229,11 +207,6 @@ static void ColouriseClarionDoc(unsigned int uiStartPos, int iLength, int iInitS
 	StyleContext scDoc(uiStartPos, iLength, iInitStyle, accStyler);
 
 	// lex source code
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (; scDoc.More(); scDoc.Forward())
 	{
 		//
@@ -565,11 +538,6 @@ static void FillBuffer(unsigned int uiStart, unsigned int uiEnd, Accessor &accSt
 
 	unsigned int uiPos = 0;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	while ((uiPos < uiEnd - uiStart + 1) && (uiPos < uiLength-1)) {
 		szBuffer[uiPos] = static_cast<char>(toupper(accStyler[uiStart + uiPos]));
 		uiPos++;
@@ -643,11 +611,6 @@ static void FoldClarionDoc(unsigned int uiStartPos, int iLength, int iInitStyle,
 	int iVisibleChars = 0;
 	int iLastStart = 0;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
 	for (unsigned int uiPos = uiStartPos; uiPos < uiEndPos; uiPos++) {
 
 		char chChar = chNext;

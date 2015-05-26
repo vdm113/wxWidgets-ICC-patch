@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        autocapture.cpp
 // Purpose:     Implement wxCtrlMaskOut class
@@ -67,11 +60,6 @@ void AutoCaptureMechanism::Delay(int seconds)
 
     // Wait for 3 seconds
     clock_t start = clock();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( clock() - start < (clock_t)CLOCKS_PER_SEC * seconds)
         wxYieldIfNeeded();
 }
@@ -92,11 +80,6 @@ bool AutoCaptureMechanism::Capture(wxBitmap* bitmap, int x, int y,
     if(delay) Delay(delay);
 
     wxBitmap fullscreen;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     do
     {
         fullscreen = wxBitmap(wxT("/tmp/wx_screen_capture.png"), wxBITMAP_TYPE_PNG);
@@ -161,11 +144,6 @@ void AutoCaptureMechanism::Save(wxBitmap* screenshot, const wxString& fileName)
         "-" + wxPlatformInfo::Get().GetPortIdShortName() + ".png");
 
     // do not overwrite already existing files with this name
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while (fullFileName.FileExists())
         fullFileName.SetName(fullFileName.GetName() + "_");
 
@@ -179,11 +157,6 @@ void AutoCaptureMechanism::CaptureAll()
     m_notebook->SetSelection(0);
     wxYield();
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (ControlList::iterator it = m_controlList.begin();
          it != m_controlList.end();
          ++it)
@@ -204,11 +177,6 @@ void AutoCaptureMechanism::CaptureAll()
         if(ctrl.flag & AJ_Union)
         {
             // union screenshots until AJ_UnionEnd
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             do
             {
                 ++it;
@@ -338,11 +306,6 @@ wxRect AutoCaptureMechanism::GetRect(wxWindow* ctrl, int flag)
 
         wxStaticText* l[4];
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for (int i = 0; i < 4; ++i)
             l[i] = new wxStaticText(parent, wxID_ANY, wxT(" "));
 
@@ -380,11 +343,6 @@ void AutoCaptureMechanism::PutBack(wxWindow * ctrl)
 
     wxSizerItemList children = m_grid->GetChildren();
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for (wxSizerItemList::iterator it = children.begin(); it != children.end(); ++it)
     {
         wxSizerItem* item = *it;

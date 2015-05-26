@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wxWidgets_vdm_patch/stdafx.cpp
 // Purpose:     patcher for ICL compiler
@@ -28,6 +21,7 @@
 #include <cassert>
 #include <functional>
 #include <map>
+#include <stack>
 #include <conio.h>
 #include <Windows.h>
 
@@ -94,8 +88,9 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 
     const vector<pair<string,string> > strip={ { "/*", "*/" }, { "'", "'" }, { "\"", "\""} };
 
-    size_t do_cnt=0;
-    size_t do_braces=0;
+    int ctrl_braces=0;
+    stack<int> ctrl_stack;
+    int stage=-1;
 
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
@@ -213,67 +208,46 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
             line.erase(line.find("//"));
         }
 
+        auto command_winlets=[&]() {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
 #endif /* VDM auto patch */
-        for(auto& i1 : strip) {
-            string::size_type startpos;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
-            while((startpos=line.find(i1.first))!=string::npos) { 
-                if(!i1.first.compare("/*"))
-                    in_stipped_comment=true;
-                const string::size_type endpos=line.find(i1.second);
-                if(endpos==string::npos) {
-                    // multi-line comment, delete until the end
-                    line.erase(startpos);
-                } else {
-                    line.erase(startpos,endpos+i1.second.length());
-                }
-                if(endpos!=string::npos) {
-                    if(!i1.first.compare("/*"))
-                        in_stipped_comment=false;
+            for(int i1=0; i1<line.length(); ++i1)  {
+                switch(stage) {
+                    case 0:
+                    case 1:
+                    case 2:
+                            {
+                                //
+                            }
+                            break;
+                    case -1:
+                        break;
                 }
             }
-            const string::size_type endpos=line.find(i1.second);
-            if(endpos!=string::npos) {
-                if(!i1.first.compare("/*"))
-                    in_stipped_comment=false;
-            }
-        }
+        };
 
         if(in_stipped_comment) {
             continue;
         }
 
-        bool end_do=false;
-
-        if(0!=do_braces) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
-            for(size_t i1=0; i1<line.length(); ++i1) {
-                if('{'==line[i1])
-                    ++do_braces;
-                if('}'==line[i1]) {
-                    if(--do_braces==0)
-                        end_do=true;
-                }
-            }
-        }
-
         bool reformat=false;
         string seeking;
+        int ctrl_cnt=0;
+        stack<int> ctrl_stack;
+
+        const auto reformat_ctrl=[&]() -> bool {
+            if(reformat || line.find(seeking)!=0)
+                return false;
+            if(line.length()<seeking.length())
+                return false;
+            return false;
+        };
 
         seeking="for";
-        if(!reformat && line.find(seeking)==0) {
+        if(reformat_ctrl()) {
             string ln=line;
             ln.erase(0,seeking.length());
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
@@ -288,7 +262,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
         }
 
         seeking="for_each";
-        if(!reformat && line.find(seeking)==0) {
+        if(reformat_ctrl()) {
             string ln=line;
             ln.erase(0,seeking.length());
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
@@ -303,7 +277,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
         }
 
         seeking="while";
-        if(!reformat && line.find(seeking)==0) {
+        if(reformat_ctrl()) {
             string ln=line;
             ln.erase(0,seeking.length());
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
@@ -371,8 +345,26 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #endif
         }
 
-        // do
-        if(!reformat && line.find("do")==0) {
+        bool end_do=false;
+
+        {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
+            for(size_t i1=0; i1<line.length(); ++i1) {
+                if('{'==line[i1])
+                    ++ctrl_braces;
+                if('}'==line[i1]) {
+                    if(--ctrl_braces==0)
+                        end_do=true;
+                }
+            }
+        }
+
+        seeking="do";
+        if(reformat_ctrl()) {
             string ln=line;
 
             ln.erase(0,strlen("do"));
@@ -397,13 +389,13 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
                 ln.erase(ln.length()-1,1);
 
             if(ln.length()>0 && '{'==ln[ln.length()-1]) {
-                reformat=true;
-                ++do_cnt;
-            } else {
-                if(ln.length()==0)
-                    reformat=true;
-                else
-                    reformat=false;
+                ctrl_stack.push(ctrl_cnt);
+                ctrl_cnt=0;
+            } else if(ln.length()>0 && '}'==ln[ln.length()-1]) {
+                if(--ctrl_cnt==0) {
+                    ctrl_cnt=ctrl_stack.top();
+                    ctrl_stack.pop();
+                }
             }
         }
 
@@ -434,18 +426,10 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
                     }
                 }
                 if(got)
-                    reformat=!do_patch;
+                    reformat=true;
             } else if(reformat && scrollback.size()>1 && !scrollback[scrollback.size()-1-1].compare(inline_pragma)) {
                 reformat=!do_patch;
             }
-        } else {
-            string tmp;
-            if(scrollback.size()>1)
-                tmp=scrollback[scrollback.size()-1-1];
-            if(reformat && !tmp.compare(inline_pragma))
-                reformat=!do_patch;
-            else if(reformat)
-                reformat=do_patch;
         }
 
         if(reformat) {
@@ -601,13 +585,7 @@ void directory_recurse(const string& base, const string& directory, const string
                 n+=name;
                 bool b=ext_prologue.find(*i1)!=ext_prologue.end();
 
-                if(files.find(n)==files.end()) {
-                    files.insert(make_pair(n,b));
-                } else {
-                    if(!(*files.find(n)).second && b) {
-                        files.find(n)->second=true;
-                    }
-                }
+                files.insert(make_pair(n,b));
 
                 break;
             }

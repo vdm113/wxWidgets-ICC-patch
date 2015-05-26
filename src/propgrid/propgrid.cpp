@@ -1,10 +1,3 @@
-/* token_VDM_prologue */
-#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
-#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/propgrid/propgrid.cpp
 // Purpose:     wxPropertyGrid
@@ -238,11 +231,6 @@ wxPGGlobalVarsClass::~wxPGGlobalVarsClass()
     delete m_fontFamilyChoices;
 
 #if wxUSE_VALIDATORS
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( size_t i = 0; i < m_arrValidators.size(); i++ )
         delete ((wxValidator*)m_arrValidators[i]);
 #endif
@@ -253,11 +241,6 @@ wxPGGlobalVarsClass::~wxPGGlobalVarsClass()
 
     // Destroy editor class instances.
     // iterate over all the elements in the class
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for( vt_it = m_mapEditorClasses.begin(); vt_it != m_mapEditorClasses.end(); ++vt_it )
     {
         delete ((wxPGEditor*)vt_it->second);
@@ -532,11 +515,6 @@ wxPropertyGrid::~wxPropertyGrid()
 
     //
     // Remove grid and property pointers from live wxPropertyGridEvents.
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( i=0; i<m_liveEvents.size(); i++ )
     {
         wxPropertyGridEvent* evt = m_liveEvents[i];
@@ -591,11 +569,6 @@ wxPropertyGrid::~wxPropertyGrid()
         // Emulate member variable.
         wxArrayPGObject& m_deletedEditorObjects = *gs_deletedEditorObjects[this];
 #endif
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while ( !m_deletedEditorObjects.empty() )
         {
             wxObject* obj = m_deletedEditorObjects.back();
@@ -624,11 +597,6 @@ wxPropertyGrid::~wxPropertyGrid()
 #endif
 
     // Delete common value records
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( i=0; i<m_commonValues.size(); i++ )
     {
         // Use temporary variable to work around possible strange VC6 (asserts because m_size is zero)
@@ -908,11 +876,6 @@ bool wxPropertyGrid::AddToSelectionFromInputEvent( wxPGProperty* prop,
         // Find top selected property
         wxPGProperty* topSelProp = selection[0];
         int topSelPropY = topSelProp->GetY();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( unsigned int i=1; i<selection.size(); i++ )
         {
             wxPGProperty* p = selection[i];
@@ -943,11 +906,6 @@ bool wxPropertyGrid::AddToSelectionFromInputEvent( wxPGProperty* prop,
         // Iterate through properties in-between, and select them
         wxPropertyGridIterator it;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( it = GetIterator(wxPG_ITERATE_VISIBLE, startFrom);
               !it.AtEnd();
               it++ )
@@ -987,11 +945,6 @@ void wxPropertyGrid::DoSetSelection( const wxArrayPGProperty& newSelection,
         DoClearSelection(false, selFlags);
     }
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( unsigned int i = 1; i < newSelection.size(); i++ )
     {
         DoAddToSelection(newSelection[i], selFlags);
@@ -1015,11 +968,6 @@ void wxPropertyGrid::MakeColumnEditable( unsigned int column,
     }
     else
     {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( int i = cols.size() - 1; i > 0; i-- )
         {
             if ( cols[i] == (int)column )
@@ -1254,17 +1202,12 @@ wxSize wxPropertyGrid::DoGetBestSize() const
     // make it too small neither
     int numLines = wxMin
                    (
-                    wxMax(m_pState->m_properties->GetChildCount(), 3),
+                    wxMax(m_pState->DoGetRoot()->GetChildCount(), 3),
                     10
                    );
 
     wxClientDC dc(const_cast<wxPropertyGrid *>(this));
     int width = m_marginWidth;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < m_pState->GetColumnCount(); i++ )
     {
         width += m_pState->GetColumnFitWidth(dc, m_pState->DoGetRoot(), i, true);
@@ -1704,7 +1647,7 @@ bool wxPropertyGrid::EnsureVisible( wxPGPropArg id )
         wxPGProperty* parent = p->GetParent();
         wxPGProperty* grandparent = parent->GetParent();
 
-        if ( grandparent && grandparent != m_pState->m_properties )
+        if ( grandparent && grandparent != m_pState->DoGetRoot() )
             Expand( grandparent );
 
         Expand( parent );
@@ -1805,11 +1748,6 @@ wxString& wxPropertyGrid::ExpandEscapeSequences( wxString& dst_str, wxString& sr
 
     dst_str.clear();
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( ; i != src_str.end(); ++i )
     {
         wxUniChar a = *i;
@@ -1868,11 +1806,6 @@ wxString& wxPropertyGrid::CreateEscapeSequences( wxString& dst_str, wxString& sr
 
     dst_str.clear();
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( ; i != src_str.end(); ++i )
     {
         wxChar a = *i;
@@ -1917,7 +1850,7 @@ wxPGProperty* wxPropertyGrid::DoGetItemAtY( int y ) const
         return NULL;
 
     unsigned int a = 0;
-    return m_pState->m_properties->GetItemAtY(y, m_lineHeight, &a);
+    return m_pState->DoGetRoot()->GetItemAtY(y, m_lineHeight, &a);
 }
 
 // -----------------------------------------------------------------------
@@ -2077,7 +2010,7 @@ void wxPropertyGrid::DrawItems( wxDC& dc,
     if ( !itemsRect )
     {
         tempItemsRect = wxRect(0, topItemY,
-                               m_pState->m_width,
+                               m_pState->GetVirtualWidth(),
                                bottomItemY);
         itemsRect = &tempItemsRect;
     }
@@ -2090,7 +2023,7 @@ void wxPropertyGrid::DrawItems( wxDC& dc,
     // items added check
     if ( m_pState->m_itemsAdded ) PrepareAfterItemsAdded();
 
-    if ( m_pState->m_properties->GetChildCount() > 0 )
+    if ( m_pState->DoGetRoot()->GetChildCount() > 0 )
     {
         // paintFinishY and drawBottomY are in buffer/physical space
         int paintFinishY = DoDrawItems(dc, itemsRect);
@@ -2145,7 +2078,7 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
 
     wxCHECK_MSG( !m_pState->m_itemsAdded, itemsRect->y,
                  "no items added" );
-    wxASSERT( m_pState->m_properties->GetChildCount() );
+    wxASSERT( m_pState->DoGetRoot()->GetChildCount() );
 
     int lh = m_lineHeight;
 
@@ -2256,11 +2189,6 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
     wxArrayPGProperty visPropArray;
     visPropArray.reserve((m_height/m_lineHeight)+6);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( ; !it.AtEnd(); it.Next() )
     {
         const wxPGProperty* p = *it;
@@ -2280,14 +2208,9 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
 
     wxPGProperty* nextP = visPropArray[0];
 
-    int gridWidth = state->m_width;
+    int gridWidth = state->GetVirtualWidth();
 
     y = firstItemTopY;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( unsigned int arrInd=1;
           nextP && y <= lastItemBottomY;
           arrInd++ )
@@ -2306,7 +2229,7 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
         int greyDepthX = greyDepth - xRelMod;
 
         // Use basic depth if in non-categoric mode and parent is base array.
-        if ( !(windowStyle & wxPG_HIDE_CATEGORIES) || p->GetParent() != m_pState->m_properties )
+        if ( !(windowStyle & wxPG_HIDE_CATEGORIES) || p->GetParent() != m_pState->DoGetRoot() )
         {
             textMarginHere += ((p->GetDepth()-1)*m_subgroup_extramargin);
         }
@@ -2347,11 +2270,6 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
         unsigned int si;
         int sx = x;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( si = 0; si < colCount; si++ )
         {
             sx += colWidths[si];
@@ -2490,11 +2408,6 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
         // Calculate cellRect.x for the last cell
         unsigned int ci = 0;
         int cellX = x + 1;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( ci = 0; ci < colCount; ci++ )
             cellX += colWidths[ci];
         cellRect.x = cellX;
@@ -2503,11 +2416,6 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
         // cell on the right was empty from text
         bool prevFilled = true;
         ci = colCount;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         do
         {
             ci--;
@@ -2641,7 +2549,7 @@ wxRect wxPropertyGrid::GetPropertyRect( const wxPGProperty* p1, const wxPGProper
     wxRect r;
 
     if ( m_width < 10 || m_height < 10 ||
-         !m_pState->m_properties->GetChildCount() ||
+         !m_pState->DoGetRoot()->GetChildCount() ||
          p1 == NULL )
         return wxRect(0,0,0,0);
 
@@ -2677,7 +2585,7 @@ wxRect wxPropertyGrid::GetPropertyRect( const wxPGProperty* p1, const wxPGProper
         }
     }
 
-    return wxRect(0,visTop-vy,m_pState->m_width,visBottom-visTop);
+    return wxRect(0,visTop-vy,m_pState->GetVirtualWidth(),visBottom-visTop);
 }
 
 // -----------------------------------------------------------------------
@@ -2728,11 +2636,6 @@ void wxPropertyGrid::DrawItemAndValueRelated( wxPGProperty* p )
     // Draw item, children, and parent too, if it is not category
     wxPGProperty* parent = p->GetParent();
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( parent &&
             !parent->IsCategory() &&
             parent->GetParent() )
@@ -2873,7 +2776,7 @@ void wxPropertyGrid::SwitchState( wxPropertyGridPageState* pNewState )
     if ( HasVirtualWidth() )
     {
         int minWidth = pgWidth;
-        if ( pNewState->m_width < minWidth )
+        if ( pNewState->GetVirtualWidth() < minWidth )
         {
             pNewState->m_width = minWidth;
             pNewState->CheckColumnWidths();
@@ -2887,7 +2790,7 @@ void wxPropertyGrid::SwitchState( wxPropertyGridPageState* pNewState )
         //    pNewState->m_fSplitterX = -1.0;
 
         pNewState->OnClientWidthChange(pgWidth,
-                                       pgWidth - pNewState->m_width);
+                                       pgWidth - pNewState->GetVirtualWidth());
     }
 
     m_propHover = NULL;
@@ -3134,11 +3037,6 @@ bool wxPropertyGrid::PerformValidation( wxPGProperty* p, wxVariant& pendingValue
     wxVariant listValue = pendingValue;
     listValue.SetName(p->GetBaseName());
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( pwc &&
             (pwc->HasFlag(wxPG_PROP_AGGREGATE) || pwc->HasFlag(wxPG_PROP_COMPOSED_VALUE)) )
     {
@@ -3368,11 +3266,6 @@ bool wxPropertyGrid::DoOnValidationFailure( wxPGProperty* property, wxVariant& W
 
         property->EnsureCells(colCount);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( unsigned int i=0; i<colCount; i++ )
         {
             wxPGCell& cell = property->m_cells[i];
@@ -3498,11 +3391,6 @@ bool wxPropertyGrid::DoPropertyChanged( wxPGProperty* p, unsigned int selFlags )
 
     wxPGProperty* topPaintedProperty = changedProperty;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( !topPaintedProperty->IsCategory() &&
             !topPaintedProperty->IsRoot() )
     {
@@ -3532,11 +3420,6 @@ bool wxPropertyGrid::DoPropertyChanged( wxPGProperty* p, unsigned int selFlags )
     pwc = p;
     wxPGProperty* prevPwc = NULL;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( prevPwc != topPaintedProperty )
     {
         pwc->SetFlag(wxPG_PROP_MODIFIED);
@@ -3578,11 +3461,6 @@ bool wxPropertyGrid::DoPropertyChanged( wxPGProperty* p, unsigned int selFlags )
     {
         pwc = m_chgInfo_baseChangedProperty;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while ( pwc != changedProperty )
         {
             SendEvent( wxEVT_PG_CHANGED, pwc, NULL );
@@ -4105,11 +3983,6 @@ void wxPropertyGrid::DeletePendingObjects()
     wxArrayPGObject& m_deletedEditorObjects = *gs_deletedEditorObjects[this];
 #endif
     // Delete pending property editors and their event handlers.
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( !m_deletedEditorObjects.empty() )
     {
         wxObject* obj = m_deletedEditorObjects.back();
@@ -4288,11 +4161,6 @@ bool wxPropertyGrid::DoSelectProperty( wxPGProperty* p, unsigned int flags )
         m_pState->DoSetSelection(p);
 
         // Redraw unselected
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( unsigned int i=0; i<prevSelection.size(); i++ )
         {
             DrawItem(prevSelection[i]);
@@ -4666,11 +4534,6 @@ bool wxPropertyGrid::DoHideProperty( wxPGProperty* p, bool hide, int flags )
 
     wxArrayPGProperty selection = m_pState->m_selection;  // Must use a copy
     int selRemoveCount = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( unsigned int i=0; i<selection.size(); i++ )
     {
         wxPGProperty* selected = selection[i];
@@ -4718,7 +4581,7 @@ void wxPropertyGrid::RecalculateVirtualSize( int forceXPos )
 
     m_iFlags |= wxPG_FL_RECALCULATING_VIRTUAL_SIZE;
 
-    int x = m_pState->m_width;
+    int x = m_pState->GetVirtualWidth();
     int y = m_pState->m_virtualHeight;
 
     int width, height;
@@ -4793,9 +4656,8 @@ void wxPropertyGrid::OnResize( wxSizeEvent& event )
         if ( !m_doubleBuffer )
         {
             // Create double buffer bitmap to draw on, if none
-            int w = (width>250)?width:250;
-            int h = height + dblh;
-            h = (h>400)?h:400;
+            int w = wxMax(width, 250);
+            int h = wxMax(height + dblh, 400);
             m_doubleBuffer = new wxBitmap( w, h );
         }
         else
@@ -4865,11 +4727,6 @@ void wxPropertyGrid::SetFocusOnCanvas()
         if ( focus )
         {
             wxWindow* parent = focus->GetParent();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             while ( parent )
             {
                 if ( parent == this )
@@ -5177,7 +5034,7 @@ bool wxPropertyGrid::HandleMouseMove( int x, unsigned int y,
     if ( m_dragStatus > 0 )
     {
         if ( x > (m_marginWidth + wxPG_DRAG_MARGIN) &&
-             x < (m_pState->m_width - wxPG_DRAG_MARGIN) )
+             x < (m_pState->GetVirtualWidth() - wxPG_DRAG_MARGIN) )
         {
 
             int newSplitterX = x - m_dragOffset;
@@ -5353,11 +5210,6 @@ bool wxPropertyGrid::HandleMouseMove( int x, unsigned int y,
             // properties, exclude them from iterator flags.
             int iterFlags = wxPG_ITERATE_VISIBLE & (~wxPG_PROP_CATEGORY);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for ( int i=(selection.size()-1); i>=0; i-- )
             {
                 // TODO: This could be optimized by keeping track of
@@ -5742,20 +5594,10 @@ void wxPropertyGrid::ClearActionTriggers( int action )
     wxPGHashMapI2I::iterator it;
     bool didSomething;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     do
     {
         didSomething = false;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( it = m_actionTriggers.begin();
               it != m_actionTriggers.end();
               it++ )
@@ -6065,11 +5907,6 @@ void wxPropertyGrid::OnIdle( wxIdleEvent& WXUNUSED(event) )
     // before and after the operation.
     // (Note that lists are changed at every operation.)
     size_t cntAfter = m_deletedProperties.size();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( cntAfter > 0 )
     {
         size_t cntBefore = cntAfter;
@@ -6084,11 +5921,6 @@ void wxPropertyGrid::OnIdle( wxIdleEvent& WXUNUSED(event) )
             break;
     }
     cntAfter = m_removedProperties.size();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( cntAfter > 0 )
     {
         size_t cntBefore = cntAfter;
@@ -6134,11 +5966,6 @@ void wxPropertyGrid::HandleFocusChange( wxWindow* newFocused )
     wxWindow* parent = newFocused;
 
     // This must be one of nextFocus' parents.
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( parent )
     {
         if ( parent == wndEditor )
@@ -6341,11 +6168,6 @@ bool wxPGStringTokenizer::HasMoreTokens()
 
     bool inToken = false;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     while ( i != str.end() )
     {
         a = *i;
@@ -6540,11 +6362,6 @@ wxPropertyGridEvent::~wxPropertyGridEvent()
         // being desroyed is at the end of the array.
         wxVector<wxPropertyGridEvent*>& liveEvents = m_pg->m_liveEvents;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( int i = liveEvents.size()-1; i >= 0; i-- )
         {
             if ( liveEvents[i] == this )
@@ -6598,11 +6415,6 @@ wxPropertyGridPopulator::~wxPropertyGridPopulator()
     // Free unused sets of choices
     wxPGHashMapS2P::iterator it;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for( it = m_dictIdChoices.begin(); it != m_dictIdChoices.end(); ++it )
     {
         wxPGChoicesData* data = (wxPGChoicesData*) it->second;
@@ -6705,11 +6517,6 @@ wxPGChoices wxPropertyGridPopulator::ParseChoices( const wxString& choicesString
             int state = 0;
             bool labelValid = false;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for ( ; it != choicesString.end(); ++it )
             {
                 wxChar c = *it;
