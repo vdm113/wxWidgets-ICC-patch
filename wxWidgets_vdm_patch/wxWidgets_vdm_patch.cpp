@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wxWidgets_vdm_patch/stdafx.cpp
 // Purpose:     patcher for ICL compiler
@@ -86,7 +93,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 
     size_t ln=0;
 
-    const vector<pair<string,string> > strip={ { "/*", "*/" }, { "'", "'" }, { "\"", "\""} };
+    bool in_comment=false;
 
     int ctrl_braces=0;
     stack<int> ctrl_stack;
@@ -121,7 +128,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
             }
         }
 
-        if(!do_patch && !strcmp(buf,inline_pragma)) {
+        if(!strcmp(buf,inline_pragma)) {
             continue;
         }
 
@@ -208,6 +215,38 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
             line.erase(line.find("//"));
         }
 
+        {
+        again2:
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
+            for(int i1=0; i1<line.length(); ++i1) {
+                if(in_comment) {
+                    if(line.find("*/")==0) {
+                        in_comment=false;
+                        line.erase(0,2);
+                        goto again2;
+                    }
+                    line.erase(0,1);
+                    goto again2;
+                } else {
+                    if(line.find("/*")==i1) {
+                        if(line.find("*/")==string::npos) {
+                            in_comment=true;
+                            line.erase(i1);
+                            break;
+                        }
+                        line.erase(i1,line.find("*/")-i1+2);
+                        goto again2;
+                    }
+                }
+            }
+        }
+        if(in_comment)
+            continue;
+
         auto command_winlets=[&]() {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
@@ -243,7 +282,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
                 return false;
             if(line.length()<seeking.length())
                 return false;
-            return false;
+            return true;
         };
 
         seeking="for";
@@ -391,11 +430,14 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
             if(ln.length()>0 && '{'==ln[ln.length()-1]) {
                 ctrl_stack.push(ctrl_cnt);
                 ctrl_cnt=0;
+                reformat=true;
             } else if(ln.length()>0 && '}'==ln[ln.length()-1]) {
                 if(--ctrl_cnt==0) {
                     ctrl_cnt=ctrl_stack.top();
                     ctrl_stack.pop();
                 }
+            } else if(ln.empty()) {
+                reformat=true;
             }
         }
 
