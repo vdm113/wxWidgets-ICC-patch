@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        internat.cpp
 // Purpose:     Demonstrates internationalisation (i18n) support
@@ -479,6 +486,11 @@ void MyFrame::OnTest2(wxCommandEvent& WXUNUSED(event))
         wxSscanf(d.GetValue(), "%d-%d", &first, &last);
         wxString s(title);
         s << "\n";
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (int n = first; n <= last; ++n)
         {
             s << n << " " <<
@@ -500,6 +512,11 @@ void MyFrame::OnTest3(wxCommandEvent& WXUNUSED(event))
 
     wxString s(_("Testing wxTRANSLATE() (gettext_noop)"));
     s << "\n";
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (size_t i = 0; i < WXSIZEOF(lines); ++i)
     {
         s << lines[i] << " -> " << wxGetTranslation(lines[i]) << "\n";

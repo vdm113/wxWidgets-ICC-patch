@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/sashwin.cpp
 // Purpose:     wxSashWindow implementation. A sash window has an optional
@@ -114,6 +121,11 @@ void wxSashWindow::OnMouseEvent(wxMouseEvent& event)
             // the area to draw on.
             wxWindow* parent = this;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             while (parent && !wxDynamicCast(parent, wxDialog) &&
                              !wxDynamicCast(parent, wxFrame))
               parent = parent->GetParent();
@@ -376,6 +388,11 @@ wxSashEdgePosition wxSashWindow::SashHitTest(int x, int y, int WXUNUSED(toleranc
     GetClientSize(& cx, & cy);
 
     int i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0; i < 4; i++)
     {
         wxSashEdge& edge = m_sashes[i];
@@ -463,6 +480,11 @@ void wxSashWindow::DrawBorders(wxDC& dc)
 void wxSashWindow::DrawSashes(wxDC& dc)
 {
     int i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0; i < 4; i++)
         if (m_sashes[i].m_show)
             DrawSash((wxSashEdgePosition) i, dc);

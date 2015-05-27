@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexRuby.cxx
  ** Lexer for Ruby.
@@ -70,6 +77,11 @@ static bool inline iswhitespace(char ch) {
 
 static bool followsDot(unsigned int pos, Accessor &styler) {
     styler.Flush();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (; pos >= 1; --pos) {
         int style = actual_style(styler.StyleAt(pos));
         char ch;
@@ -108,6 +120,11 @@ static int ClassifyWordRb(unsigned int start, unsigned int end, WordList &keywor
 	if (lim >= MAX_KEYWORD_LENGTH) {
 		lim = MAX_KEYWORD_LENGTH - 1;
 	}
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (i = start, j = 0; j < lim; i++, j++) {
 		s[j] = styler[i];
 	}
@@ -153,6 +170,11 @@ static bool isMatch(Accessor &styler, int lengthDoc, int pos, const char *val) {
 	if ((pos + static_cast<int>(strlen(val))) >= lengthDoc) {
 		return false;
 	}
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	while (*val) {
 		if (*val != styler[pos++]) {
 			return false;
@@ -174,6 +196,11 @@ static bool lookingAtHereDocDelim(Accessor	   &styler,
     if (!isMatch(styler, lengthDoc, pos, HereDocDelim)) {
         return false;
     }
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (--pos > 0) {
         char ch = styler[pos];
         if (isEOLChar(ch)) {
@@ -222,6 +249,11 @@ static bool currLineContainsHereDelims(int& startPos,
         return false;
 
     int pos;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (pos = startPos - 1; pos > 0; pos--) {
         char ch = styler.SafeGetCharAt(pos);
         if (isEOLChar(ch)) {
@@ -349,6 +381,11 @@ static bool RE_CanFollowKeyword(const char *keyword) {
 static int skipWhitespace(int startPos,
                            int endPos,
                            Accessor &styler) {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (int i = startPos; i < endPos; i++) {
         if (!iswhitespace(styler[i])) {
             return i;
@@ -393,6 +430,11 @@ static bool sureThisIsHeredoc(int iPrev,
     }
     int firstWordEndPosn = firstWordPosn;
     char *dst = prevWord;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (;;) {
         if (firstWordEndPosn >= iPrev ||
             styler.StyleAt(firstWordEndPosn) != prevStyle) {
@@ -423,6 +465,11 @@ static bool haveTargetMatch(int currPos,
         return false;
     }
     int i, j;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = targetStartPos, j = currPos;
          i < targetEndPos && j < lengthDoc;
          i++, j++) {
@@ -472,8 +519,18 @@ static bool sureThisIsNotHeredoc(int lt2StartPos,
     }
     int newStyle = prevStyle;
     // Some compilers incorrectly warn about uninit newStyle
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (firstWordPosn += 1; firstWordPosn <= lt2StartPos; firstWordPosn += 1) {
         // Inner loop looks at the name
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (; firstWordPosn <= lt2StartPos; firstWordPosn += 1) {
             newStyle = styler.StyleAt(firstWordPosn);
             if (newStyle != prevStyle) {
@@ -549,6 +606,11 @@ static bool sureThisIsNotHeredoc(int lt2StartPos,
     } else {
         return definitely_not_a_here_doc;
     }
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (; j < lengthDoc; j++) {
         if (!isSafeAlnum(styler[j])) {
             if (target_quote && styler[j] != target_quote) {
@@ -585,6 +647,11 @@ static bool sureThisIsNotHeredoc(int lt2StartPos,
     if (last_line > lineStart + 50) {
         last_line = lineStart + 50;
     }
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (int line_num = lineStart + 1; line_num <= last_line; line_num++) {
         if (allow_indent) {
             j = skipWhitespace(styler.LineStart(line_num), lengthDoc, styler);
@@ -623,6 +690,11 @@ static void synchronizeDocStart(unsigned int& startPos,
     int pos = startPos;
     // Quick way to characterize each line
     int lineStart;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (lineStart = styler.GetLine(pos); lineStart > 0; lineStart--) {
         // Now look at the style before the previous line's EOL
         pos = styler.LineStart(lineStart) - 1;
@@ -744,10 +816,20 @@ static void ColouriseRbDoc(unsigned int startPos, int length, int initStyle,
     int brace_counts = 0;   // Number of #{ ... } things within an expression
 
     int i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (i = 0; i < INNER_STRINGS_MAX_COUNT; i++) {
         inner_string_types[i] = 0;
         inner_expn_brace_counts[i] = 0;
     }
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);
@@ -1300,6 +1382,11 @@ static void ColouriseRbDoc(unsigned int startPos, int length, int initStyle,
                 Quote.Count--;
                 if (Quote.Count == 0) {
                     // Include the options
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                     while (isSafeAlpha(chNext)) {
                         i++;
 						ch = chNext;
@@ -1334,6 +1421,11 @@ static void ColouriseRbDoc(unsigned int startPos, int length, int initStyle,
                     // for now, handle as comment
                     styler.ColourTo(i - 1, state);
                     bool inEscape = false;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                     while (++i < lengthDoc) {
                         ch = styler.SafeGetCharAt(i);
                         if (ch == '\\') {
@@ -1418,6 +1510,11 @@ static void getPrevWord(int pos,
 {
     int i;
     styler.Flush();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = pos - 1; i > 0; i--) {
         if (actual_style(styler.StyleAt(i)) != word_state) {
             i++;
@@ -1427,6 +1524,11 @@ static void getPrevWord(int pos,
     if (i < pos - MAX_KEYWORD_LENGTH) // overflow
         i = pos - MAX_KEYWORD_LENGTH;
     char *dst = prevWord;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (; i <= pos; i++) {
         *dst++ = styler[i];
     }
@@ -1467,6 +1569,11 @@ static bool keywordIsModifier(const char *word,
     // We want to step backwards until we don't care about the current
     // position. But first move lineStartPosn back behind any
     // continuations immediately above word.
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (lineStartPosn > 0) {
         ch = styler[lineStartPosn-1];
         if (ch == '\n' || ch == '\r') {
@@ -1487,6 +1594,11 @@ static bool keywordIsModifier(const char *word,
     }
 
     styler.Flush();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (--pos >= lineStartPosn) {
         style = actual_style(styler.StyleAt(pos));
 		if (style == SCE_RB_DEFAULT) {
@@ -1573,6 +1685,11 @@ static bool keywordDoStartsLoop(int pos,
 	int lineStart = styler.GetLine(pos);
     int lineStartPosn = styler.LineStart(lineStart);
     styler.Flush();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (--pos >= lineStartPosn) {
         style = actual_style(styler.StyleAt(pos));
 		if (style == SCE_RB_DEFAULT) {
@@ -1588,6 +1705,11 @@ static bool keywordDoStartsLoop(int pos,
             char *dst = prevWord;
             int wordLen = 0;
             int start_word;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for (start_word = pos;
                  start_word >= lineStartPosn && actual_style(styler.StyleAt(start_word)) == SCE_RB_WORD;
                  start_word--) {
@@ -1689,6 +1811,11 @@ static void FoldRbDoc(unsigned int startPos, int length, int initStyle,
 	int styleNext = styler.StyleAt(startPos);
 	int stylePrev = startPos <= 1 ? SCE_RB_DEFAULT : styler.StyleAt(startPos - 1);
     bool buffer_ends_with_eol = false;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

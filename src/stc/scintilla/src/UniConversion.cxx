@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file UniConversion.cxx
  ** Functions to handle UTF-8 and UTF-16 strings.
@@ -23,6 +30,11 @@ enum { SURROGATE_TRAIL_LAST = 0xDFFF };
 
 unsigned int UTF8Length(const wchar_t *uptr, unsigned int tlen) {
 	unsigned int len = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (unsigned int i = 0; i < tlen && uptr[i];) {
 		unsigned int uch = uptr[i];
 		if (uch < 0x80) {
@@ -43,6 +55,11 @@ unsigned int UTF8Length(const wchar_t *uptr, unsigned int tlen) {
 
 void UTF8FromUTF16(const wchar_t *uptr, unsigned int tlen, char *putf, unsigned int len) {
 	int k = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (unsigned int i = 0; i < tlen && uptr[i];) {
 		unsigned int uch = uptr[i];
 		if (uch < 0x80) {
@@ -84,6 +101,11 @@ unsigned int UTF8CharLength(unsigned char ch) {
 unsigned int UTF16Length(const char *s, unsigned int len) {
 	unsigned int ulen = 0;
 	unsigned int charLen;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (unsigned int i=0; i<len;) {
 		unsigned char ch = static_cast<unsigned char>(s[i]);
 		if (ch < 0x80) {
@@ -106,6 +128,11 @@ unsigned int UTF16FromUTF8(const char *s, unsigned int len, wchar_t *tbuf, unsig
 	unsigned int ui=0;
 	const unsigned char *us = reinterpret_cast<const unsigned char *>(s);
 	unsigned int i=0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	while ((i<len) && (ui<tlen)) {
 		unsigned char ch = us[i++];
 		if (ch < 0x80) {
@@ -159,6 +186,11 @@ static int BytesFromLead(int leadByte) {
 
 void UTF8BytesOfLeadInitialise() {
 	if (!initialisedBytesOfLead) {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 		for (int i=0; i<256; i++) {
 			UTF8BytesOfLead[i] = BytesFromLead(i);
 		}

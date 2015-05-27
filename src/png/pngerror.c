@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 /* pngerror.c - stub functions for i/o and memory allocation
  *
@@ -50,6 +57,11 @@ png_error,(png_const_structrp png_ptr, png_const_charp error_message),
          {
             /* Strip "#nnnn " from beginning of error message. */
             int offset;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for (offset = 1; offset<15; offset++)
                if (error_message[offset] == ' ')
                   break;
@@ -57,6 +69,11 @@ png_error,(png_const_structrp png_ptr, png_const_charp error_message),
             if (png_ptr->flags&PNG_FLAG_STRIP_ERROR_TEXT)
             {
                int i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                for (i = 0; i < offset - 1; i++)
                   msg[i] = error_message[i + 1];
                msg[i - 1] = '\0';
@@ -115,6 +132,11 @@ png_safecat(png_charp buffer, size_t bufsize, size_t pos,
    if (buffer != NULL && pos < bufsize)
    {
       if (string != NULL)
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
          while (*string != '\0' && pos < bufsize-1)
            buffer[pos++] = *string++;
 
@@ -142,6 +164,11 @@ png_format_number(png_const_charp start, png_charp end, int format,
    /* This is written so that the loop always runs at least once, even with
     * number zero.
     */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
    while (end > start && (number != 0 || count < mincount))
    {
 
@@ -225,6 +252,11 @@ png_warning(png_const_structrp png_ptr, png_const_charp warning_message)
       {
          if (*warning_message == PNG_LITERAL_SHARP)
          {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for (offset = 1; offset < 15; offset++)
                if (warning_message[offset] == ' ')
                   break;
@@ -298,6 +330,11 @@ png_formatted_warning(png_const_structrp png_ptr, png_warning_parameters p,
     * one character from message[]; it must check for '\0' and continue to the
     * test if it finds the end of string.
     */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
    while (i<(sizeof msg)-1 && *message != '\0')
    {
       /* '@' at end of string is now just printed (previously it was skipped);
@@ -312,6 +349,11 @@ png_formatted_warning(png_const_structrp png_ptr, png_warning_parameters p,
          /* Search for the parameter digit, the index in the string is the
           * parameter to use.
           */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
          while (valid_parameters[parameter] != parameter_char &&
             valid_parameters[parameter] != '\0')
             ++parameter;
@@ -327,6 +369,11 @@ png_formatted_warning(png_const_structrp png_ptr, png_warning_parameters p,
              * that parm[] has been initialized, so there is no guarantee of a
              * trailing '\0':
              */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             while (i<(sizeof msg)-1 && *parm != '\0' && parm < pend)
                msg[i++] = *parm++;
 
@@ -424,6 +471,11 @@ png_format_buffer(png_const_structrp png_ptr, png_charp buffer, png_const_charp
    png_uint_32 chunk_name = png_ptr->chunk_name;
    int iout = 0, ishift = 24;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
    while (ishift >= 0)
    {
       int c = (int)(chunk_name >> ishift) & 0xff;
@@ -453,6 +505,11 @@ png_format_buffer(png_const_structrp png_ptr, png_charp buffer, png_const_charp
       buffer[iout++] = ':';
       buffer[iout++] = ' ';
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
       while (iin < PNG_MAX_ERROR_TEXT-1 && error_message[iin] != '\0')
          buffer[iout++] = error_message[iin++];
 
@@ -697,6 +754,11 @@ png_default_error,(png_const_structrp png_ptr, png_const_charp error_message),
       /* Strip "#nnnn " from beginning of error message. */
       int offset;
       char error_number[16];
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
       for (offset = 0; offset<15; offset++)
       {
          error_number[offset] = error_message[offset + 1];
@@ -759,6 +821,11 @@ png_default_warning(png_const_structrp png_ptr, png_const_charp warning_message)
    {
       int offset;
       char warning_number[16];
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
       for (offset = 0; offset < 15; offset++)
       {
          warning_number[offset] = warning_message[offset + 1];

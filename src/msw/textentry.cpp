@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/textentry.cpp
 // Purpose:     wxTextEntry implementation for wxMSW
@@ -188,6 +195,11 @@ public:
         if ( !RestartIfNeeded() )
             return S_FALSE;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while ( celt-- )
         {
             // Stop iterating if we need to update completions anyhow.
@@ -224,6 +236,11 @@ public:
         if ( !RestartIfNeeded() )
             return S_FALSE;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while ( celt-- )
         {
             if ( m_restart )
@@ -293,6 +310,11 @@ private:
     bool RestartIfNeeded()
     {
         bool rc = true;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( ;; )
         {
             wxString prefix;

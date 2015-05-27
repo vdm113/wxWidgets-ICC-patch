@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/wince/choicece.cpp
 // Purpose:     wxChoice implementation for smart phones driven by WinCE
@@ -249,6 +256,11 @@ bool wxChoice::CreateAndInit(wxWindow *parent,
     ms_allChoiceSpins.Add(this);
 
     // initialize the controls contents
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( int i = 0; i < n; i++ )
     {
         Append(choices[i]);
@@ -340,6 +352,11 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter& items,
     int n = wxNOT_FOUND;
 
     const unsigned int numItems = items.GetCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < numItems; ++i )
     {
         n = MSWInsertOrAppendItem(pos, items[i], msg);

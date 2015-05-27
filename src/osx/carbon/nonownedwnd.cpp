@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/nonownedwnd.cpp
 // Purpose:     implementation of wxNonOwnedWindow
@@ -747,6 +754,11 @@ wxMacTopLevelMouseEventHandler(EventHandlerCallRef WXUNUSED(handler),
 
         if (!gGlobalCursor.IsOk())
         {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             while ( cursorTarget && !cursorTarget->MacSetupCursor( cursorPoint ) )
             {
                 cursorTarget = cursorTarget->GetParent() ;

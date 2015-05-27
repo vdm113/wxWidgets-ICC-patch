@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/evtloop.h
 // Purpose:     declares wxEventLoop class
@@ -320,6 +327,11 @@ public:
         // TODO: this is, of course, horribly inefficient and a proper wait with
         //       timeout should be implemented for all ports natively...
         const wxMilliClock_t timeEnd = wxGetLocalTimeMillis() + timeout;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( ;; )
         {
             if ( Pending() )

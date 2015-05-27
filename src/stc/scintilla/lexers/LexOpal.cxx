@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexOpal.cxx
  ** Lexer for OPAL (functional language similar to Haskell)
@@ -29,6 +36,11 @@ using namespace Scintilla;
 inline static void getRange( unsigned int start, unsigned int end, Accessor & styler, char * s, unsigned int len )
 {
 	unsigned int i = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	while( ( i < end - start + 1 ) && ( i < len - 1 ) )
 	{
 		s[i] = static_cast<char>( styler[ start + i ] );
@@ -44,6 +56,11 @@ inline bool HandleString( unsigned int & cur, unsigned int one_too_much, Accesso
 	// Wait for string to close
 	bool even_backslash_count = true; // Without gaps in between
 	cur++; // Skip initial quote
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for( ; ; )
 	{
 		if( cur >= one_too_much )
@@ -117,6 +134,11 @@ inline bool HandleCommentBlock( unsigned int & cur, unsigned int one_too_much, A
 	// Wait for comment close
 	cur++;
 	bool star_found = false;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for( ; ; )
 	{
 		if( cur >= one_too_much )
@@ -195,6 +217,11 @@ inline bool HandleCommentLine( unsigned int & cur, unsigned int one_too_much, Ac
 	// Wait for end of line
 	bool fifteen_found = false;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for( ; ; )
 	{
 		cur++;
@@ -255,6 +282,11 @@ inline bool HandleSpace( unsigned int & cur, unsigned int one_too_much, Accessor
 	char ch;
 
 	cur++;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for( ; ; )
 	{
 		if( cur >= one_too_much )
@@ -285,6 +317,11 @@ inline bool HandleInteger( unsigned int & cur, unsigned int one_too_much, Access
 {
 	char ch;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for( ; ; )
 	{
 		cur++;
@@ -310,6 +347,11 @@ inline bool HandleWord( unsigned int & cur, unsigned int one_too_much, Accessor 
 	const unsigned int beg = cur;
 
 	cur++;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for( ; ; )
 	{
 		ch = styler.SafeGetCharAt( cur );
@@ -418,6 +460,11 @@ static void ColouriseOpalDoc( unsigned int startPos, int length, int initStyle, 
 
 	int state = initStyle;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for( ; ; )
 	{
 		switch( state )

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/xrc/xh_statbar.cpp
 // Purpose:     XRC resource for wxStatusBar
@@ -60,6 +67,11 @@ wxObject *wxStatusBarXmlHandler::DoCreateResource()
     {
         int *width = new int[fields];
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (int i = 0; i < fields; ++i)
         {
             width[i] = wxAtoi(widths.BeforeFirst(wxT(',')));
@@ -75,6 +87,11 @@ wxObject *wxStatusBarXmlHandler::DoCreateResource()
     if (!styles.empty())
     {
         int *style = new int[fields];
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (int i = 0; i < fields; ++i)
         {
             style[i] = wxSB_NORMAL;

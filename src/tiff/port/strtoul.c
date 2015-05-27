@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 
 /*
  * Copyright (c) 1990, 1993
@@ -56,6 +63,11 @@ strtoul(const char *nptr, char **endptr, int base)
 	 * See strtol for comments as to the logic used.
 	 */
 	s = nptr;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	do {
 		c = (unsigned char) *s++;
 	} while (isspace(c));
@@ -78,6 +90,11 @@ strtoul(const char *nptr, char **endptr, int base)
 
 	cutoff = ULONG_MAX / (unsigned long)base;
 	cutlim = (int)(ULONG_MAX % (unsigned long)base);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (acc = 0, any = 0;; c = (unsigned char) *s++) {
 		if (isdigit(c))
 			c -= '0';

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/evtloopconsole.cpp
 // Purpose:     wxConsoleEventLoop class for Windows
@@ -102,6 +109,11 @@ int wxMSWEventLoopBase::GetNextMessageTimeout(WXMSG *msg, unsigned long timeout)
     // MsgWaitForMultipleObjects() won't notice any input which was already
     // examined (e.g. using PeekMessage()) but not yet removed from the queue
     // so we need to remove any immediately messages manually
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( !::PeekMessage(msg, 0, 0, 0, PM_REMOVE) )
     {
         DWORD rc = ::MsgWaitForMultipleObjects

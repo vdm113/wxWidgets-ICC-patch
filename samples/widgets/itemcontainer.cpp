@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Program:     wxWidgets Widgets Sample
 // Name:        itemcontainer.cpp
@@ -131,6 +138,11 @@ void ItemContainerWidgetsPage::EndTest(const wxArrayString& items)
     }
     else
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( unsigned i = 0; i < count; ++i )
         {
             wxString str = m_container->GetString(i);
@@ -182,6 +194,11 @@ ItemContainerWidgetsPage::DumpContainerData(const wxArrayString& expected) const
     str << wxT("Current content:\n");
 
     unsigned i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( i = 0; i < m_container->GetCount(); ++i )
     {
         str << wxT(" - ") << m_container->GetString(i) << wxT(" [");
@@ -202,10 +219,20 @@ ItemContainerWidgetsPage::DumpContainerData(const wxArrayString& expected) const
     }
 
     str << wxT("Expected content:\n");
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( i = 0; i < expected.GetCount(); ++i )
     {
         const wxString& item = expected[i];
         str << wxT(" - ") << item << wxT("[");
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for( unsigned j = 0; j < m_items.GetCount(); ++j )
         {
             if ( m_items[j] == item )
@@ -236,6 +263,11 @@ ItemContainerWidgetsPage::MakeArray(const wxSortedArrayString& sorted)
 
     const size_t count = sorted.size();
     a.reserve(count);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
         a.push_back(sorted[n]);
 
@@ -267,6 +299,11 @@ void ItemContainerWidgetsPage::OnButtonTestItemContainer(wxCommandEvent&)
     StartTest(wxT("Append some items with data objects"));
     wxClientData **objects = new wxClientData *[m_items.GetCount()];
     unsigned i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( i = 0; i < m_items.GetCount(); ++i )
         objects[i] = CreateClientData(i);
     m_container->Append(m_items, objects);
@@ -275,6 +312,11 @@ void ItemContainerWidgetsPage::OnButtonTestItemContainer(wxCommandEvent&)
 
     StartTest(wxT("Append some items with data"));
     void **data = new void *[m_items.GetCount()];
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( i = 0; i < m_items.GetCount(); ++i )
         data[i] = wxUIntToPtr(i);
     m_container->Append(m_items, data);
@@ -282,11 +324,21 @@ void ItemContainerWidgetsPage::OnButtonTestItemContainer(wxCommandEvent&)
     delete[] data;
 
     StartTest(wxT("Append some items with data, one by one"));
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( i = 0; i < m_items.GetCount(); ++i )
         m_container->Append(m_items[i], wxUIntToPtr(i));
     EndTest(expected_result);
 
     StartTest(wxT("Append some items with data objects, one by one"));
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( i = 0; i < m_items.GetCount(); ++i )
         m_container->Append(m_items[i], CreateClientData(i));
     EndTest(expected_result);
@@ -294,6 +346,11 @@ void ItemContainerWidgetsPage::OnButtonTestItemContainer(wxCommandEvent&)
     if ( !m_container->IsSorted() )
     {
         StartTest(wxT("Insert in reverse order with data, one by one"));
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( unsigned i = m_items.GetCount(); i; --i )
             m_container->Insert(m_items[i - 1], 0, wxUIntToPtr(i - 1));
         EndTest(expected_result);

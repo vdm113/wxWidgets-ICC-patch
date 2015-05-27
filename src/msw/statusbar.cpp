@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/statusbar.cpp
 // Purpose:     native implementation of wxStatusBar
@@ -154,6 +161,11 @@ wxStatusBar::~wxStatusBar()
 
 #if wxUSE_TOOLTIPS
     // delete existing tooltips
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (size_t i=0; i<m_tooltips.size(); i++)
     {
         wxDELETE(m_tooltips[i]);
@@ -181,6 +193,11 @@ void wxStatusBar::SetFieldsCount(int nFields, const int *widths)
 
 #if wxUSE_TOOLTIPS
     // reset all current tooltips
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (size_t i=0; i<m_tooltips.size(); i++)
     {
         wxDELETE(m_tooltips[i]);
@@ -233,6 +250,11 @@ void wxStatusBar::MSWUpdateFieldsWidths()
 
     int nCurPos = 0;
     int i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( i = 0; i < count; i++ )
     {
         nCurPos += widthsAbs[i] + extraWidth;
@@ -250,6 +272,11 @@ void wxStatusBar::MSWUpdateFieldsWidths()
     }
 
     // Now that all parts have been created, set their text.
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( i = 0; i < count; i++ )
     {
         DoUpdateStatusText(i);
@@ -469,6 +496,11 @@ wxSize wxStatusBar::DoGetBestSize() const
 
     // calculate width
     int width = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t i = 0; i < m_panes.GetCount(); ++i )
     {
         int widthField =
@@ -542,6 +574,11 @@ void wxStatusBar::SetStatusStyles(int n, const int styles[])
     if (n != (int)m_panes.GetCount())
         return;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (int i = 0; i < n; i++)
     {
         int style;
@@ -601,6 +638,11 @@ wxStatusBar::MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam)
         {
             wxWindow *win;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for ( win = GetParent(); win; win = win->GetParent() )
             {
                 if ( win->IsTopLevel() )
@@ -623,6 +665,11 @@ wxStatusBar::MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam)
                 HasFlag(wxSTB_ELLIPSIZE_MIDDLE) ||
                     HasFlag(wxSTB_ELLIPSIZE_END) )
         {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for (int i=0; i<GetFieldsCount(); i++)
             {
                 // re-set the field text, in case we need to ellipsize

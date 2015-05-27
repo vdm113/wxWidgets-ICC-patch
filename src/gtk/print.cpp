@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/print.cpp
 // Author:      Anthony Bretaudeau
@@ -194,6 +201,11 @@ static GtkPaperSize* wxGetGtkPaperSize(wxPaperSize paperId, const wxSize& size)
         const double h = size.y;
         GtkPaperSize* paperSize = NULL;
         GList* list = gtk_paper_size_get_paper_sizes(true);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (GList* p = list; p; p = p->next)
         {
             GtkPaperSize* paperSize2 = static_cast<GtkPaperSize*>(p->data);
@@ -471,6 +483,11 @@ bool wxGtkPrintNativeData::TransferTo( wxPrintData &data )
     if (paper_size)
     {
         const char* name = gtk_paper_size_get_name(paper_size);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (size_t i = 1; i < WXSIZEOF(gs_paperList); i++)
         {
             if (strcmp(name, gs_paperList[i]) == 0)
@@ -1042,6 +1059,11 @@ void wxGtkPrinter::BeginPrint(wxPrintout *printout, GtkPrintOperation *operation
                 GtkPageRange* range;
                 int i;
                 range = gtk_print_settings_get_page_ranges (settings, &num_ranges);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                 for (i=0; i<num_ranges; i++)
                 {
                     if (range[i].end < range[i].start) range[i].end = range[i].start;
@@ -1493,11 +1515,21 @@ void wxGtkPrinterDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoff
     SetPen (m_pen);
 
     int i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( i =0; i<n ; i++ )
         CalcBoundingBox( points[i].x+xoffset, points[i].y+yoffset);
 
     cairo_move_to ( m_cairo, XLOG2DEV(points[0].x+xoffset), YLOG2DEV(points[0].y+yoffset) );
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 1; i < n; i++)
         cairo_line_to ( m_cairo, XLOG2DEV(points[i].x+xoffset), YLOG2DEV(points[i].y+yoffset) );
 
@@ -1521,6 +1553,11 @@ void wxGtkPrinterDCImpl::DoDrawPolygon(int n, const wxPoint points[],
     cairo_new_path(m_cairo);
     cairo_move_to( m_cairo, XLOG2DEV(x), YLOG2DEV(y) );
     int i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 1; i < n; i++)
     {
         int xx = points[i].x + xoffset;
@@ -1668,6 +1705,11 @@ void wxGtkPrinterDCImpl::DoDrawSpline(const wxPointList *points)
     CalcBoundingBox( (wxCoord)x3, (wxCoord)y3 );
 
     node = node->GetNext();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (node)
     {
         q = node->GetData();
@@ -1920,6 +1962,11 @@ void wxGtkPrinterDCImpl::SetPen( const wxPen& pen )
             int num = m_pen.GetDashes (&wx_dashes);
             gdouble *g_dashes = g_new( gdouble, num );
             int i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for (i = 0; i < num; ++i)
                 g_dashes[i] = (gdouble) wx_dashes[i];
             cairo_set_dash( m_cairo, g_dashes, num, 0);

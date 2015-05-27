@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/qt/calctrl.cpp
 // Purpose:     wxCalendarCtrl control implementation for wxQt
@@ -43,6 +50,11 @@ void wxCalendarCtrl::Init()
 {
     m_qtCalendar = NULL;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(m_attrs); n++ )
     {
         m_attrs[n] = NULL;
@@ -51,6 +63,11 @@ void wxCalendarCtrl::Init()
 
 wxCalendarCtrl::~wxCalendarCtrl()
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(m_attrs); n++ )
     {
         delete m_attrs[n];

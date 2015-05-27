@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/config.cpp
 // Purpose:     implementation of wxConfigBase class
@@ -333,6 +340,11 @@ void wxConfigPathChanger::UpdateIfDeleted()
         return;
 
     // find the deepest still existing parent path of the original path
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( !m_pContainer->HasGroup(m_strOldPath) )
     {
         m_strOldPath = m_strOldPath.BeforeLast(wxCONFIG_PATH_SEPARATOR);
@@ -356,6 +368,11 @@ wxString wxConfigBase::RemoveTrailingSeparator(const wxString& key)
     wxString path(key);
 
     // don't remove the only separator from a root group path!
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( path.length() > 1 )
     {
         if ( *path.rbegin() != wxCONFIG_PATH_SEPARATOR )
@@ -396,6 +413,11 @@ wxString wxExpandEnvVars(const wxString& str)
   strResult.Alloc(str.length());
 
   size_t m;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
   for ( size_t n = 0; n < str.length(); n++ ) {
     switch ( str[n].GetValue() ) {
 #ifdef __WINDOWS__
@@ -431,6 +453,11 @@ wxString wxExpandEnvVars(const wxString& str)
 
           m = n + 1;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
           while ( m < str.length() && (wxIsalnum(str[m]) || str[m] == wxT('_')) )
             m++;
 
@@ -511,6 +538,11 @@ void wxSplitPath(wxArrayString& aParts, const wxString& path)
 
   wxString strCurrent;
   wxString::const_iterator pc = path.begin();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
   for ( ;; ) {
     if ( pc == path.end() || *pc == wxCONFIG_PATH_SEPARATOR ) {
       if ( strCurrent == wxT(".") ) {

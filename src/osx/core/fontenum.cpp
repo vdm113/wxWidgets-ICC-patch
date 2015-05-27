@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/core/fontenum.cpp
 // Purpose:     wxFontEnumerator class for MacOS
@@ -51,6 +58,11 @@ bool wxFontEnumerator::EnumerateFacenames(wxFontEncoding encoding,
 #endif
         
         CFIndex count = CFArrayGetCount(cfFontFamilies);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for(CFIndex i = 0; i < count; i++)
         {
             CFStringRef fontName = (CFStringRef)CFArrayGetValueAtIndex(cfFontFamilies, i);
@@ -80,6 +92,11 @@ bool wxFontEnumerator::EnumerateFacenames(wxFontEncoding encoding,
         
         CFRelease(cfFontFamilies);
     }
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t i = 0 ; i < fontFamilies.Count() ; ++i )
     {
         if ( OnFacename( fontFamilies[i] ) == false )

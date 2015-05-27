@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        msw/ole/safearray.h
 // Purpose:     Helpers for working with OLE SAFEARRAYs.
@@ -201,6 +208,11 @@ public:
 
         VARIANT* data = static_cast<VARIANT*>(m_array->pvData);
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( size_t i = 0; i < variant.GetCount(); i++)
         {
             if ( !Convertor::ToArray(variant[i], data[i]) )
@@ -223,6 +235,11 @@ public:
 
         BSTR* data = static_cast<BSTR*>(m_array->pvData);
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( size_t i = 0; i < strings.size(); i++ )
         {
             if ( !Convertor::ToArray(strings[i], data[i]) )
@@ -304,6 +321,11 @@ public:
         size_t dims = m_array->cDims;
         size_t count = 1;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( size_t i = 0; i < dims; i++ )
             count *= m_array->rgsabound[i].cElements;
 
@@ -311,6 +333,11 @@ public:
         externT element;
 
         variant.ClearList();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( size_t i1 = 0; i1 < count; i1++ )
         {
             if ( !Convertor::FromArray(data[i1], element) )
@@ -338,6 +365,11 @@ public:
         size_t dims = m_array->cDims;
         size_t count = 1;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( size_t i = 0; i < dims; i++ )
             count *= m_array->rgsabound[i].cElements;
 
@@ -346,6 +378,11 @@ public:
 
         strings.clear();
         strings.reserve(count);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( size_t i1 = 0; i1 < count; i1++ )
         {
             if ( !Convertor::FromArray(data[i1], element) )

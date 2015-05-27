@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        layout.cpp
 // Purpose:     Layout sample
@@ -250,6 +257,11 @@ MyProportionsFrame::MyProportionsFrame(wxFrame *parent)
 
     // create the controls
     wxPanel *panel = new wxPanel(this, wxID_ANY);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( n = 0; n < WXSIZEOF(m_spins); n++ )
     {
         m_spins[n] = new wxSpinCtrl(panel);
@@ -259,6 +271,11 @@ MyProportionsFrame::MyProportionsFrame(wxFrame *parent)
     // lay them out
     m_sizer = new wxStaticBoxSizer(wxHORIZONTAL, panel,
                 wxT("Try changing elements proportions and resizing the window"));
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( n = 0; n < WXSIZEOF(m_spins); n++ )
         m_sizer->Add(m_spins[n], wxSizerFlags().Border());
 
@@ -278,6 +295,11 @@ MyProportionsFrame::MyProportionsFrame(wxFrame *parent)
 
 void MyProportionsFrame::UpdateProportions()
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(m_spins); n++ )
     {
         m_sizer->GetItem(n)->SetProportion(m_spins[n]->GetValue());
@@ -302,8 +324,18 @@ void MyProportionsFrame::OnProportionChanged(wxSpinEvent& WXUNUSED(event))
 
 void MyFlexSizerFrame::InitFlexSizer(wxFlexGridSizer *sizer, wxWindow* parent)
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( int i = 0; i < 3; i++ )
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( int j = 0; j < 3; j++ )
         {
             wxWindow * const cell = new wxGenericStaticText
@@ -700,6 +732,11 @@ MyWrapSizerFrame::MyWrapSizerFrame(wxFrame* parent)
     m_wrapSizer = new wxWrapSizer(wxHORIZONTAL);
 
     // A number of checkboxes inside a wrap sizer
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for( int i = 0; i < 6; i++ )
         DoAddCheckbox();
 

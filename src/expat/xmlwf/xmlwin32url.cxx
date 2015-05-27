@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 #include "expat.h"
 #ifdef XML_UNICODE
 #define UNICODE
@@ -162,6 +169,11 @@ Callback::OnDataAvailable(DWORD grfBSCF,
 	  XML_Char wcharset[CHARSET_MAX];
 	  XML_Char *p1 = wcharset;
 	  const char *p2 = charset;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	  while ((*p1++ = (unsigned char)*p2++) != 0)
 	    ;
 	  XML_SetEncoding(parser_, wcharset);
@@ -176,6 +188,11 @@ Callback::OnDataAvailable(DWORD grfBSCF,
   if (!parser_)
     return E_ABORT;
   if (pstgmed->tymed == TYMED_ISTREAM) {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (totalRead_ < dwSize) {
 #define READ_MAX (64*1024)
       DWORD nToRead = dwSize - totalRead_;
@@ -268,6 +285,11 @@ openStream(XML_Parser parser,
   hr = CreateURLMoniker(0, uri, &m);
 #else
   LPWSTR uriw = new wchar_t[strlen(uri) + 1];
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
   for (int i = 0;; i++) {
     uriw[i] = uri[i];
     if (uriw[i] == 0)
@@ -378,6 +400,11 @@ processURL(XML_Parser parser, IMoniker *baseMoniker,
     return 0;
   }
   MSG msg;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
   while (!qi.stop && GetMessage (&msg, NULL, 0, 0)) {
     TranslateMessage (&msg);
     DispatchMessage (&msg);

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /*************************************************************************
  *
  * Source file for Windows 95/Win32. 
@@ -143,6 +150,11 @@ HDIB LoadTIFFinDIB(LPSTR lpFileName)
           lpbmi = (LPBITMAPINFO)lpDIB;                      
                 
           //load the palette in the DIB
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
           for (i = (1<<BitsPerSample)-1; i >= 0; i--) 
             {             
              if (Palette16Bits)
@@ -164,6 +176,11 @@ HDIB LoadTIFFinDIB(LPSTR lpFileName)
         //read the tiff lines and save them in the DIB
 		//with RGB mode, we have to change the order of the 3 samples RGB
 <=> BGR
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (row = 0; row < imageLength; row += RowsPerStrip) 
           {     
             nrow = (row + RowsPerStrip > imageLength ? imageLength - row :
@@ -175,9 +192,19 @@ RowsPerStrip);
                   } 
             else
                   {  
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                     for (l = 0; l < nrow; l++) 
                       {
                          if (SamplePerPixel  == 3)
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                            for (i=0;i< (int) (imageWidth);i++)
                               {
                                lpBits[i*SamplePerPixel+0]=buf[l*LineSize+i*Sample
@@ -220,6 +247,11 @@ imageWidth*SamplePerPixel);
 
 static int checkcmap(int n, uint16* r, uint16* g, uint16* b)
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (n-- > 0)
         if (*r++ >= 256 || *g++ >= 256 || *b++ >= 256)
         return (16);

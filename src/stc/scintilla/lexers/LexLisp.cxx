@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexLisp.cxx
  ** Lexer for Lisp.
@@ -51,6 +58,11 @@ static void classifyWordLisp(unsigned int start, unsigned int end, WordList &key
 	char s[100];
 	unsigned int i;
 	bool digit_flag = true;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (i = 0; (i < end - start + 1) && (i < 99); i++) {
 		s[i] = styler[start + i];
 		s[i + 1] = '\0';
@@ -86,6 +98,11 @@ static void ColouriseLispDoc(unsigned int startPos, int length, int initStyle, W
 	char chNext = styler[startPos];
 	unsigned int lengthDoc = startPos + length;
 	styler.StartSegment(startPos);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);
@@ -242,6 +259,11 @@ static void FoldLispDoc(unsigned int startPos, int length, int /* initStyle */, 
 	int levelCurrent = levelPrev;
 	char chNext = styler[startPos];
 	int styleNext = styler.StyleAt(startPos);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);

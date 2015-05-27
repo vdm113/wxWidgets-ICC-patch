@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/treebkg.cpp
 // Purpose:     generic implementation of wxTreebook
@@ -289,6 +296,11 @@ wxTreebookPage *wxTreebook::DoRemovePage(size_t pagePos)
     // [pagePos, pagePos + subCount] -- the page and its children
 
     // deleting all the pages from the base class
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t i = 0; i <= subCount; ++i )
     {
         wxTreebookPage *page = wxBookCtrlBase::DoRemovePage(pagePos);
@@ -467,6 +479,11 @@ wxTreeItemId wxTreebook::DoInternalGetPage(size_t pagePos) const
 int wxTreebook::DoInternalFindPageById(wxTreeItemId pageId) const
 {
     const size_t count = m_treeIds.GetCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t i = 0; i < count; ++i )
     {
         if ( m_treeIds[i] == pageId )
@@ -596,6 +613,11 @@ int wxTreebook::DoSetSelection(size_t pagePos, int flags)
             // of this one with a non-NULL associated page
             wxTreeItemId childId = m_treeIds[pagePos];
             int actualPagePos = pagePos;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             while ( !page && childId.IsOk() )
             {
                 wxTreeItemIdValue cookie;

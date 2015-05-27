@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/richtext/richtextstyledlg.cpp
 // Purpose:
@@ -476,6 +483,11 @@ iaculis malesuada. Donec bibendum ipsum ut ante porta fringilla.\n");
         m_previewCtrl->BeginStyle(attr);
         long listStart = m_previewCtrl->GetInsertionPoint() + 1;
         int i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (i = 0; i < 10; i++)
         {
             wxRichTextAttr levelAttr = * listDef->GetLevelAttributes(i);
@@ -830,6 +842,11 @@ void wxRichTextStyleOrganiserDialog::OnNewListClick( wxCommandEvent& WXUNUSED(ev
 
         // Initialize the style to make it easier to edit
         int i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (i = 0; i < 10; i++)
         {
             wxString bulletSymbol;

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/cursor.cpp
 // Purpose:     wxCursor implementation
@@ -116,9 +123,19 @@ wxCursor::wxCursor(const char bits[], int width, int height,
         const int stride = gdk_pixbuf_get_rowstride(pixbuf);
         const int n_channels = gdk_pixbuf_get_n_channels(pixbuf);
         guchar* data = gdk_pixbuf_get_pixels(pixbuf);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (int j = 0; j < height; j++, data += stride)
         {
             guchar* p = data;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for (int i = 0; i < width; i++, p += n_channels)
             {
                 if (p[0])
@@ -297,7 +314,17 @@ void wxCursor::InitFromImage( const wxImage & image )
         {
             guchar* d = gdk_pixbuf_get_pixels(pixbuf);
             const int stride = gdk_pixbuf_get_rowstride(pixbuf);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for (int j = 0; j < h; j++, d += stride)
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                 for (int i = 0; i < w; i++, alpha++)
                     if (d[4 * i + 3])
                         d[4 * i + 3] = *alpha;
@@ -361,6 +388,11 @@ static void UpdateCursors(wxWindow* win, bool isBusyOrGlobalCursor)
     win->GTKUpdateCursor(isBusyOrGlobalCursor);
     const wxWindowList& children = win->GetChildren(); 
     wxWindowList::const_iterator i = children.begin();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (size_t n = children.size(); n--; ++i)
         UpdateCursors(*i, isBusyOrGlobalCursor);
 }
@@ -370,6 +402,11 @@ static void SetGlobalCursor(const wxCursor& cursor)
     GdkCursor* gdk_cursor = cursor.GetCursor();
     GdkDisplay* display = NULL;
     wxWindowList::const_iterator i = wxTopLevelWindows.begin();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (size_t n = wxTopLevelWindows.size(); n--; ++i)
     {
         wxWindow* win = *i;

@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexTAL.cxx
  ** Lexer for TAL
@@ -51,6 +58,11 @@ static void getRange(unsigned int start,
 		char *s,
 		unsigned int len) {
 	unsigned int i = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	while ((i < end - start + 1) && (i < len-1)) {
 		s[i] = static_cast<char>(tolower(styler[start + i]));
 		i++;
@@ -152,6 +164,11 @@ static void ColouriseTACLDoc(unsigned int startPos, int length, int initStyle, W
 	styler.StartSegment(startPos);
 	int visibleChars = 0;
 	unsigned int i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
 
@@ -297,6 +314,11 @@ static void FoldTACLDoc(unsigned int startPos, int length, int initStyle, WordLi
 
 	int lastStart = 0;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);
@@ -347,6 +369,11 @@ static void FoldTACLDoc(unsigned int startPos, int length, int initStyle, WordLi
 		if (foldPreprocessor && (style == SCE_C_PREPROCESSOR)) {
 			if (ch == '{' && chNext == '$') {
 				unsigned int j=i+2; // skip {$
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 				while ((j<endPos) && IsASpaceOrTab(styler.SafeGetCharAt(j))) {
 					j++;
 				}

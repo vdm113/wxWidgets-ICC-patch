@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/ole/automtn.cpp
 // Purpose:     OLE automation utilities
@@ -127,6 +134,11 @@ bool wxAutomationObject::Invoke(const wxString& member, int action,
     // Find number of names args
     int namedArgCount = 0;
     int i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0; i < noArgs; i++)
     {
         if ( !INVOKEARG(i).GetName().empty() )
@@ -143,6 +155,11 @@ bool wxAutomationObject::Invoke(const wxString& member, int action,
     // (all totally logical; hey, we're dealing with OLE here.)
 
     int j = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0; i < namedArgCount; i++)
     {
         if ( !INVOKEARG(i).GetName().empty() )
@@ -183,6 +200,11 @@ bool wxAutomationObject::Invoke(const wxString& member, int action,
 
     // Convert the wxVariants to VARIANTARGs
     wxVector<wxOleVariantArg> oleArgs(noArgs);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (i = 0; i < noArgs; i++)
     {
         // Again, reverse args

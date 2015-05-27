@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/html/helpfrm.cpp
 // Purpose:     wxHtmlHelpFrame
@@ -221,6 +228,11 @@ void wxHtmlHelpFrame::AddGrabIfNeeded()
 
     // Check if there are any modal windows present,
     // in which case we need to add a grab.
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( wxWindowList::iterator it = wxTopLevelWindows.begin();
           it != wxTopLevelWindows.end();
           ++it )

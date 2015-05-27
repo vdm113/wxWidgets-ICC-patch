@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /* infback.c -- inflate using a call-back interface
  * Copyright (C) 1995-2011 Mark Adler
  * For conditions of distribution and use, see copyright notice in zlib.h
@@ -94,9 +101,29 @@ struct inflate_state FAR *state;
 
         /* literal/length table */
         sym = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while (sym < 144) state->lens[sym++] = 8;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while (sym < 256) state->lens[sym++] = 9;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while (sym < 280) state->lens[sym++] = 7;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while (sym < 288) state->lens[sym++] = 8;
         next = fixed;
         lenfix = next;
@@ -105,6 +132,11 @@ struct inflate_state FAR *state;
 
         /* distance table */
         sym = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while (sym < 32) state->lens[sym++] = 5;
         distfix = next;
         bits = 5;
@@ -126,6 +158,7 @@ struct inflate_state FAR *state;
 
 /* Load returned state from inflate_fast() */
 #define LOAD() \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         put = strm->next_out; \
         left = strm->avail_out; \
@@ -137,6 +170,7 @@ struct inflate_state FAR *state;
 
 /* Set state from registers for inflate_fast() */
 #define RESTORE() \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         strm->next_out = put; \
         strm->avail_out = left; \
@@ -148,6 +182,7 @@ struct inflate_state FAR *state;
 
 /* Clear the input bit accumulator */
 #define INITBITS() \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hold = 0; \
         bits = 0; \
@@ -156,6 +191,7 @@ struct inflate_state FAR *state;
 /* Assure that some input is available.  If input is requested, but denied,
    then return a Z_BUF_ERROR from inflateBack(). */
 #define PULL() \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         if (have == 0) { \
             have = in(in_desc, &next); \
@@ -170,6 +206,7 @@ struct inflate_state FAR *state;
 /* Get a byte of input into the bit accumulator, or return from inflateBack()
    with an error if there is no input available. */
 #define PULLBYTE() \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         PULL(); \
         have--; \
@@ -181,7 +218,9 @@ struct inflate_state FAR *state;
    not enough available input to do that, then return from inflateBack() with
    an error. */
 #define NEEDBITS(n) \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
+VDM_MACRO_PRAGMA_IVDEP \
         while (bits < (unsigned)(n)) \
             PULLBYTE(); \
     } while (0)
@@ -192,6 +231,7 @@ struct inflate_state FAR *state;
 
 /* Remove n bits from the bit accumulator */
 #define DROPBITS(n) \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hold >>= (n); \
         bits -= (unsigned)(n); \
@@ -199,6 +239,7 @@ struct inflate_state FAR *state;
 
 /* Remove zero to seven bits as needed to go to a byte boundary */
 #define BYTEBITS() \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         hold >>= bits & 7; \
         bits -= bits & 7; \
@@ -208,6 +249,7 @@ struct inflate_state FAR *state;
    if it's full.  If the write fails, return from inflateBack() with a
    Z_BUF_ERROR. */
 #define ROOM() \
+VDM_MACRO_PRAGMA_IVDEP \
     do { \
         if (left == 0) { \
             put = state->window; \
@@ -287,6 +329,11 @@ void FAR *out_desc;
     left = state->wsize;
 
     /* Inflate until end of block marked as last */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (;;)
         switch (state->mode) {
         case TYPE:
@@ -338,6 +385,11 @@ void FAR *out_desc;
             INITBITS();
 
             /* copy stored block from input to output */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             while (state->length != 0) {
                 copy = state->length;
                 PULL();
@@ -375,11 +427,21 @@ void FAR *out_desc;
 
             /* get code length code lengths (not a typo) */
             state->have = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             while (state->have < state->ncode) {
                 NEEDBITS(3);
                 state->lens[order[state->have++]] = (unsigned short)BITS(3);
                 DROPBITS(3);
             }
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             while (state->have < 19)
                 state->lens[order[state->have++]] = 0;
             state->next = state->codes;
@@ -396,7 +458,17 @@ void FAR *out_desc;
 
             /* get length and distance code code lengths */
             state->have = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             while (state->have < state->nlen + state->ndist) {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                 for (;;) {
                     here = state->lencode[BITS(state->lenbits)];
                     if ((unsigned)(here.bits) <= bits) break;
@@ -438,6 +510,11 @@ void FAR *out_desc;
                         state->mode = BAD;
                         break;
                     }
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                     while (copy--)
                         state->lens[state->have++] = (unsigned short)len;
                 }
@@ -490,6 +567,11 @@ void FAR *out_desc;
             }
 
             /* get a literal, length, or end-of-block code */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for (;;) {
                 here = state->lencode[BITS(state->lenbits)];
                 if ((unsigned)(here.bits) <= bits) break;
@@ -497,6 +579,11 @@ void FAR *out_desc;
             }
             if (here.op && (here.op & 0xf0) == 0) {
                 last = here;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                 for (;;) {
                     here = state->lencode[last.val +
                             (BITS(last.bits + last.op) >> last.bits)];
@@ -544,6 +631,11 @@ void FAR *out_desc;
             Tracevv((stderr, "inflate:         length %u\n", state->length));
 
             /* get distance code */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for (;;) {
                 here = state->distcode[BITS(state->distbits)];
                 if ((unsigned)(here.bits) <= bits) break;
@@ -551,6 +643,11 @@ void FAR *out_desc;
             }
             if ((here.op & 0xf0) == 0) {
                 last = here;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                 for (;;) {
                     here = state->distcode[last.val +
                             (BITS(last.bits + last.op) >> last.bits)];
@@ -583,6 +680,11 @@ void FAR *out_desc;
             Tracevv((stderr, "inflate:         distance %u\n", state->offset));
 
             /* copy match from window to output */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             do {
                 ROOM();
                 copy = state->wsize - state->offset;
@@ -597,6 +699,11 @@ void FAR *out_desc;
                 if (copy > state->length) copy = state->length;
                 state->length -= copy;
                 left -= copy;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
                 do {
                     *put++ = *from++;
                 } while (--copy);

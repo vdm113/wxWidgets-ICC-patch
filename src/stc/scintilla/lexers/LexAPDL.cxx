@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexAPDL.cxx
  ** Lexer for APDL. Based on the lexer for Assembler by The Black Horus.
@@ -59,6 +66,11 @@ static void ColouriseAPDLDoc(unsigned int startPos, int length, int initStyle, W
 	initStyle = SCE_APDL_DEFAULT;
 	StyleContext sc(startPos, length, initStyle, styler);
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
 		// Determine if the current state should terminate.
 		if (sc.state == SCE_APDL_NUMBER) {
@@ -197,6 +209,11 @@ static void FoldAPDLDoc(unsigned int startPos, int length, int,
     bool foldCompact = styler.GetPropertyInt("fold.compact", 1) != 0;
 	// Scan for tokens at the start of the line (they may include
 	// whitespace, for tokens like "End Function"
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (i = startPos; i < endPos; i++) {
 		int c = styler.SafeGetCharAt(i);
 		if (!done && !go) {

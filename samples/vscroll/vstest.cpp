@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        samples/vscroll/vstest.cpp
 // Purpose:     VScroll wxWidgets sample
@@ -107,6 +114,11 @@ public:
         SetRowCount(MAX_LINES);
 
         int i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( i = 0; i < MAX_LINES; ++i )
             m_heights[i] = rand()%25+16; // low: 16; high: 40
 
@@ -141,6 +153,11 @@ public:
         wxSize clientSize = GetClientSize();
 
         wxCoord y = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( size_t line = lineFirst; line < lineLast; line++ )
         {
             dc.DrawLine(0, y, clientSize.GetWidth(), y);
@@ -204,6 +221,11 @@ public:
         SetColumnCount(MAX_LINES);
 
         int i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( i = 0; i < MAX_LINES; ++i )
             m_heights[i] = rand()%25+16; // low: 15; high: 40
 
@@ -238,6 +260,11 @@ public:
         wxSize clientSize = GetClientSize();
 
         wxCoord x = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( size_t line = lineFirst; line < lineLast; line++ )
         {
             dc.DrawLine(x, 0, x, clientSize.GetHeight());
@@ -301,6 +328,11 @@ public:
         SetRowColumnCount(MAX_LINES, MAX_LINES);
 
         int i;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( i = 0; i < MAX_LINES; ++i )
         {
             m_heights[i] = rand()%30+31; // low: 30; high: 60
@@ -344,12 +376,22 @@ public:
 
         wxCoord y = 0;
         wxCoord x = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( size_t row = rowFirst; row < rowLast; row++ )
         {
             wxCoord rowHeight = OnGetRowHeight(row);
             dc.DrawLine(0, y, clientSize.GetWidth(), y);
 
             x = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for ( size_t col = columnFirst; col < columnLast; col++ )
             {
                 wxCoord colWidth = OnGetColumnWidth(col);

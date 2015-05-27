@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/motif/radiobut.cpp
 // Purpose:     wxRadioButton
@@ -90,6 +97,11 @@ bool wxRadioButton::Create(wxWindow *parent, wxWindowID id,
         /* search backward for last group start */
         wxRadioButton *chief = NULL;
         wxWindowList::compatibility_iterator node = parent->GetChildren().GetLast();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while (node)
         {
             wxWindow *child = node->GetData();
@@ -179,6 +191,11 @@ wxRadioButton* wxRadioButton::AddInCycle(wxRadioButton *cycle)
     else
     {
         wxRadioButton* current = cycle;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while ( current->m_cycle != cycle )
             current = current->m_cycle;
         m_cycle = cycle;
@@ -195,6 +212,11 @@ wxRadioButton* wxRadioButton::ClearSelections()
 
     if (cycle)
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while (cycle != this)
         {
             if ( cycle->GetValue() )
@@ -213,6 +235,11 @@ void wxRadioButton::RemoveFromCycle()
 {
     wxRadioButton* curr = NextInCycle();
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while( curr )
     {
         if( curr->NextInCycle() == this )

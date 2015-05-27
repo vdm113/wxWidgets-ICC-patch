@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexSpice.cxx
  ** Lexer for Spice
@@ -64,6 +71,11 @@ static inline bool IsSeparatorOrDelimiterCharacter(int ch);
 
 static void ColouriseComment(StyleContext& sc, bool&) {
     sc.SetState(SCE_SPICE_COMMENTLINE);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (!sc.atLineEnd) {
         sc.Forward();
     }
@@ -81,6 +93,11 @@ static void ColouriseNumber(StyleContext& sc, bool& apostropheStartsAttribute) {
     sc.SetState(SCE_SPICE_NUMBER);
     // Get all characters up to a delimiter or a separator, including points, but excluding
     // double points (ranges).
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (!IsSeparatorOrDelimiterCharacter(sc.ch) || (sc.ch == '.' && sc.chNext != '.')) {
         number += static_cast<char>(sc.ch);
         sc.Forward();
@@ -90,6 +107,11 @@ static void ColouriseNumber(StyleContext& sc, bool& apostropheStartsAttribute) {
             (sc.ch == '+' || sc.ch == '-')) {
         number += static_cast<char>(sc.ch);
         sc.Forward ();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         while (!IsSeparatorOrDelimiterCharacter(sc.ch)) {
             number += static_cast<char>(sc.ch);
             sc.Forward();
@@ -107,6 +129,11 @@ static void ColouriseWord(StyleContext& sc, WordList& keywords, WordList& keywor
     apostropheStartsAttribute = true;
     sc.SetState(SCE_SPICE_IDENTIFIER);
     std::string word;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (!sc.atLineEnd && !IsSeparatorOrDelimiterCharacter(sc.ch)) {
         word += static_cast<char>(tolower(sc.ch));
         sc.Forward();
@@ -147,6 +174,11 @@ static void ColouriseDocument(
     StyleContext sc(startPos, length, initStyle, styler);
     int lineCurrent = styler.GetLine(startPos);
     bool apostropheStartsAttribute = (styler.GetLineState(lineCurrent) & 1) != 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while (sc.More()) {
         if (sc.atLineEnd) {
             // Go to the next line

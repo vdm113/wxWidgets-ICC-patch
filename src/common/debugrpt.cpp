@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/debugrpt.cpp
 // Purpose:     wxDebugReport and related classes implementation
@@ -148,6 +155,11 @@ void XmlStackWalker::OnStackFrame(const wxStackFrame& frame)
         wxXmlNode *nodeParams = new wxXmlNode(wxXML_ELEMENT_NODE, wxT("parameters"));
         nodeFrame->AddChild(nodeParams);
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( size_t n = 0; n < nParams; n++ )
         {
             wxXmlNode *
@@ -220,6 +232,11 @@ wxDebugReport::~wxDebugReport()
         // remove all files in this directory
         wxDir dir(m_dir);
         wxString file;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( bool cont = dir.GetFirst(&file); cont; cont = dir.GetNext(&file) )
         {
             if ( wxRemove(wxFileName(m_dir, file).GetFullPath()) != 0 )
@@ -371,6 +388,11 @@ bool wxDebugReport::DoAddLoadedModules(wxXmlNode *nodeModules)
     if ( !count )
         return false;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
         const wxDynamicLibraryDetails& info = modules[n];
@@ -582,6 +604,11 @@ bool wxDebugReport::DoProcess()
 
     wxString name, desc;
     const size_t count = GetFilesCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
         GetFile(n, &name, &desc);
@@ -655,6 +682,11 @@ bool wxDebugReportCompress::DoProcess()
 
     // add all files to the ZIP one
     wxString name, desc;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
         GetFile(n, &name, &desc);
@@ -729,6 +761,11 @@ bool wxDebugReportUpload::DoProcess()
         const size_t count = errors.GetCount();
         if ( count )
         {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for ( size_t n = 0; n < count; n++ )
             {
                 wxLogWarning(wxT("%s"), errors[n].c_str());
