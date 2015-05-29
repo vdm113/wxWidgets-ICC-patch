@@ -100,7 +100,8 @@ public:
 
         Example return values:
         - Unix: @c ~/appinfo
-        - Windows: @c "C:\Documents and Settings\username\My Documents\appinfo"
+        - Windows: @c "C:\Users\username\Documents\appinfo" or
+                   @c "C:\Documents and Settings\username\My Documents\appinfo"
         - Mac: @c ~/Documents/appinfo
 
         @since 2.9.0
@@ -111,8 +112,12 @@ public:
         Return the directory containing the system config files.
         Example return values:
         - Unix: @c /etc
-        - Windows: @c "C:\Documents and Settings\All Users\Application Data"
+        - Windows: @c "C:\ProgramData\appinfo" or
+                   @c "C:\Documents and Settings\All Users\Application Data\appinfo"
         - Mac: @c /Library/Preferences
+
+        @note Under Windows this includes @c appinfo which makes it inconsistent
+        with other ports.
 
         @see wxFileConfig
     */
@@ -144,7 +149,8 @@ public:
 
         Example return values:
         - Unix: @c ~ (the home directory)
-        - Windows: @c "C:\Documents and Settings\username\My Documents"
+        - Windows: @c "C:\Users\username\Documents" or
+                   @c "C:\Documents and Settings\username\My Documents"
         - Mac: @c ~/Documents
 
         @since 2.7.0
@@ -240,7 +246,8 @@ public:
     /**
         Return the directory for the user config files:
         - Unix: @c ~ (the home directory)
-        - Windows: @c "C:\Documents and Settings\username\Application Data"
+        - Windows: @c "C:\Users\username\AppData\Roaming" or
+                   @c "C:\Documents and Settings\username\Application Data"
         - Mac: @c ~/Library/Preferences
 
         Only use this method if you have a single configuration file to put in this
@@ -252,7 +259,8 @@ public:
     /**
         Return the directory for the user-dependent application data files:
         - Unix: @c ~/.appinfo
-        - Windows: @c "C:\Documents and Settings\username\Application Data\appinfo"
+        - Windows: @c "C:\Users\username\AppData\Roaming\appinfo" or
+                   @c "C:\Documents and Settings\username\Application Data\appinfo"
         - Mac: @c "~/Library/Application Support/appinfo"
     */
     virtual wxString GetUserDataDir() const;
@@ -262,6 +270,7 @@ public:
         the other machines.
 
         This is the same as GetUserDataDir() for all platforms except Windows where it returns
+        @c "C:\Users\username\AppData\Local\appinfo" or
         @c "C:\Documents and Settings\username\Local Settings\Application Data\appinfo"
     */
     virtual wxString GetUserLocalDataDir() const;
