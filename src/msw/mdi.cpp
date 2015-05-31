@@ -1537,11 +1537,6 @@ public:
     bool GetNext(wxString& str)
     {
         // Loop until we get the label of the next menu item.
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( m_pos++; m_pos < m_numItems; m_pos++ )
         {
             // As cch field is updated by GetMenuItemInfo(), it's important to
@@ -1590,11 +1585,6 @@ void MDIInsertWindowMenu(wxWindow *win, WXHMENU hMenu, HMENU menuWin)
         bool inserted = false;
         wxString buf;
         MenuIterator it(hmenu);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while ( it.GetNext(buf) )
         {
             const wxString label = wxStripMenuCodes(buf);
@@ -1628,11 +1618,6 @@ void MDIRemoveWindowMenu(wxWindow *win, WXHMENU hMenu)
     {
         wxString buf;
         MenuIterator it(hmenu);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         while ( it.GetNext(buf) )
         {
             if ( wxStrcmp(buf, wxGetTranslation(WINDOW_MENU_LABEL)) == 0 )
