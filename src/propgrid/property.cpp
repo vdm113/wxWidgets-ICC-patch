@@ -3317,7 +3317,7 @@ void wxPGChoices::Add( const wxArrayString& arr, const wxArrayInt& arrint )
     const unsigned int itemcount = arr.size();
     const unsigned int valcount = arrint.size();
     wxASSERT_MSG( valcount >= itemcount || valcount == 0,
-                  wxT("Insufficient number of values in the array") );
+                  wxS("Insufficient number of values in the array") );
 
     for ( unsigned int i = 0; i < itemcount; i++ )
     {
