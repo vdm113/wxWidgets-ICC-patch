@@ -2074,15 +2074,7 @@ void wxMultiChoiceProperty::GenerateValueAsString( wxVariant& value,
     if ( itemCount )
         tempStr.append( wxS("\"") );
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd
-#   endif
-#endif /* VDM auto patch */
-    for ( size_t i = 0; i < itemCount; i++ )
+    for ( i = 0; i < itemCount; i++ )
     {
         tempStr.append( strings[i] );
         tempStr.append( wxS("\"") );
