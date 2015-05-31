@@ -803,7 +803,7 @@ void wxPGProperty::GetDisplayInfo( unsigned int column,
                                    const wxPGCell** pCell )
 {
     wxASSERT_MSG(!pCell || !(*pCell),
-          wxT("Cell pointer is a dummy argument and shouldn't be used"));
+          wxS("Cell pointer is a dummy argument and shouldn't be used"));
     wxUnusedVar(pCell);
     GetDisplayInfo(column, choiceIndex, flags, pString, (wxPGCell*)NULL);
 }
@@ -816,7 +816,7 @@ void wxPGProperty::GetDisplayInfo( unsigned int column,
                                    wxPGCell* pCell )
 {
     wxCHECK_RET( GetGrid(),
-                 wxT("Cannot obtain display info for detached property") );
+                 wxS("Cannot obtain display info for detached property") );
 
     // Get default cell
     wxPGCell cell = GetCell(column);
@@ -1067,7 +1067,7 @@ wxString wxPGProperty::GetValueAsString( int argFlags ) const
 #endif
     wxPropertyGrid* pg = GetGrid();
     wxASSERT_MSG( pg,
-                  wxT("Cannot get valid value for detached property") );
+                  wxS("Cannot get valid value for detached property") );
     if ( !pg )
     {
         return wxEmptyString;
@@ -1144,7 +1144,7 @@ bool wxPGProperty::StringToValue( wxVariant& v, const wxString& text, int argFla
     int propagatedFlags = argFlags & (wxPG_REPORT_ERROR|wxPG_PROGRAMMATIC_VALUE);
 
     wxLogTrace("propgrid",
-               wxT(">> %s.StringToValue('%s')"), GetLabel(), text);
+               wxS(">> %s.StringToValue('%s')"), GetLabel(), text);
 
     wxString::const_iterator it = text.begin();
     wxUniChar a;
@@ -1182,7 +1182,7 @@ bool wxPGProperty::StringToValue( wxVariant& v, const wxString& text, int argFla
                     wxString childName = child->GetBaseName();
 
                     wxLogTrace("propgrid",
-                               wxT("token = '%s', child = %s"),
+                               wxS("token = '%s', child = %s"),
                                token, childName);
 
                     // Add only if editable or setting programmatically
@@ -1387,9 +1387,9 @@ void wxPGProperty::OnCustomPaint( wxDC& dc,
 {
     wxBitmap* bmp = m_valueBitmap;
 
-    wxCHECK_RET( bmp && bmp->IsOk(), wxT("invalid bitmap") );
+    wxCHECK_RET( bmp && bmp->IsOk(), wxS("invalid bitmap") );
 
-    wxCHECK_RET( rect.x >= 0, wxT("unexpected measure call") );
+    wxCHECK_RET( rect.x >= 0, wxS("unexpected measure call") );
 
     dc.DrawBitmap(*bmp,rect.x,rect.y);
 }
@@ -1437,7 +1437,7 @@ void wxPGProperty::SetValue( wxVariant value, wxVariant* pList, int flags )
             wxVariant newValue;
             AdaptListToValue(value, &newValue);
             value = newValue;
-            //wxLogDebug(wxT(">> %s.SetValue() adapted list value to type '%s'"),GetName().c_str(),value.GetType().c_str());
+            //wxLogDebug(wxS(">> %s.SetValue() adapted list value to type '%s'"),GetName().c_str(),value.GetType().c_str());
         }
 
         if ( HasFlag( wxPG_PROP_AGGREGATE) )
@@ -1453,7 +1453,7 @@ void wxPGProperty::SetValue( wxVariant value, wxVariant* pList, int flags )
             wxVariantList::iterator node;
             unsigned int i = 0;
 
-            //wxLogDebug(wxT(">> %s.SetValue() pList parsing"),GetName().c_str());
+            //wxLogDebug(wxS(">> %s.SetValue() pList parsing"),GetName().c_str());
 
             // Children in list can be in any order, but we will give hint to
             // GetPropertyByNameWH(). This optimizes for full list parsing.
@@ -1468,7 +1468,7 @@ void wxPGProperty::SetValue( wxVariant value, wxVariant* pList, int flags )
                 wxPGProperty* child = GetPropertyByNameWH(childValue.GetName(), i);
                 if ( child )
                 {
-                    //wxLogDebug(wxT("%i: child = %s, childValue.GetType()=%s"),i,child->GetBaseName().c_str(),childValue.GetType().c_str());
+                    //wxLogDebug(wxS("%i: child = %s, childValue.GetType()=%s"),i,child->GetBaseName().c_str(),childValue.GetType().c_str());
                     if ( childValue.IsType(wxPG_VARIANT_TYPE_LIST) )
                     {
                         if ( child->HasFlag(wxPG_PROP_AGGREGATE) && !(flags & wxPG_SETVAL_AGGREGATED) )
@@ -1562,7 +1562,7 @@ void wxPGProperty::SetValue( wxVariant value, wxVariant* pList, int flags )
 void wxPGProperty::SetValueInEvent( wxVariant value ) const
 {
     wxCHECK_RET( GetGrid(),
-                 wxT("Cannot store pending value for detached property"));
+                 wxS("Cannot store pending value for detached property"));
     GetGrid()->ValueChangeInEvent(value);
 }
 
@@ -1758,7 +1758,7 @@ const wxPGCell& wxPGProperty::GetCell( unsigned int column ) const
 
     wxPropertyGrid* pg = GetGrid();
     wxASSERT_MSG( pg,
-                  wxT("Cannot get cell for detached property") );
+                  wxS("Cannot get cell for detached property") );
 
     if ( IsCategory() )
         return pg->GetCategoryDefaultCell();
@@ -2101,9 +2101,9 @@ int wxPGProperty::GetChoiceSelection() const
 
 void wxPGProperty::SetChoiceSelection( int newValue )
 {
-    wxCHECK_RET( m_choices.IsOk(), wxT("invalid choiceinfo") );
+    wxCHECK_RET( m_choices.IsOk(), wxS("invalid choiceinfo") );
     wxCHECK_RET( newValue >= 0 && newValue < (int)m_choices.GetCount(),
-                 wxT("New index is out of range") );
+                 wxS("New index is out of range") );
 
     // Changes value of a property with choices, but only
     // works if the value type is long or string.
@@ -2233,7 +2233,7 @@ void wxPGProperty::SetValueImage( wxBitmap& bmp )
 {
     // We need PG to obtain default image size
     wxCHECK_RET( GetGrid(),
-                 wxT("Cannot set image for detached property") );
+                 wxS("Cannot set image for detached property") );
 
     delete m_valueBitmap;
 
@@ -2377,7 +2377,7 @@ int wxPGProperty::GetY() const
 {
     wxPropertyGrid *pg = GetGrid();
     wxASSERT_MSG( pg,
-        wxT("Cannot obtain coordinates of detached property") );
+        wxS("Cannot obtain coordinates of detached property") );
     return pg ? GetY2(pg->GetRowHeight()) : 0;
 }
 
@@ -2521,7 +2521,7 @@ void wxPGProperty::AdaptListToValue( wxVariant& list, wxVariant* value ) const
     unsigned int n = 0;
     wxVariant childValue = list[n];
 
-    //wxLogDebug(wxT(">> %s.AdaptListToValue()"),GetBaseName().c_str());
+    //wxLogDebug(wxS(">> %s.AdaptListToValue()"),GetBaseName().c_str());
 
     for ( unsigned int i = 0; i < GetChildCount(); i++ )
     {
@@ -2529,7 +2529,7 @@ void wxPGProperty::AdaptListToValue( wxVariant& list, wxVariant* value ) const
 
         if ( childValue.GetName() == child->GetBaseName() )
         {
-            //wxLogDebug(wxT("  %s(n=%i), %s"),childValue.GetName().c_str(),n,childValue.GetType().c_str());
+            //wxLogDebug(wxS("  %s(n=%i), %s"),childValue.GetName().c_str(),n,childValue.GetType().c_str());
 
             if ( childValue.IsType(wxPG_VARIANT_TYPE_LIST) )
             {
@@ -2718,11 +2718,11 @@ wxPGProperty* wxPGProperty::GetItemAtY( unsigned int y,
     /*
     if ( current )
     {
-        wxLogDebug(wxT("%s::GetItemAtY(%i) -> %s"),this->GetLabel().c_str(),y,current->GetLabel().c_str());
+        wxLogDebug(wxS("%s::GetItemAtY(%i) -> %s"),this->GetLabel().c_str(),y,current->GetLabel().c_str());
     }
     else
     {
-        wxLogDebug(wxT("%s::GetItemAtY(%i) -> NULL"),this->GetLabel().c_str(),y);
+        wxLogDebug(wxS("%s::GetItemAtY(%i) -> NULL"),this->GetLabel().c_str(),y);
     }
     */
 
@@ -2746,7 +2746,7 @@ wxPGProperty* wxPGProperty::GetItemAtY( unsigned int y ) const
 {
     wxPropertyGrid *pg = GetGrid();
     wxASSERT_MSG( pg,
-                  wxT("Cannot obtain property item for detached property") );
+                  wxS("Cannot obtain property item for detached property") );
     if( !pg )
     {
         return NULL;
@@ -3125,7 +3125,7 @@ void wxPGChoices::Add( const wxArrayString& arr, const wxArrayInt& arrint )
     const unsigned int itemcount = arr.size();
     const unsigned int valcount = arrint.size();
     wxASSERT_MSG( valcount >= itemcount || valcount == 0,
-                  wxT("Insufficient number of values in the array") );
+                  wxS("Insufficient number of values in the array") );
 
     for ( unsigned int i = 0; i < itemcount; i++ )
     {
