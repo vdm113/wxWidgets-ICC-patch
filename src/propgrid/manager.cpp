@@ -1704,7 +1704,7 @@ void wxPropertyGridManager::RecreateControls()
         {
             m_pTxtHelpCaption = new wxStaticText(this,
                                                  wxID_ANY,
-                                                 wxEmptyString,
+                                                 wxS(""),
                                                  wxDefaultPosition,
                                                  wxDefaultSize,
                                                  wxALIGN_LEFT|wxST_NO_AUTORESIZE);
@@ -1715,7 +1715,7 @@ void wxPropertyGridManager::RecreateControls()
         {
             m_pTxtHelpContent = new wxStaticText(this,
                                                  wxID_ANY,
-                                                 wxEmptyString,
+                                                 wxS(""),
                                                  wxDefaultPosition,
                                                  wxDefaultSize,
                                                  wxALIGN_LEFT|wxST_NO_AUTORESIZE);
@@ -2199,7 +2199,7 @@ void wxPropertyGridManager::OnMouseUp( wxMouseEvent &event )
 void wxPropertyGridManager::SetSplitterPosition( int pos, int splitterColumn )
 {
     wxASSERT_MSG( GetPageCount(),
-                  wxT("SetSplitterPosition() has no effect until pages have been added") );
+                  wxS("SetSplitterPosition() has no effect until pages have been added") );
 
     for ( size_t i = 0; i < GetPageCount(); i++ )
     {
