@@ -2346,6 +2346,11 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
         // Splitters
         int sx = x;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( unsigned int si = 0; si < colCount; si++ )
         {
             sx += colWidths[si];
