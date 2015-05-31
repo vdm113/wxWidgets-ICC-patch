@@ -343,7 +343,7 @@ private:
 #endif /* VDM auto patch */
         while ( m_columns.size() < count )
         {
-            wxHeaderColumnSimple* colInfo = new wxHeaderColumnSimple("");
+            wxHeaderColumnSimple* colInfo = new wxHeaderColumnSimple(wxEmptyString);
             m_columns.push_back(colInfo);
         }
     }
@@ -1669,7 +1669,7 @@ void wxPropertyGridManager::RecreateControls()
         {
             m_pTxtHelpCaption = new wxStaticText(this,
                                                  wxID_ANY,
-                                                 wxS(""),
+                                                 wxEmptyString,
                                                  wxDefaultPosition,
                                                  wxDefaultSize,
                                                  wxALIGN_LEFT|wxST_NO_AUTORESIZE);
@@ -1680,7 +1680,7 @@ void wxPropertyGridManager::RecreateControls()
         {
             m_pTxtHelpContent = new wxStaticText(this,
                                                  wxID_ANY,
-                                                 wxS(""),
+                                                 wxEmptyString,
                                                  wxDefaultPosition,
                                                  wxDefaultSize,
                                                  wxALIGN_LEFT|wxST_NO_AUTORESIZE);
