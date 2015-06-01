@@ -276,11 +276,6 @@ public:
         unsigned int colCount = m_page->GetColumnCount();
 
         DetermineAllColumnWidths();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( unsigned int i=0; i<colCount; i++ )
         {
             UpdateColumn(i);
@@ -315,20 +310,8 @@ private:
 
     void DetermineAllColumnWidths() const
     {
-        wxPropertyGrid* pg = m_manager->GetGrid();
-
-        int sbWidth = pg->HasScrollbar(wxSB_VERTICAL)
-                        ? wxSystemSettings::GetMetric(wxSYS_VSCROLL_X, pg)
-                        : 0;
-        // Internal border width
-        int borderWidth = (pg->GetSize().x - pg->GetClientSize().x - sbWidth) / 2;
-
         const unsigned int colCount = m_page->GetColumnCount();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
+
         for ( unsigned int i = 0; i < colCount; i++ )
         {
             wxHeaderColumnSimple* colInfo = m_columns[i];
@@ -337,21 +320,15 @@ private:
             int colMinWidth = m_page->GetColumnMinWidth(i);
             if ( i == 0 )
             {
+                wxPropertyGrid* pg = m_manager->GetGrid();
+                int margin = pg->GetMarginWidth();
+
                 // Compensate for the internal border
-                int margin = pg->GetMarginWidth() + borderWidth;
+                margin += (pg->GetSize().x - pg->GetClientSize().x) / 2;
 
                 colWidth += margin;
                 colMinWidth += margin;
             }
-            else if ( i == colCount-1 )
-            {
-                // Compensate for the internal border and scrollbar
-                int margin = pg->GetMarginWidth() + borderWidth + sbWidth;
-
-                colWidth += margin;
-                colMinWidth += margin;
-            }
-
             colInfo->SetWidth(colWidth);
             colInfo->SetMinWidth(colMinWidth);
         }
