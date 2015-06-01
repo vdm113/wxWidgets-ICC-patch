@@ -319,11 +319,6 @@ private:
         int borderWidth = (pg->GetSize().x - pg->GetClientSize().x - sbWidth) / 2;
 
         const unsigned int colCount = m_page->GetColumnCount();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( unsigned int i = 0; i < colCount; i++ )
         {
             wxHeaderColumnSimple* colInfo = m_columns[i];
