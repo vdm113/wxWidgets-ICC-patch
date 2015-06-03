@@ -2237,7 +2237,7 @@ void wxPGProperty::SetValueImage( wxBitmap& bmp )
 
     delete m_valueBitmap;
 
-    if ( &bmp && bmp.IsOk() )
+    if ( bmp.IsOk() )
     {
         // Resize the image
         wxSize maxSz = GetGrid()->GetImageSize();
@@ -3195,7 +3195,7 @@ wxArrayString wxPGChoices::GetLabels() const
 {
     wxArrayString arr;
 
-    if ( this && IsOk() )
+    if ( IsOk() )
         for ( unsigned int i = 0; i < GetCount(); i++ )
             arr.push_back(GetLabel(i));
 
