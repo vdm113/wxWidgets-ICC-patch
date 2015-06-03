@@ -3356,7 +3356,7 @@ wxArrayString wxPGChoices::GetLabels() const
 {
     wxArrayString arr;
 
-    if ( this && IsOk() )
+    if ( IsOk() )
         for ( unsigned int i = 0; i < GetCount(); i++ )
             arr.push_back(GetLabel(i));
 
