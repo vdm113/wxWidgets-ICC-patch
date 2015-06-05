@@ -1830,14 +1830,6 @@ wxString& wxPropertyGrid::ExpandEscapeSequences( wxString& dst_str, wxString& sr
 
     wxString::const_iterator i = src_str.begin();
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd
-#   endif
-#endif /* VDM auto patch */
     for ( ; i != src_str.end(); ++i )
     {
         wxUniChar a = *i;
@@ -1895,15 +1887,7 @@ wxString& wxPropertyGrid::CreateEscapeSequences( wxString& dst_str, wxString& sr
     wxString::const_iterator i;
     wxUniChar prev_a = wxS('\0');
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd
-#   endif
-#endif /* VDM auto patch */
-    for ( i = src_str.begin(); i != src_str.end(); ++i )
+    for ( ; i != src_str.end(); ++i )
     {
         wxUniChar a = *i;
 
