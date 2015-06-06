@@ -101,6 +101,11 @@ bool operator == (const wxArrayInt& array1, const wxArrayInt& array2)
 {
     if ( array1.size() != array2.size() )
         return false;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t i = 0; i < array1.size(); i++ )
     {
         if ( array1[i] != array2[i] )
@@ -2171,6 +2176,11 @@ bool wxMultiChoiceProperty::OnEvent( wxPropertyGrid* propgrid,
                     value.push_back(extraStrings[n]);
             }
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for ( size_t i = 0; i < arrInt.size(); i++ )
                 value.Add(m_choices.GetLabel(arrInt.Item(i)));
 

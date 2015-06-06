@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/fswatcher_fsevents.cpp
 // Purpose:     File System watcher that uses the FSEvents API
@@ -203,6 +210,11 @@ static void wxFSEventCallback(ConstFSEventStreamRef WXUNUSED(streamRef), void *c
     wxString msg;
     wxFSWWarningType warning = wxFSW_WARNING_NONE;
     wxFileName eventFileName;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t i = 0; i < numEvents; i++ )
     {
         FSEventStreamEventFlags flags = eventFlags[i];
@@ -388,6 +400,11 @@ bool wxFsEventsFileSystemWatcher::RemoveTree(const wxFileName& path)
     // if they are tree watches or single directory watches.
     wxArrayString dirsWatched;
     wxKqueueFileSystemWatcher::GetWatchedPaths(&dirsWatched);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t i = 0; i < dirsWatched.size(); i++ )
     {
         if (dirsWatched[i].Find(canonical) == 0)
@@ -414,6 +431,11 @@ bool wxFsEventsFileSystemWatcher::RemoveAll()
     // remove all watches created with Add()
     bool ret = wxKqueueFileSystemWatcher::RemoveAll();
     FSEventStreamRefMap::iterator it = m_streams.begin();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     while ( it != m_streams.end() )
     {
         FSEventStreamStop(it->second);
@@ -448,6 +470,11 @@ void wxFsEventsFileSystemWatcher::PostChange(const wxFileName& oldFileName,
         wxFSW_EVENT_ATTRIB
     };
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( int i = 0; i < WXSIZEOF(allEvents); i++ )
     {
         if ( event & allEvents[i] )
@@ -499,6 +526,11 @@ int wxFsEventsFileSystemWatcher::GetWatchedPaths(wxArrayString* paths) const
     }
     wxFileSystemWatcherBase::GetWatchedPaths(paths);
     FSEventStreamRefMap::const_iterator it = m_streams.begin();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( ; it != m_streams.end(); it++ )
     {
         paths->push_back(it->first);
