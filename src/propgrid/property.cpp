@@ -948,11 +948,6 @@ void wxPGProperty::DoGenerateComposedValue( wxString& text,
     }
 
     int i;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( i = 0; i < iMax; i++ )
     {
         wxVariant childValue;
@@ -1575,11 +1570,6 @@ void wxPGProperty::SetFlagRecursively( wxPGPropertyFlags flag, bool set )
 {
     ChangeFlag(flag, set);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < GetChildCount(); i++ )
         Item(i)->SetFlagRecursively(flag, set);
 }
@@ -1659,11 +1649,6 @@ void wxPGProperty::DoEnable( bool enable )
         SetFlag(wxPG_PROP_DISABLED);
 
     // Apply same to sub-properties as well
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < GetChildCount(); i++ )
         Item(i)->DoEnable( enable );
 }
@@ -2202,11 +2187,6 @@ bool wxPGProperty::DoHide( bool hide, int flags )
 
     if ( flags & wxPG_RECURSE )
     {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( unsigned int i = 0; i < GetChildCount(); i++ )
             Item(i)->DoHide(hide, flags | wxPG_RECURSE_STARTS);
     }
@@ -2818,11 +2798,6 @@ void wxPGProperty::DeleteChildren()
 
 bool wxPGProperty::IsChildSelected( bool recursive ) const
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < GetChildCount(); i++ )
     {
         wxPGProperty* child = Item(i);
