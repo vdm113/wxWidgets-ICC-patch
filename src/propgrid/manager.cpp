@@ -901,15 +901,6 @@ void wxPropertyGridManager::Clear()
 
     m_pPropGrid->Freeze();
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
     for ( int i=(int)GetPageCount()-1; i>=0; i-- )
         RemovePage(i);
 
