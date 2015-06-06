@@ -1088,12 +1088,7 @@ wxString wxBoolProperty::ValueToString( wxVariant& value,
         return wxPGGlobalVars->m_boolChoices[boolValue?1:0].GetText();
     }
 
-    wxString text;
-
-    if ( boolValue ) text = wxS("true");
-    else text = wxS("false");
-
-    return text;
+    return boolValue? wxS("true"): wxS("false");
 }
 
 bool wxBoolProperty::StringToValue( wxVariant& variant, const wxString& text, int WXUNUSED(argFlags) ) const
