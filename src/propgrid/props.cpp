@@ -910,11 +910,6 @@ const wxString& wxPropertyGrid::DoubleToString(wxString& target,
         bool isZero = true;
         wxString::const_iterator i = target.begin() + 1;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( ; i != target.end(); ++i )
         {
             if ( *i != wxS('0') && *i != wxS('.') && *i != wxS(',') )
