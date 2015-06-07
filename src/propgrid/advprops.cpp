@@ -101,6 +101,11 @@ bool operator == (const wxArrayInt& array1, const wxArrayInt& array2)
 {
     if ( array1.size() != array2.size() )
         return false;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t i = 0; i < array1.size(); i++ )
     {
         if ( array1[i] != array2[i] )
@@ -1252,13 +1257,12 @@ bool wxSystemColourProperty::QueryColourFromUser( wxVariant& variant ) const
     wxColourData data;
     data.SetChooseFull(true);
     data.SetColour(val.m_colour);
-    int i;
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
 #endif /* VDM auto patch */
-    for ( i = 0; i < 16; i++)
+    for ( int i = 0; i < 16; i++ )
     {
         wxColour colour(i*16, i*16, i*16);
         data.SetCustomColour(i, colour);
@@ -2055,8 +2059,8 @@ void wxMultiChoiceProperty::GenerateValueAsString( wxVariant& value,
         strings = value.GetArrayString();
 
     wxString& tempStr = *target;
-    unsigned int i;
-    unsigned int itemCount = strings.size();
+
+    size_t itemCount = strings.size();
 
     tempStr.Empty();
 
@@ -2068,7 +2072,7 @@ void wxMultiChoiceProperty::GenerateValueAsString( wxVariant& value,
 #   pragma swp
 #   pragma unroll
 #endif /* VDM auto patch */
-    for ( i = 0; i < itemCount; i++ )
+    for ( size_t i = 0; i < itemCount; i++ )
     {
         tempStr.append( strings[i] );
         tempStr.append( wxS("\"") );
@@ -2171,6 +2175,11 @@ bool wxMultiChoiceProperty::OnEvent( wxPropertyGrid* propgrid,
                     value.push_back(extraStrings[n]);
             }
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for ( size_t i = 0; i < arrInt.size(); i++ )
                 value.Add(m_choices.GetLabel(arrInt.Item(i)));
 
