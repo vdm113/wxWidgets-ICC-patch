@@ -2533,11 +2533,6 @@ void wxPGProperty::RemoveChild( wxPGProperty* p )
     wxArrayPGProperty::iterator it;
     wxArrayPGProperty& children = m_children;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( it=children.begin(); it != children.end(); ++it )
     {
         if ( *it == p )
