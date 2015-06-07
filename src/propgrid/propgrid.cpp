@@ -950,7 +950,7 @@ bool wxPropertyGrid::AddToSelectionFromInputEvent( wxPGProperty* prop,
 #endif /* VDM auto patch */
         for ( it = GetIterator(wxPG_ITERATE_VISIBLE, startFrom);
               !it.AtEnd();
-              it++ )
+              ++it )
         {
             wxPGProperty* p = *it;
 
@@ -5744,7 +5744,7 @@ void wxPropertyGrid::ClearActionTriggers( int action )
 #endif /* VDM auto patch */
         for ( it = m_actionTriggers.begin();
               it != m_actionTriggers.end();
-              it++ )
+              ++it )
         {
             if ( it->second == action )
             {
