@@ -1134,7 +1134,7 @@ bool wxPGProperty::StringToValue( wxVariant& v, const wxString& text, int argFla
 
     // Its best only to add non-empty group items
     bool addOnlyIfNotEmpty = false;
-    const wxChar delimeter = wxS(';');
+    const wxChar delimiter = wxS(';');
 
     size_t tokenStart = 0xFFFFFF;
 
@@ -1169,7 +1169,7 @@ bool wxPGProperty::StringToValue( wxVariant& v, const wxString& text, int argFla
         if ( tokenStart != 0xFFFFFF )
         {
             // Token is running
-            if ( a == delimeter || a == 0 )
+            if ( a == delimiter || a == 0 )
             {
                 token = text.substr(tokenStart,pos-tokenStart);
                 token.Trim(true);
@@ -1305,7 +1305,7 @@ bool wxPGProperty::StringToValue( wxVariant& v, const wxString& text, int argFla
                 {
                     tokenStart = pos;
 
-                    if ( a == delimeter )
+                    if ( a == delimiter )
                         strPosIncrement -= 1;
                 }
             }

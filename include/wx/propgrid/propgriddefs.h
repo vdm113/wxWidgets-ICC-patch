@@ -705,7 +705,7 @@ VDM_MACRO_PRAGMA_IVDEP \
 class WXDLLIMPEXP_PROPGRID wxPGStringTokenizer
 {
 public:
-    wxPGStringTokenizer( const wxString& str, wxChar delimeter );
+    wxPGStringTokenizer( const wxString& str, wxChar delimiter );
     ~wxPGStringTokenizer();
 
     bool HasMoreTokens(); // not const so we can do some stuff in it
@@ -715,7 +715,7 @@ protected:
     const wxString*             m_str;
     wxString::const_iterator    m_curPos;
     wxString                    m_readyToken;
-    wxUniChar                   m_delimeter;
+    wxUniChar                   m_delimiter;
 };
 
 #define WX_PG_TOKENIZER2_BEGIN(WXSTRING,DELIMITER) \
