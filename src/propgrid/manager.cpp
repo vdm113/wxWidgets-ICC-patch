@@ -691,7 +691,7 @@ bool wxPropertyGridManager::SetFont( const wxFont& font )
     bool res = wxWindow::SetFont(font);
     m_pPropGrid->SetFont(font);
 
-    // TODO: Need to do caption recacalculations for other pages as well.
+    // TODO: Need to do caption recalculations for other pages as well.
     for ( unsigned int i = 0; i < m_arrPages.size(); i++ )
     {
         wxPropertyGridPage* page = GetPage(i);
