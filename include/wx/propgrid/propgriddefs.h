@@ -287,7 +287,7 @@ typedef wxString wxPGCachedString;
 
 // -----------------------------------------------------------------------
 
-// Used to indicate wxPGChoices::Add etc that the value is actually not given
+// Used to indicate wxPGChoices::Add etc. that the value is actually not given
 // by the caller.
 #define wxPG_INVALID_VALUE      INT_MAX
 
@@ -376,7 +376,7 @@ wxPG_SORT_TOP_LEVEL_ONLY          = 0x00000200
 
 // -----------------------------------------------------------------------
 
-// Misc argument flags.
+// Misc. argument flags.
 enum wxPG_MISC_ARG_FLAGS
 {
     // Get/Store full value instead of displayed value.
@@ -401,7 +401,7 @@ enum wxPG_MISC_ARG_FLAGS
     // (guarantees that input wxVariant value is current own value)
     wxPG_VALUE_IS_CURRENT               = 0x00000040,
 
-    // Value is being set programmatically (ie. not by user)
+    // Value is being set programmatically (i.e. not by user)
     wxPG_PROGRAMMATIC_VALUE             = 0x00000080
 };
 
@@ -435,7 +435,7 @@ enum wxPG_SETVALUE_FLAGS
 // -----------------------------------------------------------------------
 // Editor class.
 
-// Editor accessor (for backwards compatiblity use only).
+// Editor accessor (for backwards compatibility use only).
 #define wxPG_EDITOR(T)          wxPGEditor_##T
 
 // Macro for declaring editor class, with optional impexpdecl part.
@@ -452,7 +452,7 @@ enum wxPG_SETVALUE_FLAGS
 extern wxPGEditor* wxPGEditor_##EDITOR; \
 extern wxPGEditor* wxPGConstruct##EDITOR##EditorClass();
 
-// Declare builtin editor classes.
+// Declare built-in editor classes.
 WX_PG_DECLARE_EDITOR_WITH_DECL(TextCtrl,WXDLLIMPEXP_PROPGRID)
 WX_PG_DECLARE_EDITOR_WITH_DECL(Choice,WXDLLIMPEXP_PROPGRID)
 WX_PG_DECLARE_EDITOR_WITH_DECL(ComboBox,WXDLLIMPEXP_PROPGRID)
@@ -503,7 +503,7 @@ template<> inline wxVariant WXVARIANT( const wxDateTime& value )
 
 //
 // These are modified versions of DECLARE/WX_PG_IMPLEMENT_VARIANT_DATA
-// macros found in variant.h. Difference are as follows:
+// macros found in variant.h. Differences are as follows:
 //   * These support non-wxObject data
 //   * These implement classname##RefFromVariant function which returns
 //     reference to data within.
@@ -530,7 +530,7 @@ extern expdecl const char* classname##_VariantType;
 #define WX_PG_IMPLEMENT_VARIANT_DATA(classname) \
     WX_PG_IMPLEMENT_VARIANT_DATA_EXPORTED(classname, wxEMPTY_PARAMETER_VALUE)
 
-// Add getter (ie. classname << variant) separately to allow
+// Add getter (i.e. classname << variant) separately to allow
 // custom implementations.
 #define WX_PG_IMPLEMENT_VARIANT_DATA_EXPORTED_NO_EQ_NO_GETTER(classname,expdecl) \
 const char* classname##_VariantType = #classname; \
