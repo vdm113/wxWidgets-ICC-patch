@@ -53,6 +53,7 @@
     #include "wx/intl.h"
     #include "wx/frame.h"
     #include "wx/textctrl.h"
+    #include "wx/settings.h"
 #endif
 
 
@@ -1895,6 +1896,13 @@ wxString& wxPropertyGrid::CreateEscapeSequences( wxString& dst_str, wxString& sr
         prev_a = a;
     }
     return dst_str;
+}
+
+// -----------------------------------------------------------------------
+
+bool wxPropertyGrid::IsSmallScreen()
+{
+    return wxSystemSettings::GetScreenType() <= wxSYS_SCREEN_PDA;
 }
 
 // -----------------------------------------------------------------------
