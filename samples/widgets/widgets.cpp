@@ -1321,10 +1321,17 @@ void WidgetsPage::SetUpWidget()
 {
     const Widgets widgets = GetWidgets();
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( Widgets::const_iterator it = widgets.begin();
             it != widgets.end();
             ++it )
     {
+        wxCHECK_RET(*it, "NULL widget");
+
 #if wxUSE_TOOLTIPS
         (*it)->SetToolTip(GetAttrs().m_tooltip);
 #endif // wxUSE_TOOLTIPS
