@@ -1806,6 +1806,11 @@ wxString& wxPropertyGrid::ExpandEscapeSequences( wxString& dst_str, wxString& sr
 
     wxString::const_iterator i = src_str.begin();
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( ; i != src_str.end(); ++i )
     {
         wxUniChar a = *i;
@@ -1863,6 +1868,11 @@ wxString& wxPropertyGrid::CreateEscapeSequences( wxString& dst_str, wxString& sr
     wxString::const_iterator i = src_str.begin();
     wxUniChar prev_a = wxS('\0');
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( ; i != src_str.end(); ++i )
     {
         wxChar a = *i;
@@ -2343,6 +2353,11 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
         // Splitters
         int sx = x;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( unsigned int si = 0; si < colCount; si++ )
         {
             sx += colWidths[si];
