@@ -1174,7 +1174,7 @@ void FormMain::PopulateWithStandardItems ()
 #endif /* VDM auto patch */
     for ( it = pg->GetGrid()->GetIterator();
           !it.AtEnd();
-          it++ )
+          ++it )
     {
         wxPGProperty* p = *it;
         if ( p->IsCategory() )
@@ -2397,7 +2397,7 @@ void FormMain::OnIterate1Click( wxCommandEvent& WXUNUSED(event) )
     for ( it = m_pPropGridManager->GetCurrentPage()->
             GetIterator();
           !it.AtEnd();
-          it++ )
+          ++it )
     {
         wxPGProperty* p = *it;
         int res = IterateMessage( p );
@@ -2419,7 +2419,7 @@ void FormMain::OnIterate2Click( wxCommandEvent& WXUNUSED(event) )
     for ( it = m_pPropGridManager->GetCurrentPage()->
             GetIterator( wxPG_ITERATE_VISIBLE );
           !it.AtEnd();
-          it++ )
+          ++it )
     {
         wxPGProperty* p = *it;
 
@@ -2466,7 +2466,7 @@ void FormMain::OnIterate4Click( wxCommandEvent& WXUNUSED(event) )
     for ( it = m_pPropGridManager->GetCurrentPage()->
             GetIterator( wxPG_ITERATE_CATEGORIES );
           !it.AtEnd();
-          it++ )
+          ++it )
     {
         wxPGProperty* p = *it;
 

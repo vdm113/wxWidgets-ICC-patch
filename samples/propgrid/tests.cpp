@@ -318,7 +318,7 @@ wxArrayPGProperty GetPropertiesInRandomOrder( wxPropertyGridInterface* props, in
 #endif /* VDM auto patch */
     for ( it = props->GetIterator(iterationFlags);
           !it.AtEnd();
-          it++ )
+          ++it )
     {
         wxPGProperty* p = *it;
         size_t randomNumber = rand();
@@ -492,7 +492,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 #endif /* VDM auto patch */
             for ( it = page->GetIterator(wxPG_ITERATE_VISIBLE);
                   !it.AtEnd();
-                  it++ )
+                  ++it )
             {
                 wxPGProperty* p = *it;
                 RT_MSG(p->GetLabel());
@@ -1049,7 +1049,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 #endif /* VDM auto patch */
             for ( it = page->GetIterator( wxPG_ITERATE_CATEGORIES );
                   !it.AtEnd();
-                  it++ )
+                  ++it )
             {
                 wxPGProperty* p = *it;
 
@@ -1105,7 +1105,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 #endif /* VDM auto patch */
             for ( it = page->GetIterator( wxPG_ITERATE_CATEGORIES );
                   !it.AtEnd();
-                  it++ )
+                  ++it )
             {
                 wxPGProperty* p = *it;
 
@@ -1165,7 +1165,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 #endif /* VDM auto patch */
             for ( it = page->GetIterator( wxPG_ITERATE_CATEGORIES );
                   !it.AtEnd();
-                  it++ )
+                  ++it )
             {
                 arr.Add((void*)*it);
             }
