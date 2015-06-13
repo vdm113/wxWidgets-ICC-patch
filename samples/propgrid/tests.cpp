@@ -1170,7 +1170,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
                 arr.Add((void*)*it);
             }
 
-            if ( arr.GetCount() )
+            if ( !arr.empty() )
             {
                 size_t n;
 
@@ -1556,7 +1556,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
     bool retVal;
 
-    if ( failures || errorMessages.size() )
+    if ( failures || !errorMessages.empty() )
     {
         retVal = false;
 
