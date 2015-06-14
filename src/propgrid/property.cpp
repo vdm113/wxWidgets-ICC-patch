@@ -1959,11 +1959,6 @@ wxString wxPGProperty::GetFlagsAsString( FlagType flagsMask ) const
     wxString s;
     const FlagType relevantFlags = m_flags & flagsMask & wxPG_STRING_STORED_FLAGS;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < WXSIZEOF(gs_propFlagToString); i++ )
     {
         if ( relevantFlags & gs_propFlagToString[i].m_flag )
@@ -1984,11 +1979,6 @@ void wxPGProperty::SetFlagsFromString( const wxString& str )
     FlagType flags = 0;
 
     WX_PG_TOKENIZER1_BEGIN(str, wxS('|'))
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( unsigned int i = 0; i < WXSIZEOF(gs_propFlagToString); i++ )
         {
             if ( token == gs_propFlagToString[i].m_name )
