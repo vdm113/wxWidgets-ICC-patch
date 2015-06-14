@@ -1679,6 +1679,11 @@ void wxFlagsProperty::OnSetValue()
 
         // normalize the value (i.e. remove extra flags)
         const wxPGChoices& choices = m_choices;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( unsigned int i = 0; i < GetItemCount(); i++ )
         {
             fullFlags |= choices.GetValue(i);
@@ -1732,6 +1737,11 @@ wxString wxFlagsProperty::ValueToString( wxVariant& value,
     long flags = value;
 
     const wxPGChoices& choices = m_choices;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < GetItemCount(); i++ )
     {
         int doAdd;
@@ -1792,6 +1802,11 @@ bool wxFlagsProperty::StringToValue( wxVariant& variant, const wxString& text, i
 // Converts string id to a relevant bit.
 long wxFlagsProperty::IdToBit( const wxString& id ) const
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < GetItemCount(); i++ )
     {
         if ( id == GetLabel(i) )
@@ -1809,6 +1824,11 @@ void wxFlagsProperty::RefreshChildren()
     int flags = m_value.GetLong();
 
     const wxPGChoices& choices = m_choices;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < GetItemCount(); i++ )
     {
         long flag;
@@ -2814,6 +2834,11 @@ wxArrayStringProperty::ArrayStringToString( wxString& dst,
 
     wxString delimStr(delimiter);
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < itemCount; i++ )
     {
         wxString str( src.Item(i) );

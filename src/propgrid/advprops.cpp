@@ -1257,6 +1257,11 @@ bool wxSystemColourProperty::QueryColourFromUser( wxVariant& variant ) const
     wxColourData data;
     data.SetChooseFull(true);
     data.SetColour(val.m_colour);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( int i = 0; i < 16; i++ )
     {
         wxColour colour(i*16, i*16, i*16);
@@ -2062,6 +2067,11 @@ void wxMultiChoiceProperty::GenerateValueAsString( wxVariant& value,
     if ( itemCount )
         tempStr.append( wxS("\"") );
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t i = 0; i < itemCount; i++ )
     {
         tempStr.append( strings[i] );
