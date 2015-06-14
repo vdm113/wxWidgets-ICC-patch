@@ -102,6 +102,7 @@ wxStringTokenizer::wxStringTokenizer(const wxString& str,
 }
 
 wxStringTokenizer::wxStringTokenizer(const wxStringTokenizer& src)
+                 : wxObject()
 {
     DoCopyFrom(src);
 }
