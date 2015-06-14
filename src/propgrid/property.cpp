@@ -2049,7 +2049,7 @@ wxString wxPGProperty::GetFlagsAsString( FlagType flagsMask ) const
     wxString s;
     const FlagType relevantFlags = m_flags & flagsMask & wxPG_STRING_STORED_FLAGS;
 
-    for ( unsigned int i = 0; i < gs_propFlagToStringSize; i++ )
+    for ( unsigned int i = 0; i < WXSIZEOF(gs_propFlagToString); i++ )
     {
         if ( relevantFlags & gs_propFlagToString[i].m_flag )
         {
@@ -2069,7 +2069,7 @@ void wxPGProperty::SetFlagsFromString( const wxString& str )
     FlagType flags = 0;
 
     WX_PG_TOKENIZER1_BEGIN(str, wxS('|'))
-        for ( unsigned int i = 0; i < gs_propFlagToStringSize; i++ )
+        for ( unsigned int i = 0; i < WXSIZEOF(gs_propFlagToString); i++ )
         {
             if ( token == gs_propFlagToString[i].m_name )
             {
