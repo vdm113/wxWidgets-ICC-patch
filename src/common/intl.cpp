@@ -56,9 +56,8 @@
 #endif
 
 #ifdef __WIN32__
+    #include "wx/dynlib.h"
     #include "wx/msw/private.h"
-    // Some compilers' winnls.h header doesn't declare this function:
-    extern "C" WINBASEAPI LANGID WINAPI SetThreadUILanguage(LANGID LangId);
 #endif
 
 #include "wx/file.h"
@@ -491,7 +490,12 @@ bool wxLocale::Init(int language, int flags)
             // behavior, so avoid calling it there.
             if ( wxGetWinVersion() >= wxWinVersion_Vista )
             {
-                SetThreadUILanguage(LANGIDFROMLCID(lcid));
+                wxLoadedDLL dllKernel32(wxS("kernel32.dll"));
+                typedef LANGID(WINAPI *SetThreadUILanguage_t)(LANGID);
+                SetThreadUILanguage_t pfnSetThreadUILanguage = NULL;
+                wxDL_INIT_FUNC(pfn, SetThreadUILanguage, dllKernel32);
+                if (pfnSetThreadUILanguage)
+                    pfnSetThreadUILanguage(LANGIDFROMLCID(lcid));
             }
 #endif
 
