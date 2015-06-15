@@ -1496,11 +1496,21 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
         // Select the most error prone page as visible.
         pgman->SelectPage(1);
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( i = 0; i < 3; i++ )
         {
             wxPropertyGridPage* page = pgman->GetPage(i);
 
             wxPropertyGridIterator it;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for ( it = page->GetIterator(wxPG_ITERATE_VISIBLE);
                   !it.AtEnd();
                   ++it )
