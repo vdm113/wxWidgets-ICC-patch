@@ -145,6 +145,11 @@ wxgtk_webview_webkit_navigation(WebKitWebView *,
         wxSharedPtr<wxWebViewHandler> handler;
         wxVector<wxSharedPtr<wxWebViewHandler> > handlers = webKitCtrl->GetHandlers();
         //We are not vetoed so see if we match one of the additional handlers
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for(wxVector<wxSharedPtr<wxWebViewHandler> >::iterator it = handlers.begin();
             it != handlers.end(); ++it)
         {
@@ -367,6 +372,11 @@ wxgtk_webview_webkit_resource_req(WebKitWebView *,
     wxVector<wxSharedPtr<wxWebViewHandler> > handlers = webKitCtrl->GetHandlers();
 
     //We are not vetoed so see if we match one of the additional handlers
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for(wxVector<wxSharedPtr<wxWebViewHandler> >::iterator it = handlers.begin();
         it != handlers.end(); ++it)
     {
