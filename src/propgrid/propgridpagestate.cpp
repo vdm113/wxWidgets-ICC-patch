@@ -906,8 +906,12 @@ int wxPropertyGridPageState::GetColumnFullWidth( wxClientDC &dc, wxPGProperty *p
 int wxPropertyGridPageState::DoGetSplitterPosition( int splitterColumn ) const
 {
     int n = GetGrid()->GetMarginWidth();
-    int i;
-    for ( i=0; i<=splitterColumn; i++ )
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
+    for ( int i = 0; i <= splitterColumn; i++ )
         n += m_colWidths[i];
     return n;
 }
@@ -1128,6 +1132,11 @@ void wxPropertyGridPageState::CheckColumnWidths( int widthChange )
     }
 
     int colsWidth = pg->GetMarginWidth();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( i=0; i<m_colWidths.size(); i++ )
         colsWidth += m_colWidths[i];
 
@@ -2233,6 +2242,11 @@ void wxPropertyGridPageState::DoDelete( wxPGProperty* item, bool doDelete )
         // We need to find location of item.
         wxPGProperty* cat_parent = &m_regularArray;
         int cat_index = m_regularArray.GetChildCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( unsigned int i = 0; i < m_regularArray.GetChildCount(); i++ )
         {
             wxPGProperty* p = m_regularArray.Item(i);
