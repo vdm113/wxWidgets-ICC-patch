@@ -5230,27 +5230,7 @@ void wxWindowGTK::GTKConnectFreezeWidget(GtkWidget* widget)
 
 void wxWindowGTK::GTKFreezeWidget(GtkWidget* widget)
 {
-    if (widget && gtk_widget_get_has_window(widget))
-    {
-        GdkWindow* window = gtk_widget_get_window(widget);
-        if (window)
-        {
-#if GTK_CHECK_VERSION(2,18,0)
-#ifndef __WXGTK3__
-            if (gtk_check_version(2,18,0) == NULL)
-#endif
-            {
-                // impl_window for a non-native GdkWindow can change if
-                // gdk_window_ensure_native() is called on it or some other
-                // GdkWindow in the same TLW. Since the freeze count is on the
-                // impl_window, we have to make sure impl_window does not change
-                // after we call gdk_window_freeze_updates().
-                gdk_window_ensure_native(window);
-            }
-#endif
-            gdk_window_freeze_updates(window);
-        }
-    }
+    g_signal_handlers_unblock_by_func(widget, (void*)draw_freeze, this);
 }
 
 void wxWindowGTK::GTKThawWidget(GtkWidget* widget)
