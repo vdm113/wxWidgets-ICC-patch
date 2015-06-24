@@ -276,6 +276,11 @@ public:
         unsigned int colCount = m_page->GetColumnCount();
 
         DetermineAllColumnWidths();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( unsigned int i=0; i<colCount; i++ )
         {
             UpdateColumn(i);
@@ -319,6 +324,11 @@ private:
         int borderWidth = (pg->GetSize().x - pg->GetClientSize().x - sbWidth) / 2;
 
         const unsigned int colCount = m_page->GetColumnCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( unsigned int i = 0; i < colCount; i++ )
         {
             wxHeaderColumnSimple* colInfo = m_columns[i];
@@ -904,6 +914,11 @@ void wxPropertyGridManager::Clear()
 
     m_pPropGrid->Freeze();
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( int i=(int)GetPageCount()-1; i>=0; i-- )
         RemovePage(i);
 
