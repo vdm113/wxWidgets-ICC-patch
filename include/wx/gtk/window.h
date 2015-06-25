@@ -390,6 +390,7 @@ protected:
     virtual void DoFreeze() wxOVERRIDE;
     virtual void DoThaw() wxOVERRIDE;
 
+    void GTKConnectFreezeWidget(GtkWidget* widget);
     void GTKFreezeWidget(GtkWidget *w);
     void GTKThawWidget(GtkWidget *w);
     void GTKDisconnect(void* instance);
