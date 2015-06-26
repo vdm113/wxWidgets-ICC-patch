@@ -356,6 +356,8 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
     pgman->ClearSelection();
 
+    srand((unsigned int)(time(NULL) % UINT_MAX));
+
     int failures = 0;
     bool _failed_ = false;
     wxArrayString errorMessages;
@@ -1350,8 +1352,6 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
         wxPropertyGridPage* page = pgman->GetPage(0);
 
-        srand(0x1234);
-
         wxArrayPGProperty arr1;
 
         arr1 = GetPropertiesInRandomOrder(page);
@@ -1492,9 +1492,6 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
     {
         RT_START_TEST(SetFlagsAsString and GetFlagsAsString)
-
-        unsigned int seed = time(NULL) % UINT_MAX;
-        srand(seed);
 
         // Select the most error prone page as visible.
         pgman->SelectPage(1);
