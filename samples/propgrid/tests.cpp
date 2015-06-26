@@ -534,7 +534,7 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 #   pragma swp
 #   pragma unroll
 #endif /* VDM auto patch */
-        for ( it2 = array.rbegin(); it2 != array.rend(); it2++ )
+        for ( it2 = array.rbegin(); it2 != array.rend(); ++it2 )
         {
             wxPGProperty* p = (wxPGProperty*)*it2;
             RT_MSG(wxString::Format(wxT("Deleting '%s' ('%s')"),p->GetLabel().c_str(),p->GetName().c_str()));

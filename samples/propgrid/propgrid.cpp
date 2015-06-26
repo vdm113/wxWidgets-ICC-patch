@@ -2470,7 +2470,7 @@ void FormMain::OnIterate3Click( wxCommandEvent& WXUNUSED(event) )
     for ( it = m_pPropGridManager->GetCurrentPage()->
                 GetIterator( wxPG_ITERATE_DEFAULT, wxBOTTOM );
           !it.AtEnd();
-          it-- )
+          --it )
     {
         wxPGProperty* p = *it;
 
