@@ -310,12 +310,15 @@ public:
 
     Example:
     @code
-        wxDECLARE_EVENT(myEVT_THREAD_UPDATE, wxThreadEvent);
-
         class MyFrame : public wxFrame, public wxThreadHelper
         {
         public:
-            MyFrame(...) { ... }
+            MyFrame(...)
+            {
+                // It is also possible to use event tables, but dynamic binding is simpler.
+                Bind(wxEVT_THREAD, &MyFrame::OnThreadUpdate, this);
+            }
+
             ~MyFrame()
             {
                 // it's better to do any thread cleanup in the OnClose()
@@ -343,9 +346,7 @@ public:
             wxDECLARE_EVENT_TABLE();
         };
 
-        wxDEFINE_EVENT(myEVT_THREAD_UPDATE, wxThreadEvent);
         wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
-            EVT_THREAD(wxID_ANY, myEVT_THREAD_UPDATE, MyFrame::OnThreadUpdate)
             EVT_CLOSE(MyFrame::OnClose)
         wxEND_EVENT_TABLE()
 
@@ -369,8 +370,8 @@ public:
 
         wxThread::ExitCode MyFrame::Entry()
         {
-            // IMPORTANT:
-            // this function gets executed in the secondary thread context!
+            // VERY IMPORTANT: this function gets executed in the secondary thread context!
+            // Do not call any GUI function inside this function; rather use wxQueueEvent():
 
             int offset = 0;
 
@@ -392,11 +393,8 @@ public:
                     offset += 1024;
                 }
 
-
-                // VERY IMPORTANT: do not call any GUI function inside this
-                //                 function; rather use wxQueueEvent():
-                wxQueueEvent(this, new wxThreadEvent(wxEVT_COMMAND_MYTHREAD_UPDATE));
-                    // we used pointer 'this' assuming it's safe; see OnClose()
+                // signal to main thread that download is complete
+                wxQueueEvent(GetEventHandler(), new wxThreadEvent());
             }
 
             // TestDestroy() returned true (which means the main thread asked us
