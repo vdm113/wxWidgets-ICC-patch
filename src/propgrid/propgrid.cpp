@@ -1858,7 +1858,7 @@ wxString& wxPropertyGrid::CreateEscapeSequences( wxString& dst_str, wxString& sr
     wxString::const_iterator i;
     wxUniChar prev_a = wxS('\0');
 
-    for ( ; i != src_str.end(); ++i )
+    for ( i = src_str.begin(); i != src_str.end(); ++i )
     {
         wxUniChar a = *i;
 
@@ -6677,11 +6677,6 @@ wxPGChoices wxPropertyGridPopulator::ParseChoices( const wxString& choicesString
             int state = 0;
             bool labelValid = false;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
             for ( it = choicesString.begin(); it != choicesString.end(); ++it )
             {
                 wxUniChar c = *it;
