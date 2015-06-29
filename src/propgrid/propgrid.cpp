@@ -1855,12 +1855,12 @@ wxString& wxPropertyGrid::CreateEscapeSequences( wxString& dst_str, wxString& sr
         return dst_str;
     }
 
-    wxString::const_iterator i = src_str.begin();
+    wxString::const_iterator i;
     wxUniChar prev_a = wxS('\0');
 
-    for ( ; i != src_str.end(); ++i )
+    for ( i = src_str.begin(); i != src_str.end(); ++i )
     {
-        wxChar a = *i;
+        wxUniChar a = *i;
 
         if ( a >= wxS(' ') )
         {
@@ -6311,7 +6311,6 @@ bool wxPGStringTokenizer::HasMoreTokens()
     wxString::const_iterator i = m_curPos;
 
     wxUniChar delim = m_delimiter;
-    wxUniChar a;
     wxUniChar prev_a = wxS('\0');
 
     bool inToken = false;
@@ -6323,7 +6322,7 @@ bool wxPGStringTokenizer::HasMoreTokens()
 #endif /* VDM auto patch */
     while ( i != str.end() )
     {
-        a = *i;
+        wxUniChar a = *i;
 
         if ( !inToken )
         {
@@ -6674,24 +6673,19 @@ wxPGChoices wxPropertyGridPopulator::ParseChoices( const wxString& choicesString
         if ( !found )
         {
             // Parse choices string
-            wxString::const_iterator it = choicesString.begin();
+            wxString::const_iterator it;
             wxString label;
             wxString value;
             int state = 0;
             bool labelValid = false;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
-            for ( ; it != choicesString.end(); ++it )
+            for ( it = choicesString.begin(); it != choicesString.end(); ++it )
             {
-                wxChar c = *it;
+                wxUniChar c = *it;
 
                 if ( state != 1 )
                 {
-                    if ( c == wxT('"') )
+                    if ( c == wxS('"') )
                     {
                         if ( labelValid )
                         {
@@ -6705,21 +6699,21 @@ wxPGChoices wxPropertyGridPopulator::ParseChoices( const wxString& choicesString
                         label.clear();
                         state = 1;
                     }
-                    else if ( c == wxT('=') )
+                    else if ( c == wxS('=') )
                     {
                         if ( labelValid )
                         {
                             state = 2;
                         }
                     }
-                    else if ( state == 2 && (wxIsalnum(c) || c == wxT('x')) )
+                    else if ( state == 2 && (wxIsalnum(c) || c == wxS('x')) )
                     {
                         value << c;
                     }
                 }
                 else
                 {
-                    if ( c == wxT('"') )
+                    if ( c == wxS('"') )
                     {
                         state = 0;
                         labelValid = true;
