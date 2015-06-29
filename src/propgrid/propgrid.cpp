@@ -4568,7 +4568,7 @@ bool wxPropertyGrid::SelectProperty( wxPGPropArg id, bool focus )
 {
     wxPG_PROP_ARG_CALL_PROLOG_RETVAL(false)
 
-    int flags = wxPG_SEL_DONT_SEND_EVENT;
+    unsigned int flags = wxPG_SEL_DONT_SEND_EVENT;
     if ( focus )
         flags |= wxPG_SEL_FOCUS;
 
