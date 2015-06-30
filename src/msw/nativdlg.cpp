@@ -212,7 +212,6 @@ wxWindow* wxWindow::CreateWindowFromHWND(wxWindow* parent, WXHWND hWnd)
         else
 #endif
 #if wxUSE_BMPBUTTON
-#if defined(__WIN32__) && defined(BS_BITMAP)
         if (style & BS_BITMAP)
         {
             // TODO: how to find the bitmap?
@@ -220,7 +219,6 @@ wxWindow* wxWindow::CreateWindowFromHWND(wxWindow* parent, WXHWND hWnd)
             wxLogError(wxT("Have not yet implemented bitmap button as BS_BITMAP button."));
         }
         else
-#endif
         if (style1 == BS_OWNERDRAW)
         {
             // TODO: how to find the bitmap?
@@ -307,7 +305,6 @@ wxWindow* wxWindow::CreateWindowFromHWND(wxWindow* parent, WXHWND hWnd)
             )
             win = new wxStaticText;
 #if wxUSE_STATBMP
-#if defined(__WIN32__) && defined(BS_BITMAP)
         else if (style1 == SS_BITMAP)
         {
             win = new wxStaticBitmap;
@@ -315,7 +312,6 @@ wxWindow* wxWindow::CreateWindowFromHWND(wxWindow* parent, WXHWND hWnd)
             // Help! this doesn't correspond with the wxWin implementation.
             wxLogError(wxT("Please make SS_BITMAP statics into owner-draw buttons."));
         }
-#endif
 #endif /* wxUSE_STATBMP */
     }
 #endif

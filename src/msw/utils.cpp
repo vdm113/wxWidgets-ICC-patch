@@ -93,7 +93,7 @@
     #include <lm.h>
 #endif // USE_NET_API
 
-#if defined(__WIN32__) && !defined(__WXMICROWIN__) && !defined(__WXWINCE__)
+#if !defined(__WXMICROWIN__) && !defined(__WXWINCE__)
     #ifndef __UNIX__
         #include <io.h>
     #endif
@@ -475,7 +475,6 @@ bool wxGetDiskSpace(const wxString& WXUNUSED_IN_WINCE(path),
     if ( path.empty() )
         return false;
 
-#if defined(__WIN32__)
     ULARGE_INTEGER bytesFree, bytesTotal;
 
     // may pass the path as is, GetDiskFreeSpaceEx() is smart enough
@@ -514,7 +513,6 @@ bool wxGetDiskSpace(const wxString& WXUNUSED_IN_WINCE(path),
         *pFree = wxDiskspaceSize_t(UL(bytesFree).LowPart);
 #endif
     }
-#endif // Win32
 
     return true;
 #endif
@@ -902,7 +900,7 @@ bool wxShutdown(int WXUNUSED_IN_WINCE(flags))
 #ifdef __WXWINCE__
     // TODO-CE
     return false;
-#elif defined(__WIN32__)
+#else
     bool bOK = true;
 
     if ( wxGetOsVersion(NULL, NULL) == wxOS_WINDOWS_NT ) // if is NT or 2K
