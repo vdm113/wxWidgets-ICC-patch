@@ -106,10 +106,6 @@ WXDLLIMPEXP_BASE void wxSetInstance(HINSTANCE hInst);
     #define APIENTRY FAR PASCAL
 #endif
 
-#ifndef _EXPORT
-    #define _EXPORT
-#endif
-
 /*
  * Decide what window classes we're going to use
  * for this combination of CTl3D/FAFA settings
@@ -147,7 +143,7 @@ WXDLLIMPEXP_BASE void wxSetInstance(HINSTANCE hInst);
 
 // Generic subclass proc, for panel item moving/sizing and intercept
 // EDIT control VK_RETURN messages
-extern LONG APIENTRY _EXPORT
+extern LONG APIENTRY
   wxSubclassedGenericControlProc(WXHWND hWnd, WXUINT message, WXWPARAM wParam, WXLPARAM lParam);
 
 // ---------------------------------------------------------------------------

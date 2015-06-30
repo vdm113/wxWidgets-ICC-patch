@@ -85,8 +85,8 @@ UINT_PTR GetNewTimerId(wxMSWTimerImpl *t)
 // private functions
 // ----------------------------------------------------------------------------
 
-LRESULT APIENTRY _EXPORT wxTimerWndProc(HWND hWnd, UINT message,
-                                        WPARAM wParam, LPARAM lParam);
+LRESULT APIENTRY
+wxTimerWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 // ----------------------------------------------------------------------------
 // wxTimerHiddenWindowModule: used to manage the hidden window used for
@@ -173,8 +173,8 @@ void wxProcessTimer(wxMSWTimerImpl& timer)
 }
 
 
-LRESULT APIENTRY _EXPORT wxTimerWndProc(HWND hWnd, UINT message,
-                                        WPARAM wParam, LPARAM lParam)
+LRESULT APIENTRY
+wxTimerWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     if ( message == WM_TIMER )
     {
