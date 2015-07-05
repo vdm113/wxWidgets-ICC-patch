@@ -266,11 +266,6 @@ public:
     {
         ProcessFrames(0);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
         for ( wxVector<Frame>::const_iterator it = m_frames.begin();
               it != m_frames.end();
               ++it )
