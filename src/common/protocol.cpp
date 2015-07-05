@@ -28,6 +28,7 @@
 #include "wx/protocol/log.h"
 
 #ifndef WX_PRECOMP
+    #include "wx/app.h"
     #include "wx/module.h"
 #endif
 
