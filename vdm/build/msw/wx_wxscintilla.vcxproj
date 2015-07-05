@@ -553,9 +553,6 @@
     <ClCompile Include="..\..\src\stc\scintilla\src\EditModel.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\src\EditView.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\src\Editor.cxx" />
-    <ClCompile Include="..\..\src\stc\scintilla\src\EditModel.cxx" />
-    <ClCompile Include="..\..\src\stc\scintilla\src\EditView.cxx" />
-    <ClCompile Include="..\..\src\stc\scintilla\src\Editor.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\src\ExternalLexer.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\src\Indicator.cxx" />
     <ClCompile Include="..\..\src\stc\scintilla\src\KeyMap.cxx" />
