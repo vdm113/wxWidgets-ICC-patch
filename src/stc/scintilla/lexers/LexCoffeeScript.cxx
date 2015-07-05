@@ -308,6 +308,11 @@ static void ColouriseCoffeeScriptDoc(unsigned int startPos, int length, int init
 static bool IsCommentLine(int line, Accessor &styler) {
 	int pos = styler.LineStart(line);
 	int eol_pos = styler.LineStart(line + 1) - 1;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (int i = pos; i < eol_pos; i++) {
 		char ch = styler[i];
 		if (ch == '#')
@@ -337,6 +342,11 @@ static void FoldCoffeeScriptDoc(unsigned int startPos, int length, int,
 	int spaceFlags = 0;
 	int lineCurrent = styler.GetLine(startPos);
 	int indentCurrent = styler.IndentAmount(lineCurrent, &spaceFlags, NULL);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	while (lineCurrent > 0) {
 		lineCurrent--;
 		indentCurrent = styler.IndentAmount(lineCurrent, &spaceFlags, NULL);
@@ -354,6 +364,11 @@ static void FoldCoffeeScriptDoc(unsigned int startPos, int length, int,
 	// Process all characters to end of requested range
 	// or comment that hangs over the end of the range.  Cap processing in all cases
 	// to end of document (in case of comment at end).
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	while ((lineCurrent <= docLines) && ((lineCurrent <= maxLines) || prevComment)) {
 
 		// Gather info
@@ -386,6 +401,11 @@ static void FoldCoffeeScriptDoc(unsigned int startPos, int length, int,
 		// which effectively folds them into surrounding code rather
 		// than screwing up folding.
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 		while ((lineNext < docLines) &&
 		        ((indentNext & SC_FOLDLEVELWHITEFLAG) ||
 		         (lineNext <= docLines && IsCommentLine(lineNext, styler)))) {
@@ -405,6 +425,11 @@ static void FoldCoffeeScriptDoc(unsigned int startPos, int length, int,
 		int skipLine = lineNext;
 		int skipLevel = levelAfterComments;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 		while (--skipLine > lineCurrent) {
 			int skipLineIndent = styler.IndentAmount(skipLine, &spaceFlags, NULL);
 

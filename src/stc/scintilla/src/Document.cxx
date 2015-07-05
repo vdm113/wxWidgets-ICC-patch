@@ -15,8 +15,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include <ctype.h>
 #include <assert.h>
+#include <ctype.h>
 
 #include <stdexcept>
 #include <string>
@@ -32,18 +32,19 @@
 #include "ILexer.h"
 #include "Scintilla.h"
 
+#include "CharacterSet.h"
 #include "SplitVector.h"
 #include "Partitioning.h"
 #include "RunStyles.h"
 #include "CellBuffer.h"
 #include "PerLine.h"
 #include "CharClassify.h"
-#include "CharacterSet.h"
 #include "Decoration.h"
 #include "CaseFolder.h"
 #include "Document.h"
 #include "RESearch.h"
 #include "UniConversion.h"
+#include "UnicodeFromUTF8.h"
 
 #ifdef SCI_NAMESPACE
 using namespace Scintilla;
@@ -70,7 +71,7 @@ void LexInterface::Colourise(int start, int end) {
 
 		int styleStart = 0;
 		if (start > 0)
-			styleStart = pdoc->StyleAt(start - 1) & pdoc->stylingBitsMask;
+			styleStart = pdoc->StyleAt(start - 1);
 
 		if (len > 0) {
 			instance->Lex(start, len, styleStart, pdoc);
@@ -102,9 +103,6 @@ Document::Document() {
 #endif
 	dbcsCodePage = 0;
 	lineEndBitSet = SC_LINE_END_TYPE_DEFAULT;
-	stylingBits = 5;
-	stylingBitsMask = 0x1F;
-	stylingMask = 0;
 	endStyled = 0;
 	styleClock = 0;
 	enteredModification = 0;
@@ -258,6 +256,11 @@ void Document::TentativeUndo() {
 			bool multiLine = false;
 			int steps = cb.TentativeSteps();
 			//Platform::DebugPrintf("Steps=%d\n", steps);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 			for (int step = 0; step < steps; step++) {
 				const int prevLinesTotal = LinesTotal();
 				const Action &action = cb.GetUndoStep();
@@ -881,19 +884,6 @@ bool Document::NextCharacter(int &pos, int moveDir) const {
 	}
 }
 
-static inline int UnicodeFromBytes(const unsigned char *us) {
-	if (us[0] < 0xC2) {
-		return us[0];
-	} else if (us[0] < 0xE0) {
-		return ((us[0] & 0x1F) << 6) + (us[1] & 0x3F);
-	} else if (us[0] < 0xF0) {
-		return ((us[0] & 0xF) << 12) + ((us[1] & 0x3F) << 6) + (us[2] & 0x3F);
-	} else if (us[0] < 0xF5) {
-		return ((us[0] & 0x7) << 18) + ((us[1] & 0x3F) << 12) + ((us[2] & 0x3F) << 6) + (us[3] & 0x3F);
-	}
-	return us[0];
-}
-
 // Return -1  on out-of-bounds
 int SCI_METHOD Document::GetRelativePosition(int positionStart, int characterOffset) const {
 	int pos = positionStart;
@@ -908,6 +898,32 @@ int SCI_METHOD Document::GetRelativePosition(int positionStart, int characterOff
 			const int posNext = NextPosition(pos, increment);
 			if (posNext == pos)
 				return INVALID_POSITION;
+			pos = posNext;
+			characterOffset -= increment;
+		}
+	} else {
+		pos = positionStart + characterOffset;
+		if ((pos < 0) || (pos > Length()))
+			return INVALID_POSITION;
+	}
+	return pos;
+}
+
+int Document::GetRelativePositionUTF16(int positionStart, int characterOffset) const {
+	int pos = positionStart;
+	if (dbcsCodePage) {
+		const int increment = (characterOffset > 0) ? 1 : -1;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
+		while (characterOffset != 0) {
+			const int posNext = NextPosition(pos, increment);
+			if (posNext == pos)
+				return INVALID_POSITION;
+			if (abs(pos-posNext) > 3)	// 4 byte character = 2*UTF16.
+				characterOffset -= increment;
 			pos = posNext;
 			characterOffset -= increment;
 		}
@@ -944,7 +960,7 @@ int SCI_METHOD Document::GetCharacterAndWidth(int position, int *pWidth) const {
 					character =  0xDC80 + leadByte;
 				} else {
 					bytesInCharacter = utf8status & UTF8MaskWidth;
-					character = UnicodeFromBytes(charBytes);
+					character = UnicodeFromUTF8(charBytes);
 				}
 			}
 		} else {
@@ -1490,6 +1506,26 @@ int Document::CountCharacters(int startPos, int endPos) const {
 	return count;
 }
 
+int Document::CountUTF16(int startPos, int endPos) const {
+	startPos = MovePositionOutsideChar(startPos, 1, false);
+	endPos = MovePositionOutsideChar(endPos, -1, false);
+	int count = 0;
+	int i = startPos;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
+	while (i < endPos) {
+		count++;
+		const int next = NextPosition(i, 1);
+		if ((next - i) > 3)
+			count++;
+		i = next;
+	}
+	return count;
+}
+
 int Document::FindColumn(int line, int column) {
 	int position = LineStart(line);
 	if ((line >= 0) && (line < LinesTotal())) {
@@ -1868,6 +1904,11 @@ Document::CharacterExtracted Document::ExtractCharacter(int position) const {
 	}
 	const int widthCharBytes = UTF8BytesOfLead[leadByte];
 	unsigned char charBytes[UTF8MaxBytes] = { leadByte, 0, 0, 0 };
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (int b=1; b<widthCharBytes; b++)
 		charBytes[b] = static_cast<unsigned char>(cb.CharAt(position + b));
 	int utf8status = UTF8Classify(charBytes, widthCharBytes);
@@ -1875,7 +1916,7 @@ Document::CharacterExtracted Document::ExtractCharacter(int position) const {
 		// Treat as invalid and use up just one byte
 		return CharacterExtracted(unicodeReplacementChar, 1);
 	} else {
-		return CharacterExtracted(UnicodeFromBytes(charBytes), utf8status & UTF8MaskWidth);
+		return CharacterExtracted(UnicodeFromUTF8(charBytes), utf8status & UTF8MaskWidth);
 	}
 }
 
@@ -2108,13 +2149,7 @@ int Document::GetCharsOfClass(CharClassify::cc characterClass, unsigned char *bu
     return charClass.GetCharsOfClass(characterClass, buffer);
 }
 
-void Document::SetStylingBits(int bits) {
-	stylingBits = bits;
-	stylingBitsMask = (1 << stylingBits) - 1;
-}
-
-void SCI_METHOD Document::StartStyling(int position, char mask) {
-	stylingMask = mask;
+void SCI_METHOD Document::StartStyling(int position, char) {
 	endStyled = position;
 }
 
@@ -2123,9 +2158,8 @@ bool SCI_METHOD Document::SetStyleFor(int length, char style) {
 		return false;
 	} else {
 		enteredStyling++;
-		style &= stylingMask;
 		int prevEndStyled = endStyled;
-		if (cb.SetStyleFor(endStyled, length, style, stylingMask)) {
+		if (cb.SetStyleFor(endStyled, length, style)) {
 			DocModification mh(SC_MOD_CHANGESTYLE | SC_PERFORMED_USER,
 			                   prevEndStyled, length);
 			NotifyModified(mh);
@@ -2151,7 +2185,7 @@ bool SCI_METHOD Document::SetStyles(int length, const char *styles) {
 #endif /* VDM auto patch */
 		for (int iPos = 0; iPos < length; iPos++, endStyled++) {
 			PLATFORM_ASSERT(endStyled < Length());
-			if (cb.SetStyleAt(endStyled, styles[iPos], stylingMask)) {
+			if (cb.SetStyleAt(endStyled, styles[iPos])) {
 				if (!didChange) {
 					startMod = endStyled;
 				}
@@ -2601,7 +2635,7 @@ int Document::BraceMatch(int position, int /*maxReStyle*/) {
 	char chSeek = BraceOpposite(chBrace);
 	if (chSeek == '\0')
 		return - 1;
-	char styBrace = static_cast<char>(StyleAt(position) & stylingBitsMask);
+	char styBrace = static_cast<char>(StyleAt(position));
 	int direction = -1;
 	if (chBrace == '(' || chBrace == '[' || chBrace == '{' || chBrace == '<')
 		direction = 1;
@@ -2614,7 +2648,7 @@ int Document::BraceMatch(int position, int /*maxReStyle*/) {
 #endif /* VDM auto patch */
 	while ((position >= 0) && (position < Length())) {
 		char chAtPos = CharAt(position);
-		char styAtPos = static_cast<char>(StyleAt(position) & stylingBitsMask);
+		char styAtPos = static_cast<char>(StyleAt(position));
 		if ((position > GetEndStyled()) || (styAtPos == styBrace)) {
 			if (chAtPos == chBrace)
 				depth++;
@@ -2806,6 +2840,9 @@ public:
 		doc(doc_), position(position_), characterIndex(0), lenBytes(0), lenCharacters(0) {
 		buffered[0] = 0;
 		buffered[1] = 0;
+		if (doc) {
+			ReadCharacter();
+		}
 	}
 	UTF8Iterator(const UTF8Iterator &other) {
 		doc = other.doc;
@@ -2828,10 +2865,8 @@ public:
 		}
 		return *this;
 	}
-	wchar_t operator*() {
-		if (lenCharacters == 0) {
-			ReadCharacter();
-		}
+	wchar_t operator*() const {
+		assert(lenCharacters != 0);
 		return buffered[characterIndex];
 	}
 	UTF8Iterator &operator++() {
@@ -2976,6 +3011,11 @@ bool MatchOnLines(const Document *doc, const Regex &regexp, const RESearchRange 
 	//	matched = std::regex_search(uiStart, uiEnd, match, regexp, flagsMatch);
 
 	// Line by line.
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (int line = resr.lineRangeStart; line != resr.lineRangeBreak; line += resr.increment) {
 		const Range lineRange = resr.LineRange(line);
 		Iterator itStart(doc, lineRange.start);
@@ -2985,6 +3025,11 @@ bool MatchOnLines(const Document *doc, const Regex &regexp, const RESearchRange 
 		// Check for the last match on this line.
 		if (matched) {
 			if (resr.increment == -1) {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 				while (matched) {
 					Iterator itNext(doc, match[0].second.PosRoundUp());
 					flagsMatch = MatchFlags(doc, itNext.Pos(), lineRange.end);
@@ -3004,11 +3049,21 @@ bool MatchOnLines(const Document *doc, const Regex &regexp, const RESearchRange 
 		}
 	}
 	if (matched) {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 		for (size_t co = 0; co < match.size(); co++) {
 			search.bopat[co] = match[co].first.Pos();
 			search.eopat[co] = match[co].second.PosRoundUp();
 			size_t lenMatch = search.eopat[co] - search.bopat[co];
 			search.pat[co].resize(lenMatch);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 			for (size_t iPos = 0; iPos < lenMatch; iPos++) {
 				search.pat[co][iPos] = doc->CharAt(iPos + search.bopat[co]);
 			}
@@ -3109,6 +3164,11 @@ long BuiltinRegex::FindText(Document *doc, int minPos, int maxPos, const char *s
 	int lenRet = 0;
 	const char searchEnd = s[*length - 1];
 	const char searchEndPrev = (*length > 1) ? s[*length - 2] : '\0';
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (int line = resr.lineRangeStart; line != resr.lineRangeBreak; line += resr.increment) {
 		int startOfLine = doc->LineStart(line);
 		int endOfLine = doc->LineEnd(line);

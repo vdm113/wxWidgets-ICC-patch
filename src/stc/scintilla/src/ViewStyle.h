@@ -90,6 +90,8 @@ public:
 	LineMarker markers[MARKER_MAX + 1];
 	int largestMarkerHeight;
 	Indicator indicators[INDIC_MAX + 1];
+	unsigned int indicatorsDynamic;
+	unsigned int indicatorsSetFore;
 	int technology;
 	int lineHeight;
 	int lineOverlap;
@@ -165,7 +167,7 @@ public:
 	ViewStyle();
 	ViewStyle(const ViewStyle &source);
 	~ViewStyle();
-	void Init(size_t stylesSize_=64);
+	void Init(size_t stylesSize_=256);
 	void Refresh(Surface &surface, int tabInChars);
 	void ReleaseAllExtendedStyles();
 	int AllocateExtendedStyles(int numberStyles);

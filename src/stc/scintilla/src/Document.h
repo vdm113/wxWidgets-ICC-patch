@@ -46,6 +46,10 @@ public:
 		start(start_), end(end_) {
 	}
 
+	bool operator==(const Range &other) const {
+		return (start == other.start) && (end == other.end);
+	}
+
 	bool Valid() const {
 		return (start != invalidPosition) && (end != invalidPosition);
 	}
@@ -222,7 +226,6 @@ private:
 	CellBuffer cb;
 	CharClassify charClass;
 	CaseFolder *pcf;
-	char stylingMask;
 	int endStyled;
 	int styleClock;
 	int enteredModification;
@@ -244,9 +247,6 @@ private:
 public:
 
 	LexInterface *pli;
-
-	int stylingBits;
-	int stylingBitsMask;
 
 	int eolMode;
 	/// Can also be SC_CP_UTF8 to enable UTF-8 mode
@@ -291,6 +291,7 @@ public:
 	int NextPosition(int pos, int moveDir) const;
 	bool NextCharacter(int &pos, int moveDir) const;	// Returns true if pos changed
 	int SCI_METHOD GetRelativePosition(int positionStart, int characterOffset) const;
+	int GetRelativePositionUTF16(int positionStart, int characterOffset) const;
 	int SCI_METHOD GetCharacterAndWidth(int position, int *pWidth) const;
 	int SCI_METHOD CodePage() const;
 	bool SCI_METHOD IsDBCSLeadByte(char ch) const;
@@ -334,6 +335,7 @@ public:
 	int GetLineIndentPosition(int line) const;
 	int GetColumn(int position);
 	int CountCharacters(int startPos, int endPos) const;
+	int CountUTF16(int startPos, int endPos) const;
 	int FindColumn(int line, int column);
 	void Indent(bool forwards, int lineBottom, int lineTop);
 	static std::string TransformLineEnds(const char *s, size_t len, int eolModeWanted);

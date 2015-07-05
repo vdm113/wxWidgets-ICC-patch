@@ -19,10 +19,10 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 #include <stdio.h>
 #include <stdarg.h>
 #include <assert.h>
+#include <ctype.h>
 
 #include "ILexer.h"
 #include "Scintilla.h"
@@ -79,6 +79,7 @@ static void ColouriseVHDLDoc(
   WordList &User       = *keywordlists[6];
 
   StyleContext sc(startPos, length, initStyle, styler);
+  bool isExtendedId = false;    // true when parsing an extended identifier
 
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
@@ -96,7 +97,7 @@ static void ColouriseVHDLDoc(
         sc.SetState(SCE_VHDL_DEFAULT);
       }
     } else if (sc.state == SCE_VHDL_IDENTIFIER) {
-      if (!IsAWordChar(sc.ch) || (sc.ch == '.')) {
+      if (!isExtendedId && (!IsAWordChar(sc.ch) || (sc.ch == '.'))) {
         char s[100];
         sc.GetCurrentLowered(s, sizeof(s));
         if (Keywords.InList(s)) {
@@ -115,6 +116,10 @@ static void ColouriseVHDLDoc(
           sc.ChangeState(SCE_VHDL_USERWORD);
         }
         sc.SetState(SCE_VHDL_DEFAULT);
+      } else if (isExtendedId && ((sc.ch == '\\') || sc.atLineEnd)) {
+        // extended identifiers are terminated by backslash, check for end of line in case we have invalid syntax
+        isExtendedId = false;
+        sc.ForwardSetState(SCE_VHDL_DEFAULT);
       }
     } else if (sc.state == SCE_VHDL_COMMENT || sc.state == SCE_VHDL_COMMENTLINEBANG) {
       if (sc.atLineEnd) {
@@ -153,6 +158,9 @@ static void ColouriseVHDLDoc(
         sc.SetState(SCE_VHDL_BLOCK_COMMENT);
       } else if (sc.ch == '\"') {
         sc.SetState(SCE_VHDL_STRING);
+      } else if (sc.ch == '\\') {
+        isExtendedId = true;
+        sc.SetState(SCE_VHDL_IDENTIFIER);
       } else if (isoperator(static_cast<char>(sc.ch))) {
         sc.SetState(SCE_VHDL_OPERATOR);
       }
@@ -183,6 +191,11 @@ static bool IsCommentBlockStart(int line, Accessor &styler)
 {
     int pos = styler.LineStart(line);
 	int eol_pos = styler.LineStart(line + 1) - 1;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (int i = pos; i < eol_pos; i++) {
 		char ch = styler[i];
 		char chNext = styler[i+1];
@@ -198,6 +211,11 @@ static bool IsCommentBlockEnd(int line, Accessor &styler)
     int pos = styler.LineStart(line);
 	int eol_pos = styler.LineStart(line + 1) - 1;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (int i = pos; i < eol_pos; i++) {
 		char ch = styler[i];
 		char chNext = styler[i+1];
@@ -435,13 +453,19 @@ static void FoldNoBoxVHDLDoc(
             strcmp(s, "entity") == 0         ||
             strcmp(s, "configuration") == 0 )
           {
-            if (strcmp(prevWord, "end") != 0)
+            if (strcmp(prevWord, "end") != 0 && lastStart)
             { // check for instantiated unit by backward searching for the colon.
-              unsigned pos = lastStart-1;
+              unsigned pos = lastStart;
               char chAtPos, styleAtPos;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
               do{// skip white spaces
+                pos--;
                 styleAtPos = styler.StyleAt(pos);
-                chAtPos = styler.SafeGetCharAt(pos--);
+                chAtPos = styler.SafeGetCharAt(pos);
               }while(pos>0 &&
                      (chAtPos == ' ' || chAtPos == '\t' ||
                       chAtPos == '\n' || chAtPos == '\r' ||
@@ -464,6 +488,11 @@ static void FoldNoBoxVHDLDoc(
             { // This code checks to see if the procedure / function is a definition within a "package"
               // rather than the actual code in the body.
               int BracketLevel = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
               for(int pos=i+1; pos<styler.Length(); pos++)
               {
                 int styleAtPos = styler.StyleAt(pos);

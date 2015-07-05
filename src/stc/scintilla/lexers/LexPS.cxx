@@ -13,6 +13,12 @@
  ** The License.txt file describes the conditions under which this software may be distributed.
  **/
 
+// Previous releases of this lexer included support for marking token starts with
+// a style byte indicator. This was used by the wxGhostscript IDE/debugger.
+// Style byte indicators were removed in version 3.4.3.
+// Anyone wanting to restore this functionality for wxGhostscript using 'modern'
+// indicators can examine the earlier source in the Mercurial repository.
+
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -79,7 +85,6 @@ static void ColourisePSDoc(
 
     StyleContext sc(startPos, length, initStyle, styler);
 
-    bool tokenizing = styler.GetPropertyInt("ps.tokenize") != 0;
     int pslevel = styler.GetPropertyInt("ps.level", 3);
     int lineCurrent = styler.GetLine(startPos);
     int nestTextCurrent = 0;
@@ -89,15 +94,6 @@ static void ColourisePSDoc(
     bool numHasPoint = false;
     bool numHasExponent = false;
     bool numHasSign = false;
-
-    // Clear out existing tokenization
-    if (tokenizing && length > 0) {
-        styler.StartAt(startPos, static_cast<char>(INDIC2_MASK));
-        styler.ColourTo(startPos + length-1, 0);
-        styler.Flush();
-        styler.StartAt(startPos);
-        styler.StartSegment(startPos);
-    }
 
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
@@ -208,7 +204,6 @@ static void ColourisePSDoc(
 
         // Determine if a new state should be entered.
         if (sc.state == SCE_C_DEFAULT) {
-            unsigned int tokenpos = sc.currentPos;
 
             if (sc.ch == '[' || sc.ch == ']') {
                 sc.SetState(SCE_PS_PAREN_ARRAY);
@@ -274,17 +269,6 @@ static void ColourisePSDoc(
             } else if (!IsAWhitespaceChar(sc.ch)) {
                 sc.SetState(SCE_PS_NAME);
             }
-
-            // Mark the start of tokens
-            if (tokenizing && sc.state != SCE_C_DEFAULT && sc.state != SCE_PS_COMMENT &&
-                sc.state != SCE_PS_DSC_COMMENT && sc.state != SCE_PS_DSC_VALUE) {
-                styler.Flush();
-                styler.StartAt(tokenpos, static_cast<char>(INDIC2_MASK));
-                styler.ColourTo(tokenpos, INDIC2_MASK);
-                styler.Flush();
-                styler.StartAt(tokenpos);
-                styler.StartSegment(tokenpos);
-            }
         }
 
         if (sc.atLineEnd)
@@ -308,7 +292,6 @@ static void FoldPSDoc(unsigned int startPos, int length, int, WordList *[],
     int levelNext = levelCurrent;
     char chNext = styler[startPos];
     int styleNext = styler.StyleAt(startPos);
-    int style;
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
@@ -317,7 +300,7 @@ static void FoldPSDoc(unsigned int startPos, int length, int, WordList *[],
     for (unsigned int i = startPos; i < endPos; i++) {
         char ch = chNext;
         chNext = styler.SafeGetCharAt(i + 1);
-        style = styleNext;
+        int style = styleNext;
         styleNext = styler.StyleAt(i + 1);
         bool atEOL = (ch == '\r' && chNext != '\n') || (ch == '\n');  //mac??
         if ((style & 31) == SCE_PS_PAREN_PROC) {

@@ -529,6 +529,11 @@ bool FormMain::RunTests( bool fullTest, bool interactive )
 
         wxArrayPGProperty::reverse_iterator it2;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( it2 = array.rbegin(); it2 != array.rend(); ++it2 )
         {
             wxPGProperty* p = (wxPGProperty*)*it2;

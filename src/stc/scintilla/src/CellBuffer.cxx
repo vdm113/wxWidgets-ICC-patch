@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 
+#include <stdexcept>
 #include <algorithm>
 
 #include "Platform.h"
@@ -467,18 +468,17 @@ const char *CellBuffer::InsertString(int position, const char *s, int insertLeng
 	return data;
 }
 
-bool CellBuffer::SetStyleAt(int position, char styleValue, char mask) {
-	styleValue &= mask;
+bool CellBuffer::SetStyleAt(int position, char styleValue) {
 	char curVal = style.ValueAt(position);
-	if ((curVal & mask) != styleValue) {
-		style.SetValueAt(position, static_cast<char>((curVal & ~mask) | styleValue));
+	if (curVal != styleValue) {
+		style.SetValueAt(position, styleValue);
 		return true;
 	} else {
 		return false;
 	}
 }
 
-bool CellBuffer::SetStyleFor(int position, int lengthStyle, char styleValue, char mask) {
+bool CellBuffer::SetStyleFor(int position, int lengthStyle, char styleValue) {
 	bool changed = false;
 	PLATFORM_ASSERT(lengthStyle == 0 ||
 		(lengthStyle > 0 && lengthStyle + position <= style.Length()));
@@ -489,8 +489,8 @@ bool CellBuffer::SetStyleFor(int position, int lengthStyle, char styleValue, cha
 #endif /* VDM auto patch */
 	while (lengthStyle--) {
 		char curVal = style.ValueAt(position);
-		if ((curVal & mask) != styleValue) {
-			style.SetValueAt(position, static_cast<char>((curVal & ~mask) | styleValue));
+		if (curVal != styleValue) {
+			style.SetValueAt(position, styleValue);
 			changed = true;
 		}
 		position++;
@@ -844,6 +844,10 @@ const Action &CellBuffer::GetUndoStep() const {
 void CellBuffer::PerformUndoStep() {
 	const Action &actionStep = uh.GetUndoStep();
 	if (actionStep.at == insertAction) {
+		if (substance.Length() < actionStep.lenData) {
+			throw std::runtime_error(
+				"CellBuffer::PerformUndoStep: deletion must be less than document length.");
+		}
 		BasicDeleteChars(actionStep.position, actionStep.lenData);
 	} else if (actionStep.at == removeAction) {
 		BasicInsertString(actionStep.position, actionStep.data, actionStep.lenData);

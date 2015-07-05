@@ -73,7 +73,7 @@ public:
 	int widthNext;
 
 	StyleContext(unsigned int startPos, unsigned int length,
-                        int initStyle, LexAccessor &styler_, char chMask=31) :
+                        int initStyle, LexAccessor &styler_, char chMask='\377') :
 		styler(styler_),
 		multiByteAccess(0),
 		endPos(startPos + length),
@@ -93,7 +93,7 @@ public:
 		if (styler.Encoding() != enc8bit) {
 			multiByteAccess = styler.MultiByteAccess();
 		}
-		styler.StartAt(startPos, chMask);
+		styler.StartAt(startPos /*, chMask*/);
 		styler.StartSegment(startPos);
 		currentLine = styler.GetLine(startPos);
 		lineStartNext = styler.LineStart(currentLine+1);

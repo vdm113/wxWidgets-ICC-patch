@@ -28,6 +28,7 @@
 #include "Scintilla.h"
 #include "SciLexer.h"
 
+#include "PropSetSimple.h"
 #include "WordList.h"
 #include "LexAccessor.h"
 #include "Accessor.h"
@@ -35,7 +36,6 @@
 #include "CharacterSet.h"
 #include "LexerModule.h"
 #include "OptionSet.h"
-#include "PropSetSimple.h"
 
 #ifdef SCI_NAMESPACE
 using namespace Scintilla;
@@ -260,6 +260,11 @@ static void ScanIdentifier(Accessor& styler, int& pos, WordList *keywords) {
 /* Scans a sequence of digits, returning true if it found any. */
 static bool ScanDigits(Accessor& styler, int& pos, int base) {
 	int old_pos = pos;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (;;) {
 		int c = styler.SafeGetCharAt(pos, '\0');
 		if (IsADigit(c, base) || c == '_')
@@ -298,7 +303,7 @@ static void ScanNumber(Accessor& styler, int& pos) {
 		pos++;
 		c = styler.SafeGetCharAt(pos, '\0');
 		n = styler.SafeGetCharAt(pos + 1, '\0');
-		if (c == '8') {
+		if (c == '8' || c == 's') {
 			pos++;
 		} else if (c == '1' && n == '6') {
 			pos += 2;
@@ -306,6 +311,8 @@ static void ScanNumber(Accessor& styler, int& pos) {
 			pos += 2;
 		} else if (c == '6' && n == '4') {
 			pos += 2;
+		} else {
+			error = true;
 		}
 	/* See if it's a floating point literal. These literals have to be base 10.
 	 */
@@ -651,6 +658,11 @@ static void ResumeString(Accessor &styler, int& pos, int max, bool ascii_only) {
 }
 
 static void ResumeRawString(Accessor &styler, int& pos, int max, int num_hashes, bool ascii_only) {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (;;) {
 		if (pos == styler.LineEnd(styler.GetLine(pos)))
 			styler.SetLineState(styler.GetLine(pos), num_hashes);

@@ -592,4 +592,4 @@ static const char * const mysqlWordListDesc[] = {
 	0
 };
 
-LexerModule lmMySQL(SCLEX_MYSQL, ColouriseMySQLDoc, "mysql", FoldMySQLDoc, mysqlWordListDesc, 7);
+LexerModule lmMySQL(SCLEX_MYSQL, ColouriseMySQLDoc, "mysql", FoldMySQLDoc, mysqlWordListDesc);

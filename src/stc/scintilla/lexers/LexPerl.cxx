@@ -1918,4 +1918,4 @@ void SCI_METHOD LexerPerl::Fold(unsigned int startPos, int length, int /* initSt
 	styler.SetLevel(lineCurrent, levelPrev | flagsNext);
 }
 
-LexerModule lmPerl(SCLEX_PERL, LexerPerl::LexerFactoryPerl, "perl", perlWordListDesc, 8);
+LexerModule lmPerl(SCLEX_PERL, LexerPerl::LexerFactoryPerl, "perl", perlWordListDesc);
