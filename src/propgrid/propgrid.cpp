@@ -1261,6 +1261,11 @@ wxSize wxPropertyGrid::DoGetBestSize() const
 
     wxClientDC dc(const_cast<wxPropertyGrid *>(this));
     int width = m_marginWidth;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < m_pState->GetColumnCount(); i++ )
     {
         width += m_pState->GetColumnFitWidth(dc, m_pState->DoGetRoot(), i, true);
@@ -1801,6 +1806,11 @@ wxString& wxPropertyGrid::ExpandEscapeSequences( wxString& dst_str, wxString& sr
 
     wxString::const_iterator i = src_str.begin();
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( ; i != src_str.end(); ++i )
     {
         wxUniChar a = *i;
@@ -1858,6 +1868,11 @@ wxString& wxPropertyGrid::CreateEscapeSequences( wxString& dst_str, wxString& sr
     wxString::const_iterator i;
     wxUniChar prev_a = wxS('\0');
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( i = src_str.begin(); i != src_str.end(); ++i )
     {
         wxUniChar a = *i;
@@ -2338,6 +2353,11 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
         // Splitters
         int sx = x;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( unsigned int si = 0; si < colCount; si++ )
         {
             sx += colWidths[si];
@@ -2476,6 +2496,11 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
         // Calculate cellRect.x for the last cell
         unsigned int ci = 0;
         int cellX = x + 1;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( ci = 0; ci < colCount; ci++ )
             cellX += colWidths[ci];
         cellRect.x = cellX;
@@ -2484,6 +2509,11 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
         // cell on the right was empty from text
         bool prevFilled = true;
         ci = colCount;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         do
         {
             ci--;
@@ -4843,6 +4873,11 @@ void wxPropertyGrid::SetFocusOnCanvas()
         if ( focus )
         {
             wxWindow* parent = focus->GetParent();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             while ( parent )
             {
                 if ( parent == this )
@@ -6677,6 +6712,11 @@ wxPGChoices wxPropertyGridPopulator::ParseChoices( const wxString& choicesString
             int state = 0;
             bool labelValid = false;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for ( it = choicesString.begin(); it != choicesString.end(); ++it )
             {
                 wxUniChar c = *it;
