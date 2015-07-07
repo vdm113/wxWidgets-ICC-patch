@@ -868,7 +868,7 @@ void wxPropertyGrid::OnComboItemPaint( const wxPGComboBox* pCb,
         if ( useCustomPaintProcedure )
         {
             pt.x += wxCC_CUSTOM_IMAGE_MARGIN1;
-            wxRect r(pt.x,pt.y,cis.x,cis.y);
+            wxRect r(pt, cis);
 
             if ( flags & wxODCB_PAINTING_CONTROL )
             {
@@ -1890,8 +1890,7 @@ void wxPropertyGrid::FixPosForTextCtrl( wxWindow* ctrl,
     finalPos.x += textCtrlXAdjust;
     finalPos.width -= textCtrlXAdjust;
 
-    finalPos.x += offset.x;
-    finalPos.y += offset.y;
+    finalPos.Offset(offset);
 
     ctrl->SetSize(finalPos);
 }

@@ -1981,7 +1981,7 @@ void wxPropertyGrid::DrawExpanderButton( wxDC& dc, const wxRect& rect,
 {
     // Prepare rectangle to be used
     wxRect r(rect);
-    r.x += m_gutterWidth; r.y += m_buttonSpacingY;
+    r.Offset(m_gutterWidth, m_buttonSpacingY);
     r.width = m_iconWidth; r.height = m_iconHeight;
 
 #if (wxPG_USE_RENDERER_NATIVE)
