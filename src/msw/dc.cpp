@@ -2183,6 +2183,8 @@ void wxMSWDCImpl::SetLogicalScale(double x, double y)
     WXMICROWIN_CHECK_HDC
 
     wxDCImpl::SetLogicalScale(x,y);
+
+    RealizeScaleAndOrigin();
 }
 
 void wxMSWDCImpl::SetDeviceOrigin(wxCoord x, wxCoord y)
