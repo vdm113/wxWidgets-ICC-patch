@@ -433,7 +433,7 @@ void wxWizard::AddButtonRow(wxBoxSizer *mainColumn)
         mainColumn->Add(
             buttonRow,
             0, // Vertically unstretchable
-            wxGROW|wxALIGN_CENTRE
+            wxEXPAND
             );
     else
 #endif
