@@ -1,3 +1,10 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP
+#endif
+
 // Scintilla source code edit control
 /** @file LexDMIS.cxx
  ** Lexer for DMIS.
@@ -13,14 +20,14 @@
 #include <cctype>
 
 #include "ILexer.h"
-#include "SciLexer.h"
 #include "Scintilla.h"
+#include "SciLexer.h"
 
-#include "LexerModule.h"
+#include "WordList.h"
 #include "LexAccessor.h"
 #include "StyleContext.h"
 #include "CharacterSet.h"
-#include "WordList.h"
+#include "LexerModule.h"
 
 #ifdef SCI_NAMESPACE
 using namespace Scintilla;
@@ -102,6 +109,11 @@ char * SCI_METHOD LexerDMIS::UpperCase(char *item)
 
 
 	itemStart = item;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	while (item && *item) {
 		*item = toupper(*item);
 		item++;
@@ -114,6 +126,11 @@ void SCI_METHOD LexerDMIS::InitWordListSets(void)
 	size_t totalLen = 0;
 
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (int i=0; DMISWordListDesc[i]; i++) {
 		totalLen += strlen(DMISWordListDesc[i]);
 		totalLen++;
@@ -123,6 +140,11 @@ void SCI_METHOD LexerDMIS::InitWordListSets(void)
 	this->m_wordListSets = new char[totalLen];
 	memset(this->m_wordListSets, 0, totalLen);
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (int i=0; DMISWordListDesc[i]; i++) {
 		strcat(this->m_wordListSets, DMISWordListDesc[i]);
 		strcat(this->m_wordListSets, "\n");
@@ -198,6 +220,11 @@ void SCI_METHOD LexerDMIS::Lex(unsigned int startPos, int lengthDoc, int initSty
 
 	bool isIFLine = false;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (; scCTX.More(); scCTX.Forward()) {
 		if (scCTX.atLineEnd) {
 			isIFLine = false;
@@ -300,6 +327,11 @@ void SCI_METHOD LexerDMIS::Fold(unsigned int startPos, int lengthDoc, int, IDocu
 	tmpStr = new char[MAX_STR_LEN];
 	memset(tmpStr, 0, MAX_STR_LEN*sizeof(char));
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (unsigned int i=startPos; i<endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i+1);
