@@ -251,6 +251,10 @@ SelectionRange &Selection::RangeMain() {
 	return ranges[mainRange];
 }
 
+const SelectionRange &Selection::RangeMain() const {
+	return ranges[mainRange];
+}
+
 SelectionPosition Selection::Start() const {
 	if (IsRectangular()) {
 		return rangeRectangular.Start();
