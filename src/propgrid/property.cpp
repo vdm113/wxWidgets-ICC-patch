@@ -555,7 +555,7 @@ void wxPGProperty::InitAfterAdded( wxPropertyGridPageState* pageState,
 
     // Set custom image flag.
     int custImgHeight = OnMeasureImage().y;
-    if ( custImgHeight < 0 )
+    if ( custImgHeight == wxDefaultCoord )
     {
         SetFlag(wxPG_PROP_CUSTOMIMAGE);
     }
@@ -2395,7 +2395,7 @@ void wxPGProperty::DoPreAddChild( int index, wxPGProperty* prop )
                        prop );
 
     int custImgHeight = prop->OnMeasureImage().y;
-    if ( custImgHeight < 0 /*|| custImgHeight > 1*/ )
+    if ( custImgHeight == wxDefaultCoord /*|| custImgHeight > 1*/ )
         prop->m_flags |= wxPG_PROP_CUSTOMIMAGE;
 
     prop->m_parent = this;
