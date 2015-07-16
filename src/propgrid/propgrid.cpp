@@ -4478,7 +4478,7 @@ bool wxPropertyGrid::DoSelectProperty( wxPGProperty* p, unsigned int flags )
             {
                 // Clear help box - but only if it was written
                 // by us at previous time.
-                statusbar->SetStatusText( m_emptyString );
+                statusbar->SetStatusText(wxEmptyString);
                 m_iFlags &= ~(wxPG_FL_STRING_IN_STATUSBAR);
             }
         }
@@ -5259,14 +5259,14 @@ bool wxPropertyGrid::HandleMouseMove( int x, unsigned int y,
                         }
                         else
                         {
-                            SetToolTip( m_emptyString );
+                            SetToolTip(wxEmptyString);
                         }
 
                     }
                 }
                 else
                 {
-                    SetToolTip( m_emptyString );
+                    SetToolTip(wxEmptyString);
                 }
             }
         }
