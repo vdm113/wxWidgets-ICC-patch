@@ -25,6 +25,7 @@ rm -rf build/msw/
 mkdir build/msw/
 cp -a vdm/build/msw/* build/msw/
 cp -a vdm/root_dir/* .
+cp -a vdm/root_dir/.??* .
 git add --all
 git commit -a --signoff -m 'restore our project files and remove unsupported files'
 
