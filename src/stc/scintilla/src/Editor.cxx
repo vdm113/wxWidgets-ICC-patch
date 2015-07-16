@@ -18,6 +18,7 @@
 #include <assert.h>
 #include <ctype.h>
 
+#include <cmath>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -97,6 +98,11 @@ Idler::Idler() :
 		state(false), idlerID(0) {}
 
 static inline bool IsAllSpacesOrTabs(const char *s, unsigned int len) {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (unsigned int i = 0; i < len; i++) {
 		// This is safe because IsSpaceOrTab() will return false for null terminators
 		if (!IsSpaceOrTab(s[i]))
@@ -1387,7 +1393,9 @@ void Editor::ShowCaretAtCurrentPosition() {
 
 void Editor::DropCaret() {
 	caret.active = false;
-	FineTickerCancel(tickCaret);
+	if (FineTickerAvailable()) {
+		FineTickerCancel(tickCaret);
+	}
 	InvalidateCaret();
 }
 
@@ -1562,6 +1570,11 @@ void Editor::LinesJoin() {
 	if (!RangeContainsProtected(targetStart, targetEnd)) {
 		UndoGroup ug(pdoc);
 		bool prevNonWS = true;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 		for (int pos = targetStart; pos < targetEnd; pos++) {
 			if (pdoc->IsPositionInLineEnd(pos)) {
 				targetEnd -= pdoc->LenChar(pos);
@@ -1598,6 +1611,11 @@ void Editor::LinesSplit(int pixelWidth) {
 		int lineEnd = pdoc->LineFromPosition(targetEnd);
 		const char *eol = StringFromEOLMode(pdoc->eolMode);
 		UndoGroup ug(pdoc);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 		for (int line = lineStart; line <= lineEnd; line++) {
 			AutoSurface surface(this);
 			AutoLineLayout ll(view.llc, view.RetrieveLineLayout(line, *this));
@@ -1605,6 +1623,11 @@ void Editor::LinesSplit(int pixelWidth) {
 				unsigned int posLineStart = pdoc->LineStart(line);
 				view.LayoutLine(*this, line, surface, vs, ll, pixelWidth);
 				int lengthInsertedTotal = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 				for (int subLine = 1; subLine < ll->lines; subLine++) {
 					const int lengthInserted = pdoc->InsertString(
 						static_cast<int>(posLineStart + lengthInsertedTotal +
@@ -1879,6 +1902,11 @@ void Editor::AddCharUTF(const char *s, unsigned int len, bool treatAsDBCS) {
 		std::sort(selPtrs.begin(), selPtrs.end(), cmpSelPtrs);
 
 		// Loop in reverse to avoid disturbing positions of selections yet to be processed.
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 		for (std::vector<SelectionRange *>::reverse_iterator rit = selPtrs.rbegin();
 			rit != selPtrs.rend(); ++rit) {
 			SelectionRange *currentSel = *rit;
@@ -1956,6 +1984,13 @@ void Editor::AddCharUTF(const char *s, unsigned int len, bool treatAsDBCS) {
 	if (recordingMacro) {
 		NotifyMacroRecord(SCI_REPLACESEL, 0, reinterpret_cast<sptr_t>(s));
 	}
+}
+
+void Editor::FillVirtualSpace() {
+	const bool tmpOverstrike = inOverstrike;
+	inOverstrike = false;         // not allow to be deleted twice.
+	AddCharUTF("", 0);
+	inOverstrike = tmpOverstrike;
 }
 
 void Editor::InsertPaste(const char *text, int len) {
@@ -2153,6 +2188,7 @@ void Editor::PasteRectangular(SelectionPosition pos, const char *ptr, int len) {
 #   pragma unroll
 #endif /* VDM auto patch */
 				while (XFromPosition(sel.MainCaret()) < xInsert) {
+					assert(pdoc);
 					const int lengthInserted = pdoc->InsertString(sel.MainCaret(), " ", 1);
 					sel.RangeMain().caret.Add(lengthInserted);
 				}
@@ -3058,6 +3094,11 @@ void Editor::NewLine() {
 		pdoc->EndUndoAction();
 	if (insertLength > 0) {
 		SetEmptySelection(sel.MainCaret() + insertLength);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 		while (*eol) {
 			NotifyChar(*eol);
 			if (recordingMacro) {
@@ -3800,7 +3841,10 @@ long Editor::FindText(
 	if (!pdoc->HasCaseFolder())
 		pdoc->SetCaseFolder(CaseFolderForEncoding());
 	try {
-		int pos = pdoc->FindText(ft->chrg.cpMin, ft->chrg.cpMax, ft->lpstrText,
+		long pos = pdoc->FindText(
+			static_cast<int>(ft->chrg.cpMin),
+			static_cast<int>(ft->chrg.cpMax),
+			ft->lpstrText,
 			(wParam & SCFIND_MATCHCASE) != 0,
 			(wParam & SCFIND_WHOLEWORD) != 0,
 			(wParam & SCFIND_WORDSTART) != 0,
@@ -3811,7 +3855,7 @@ long Editor::FindText(
 			ft->chrgText.cpMin = pos;
 			ft->chrgText.cpMax = pos + lengthFound;
 		}
-		return pos;
+		return static_cast<int>(pos);
 	} catch (RegexError &) {
 		errorStatus = SC_STATUS_WARN_REGEX;
 		return -1;
@@ -3910,7 +3954,7 @@ long Editor::SearchInTarget(const char *text, int length) {
 	if (!pdoc->HasCaseFolder())
 		pdoc->SetCaseFolder(CaseFolderForEncoding());
 	try {
-		int pos = pdoc->FindText(targetStart, targetEnd, text,
+		long pos = pdoc->FindText(targetStart, targetEnd, text,
 				(searchFlags & SCFIND_MATCHCASE) != 0,
 				(searchFlags & SCFIND_WHOLEWORD) != 0,
 				(searchFlags & SCFIND_WORDSTART) != 0,
@@ -3918,8 +3962,8 @@ long Editor::SearchInTarget(const char *text, int length) {
 				searchFlags,
 				&lengthFound);
 		if (pos != -1) {
-			targetStart = pos;
-			targetEnd = pos + lengthFound;
+			targetStart = static_cast<int>(pos);
+			targetEnd = static_cast<int>(pos + lengthFound);
 		}
 		return pos;
 	} catch (RegexError &) {
@@ -3939,9 +3983,9 @@ void Editor::GoToLine(int lineNo) {
 }
 
 static bool Close(Point pt1, Point pt2, Point threshold) {
-	if (abs(pt1.x - pt2.x) > threshold.x)
+	if (std::abs(pt1.x - pt2.x) > threshold.x)
 		return false;
-	if (abs(pt1.y - pt2.y) > threshold.y)
+	if (std::abs(pt1.y - pt2.y) > threshold.y)
 		return false;
 	return true;
 }
@@ -4185,7 +4229,7 @@ bool Editor::PointInSelMargin(Point pt) const {
 		PRectangle rcSelMargin = GetClientRectangle();
 		rcSelMargin.right = static_cast<XYPOSITION>(vs.textStart - vs.leftMarginWidth);
 		rcSelMargin.left = static_cast<XYPOSITION>(vs.textStart - vs.fixedColumnWidth);
-		return rcSelMargin.Contains(pt);
+		return rcSelMargin.ContainsWholePixel(pt);
 	} else {
 		return false;
 	}
@@ -5072,6 +5116,9 @@ void Editor::SetDocPointer(Document *document) {
 	view.llc.Deallocate();
 	NeedWrapping();
 
+	hotspot = Range(invalidPosition);
+	hoverIndicatorPos = invalidPosition;
+
 	view.ClearAllTabstops();
 
 	pdoc->AddWatcher(this, 0);
@@ -5453,6 +5500,11 @@ void Editor::AddStyledText(char *buffer, int appendLength) {
 		text[i] = buffer[i*2];
 	}
 	const int lengthInserted = pdoc->InsertString(CurrentPosition(), text.c_str(), textLength);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (i = 0; i < textLength; i++) {
 		text[i] = buffer[i*2+1];
 	}
@@ -6679,6 +6731,11 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 		return pdoc->MarkerNext(static_cast<int>(wParam), static_cast<int>(lParam));
 
 	case SCI_MARKERPREVIOUS: {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 			for (int iLine = static_cast<int>(wParam); iLine >= 0; iLine--) {
 				if ((pdoc->GetMark(iLine) & lParam) != 0)
 					return iLine;
@@ -6828,8 +6885,7 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 		InvalidateStyleRedraw();
 		break;
 	case SCI_SETSTYLEBITS:
-		vs.EnsureStyle((1 << wParam) - 1);
-		pdoc->SetStylingBits(static_cast<int>(wParam));
+		vs.EnsureStyle(0xff);
 		break;
 
 	case SCI_GETSTYLEBITS:
@@ -7084,7 +7140,8 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 
 	case SCI_INDICSETSTYLE:
 		if (wParam <= INDIC_MAX) {
-			vs.indicators[wParam].style = static_cast<int>(lParam);
+			vs.indicators[wParam].sacNormal.style = static_cast<int>(lParam);
+			vs.indicators[wParam].sacHover.style = static_cast<int>(lParam);
 			InvalidateStyleRedraw();
 		}
 		break;
@@ -7094,7 +7151,8 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 
 	case SCI_INDICSETFORE:
 		if (wParam <= INDIC_MAX) {
-			vs.indicators[wParam].fore = ColourDesired(static_cast<long>(lParam));
+			vs.indicators[wParam].sacNormal.fore = ColourDesired(static_cast<long>(lParam));
+			vs.indicators[wParam].sacHover.fore = ColourDesired(static_cast<long>(lParam));
 			InvalidateStyleRedraw();
 		}
 		break;
@@ -7446,6 +7504,11 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 	case SCI_GETLINESELENDPOSITION: {
 			SelectionSegment segmentLine(SelectionPosition(pdoc->LineStart(static_cast<int>(wParam))),
 				SelectionPosition(pdoc->LineEnd(static_cast<int>(wParam))));
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 			for (size_t r=0; r<sel.Count(); r++) {
 				SelectionSegment portion = sel.Range(r).Intersect(segmentLine);
 				if (portion.start.IsValid()) {
