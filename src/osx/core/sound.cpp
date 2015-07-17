@@ -115,13 +115,11 @@ bool wxOSXAudioToolboxSoundData::Play(unsigned flags)
 
     AudioServicesAddSystemSoundCompletion( m_soundID, CFRunLoopGetCurrent(), NULL, wxOSXAudioToolboxSoundData::CompletionCallback, (void *) this );
 
-    bool sync = !(flags & wxSOUND_ASYNC);
-
     m_playing = true;
 
     AudioServicesPlaySystemSound(m_soundID);
 
-    if ( sync )
+    if ( !(flags & wxSOUND_ASYNC) )
     {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
