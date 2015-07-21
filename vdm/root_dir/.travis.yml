@@ -21,9 +21,6 @@ notifications:
 
 os:
     - linux
-    - osx
-
-osx_image: xcode61
 
 before_install:
     - sudo apt-get install -y libcppunit-dev
