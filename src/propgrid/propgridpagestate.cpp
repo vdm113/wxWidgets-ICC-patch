@@ -361,6 +361,11 @@ void wxPropertyGridPageState::CalculateFontAndBitmapStuff( int WXUNUSED(vspacing
     VirtualHeightChanged();
 
     // Recalculate caption text extents.
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < m_regularArray.GetChildCount();i++ )
     {
         wxPGProperty* p =m_regularArray.Item(i);
@@ -838,6 +843,11 @@ int wxPropertyGridPageState::GetColumnFitWidth(wxClientDC& dc,
     int maxW = 0;
     int w, h;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( unsigned int i = 0; i <pwc->GetChildCount(); i++ )
     {
         wxPGProperty* p = pwc->Item(i);
@@ -896,6 +906,11 @@ int wxPropertyGridPageState::GetColumnFullWidth( wxClientDC &dc, wxPGProperty *p
 int wxPropertyGridPageState::DoGetSplitterPosition( int splitterColumn ) const
 {
     int n = GetGrid()->GetMarginWidth();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( int i = 0; i <= splitterColumn; i++ )
         n += m_colWidths[i];
     return n;
@@ -1454,10 +1469,7 @@ bool wxPropertyGridPageState::DoSetPropertyValueWxObjectPtr( wxPGProperty* p, wx
 
 bool wxPropertyGridPageState::DoIsPropertySelected( wxPGProperty* prop ) const
 {
-    if ( wxPGFindInVector(m_selection, prop) != wxNOT_FOUND )
-        return true;
-
-    return false;
+    return m_selection.Index(prop) != wxNOT_FOUND;
 }
 
 // -----------------------------------------------------------------------
@@ -1579,6 +1591,11 @@ wxVariant wxPropertyGridPageState::DoGetPropertyValues( const wxString& listname
         {
             wxASSERT( !pwc->HasFlag(wxPG_PROP_AGGREGATE) );
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for ( unsigned int i = 0; i < pwc->GetChildCount(); i++ )
             {
                 wxPGProperty* p = pwc->Item(i);
