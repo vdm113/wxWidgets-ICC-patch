@@ -723,15 +723,6 @@ wxBitmap::wxBitmap(const char bits[], int width, int height, int depth)
                 unsigned char val = *src++;
                 unsigned char reversed = 0;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
                 for ( int bit = 0; bit < 8; bit++)
                 {
                     reversed <<= 1;
