@@ -712,14 +712,6 @@ int wxFileDialog::ShowModal()
         const wxChar* extension = filterBuffer.t_str();
         int maxFilter = (int)(of.nFilterIndex*2L) - 1;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
         for( int j = 0; j < maxFilter; j++ )           // get extension
             extension = extension + wxStrlen( extension ) + 1;
 
@@ -818,14 +810,6 @@ int wxFileDialog::ShowModal()
             const wxChar* extension = filterBuffer.t_str();
             int   maxFilter = (int)(of.nFilterIndex*2L) - 1;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
             for( int j = 0; j < maxFilter; j++ )           // get extension
                 extension = extension + wxStrlen( extension ) + 1;
 
