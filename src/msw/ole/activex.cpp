@@ -1034,13 +1034,13 @@ void wxActiveXContainer::CreateActiveX(REFIID iid, IUnknown* pUnk)
 
         // wxAutoOleInterface<> assumes a ref has already been added
         // TYPEATTR
-        TYPEATTR *ta = NULL;
-        hret = ti->GetTypeAttr(&ta);
+        TYPEATTR *ta2 = NULL;
+        hret = ti->GetTypeAttr(&ta2);
         CHECK_HR(hret);
 
-        if (ta->typekind == TKIND_DISPATCH)
+        if (ta2->typekind == TKIND_DISPATCH)
         {
-            // WXOLE_TRACEOUT("GUID = " << GetIIDName(ta->guid).c_str());
+            // WXOLE_TRACEOUT("GUID = " << GetIIDName(ta2->guid).c_str());
             if (defEventSink)
             {
                 wxAutoIConnectionPoint    cp;
@@ -1049,8 +1049,7 @@ void wxActiveXContainer::CreateActiveX(REFIID iid, IUnknown* pUnk)
                 wxAutoIConnectionPointContainer cpContainer(IID_IConnectionPointContainer, m_ActiveX);
                 wxASSERT( cpContainer.IsOk());
 
-                HRESULT hret =
-                    cpContainer->FindConnectionPoint(ta->guid, cp.GetRef());
+                hret = cpContainer->FindConnectionPoint(ta2->guid, cp.GetRef());
 
                 // Notice that the return value of CONNECT_E_NOCONNECTION is
                 // expected if the interface doesn't support connection points.
@@ -1062,7 +1061,7 @@ void wxActiveXContainer::CreateActiveX(REFIID iid, IUnknown* pUnk)
                 if ( cp )
                 {
                     wxActiveXEvents * const
-                        events = new wxActiveXEvents(this, ta->guid);
+                        events = new wxActiveXEvents(this, ta2->guid);
                     hret = cp->Advise(events, &adviseCookie);
 
                     // We don't need this object any more and cp will keep a
@@ -1075,7 +1074,7 @@ void wxActiveXContainer::CreateActiveX(REFIID iid, IUnknown* pUnk)
             }
         }
 
-        ti->ReleaseTypeAttr(ta);
+        ti->ReleaseTypeAttr(ta2);
     }
 
     // free
