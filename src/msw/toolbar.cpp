@@ -831,11 +831,6 @@ bool wxToolBar::Realize()
 #endif /* VDM auto patch */
                             for ( int y = 0; y < h; y++ )
                             {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#endif /* VDM auto patch */
                                 for ( int xx = 0; xx < w; xx++ )
                                 {
                                     if ( imgGreyed.IsTransparent(xx, y) )
