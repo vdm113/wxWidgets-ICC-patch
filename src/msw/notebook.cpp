@@ -367,7 +367,7 @@ int wxNotebook::SetSelection(size_t nPage)
 
             UpdateSelection(nPage);
 
-            TabCtrl_SetCurSel(GetHwnd(), nPage);
+            (void)TabCtrl_SetCurSel(GetHwnd(), nPage);
 
             SendPageChangedEvent(selectionOld, nPage);
         }
@@ -413,7 +413,7 @@ int wxNotebook::ChangeSelection(size_t nPage)
 
     if ( m_selection == wxNOT_FOUND || nPage != (size_t)m_selection )
     {
-        TabCtrl_SetCurSel(GetHwnd(), nPage);
+        (void)TabCtrl_SetCurSel(GetHwnd(), nPage);
 
         UpdateSelection(nPage);
     }
@@ -520,7 +520,7 @@ wxRect wxNotebook::GetPageSize() const
     // The value of 20 is chosen arbitrarily but seems to work
     if ( rc.right > 20 && rc.bottom > 20 )
     {
-        TabCtrl_AdjustRect(GetHwnd(), false, &rc);
+        (void)TabCtrl_AdjustRect(GetHwnd(), false, &rc);
 
         wxCopyRECTToRect(rc, r);
     }
@@ -537,7 +537,7 @@ void wxNotebook::SetPageSize(const wxSize& size)
     rc.right = size.x;
     rc.bottom = size.y;
 
-    TabCtrl_AdjustRect(GetHwnd(), true, &rc);
+    (void)TabCtrl_AdjustRect(GetHwnd(), true, &rc);
 
     // and now set it
     SetSize(rc.right - rc.left, rc.bottom - rc.top);
@@ -564,9 +564,11 @@ wxSize wxNotebook::CalcSizeFromPage(const wxSize& sizePage) const
     if ( GetPageCount() > 0 )
     {
         RECT rect;
-        TabCtrl_GetItemRect(GetHwnd(), 0, &rect);
-        tabSize.x = rect.right - rect.left;
-        tabSize.y = rect.bottom - rect.top;
+        if ( TabCtrl_GetItemRect(GetHwnd(), 0, &rect) )
+        {
+            tabSize.x = rect.right - rect.left;
+            tabSize.y = rect.bottom - rect.top;
+        }
     }
 
     const int rows = GetRowCount();
@@ -613,7 +615,8 @@ wxNotebookPage *wxNotebook::DoRemovePage(size_t nPage)
     // selected page is visible and others are hidden:
     pageRemoved->Show(false);
 
-    TabCtrl_DeleteItem(GetHwnd(), nPage);
+    if ( !TabCtrl_DeleteItem(GetHwnd(), nPage) )
+        wxLogLastError(wxS("TabCtrl_DeleteItem()"));
 
     if ( m_pages.IsEmpty() )
     {
@@ -671,7 +674,8 @@ bool wxNotebook::DeleteAllPages()
 
     m_pages.Clear();
 
-    TabCtrl_DeleteAllItems(GetHwnd());
+    if ( !TabCtrl_DeleteAllItems(GetHwnd()) )
+        wxLogLastError(wxS("TabCtrl_DeleteAllItems()"));
 
     m_selection = wxNOT_FOUND;
 
@@ -1003,7 +1007,7 @@ void wxNotebook::OnSize(wxSizeEvent& event)
     UpdateBgBrush();
 #endif // wxUSE_UXTHEME
 
-    TabCtrl_AdjustRect(GetHwnd(), false, &rc);
+    (void)TabCtrl_AdjustRect(GetHwnd(), false, &rc);
 
     int width = rc.right - rc.left,
         height = rc.bottom - rc.top;

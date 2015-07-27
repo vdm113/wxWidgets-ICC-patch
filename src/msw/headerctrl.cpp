@@ -97,7 +97,7 @@ bool wxHeaderCtrl::Create(wxWindow *parent,
     // use 0 here but this starts to look ugly)
     if ( wxApp::GetComCtl32Version() >= 600 )
     {
-        Header_SetBitmapMargin(GetHwnd(), ::GetSystemMetrics(SM_CXEDGE));
+        (void)Header_SetBitmapMargin(GetHwnd(), ::GetSystemMetrics(SM_CXEDGE));
     }
 
     return true;
@@ -254,7 +254,8 @@ void wxHeaderCtrl::DoUpdate(unsigned int idx)
         if ( !m_isHidden[idx] )
         {
             // but it wasn't hidden before, so remove it
-            Header_DeleteItem(GetHwnd(), MSWToNativeIdx(idx));
+            if ( !Header_DeleteItem(GetHwnd(), MSWToNativeIdx(idx)) )
+                wxLogLastError(wxS("Header_DeleteItem()"));
 
             m_isHidden[idx] = true;
         }
@@ -269,7 +270,8 @@ void wxHeaderCtrl::DoUpdate(unsigned int idx)
         else // and it was shown before as well
         {
             // we need to remove the old column
-            Header_DeleteItem(GetHwnd(), MSWToNativeIdx(idx));
+            if ( !Header_DeleteItem(GetHwnd(), MSWToNativeIdx(idx)) )
+                wxLogLastError(wxS("Header_DeleteItem()"));
         }
 
         DoInsertItem(col, idx);
