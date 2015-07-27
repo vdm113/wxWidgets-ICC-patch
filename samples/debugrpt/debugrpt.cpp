@@ -311,11 +311,21 @@ void MyFrame::OnListLoadedDLLs(wxCommandEvent& WXUNUSED(event))
 
     wxArrayString names;
     names.reserve(count);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
         names.push_back(loaded[n].GetName());
     }
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for ( ;; )
     {
         const int sel = wxGetSingleChoiceIndex

@@ -214,9 +214,35 @@ void ScintillaBase::AutoCompleteDoubleClick(void *p) {
 
 void ScintillaBase::AutoCompleteInsert(Position startPos, int removeLen, const char *text, int textLen) {
 	UndoGroup ug(pdoc);
-	pdoc->DeleteChars(startPos, removeLen);
-	const int lengthInserted = pdoc->InsertString(startPos, text, textLen);
-	SetEmptySelection(startPos + lengthInserted);
+	if (multiAutoCMode == SC_MULTIAUTOC_ONCE) {
+		pdoc->DeleteChars(startPos, removeLen);
+		const int lengthInserted = pdoc->InsertString(startPos, text, textLen);
+		SetEmptySelection(startPos + lengthInserted);
+	} else {
+		// SC_MULTIAUTOC_EACH
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
+		for (size_t r=0; r<sel.Count(); r++) {
+			if (!RangeContainsProtected(sel.Range(r).Start().Position(),
+				sel.Range(r).End().Position())) {
+				int positionInsert = sel.Range(r).Start().Position();
+				positionInsert = InsertSpace(positionInsert, sel.Range(r).caret.VirtualSpace());
+				if (positionInsert - removeLen >= 0) {
+					positionInsert -= removeLen;
+					pdoc->DeleteChars(positionInsert, removeLen);
+				}
+				const int lengthInserted = pdoc->InsertString(positionInsert, text, textLen);
+				if (lengthInserted > 0) {
+					sel.Range(r).caret.SetPosition(positionInsert + lengthInserted);
+					sel.Range(r).anchor.SetPosition(positionInsert + lengthInserted);
+				}
+				sel.Range(r).ClearVirtualSpace();
+			}
+		}
+	}
 }
 
 void ScintillaBase::AutoCompleteStart(int lenEntered, const char *list) {
