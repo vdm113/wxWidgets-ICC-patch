@@ -517,7 +517,7 @@ bool wxListCtrl::SetForegroundColour(const wxColour& col)
     if ( !wxWindow::SetForegroundColour(col) )
         return false;
 
-    ListView_SetTextColor(GetHwnd(), wxColourToRGB(col));
+    SetTextColour(col);
 
     return true;
 }
