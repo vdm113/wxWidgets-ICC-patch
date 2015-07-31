@@ -1917,6 +1917,11 @@ bool wxAuiToolBar::Realize()
 
 bool wxAuiToolBar::RealizeHelper(wxClientDC& dc, bool horizontal)
 {
+    // Remove old sizer before adding any controls in this tool bar, which are
+    // elements of this sizer, to the new sizer below.
+    delete m_sizer;
+    m_sizer = NULL;
+
     // create the new sizer to add toolbar elements to
     wxBoxSizer* sizer = new wxBoxSizer(horizontal ? wxHORIZONTAL : wxVERTICAL);
 
@@ -2113,7 +2118,6 @@ bool wxAuiToolBar::RealizeHelper(wxClientDC& dc, bool horizontal)
             outside_sizer->Add(m_bottomPadding, 1);
     }
 
-    delete m_sizer; // remove old sizer
     m_sizer = outside_sizer;
 
     // calculate the rock-bottom minimum size
