@@ -105,7 +105,7 @@ public:
     DirCtrlWidgetsPage(WidgetsBookCtrl *book, wxImageList *imaglist);
     virtual ~DirCtrlWidgetsPage() {}
 
-    virtual wxControl *GetWidget() const wxOVERRIDE { return m_dirCtrl; }
+    virtual wxWindow *GetWidget() const wxOVERRIDE { return m_dirCtrl; }
     virtual void RecreateWidget() wxOVERRIDE { CreateDirCtrl(); }
 
     // lazy creation of the content
