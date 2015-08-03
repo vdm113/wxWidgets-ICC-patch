@@ -11,6 +11,9 @@ branches:
     only:
         - master
 
+os:
+    - linux
+
 notifications:
     email:
         recipients:
