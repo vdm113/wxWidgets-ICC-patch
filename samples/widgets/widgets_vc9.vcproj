@@ -847,6 +847,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\native.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\notebook.cpp"
 				>
 			</File>
