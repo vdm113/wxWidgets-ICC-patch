@@ -36,7 +36,7 @@ wxWidgets currently supports the following primary platforms:
 If you are using 32-bit ICC, or 64-bit one and you don't have enough RAM or time, I recommend change for sub-library "core" from /Qipo to /Qip.
 - Windows XP, Vista, 7 and 8 (32/64 bits).
 - Most Unix variants using the GTK+ toolkit (version 2.6 or newer or 3.x).
-- Mac OS X (10.6 or newer) using Cocoa (32/64 bits) or Carbon (32 only).
+- Mac OS X (10.7 or newer) using Cocoa (32/64 bits) or Carbon (32 only).
 
 NB: Please, read file "BuildSVN.txt" in this directory as well. There are instructions for building from SVN, but as this GIT repository is regurarily updated from official SVN repository, and it is its fork, it is relevant to read it.
 
