@@ -197,13 +197,7 @@ public:
         { return m_osVersionMinor; }
 
     // return true if the OS version >= major.minor
-    bool CheckOSVersion(int major, int minor) const
-    {
-        return DoCheckVersion(GetOSMajorVersion(),
-                              GetOSMinorVersion(),
-                              major,
-                              minor);
-    }
+    bool CheckOSVersion(int major, int minor) const;
 
     int GetToolkitMajorVersion() const
         { return m_tkVersionMajor; }
@@ -306,6 +300,8 @@ protected:
     {
         return majorCur > major || (majorCur == major && minorCur >= minor);
     }
+
+    bool m_initializedForCurrentPlatform;
 
     void InitForCurrentPlatform();
 
