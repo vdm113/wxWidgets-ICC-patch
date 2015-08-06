@@ -615,7 +615,7 @@ public:
     void Resort();
 
 private:
-    wxDataViewMainWindow * const m_window;
+    wxDataViewMainWindow *m_window;
     wxDataViewTreeNode  *m_parent;
 
     // Corresponding model item.
@@ -1536,15 +1536,6 @@ void wxDataViewTreeNode::Resort()
         g_asending = m_window->IsAscendingSort();
         nodes.Sort(&wxGenericTreeModelNodeCmp);
         int len = nodes.GetCount();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
         for (int i = 0; i < len; i++)
         {
             if (nodes[i]->HasChildren())
