@@ -343,7 +343,7 @@ public:
     - (void) setTextField:(NSTextField*) field;
     @end
 
-    @interface wxNSTextField : NSTextField wxOSX_10_6_AND_LATER(<NSTextFieldDelegate>)
+    @interface wxNSTextField : NSTextField <NSTextFieldDelegate>
     {
         wxNSTextFieldEditor* fieldEditor;
     }
@@ -353,14 +353,14 @@ public:
 
     @end
 
-    @interface wxNSSecureTextField : NSSecureTextField wxOSX_10_6_AND_LATER(<NSTextFieldDelegate>)
+    @interface wxNSSecureTextField : NSSecureTextField <NSTextFieldDelegate>
     {
     }
 
     @end
 
 
-    @interface wxNSTextView : NSTextView wxOSX_10_6_AND_LATER(<NSTextViewDelegate>)
+    @interface wxNSTextView : NSTextView <NSTextViewDelegate>
     {
     }
 
@@ -439,7 +439,7 @@ public:
 #ifdef __LP64__
     WXEXPORT
 #endif // 64 bit builds
-    @interface wxNSAppController : NSObject wxOSX_10_6_AND_LATER(<NSApplicationDelegate>)
+    @interface wxNSAppController : NSObject <NSApplicationDelegate>
     {
     }
 
