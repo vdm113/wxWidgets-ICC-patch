@@ -597,7 +597,7 @@ public:
     void Resort();
 
 private:
-    wxDataViewMainWindow *m_window;
+    wxDataViewMainWindow * const m_window;
     wxDataViewTreeNode  *m_parent;
 
     // Corresponding model item.
