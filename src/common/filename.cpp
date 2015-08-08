@@ -1281,7 +1281,8 @@ wxString wxFileName::GetTempDir()
         dir = wxMacFindFolderNoSeparator(short(kOnSystemDisk), kTemporaryFolderType, kCreateFolder);
 #endif // systems with native way
     }
-    else // we got directory from an environment variable
+
+    if ( !dir.empty() )
     {
         // remove any trailing path separators, we don't want to ever return
         // them from this function for consistency
@@ -1298,7 +1299,7 @@ wxString wxFileName::GetTempDir()
     }
 
     // fall back to hard coded value
-    if ( dir.empty() )
+    else
     {
 #ifdef __UNIX_LIKE__
         dir = CheckIfDirExists("/tmp");
