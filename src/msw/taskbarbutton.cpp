@@ -34,6 +34,7 @@
 
 #include "wx/msw/private.h"
 #include "wx/msw/taskbarbutton.h"
+#include "wx/scopedptr.h"
 
 #include <shlwapi.h>
 #include <initguid.h>
