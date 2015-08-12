@@ -355,15 +355,6 @@ int wxBitmapComboBox::DoInsertItems(const wxArrayStringsAdapter & items,
         // we need to add them one by one, check for each one the position it was added at
         // and reserve the slot for corresponding bitmap at the same postion in the bitmap array.
         index = pos;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
         for ( unsigned int i = 0; i < numItems; i++ )
         {
             if ( clientData )
@@ -405,55 +396,20 @@ int wxBitmapComboBox::DoInsertItems(const wxArrayStringsAdapter & items,
     }
     else
     {
-        if ( GetCount() == m_bitmaps.Count() )
-        {
-            // Control is in the normal state.
-            // Just insert new bitmaps into the array.
-            const unsigned int countNew = GetCount() + numItems;
-            m_bitmaps.Alloc(countNew);
+        const unsigned int countNew = GetCount() + numItems;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
-            for ( unsigned int i = 0; i < numItems; i++ )
-            {
-                m_bitmaps.Insert(new wxBitmap(wxNullBitmap), pos + i);
-            }
-        }
-        else
+        m_bitmaps.Alloc(countNew);
+
+        for ( unsigned int i = 0; i < numItems; i++ )
         {
-            wxASSERT_MSG( GetCount() < m_bitmaps.Count(),
-                          wxS("Invalid wxBitmapComboBox state") );
-            // There are less items then bitmaps.
-            // (This can happen if control is e.g. recreated with RecreateControl).
-            // In this case existing bitmaps are reused.
-            // The whole block of inserted items should be within the range
-            // of indices of the existing bitmap array.
-            wxASSERT_MSG( pos + numItems <= m_bitmaps.Count(),
-                      wxS("wxBitmapComboBox item index out of bound") );
+            m_bitmaps.Insert(new wxBitmap(wxNullBitmap), pos + i);
         }
 
-        index = wxComboBox::DoInsertItems(items, pos,
-                                          clientData, type);
+        index = wxComboBox::DoInsertItems(items, pos, clientData, type);
         // This returns index of the last item in the inserted block.
 
         if ( index == wxNOT_FOUND )
         {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
             for ( int i = numItems-1; i >= 0; i-- )
                 BCBDoDeleteOneItem(pos + i);
         }
