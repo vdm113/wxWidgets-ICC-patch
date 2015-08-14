@@ -341,6 +341,11 @@ int wxBitmapComboBox::DoInsertItems(const wxArrayStringsAdapter & items,
         // we need to add them one by one, check for each one the position it was added at
         // and reserve the slot for corresponding bitmap at the same postion in the bitmap array.
         index = pos;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for ( unsigned int i = 0; i < numItems; i++ )
         {
             if ( clientData )
@@ -389,6 +394,11 @@ int wxBitmapComboBox::DoInsertItems(const wxArrayStringsAdapter & items,
             const unsigned int countNew = GetCount() + numItems;
             m_bitmaps.Alloc(countNew);
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for ( unsigned int i = 0; i < numItems; i++ )
             {
                 m_bitmaps.Insert(new wxBitmap(wxNullBitmap), pos + i);
@@ -413,6 +423,11 @@ int wxBitmapComboBox::DoInsertItems(const wxArrayStringsAdapter & items,
 
         if ( index == wxNOT_FOUND )
         {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
             for ( int i = numItems-1; i >= 0; i-- )
                 BCBDoDeleteOneItem(pos + i);
         }
