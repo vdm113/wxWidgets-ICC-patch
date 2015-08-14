@@ -396,7 +396,10 @@
 				RelativePath="..\..\src\generic\aboutdlgg.cpp">
 			</File>
 			<File
-				RelativePath="..\..\src\generic\activityindicator.cpp">
+				RelativePath="..\..\src\html\chm.cpp">
+			</File>
+			<File
+				RelativePath="..\..\src\html\helpctrl.cpp">
 			</File>
 			<File
 				RelativePath="..\..\src\generic\animateg.cpp">
