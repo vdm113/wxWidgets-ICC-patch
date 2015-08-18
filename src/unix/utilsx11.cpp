@@ -43,10 +43,11 @@
 #endif
 
 #ifdef __WXGTK__
-#include <gdk/gdk.h>
+#include <gtk/gtk.h>
 #ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
 #endif
+GdkWindow* wxGetTopLevelGDK();
 #endif
 
 // Only X11 backend is supported for wxGTK here
@@ -2621,6 +2622,19 @@ bool wxGetKeyState(wxKeyCode key)
 bool wxLaunchDefaultApplication(const wxString& document, int flags)
 {
     wxUnusedVar(flags);
+
+#ifdef __WXGTK__
+#if GTK_CHECK_VERSION(2,14,0)
+#ifndef __WXGTK3__
+    if (gtk_check_version(2,14,0) == NULL)
+#endif
+    {
+        GdkScreen* screen = gdk_window_get_screen(wxGetTopLevelGDK());
+        if (gtk_show_uri(screen, url.utf8_str(), GDK_CURRENT_TIME, NULL))
+            return true;
+    }
+#endif // GTK_CHECK_VERSION(2,14,0)
+#endif // __WXGTK__
 
     // Our best best is to use xdg-open from freedesktop.org cross-desktop
     // compatibility suite xdg-utils
