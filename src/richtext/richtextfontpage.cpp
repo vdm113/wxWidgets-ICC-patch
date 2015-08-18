@@ -341,6 +341,8 @@ void wxRichTextFontPage::CreateControls()
 
 ////@end wxRichTextFontPage content construction
 
+    m_fontSizeSpinButtons->SetRange(0, 999);
+
     if ((GetAllowedTextEffects() & wxTEXT_ATTR_EFFECT_RTL) == 0)
         m_rtlParentSizer->Show(m_rtlCtrl, false);
     if ((GetAllowedTextEffects() & wxTEXT_ATTR_EFFECT_SUPPRESS_HYPHENATION) == 0)
@@ -591,6 +593,7 @@ bool wxRichTextFontPage::TransferDataToWindow()
     {
         wxString strSize = wxString::Format(wxT("%d"), attr->GetFontSize());
         m_sizeTextCtrl->SetValue(strSize);
+        m_fontSizeSpinButtons->SetValue(attr->GetFontSize());
         m_sizeUnitsCtrl->SetSelection(0);
         if (m_sizeListBox->FindString(strSize) != wxNOT_FOUND)
             m_sizeListBox->SetStringSelection(strSize);
@@ -599,6 +602,7 @@ bool wxRichTextFontPage::TransferDataToWindow()
     {
         wxString strSize = wxString::Format(wxT("%d"), attr->GetFontSize());
         m_sizeTextCtrl->SetValue(strSize);
+        m_fontSizeSpinButtons->SetValue(attr->GetFontSize());
         m_sizeUnitsCtrl->SetSelection(1);
         m_sizeListBox->SetSelection(wxNOT_FOUND);
     }
@@ -967,9 +971,16 @@ void wxRichTextFontPage::OnSizeTextCtrlUpdated( wxCommandEvent& WXUNUSED(event) 
     if (m_dontUpdate)
         return;
 
+    m_dontUpdate = true;
+
     wxString strSize = m_sizeTextCtrl->GetValue();
     if (!strSize.IsEmpty() && m_sizeListBox->FindString(strSize) != wxNOT_FOUND)
         m_sizeListBox->SetStringSelection(strSize);
+    if (!strSize.IsEmpty())
+        m_fontSizeSpinButtons->SetValue(wxAtoi(strSize));
+
+    m_dontUpdate = false;
+
     UpdatePreview();
 }
 
@@ -984,6 +995,8 @@ void wxRichTextFontPage::OnSizeListBoxSelected( wxCommandEvent& event )
     m_dontUpdate = true;
 
     m_sizeTextCtrl->SetValue(event.GetString());
+    if (!event.GetString().IsEmpty())
+        m_fontSizeSpinButtons->SetValue(wxAtoi(event.GetString()));
 
     m_dontUpdate = oldDontUpdate;
 
@@ -1144,17 +1157,33 @@ void wxRichTextFontPage::OnRichtextfontpageSizeUnitsSelected( wxCommandEvent& WX
 
 void wxRichTextFontPage::OnRichtextfontpageSpinbuttonsUp( wxSpinEvent& WXUNUSED(event) )
 {
+    if (m_dontUpdate)
+        return;
+
+    m_dontUpdate = true;
+
     wxString text = m_sizeTextCtrl->GetValue();
+    int size = 12;
     if (!text.IsEmpty())
     {
-        int size = wxAtoi(text);
-        if (size > 0)
-        {
-            size ++;
-            m_sizeTextCtrl->SetValue(wxString::Format(wxT("%d"), size));
-            UpdatePreview();
-        }
+        size = wxAtoi(text);
+        size ++;
     }
+
+    if (size < 1 || size > 999)
+        size = 12;
+
+    if (m_fontSizeSpinButtons->GetValue() != size)
+        m_fontSizeSpinButtons->SetValue(size);
+
+    wxString newText(wxString::Format(wxT("%d"), size));
+
+    m_sizeTextCtrl->SetValue(newText);
+    if (!newText.IsEmpty() && m_sizeListBox->FindString(newText) != wxNOT_FOUND)
+        m_sizeListBox->SetStringSelection(newText);
+    UpdatePreview();
+
+    m_dontUpdate = false;
 }
 
 /*!
@@ -1163,17 +1192,34 @@ void wxRichTextFontPage::OnRichtextfontpageSpinbuttonsUp( wxSpinEvent& WXUNUSED(
 
 void wxRichTextFontPage::OnRichtextfontpageSpinbuttonsDown( wxSpinEvent& WXUNUSED(event) )
 {
+    if (m_dontUpdate)
+        return;
+
+    m_dontUpdate = true;
+
     wxString text = m_sizeTextCtrl->GetValue();
+    int size = 12;
     if (!text.IsEmpty())
     {
-        int size = wxAtoi(text);
-        if (size > 0)
-        {
+        size = wxAtoi(text);
+        if (size > 1)
             size --;
-            m_sizeTextCtrl->SetValue(wxString::Format(wxT("%d"), size));
-            UpdatePreview();
-        }
     }
+
+    if (size < 1 || size > 999)
+        size = 12;
+
+    if (m_fontSizeSpinButtons->GetValue() != size)
+        m_fontSizeSpinButtons->SetValue(size);
+
+    wxString newText(wxString::Format(wxT("%d"), size));
+
+    m_sizeTextCtrl->SetValue(newText);
+    if (!newText.IsEmpty() && m_sizeListBox->FindString(newText) != wxNOT_FOUND)
+        m_sizeListBox->SetStringSelection(newText);
+    UpdatePreview();
+
+    m_dontUpdate = false;
 }
 
 /*!
