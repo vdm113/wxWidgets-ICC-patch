@@ -42,6 +42,8 @@ public:
         (void)Create(parent, id, label, url, pos, size, style, name);
     }
 
+    ~wxHyperlinkCtrl();
+
     // Creation function (for two-step construction).
     bool Create(wxWindow *parent,
                 wxWindowID id,
