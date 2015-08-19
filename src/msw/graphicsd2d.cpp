@@ -801,15 +801,6 @@ wxCOMPtr<ID2D1Geometry> wxD2DConvertRegionToGeometry(ID2D1Factory* direct2dFacto
         &resultGeometry);
 
     // Cleanup temporaries
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
     for (i = 0; i < rectCount; ++i)
     {
         geometries[i]->Release();
