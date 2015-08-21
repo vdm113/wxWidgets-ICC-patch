@@ -638,8 +638,7 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 	WordList &keywords5 = *keywordlists[4];
 	WordList &keywords6 = *keywordlists[5]; // SGML (DTD) keywords
 
-	// Lexer for HTML requires more lexical states (8 bits worth) than most lexers
-	styler.StartAt(startPos, static_cast<unsigned char>(STYLE_MAX));
+	styler.StartAt(startPos);
 	char prevWord[200];
 	prevWord[0] = '\0';
 	char phpStringDelimiter[200]; // PHP is not limited in length, we are
@@ -681,7 +680,7 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 		if (startPos == 0)
 			state = SCE_H_DEFAULT;
 	}
-	styler.StartAt(startPos, static_cast<unsigned char>(STYLE_MAX));
+	styler.StartAt(startPos);
 
 	int lineCurrent = styler.GetLine(startPos);
 	int lineState;

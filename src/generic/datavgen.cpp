@@ -597,7 +597,7 @@ public:
     void Resort();
 
 private:
-    wxDataViewMainWindow *m_window;
+    wxDataViewMainWindow * const m_window;
     wxDataViewTreeNode  *m_parent;
 
     // Corresponding model item.
@@ -1518,6 +1518,11 @@ void wxDataViewTreeNode::Resort()
         g_asending = m_window->IsAscendingSort();
         nodes.Sort(&wxGenericTreeModelNodeCmp);
         int len = nodes.GetCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (int i = 0; i < len; i++)
         {
             if (nodes[i]->HasChildren())
@@ -2004,6 +2009,11 @@ void wxDataViewMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
         // We only need to draw the visible part, so limit the rectangle to it.
         const int xRect = m_owner->CalcUnscrolledPosition(wxPoint(0, 0)).x;
         const int widthRect = size.x;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
         for (unsigned int item = item_start; item < item_last; item++)
         {
             if ( item % 2 )

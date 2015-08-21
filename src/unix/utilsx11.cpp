@@ -2623,19 +2623,6 @@ bool wxLaunchDefaultApplication(const wxString& document, int flags)
 {
     wxUnusedVar(flags);
 
-#ifdef __WXGTK__
-#if GTK_CHECK_VERSION(2,14,0)
-#ifndef __WXGTK3__
-    if (gtk_check_version(2,14,0) == NULL)
-#endif
-    {
-        GdkScreen* screen = gdk_window_get_screen(wxGetTopLevelGDK());
-        if (gtk_show_uri(screen, url.utf8_str(), GDK_CURRENT_TIME, NULL))
-            return true;
-    }
-#endif // GTK_CHECK_VERSION(2,14,0)
-#endif // __WXGTK__
-
     // Our best best is to use xdg-open from freedesktop.org cross-desktop
     // compatibility suite xdg-utils
     // (see http://portland.freedesktop.org/wiki/) -- this is installed on
@@ -2659,6 +2646,19 @@ bool wxLaunchDefaultApplication(const wxString& document, int flags)
 bool wxDoLaunchDefaultBrowser(const wxString& url, int flags)
 {
     wxUnusedVar(flags);
+
+#ifdef __WXGTK__
+#if GTK_CHECK_VERSION(2,14,0)
+#ifndef __WXGTK3__
+    if (gtk_check_version(2,14,0) == NULL)
+#endif
+    {
+        GdkScreen* screen = gdk_window_get_screen(wxGetTopLevelGDK());
+        if (gtk_show_uri(screen, url.utf8_str(), GDK_CURRENT_TIME, NULL))
+            return true;
+    }
+#endif // GTK_CHECK_VERSION(2,14,0)
+#endif // __WXGTK__
 
     // Our best best is to use xdg-open from freedesktop.org cross-desktop
     // compatibility suite xdg-utils

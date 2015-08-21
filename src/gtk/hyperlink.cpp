@@ -74,6 +74,11 @@ static GSList* gs_hyperlinkctrl_list;
 extern "C" {
 static void clicked_hook(GtkLinkButton* button, const char*, void*)
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
     for (GSList* p = gs_hyperlinkctrl_list; p; p = p->next)
     {
         wxHyperlinkCtrl* win = static_cast<wxHyperlinkCtrl*>(p->data);
