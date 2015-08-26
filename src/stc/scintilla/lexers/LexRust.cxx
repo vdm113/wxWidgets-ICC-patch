@@ -260,6 +260,11 @@ static void ScanIdentifier(Accessor& styler, int& pos, WordList *keywords) {
 /* Scans a sequence of digits, returning true if it found any. */
 static bool ScanDigits(Accessor& styler, int& pos, int base) {
 	int old_pos = pos;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (;;) {
 		int c = styler.SafeGetCharAt(pos, '\0');
 		if (IsADigit(c, base) || c == '_')
@@ -653,6 +658,11 @@ static void ResumeString(Accessor &styler, int& pos, int max, bool ascii_only) {
 }
 
 static void ResumeRawString(Accessor &styler, int& pos, int max, int num_hashes, bool ascii_only) {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#endif /* VDM auto patch */
 	for (;;) {
 		if (pos == styler.LineEnd(styler.GetLine(pos)))
 			styler.SetLineState(styler.GetLine(pos), num_hashes);
