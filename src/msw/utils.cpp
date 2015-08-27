@@ -65,7 +65,7 @@
     #include <winsock.h>
 #endif
 
-#if !defined(__GNUWIN32__)
+#if !defined(__GNUWIN32__) && !defined(__WXWINCE__)
     #include <direct.h>
 
     #include <dos.h>
@@ -95,9 +95,10 @@
     #include <lm.h>
 #endif // USE_NET_API
 
-#ifndef __UNIX__
-    #include <io.h>
-#endif
+#if !defined(__WXWINCE__)
+    #ifndef __UNIX__
+        #include <io.h>
+    #endif
 
 #ifndef __GNUWIN32__
     #include <shellapi.h>
@@ -113,7 +114,7 @@
 // ----------------------------------------------------------------------------
 
 // In the WIN.INI file
-#if !defined(USE_NET_API)
+#if (!defined(USE_NET_API) && !defined(__WXWINCE__))
 static const wxChar WX_SECTION[] = wxT("wxWindows");
 #endif
 
@@ -1258,6 +1259,9 @@ wxOperatingSystemId wxGetOsVersion(int *verMaj, int *verMin)
 
         s_version.initialized = true;
 
+#if defined(__WXWINCE__)
+        s_version.os = wxOS_WINDOWS_CE;
+#else // "normal" desktop Windows system, use run-time detection
         switch ( info.dwPlatformId )
         {
             case VER_PLATFORM_WIN32_NT:

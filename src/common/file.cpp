@@ -32,7 +32,7 @@
 #if wxUSE_FILE
 
 // standard
-#if defined(__WINDOWS__) && !defined(__GNUWIN32__)
+#if defined(__WINDOWS__) && !defined(__GNUWIN32__) && !defined(__WXWINCE__)
 
 #define   WIN32_LEAN_AND_MEAN
 #define   NOSERVICE
