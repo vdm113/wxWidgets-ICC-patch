@@ -20,10 +20,6 @@
 // classes
 //-----------------------------------------------------------------------------
 
-#if wxUSE_LIBHILDON || wxUSE_LIBHILDON2
-typedef struct _HildonProgram HildonProgram;
-#endif // wxUSE_LIBHILDON || wxUSE_LIBHILDON2
-
 //-----------------------------------------------------------------------------
 // wxApp
 //-----------------------------------------------------------------------------
@@ -69,11 +65,6 @@ public:
     // various bugs arising due to this.
     static bool GTKIsUsingGlobalMenu();
 
-#if wxUSE_LIBHILDON || wxUSE_LIBHILDON2
-    // Maemo-specific method: get the main program object
-    HildonProgram *GetHildonProgram();
-#endif // wxUSE_LIBHILDON || wxUSE_LIBHILDON2
-
     // implementation only from now on
     // -------------------------------
 
@@ -89,10 +80,6 @@ private:
     wxMutex m_idleMutex;
 #endif
     unsigned m_idleSourceId;
-
-#if wxUSE_LIBHILDON || wxUSE_LIBHILDON2
-    HildonProgram *m_hildonProgram;
-#endif // wxUSE_LIBHILDON || wxUSE_LIBHILDON2
 
     wxDECLARE_DYNAMIC_CLASS(wxApp);
 };
