@@ -26,8 +26,7 @@ before_install:
     - sudo apt-get install -y libcppunit-dev
 
 env:
-    - wxCONFIGURE_FLAGS=
-    - wxCONFIGURE_FLAGS="--disable-shared"
+    - wxCONFIGURE_FLAGS="--disable-precomp-headers --disable-shared"
     - wxCONFIGURE_FLAGS="--disable-precomp-headers --enable-monolithic"
 
 script:
