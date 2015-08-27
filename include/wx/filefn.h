@@ -34,7 +34,7 @@
 #endif
 
 #if defined(__WINDOWS__)
-#if !defined( __GNUWIN32__ ) && !defined(__CYGWIN__)
+#if !defined( __GNUWIN32__ ) && !defined(__WXWINCE__) && !defined(__CYGWIN__)
     #include <direct.h>
     #include <dos.h>
     #include <io.h>
