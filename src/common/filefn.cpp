@@ -1616,9 +1616,7 @@ bool wxSetWorkingDirectory(const wxString& d)
 // On non-Windows platform, probably just return the empty string.
 wxString wxGetOSDirectory()
 {
-#ifdef __WXWINCE__
-    return wxString(wxT("\\Windows"));
-#elif defined(__WINDOWS__)
+#if defined(__WINDOWS__)
     wxChar buf[MAX_PATH];
     if ( !GetWindowsDirectory(buf, MAX_PATH) )
     {
