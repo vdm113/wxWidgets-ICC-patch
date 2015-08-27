@@ -54,7 +54,7 @@
 
 #include <ctype.h>
 
-#if !defined(__GNUWIN32__)
+#if !defined(__GNUWIN32__) && !defined(__WXWINCE__)
     #include <direct.h>
     #include <dos.h>
 #endif
@@ -63,9 +63,10 @@
     #include <sys/stat.h>
 #endif
 
-#ifndef __UNIX__
-    #include <io.h>
-#endif
+#if !defined(__WXWINCE__)
+    #ifndef __UNIX__
+        #include <io.h>
+    #endif
 
 #ifndef __GNUWIN32__
     #include <shellapi.h>

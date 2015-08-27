@@ -705,6 +705,9 @@ bool wxMSWDCImpl::DoFloodFill(wxCoord x,
                        const wxColour& col,
                        wxFloodFillStyle style)
 {
+#ifdef __WXWINCE__
+    return false;
+#else
     bool success = (0 != ::ExtFloodFill(GetHdc(), XLOG2DEV(x), YLOG2DEV(y),
                          col.GetPixel(),
                          style == wxFLOOD_SURFACE ? FLOODFILLSURFACE
@@ -776,6 +779,15 @@ void wxMSWDCImpl::DoDrawArc(wxCoord x1, wxCoord y1,
     wxCoord r = (wxCoord)sqrt(dx*dx + dy*dy);
 
 
+#ifdef __WXWINCE__
+    // Slower emulation since WinCE doesn't support Pie and Arc
+    double sa = acos((x1-xc)/r)/M_PI*180; // between 0 and 180
+    if( y1>yc )
+        sa = -sa; // below center
+    double ea = atan2(yc-y2, x2-xc)/M_PI*180;
+    DoDrawEllipticArcRot( xc-r, yc-r, 2*r, 2*r, sa, ea );
+#else
+
     wxBrushAttrsSetter cc(*this); // needed for wxSTIPPLE_MASK_OPAQUE handling
 
     // treat the special case of full circle separately
@@ -821,6 +833,10 @@ void wxMSWDCImpl::DoDrawArc(wxCoord x1, wxCoord y1,
 void wxMSWDCImpl::DoDrawCheckMark(wxCoord x1, wxCoord y1,
                            wxCoord width, wxCoord height)
 {
+    // cases when we don't have DrawFrameControl()
+#if defined(__SYMANTEC__)
+    return wxDCBase::DoDrawCheckMark(x1, y1, width, height);
+#else // normal case
     wxCoord x2 = x1 + width,
             y2 = y1 + height;
 
@@ -834,6 +850,7 @@ void wxMSWDCImpl::DoDrawCheckMark(wxCoord x1, wxCoord y1,
 
     CalcBoundingBox(x1, y1);
     CalcBoundingBox(x2, y2);
+#endif // Normal
 }
 
 void wxMSWDCImpl::DoDrawPoint(wxCoord x, wxCoord y)
@@ -912,6 +929,9 @@ wxMSWDCImpl::DoDrawPolyPolygon(int n,
                         wxCoord yoffset,
                         wxPolygonFillMode fillStyle)
 {
+#ifdef __WXWINCE__
+    wxDCImpl::DoDrawPolyPolygon(n, count, points, xoffset, yoffset, fillStyle);
+#else
     wxBrushAttrsSetter cc(*this); // needed for wxSTIPPLE_MASK_OPAQUE handling
     int i, cnt;
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
@@ -1212,6 +1232,10 @@ void wxMSWDCImpl::DoDrawSpline(const wxPointList *points)
 // Chris Breeze 20/5/98: first implementation of DrawEllipticArc on Windows
 void wxMSWDCImpl::DoDrawEllipticArc(wxCoord x,wxCoord y,wxCoord w,wxCoord h,double sa,double ea)
 {
+#ifdef __WXWINCE__
+    DoDrawEllipticArcRot( x, y, w, h, sa, ea );
+#else
+
     wxBrushAttrsSetter cc(*this); // needed for wxSTIPPLE_MASK_OPAQUE handling
 
     wxCoord x2 = x + w;
