@@ -150,11 +150,6 @@ WXDWORD wxTopLevelWindowMSW::MSWGetStyle(long style, WXDWORD *exflags) const
     else
         msflags |= WS_POPUP;
 
-    if ( style & wxCAPTION )
-        msflags |= WS_CAPTION;
-    else
-        msflags |= WS_POPUP;
-
     // next translate the individual flags
 
     // WS_EX_CONTEXTHELP is incompatible with WS_MINIMIZEBOX and WS_MAXIMIZEBOX
@@ -1031,7 +1026,6 @@ bool wxTopLevelWindowMSW::EnableCloseButton(bool enable)
     {
         wxLogLastError(wxT("DrawMenuBar"));
     }
-#endif
 
     return true;
 }

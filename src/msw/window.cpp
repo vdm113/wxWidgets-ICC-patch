@@ -1594,7 +1594,6 @@ void wxWindowMSW::Update()
         wxLogLastError(wxT("UpdateWindow"));
     }
 
-#if !defined(__WXWINCE__)
     // just calling UpdateWindow() is not enough, what we did in our WM_PAINT
     // handler needs to be really drawn right now
     (void)::GdiFlush();
@@ -2877,7 +2876,6 @@ wxWindowMSW::MSWHandleMessage(WXLRESULT *result,
             }
             break;
 
-#if !defined(__WXWINCE__)
         case WM_ACTIVATEAPP:
             // This implicitly sends a wxEVT_ACTIVATE_APP event
             wxTheApp->SetActive(wParam != 0, FindFocus());
@@ -3443,7 +3441,6 @@ wxWindowMSW::MSWHandleMessage(WXLRESULT *result,
             }
             break;
 
-#if !defined(__WXWINCE__)
         case WM_INITMENUPOPUP:
             processed = HandleMenuPopup(wxEVT_MENU_OPEN, (WXHMENU)wParam);
             break;
@@ -3461,7 +3458,6 @@ wxWindowMSW::MSWHandleMessage(WXLRESULT *result,
         case WM_UNINITMENUPOPUP:
             processed = HandleMenuPopup(wxEVT_MENU_CLOSE, (WXHMENU)wParam);
             break;
-#endif // !__WXWINCE__
 #endif // wxUSE_MENUS && !defined(__WXUNIVERSAL__)
 
         case WM_POWERBROADCAST:
@@ -4123,10 +4119,6 @@ bool wxWindowMSW::HandleInitDialog(WXHWND WXUNUSED(hWndFocus))
 
 bool wxWindowMSW::HandleDropFiles(WXWPARAM wParam)
 {
-#if defined(__WXWINCE__)
-    wxUnusedVar(wParam);
-    return false;
-#else // __WXWINCE__
     HDROP hFilesInfo = (HDROP) wParam;
 
     // Get the total number of files dropped
@@ -6681,8 +6673,6 @@ extern wxWindow *wxGetWindowFromHWND(WXHWND hWnd)
     return win;
 }
 
-#if !defined(__WXWINCE__)
-
 // Windows keyboard hook. Allows interception of e.g. F1, ESCAPE
 // in active frames and dialogs, regardless of where the focus is.
 static HHOOK wxTheKeyboardHook = 0;
@@ -6770,8 +6760,6 @@ void wxSetKeyboardHook(bool doIt)
             ::UnhookWindowsHookEx(wxTheKeyboardHook);
     }
 }
-
-#endif // !__WXWINCE__
 
 #if wxDEBUG_LEVEL >= 2
 const wxChar *wxGetMessageName(int message)

@@ -34,7 +34,7 @@
 #endif
 
 #if defined(__WINDOWS__)
-#if !defined( __GNUWIN32__ ) && !defined(__WXWINCE__) && !defined(__CYGWIN__)
+#if !defined( __GNUWIN32__ ) && !defined(__CYGWIN__)
     #include <direct.h>
     #include <dos.h>
     #include <io.h>
@@ -58,7 +58,11 @@
 #endif
 
 // define off_t
-#include  <sys/types.h>
+#if !defined(__WXMAC__) || defined(__UNIX__) || defined(__MACH__)
+    #include  <sys/types.h>
+#else
+    typedef long off_t;
+#endif
 
 #if defined(__VISUALC__)
     typedef _off_t off_t;
