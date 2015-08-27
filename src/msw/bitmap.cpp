@@ -512,6 +512,7 @@ static HBITMAP CreatePremultipliedDIBIfNeeded(HBITMAP hbmp)
 bool wxBitmap::CopyFromIconOrCursor(const wxGDIImage& icon,
                                     wxBitmapTransparency transp)
 {
+#if !defined(__WXWINCE__)
     // it may be either HICON or HCURSOR
     HICON hicon = (HICON)icon.GetHandle();
 
@@ -614,6 +615,12 @@ bool wxBitmap::CopyFromIconOrCursor(const wxGDIImage& icon,
     }
 
     return true;
+#else // __WXWINCE__
+    wxUnusedVar(icon);
+    wxUnusedVar(transp);
+
+    return false;
+#endif // !__WXWINCE__/__WXWINCE__
 }
 
 bool wxBitmap::CopyFromCursor(const wxCursor& cursor, wxBitmapTransparency transp)

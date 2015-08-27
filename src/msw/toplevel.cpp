@@ -1026,6 +1026,7 @@ bool wxTopLevelWindowMSW::EnableCloseButton(bool enable)
     {
         wxLogLastError(wxT("DrawMenuBar"));
     }
+#endif
 
     return true;
 }
