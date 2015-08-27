@@ -157,8 +157,6 @@ void wxBrushRefData::Free()
     }
 }
 
-#if !defined(__WXWINCE__)
-
 static int TranslateHatchStyle(int style)
 {
     switch ( style )
@@ -173,16 +171,12 @@ static int TranslateHatchStyle(int style)
     }
 }
 
-#endif // !__WXWINCE__
-
 HBRUSH wxBrushRefData::GetHBRUSH()
 {
     if ( !m_hBrush )
     {
-#if !defined(__WXWINCE__)
         int hatchStyle = TranslateHatchStyle(m_style);
         if ( hatchStyle == -1 )
-#endif // !__WXWINCE__
         {
             switch ( m_style )
             {

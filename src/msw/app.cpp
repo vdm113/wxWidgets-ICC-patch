@@ -108,7 +108,6 @@
 // global variables
 // ---------------------------------------------------------------------------
 
-#if !defined(__WXWINCE__)
 extern void wxSetKeyboardHook(bool doIt);
 
 // because of mingw32 4.3 bug this struct can't be inside the namespace below:
@@ -619,13 +618,8 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
 
     InitCommonControls();
 
-#if defined(__SMARTPHONE__) || defined(__POCKETPC__)
-    SHInitExtraControls();
-#endif
-
     wxOleInitialize();
 
-#if !defined(__WXWINCE__)
     wxSetKeyboardHook(true);
 
     callBaseCleanup.Dismiss();
@@ -758,7 +752,6 @@ void wxApp::CleanUp()
     // class method first and only then do our clean up
     wxAppBase::CleanUp();
 
-#if !defined(__WXWINCE__)
     wxSetKeyboardHook(false);
 
     wxOleUninitialize();

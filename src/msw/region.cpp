@@ -57,7 +57,6 @@ public:
 
     wxRegionRefData(const wxRegionRefData& data) : wxGDIRefData()
     {
-#if !defined(__WXWINCE__)
         DWORD noBytes = ::GetRegionData(data.m_region, 0, NULL);
         RGNDATA *rgnData = (RGNDATA*) new char[noBytes];
         ::GetRegionData(data.m_region, noBytes, rgnData);
@@ -124,13 +123,6 @@ wxRegion::wxRegion(const wxRect& rect)
 
 wxRegion::wxRegion(size_t n, const wxPoint *points, wxPolygonFillMode fillStyle)
 {
-#if defined(__WXWINCE__)
-    wxUnusedVar(n);
-    wxUnusedVar(points);
-    wxUnusedVar(fillStyle);
-    m_refData = NULL;
-    M_REGION = NULL;
-#else
     m_refData = new wxRegionRefData;
     M_REGION = ::CreatePolygonRgn
                (
