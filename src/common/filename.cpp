@@ -952,7 +952,17 @@ static wxString wxCreateTempImpl(
         dir = wxFileName::GetTempDir();
     }
 
-#if defined(__WINDOWS__)
+#if defined(__WXWINCE__)
+    path = dir + wxT("\\") + name;
+    int i = 1;
+    while (wxFileName::FileExists(path))
+    {
+        path = dir + wxT("\\") + name ;
+        path << i;
+        i ++;
+    }
+
+#elif defined(__WINDOWS__)
     if (!::GetTempFileName(dir.t_str(), name.t_str(), 0,
                            wxStringBuffer(path, MAX_PATH + 1)))
     {
@@ -1267,7 +1277,9 @@ wxString wxFileName::GetTempDir()
     // if no environment variables are set, use the system default
     if ( dir.empty() )
     {
-#if defined(__WINDOWS__)
+#if defined(__WXWINCE__)
+        dir = CheckIfDirExists(wxT("\\temp"));
+#elif defined(__WINDOWS__)
         if ( !::GetTempPath(MAX_PATH, wxStringBuffer(dir, MAX_PATH + 1)) )
         {
             wxLogLastError(wxT("GetTempPath"));
@@ -2250,7 +2262,7 @@ wxString wxFileName::GetShortPath() const
 {
     wxString path(GetFullPath());
 
-#if defined(__WINDOWS__) && defined(__WIN32__)
+#if defined(__WINDOWS__) && defined(__WIN32__) && !defined(__WXWINCE__)
     DWORD sz = ::GetShortPathName(path.t_str(), NULL, 0);
     if ( sz != 0 )
     {
@@ -2276,7 +2288,42 @@ wxString wxFileName::GetLongPath() const
     wxString pathOut,
              path = GetFullPath();
 
-#if defined(__WIN32__)
+#if defined(__WIN32__) && !defined(__WXWINCE__)
+
+#if wxUSE_DYNLIB_CLASS
+    typedef DWORD (WINAPI *GET_LONG_PATH_NAME)(const wxChar *, wxChar *, DWORD);
+
+    // this is MT-safe as in the worst case we're going to resolve the function
+    // twice -- but as the result is the same in both threads, it's ok
+    static GET_LONG_PATH_NAME s_pfnGetLongPathName = NULL;
+    if ( !s_pfnGetLongPathName )
+    {
+        static bool s_triedToLoad = false;
+
+        if ( !s_triedToLoad )
+        {
+            s_triedToLoad = true;
+
+            wxDynamicLibrary dllKernel(wxT("kernel32"));
+
+            const wxChar* GetLongPathName = wxT("GetLongPathName")
+#if wxUSE_UNICODE
+                              wxT("W");
+#else // ANSI
+                              wxT("A");
+#endif // Unicode/ANSI
+
+            if ( dllKernel.HasSymbol(GetLongPathName) )
+            {
+                s_pfnGetLongPathName = (GET_LONG_PATH_NAME)
+                    dllKernel.GetSymbol(GetLongPathName);
+            }
+
+            // note that kernel32.dll can be unloaded, it stays in memory
+            // anyhow as all Win32 programs link to it and so it's safe to call
+            // GetLongPathName() even after unloading it
+        }
+    }
 
     DWORD dwSize = ::GetLongPathName(path.t_str(), NULL, 0);
     if ( dwSize > 0 )
