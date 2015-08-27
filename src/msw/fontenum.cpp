@@ -100,10 +100,8 @@ private:
 // private functions
 // ----------------------------------------------------------------------------
 
-#ifndef __WXMICROWIN__
 int CALLBACK wxFontEnumeratorProc(LPLOGFONT lplf, LPTEXTMETRIC lptm,
                                   DWORD dwStyle, LPARAM lParam);
-#endif
 
 // ============================================================================
 // implementation
@@ -152,7 +150,6 @@ bool wxFontEnumeratorHelper::SetEncoding(wxFontEncoding encoding)
 
 void wxFontEnumeratorHelper::DoEnumerate()
 {
-#ifndef __WXMICROWIN__
     HDC hDC = ::GetDC(NULL);
 
 #ifdef __WXWINCE__
@@ -170,7 +167,6 @@ void wxFontEnumeratorHelper::DoEnumerate()
 #endif // WinCE/!WinCE
 
     ::ReleaseDC(NULL, hDC);
-#endif
 }
 
 bool wxFontEnumeratorHelper::OnFont(const LPLOGFONT lf,
@@ -273,7 +269,6 @@ bool wxFontEnumerator::EnumerateEncodings(const wxString& facename)
 // Windows callbacks
 // ----------------------------------------------------------------------------
 
-#ifndef __WXMICROWIN__
 int CALLBACK wxFontEnumeratorProc(LPLOGFONT lplf, LPTEXTMETRIC lptm,
                                   DWORD WXUNUSED(dwStyle), LPARAM lParam)
 {
@@ -293,6 +288,5 @@ int CALLBACK wxFontEnumeratorProc(LPLOGFONT lplf, LPTEXTMETRIC lptm,
 
     return fontEnum->OnFont(lplf, lptm);
 }
-#endif
 
 #endif // wxUSE_FONTENUM

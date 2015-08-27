@@ -50,7 +50,7 @@
     #define WXDEBUG_SCROLLBAR
 #endif
 
-#if defined(WXDEBUG_SCROLLBAR) && defined(__WXMSW__) && !defined(__WXMICROWIN__)
+#if defined(WXDEBUG_SCROLLBAR) && defined(__WXMSW__)
 #include "wx/msw/private.h"
 #endif
 
@@ -644,7 +644,7 @@ void wxScrollBar::UpdateThumb()
             dc.DrawRectangle(rect);
 
             // under Unix we use "--sync" X option for this
-            #if defined(__WXMSW__) && !defined(__WXMICROWIN__)
+            #if defined(__WXMSW__)
                 ::GdiFlush();
                 ::Sleep(200);
             #endif // __WXMSW__

@@ -71,8 +71,6 @@ WX_DEFINE_LIST(wxGDIImageHandlerList)
 // private classes
 // ----------------------------------------------------------------------------
 
-#ifndef __WXMICROWIN__
-
 // all image handlers are declared/defined in this file because the outside
 // world doesn't have to know about them (but only about wxBITMAP_TYPE_XXX ids)
 
@@ -228,8 +226,6 @@ wxIMPLEMENT_DYNAMIC_CLASS(wxPNGResourceHandler, wxBitmapHandler);
 // private functions
 // ----------------------------------------------------------------------------
 
-#endif
-    // __MICROWIN__
 
 // ============================================================================
 // implementation
@@ -365,7 +361,6 @@ void wxGDIImage::CleanUpHandlers()
 
 void wxGDIImage::InitStandardHandlers()
 {
-#ifndef __WXMICROWIN__
     AddHandler(new wxBMPResourceHandler);
     AddHandler(new wxBMPFileHandler);
     AddHandler(new wxICOFileHandler);
@@ -373,10 +368,7 @@ void wxGDIImage::InitStandardHandlers()
 #if wxUSE_PNG_RESOURCE_HANDLER
     AddHandler(new wxPNGResourceHandler);
 #endif // wxUSE_PNG_RESOURCE_HANDLER
-#endif
 }
-
-#ifndef __WXMICROWIN__
 
 // ----------------------------------------------------------------------------
 // wxBitmap handlers
@@ -720,5 +712,3 @@ wxSize wxGetHiconSize(HICON WXUNUSED_IN_WINCE(hicon))
 
     return size;
 }
-
-#endif // __WXMICROWIN__

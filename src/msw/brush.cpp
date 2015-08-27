@@ -155,7 +155,7 @@ void wxBrushRefData::Free()
     }
 }
 
-#if !defined(__WXMICROWIN__) && !defined(__WXWINCE__)
+#if !defined(__WXWINCE__)
 
 static int TranslateHatchStyle(int style)
 {
@@ -171,16 +171,16 @@ static int TranslateHatchStyle(int style)
     }
 }
 
-#endif // !__WXMICROWIN__ && !__WXWINCE__
+#endif // !__WXWINCE__
 
 HBRUSH wxBrushRefData::GetHBRUSH()
 {
     if ( !m_hBrush )
     {
-#if !defined(__WXMICROWIN__) && !defined(__WXWINCE__)
+#if !defined(__WXWINCE__)
         int hatchStyle = TranslateHatchStyle(m_style);
         if ( hatchStyle == -1 )
-#endif // !__WXMICROWIN__ && !__WXWINCE__
+#endif // !__WXWINCE__
         {
             switch ( m_style )
             {

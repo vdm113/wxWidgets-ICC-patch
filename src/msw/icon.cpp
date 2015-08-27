@@ -59,9 +59,7 @@ void wxIconRefData::Free()
 {
     if ( m_hIcon )
     {
-#ifndef __WXMICROWIN__
         ::DestroyIcon((HICON) m_hIcon);
-#endif
 
         m_hIcon = 0;
     }
@@ -120,7 +118,6 @@ wxObjectRefData *wxIcon::CloneRefData(const wxObjectRefData *dataOrig) const
 
 void wxIcon::CopyFromBitmap(const wxBitmap& bmp)
 {
-#ifndef __WXMICROWIN__
     HICON hicon = wxBitmapToHICON(bmp);
     if ( !hicon )
     {
@@ -131,7 +128,6 @@ void wxIcon::CopyFromBitmap(const wxBitmap& bmp)
         SetHICON((WXHICON)hicon);
         SetSize(bmp.GetWidth(), bmp.GetHeight());
     }
-#endif // __WXMICROWIN__
 }
 
 void wxIcon::CreateIconFromXpm(const char* const* data)

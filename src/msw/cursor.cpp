@@ -46,12 +46,6 @@
 #include "wx/msw/private.h"
 #include "wx/msw/missing.h" // IDC_HAND
 
-// define functions missing in MicroWin
-#ifdef __WXMICROWIN__
-    static inline void DestroyCursor(HCURSOR) { }
-    static inline void SetCursor(HCURSOR) { }
-#endif // __WXMICROWIN__
-
 // ----------------------------------------------------------------------------
 // private classes
 // ----------------------------------------------------------------------------
@@ -223,15 +217,6 @@ wxCursor::wxCursor(const wxImage& image)
     m_refData = new wxCursorRefData(hcursor, true /* delete it later */);
 }
 #endif // wxUSE_IMAGE
-
-// MicroWin doesn't have support needed for the other ctors
-#ifdef __WXMICROWIN__
-
-wxCursor::InitFromStock(wxStockCursor WXUNUSED(cursor_type))
-{
-}
-
-#else // !__WXMICROWIN__
 
 wxCursor::wxCursor(const wxString& filename,
                    wxBitmapType kind,
@@ -417,8 +402,6 @@ void wxCursor::InitFromStock(wxStockCursor idCursor)
         m_refData = new wxCursorRefData(hcursor, deleteLater);
     }
 }
-
-#endif // __WXMICROWIN__/!__WXMICROWIN__
 
 wxCursor::~wxCursor()
 {

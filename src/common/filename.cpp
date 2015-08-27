@@ -149,7 +149,7 @@ namespace
 
 // small helper class which opens and closes the file - we use it just to get
 // a file handle for the given file name to pass it to some Win32 API function
-#if defined(__WIN32__) && !defined(__WXMICROWIN__)
+#if defined(__WIN32__)
 
 class wxFileHandle
 {
@@ -221,7 +221,7 @@ private:
 // private functions
 // ----------------------------------------------------------------------------
 
-#if wxUSE_DATETIME && defined(__WIN32__) && !defined(__WXMICROWIN__)
+#if wxUSE_DATETIME && defined(__WIN32__)
 
 // Convert between wxDateTime and FILETIME which is a 64-bit value representing
 // the number of 100-nanosecond intervals since January 1, 1601 UTC.
@@ -633,7 +633,7 @@ wxFileName wxFileName::DirName(const wxString& dir, wxPathFormat format)
 namespace
 {
 
-#if defined(__WINDOWS__) && !defined(__WXMICROWIN__)
+#if defined(__WINDOWS__)
 
 void RemoveTrailingSeparatorsFromPath(wxString& strPath)
 {
@@ -673,7 +673,7 @@ wxFileSystemObjectExists(const wxString& path, int flags)
 
     wxString strPath(path);
 
-#if defined(__WINDOWS__) && !defined(__WXMICROWIN__)
+#if defined(__WINDOWS__)
     if ( acceptDir )
     {
         // Ensure that the path doesn't have any trailing separators when
@@ -957,7 +957,7 @@ static wxString wxCreateTempImpl(
         i ++;
     }
 
-#elif defined(__WINDOWS__) && !defined(__WXMICROWIN__)
+#elif defined(__WINDOWS__)
     if (!::GetTempFileName(dir.t_str(), name.t_str(), 0,
                            wxStringBuffer(path, MAX_PATH + 1)))
     {
@@ -1272,7 +1272,7 @@ wxString wxFileName::GetTempDir()
     {
 #if defined(__WXWINCE__)
         dir = CheckIfDirExists(wxT("\\temp"));
-#elif defined(__WINDOWS__) && !defined(__WXMICROWIN__)
+#elif defined(__WINDOWS__)
         if ( !::GetTempPath(MAX_PATH, wxStringBuffer(dir, MAX_PATH + 1)) )
         {
             wxLogLastError(wxT("GetTempPath"));
@@ -2239,7 +2239,7 @@ wxString wxFileName::GetShortPath() const
 {
     wxString path(GetFullPath());
 
-#if defined(__WINDOWS__) && defined(__WIN32__) && !defined(__WXMICROWIN__) && !defined(__WXWINCE__)
+#if defined(__WINDOWS__) && defined(__WIN32__) && !defined(__WXWINCE__)
     DWORD sz = ::GetShortPathName(path.t_str(), NULL, 0);
     if ( sz != 0 )
     {
@@ -2265,7 +2265,7 @@ wxString wxFileName::GetLongPath() const
     wxString pathOut,
              path = GetFullPath();
 
-#if defined(__WIN32__) && !defined(__WXWINCE__) && !defined(__WXMICROWIN__)
+#if defined(__WIN32__) && !defined(__WXWINCE__)
 
 #if wxUSE_DYNLIB_CLASS
     typedef DWORD (WINAPI *GET_LONG_PATH_NAME)(const wxChar *, wxChar *, DWORD);
