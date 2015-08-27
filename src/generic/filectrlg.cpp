@@ -47,7 +47,7 @@
     #include "wx/msw/wrapwin.h"
 #endif
 
-#if defined(__WINDOWS__)
+#if defined(__DOS__) || defined(__WINDOWS__)
 #define IsTopMostDir(dir)   (dir.empty())
 #else
 #define IsTopMostDir(dir)   (dir == wxT("/"))
@@ -182,7 +182,7 @@ void wxFileData::ReadData()
         return;
     }
 
-#if defined(__WINDOWS__)
+#if defined(__DOS__) || defined(__WINDOWS__)
     // c:\.. is a drive don't stat it
     if ((m_fileName == wxT("..")) && (m_filePath.length() <= 5))
     {
@@ -190,7 +190,7 @@ void wxFileData::ReadData()
         m_size = 0;
         return;
     }
-#endif // __WINDOWS__
+#endif // __DOS__ || __WINDOWS__
 
     // OTHER PLATFORMS
 
@@ -525,7 +525,7 @@ void wxFileListCtrl::UpdateFiles()
     item.m_itemId = 0;
     item.m_col = 0;
 
-#if defined(__WINDOWS__) || defined(__WXMAC__)
+#if defined(__WINDOWS__) || defined(__DOS__) || defined(__WXMAC__)
     if ( IsTopMostDir(m_dirName) )
     {
         wxArrayString names, paths;
