@@ -873,6 +873,7 @@ void MyFrame::DoEnablePrint()
 
     wxToolBarBase *tb = GetToolBar();
     tb->EnableTool(wxID_PRINT, !tb->GetToolEnabled(wxID_PRINT));
+    m_textWindow->AppendText("Print tool state changed.\n");
 }
 
 void MyFrame::DoDeletePrint()
@@ -882,6 +883,7 @@ void MyFrame::DoDeletePrint()
 
     wxToolBarBase *tb = GetToolBar();
     tb->DeleteTool( wxID_PRINT );
+    m_textWindow->AppendText("Print tool was deleted.\n");
 
     m_nPrint--;
 }
@@ -890,6 +892,7 @@ void MyFrame::DoToggleHelp()
 {
     wxToolBarBase *tb = GetToolBar();
     tb->ToggleTool( wxID_HELP, !tb->GetToolState( wxID_HELP ) );
+    m_textWindow->AppendText("Help tool was toggled.\n");
 }
 
 void MyFrame::OnToggleSearch(wxCommandEvent& WXUNUSED(event))
