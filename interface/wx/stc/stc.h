@@ -155,6 +155,9 @@
 #define wxSTC_INDIC_DOTBOX 12
 #define wxSTC_INDIC_SQUIGGLEPIXMAP 13
 #define wxSTC_INDIC_COMPOSITIONTHICK 14
+#define wxSTC_INDIC_COMPOSITIONTHIN 15
+#define wxSTC_INDIC_FULLBOX 16
+#define wxSTC_INDIC_TEXTFORE 17
 #define wxSTC_INDIC_IME 32
 #define wxSTC_INDIC_IME_MAX 35
 #define wxSTC_INDIC_MAX 35
@@ -505,6 +508,9 @@
 #define wxSTC_LEX_DMIS 114
 #define wxSTC_LEX_REGISTRY 115
 #define wxSTC_LEX_BIBTEX 116
+#define wxSTC_LEX_SREC 117
+#define wxSTC_LEX_IHEX 118
+#define wxSTC_LEX_TEHEX 119
 
 /// When a lexer specifies its language as SCLEX_AUTOMATIC it receives a
 /// value assigned in sequence from SCLEX_AUTOMATIC+1.
@@ -2336,6 +2342,27 @@
 #define wxSTC_BIBTEX_PARAMETER 4
 #define wxSTC_BIBTEX_VALUE 5
 #define wxSTC_BIBTEX_COMMENT 6
+
+/// Lexical state for SCLEX_SREC
+#define wxSTC_HEX_DEFAULT 0
+#define wxSTC_HEX_RECSTART 1
+#define wxSTC_HEX_RECTYPE 2
+#define wxSTC_HEX_RECTYPE_UNKNOWN 3
+#define wxSTC_HEX_BYTECOUNT 4
+#define wxSTC_HEX_BYTECOUNT_WRONG 5
+#define wxSTC_HEX_NOADDRESS 6
+#define wxSTC_HEX_DATAADDRESS 7
+#define wxSTC_HEX_RECCOUNT 8
+#define wxSTC_HEX_STARTADDRESS 9
+#define wxSTC_HEX_ADDRESSFIELD_UNKNOWN 10
+#define wxSTC_HEX_EXTENDEDADDRESS 11
+#define wxSTC_HEX_DATA_ODD 12
+#define wxSTC_HEX_DATA_EVEN 13
+#define wxSTC_HEX_DATA_UNKNOWN 14
+#define wxSTC_HEX_DATA_EMPTY 15
+#define wxSTC_HEX_CHECKSUM 16
+#define wxSTC_HEX_CHECKSUM_WRONG 17
+#define wxSTC_HEX_GARBAGE 18
 
 //}}}
 
