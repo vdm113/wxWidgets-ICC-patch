@@ -26,6 +26,7 @@
 
 class WXDLLIMPEXP_ADV wxHyperlinkCtrl : public wxGenericHyperlinkCtrl
 {
+    typedef wxGenericHyperlinkCtrl base_type;
 public:
     // Default constructor (for two-step construction).
     wxHyperlinkCtrl() { }
@@ -66,6 +67,9 @@ public:
 
     virtual wxString GetURL() const wxOVERRIDE;
     virtual void SetURL(const wxString &url) wxOVERRIDE;
+
+    virtual void SetVisited(bool visited = true) wxOVERRIDE;
+    virtual bool GetVisited() const wxOVERRIDE;
 
     virtual void SetLabel(const wxString &label) wxOVERRIDE;
 
