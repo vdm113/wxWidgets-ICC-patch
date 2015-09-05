@@ -6,7 +6,6 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wxWidgets_vdm_patch/stdafx.cpp
 // Purpose:     patcher for ICL compiler
