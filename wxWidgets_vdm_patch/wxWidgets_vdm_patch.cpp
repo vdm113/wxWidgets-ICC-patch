@@ -1,9 +1,11 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
+
 
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wxWidgets_vdm_patch/stdafx.cpp
@@ -69,12 +71,13 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 
     static const char* line_prologue_token="/* token_VDM_prologue */";
 #if !ICC_BUG_02
-    static const char* line_prologue="#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)\n#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)\n#elif !defined(VDM_MACRO_PRAGMA_IVDEP)\n#   define VDM_MACRO_PRAGMA_IVDEP\n#endif";
+    static const char* line_prologue="#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)\n#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)\n#   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */\n#elif !defined(VDM_MACRO_PRAGMA_IVDEP)\n#   define VDM_MACRO_PRAGMA_IVDEP\n#endif";
 #else
     static const char* line_prologue="#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)\n#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep)\n#elif !defined(VDM_MACRO_PRAGMA_IVDEP)\n#   define VDM_MACRO_PRAGMA_IVDEP\n#endif";
 #endif
 
     static const char* inline_pragma="VDM_MACRO_PRAGMA_IVDEP \\";
+    static const char* inline_no_pragma="VDM_MACRO_PRAGMA_NO_IVDEP \\";
 
     static const size_t length=4096; // ugly limitation to 4096!
     char tmp_buf[length+16];
@@ -152,6 +155,9 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
         }
 
         if(!strcmp(buf,inline_pragma)) {
+            continue;
+        }
+        if(!strcmp(buf,inline_no_pragma)) {
             continue;
         }
 
@@ -572,7 +578,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
                 }
                 if(got)
                     reformat=true;
-            } else if(reformat && scrollback.size()>1 && !scrollback[scrollback.size()-1-1].compare(inline_pragma)) {
+            } else if(reformat && scrollback.size()>1 && (!scrollback[scrollback.size()-1-1].compare(inline_pragma) || !scrollback[scrollback.size()-1-1].compare(inline_no_pragma))) {
                 reformat=!do_patch;
             }
         }
@@ -581,14 +587,15 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
             string save=scrollback.back();
             if(do_patch) {
                 if(last_char_was_backslash || last_line_was_backslash) {
-                    if(!do_not_pragma) {
+                    if(!do_not_pragma)
                         sprintf(tmp_buf,"%s",inline_pragma);
-                        scrollback.pop_back();
-                        scrollback.push_back(tmp_buf);
-                        scrollback.push_back(save);
-                        ++cnt;
-                        changed=true;
-                    }
+                    else
+                        sprintf(tmp_buf,"%s",inline_no_pragma);
+                    scrollback.pop_back();
+                    scrollback.push_back(tmp_buf);
+                    scrollback.push_back(save);
+                    ++cnt;
+                    changed=true;
                 } else if(!(scrollback.size()>1 && !scrollback[scrollback.size()-1-1].compare(line_end))) {
                     if(!do_not_pragma)
                         sprintf(tmp_buf,"%s\n",line1);
@@ -663,7 +670,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
                 changed=true;
                 ++cnt;
                 goto uu_again;
-            } else if(!(*i1).compare(inline_pragma)) {
+            } else if(!(*i1).compare(inline_pragma) || !(*i1).compare(inline_no_pragma)) {
                 scrollback.erase(i1);
                 changed=true;
                 ++cnt;
