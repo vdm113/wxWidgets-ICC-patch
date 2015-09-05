@@ -5,8 +5,6 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wxWidgets_vdm_patch/stdafx.cpp
 // Purpose:     patcher for ICL compiler
@@ -189,6 +187,9 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
                 }
                 ++cnt;
             } while(strcmp(buf,line_prologue_token)==0); // might be broken, i.e. twice or more prologue occurence
+            buf[0]='\0';
+            changed=true;
+            scrollback.clear();
 
             if(1!=cnt) {
                 changed=true;
@@ -203,10 +204,12 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 
         if(do_patch && do_prologue && 1==ln) {
             sprintf(tmp_buf,"%s\n%s\n",line_prologue_token,line_prologue);
-            string save=scrollback.back();
+            string save;
+            if(scrollback.size()!=0)
+                save=scrollback.back();
             scrollback.clear();
             scrollback.push_back(tmp_buf);
-            if(save.compare(line_prologue_token)) {
+            if(save.compare(line_prologue_token) && save.length()!=0) {
                 scrollback.push_back(save);
                 ++cnt;
                 changed=true;
