@@ -101,6 +101,8 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
     int stage=-1;
     bool last_line_was_backslash=false;
 
+    vector<string> contents;
+
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
@@ -110,13 +112,107 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   endif
 #endif /* VDM auto patch */
     while(in && !feof(in)) {
-    again:
         char buf[length+16];
         if(fgets(buf,length,in)==NULL) {
             if(feof(in)) {
                 break;
             }
-            goto again;
+        }
+        contents.push_back(buf);
+    }
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
+    for(size_t i=0; i<contents.size(); ++i) {
+        char buf[length+16];
+        sprintf(buf,"%s",contents[i].c_str());
+        bool do_not_inline_pragma=false;
+        if(contents.size()>i+1) {
+            bool finish=false;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
+            for(size_t i1=i+1; i1<contents.size(); ++i1) {
+                string next=contents[i1];
+
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
+                while(next.length()>0 && ('\r'==next[next.length()-1] || '\n'==next[next.length()-1]))
+                    next.erase(next.length()-1,1);
+                bool backslash=false;
+                if(next.length()>0 && '\\'==next[next.length()-1]) {
+                    next.erase(next.length()-1,1);
+                    backslash=true;
+                }
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
+                while(next.length()>0 && (' '==next[next.length()-1] || '\t'==next[next.length()-1]))
+                    next.erase(next.length()-1,1);
+
+                size_t parent=0;
+                bool check_semicolon=false;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
+                for(size_t i2=0; i2<next.length(); ++i2) {
+                    if(' '==next[i2] || '\t'==next[i2] || '\\'==next[i2])
+                        continue;
+                    if('('==next[i2]) {
+                        parent++;
+                        continue;
+                    }
+                    if(')'==next[i2]) {
+                        parent--;
+                        if(0==parent)
+                            check_semicolon=true;
+                        continue;
+                    }
+                    if('{'==next[i2]) {
+                        finish=true;
+                        break;
+                    }
+                    if(check_semicolon) {
+                        if(';'==next[i2]) {
+                            do_not_inline_pragma=true;
+                            finish=true;
+                        } else {
+                            do_not_inline_pragma=false;
+                            finish=true;
+                        }
+                    }
+                    if(finish)
+                        break;
+                }
+                if(finish)
+                    break;
+            }
         }
 
         buf[length]='\0';
@@ -147,7 +243,6 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
             size_t cnt=0;
 
             // seek for an empty line as ending of the prologue
-            char buf2[length+16];
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
@@ -158,9 +253,6 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #endif /* VDM auto patch */
             do {
                 scrollback.clear();
-                scrollback.push_back(buf);
-
-                buf2[0]='x';
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
@@ -169,12 +261,13 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #       pragma simd
 #   endif
 #endif /* VDM auto patch */
-                while('\r'!=buf2[0] && '\n'!=buf2[0]) {
-                    buf2[0]='x';
-                    fgets(buf2,length,in);
+                for(int i1=0; i1<6; ++i1) {
+                    sprintf(buf,"%s",contents[i].c_str());
+                    scrollback.push_back(buf);
+                    ++i;
                 }
                 ++cnt;
-            } while(strcmp(buf2,line_prologue_token)==0); // might be broken, i.e. twice or more prologue occurence
+            } while(strcmp(buf,line_prologue_token)==0); // might be broken, i.e. twice or more prologue occurence
 
             if(1!=cnt) {
                 changed=true;
@@ -469,13 +562,15 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
         if(reformat) {
             string save=scrollback.back();
             if(do_patch) {
-                if((last_char_was_backslash || last_line_was_backslash) && !reformat_disabled) {
-                    sprintf(tmp_buf,"%s",inline_pragma);
-                    scrollback.pop_back();
-                    scrollback.push_back(tmp_buf);
-                    scrollback.push_back(save);
-                    ++cnt;
-                    changed=true;
+                if(last_char_was_backslash || last_line_was_backslash) {
+                    if(!reformat_disabled && !do_not_inline_pragma) {
+                        sprintf(tmp_buf,"%s",inline_pragma);
+                        scrollback.pop_back();
+                        scrollback.push_back(tmp_buf);
+                        scrollback.push_back(save);
+                        ++cnt;
+                        changed=true;
+                    }
                 } else if(!(scrollback.size()>1 && !scrollback[scrollback.size()-1-1].compare(line_end))) {
                     if(!reformat_disabled)
                         sprintf(tmp_buf,"%s\n",line1);
