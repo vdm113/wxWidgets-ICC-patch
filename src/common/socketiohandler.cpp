@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/socketiohandler.cpp
 // Purpose:     implementation of wxFDIOHandler for wxSocket

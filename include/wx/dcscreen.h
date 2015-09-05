@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/dcscreen.h
 // Purpose:     wxScreenDC base header

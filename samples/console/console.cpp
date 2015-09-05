@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        samples/console/console.cpp
 // Purpose:     A sample console (as opposed to GUI) program using wxWidgets

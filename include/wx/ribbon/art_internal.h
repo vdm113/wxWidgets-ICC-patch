@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/ribbon/art_internal.h
 // Purpose:     Helper functions & classes used by ribbon art providers

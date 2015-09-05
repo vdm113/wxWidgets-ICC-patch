@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 #if wxOSX_USE_COCOA_OR_CARBON
 #include "wx/osx/carbon/region.h"
 #else

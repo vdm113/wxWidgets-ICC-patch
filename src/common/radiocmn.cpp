@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/radiocmn.cpp
 // Purpose:     wxRadioBox methods common to all ports

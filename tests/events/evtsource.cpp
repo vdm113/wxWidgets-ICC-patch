@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/events/evtsource.cpp
 // Purpose:     Test the event sources

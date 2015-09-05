@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/controls/label.cpp
 // Purpose:     wxControl and wxStaticText label tests

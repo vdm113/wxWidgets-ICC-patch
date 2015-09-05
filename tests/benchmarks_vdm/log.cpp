@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        tests/benchmarks/log.cpp
 // Purpose:     Log-related benchmarks

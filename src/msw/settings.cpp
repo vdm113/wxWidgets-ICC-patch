@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/settings.cpp
 // Purpose:     wxSystemSettingsNative implementation for MSW

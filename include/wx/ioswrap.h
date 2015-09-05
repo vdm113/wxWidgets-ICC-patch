@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/ioswrap.h
 // Purpose:     includes the correct iostream headers for current compiler

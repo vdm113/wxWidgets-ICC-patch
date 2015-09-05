@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/ribbon/toolbar.cpp
 // Purpose:     Ribbon-style tool bar

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/rgncmn.cpp
 // Purpose:     Methods of wxRegion that have a generic implementation

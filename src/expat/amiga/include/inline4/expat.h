@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 #ifndef INLINE4_EXPAT_H
 #define INLINE4_EXPAT_H
 

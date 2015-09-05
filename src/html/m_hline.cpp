@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/html/m_hline.cpp
 // Purpose:     wxHtml module for horizontal line (HR tag)

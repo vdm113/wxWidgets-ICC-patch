@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/vidmode.h
 // Purpose:     declares wxVideoMode class used by both wxDisplay and wxApp

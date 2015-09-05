@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 /** @file Document.h
  ** Text document that handles notifications, DBCS, styling, words and end of line.

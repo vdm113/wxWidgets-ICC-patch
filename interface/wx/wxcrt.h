@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/wxcrt.h
 // Purpose:     interface of global wx wrappers for CRT functions

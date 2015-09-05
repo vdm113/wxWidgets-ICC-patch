@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/rcdefs.h
 // Purpose:     Fallback for the generated rcdefs.h under the lib directory

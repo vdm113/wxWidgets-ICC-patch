@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/iniconf.cpp
 // Purpose:     implementation of wxIniConfig class

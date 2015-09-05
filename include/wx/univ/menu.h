@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/univ/menu.h
 // Purpose:     wxMenu and wxMenuBar classes for wxUniversal

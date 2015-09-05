@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/ole/dataobj.cpp
 // Purpose:     implementation of wx[I]DataObject class

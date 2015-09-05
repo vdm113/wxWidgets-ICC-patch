@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * wx/msw/htmlhelp.h
  * Copyright 2004 Jacek Caban

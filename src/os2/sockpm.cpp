@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/sockpm.cpp
 // Purpose:     implementation of OS-2-specific handler event handling

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/gtk/dvrenderer.h
 // Purpose:     wxDataViewRenderer for GTK wxDataViewCtrl implementation

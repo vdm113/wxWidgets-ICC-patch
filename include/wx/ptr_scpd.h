@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/ptr_scpd.h
 // Purpose:     compatibility wrapper for wxScoped{Ptr,Array}

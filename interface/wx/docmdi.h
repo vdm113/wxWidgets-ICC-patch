@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        docmdi.h
 // Purpose:     interface of wxDocMDIParentFrame and wxDocMDIChildFrame

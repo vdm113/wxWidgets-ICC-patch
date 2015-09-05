@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/mousemanager.cpp
 // Purpose:     implementation of wxMouseEventsManager class

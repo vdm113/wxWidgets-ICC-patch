@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/panel.cpp
 // Purpose:     Implementation of wxMSW-specific wxPanel class.

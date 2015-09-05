@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/xrc/xh_collpane.h
 // Purpose:     XML resource handler for wxCollapsiblePane

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/wince/libraries.h
 // Purpose:     VC++ pragmas for linking against SDK libs

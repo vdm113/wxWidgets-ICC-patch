@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/logg.cpp
 // Purpose:     wxLog-derived classes which need GUI support (the rest is in

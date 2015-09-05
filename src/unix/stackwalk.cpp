@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/stackwalk.cpp
 // Purpose:     wxStackWalker implementation for Unix/glibc

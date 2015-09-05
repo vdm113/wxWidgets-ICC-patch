@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/thread/queue.cpp
 // Purpose:     Unit test for wxMessageQueue

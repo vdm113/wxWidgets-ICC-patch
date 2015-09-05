@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/osx/statline.h
 // Purpose:     a generic wxStaticLine class used for mac before adaptation

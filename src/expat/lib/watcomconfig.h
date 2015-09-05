@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* expat_config.h for use with Open Watcom 1.5 and above.  */
 
 #ifndef WATCOMCONFIG_H

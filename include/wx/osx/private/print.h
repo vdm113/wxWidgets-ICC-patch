@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 #ifdef __WXMAC_CLASSIC__
 #include "wx/osx/classic/private/print.h"
 #else

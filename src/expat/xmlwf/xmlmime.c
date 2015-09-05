@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 #include <string.h>
 #include "xmlmime.h"
 

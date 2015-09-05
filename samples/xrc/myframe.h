@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 //-----------------------------------------------------------------------------
 // Name:        myframe.h
 // Purpose:     XML resources sample: A derived frame, called MyFrame

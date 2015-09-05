@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/evtloop.cpp
 // Purpose:     implements wxGUIEventLoop for PM

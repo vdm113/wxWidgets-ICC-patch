@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/threadinfo.cpp
 // Purpose:     declaration of wxThreadSpecificInfo: thread-specific information

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/ribbon/art_msw.cpp
 // Purpose:     MSW style art provider for ribbon interface

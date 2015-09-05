@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/xrc/xh_simplehtmllbox.cpp
 // Purpose:     XML resource handler for wxSimpleHtmlListBox

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/drawing/gcfactory.h
 // Purpose:     Interface of a factory to create and destroy a wxGraphicsContext

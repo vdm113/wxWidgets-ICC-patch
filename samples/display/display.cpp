@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        display.cpp
 // Purpose:     wxWidgets sample showing the features of wxDisplay class

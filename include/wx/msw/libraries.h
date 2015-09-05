@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Name:        wx/msw/libraries.h
  * Purpose:     Pragmas for linking libs conditionally

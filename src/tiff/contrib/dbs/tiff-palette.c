@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * tiff-palette.c -- create a Class P (palette) TIFF file
  *

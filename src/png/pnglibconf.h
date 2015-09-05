@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* pnglibconf.h - library build configuration */
 
 /* libpng version 1.6.2 - April 25, 2013 */

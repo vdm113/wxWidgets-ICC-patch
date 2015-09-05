@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/base64.cpp
 // Purpose:     implementation of BASE64 encoding/decoding functions

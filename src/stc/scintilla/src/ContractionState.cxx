@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 /** @file ContractionState.cxx
  ** Manages visibility of lines for folding and wrapping.

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/core/gsockosx.cpp
 // Purpose:     wxSocketImpl implementation for OS X

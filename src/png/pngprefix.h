@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 #define png_sRGB_table wx_png_sRGB_table
 #define png_sRGB_base wx_png_sRGB_base
 #define png_sRGB_delta wx_png_sRGB_delta

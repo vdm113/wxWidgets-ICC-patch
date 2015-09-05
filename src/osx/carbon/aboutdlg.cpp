@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/aboutdlg.cpp
 // Purpose:     native wxAboutBox() implementation for wxMac

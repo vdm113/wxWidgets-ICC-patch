@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/generic/private/markuptext.h
 // Purpose:     Generic wxMarkupText class for managing text with markup.

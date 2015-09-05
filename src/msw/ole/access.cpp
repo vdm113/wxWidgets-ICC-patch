@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/ole/access.cpp
 // Purpose:     implementation of wxIAccessible and wxAccessible

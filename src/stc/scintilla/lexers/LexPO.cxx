@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 /** @file LexPO.cxx
  ** Lexer for GetText Translation (PO) files.

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /**
 *  Name:        wx/features.h
 *  Purpose:     test macros for the features which might be available in some

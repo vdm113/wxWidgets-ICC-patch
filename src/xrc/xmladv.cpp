@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/xrc/xmladv.cpp
 // Purpose:     Parts of wxXRC library depending on wxAdv: they must not be in

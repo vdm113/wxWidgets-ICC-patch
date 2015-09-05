@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 /** @file OptionSet.h
  ** Manage descriptive information about an options struct for a lexer.

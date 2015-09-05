@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 //////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/xlocale.cpp
 // Purpose:     xlocale wrappers/impl to provide some xlocale wrappers

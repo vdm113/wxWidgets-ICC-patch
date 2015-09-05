@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/colordlg.cpp
 // Purpose:     wxColourDialog class. NOTE: you can use the generic class

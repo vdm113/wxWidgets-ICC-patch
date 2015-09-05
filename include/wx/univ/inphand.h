@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/univ/inphand.h
 // Purpose:     wxInputHandler class maps the keyboard and mouse events to the

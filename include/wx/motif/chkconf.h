@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Name:        wx/motif/chkconf.h
  * Purpose:     Motif-specific config settings checks

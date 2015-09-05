@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/generic/dvrenderer.h
 // Purpose:     wxDataViewRenderer for generic wxDataViewCtrl implementation

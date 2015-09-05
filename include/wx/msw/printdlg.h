@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/printdlg.h
 // Purpose:     wxPrintDialog, wxPageSetupDialog classes

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        samples/preferences/preferences.cpp
 // Purpose:     Sample demonstrating wxPreferencesEditor use.

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* pngget.c - retrieval of values from info struct
  *
  * Last changed in libpng 1.6.1 [March 28, 2013]

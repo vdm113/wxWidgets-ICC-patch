@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        execmon.cpp
 // Purpose:     A simple execution monitor to test if wx samples crash at startup or not

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/printdlg_osx.cpp
 // Purpose:     wxPrintDialog, wxPageSetupDialog

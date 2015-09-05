@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/dfb/wrapdfb.cpp
 // Purpose:     wx wrappers for DirectFB interfaces

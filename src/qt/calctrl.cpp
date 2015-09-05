@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/qt/calctrl.cpp
 // Purpose:     wxCalendarCtrl control implementation for wxQt

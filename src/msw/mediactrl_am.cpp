@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/mediactrl_am.cpp
 // Purpose:     ActiveMovie/WMP6/PocketPC 2000 Media Backend for Windows

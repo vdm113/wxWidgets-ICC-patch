@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/richtext/richtextindentspage.h
 // Purpose:     Declares the rich text formatting dialog indent page.

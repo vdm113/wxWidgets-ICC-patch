@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/wrapcdlg.h
 // Purpose:     Wrapper for the standard <commdlg.h> header

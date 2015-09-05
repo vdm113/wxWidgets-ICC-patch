@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Experimental code to use operators for constraint specification.
  * In the end, the syntax didn't look much clearer than

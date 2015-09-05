@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * File:    wx/os2/pngread.h
  * Purpose: PNG file reader

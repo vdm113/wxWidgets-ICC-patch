@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 /** @file LexOScript.cxx
  ** Lexer for OScript sources; ocx files and/or OSpace dumps.

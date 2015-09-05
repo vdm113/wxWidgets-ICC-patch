@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/ctrlsub.h
 // Purpose:     common functionality of wxItemContainer-derived controls

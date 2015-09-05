@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // SciTE - Scintilla based Text Editor
 // LexBullant.cxx - lexer for Bullant
 

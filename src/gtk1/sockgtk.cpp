@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk1/sockgtk.cpp
 // Purpose:     implementation of wxGTK-specific socket event handling

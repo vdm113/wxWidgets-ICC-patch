@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/os2/fontdlg.h
 // Purpose:     wxFontDialog class. Use generic version if no

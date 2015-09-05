@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/univ/themes/mono.cpp
 // Purpose:     wxUniversal theme for monochrome displays

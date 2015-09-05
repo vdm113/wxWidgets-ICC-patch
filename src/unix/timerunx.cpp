@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/timerunx.cpp
 // Purpose:     wxTimer implementation for non-GUI applications under Unix

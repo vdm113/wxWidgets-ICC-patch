@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 #define PATCHLEVEL 0
 /*
  * Local Variables:

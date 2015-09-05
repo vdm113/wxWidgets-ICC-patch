@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * re_*comp and friends - compile REs
  * This file #includes several others (see the bottom).

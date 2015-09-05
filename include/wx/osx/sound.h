@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/osx/sound.h
 // Purpose:     wxSound class (loads and plays short Windows .wav files).

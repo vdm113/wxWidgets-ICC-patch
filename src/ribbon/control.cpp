@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/ribbon/control.cpp
 // Purpose:     Extension of wxControl with common ribbon methods

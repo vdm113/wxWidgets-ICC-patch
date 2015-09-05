@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/controls/pickertest.cpp
 // Purpose:     Tests for various wxPickerBase based classes

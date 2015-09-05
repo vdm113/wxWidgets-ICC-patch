@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/scopeguard/scopeguardtest.cpp
 // Purpose:     Test wxScopeGuard and related macros

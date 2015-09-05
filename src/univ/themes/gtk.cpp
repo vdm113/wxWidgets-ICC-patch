@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/univ/themes/gtk.cpp
 // Purpose:     wxUniversal theme implementing GTK-like LNF

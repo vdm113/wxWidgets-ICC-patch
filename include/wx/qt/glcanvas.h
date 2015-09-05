@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        include/wx/qt/glcanvas.cpp
 // Author:      Sean D'Epagnier

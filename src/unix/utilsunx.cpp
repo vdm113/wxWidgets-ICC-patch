@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/utilsunx.cpp
 // Purpose:     generic Unix implementation of many wx functions (for wxBase)

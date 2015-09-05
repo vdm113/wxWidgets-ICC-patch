@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* This is simple demonstration of how to use expat. This program
    reads an XML document from standard input and writes a line with
    the name of each element to standard output indenting child

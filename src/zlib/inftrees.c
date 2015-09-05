@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* inftrees.c -- generate Huffman trees for efficient decoding
  * Copyright (C) 1995-2013 Mark Adler
  * For conditions of distribution and use, see copyright notice in zlib.h

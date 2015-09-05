@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/qt/evtloop.cpp
 // Author:      Mariano Reingart, Peter Most, Sean D'Epagnier, Javier Torres

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/cocoa/objc/objc_uniquifying.h
 // Purpose:     Allows wxWidgets code to get a direct pointer to a compiled

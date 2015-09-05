@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/mdig.cpp
 // Purpose:     Generic MDI (Multiple Document Interface) classes

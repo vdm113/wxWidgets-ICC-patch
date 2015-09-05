@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* ///////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk1/win_gtk.c
 // Purpose:     Native GTK+ widget for wxWidgets, based on GtkLayout and

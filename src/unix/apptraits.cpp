@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/apptraits.cpp
 // Purpose:     implementation of wxGUIAppTraits for Unix systems

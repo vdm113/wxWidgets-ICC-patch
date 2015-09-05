@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////
 // File:        src/msw/taskbar.cpp
 // Purpose:     Implements wxTaskBarIcon class for manipulating icons on

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/vlbox.h
 // Purpose:     wxVListBox is a virtual listbox with lines of variable height

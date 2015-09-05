@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        mfctest.cpp
 // Purpose:     Sample to demonstrate mixing MFC and wxWidgets code

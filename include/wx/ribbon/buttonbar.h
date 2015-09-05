@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/ribbon/buttonbar.h
 // Purpose:     Ribbon control similar to a tool bar

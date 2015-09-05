@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 //////////////////////////////////////////////////////////////////////////////
 // Name:        wx/wxchar.h
 // Purpose:     Declarations common to wx char/wchar_t usage (wide chars)

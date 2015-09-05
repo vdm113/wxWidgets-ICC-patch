@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/tokenzr.h
 // Purpose:     String tokenizer - a C++ replacement for strtok(3)

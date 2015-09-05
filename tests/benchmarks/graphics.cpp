@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        graphics.cpp
 // Purpose:     Some benchmarks for measuring graphics operations performance

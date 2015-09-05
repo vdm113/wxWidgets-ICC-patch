@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/os2/toplevel.h
 // Purpose:     wxTopLevelWindowOS2 is the OS2 implementation of wxTLW

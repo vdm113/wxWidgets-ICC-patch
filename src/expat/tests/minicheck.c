@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* Miniature re-implementation of the "check" library.
  *
  * This is intended to support just enough of check to run the Expat

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/ptr_shrd.h
 // Purpose:     compatibility wrapper for wx/sharedptr.h

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/drawing/basictest.cpp
 // Purpose:     Basic tests for wxGraphicsContext

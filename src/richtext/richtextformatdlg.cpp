@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/richtext/richtextformatdlg.cpp
 // Purpose:     Formatting dialog for wxRichTextCtrl

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/html/htmlwin.cpp
 // Purpose:     wxHtmlWindow class for parsing & displaying HTML (implementation)

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /**
 * Name:        wx/platform.h
 * Purpose:     define the OS and compiler identification macros

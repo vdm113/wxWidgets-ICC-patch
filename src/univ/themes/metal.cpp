@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/univ/themes/metal.cpp
 // Purpose:     wxUniversal theme implementing Win32-like LNF

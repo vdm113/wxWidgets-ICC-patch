@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/menucmn.cpp
 // Purpose:     wxMenu and wxMenuBar methods common to all ports

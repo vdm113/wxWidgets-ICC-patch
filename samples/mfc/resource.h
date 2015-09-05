@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 //{{NO_DEPENDENCIES}}
 // App Studio generated include file.
 // Used by HELLO.RC

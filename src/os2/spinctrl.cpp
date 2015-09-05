@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/spinctrl.cpp
 // Purpose:     wxSpinCtrl class implementation for OS/2

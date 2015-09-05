@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/osx/cocoa/dataview.h
 // Purpose:     wxDataViewCtrl native implementation header for carbon

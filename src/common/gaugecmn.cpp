@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/gaugecmn.cpp
 // Purpose:     wxGaugeBase: common to all ports methods of wxGauge

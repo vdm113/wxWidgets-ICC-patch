@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 /** @file LexGAP.cxx
  ** Lexer for the GAP language. (The GAP System for Computational Discrete Algebra)

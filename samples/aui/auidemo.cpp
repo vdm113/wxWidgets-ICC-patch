@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        auidemo.cpp
 // Purpose:     wxaui: wx advanced user interface - sample/test program

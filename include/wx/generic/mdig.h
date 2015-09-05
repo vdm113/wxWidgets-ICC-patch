@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/generic/mdig.h
 // Purpose:     Generic MDI (Multiple Document Interface) classes

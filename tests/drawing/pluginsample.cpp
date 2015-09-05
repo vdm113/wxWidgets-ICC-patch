@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/drawing/pluginsample.cpp
 // Purpose:     Sample plugin for the wxGraphicsContext test

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/clntdata.cpp
 // Purpose:     A mixin class for holding a wxClientData or void pointer

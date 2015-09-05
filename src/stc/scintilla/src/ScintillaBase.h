@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 /** @file ScintillaBase.h
  ** Defines an enhanced subclass of Editor with calltips, autocomplete and context menu.

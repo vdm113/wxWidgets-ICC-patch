@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/glx11.cpp
 // Purpose:     code common to all X11-based wxGLCanvas implementations

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/controls/textentrytest.h
 // Purpose:     Base class implementing wxTextEntry unit tests

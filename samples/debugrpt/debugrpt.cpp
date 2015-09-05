@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        debugrpt.cpp
 // Purpose:     minimal sample showing wxDebugReport and related classes

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/imagbmp.cpp
 // Purpose:     wxImage BMP,ICO and CUR handlers

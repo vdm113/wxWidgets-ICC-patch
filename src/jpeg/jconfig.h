@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 #if defined(_WIN32)
 #include "jconfig.vc"
 #else

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/richtext/richtextfontpage.cpp
 // Purpose:     Font page for wxRichTextFormattingDialog

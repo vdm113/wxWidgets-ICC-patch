@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/core/utilsexc_cf.cpp
 // Purpose:     Execution-related utilities for Darwin

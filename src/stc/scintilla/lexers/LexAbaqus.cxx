@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 /** @file LexABAQUS.cxx
  ** Lexer for ABAQUS. Based on the lexer for APDL by Hadar Raz.

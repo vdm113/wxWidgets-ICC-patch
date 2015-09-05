@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/osx/dvrenderer.h
 // Purpose:     wxDataViewRenderer for OS X wxDataViewCtrl implementations

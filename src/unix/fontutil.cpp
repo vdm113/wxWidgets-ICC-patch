@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/fontutil.cpp
 // Purpose:     Font helper functions for wxX11, wxGTK, wxMotif

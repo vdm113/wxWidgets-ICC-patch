@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/metafile.cpp
 // Purpose:     wxMetaFile, wxMetaFileDC etc. These classes are optional.

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/filectrlcmn.cpp
 // Purpose:     Implementation for wxFileCtrlBase and other common functions used by

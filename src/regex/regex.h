@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 #ifndef _REGEX_H_
 #define	_REGEX_H_	/* never again */
 /*

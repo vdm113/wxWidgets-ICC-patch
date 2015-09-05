@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/memtext.h
 // Purpose:     wxMemoryText allows to use wxTextBuffer without a file

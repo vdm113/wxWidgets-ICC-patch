@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/mnemonics.cpp
 // Purpose:     implementation of GTK mnemonics conversion functions

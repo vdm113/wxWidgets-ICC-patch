@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* header created automatically with -DGEN_TREES_H */
 
 local const ct_data static_ltree[L_CODES+2] = {

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/aui/auibook.cpp
 // Purpose:     wxaui: wx advanced user interface - notebook

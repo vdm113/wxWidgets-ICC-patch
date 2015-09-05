@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 //-----------------------------------------------------------------------------
 // Name:        xrcdemo.cpp
 // Purpose:     XML resources sample: Main application file

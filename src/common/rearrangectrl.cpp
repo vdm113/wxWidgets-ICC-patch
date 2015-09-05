@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/rearrangectrl.cpp
 // Purpose:     implementation of classes in wx/rearrangectrl.h

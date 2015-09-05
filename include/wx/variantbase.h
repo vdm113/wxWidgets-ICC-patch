@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/variantbase.h
 // Purpose:     wxVariantBase class, a minimal version of wxVariant used by XTI

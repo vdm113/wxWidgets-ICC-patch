@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/graphics/measuring.cpp
 // Purpose:     Tests for wxGraphicsRenderer::CreateMeasuringContext

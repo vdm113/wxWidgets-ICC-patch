@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/richtext/richtextbackgroundpage.cpp
 // Purpose:     Implements the rich text formatting dialog background

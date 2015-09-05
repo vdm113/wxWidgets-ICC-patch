@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/gtk/dataview.h
 // Purpose:     wxDataViewCtrl GTK+2 implementation header

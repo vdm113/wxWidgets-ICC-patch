@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/streams/socketstream.cpp
 // Purpose:     Test wxSocketInputStream/wxSocketOutputStream

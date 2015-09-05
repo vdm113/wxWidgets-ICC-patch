@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk1/msgdlg.cpp
 // Purpose:     wxMessageDialog for GTK+2

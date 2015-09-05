@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/dir.cpp
 // Purpose:     wxDir implementation for Unix/POSIX systems

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/wince/crt.cpp
 // Purpose:     Implementation of CRT functions missing under Windows CE

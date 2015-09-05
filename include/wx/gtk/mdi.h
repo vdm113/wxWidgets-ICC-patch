@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/gtk/mdi.h
 // Purpose:     TDI-based MDI implementation for wxGTK

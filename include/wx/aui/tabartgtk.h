@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        include/wx/aui/tabartgtk.h
 // Purpose:     declaration of the wxAuiGTKTabArt

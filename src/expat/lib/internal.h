@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* internal.h
 
    Internal definitions used by Expat.  This is not needed to compile

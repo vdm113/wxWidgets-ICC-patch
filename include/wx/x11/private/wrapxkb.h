@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/x11/private/wrapxkb.h
 // Purpose:     Private header wrapping X11/XKBlib.h inclusion.

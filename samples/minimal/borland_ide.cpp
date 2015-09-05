@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*************************************************
 // Name:        borland_ide.cpp
 // Author:      Chris Elliott

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* chardata.h
 
    Interface to some helper routines used to accumulate and check text

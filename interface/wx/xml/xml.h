@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        xml/xml.h
 // Purpose:     interface of wxXmlNode, wxXmlAttribute, wxXmlDocument

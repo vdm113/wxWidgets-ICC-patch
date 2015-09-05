@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/fswatcher_kqueue.cpp
 // Purpose:     kqueue-based wxFileSystemWatcher implementation

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
  *
  * Project:  libtiff tools
  * Purpose:  Convert raw byte sequences in TIFF images

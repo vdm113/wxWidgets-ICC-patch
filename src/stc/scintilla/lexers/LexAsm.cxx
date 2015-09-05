@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 /** @file LexAsm.cxx
  ** Lexer for Assembler, just for the MASM syntax

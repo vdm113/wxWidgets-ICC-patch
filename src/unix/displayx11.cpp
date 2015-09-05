@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/displayx11.cpp
 // Purpose:     Unix/X11 implementation of wxDisplay class

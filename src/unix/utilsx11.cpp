@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/utilsx11.cpp
 // Purpose:     Miscellaneous X11 functions (for wxCore)

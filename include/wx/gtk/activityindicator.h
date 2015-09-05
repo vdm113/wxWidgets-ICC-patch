@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/gtk/activityindicator.h
 // Purpose:     Declaration of wxActivityIndicator for wxGTK.

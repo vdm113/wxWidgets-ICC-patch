@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        mymodels.cpp
 // Purpose:     wxDataViewCtrl wxWidgets sample

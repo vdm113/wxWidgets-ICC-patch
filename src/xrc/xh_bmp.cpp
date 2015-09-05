@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/xrc/xh_bmp.cpp
 // Purpose:     XRC resource for wxBitmap and wxIcon

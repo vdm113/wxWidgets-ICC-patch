@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/x11/dnd.h
 // Purpose:     declaration of wxDropTarget, wxDropSource classes

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 //////////////////////////////////////////////////////////////////////////////
 // File:        contrib/samples/stc/stctest.cpp
 // Purpose:     STC test application

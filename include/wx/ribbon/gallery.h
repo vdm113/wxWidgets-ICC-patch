@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/ribbon/gallery.h
 // Purpose:     Ribbon control which displays a gallery of items to choose from

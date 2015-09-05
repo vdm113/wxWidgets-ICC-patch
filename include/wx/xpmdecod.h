@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/xpmdecod.h
 // Purpose:     wxXPMDecoder, XPM reader for wxImage and wxBitmap

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/x11/dataobj2.h
 // Purpose:     declaration of standard wxDataObjectSimple-derived classes

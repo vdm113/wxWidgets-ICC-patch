@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/propgrid/advprops.cpp
 // Purpose:     wxPropertyGrid Advanced Properties (font, colour, etc.)

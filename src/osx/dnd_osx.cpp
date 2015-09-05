@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/dnd_osx.cpp
 // Purpose:     Mac common wxDropTarget, wxDropSource implementations

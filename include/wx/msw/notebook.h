@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/notebook.h
 // Purpose:     MSW/GTK compatible notebook (a.k.a. property sheet)

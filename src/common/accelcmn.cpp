@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/accelcmn.cpp
 // Purpose:     implementation of platform-independent wxAcceleratorEntry parts

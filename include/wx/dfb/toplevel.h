@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/dfb/toplevel.h
 // Purpose:     Top level window, abstraction of wxFrame and wxDialog

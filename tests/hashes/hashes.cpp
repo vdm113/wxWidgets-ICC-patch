@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/hashes/hashes.cpp
 // Purpose:     wxHashTable, wxHashMap, wxHashSet unit test

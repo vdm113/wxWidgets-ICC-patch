@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        msw/ole/safearray.h
 // Purpose:     Helpers for working with OLE SAFEARRAYs.

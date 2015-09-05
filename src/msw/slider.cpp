@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/slider.cpp
 // Purpose:     wxSlider, using the Win95 (and later) trackbar control

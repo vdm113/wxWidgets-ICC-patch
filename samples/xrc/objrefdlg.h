@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 //-----------------------------------------------------------------------------
 // Name:        objref.h
 // Purpose:     XML resources sample: Object references and ID ranges dialog

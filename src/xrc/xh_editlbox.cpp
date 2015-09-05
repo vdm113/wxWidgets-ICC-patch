@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/xrc/xh_editlbox.cpp
 // Purpose:     implementation of wxEditableListBox XRC handler

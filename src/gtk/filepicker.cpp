@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/filepicker.cpp
 // Purpose:     implementation of wxFileButton and wxDirButton

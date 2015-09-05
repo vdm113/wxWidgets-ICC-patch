@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/xrc/xh_comboctrl.cpp
 // Purpose:     XRC resource for wxComboCtrl

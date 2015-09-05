@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/stopwatch.cpp
 // Purpose:     wxStopWatch and other non-GUI stuff from wx/timer.h

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /** @file RunStyles.h
  ** Data structure used to store sparse styles.
  **/

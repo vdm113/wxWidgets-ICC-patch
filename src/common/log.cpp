@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/log.cpp
 // Purpose:     Assorted wxLogXXX functions, and wxLog (sink for logs)

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk1/evtloop.cpp
 // Purpose:     implements wxEventLoop for GTK+

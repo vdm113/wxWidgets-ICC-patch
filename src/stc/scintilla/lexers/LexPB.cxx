@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 // @file LexPB.cxx
 // Lexer for PowerBasic by Roland Walter, roland@rowalt.de (for PowerBasic see www.powerbasic.com)

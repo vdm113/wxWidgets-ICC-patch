@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/html/htmlpars.cpp
 // Purpose:     wxHtmlParser class (generic parser)

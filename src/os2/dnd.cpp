@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/dnd.cpp
 // Purpose:     wxDropTarget, wxDropSource, wxDataObject implementation

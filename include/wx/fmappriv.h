@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/fmappriv.h
 // Purpose:     private wxFontMapper stuff, not to be used by the library users

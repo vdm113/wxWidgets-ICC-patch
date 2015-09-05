@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/cocoa/fontutil.cpp
 // Purpose:     Font helper functions for X11 (GDK/X)

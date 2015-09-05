@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////
 // File:        wx/unix/taskbarx11.h
 // Purpose:     Defines wxTaskBarIcon class for most common X11 desktops

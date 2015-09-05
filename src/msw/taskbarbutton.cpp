@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/taskbarbutton.cpp
 // Purpose:     Implements wxTaskBarButtonImpl class for manipulating buttons on

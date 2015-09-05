@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Copyright (c) 1998, 1999 Henry Spencer.  All rights reserved.
  * 

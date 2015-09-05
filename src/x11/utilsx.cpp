@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/x11/utilsx.cpp
 // Purpose:     Private functions common to X11 and Motif ports

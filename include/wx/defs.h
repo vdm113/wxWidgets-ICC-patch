@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  *  Name:        wx/defs.h
  *  Purpose:     Declarations/definitions common to all wx source files

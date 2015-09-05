@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /**
 * Name:        wx/math.h
 * Purpose:     Declarations/definitions of common math functions

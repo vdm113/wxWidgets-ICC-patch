@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Copyright 1998, Ben Goetter.  All rights reserved.
 
 /*

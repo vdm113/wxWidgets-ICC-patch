@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        tests/benchmarks/ipcclient.cpp
 // Purpose:     wxIPC client side benchmarks

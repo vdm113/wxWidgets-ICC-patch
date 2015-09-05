@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/generic/sashwin.h
 // Purpose:     wxSashWindow implementation. A sash window has an optional

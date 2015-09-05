@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/filetype/filetype.cpp
 // Purpose:     Test wxGetFileKind and wxStreamBase::IsSeekable

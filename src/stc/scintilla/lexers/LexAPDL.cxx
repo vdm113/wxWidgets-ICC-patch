@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 /** @file LexAPDL.cxx
  ** Lexer for APDL. Based on the lexer for Assembler by The Black Horus.

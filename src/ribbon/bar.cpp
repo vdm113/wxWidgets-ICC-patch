@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/ribbon/bar.cpp
 // Purpose:     Top-level component of the ribbon-bar-style interface

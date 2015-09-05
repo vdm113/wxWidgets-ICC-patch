@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/gtk/notifmsg.h
 // Purpose:     wxNotificationMessage for wxGTK.

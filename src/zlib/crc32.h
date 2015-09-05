@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* crc32.h -- tables for rapid CRC calculation
  * Generated automatically by crc32.c
  */

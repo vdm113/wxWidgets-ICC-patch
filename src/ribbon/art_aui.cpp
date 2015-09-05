@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/ribbon/art_aui.cpp
 // Purpose:     AUI style art provider for ribbon interface

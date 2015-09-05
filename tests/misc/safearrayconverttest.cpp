@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/misc/safearrayconverttest.cpp
 // Purpose:     Test conversions between wxVariant and OLE VARIANT using SAFEARRAYs

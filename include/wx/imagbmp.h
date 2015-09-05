@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/imagbmp.h
 // Purpose:     wxImage BMP, ICO, CUR and ANI handlers

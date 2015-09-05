@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/fontdlg.cpp
 // Purpose:     wxFontDialog class for carbon 10.2+.

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/private/fdiodispatcher.h
 // Purpose:     classes for dispatching IO notifications for file descriptors

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Name:        wx/osx/chkconf.h
  * Purpose:     Mac-specific config settings checks

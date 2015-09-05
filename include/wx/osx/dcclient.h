@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/osx/dcclient.h
 // Purpose:     wxClientDC, wxPaintDC and wxWindowDC classes

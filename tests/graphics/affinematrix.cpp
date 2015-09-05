@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/graphics/affinetransform.cpp
 // Purpose:     Unit test for transformations implemented for wxAffineMatrix2D

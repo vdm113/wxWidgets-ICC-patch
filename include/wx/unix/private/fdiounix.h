@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/unix/private/fdiounix.h
 // Purpose:     wxFDIOManagerUnix class used by console Unix applications

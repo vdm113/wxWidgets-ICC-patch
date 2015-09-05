@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/unix/glx11.h
 // Purpose:     class common for all X11-based wxGLCanvas implementations

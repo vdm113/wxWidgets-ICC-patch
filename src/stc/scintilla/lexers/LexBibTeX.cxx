@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Copyright 2008-2010 Sergiu Dotenco. The License.txt file describes the
 // conditions under which this software may be distributed.
 

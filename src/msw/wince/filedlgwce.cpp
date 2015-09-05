@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/wince/filedlgwce.cpp
 // Purpose:     wxFileDialog implementation for smart phones driven by WinCE

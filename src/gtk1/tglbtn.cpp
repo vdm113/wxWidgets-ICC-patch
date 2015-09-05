@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk1/tglbtn.cpp
 // Purpose:     Definition of the wxToggleButton class, which implements a

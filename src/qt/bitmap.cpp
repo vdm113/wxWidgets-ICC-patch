@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/qt/bitmap.cpp
 // Author:      Peter Most, Javier Torres, Mariano Reingart, Sean D'Epagnier

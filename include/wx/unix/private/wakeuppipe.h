@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/unix/private/wakeuppipe.h
 // Purpose:     Helper class allowing to wake up the main thread.

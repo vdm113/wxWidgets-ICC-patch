@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/timectrl_osx.cpp
 // Purpose:     Implementation of wxTimePickerCtrl for OS X.

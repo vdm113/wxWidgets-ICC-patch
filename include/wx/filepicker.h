@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/filepicker.h
 // Purpose:     wxFilePickerCtrl, wxDirPickerCtrl base header

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/univ/winuniv.cpp
 // Purpose:     implementation of extra wxWindow methods for wxUniv port

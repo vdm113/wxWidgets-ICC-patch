@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/os2/nativdlg.cpp
 // Purpose:     Native dialog loading code (part of wxWindow)

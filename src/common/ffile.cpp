@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/ffile.cpp
 // Purpose:     wxFFile encapsulates "FILE *" IO stream

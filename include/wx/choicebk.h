@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/choicebk.h
 // Purpose:     wxChoicebook: wxChoice and wxNotebook combination

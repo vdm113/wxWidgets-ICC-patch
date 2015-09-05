@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/srchcmn.cpp
 // Purpose:     common (to all ports) bits of wxSearchCtrl

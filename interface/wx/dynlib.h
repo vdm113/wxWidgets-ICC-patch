@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        dynlib.h
 // Purpose:     interface of wxDynamicLibrary and wxDynamicLibraryDetails

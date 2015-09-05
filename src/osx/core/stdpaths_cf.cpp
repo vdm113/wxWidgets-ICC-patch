@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/core/stdpaths_cf.cpp
 // Purpose:     wxStandardPaths implementation for CoreFoundation systems

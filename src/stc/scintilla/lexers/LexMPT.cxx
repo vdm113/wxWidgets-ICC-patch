@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 /** @file LexMPT.cxx
  ** Lexer for MPT specific files. Based on LexOthers.cxx

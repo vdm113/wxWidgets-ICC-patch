@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        msw/ole/safearray.cpp
 // Purpose:     Implementation of wxSafeArrayBase class.

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // C++ compilation harness for the test suite.
 //
 // This is used to ensure the Expat headers can be included from C++

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        samples/except/except.cpp
 // Purpose:     shows how C++ exceptions can be used in wxWidgets

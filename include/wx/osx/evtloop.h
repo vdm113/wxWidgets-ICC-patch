@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/osx/evtloop.h
 // Purpose:     simply forwards to wx/osx/carbon/evtloop.h or

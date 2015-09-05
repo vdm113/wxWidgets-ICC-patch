@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 //////////////////////////////////////////////////////////////////////////////
 // Name:        wx/xlocale.h
 // Purpose:     Header to provide some xlocale wrappers

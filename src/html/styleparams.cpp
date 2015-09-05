@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/html/styleparams.cpp
 // Purpose:     wxHtml helper code for extracting style parameters

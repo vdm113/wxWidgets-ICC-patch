@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        clntdata.h
 // Purpose:     interface of wxClientData[Container] and wxStringClientData

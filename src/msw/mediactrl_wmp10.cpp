@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/mediactrl_wmp10.cpp
 // Purpose:     Windows Media Player 9/10 Media Backend for Windows

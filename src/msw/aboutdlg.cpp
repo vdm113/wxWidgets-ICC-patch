@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/aboutdlg.cpp
 // Purpose:     implementation of wxAboutBox() for wxMSW

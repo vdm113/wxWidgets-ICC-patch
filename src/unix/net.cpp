@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // -*- c++ -*- ///////////////////////////////////////////////////////////////
 // Name:        src/unix/net.cpp
 // Purpose:     Network related wxWindows classes and functions

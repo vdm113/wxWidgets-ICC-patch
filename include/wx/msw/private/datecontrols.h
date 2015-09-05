@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/private/datecontrols.h
 // Purpose:     implementation helpers for wxDatePickerCtrl and wxCalendarCtrl

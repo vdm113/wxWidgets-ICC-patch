@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/ownerdrwcmn.cpp
 // Purpose:     wxOwnerDrawn class methods common to all platforms

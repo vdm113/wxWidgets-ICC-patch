@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/os2/minifram.h
 // Purpose:     wxMiniFrame class. A small frame for e.g. floating toolbars.

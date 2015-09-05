@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/nonownedwnd.cpp
 // Purpose:     wxNonOwnedWindow implementation for MSW.

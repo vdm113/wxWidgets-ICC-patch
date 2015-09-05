@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 /** @file LexLout.cxx
  ** Lexer for the Basser Lout (>= version 3) typesetting language

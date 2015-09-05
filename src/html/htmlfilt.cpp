@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/html/htmlfilt.cpp
 // Purpose:     wxHtmlFilter - input filter for translating into HTML format

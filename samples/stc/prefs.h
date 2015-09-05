@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 //////////////////////////////////////////////////////////////////////////////
 // File:        prefs.h
 // Purpose:     STC test Preferences initialization

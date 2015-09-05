@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/filectrl.h
 // Purpose:     Header for wxFileCtrlBase and other common functions used by

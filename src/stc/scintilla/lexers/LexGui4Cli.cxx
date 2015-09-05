@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 // Copyright 1998-2002 by Neil Hodgson <neilh@scintilla.org>
 /*

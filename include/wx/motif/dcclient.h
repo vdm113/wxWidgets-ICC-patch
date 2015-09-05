@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/motif/dcclient.h
 // Purpose:     wxClientDCImpl, wxPaintDCImpl and wxWindowDCImpl classes

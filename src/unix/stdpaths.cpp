@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/stdpaths.cpp
 // Purpose:     wxStandardPaths implementation for Unix & OpenVMS systems

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/xrc/xh_odcombo.h
 // Purpose:     XML resource handler for wxOwnerDrawnComboBox

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* common warning snippet for all osx direct includes */
 
 #ifndef wxOSX_USE_CARBON

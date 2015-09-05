@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/controls/virtlistctrltest.cpp
 // Purpose:     wxListCtrl unit tests for virtual mode

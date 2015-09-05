@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // -*- c++ -*- ////////////////////////////////////////////////////////////////
 // Name:        src/unix/dialup.cpp
 // Purpose:     Network related wxWidgets classes and functions

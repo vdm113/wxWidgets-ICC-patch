@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:      src/dfb/region.cpp
 // Purpose:   Region handling for wxWidgets/DFB

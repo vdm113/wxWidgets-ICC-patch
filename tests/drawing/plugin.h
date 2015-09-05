@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/drawing/plugin.h
 // Purpose:     Defines the functions needed to implement a drawing test plugin

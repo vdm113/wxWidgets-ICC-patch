@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/html/htmlcell.h
 // Purpose:     wxHtmlCell class is used by wxHtmlWindow/wxHtmlWinParser

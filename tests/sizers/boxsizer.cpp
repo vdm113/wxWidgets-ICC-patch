@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/sizers/boxsizer.cpp
 // Purpose:     Unit tests for wxBoxSizer

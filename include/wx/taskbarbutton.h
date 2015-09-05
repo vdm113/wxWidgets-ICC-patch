@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        include/taskbarbutton.h
 // Purpose:     Defines wxTaskBarButton class for manipulating buttons on the

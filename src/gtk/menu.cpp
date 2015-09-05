@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/menu.cpp
 // Purpose:     implementation of wxMenuBar and wxMenu classes for wxGTK

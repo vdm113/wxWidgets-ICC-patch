@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/nonownedwnd_osx.cpp
 // Purpose:     implementation of wxNonOwnedWindow

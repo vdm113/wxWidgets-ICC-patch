@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/univ/statbmp.h
 // Purpose:     wxStaticBitmap class for wxUniversal

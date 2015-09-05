@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/html/htmlcell.cpp
 // Purpose:     wxHtmlCell - basic element of HTML output

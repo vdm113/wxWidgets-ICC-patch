@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/headerctrl.cpp
 // Purpose:     implementation of wxHeaderCtrl for wxMSW

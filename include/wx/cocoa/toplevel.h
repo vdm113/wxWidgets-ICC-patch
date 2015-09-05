@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/cocoa/toplevel.h
 // Purpose:     wxTopLevelWindowCocoa is the Cocoa implementation of wxTLW

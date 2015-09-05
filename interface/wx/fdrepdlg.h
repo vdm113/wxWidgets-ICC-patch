@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        fdrepdlg.h
 // Purpose:     interface of wxFindDialogEvent, wxFindReplaceDialog

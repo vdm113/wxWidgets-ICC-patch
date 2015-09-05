@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/toplevel/toplevel.cpp
 // Purpose:     Tests for wxTopLevelWindow

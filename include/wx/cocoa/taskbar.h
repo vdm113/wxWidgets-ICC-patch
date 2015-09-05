@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////
 // File:        wx/cocoa/taskbar.h
 // Purpose:     Defines wxTaskBarIcon class

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/gtk1/private/mnemonics.h
 // Purpose:     helper functions for dealing with GTK+ mnemonics

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/srchctrl.cpp
 // Purpose:     implements mac carbon wxSearchCtrl

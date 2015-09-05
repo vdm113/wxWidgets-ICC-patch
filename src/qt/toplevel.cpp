@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/qt/toplevel.cpp
 // Author:      Peter Most, Javier Torres, Sean D'Epagnier, Mariano Reingart

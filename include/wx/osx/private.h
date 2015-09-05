@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 #ifndef _WX_PRIVATE_OSX_H_
 #define _WX_PRIVATE_OSX_H_
 

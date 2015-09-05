@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/univ/toolbar.cpp
 // Purpose:     implementation of wxToolBar for wxUniversal

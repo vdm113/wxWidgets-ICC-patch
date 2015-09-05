@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 #ifndef lint
 static char sccsid[] = "@(#)ras2tif.c 1.2 90/03/06";
 #endif

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/window/setsize.cpp
 // Purpose:     Tests for SetSize() and related wxWindow methods

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/gtk/private/textmeasure.h
 // Purpose:     wxGTK-specific declaration of wxTextMeasure class

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/tglbtn_osx.cpp
 // Purpose:     Definition of the wxToggleButton class, which implements a

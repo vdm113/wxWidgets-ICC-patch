@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 #ifndef PROTO_EXPAT_H
 #define PROTO_EXPAT_H
 

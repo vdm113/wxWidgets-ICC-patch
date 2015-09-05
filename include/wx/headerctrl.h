@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/headerctrl.h
 // Purpose:     wxHeaderCtrlBase class: interface of wxHeaderCtrl

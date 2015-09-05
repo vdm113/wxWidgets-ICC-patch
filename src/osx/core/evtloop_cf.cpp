@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/core/evtloop_cf.cpp
 // Purpose:     wxEventLoop implementation common to both Carbon and Cocoa

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/stdstream.h
 // Purpose:     Header of std::istream and std::ostream derived wrappers for

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*************************************************************************
  *
  * Source file for Windows 95/Win32. 

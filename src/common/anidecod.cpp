@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/anidecod.cpp
 // Purpose:     wxANIDecoder, ANI reader for wxImage and wxAnimation

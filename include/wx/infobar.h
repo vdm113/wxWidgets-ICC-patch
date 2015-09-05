@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/infobar.h
 // Purpose:     declaration of wxInfoBarBase defining common API of wxInfoBar

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 //-*- coding: utf-8 -*-
 // Scintilla source code edit control
 /** @file LexSQL.cxx

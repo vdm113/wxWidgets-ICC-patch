@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        richtext/richtextstyledlg.h
 // Purpose:     interface of wxRichTextStyleOrganiserDialog

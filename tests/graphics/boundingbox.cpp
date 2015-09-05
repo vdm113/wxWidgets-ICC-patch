@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/graphics/boundingbox.cpp
 // Purpose:     wxGCDC bounding box unit tests

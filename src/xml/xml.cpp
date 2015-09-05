@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/xml/xml.cpp
 // Purpose:     wxXmlDocument - XML parser & data holder class

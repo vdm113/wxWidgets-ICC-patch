@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 { REG_OKAY,	"REG_OKAY",	"no errors detected" },
 { REG_NOMATCH,	"REG_NOMATCH",	"failed to match" },
 { REG_BADPAT,	"REG_BADPAT",	"invalid regexp (reg version 0.8)" },

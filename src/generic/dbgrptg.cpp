@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/dbgrptg.cpp
 // Purpose:     implementation of wxDebugReportPreviewStd

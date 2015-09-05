@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*****************************************************************************
 ** Name:        src/common/extended.c
 ** Purpose:     IEEE Extended<->Double routines to save floats to file

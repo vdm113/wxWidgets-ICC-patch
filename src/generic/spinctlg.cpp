@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/spinctlg.cpp
 // Purpose:     implements wxSpinCtrl as a composite control

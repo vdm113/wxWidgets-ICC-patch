@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/osx/iphone/private/textimpl.h
 // Purpose:     textcontrol implementation classes that have to be exposed

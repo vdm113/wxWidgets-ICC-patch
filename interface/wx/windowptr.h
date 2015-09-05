@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        interface/wx/windowptr.h
 // Purpose:     wxWindowPtr<T> class documentation.

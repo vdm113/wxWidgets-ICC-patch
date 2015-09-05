@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        samples/dll/my_exe.cpp
 // Purpose:     Sample showing how to use wx DLL from a Win32 application

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:         wx/affinematrix2dbase.h
 // Purpose:      Common interface for 2D transformation matrices.

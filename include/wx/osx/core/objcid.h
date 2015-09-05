@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/osx/core/objcid.h
 // Purpose:     Define wxObjCID working in both C++ and Objective-C.

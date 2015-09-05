@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/richtext/richtextborderspage.cpp
 // Purpose:     A border editing page for the wxRTC formatting dialog.

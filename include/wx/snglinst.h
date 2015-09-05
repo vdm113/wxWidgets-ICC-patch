@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/snglinst.h
 // Purpose:     wxSingleInstanceChecker can be used to restrict the number of

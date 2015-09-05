@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/univ/inpcons.cpp
 // Purpose:     wxInputConsumer: mix-in class for input handling

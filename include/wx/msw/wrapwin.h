@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/wrapwin.h
 // Purpose:     Wrapper around <windows.h>, to be included instead of it

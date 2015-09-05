@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/wince/textctrlce.h
 // Purpose:     wxTextCtrl implementation for smart phones driven by WinCE

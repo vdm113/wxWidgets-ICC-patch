@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // SciTE - Scintilla based Text Editor
 /** @file PropSetSimple.cxx
  ** A Java style properties file module.

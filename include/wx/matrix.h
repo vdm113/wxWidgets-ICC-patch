@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:         wx/matrix.h
 // Purpose:      wxTransformMatrix class. NOT YET USED

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/sizers/gridsizer.cpp
 // Purpose:     Unit tests for wxGridSizer and wxFlexGridSizer.

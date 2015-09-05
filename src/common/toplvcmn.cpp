@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/toplvcmn.cpp
 // Purpose:     common (for all platforms) wxTopLevelWindow functions

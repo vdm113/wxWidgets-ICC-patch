@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////
 // File:        src/common/taskbarcmn.cpp
 // Purpose:     Common parts of wxTaskBarIcon class

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/xrc/xh_srchctl.h
 // Purpose:     XRC resource handler for wxSearchCtrl

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Name:        wx/chartype.h
  * Purpose:     Declarations of wxChar and related types

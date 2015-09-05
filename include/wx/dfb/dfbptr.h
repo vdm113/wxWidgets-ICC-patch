@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/dfb/dfbptr.h
 // Purpose:     wxDfbPtr<T> for holding objects declared in wrapdfb.h

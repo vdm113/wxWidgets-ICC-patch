@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/propgrid/propgridpagestate.cpp
 // Purpose:     wxPropertyGridPageState class

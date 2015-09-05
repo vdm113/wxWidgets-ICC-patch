@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/x11/glcanvas.h
 // Purpose:     wxGLCanvas, for using OpenGL with wxWidgets 2.0 for Motif.

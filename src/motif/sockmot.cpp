@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/motif/sockmot.cpp
 // Purpose:     implementation of wxMotif-specific socket event handling

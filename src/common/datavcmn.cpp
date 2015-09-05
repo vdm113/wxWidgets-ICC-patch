@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/datavcmn.cpp
 // Purpose:     wxDataViewCtrl base classes and common parts

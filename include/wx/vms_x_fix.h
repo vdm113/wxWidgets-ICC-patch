@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /***************************************************************************
  *                                                                         *
  * Author : Jouk Jansen (joukj@hrem.stm.tudelft.nl)                        *

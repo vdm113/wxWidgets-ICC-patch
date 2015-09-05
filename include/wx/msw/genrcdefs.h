@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Name:        wx/msw/genrcdefs.h
  * Purpose:     Emit preprocessor symbols into rcdefs.h for resource compiler

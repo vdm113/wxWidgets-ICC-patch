@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        samples/propgrid/propgrid_minimal.cpp
 // Purpose:     Minimal portion of wxPropertyGrid sample

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/toplevel_osx.cpp
 // Purpose:     implements wxTopLevelWindow for Mac

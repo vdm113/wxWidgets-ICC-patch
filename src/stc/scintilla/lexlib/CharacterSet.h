@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 /** @file CharacterSet.h
  ** Encapsulates a set of characters. Used to test if a character is within a set.

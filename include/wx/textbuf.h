@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/textbuf.h
 // Purpose:     class wxTextBuffer to work with text buffers of _small_ size

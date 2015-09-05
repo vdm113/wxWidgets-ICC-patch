@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/osx/cocoa/private/markuptoattr.h
 // Purpose:     Class to convert markup to Cocoa attributed strings.

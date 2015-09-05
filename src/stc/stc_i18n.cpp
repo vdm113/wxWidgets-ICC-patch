@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/stc/stc_i18n.cpp
 // Purpose:     Dummy file containing translatable strings from Scintilla

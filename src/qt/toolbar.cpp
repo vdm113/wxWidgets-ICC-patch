@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/qt/toolbar.cpp
 // Author:      Sean D'Epagnier, Mariano Reingart, Peter Most

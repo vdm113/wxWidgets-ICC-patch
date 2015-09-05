@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/image/rawbmp.cpp
 // Purpose:     Test for using raw bitmap access classes with wxImage

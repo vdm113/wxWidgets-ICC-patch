@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/aui/dockart.cpp
 // Purpose:     wxaui: wx advanced user interface - docking window manager

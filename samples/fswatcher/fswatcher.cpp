@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        samples/fswatcher/fswatcher.cpp
 // Purpose:     wxFileSystemWatcher sample

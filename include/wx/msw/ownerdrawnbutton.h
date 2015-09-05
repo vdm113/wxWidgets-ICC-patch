@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/ownerdrawnbutton.h
 // Purpose:     Common base class for wxCheckBox and wxRadioButton

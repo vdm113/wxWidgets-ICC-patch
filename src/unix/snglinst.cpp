@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/snglinst.cpp
 // Purpose:     implements wxSingleInstanceChecker class for Unix using

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/univ/setup_inc.h
 // Purpose:     wxUniversal-specific setup.h options (this file is not used

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/generic/private/richtooltip.h
 // Purpose:     wxRichToolTipGenericImpl declaration.

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 /** @file EditModel.cxx
  ** Defines the editor state that must be visible to EditorView.

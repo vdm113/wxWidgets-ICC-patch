@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* $Header: /cvs/maptools/cvsroot/libtiff/contrib/pds/tif_imageiter.c,v 1.4 2010-06-08 18:55:15 bfriesen Exp $ */
 
 /*

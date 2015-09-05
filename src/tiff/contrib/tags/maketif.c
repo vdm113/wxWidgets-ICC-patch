@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * maketif.c -- creates a little TIFF file, with
  *   the XTIFF extended tiff example tags.

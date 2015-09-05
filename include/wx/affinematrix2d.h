@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:         wx/affinematrix2d.h
 // Purpose:      wxAffineMatrix2D class.

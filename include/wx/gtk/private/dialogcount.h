@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/gtk/private/dialogcount.h
 // Purpose:     Helper for temporarily changing wxOpenModalDialogsCount global.

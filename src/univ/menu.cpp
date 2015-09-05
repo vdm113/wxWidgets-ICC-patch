@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/univ/menu.cpp
 // Purpose:     wxMenuItem, wxMenu and wxMenuBar implementation

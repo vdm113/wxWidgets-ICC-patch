@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Name:        wx/gtk/chkconf.h
  * Purpose:     wxGTK-specific settings consistency checks

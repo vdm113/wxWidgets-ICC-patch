@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/mimetmac.cpp
 // Purpose:     Mac Carbon implementation for wx MIME-related classes

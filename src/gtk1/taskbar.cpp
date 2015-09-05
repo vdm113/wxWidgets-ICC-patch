@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////
 // File:        taskbar.cpp
 // Purpose:     wxTaskBarIcon (src/unix/taskbarx11.cpp) helper for GTK2

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/private/markupparserattr.h
 // Purpose:     Classes mapping markup attributes to wxFont/wxColour.

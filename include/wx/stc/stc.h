@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ////////////////////////////////////////////////////////////////////////////
 // Name:        wx/stc/stc.h
 // Purpose:     A wxWidgets implementation of Scintilla.  This class is the

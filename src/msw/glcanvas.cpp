@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/glcanvas.cpp
 // Purpose:     wxGLCanvas, for using OpenGL with wxWidgets under MS Windows

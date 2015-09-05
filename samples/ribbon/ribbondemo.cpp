@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        ribbondemo.cpp
 // Purpose:     wxRibbon: Ribbon user interface - sample/test program

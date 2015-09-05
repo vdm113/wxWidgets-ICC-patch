@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/activityindicator.cpp
 // Purpose:     wxActivityIndicator implementation for wxGTK.

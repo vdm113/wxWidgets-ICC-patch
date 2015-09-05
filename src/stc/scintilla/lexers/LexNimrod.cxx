@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 // Nimrod lexer
 // (c) 2009 Andreas Rumpf

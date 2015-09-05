@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/regex/regex.cpp
 // Purpose:     Test the built-in regex lib and wxRegEx

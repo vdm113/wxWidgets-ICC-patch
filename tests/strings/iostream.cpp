@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 //////////////////////////////////////////////////////////////////////////////
 // Name:        tests/strings/iostream.cpp
 // Purpose:     unit test of wxString interaction with std::[io]stream

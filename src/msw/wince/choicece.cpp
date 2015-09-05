@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/wince/choicece.cpp
 // Purpose:     wxChoice implementation for smart phones driven by WinCE

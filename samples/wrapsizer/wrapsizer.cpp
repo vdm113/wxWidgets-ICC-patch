@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wrapsizer.cpp
 // Purpose:     wxWidgets sample demonstrating wxWrapSizer use

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* ///////////////////////////////////////////////////////////////////////////
 // Name:        wx/gtk1/win_gtk.h
 // Purpose:     wxWidgets's GTK base widget = GtkPizza

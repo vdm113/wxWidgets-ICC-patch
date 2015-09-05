@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/streams/filestream.cpp
 // Purpose:     Test wxFileInputStream/wxFileOutputStream

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/epolldispatcher.cpp
 // Purpose:     implements dispatcher for epoll_wait() call

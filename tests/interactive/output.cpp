@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/interactive/output.cpp
 // Purpose:     Miscellaneous tests NOT requiring user input, just user checks

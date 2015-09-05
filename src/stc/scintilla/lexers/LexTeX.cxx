@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 
 // File: LexTeX.cxx - general context conformant tex coloring scheme

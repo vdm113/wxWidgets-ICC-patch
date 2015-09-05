@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/odcombo.h
 // Purpose:     wxOwnerDrawnComboBox and wxVListBoxPopup

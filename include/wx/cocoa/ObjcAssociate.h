@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/cocoa/ObjcAssociate.h
 // Purpose:     Associates an Objective-C class with a C++ class

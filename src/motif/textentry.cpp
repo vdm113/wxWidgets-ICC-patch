@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/motif/textentry.cpp
 // Purpose:     implementation of wxTextEntry for wxMotif

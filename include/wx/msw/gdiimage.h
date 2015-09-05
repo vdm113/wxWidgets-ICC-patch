@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/gdiimage.h
 // Purpose:     wxGDIImage class: base class for wxBitmap, wxIcon, wxCursor

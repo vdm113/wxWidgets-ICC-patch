@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 /** @file Lexr.cxx
  ** Lexer for R, S, SPlus Statistics Program (Heavily derived from CPP Lexer).

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // tiff stream interface class definition
 
 #ifndef _TIFF_STREAM_H_

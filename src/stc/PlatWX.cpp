@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 // PlatWX.cxx - implementation of platform facilities on wxWidgets
 // Copyright 1998-1999 by Neil Hodgson <neilh@scintilla.org>

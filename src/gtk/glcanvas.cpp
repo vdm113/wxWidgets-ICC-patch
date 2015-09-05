@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/gtk/glcanvas.cpp
 // Purpose:     wxGLCanvas, for using OpenGL/Mesa with wxWidgets and GTK

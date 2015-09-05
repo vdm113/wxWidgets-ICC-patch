@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Utility functions for handling cvecs
  * This file is #included by regcomp.c.

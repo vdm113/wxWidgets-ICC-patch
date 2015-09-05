@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /**
  * This file gets included from dcclient.cpp and implements
  * the X11 interface to Pango.

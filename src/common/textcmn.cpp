@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/textcmn.cpp
 // Purpose:     implementation of platform-independent functions of wxTextCtrl

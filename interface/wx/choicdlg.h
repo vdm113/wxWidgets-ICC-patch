@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        choicdlg.h
 // Purpose:     interface of wx[Multi|Single]ChoiceDialog

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/fdiounix.cpp
 // Purpose:     wxFDIOManager implementation for console Unix applications

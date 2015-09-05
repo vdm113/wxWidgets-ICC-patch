@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/vscroll.h
 // Purpose:     Variable scrolled windows (wx[V/H/HV]ScrolledWindow)

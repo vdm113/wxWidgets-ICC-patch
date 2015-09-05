@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 /** @file CharacterCategory.cxx
  ** Returns the Unicode general category of a character.

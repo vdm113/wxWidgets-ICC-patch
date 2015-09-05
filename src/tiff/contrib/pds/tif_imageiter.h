@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 typedef struct _TIFFImageIter TIFFImageIter;
 
 /* The callback function is called for each "block" of image pixel data after

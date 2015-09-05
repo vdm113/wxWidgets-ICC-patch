@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
  *
  * Project:  libtiff tools
  * Purpose:  Convert Windows BMP files in TIFF.

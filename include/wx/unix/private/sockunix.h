@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/unix/private/sockunix.h
 // Purpose:     wxSocketImpl implementation for Unix systems

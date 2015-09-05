@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/richtooltip.cpp
 // Purpose:     Native MSW implementation of wxRichToolTip.

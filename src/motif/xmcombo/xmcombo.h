@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * ComboBox.h - Das schon lange schmerzlich vermisste Combo-Box-
  *              Widget -- nun endlich auf fuer Motif!

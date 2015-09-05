@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/headerctrlg.cpp
 // Purpose:     generic wxHeaderCtrl implementation

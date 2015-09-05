@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * (c) Copyright 1993, 1994, Silicon Graphics, Inc.
  * ALL RIGHTS RESERVED

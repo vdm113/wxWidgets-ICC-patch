@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 #ifndef EXPAT_INTERFACE_DEF_H
 #define EXPAT_INTERFACE_DEF_H
 

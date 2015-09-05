@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* ansi2knr.c */
 /* Convert ANSI C function definitions to K&R ("traditional C") syntax */
 

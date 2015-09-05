@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
     Permission to use this file under wxWindows licence granted by
     the copyright holder, see eggtrayicon.c for details.

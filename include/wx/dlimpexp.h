@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Name:        wx/dlimpexp.h
  * Purpose:     Macros for declaring DLL-imported/exported functions

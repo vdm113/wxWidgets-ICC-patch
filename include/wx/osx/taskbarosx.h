@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////
 // File:        wx/mac/taskbarosx.h
 // Purpose:     Defines wxTaskBarIcon class for OSX

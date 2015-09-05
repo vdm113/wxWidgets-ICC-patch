@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        mstream.h
 // Purpose:     interface of wxMemoryOutputStream, wxMemoryInputStream

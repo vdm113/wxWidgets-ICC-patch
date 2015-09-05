@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 #ifdef __APPLE__
 
 /* Define to 1 if you have the <assert.h> header file. */

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/log.h
 // Purpose:     Assorted wxLogXXX functions, and wxLog (sink for logs)

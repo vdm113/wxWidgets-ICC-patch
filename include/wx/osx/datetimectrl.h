@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/osx/datetimectrl.h
 // Purpose:     Declaration of wxOSX-specific wxDateTimePickerCtrl class.

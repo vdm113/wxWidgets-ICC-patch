@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/wxcrt.h
 // Purpose:     Type-safe ANSI and Unicode builds compatible wrappers for

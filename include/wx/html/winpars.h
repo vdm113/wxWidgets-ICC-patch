@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/html/winpars.h
 // Purpose:     wxHtmlWinParser class (parser to be used with wxHtmlWindow)

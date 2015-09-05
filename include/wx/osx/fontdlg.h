@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/osx/fontdlg.h
 // Purpose:     wxFontDialog class using fonts window services (10.2+).

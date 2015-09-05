@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/accel.h
 // Purpose:     wxAcceleratorEntry and wxAcceleratorTable classes

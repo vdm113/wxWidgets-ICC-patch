@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        richtext/richtextsymboldlg.h
 // Purpose:     interface of wxSymbolPickerDialog

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/private/fdioeventloopsourcehandler.h
 // Purpose:     declares wxFDIOEventLoopSourceHandler class

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/gtk/infobar.h
 // Purpose:     native implementation of wxInfoBar for GTK+ 2.18 and later

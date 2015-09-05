@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/dragimag.h
 // Purpose:     wxDragImage class: a kind of a cursor, that can cope

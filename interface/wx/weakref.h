@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        weakref.h
 // Purpose:     interface of wxWeakRefDynamic<T>, wxWeakRef<T>

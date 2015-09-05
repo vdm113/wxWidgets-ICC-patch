@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 /** @file LexHex.cxx
  ** Lexers for Motorola S-Record, Intel HEX and Tektronix extended HEX.

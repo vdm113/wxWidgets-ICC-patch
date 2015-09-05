@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        include/wx/qt/winevent_qt.h
 // Purpose:     QWidget to wxWindow event handler

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/generic/notebook.h
 // Purpose:     wxNotebook class (a.k.a. property sheet, tabbed dialog)

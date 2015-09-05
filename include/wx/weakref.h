@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/weakref.h
 // Purpose:     wxWeakRef - Generic weak references for wxWidgets

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/gbsizer.cpp
 // Purpose:     wxGridBagSizer:  A sizer that can lay out items in a grid,

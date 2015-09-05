@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 // @file LexAU3.cxx
 // Lexer for AutoIt3  http://www.hiddensoft.com/autoit3

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* Scintilla source code edit control */
 /** @file ScintillaWidget.h
  ** Definition of Scintilla widget for GTK+.

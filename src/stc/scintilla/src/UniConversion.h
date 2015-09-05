@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 /** @file UniConversion.h
  ** Functions to handle UTF-8 and UTF-16 strings.

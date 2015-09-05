@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/private/streamtempinput.h
 // Purpose:     defines wxStreamTempInputBuffer which is used by Unix and MSW

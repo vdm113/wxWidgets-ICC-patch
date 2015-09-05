@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 /** @file LexerNoExceptions.cxx
  ** A simple lexer with no state which does not throw exceptions so can be used in an external lexer.

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/carbon/statbarma.cpp
 // Purpose:     native implementation of wxStatusBar (optional)

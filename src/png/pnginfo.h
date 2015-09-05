@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /* pnginfo.h - header file for PNG reference library
  *
  * Copyright (c) 1998-2013 Glenn Randers-Pehrson

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/osx/fswatcher_fsevents.h
 // Purpose:     File System watcher that uses the FSEvents API

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/custombgwin.h
 // Purpose:     Documentation of wxCustomBackgroundWindow.

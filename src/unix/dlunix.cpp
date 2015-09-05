@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/unix/dlunix.cpp
 // Purpose:     Unix-specific part of wxDynamicLibrary and related classes

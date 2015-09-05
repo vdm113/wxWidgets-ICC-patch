@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/aui/tabmdi.h
 // Purpose:     Generic MDI (Multiple Document Interface) classes

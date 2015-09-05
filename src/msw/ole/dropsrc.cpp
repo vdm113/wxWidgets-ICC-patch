@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/ole/dropsrc.cpp
 // Purpose:     implementation of wxIDropSource and wxDropSource

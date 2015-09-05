@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /** @file Decoration.cxx
  ** Visual elements added over text.
  **/

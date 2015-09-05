@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/metafile.h
 // Purpose:     wxMetaFile, wxMetaFileDC and wxMetaFileDataObject classes

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        richtext/richtexthtml.h
 // Purpose:     interface of wxRichTextHTMLHandler

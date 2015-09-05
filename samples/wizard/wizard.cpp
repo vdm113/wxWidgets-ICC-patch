@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wizard.cpp
 // Purpose:     wxWidgets sample demonstrating wxWizard control

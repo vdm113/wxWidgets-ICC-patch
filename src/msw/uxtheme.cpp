@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/msw/uxtheme.cpp
 // Purpose:     implements wxUxThemeEngine class: support for XP themes

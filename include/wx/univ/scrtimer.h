@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/univ/scrtimer.h
 // Purpose:     wxScrollTimer: small helper class for wxScrollArrow/Thumb

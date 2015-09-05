@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 // Scintilla source code edit control
 /** @file XPM.cxx
  ** Define a class that holds data in the X Pixmap (XPM) format.

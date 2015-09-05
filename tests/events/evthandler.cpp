@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/events/evthandler.cpp
 // Purpose:     Test the new event types and wxEvtHandler-methods

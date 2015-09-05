@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/osx/datectrl_osx.cpp
 // Purpose:     Implementation of wxDatePickerCtrl for OS X.

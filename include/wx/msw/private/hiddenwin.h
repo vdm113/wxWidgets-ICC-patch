@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/private/hiddenwin.h
 // Purpose:     Helper for creating a hidden window used by wxMSW internally.

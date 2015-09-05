@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        docs/doxygen/overviews/persistence.h
 // Purpose:     overview of persistent objects

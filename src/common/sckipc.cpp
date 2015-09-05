@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/common/sckipc.cpp
 // Purpose:     Interprocess communication implementation (wxSocket version)

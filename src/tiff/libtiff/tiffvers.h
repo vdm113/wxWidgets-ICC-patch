@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 #define TIFFLIB_VERSION_STR "LIBTIFF, Version 4.0.3\nCopyright (c) 1988-1996 Sam Leffler\nCopyright (c) 1991-1996 Silicon Graphics, Inc."
 /*
  * This define can be used in code that requires

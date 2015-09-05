@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Name:        wx/x11/chkconf.h
  * Purpose:     Compiler-specific configuration checking

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
   Configuration defines for installed libtiff.
   This file maintained for backward compatibility. Do not use definitions

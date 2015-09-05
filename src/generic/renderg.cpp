@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        src/generic/renderg.cpp
 // Purpose:     generic implementation of wxRendererNative (for any platform)

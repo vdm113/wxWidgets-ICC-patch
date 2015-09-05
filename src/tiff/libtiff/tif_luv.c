@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /*
  * Copyright (c) 1997 Greg Ward Larson
  * Copyright (c) 1997 Silicon Graphics, Inc.

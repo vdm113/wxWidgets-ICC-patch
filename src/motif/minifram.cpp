@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        src/motif/minifram.cpp
 // Purpose:     wxMiniFrame. Optional; identical to wxFrame if not supported.

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/msw/private/pipestream.h
 // Purpose:     MSW wxPipeInputStream and wxPipeOutputStream declarations

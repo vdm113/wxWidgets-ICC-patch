@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/x11/toplevel.h
 // Purpose:     wxTopLevelWindowX11 is the X11 implementation of wxTLW

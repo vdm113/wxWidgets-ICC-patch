@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/os2/printos2.h
 // Purpose:     wxOS2Printer, wxOS2PrintPreview classes

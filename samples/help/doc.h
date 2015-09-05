@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 #define doc1       100
 #define doc2       2
 #define doc3       1

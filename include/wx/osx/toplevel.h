@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/osx/toplevel.h
 // Purpose:     wxTopLevelWindowMac is the Mac implementation of wxTLW

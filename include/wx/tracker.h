@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/tracker.h
 // Purpose:     Support class for object lifetime tracking (wxWeakRef<T>)

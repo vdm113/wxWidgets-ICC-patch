@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wx/gtk/hildon/notifmsg.h
 // Purpose:     Hildon implementation of wxNotificationMessage

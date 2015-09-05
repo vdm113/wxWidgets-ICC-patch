@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/private/flagscheck.h
 // Purpose:     helpers for checking that (bit)flags don't overlap

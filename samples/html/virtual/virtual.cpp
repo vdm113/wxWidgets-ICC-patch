@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        virtual.cpp
 // Purpose:     wxHtml sample: demonstrates virtual file systems feature

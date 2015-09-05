@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 //-----------------------------------------------------------------------------
 // Name:        custclas.h
 // Purpose:     XML resources sample: A custom class to insert into a XRC file

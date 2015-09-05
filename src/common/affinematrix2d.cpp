@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        affinematrix2d.cpp
 // Purpose:     implementation of wxAffineMatrix2D

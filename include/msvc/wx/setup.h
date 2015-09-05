@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        msvc/wx/setup.h
 // Purpose:     wrapper around the real wx/setup.h for Visual C++

@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        tests/streams/memstream.cpp
 // Purpose:     Test wxMemoryInputStream/wxMemoryOutputStream

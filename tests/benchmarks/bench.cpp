@@ -6,6 +6,7 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        tests/benchmarks/bench.cpp
 // Purpose:     Main file of the benchmarking suite
