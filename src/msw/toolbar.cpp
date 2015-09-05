@@ -433,10 +433,13 @@ void wxToolBar::Recreate()
     }
 
     // reparent all our children under the new toolbar
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = m_children.GetFirst();
           node;
@@ -637,6 +640,9 @@ void wxToolBar::CreateDisabledImageList()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxToolBarToolsList::compatibility_iterator
                 node = m_tools.GetFirst(); node; node = node->GetNext() )
@@ -698,6 +704,9 @@ bool wxToolBar::Realize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t pos = 0; pos < m_nButtons; pos++ )
     {
@@ -770,6 +779,9 @@ bool wxToolBar::Realize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
         {
@@ -828,6 +840,9 @@ bool wxToolBar::Realize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                             for ( int y = 0; y < h; y++ )
                             {
@@ -835,6 +850,9 @@ bool wxToolBar::Realize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                                 for ( int xx = 0; xx < w; xx++ )
                                 {
@@ -965,6 +983,9 @@ bool wxToolBar::Realize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
@@ -1068,6 +1089,9 @@ bool wxToolBar::Realize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                             while ( nodePrev )
                             {
@@ -1140,6 +1164,9 @@ bool wxToolBar::Realize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( node = m_tools.GetFirst(); node; node = node->GetNext(), toolIndex++ )
     {
@@ -1247,6 +1274,9 @@ bool wxToolBar::Realize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( node = m_tools.GetFirst(); node; node = node->GetNext(), toolIndex++ )
         {
@@ -1277,6 +1307,9 @@ void wxToolBar::UpdateStretchableSpacersSize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
@@ -1321,6 +1354,9 @@ void wxToolBar::UpdateStretchableSpacersSize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
@@ -1573,6 +1609,9 @@ void wxToolBar::SetRows(int nRows)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
@@ -1810,6 +1849,9 @@ bool wxToolBar::HandleSize(WXWPARAM WXUNUSED(wParam), WXLPARAM lParam)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
@@ -1909,10 +1951,13 @@ bool wxToolBar::HandlePaint(WXWPARAM wParam, WXLPARAM lParam)
     wxRegion rgnDummySeps;
     const wxRect rectTotal = GetClientRect();
     int toolIndex = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
           node;
@@ -2143,6 +2188,9 @@ WXHBITMAP wxToolBar::MapBitmap(WXHBITMAP bitmap, int width, int height)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < width; i++ )
     {
@@ -2150,6 +2198,9 @@ WXHBITMAP wxToolBar::MapBitmap(WXHBITMAP bitmap, int width, int height)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int j = 0; j < height; j++ )
         {
@@ -2159,6 +2210,9 @@ WXHBITMAP wxToolBar::MapBitmap(WXHBITMAP bitmap, int width, int height)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( size_t k = 0; k < wxSTD_COL_MAX; k++ )
             {

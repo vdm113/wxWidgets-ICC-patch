@@ -143,6 +143,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int i = 0; i < nb; i++) {
 			Forward();
@@ -154,6 +157,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (forwardPos > currentPos) {
 			Forward();
@@ -218,6 +224,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int n=2; *s; n++) {
 			if (*s != styler.SafeGetCharAt(currentPos+n, 0))
@@ -237,6 +246,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int n=2; *s; n++) {
 			if (static_cast<unsigned char>(*s) !=

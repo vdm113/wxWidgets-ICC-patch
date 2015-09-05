@@ -108,6 +108,9 @@ FindNext(FIND_DATA fd, const wxString& filter, FIND_STRUCT *finddata)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ;; )
     {
@@ -287,6 +290,9 @@ bool wxDirData::Read(wxString *filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ;; )
     {

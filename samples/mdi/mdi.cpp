@@ -302,10 +302,13 @@ void MyFrame::OnFullScreen(wxCommandEvent& event)
 
 void MyFrame::OnCloseAll(wxCommandEvent& WXUNUSED(event))
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::const_iterator i = GetChildren().begin();
           i != GetChildren().end();

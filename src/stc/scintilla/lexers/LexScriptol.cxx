@@ -40,6 +40,9 @@ static void ClassifyWordSol(unsigned int start, unsigned int end, WordList &keyw
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < end - start + 1 && i < 30; i++)
      {
@@ -158,6 +161,9 @@ static void ColouriseSolDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i = startPos; i < lengthDoc; i++)
         {
@@ -362,6 +368,9 @@ static void FoldSolDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i = startPos; i < lengthDoc; i++)
          {

@@ -157,6 +157,9 @@ bool MyApp::OnCmdLineParsed(wxCmdLineParser& parser)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i != parser.GetParamCount(); ++i )
         m_filesFromCmdLine.push_back(parser.GetParam(i));
@@ -275,6 +278,9 @@ bool MyApp::OnInit()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i != m_filesFromCmdLine.size(); ++i )
             docManager->CreateDocument(m_filesFromCmdLine[i], wxDOC_SILENT);

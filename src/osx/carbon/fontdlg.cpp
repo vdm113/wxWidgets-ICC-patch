@@ -184,6 +184,9 @@ wxMacCarbonFontPanelHandler(EventHandlerCallRef WXUNUSED(nextHandler),
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                             for ( ItemCount i = 0 ; i < count ; ++i)
                             {
@@ -394,6 +397,9 @@ void wxFontColourSwatchCtrl::OnMouseEvent(wxMouseEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (parent != NULL && !parent->IsKindOf(CLASSINFO(wxDialog)) && !parent->IsKindOf(CLASSINFO(wxFrame)))
             parent = parent->GetParent();

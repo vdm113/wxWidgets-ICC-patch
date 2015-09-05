@@ -414,6 +414,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (unsigned int i=0; i<m_classes.GetCount(); i++)
                 if (m_classes[i].GetName() == classname)
@@ -436,6 +439,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (unsigned i=0; i < m_classes.GetCount(); i++)
                 methods += m_classes[i].GetMethodCount();

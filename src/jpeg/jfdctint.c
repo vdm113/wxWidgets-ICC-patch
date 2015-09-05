@@ -162,6 +162,9 @@ jpeg_fdct_islow (DCTELEM * data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (ctr = DCTSIZE-1; ctr >= 0; ctr--) {
     tmp0 = dataptr[0] + dataptr[7];
@@ -232,6 +235,9 @@ jpeg_fdct_islow (DCTELEM * data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (ctr = DCTSIZE-1; ctr >= 0; ctr--) {
     tmp0 = dataptr[DCTSIZE*0] + dataptr[DCTSIZE*7];

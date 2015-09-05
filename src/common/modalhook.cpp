@@ -47,10 +47,13 @@ wxModalDialogHook::Hooks wxModalDialogHook::ms_hooks;
 void wxModalDialogHook::Register()
 {
 #if wxDEBUG_LEVEL
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( Hooks::const_iterator it = ms_hooks.begin();
           it != ms_hooks.end();
@@ -77,10 +80,13 @@ void wxModalDialogHook::Unregister()
 
 bool wxModalDialogHook::DoUnregister()
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( Hooks::iterator it = ms_hooks.begin();
           it != ms_hooks.end();
@@ -113,6 +119,9 @@ int wxModalDialogHook::CallEnter(wxDialog* dialog)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( Hooks::const_iterator it = hooks.begin(); it != hooks.end(); ++it )
     {
@@ -138,6 +147,9 @@ void wxModalDialogHook::CallExit(wxDialog* dialog)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( Hooks::const_iterator it = hooks.begin(); it != hooks.end(); ++it )
     {

@@ -296,6 +296,9 @@ td_lfind(const void *key, const void *base, size_t *nmemb, size_t size,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (element = (char *)base; element < end; element += size)
         if (!compar(key, element))		/* key found */
@@ -326,6 +329,9 @@ _TIFFSetupFields(TIFF* tif, const TIFFFieldArray* fieldarray)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < tif->tif_nfields; i++) {
 			TIFFField *fld = tif->tif_fields[i];
@@ -404,6 +410,9 @@ _TIFFMergeFields(TIFF* tif, const TIFFField info[], uint32 n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < n; i++) {
 		const TIFFField *fip =
@@ -433,6 +442,9 @@ _TIFFPrintFieldInfo(TIFF* tif, FILE* fd)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < tif->tif_nfields; i++) {
 		const TIFFField* fip = tif->tif_fields[i];
@@ -945,6 +957,9 @@ TIFFMergeFieldInfo(TIFF* tif, const TIFFFieldInfo info[], uint32 n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < n; i++) {
 		tp->field_tag = info[i].field_tag;

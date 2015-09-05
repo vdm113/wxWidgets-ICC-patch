@@ -415,6 +415,9 @@ gchar *gtk_assert_dialog_get_backtrace (GtkAssertDialog *dlg)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do
     {

@@ -87,6 +87,9 @@ PackBitsEncode(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (cc > 0) {
 		/*
@@ -97,6 +100,9 @@ PackBitsEncode(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (; cc > 0 && b == *bp; cc--, bp++)
 			n++;
@@ -118,6 +124,9 @@ PackBitsEncode(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (slop-- > 0)
 					*op++ = *lastliteral++;
@@ -220,6 +229,9 @@ PackBitsEncodeChunk(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (cc > 0) {
 		tmsize_t chunk = rowsize;
@@ -251,6 +263,9 @@ PackBitsDecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (cc > 0 && occ > 0) {
 		n = (long) *bp++, cc--;
@@ -277,6 +292,9 @@ PackBitsDecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (n-- > 0)
 				*op++ = (uint8) b;

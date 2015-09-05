@@ -106,6 +106,9 @@ void wxWrapSizer::ClearRows()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxSizerItemList::iterator i = rows.begin(),
                                   end = rows.end();
@@ -263,10 +266,13 @@ void wxWrapSizer::CalcMaxSingleItemSize()
     // Find max item size in each direction
     int maxMajor = 0;    // Widest item
     int maxMinor = 0;    // Line height
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxSizerItemList::const_iterator i = m_children.begin();
           i != m_children.end();
@@ -302,10 +308,13 @@ void wxWrapSizer::CalcMinFromMajor(int totMajor)
     int rowTotalMajor = 0;      // sum of major sizes of items in this row
 
     // pack the items in each row until we reach totMajor, then start a new row
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxSizerItemList::const_iterator i = m_children.begin();
           i != m_children.end();
@@ -377,6 +386,9 @@ void wxWrapSizer::CalcMinFromMinor(int totMinor)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -434,6 +446,9 @@ void wxWrapSizer::CalcMinFromMinor(int totMinor)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ;; )
     {
@@ -447,6 +462,9 @@ void wxWrapSizer::CalcMinFromMinor(int totMinor)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( node=m_children.GetFirst(); node; node=node->GetNext() )
         {
@@ -485,6 +503,9 @@ void wxWrapSizer::CalcMinFromMinor(int totMinor)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int ix=0; ix<nrLines; ix++ )
             {
@@ -505,6 +526,9 @@ void wxWrapSizer::CalcMinFromMinor(int totMinor)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxVector<wxWrapLine*>::iterator it=lines.begin(); it<lines.end(); ++it )
             delete *it;
@@ -557,10 +581,13 @@ void wxWrapSizer::RecalcSizes()
                 *itemSpace = NULL;  // spacer which we delayed adding
 
     // Now put our child items into child sizers instead
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxSizerItemList::iterator i = m_children.begin();
           i != m_children.end();

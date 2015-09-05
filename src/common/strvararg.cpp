@@ -167,6 +167,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( *format )
         {
@@ -190,6 +193,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while ( IsFlagChar(*format) )
                     CopyFmtChar(*format++);
@@ -415,6 +421,9 @@ private:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( **ptpc >= wxT('0') && **ptpc <= wxT('9') )
             CopyFmtChar(*(*ptpc)++);

@@ -86,10 +86,13 @@ initial_setup (j_compress_ptr cinfo)
   /* Compute maximum sampling factors; check factor validity */
   cinfo->max_h_samp_factor = 1;
   cinfo->max_v_samp_factor = 1;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
@@ -103,10 +106,13 @@ initial_setup (j_compress_ptr cinfo)
   }
 
   /* Compute dimensions of components */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
@@ -174,12 +180,18 @@ validate_script (j_compress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (ci = 0; ci < cinfo->num_components; ci++) 
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (coefi = 0; coefi < DCTSIZE2; coefi++)
 	*last_bitpos_ptr++ = -1;
@@ -192,6 +204,9 @@ validate_script (j_compress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (ci = 0; ci < cinfo->num_components; ci++) 
       component_sent[ci] = FALSE;
@@ -201,6 +216,9 @@ validate_script (j_compress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (scanno = 1; scanno <= cinfo->num_scans; scanptr++, scanno++) {
     /* Validate component indexes */
@@ -211,6 +229,9 @@ validate_script (j_compress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (ci = 0; ci < ncomps; ci++) {
       thisi = scanptr->component_index[ci];
@@ -253,6 +274,9 @@ validate_script (j_compress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (ci = 0; ci < ncomps; ci++) {
 	last_bitpos_ptr = & last_bitpos[scanptr->component_index[ci]][0];
@@ -262,6 +286,9 @@ validate_script (j_compress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (coefi = Ss; coefi <= Se; coefi++) {
 	  if (last_bitpos_ptr[coefi] < 0) {
@@ -286,6 +313,9 @@ validate_script (j_compress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (ci = 0; ci < ncomps; ci++) {
 	thisi = scanptr->component_index[ci];
@@ -308,6 +338,9 @@ validate_script (j_compress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (ci = 0; ci < cinfo->num_components; ci++) {
       if (last_bitpos[ci][0] < 0)
@@ -319,6 +352,9 @@ validate_script (j_compress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (ci = 0; ci < cinfo->num_components; ci++) {
       if (! component_sent[ci])
@@ -347,6 +383,9 @@ select_scan_parameters (j_compress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (ci = 0; ci < scanptr->comps_in_scan; ci++) {
       cinfo->cur_comp_info[ci] =
@@ -369,6 +408,9 @@ select_scan_parameters (j_compress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (ci = 0; ci < cinfo->num_components; ci++) {
       cinfo->cur_comp_info[ci] = &cinfo->comp_info[ci];
@@ -436,6 +478,9 @@ per_scan_setup (j_compress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
       compptr = cinfo->cur_comp_info[ci];
@@ -459,6 +504,9 @@ per_scan_setup (j_compress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       while (mcublks-- > 0) {
 	cinfo->MCU_membership[cinfo->blocks_in_MCU++] = ci;

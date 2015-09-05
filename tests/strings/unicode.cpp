@@ -331,6 +331,9 @@ void UnicodeTestCase::ConversionUTF7()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(utf7data); n++ )
     {
@@ -367,6 +370,9 @@ void UnicodeTestCase::ConversionUTF8()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(utf8data); n++ )
     {
@@ -403,6 +409,9 @@ void UnicodeTestCase::ConversionUTF16()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(utf16data); n++ )
     {
@@ -444,6 +453,9 @@ void UnicodeTestCase::ConversionUTF32()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(utf32data); n++ )
     {
@@ -485,6 +497,9 @@ void UnicodeTestCase::Iteration()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxString::const_iterator i = text.begin(); i != text.end(); ++i, ++idx )
         {
@@ -498,6 +513,9 @@ void UnicodeTestCase::Iteration()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxString::iterator i = text.begin(); i != text.end(); ++i )
             *i = 'x';
@@ -513,6 +531,9 @@ void UnicodeTestCase::Iteration()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxString::iterator i = text.begin(); i != text.end(); ++i, ++idx )
         {
@@ -533,6 +554,9 @@ void UnicodeTestCase::Iteration()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxString::const_iterator i = text.begin(); i != text.end(); ++i, ++idx )
         {

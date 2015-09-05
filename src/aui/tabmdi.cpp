@@ -355,6 +355,9 @@ void wxAuiMDIParentFrame::DoHandleMenu(wxCommandEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ((pActiveChild = GetActiveChild()) != NULL)
             {
@@ -566,6 +569,9 @@ bool wxAuiMDIChildFrame::Destroy()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t pos = 0; pos < page_count; pos++)
     {
@@ -619,6 +625,9 @@ void wxAuiMDIChildFrame::SetTitle(const wxString& title)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (pos = 0; pos < pClientWindow->GetPageCount(); pos++)
         {
@@ -690,6 +699,9 @@ void wxAuiMDIChildFrame::Activate()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (pos = 0; pos < pClientWindow->GetPageCount(); pos++)
         {
@@ -926,6 +938,9 @@ void wxAuiMDIClientWindow::OnSize(wxSizeEvent& evt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t pos = 0; pos < GetPageCount(); pos++)
         ((wxAuiMDIChildFrame *)GetPage(pos))->ApplyMDIChildFrameRect();

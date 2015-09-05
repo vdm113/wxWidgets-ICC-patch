@@ -120,6 +120,9 @@ static int str16len(const char *s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (s[0] && s[1]) {
         count++;
@@ -568,10 +571,13 @@ wxWindow *wxWindowBase::DoFindFocus()
     // (2) The widget with the focus may not be in the widget table
     // depending on which widgets I put in the table
     wxWindow *winFocus = NULL;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = wxTopLevelWindows.GetFirst();
           node;
@@ -911,6 +917,9 @@ void wxWindow::ScrollWindow(int dx, int dy, const wxRect *rect)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (cnode)
     {
@@ -1007,6 +1016,9 @@ void wxWindow::ScrollWindow(int dx, int dy, const wxRect *rect)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -1037,6 +1049,9 @@ void wxWindow::ScrollWindow(int dx, int dy, const wxRect *rect)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -1169,6 +1184,9 @@ bool wxWindow::DoPopupMenu(wxMenu *menu, int x, int y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (menu->GetId() == 1)
     {
@@ -1677,6 +1695,9 @@ void wxWindow::OnSysColourChanged(wxSysColourChangedEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( node )
     {
@@ -1710,6 +1731,9 @@ bool wxWindow::ProcessAccelerator(wxKeyEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < count; i++)
     {
@@ -1726,6 +1750,9 @@ bool wxWindow::ProcessAccelerator(wxKeyEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( parent && !parent->IsTopLevel() )
                 parent = parent->GetParent();
@@ -2054,6 +2081,9 @@ static void wxCanvasInputEvent(Widget drawingArea,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while (parent && !parent->IsTopLevel())
                     parent = parent->GetParent();
@@ -2488,6 +2518,9 @@ int wxComputeColours (Display *display, const wxColour * back, const wxColour * 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < 5; i++)
             if (!YAllocColor (dpy, cmap, &g_itemColors[i]))

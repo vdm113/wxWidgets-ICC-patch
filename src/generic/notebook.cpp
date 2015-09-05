@@ -387,6 +387,9 @@ int wxNotebook::FindPagePosition(wxNotebookPage* page) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( nPage = 0; nPage < nPageCount; nPage++ )
         if (m_pages[nPage] == page)
@@ -405,6 +408,9 @@ bool wxNotebook::DeleteAllPages()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( nPage = 0; nPage < nPageCount; nPage++ )
         delete m_pages[nPage];
@@ -544,6 +550,9 @@ bool wxNotebook::RefreshLayout(bool force)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t nPage = 0; nPage < nCount; nPage++ ) {
             wxNotebookPage *pPage = m_pages[nPage];

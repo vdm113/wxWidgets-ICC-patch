@@ -31,6 +31,9 @@ CaseFolderTable::CaseFolderTable() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (size_t iChar=0; iChar<sizeof(mapping); iChar++) {
 		mapping[iChar] = static_cast<char>(iChar);
@@ -48,6 +51,9 @@ size_t CaseFolderTable::Fold(char *folded, size_t sizeFolded, const char *mixed,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (size_t i=0; i<lenMixed; i++) {
 			folded[i] = mapping[static_cast<unsigned char>(mixed[i])];
@@ -65,6 +71,9 @@ void CaseFolderTable::StandardASCII() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (size_t iChar=0; iChar<sizeof(mapping); iChar++) {
 		if (iChar >= 'A' && iChar <= 'Z') {

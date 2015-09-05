@@ -85,6 +85,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((c = getopt(argc, argv, "f:o:cdDSjilmrsvwz0123456789")) != -1)
 		switch (c) {
@@ -147,6 +150,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; optind < argc; optind++) {
 		if (multiplefiles)
@@ -164,6 +170,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				do {
 					toff_t offset;
@@ -214,6 +223,9 @@ usage(void)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);
@@ -230,12 +242,18 @@ ShowStrip(tstrip_t strip, unsigned char* pp, uint32 nrow, tsize_t scanline)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (nrow-- > 0) {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (cc = 0; cc < scanline; cc++) {
 			printf(" %02x", *pp++);
@@ -263,6 +281,9 @@ TIFFReadContigStripData(TIFF* tif)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (row = 0; row < h; row += rowsperstrip) {
 			uint32 nrow = (row+rowsperstrip > h ?
@@ -297,12 +318,18 @@ TIFFReadSeparateStripData(TIFF* tif)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (row = 0; row < h; row += rowsperstrip) {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (s = 0; s < samplesperpixel; s++) {
 				uint32 nrow = (row+rowsperstrip > h ?
@@ -333,12 +360,18 @@ ShowTile(uint32 row, uint32 col, tsample_t sample,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (nrow-- > 0) {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	  for (cc = 0; cc < (uint32) rowsize; cc++) {
 			printf(" %02x", *pp++);
@@ -368,12 +401,18 @@ TIFFReadContigTileData(TIFF* tif)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (row = 0; row < h; row += th) {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (col = 0; col < w; col += tw) {
 				if (TIFFReadTile(tif, buf, col, row, 0, 0) < 0) {
@@ -408,18 +447,27 @@ TIFFReadSeparateTileData(TIFF* tif)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (row = 0; row < h; row += th) {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (col = 0; col < w; col += tw) {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for (s = 0; s < samplesperpixel; s++) {
 					if (TIFFReadTile(tif, buf, col, row, 0, s) < 0) {
@@ -462,6 +510,9 @@ ShowRawBytes(unsigned char* pp, uint32 n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < n; i++) {
 		printf(" %02x", *pp++);
@@ -480,6 +531,9 @@ ShowRawWords(uint16* pp, uint32 n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < n; i++) {
 		printf(" %04x", *pp++);
@@ -506,6 +560,9 @@ TIFFReadRawData(TIFF* tif, int bitrev)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (s = 0; s < nstrips; s++) {
 			if (stripbc[s] > bufsize) {

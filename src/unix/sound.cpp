@@ -151,6 +151,9 @@ bool wxSoundBackendOSS::Play(wxSoundData *data, unsigned flags,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do
     {
@@ -163,6 +166,9 @@ bool wxSoundBackendOSS::Play(wxSoundData *data, unsigned flags,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         do
         {

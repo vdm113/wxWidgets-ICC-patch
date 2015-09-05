@@ -381,10 +381,13 @@ bool wxMakeMetafilePlaceable(const wxString& filename, int x1, int y1, int x2, i
     // Calculate checksum
     WORD *p;
     mfPLACEABLEHEADER *pMFHead = &header;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (p =(WORD *)pMFHead,pMFHead -> checksum = 0;
             p < (WORD *)&pMFHead ->checksum; ++p)
@@ -455,6 +458,9 @@ bool wxMakeMetafilePlaceable(const wxString& filename, int x1, int y1, int x2, i
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (ch != EOF)
     {

@@ -89,6 +89,9 @@ static inline int getBashNumberBase(char *s) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (*s) {
 		base = base * 10 + (*s++ - '0');
@@ -248,6 +251,9 @@ static void ColouriseBashDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (;;) {
 		startPos = styler.LineStart(ln);
@@ -263,6 +269,9 @@ static void ColouriseBashDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
 
@@ -493,6 +502,9 @@ static void ColouriseBashDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					while (sc.ch == '\t' && !sc.atLineEnd) {	// tabulation prefix
 						sc.Forward();
@@ -504,6 +516,9 @@ static void ColouriseBashDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					while (!sc.atLineEnd) {
 						sc.Forward();
@@ -791,6 +806,9 @@ static bool IsCommentLine(int line, Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i = pos; i < eol_pos; i++) {
 		char ch = styler[i];
@@ -818,6 +836,9 @@ static void FoldBashDoc(unsigned int startPos, int length, int, WordList *[],
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;

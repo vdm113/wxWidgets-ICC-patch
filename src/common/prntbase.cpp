@@ -1627,6 +1627,9 @@ void wxPreviewControlBar::SetZoomControl(int zoom)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (n=0; n<count; n++)
         {

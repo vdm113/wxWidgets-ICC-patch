@@ -89,6 +89,9 @@ bool MyApp::OnInit()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 1; i < argc; i++)
         help->AddBook(wxFileName(argv[i]));

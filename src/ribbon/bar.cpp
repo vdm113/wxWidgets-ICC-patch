@@ -175,6 +175,9 @@ bool wxRibbonBar::Realize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(i = 0; i < numtabs; ++i)
     {
@@ -414,6 +417,9 @@ void wxRibbonBar::ClearPages()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(i=0; i<m_pages.GetCount(); i++)
     {
@@ -472,6 +478,9 @@ bool wxRibbonBar::SetActivePage(wxRibbonPage* page)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(i = 0; i < numpages; ++i)
     {
@@ -490,6 +499,9 @@ int wxRibbonBar::GetPageNumber(wxRibbonPage* page) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(size_t i = 0; i < numpages; ++i)
     {
@@ -551,6 +563,9 @@ void wxRibbonBar::RecalculateTabSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(i = 0; i < numtabs; ++i)
         {
@@ -575,6 +590,9 @@ void wxRibbonBar::RecalculateTabSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(i = 0; i < numtabs; ++i)
         {
@@ -622,6 +640,9 @@ void wxRibbonBar::RecalculateTabSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(i = 0; i < numtabs; ++i)
         {
@@ -650,6 +671,9 @@ void wxRibbonBar::RecalculateTabSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(i = 0; i < numtabs; ++i)
         {
@@ -672,6 +696,9 @@ void wxRibbonBar::RecalculateTabSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for(i = 0; i < numtabs; ++i)
             {
@@ -697,6 +724,9 @@ void wxRibbonBar::RecalculateTabSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for(i = 0; i < numtabs; ++i)
             {
@@ -721,6 +751,9 @@ void wxRibbonBar::RecalculateTabSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for ( i = 0; i < numtabs; ++i )
                     sorted_pages.push_back(PageComparedBySmallWidthAsc(&m_pages.Item(i)));
@@ -731,6 +764,9 @@ void wxRibbonBar::RecalculateTabSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for(i = 0; i < numtabs; ++i)
                 {
@@ -751,6 +787,9 @@ void wxRibbonBar::RecalculateTabSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for(i = 0; i < numtabs; ++i)
                 {
@@ -774,6 +813,9 @@ void wxRibbonBar::RecalculateTabSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for(i = 0; i < numtabs; ++i)
                 {
@@ -892,6 +934,9 @@ void wxRibbonBar::SetArtProvider(wxRibbonArtProvider* art)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(i = 0; i < numpages; ++i)
     {
@@ -936,6 +981,9 @@ void wxRibbonBar::OnPaint(wxPaintEvent& WXUNUSED(evt))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(i = 0; i < numtabs; ++i)
     {
@@ -975,6 +1023,9 @@ void wxRibbonBar::OnPaint(wxPaintEvent& WXUNUSED(evt))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(i = 0; i < numtabs - 1; ++i)
         {
@@ -1063,6 +1114,9 @@ wxRibbonPageTabInfo* wxRibbonBar::HitTestTabs(wxPoint position, int* index)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(i = 0; i < numtabs; ++i)
         {
@@ -1209,6 +1263,9 @@ void wxRibbonBar::ScrollTabBar(int amount)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(i = 0; i < numtabs; ++i)
     {
@@ -1318,6 +1375,9 @@ void wxRibbonBar::RecalculateMinSize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(i = 1; i < numtabs; ++i)
         {

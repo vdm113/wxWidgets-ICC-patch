@@ -344,6 +344,9 @@ MyCanvas::MyCanvas( wxWindow *parent, wxWindowID id,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i=0; i < m_ani_images; i++)
     {
@@ -657,6 +660,9 @@ void MyCanvas::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i=0; i < m_ani_images; i++ )
     {
@@ -702,12 +708,18 @@ void MyCanvas::CreateAntiAliasedBitmap()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int y = 1; y < 149; y++)
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int x = 1; x < 149; x++)
         {

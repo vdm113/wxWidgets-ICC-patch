@@ -146,6 +146,9 @@ TIFFCIELabToRGBInit(TIFFCIELabToRGB* cielab,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for(i = 0; i <= cielab->range; i++) {
 		cielab->Yr2r[i] = cielab->display.d_Vrwr
@@ -160,6 +163,9 @@ TIFFCIELabToRGBInit(TIFFCIELabToRGB* cielab,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for(i = 0; i <= cielab->range; i++) {
 		cielab->Yg2g[i] = cielab->display.d_Vrwg
@@ -174,6 +180,9 @@ TIFFCIELabToRGBInit(TIFFCIELabToRGB* cielab,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for(i = 0; i <= cielab->range; i++) {
 		cielab->Yb2b[i] = cielab->display.d_Vrwb
@@ -252,6 +261,9 @@ TIFFYCbCrToRGBInit(TIFFYCbCrToRGB* ycbcr, float *luma, float *refBlackWhite)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 256; i++)
 	clamptab[i] = (TIFFRGBValue) i;
@@ -283,6 +295,9 @@ TIFFYCbCrToRGBInit(TIFFYCbCrToRGB* ycbcr, float *luma, float *refBlackWhite)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0, x = -128; i < 256; i++, x++) {
 	    int32 Cr = (int32)Code2V(x, refBlackWhite[4] - 128.0F,

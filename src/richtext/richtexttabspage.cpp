@@ -172,6 +172,9 @@ bool wxRichTextTabsPage::TransferDataFromWindow()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < m_tabListCtrl->GetCount(); i++)
         {
@@ -199,6 +202,9 @@ bool wxRichTextTabsPage::TransferDataToWindow()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < attr->GetTabs().GetCount(); i++)
         {
@@ -229,6 +235,9 @@ void wxRichTextTabsPage::SortTabs()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < m_tabListCtrl->GetCount(); i++)
     {
@@ -241,6 +250,9 @@ void wxRichTextTabsPage::SortTabs()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < tabs.GetCount(); i++)
     {

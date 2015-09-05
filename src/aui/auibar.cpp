@@ -643,6 +643,9 @@ void wxAuiDefaultToolBarArt::DrawGripper(wxDC& dc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (1)
     {
@@ -744,6 +747,9 @@ int wxAuiDefaultToolBarArt::ShowDropDown(wxWindow* wnd,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < count; ++i)
     {
@@ -1170,6 +1176,9 @@ wxAuiToolBarItem* wxAuiToolBar::FindTool(int tool_id) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
     {
@@ -1188,6 +1197,9 @@ wxAuiToolBarItem* wxAuiToolBar::FindToolByPosition(wxCoord x, wxCoord y) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
     {
@@ -1217,6 +1229,9 @@ wxAuiToolBarItem* wxAuiToolBar::FindToolByPositionWithPacking(wxCoord x, wxCoord
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
     {
@@ -1465,6 +1480,9 @@ void wxAuiToolBar::SetHoverItem(wxAuiToolBarItem* pitem)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
     {
@@ -1495,6 +1513,9 @@ void wxAuiToolBar::SetPressedItem(wxAuiToolBarItem* pitem)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
     {
@@ -1571,6 +1592,9 @@ void wxAuiToolBar::ToggleTool(int tool_id, bool state)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (i = idx + 1; i < count; ++i)
                 {
@@ -1582,6 +1606,9 @@ void wxAuiToolBar::ToggleTool(int tool_id, bool state)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (i = idx - 1; i >= 0; i--)
                 {
@@ -1802,6 +1829,9 @@ int wxAuiToolBar::GetToolIndex(int tool_id) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < count; ++i)
     {
@@ -1954,6 +1984,9 @@ bool wxAuiToolBar::RealizeHelper(wxClientDC& dc, bool horizontal)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
     {
@@ -2125,6 +2158,9 @@ bool wxAuiToolBar::RealizeHelper(wxClientDC& dc, bool horizontal)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
     {
@@ -2140,6 +2176,9 @@ bool wxAuiToolBar::RealizeHelper(wxClientDC& dc, bool horizontal)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
     {
@@ -2234,6 +2273,9 @@ void wxAuiToolBar::DoIdleUpdate()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0, count = m_items.GetCount(); i < count; ++i)
     {
@@ -2318,6 +2360,9 @@ void wxAuiToolBar::OnSize(wxSizeEvent& WXUNUSED(evt))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0, count = m_items.GetCount(); i < count; ++i)
         {
@@ -2337,6 +2382,9 @@ void wxAuiToolBar::OnSize(wxSizeEvent& WXUNUSED(evt))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0, count = m_items.GetCount(); i < count; ++i)
         {
@@ -2504,6 +2552,9 @@ void wxAuiToolBar::OnPaint(wxPaintEvent& WXUNUSED(evt))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < count; ++i)
     {
@@ -2621,6 +2672,9 @@ void wxAuiToolBar::OnLeftDown(wxMouseEvent& evt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (i = 0; i < count; ++i)
                     overflow_items.Add(m_customOverflowPrepend[i]);
@@ -2631,6 +2685,9 @@ void wxAuiToolBar::OnLeftDown(wxMouseEvent& evt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (i = 0; i < count; ++i)
                 {
@@ -2644,6 +2701,9 @@ void wxAuiToolBar::OnLeftDown(wxMouseEvent& evt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (i = 0; i < count; ++i)
                     overflow_items.Add(m_customOverflowAppend[i]);

@@ -747,6 +747,9 @@ void wxWindowX11::ScrollWindow(int dx, int dy, const wxRect *rect)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( node )
     {
@@ -1270,6 +1273,9 @@ void wxWindowX11::SendEraseEvents()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (upd)
         {
@@ -1349,6 +1355,9 @@ void wxWindowX11::OnSysColourChanged(wxSysColourChangedEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( node )
     {

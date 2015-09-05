@@ -39,6 +39,9 @@ MarkerHandleSet::~MarkerHandleSet() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (mhn) {
 		MarkerHandleNumber *mhnToFree = mhn;
@@ -55,6 +58,9 @@ int MarkerHandleSet::Length() const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (mhn) {
 		c++;
@@ -70,6 +76,9 @@ int MarkerHandleSet::MarkValue() const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (mhn) {
 		m |= (1 << mhn->number);
@@ -84,6 +93,9 @@ bool MarkerHandleSet::Contains(int handle) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (mhn) {
 		if (mhn->handle == handle) {
@@ -109,6 +121,9 @@ void MarkerHandleSet::RemoveHandle(int handle) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (*pmhn) {
 		MarkerHandleNumber *mhn = *pmhn;
@@ -128,6 +143,9 @@ bool MarkerHandleSet::RemoveNumber(int markerNum, bool all) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (*pmhn) {
 		MarkerHandleNumber *mhn = *pmhn;
@@ -150,6 +168,9 @@ void MarkerHandleSet::CombineWith(MarkerHandleSet *other) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (*pmhn) {
 		pmhn = &((*pmhn)->next);
@@ -167,6 +188,9 @@ void LineMarkers::Init() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int line = 0; line < markers.Length(); line++) {
 		delete markers[line];
@@ -197,6 +221,9 @@ int LineMarkers::LineFromHandle(int markerHandle) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int line = 0; line < markers.Length(); line++) {
 			if (markers[line]) {
@@ -234,6 +261,9 @@ int LineMarkers::MarkerNext(int lineStart, int mask) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int iLine = lineStart; iLine < length; iLine++) {
 		MarkerHandleSet *onLine = markers[iLine];
@@ -394,6 +424,9 @@ static int NumberLines(const char *text) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (*text) {
 			if (*text == '\n')
@@ -500,6 +533,9 @@ void LineAnnotation::ClearAll() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int line = 0; line < annotations.Length(); line++) {
 		delete []annotations[line];
@@ -562,6 +598,9 @@ void LineTabstops::Init() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int line = 0; line < tabstops.Length(); line++) {
 		delete tabstops[line];
@@ -621,6 +660,9 @@ int LineTabstops::GetNextTabstop(int line, int x) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (size_t i = 0; i < tl->size(); i++) {
 				if ((*tl)[i] > x) {

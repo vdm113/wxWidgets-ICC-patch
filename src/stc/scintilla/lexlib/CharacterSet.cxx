@@ -34,6 +34,9 @@ int CompareCaseInsensitive(const char *a, const char *b) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (*a && *b) {
 		if (*a != *b) {
@@ -54,6 +57,9 @@ int CompareNCaseInsensitive(const char *a, const char *b, size_t len) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (*a && *b && len) {
 		if (*a != *b) {

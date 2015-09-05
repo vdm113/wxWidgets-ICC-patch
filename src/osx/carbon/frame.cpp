@@ -105,6 +105,9 @@ bool wxFrame::Enable(bool enable)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int i = 0 ; i < iMaxMenu ; ++ i )
         {
@@ -177,6 +180,9 @@ void wxFrame::OnActivate(wxActivateEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( win )
         {

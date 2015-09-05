@@ -101,6 +101,9 @@ wxHtmlParser::~wxHtmlParser()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (RestoreState()) {}
     DestroyDOMTree();
@@ -183,6 +186,9 @@ void wxHtmlParser::CreateDOMSubTree(wxHtmlTag *cur,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (i < end_pos)
     {
@@ -242,10 +248,13 @@ void wxHtmlParser::CreateDOMSubTree(wxHtmlTag *cur,
             // ... or skip ending tag:
             else
             {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while (i < end_pos && *i != wxT('>')) ++i;
                 textBeginning = i < end_pos ? i+1 : i;
@@ -267,6 +276,9 @@ void wxHtmlParser::DestroyDOMTree()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (t1)
     {
@@ -301,6 +313,9 @@ void wxHtmlParser::DoParsing(const wxString::const_iterator& begin_pos_,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (begin_pos < end_pos)
     {
@@ -308,6 +323,9 @@ void wxHtmlParser::DoParsing(const wxString::const_iterator& begin_pos_,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (m_CurTag && m_CurTag->GetBeginIter() < begin_pos)
             m_CurTag = m_CurTag->GetNextTag();
@@ -315,6 +333,9 @@ void wxHtmlParser::DoParsing(const wxString::const_iterator& begin_pos_,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (m_CurTextPiece < piecesCnt &&
                pieces[m_CurTextPiece].m_start < begin_pos)
@@ -381,6 +402,9 @@ void wxHtmlParser::AddTagHandler(wxHtmlTagHandler *handler)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (tokenizer.HasMoreTokens())
         m_HandlersHash[tokenizer.GetNextToken()] = handler;
@@ -401,6 +425,9 @@ void wxHtmlParser::PushTagHandler(wxHtmlTagHandler *handler, const wxString& tag
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (tokenizer.HasMoreTokens())
     {
@@ -531,6 +558,9 @@ wxString wxHtmlEntitiesParser::Parse(const wxString& input) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ; c < end; ++c )
     {
@@ -552,6 +582,9 @@ wxString wxHtmlEntitiesParser::Parse(const wxString& input) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( ; c != end; ++c )
             {
@@ -909,6 +942,9 @@ wxChar wxHtmlEntitiesParser::GetEntityChar(const wxString& entity) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (substitutions[substitutions_cnt].code != 0)
                 substitutions_cnt++;
@@ -922,6 +958,9 @@ wxChar wxHtmlEntitiesParser::GetEntityChar(const wxString& entity) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < substitutions_cnt; i++)
         {
@@ -1058,6 +1097,9 @@ wxHtmlParser::SkipCommentTag(wxString::const_iterator& start,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( ++p < end )
     {

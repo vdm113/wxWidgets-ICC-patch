@@ -380,6 +380,9 @@ int main (int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    while (!quit)
    {

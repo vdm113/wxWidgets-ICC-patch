@@ -165,6 +165,9 @@ void ZLIB_INTERNAL zmemcpy(dest, source, len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do {
         *dest++ = *source++; /* ??? to be unrolled */
@@ -182,6 +185,9 @@ int ZLIB_INTERNAL zmemcmp(s1, s2, len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (j = 0; j < len; j++) {
         if (s1[j] != s2[j]) return 2*(s1[j] > s2[j])-1;
@@ -198,6 +204,9 @@ void ZLIB_INTERNAL zmemzero(dest, len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do {
         *dest++ = 0;  /* ??? to be unrolled */
@@ -274,6 +283,9 @@ void ZLIB_INTERNAL zcfree (voidpf opaque, voidpf ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (n = 0; n < next_ptr; n++) {
         if (ptr != table[n].new_ptr) continue;
@@ -283,6 +295,9 @@ void ZLIB_INTERNAL zcfree (voidpf opaque, voidpf ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (++n < next_ptr) {
             table[n-1] = table[n];

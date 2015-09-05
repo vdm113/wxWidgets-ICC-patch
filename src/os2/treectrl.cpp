@@ -110,6 +110,9 @@ void BumpTreeRecordIds (
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while(pRecord)
     {
@@ -147,6 +150,9 @@ PMYRECORD FindOS2TreeRecordByID (
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < vCnrInfo.cRecords; i++)
     {
@@ -351,6 +357,9 @@ bool wxTreeTraversal::Traverse (
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (vChild.IsOk())
     {
@@ -475,6 +484,9 @@ wxTreeCtrl::~wxTreeCtrl ()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (wxNode* pNode = m_vAttrs.Next(); pNode; pNode = m_vAttrs.Next())
         {
@@ -1338,6 +1350,9 @@ wxTreeItemId wxTreeCtrl::GetFirstVisibleItem () const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while(pRecord)
     {
@@ -1375,6 +1390,9 @@ wxTreeItemId wxTreeCtrl::GetNextVisible (
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while(pRecord)
     {
@@ -1412,6 +1430,9 @@ wxTreeItemId wxTreeCtrl::GetPrevVisible (
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while(pRecord)
     {
@@ -1684,6 +1705,9 @@ void wxTreeCtrl::DeleteChildren (
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (vChild.IsOk())
     {
@@ -1704,6 +1728,9 @@ void wxTreeCtrl::DeleteChildren (
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t n = 0; n < nCount; n++)
     {
@@ -1836,6 +1863,9 @@ void wxTreeCtrl::UnselectAll ()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t n = 0; n < nCount; n++)
         {

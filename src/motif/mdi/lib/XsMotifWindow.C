@@ -133,6 +133,9 @@ void _XsMotifBase::_drawShadows (Position x, Position y, Dimension width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (int loop = 0; loop < thick; loop++)
    {
@@ -2030,6 +2033,9 @@ _XsMotifMenu::_XsMotifMenu (const char *name, XsMotifWindow *win) :
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (int loop = 0; loop < Num; loop++)
    {
@@ -2207,6 +2213,9 @@ void _XsMotifMenu::_processEvents ( )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    while (!done)
    {
@@ -2236,6 +2245,9 @@ void _XsMotifMenu::_processEvents ( )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (XPending (dpy) > 0)
             {
@@ -2391,6 +2403,9 @@ void _XsMotifMenu::_redrawMenu ( )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (int loop = 0; loop < Num; loop++)
       _redrawItem ((Item)loop);
@@ -2750,6 +2765,9 @@ XsMotifWindow::XsMotifWindow (const char *name) : XsMDIWindow (name)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (loop = 0; loop < _XsMotifSide::Max; loop++)
    {
@@ -2761,6 +2779,9 @@ XsMotifWindow::XsMotifWindow (const char *name) : XsMDIWindow (name)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (loop = 0; loop < _XsMotifButton::Max; loop++)
       _buttons[loop] = 0;
@@ -2783,6 +2804,9 @@ XsMotifWindow::~XsMotifWindow ( )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (loop = 0; loop < _XsMotifSide::Max; loop++)
    {
@@ -2794,6 +2818,9 @@ XsMotifWindow::~XsMotifWindow ( )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (loop = 0; loop < _XsMotifButton::Max; loop++)
       delete _buttons[loop];
@@ -3401,6 +3428,9 @@ void XsMotifWindow::_createWindow (Widget parent)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (loop = 0; loop < _XsMotifSide::Max; loop++)
    {
@@ -3414,6 +3444,9 @@ void XsMotifWindow::_createWindow (Widget parent)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (loop = 0; loop < _XsMotifButton::Max; loop++)
    {

@@ -38,6 +38,9 @@ startElement(void *userData, const char *name, const char **atts)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; i < *depthPtr; i++)
     putchar('\t');
@@ -65,6 +68,9 @@ main(int argc, char *argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   do {
     int len = (int)fread(buf, 1, sizeof(buf), stdin);

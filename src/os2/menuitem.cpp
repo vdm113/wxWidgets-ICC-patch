@@ -181,6 +181,9 @@ wxString wxMenuItemBase::GetLabelText(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (const wxChar* zPc = rsText.c_str(); *zPc; zPc++)
     {
@@ -324,6 +327,9 @@ void wxMenuItem::Check(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int n = nStart; n <= nEnd && node; n++)
         {

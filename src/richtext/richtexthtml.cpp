@@ -127,6 +127,9 @@ bool wxRichTextHTMLHandler::DoSaveFile(wxRichTextBuffer *buffer, wxOutputStream&
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (node)
         {
@@ -144,6 +147,9 @@ bool wxRichTextHTMLHandler::DoSaveFile(wxRichTextBuffer *buffer, wxOutputStream&
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while (node2)
                 {
@@ -444,6 +450,9 @@ void wxRichTextHTMLHandler::CloseLists(int level, wxTextOutputStream& str)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (i >= 0)
     {
@@ -614,6 +623,9 @@ long wxRichTextHTMLHandler::PtToSize(long size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < len; i++)
         if (size <= m_fontSizeMapping[i])
@@ -628,6 +640,9 @@ wxString wxRichTextHTMLHandler::SymbolicIndent(long indent)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(;indent > 0; indent -= 20)
         in.Append( wxT("&nbsp;") );
@@ -668,6 +683,9 @@ wxChar* wxRichTextHTMLHandler::b64enc( unsigned char* input, size_t in_len )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while( in_len-- > 0 )
     {
@@ -723,6 +741,9 @@ bool wxRichTextHTMLHandler::DeleteTemporaryImages(int flags, const wxArrayString
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < imageLocations.GetCount(); i++)
     {

@@ -141,6 +141,9 @@ bool wxUIActionSimulator::Text(const char *s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( *s != '\0' )
     {
@@ -202,6 +205,9 @@ bool wxUIActionSimulator::Select(const wxString& text)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ;; )
     {

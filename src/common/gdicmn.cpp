@@ -384,6 +384,9 @@ void wxColourDatabase::Initialize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < WXSIZEOF(wxColourTable); n++ )
     {
@@ -463,6 +466,9 @@ wxString wxColourDatabase::FindName(const wxColour& colour) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( iterator it = m_map->begin(), en = m_map->end(); it != en; ++it )
     {
@@ -495,6 +501,9 @@ void wxStockGDI::DeleteAll()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned i = 0; i < ITEMCOUNT; i++)
     {
@@ -737,6 +746,9 @@ wxGDIObjListBase::~wxGDIObjListBase()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (wxList::compatibility_iterator node = list.GetFirst(); node; node = node->GetNext())
     {
@@ -746,10 +758,13 @@ wxGDIObjListBase::~wxGDIObjListBase()
 
 wxPen *wxPenList::FindOrCreatePen (const wxColour& colour, int width, wxPenStyle style)
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxList::compatibility_iterator node = list.GetFirst();
           node;
@@ -775,10 +790,13 @@ wxPen *wxPenList::FindOrCreatePen (const wxColour& colour, int width, wxPenStyle
 
 wxBrush *wxBrushList::FindOrCreateBrush (const wxColour& colour, wxBrushStyle style)
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxList::compatibility_iterator node = list.GetFirst();
           node;
@@ -825,6 +843,9 @@ wxFont *wxFontList::FindOrCreateFont(int pointSize,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (node = list.GetFirst(); node; node = node->GetNext())
     {
@@ -912,6 +933,9 @@ wxResourceCache::~wxResourceCache ()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node) {
         wxObject *item = (wxObject *)node->GetData();

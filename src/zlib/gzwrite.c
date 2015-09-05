@@ -103,6 +103,9 @@ local int gz_comp(state, flush)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do {
         /* write out current buffer contents if full, or if flushing, but if
@@ -160,6 +163,9 @@ local int gz_zero(state, len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (len) {
         n = GT_OFF(state->size) || (z_off64_t)state->size > len ?
@@ -227,6 +233,9 @@ int ZEXPORT gzwrite(file, buf, len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         do {
             unsigned have, copy;
@@ -370,6 +379,9 @@ int ZEXPORTVA gzvprintf(gzFile file, const char *format, va_list va)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (len = 0; len < size; len++)
         if (state->in[len] == 0) break;
@@ -461,6 +473,9 @@ int ZEXPORTVA gzprintf (file, format, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (len = 0; len < size; len++)
         if (state->in[len] == 0) break;

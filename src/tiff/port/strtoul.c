@@ -67,6 +67,9 @@ strtoul(const char *nptr, char **endptr, int base)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	do {
 		c = (unsigned char) *s++;
@@ -94,6 +97,9 @@ strtoul(const char *nptr, char **endptr, int base)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (acc = 0, any = 0;; c = (unsigned char) *s++) {
 		if (isdigit(c))

@@ -83,6 +83,9 @@ static bool NsisNextLineHasElse(unsigned int start, unsigned int end, Accessor &
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for( unsigned int i = start; i < end; i++ )
   {
@@ -101,6 +104,9 @@ static bool NsisNextLineHasElse(unsigned int start, unsigned int end, Accessor &
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for( unsigned int firstChar = nNextLine; firstChar < end; firstChar++ )
   {
@@ -164,6 +170,9 @@ static int calculateFoldNsis(unsigned int start, unsigned int end, int foldlevel
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (unsigned int i = 0; i < end - start + 1 && i < 19; i++)
 	{
@@ -214,6 +223,9 @@ static int classifyWordNsis(unsigned int start, unsigned int end, WordList *keyw
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = 0; i < end - start + 1 && i < 99; i++)
 	{
@@ -278,6 +290,9 @@ static int classifyWordNsis(unsigned int start, unsigned int end, WordList *keyw
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int j = 1; j < end - start + 1 && j < 99; j++)
 	  {
@@ -300,6 +315,9 @@ static int classifyWordNsis(unsigned int start, unsigned int end, WordList *keyw
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int j = 1; j < end - start + 1 && j < 99; j++)
 	  {
@@ -338,6 +356,9 @@ static void ColouriseNsisDoc(unsigned int startPos, int length, int, WordList *k
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for( i = startPos; i < nLengthDoc; i++ )
 	{
@@ -454,6 +475,9 @@ static void ColouriseNsisDoc(unsigned int startPos, int length, int, WordList *k
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
           while( nBack > 0 )
           {
@@ -631,6 +655,9 @@ static void FoldNsisDoc(unsigned int startPos, int length, int, WordList *[], Ac
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (unsigned int i = safeStartPos; i < startPos + length; i++)
 	{

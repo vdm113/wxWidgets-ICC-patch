@@ -306,10 +306,13 @@ wxFontRefData::wxFontRefData(const wxString& fontname)
 
 void wxFontRefData::ClearGdkFonts()
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxScaledFontList::iterator i = m_scaled_xfonts.begin();
           i != m_scaled_xfonts.end();

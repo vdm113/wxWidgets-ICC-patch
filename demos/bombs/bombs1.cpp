@@ -57,6 +57,9 @@ void BombsCanvas::DrawField(wxDC *dc, int xc1, int yc1, int xc2, int yc2)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(x=xc1; x<=xc2; x++)
         dc->DrawLine(x*m_cellWidth*X_UNIT, 0, x*m_cellWidth*X_UNIT, yMax);
@@ -64,6 +67,9 @@ void BombsCanvas::DrawField(wxDC *dc, int xc1, int yc1, int xc2, int yc2)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(y=xc1; y<=yc2; y++)
         dc->DrawLine(0, y*m_cellHeight*Y_UNIT, xMax, y*m_cellHeight*Y_UNIT);
@@ -76,12 +82,18 @@ void BombsCanvas::DrawField(wxDC *dc, int xc1, int yc1, int xc2, int yc2)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(x=xc1; x<=xc2; x++)
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(y=yc1; y<=yc2; y++)
         {
@@ -242,12 +254,18 @@ void BombsCanvas::Uncover(int x, int y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(x=0; x<gridWidth; x++)
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for(y=0; y<gridHeight; y++)
                 m_game->Unhide(x,y,false);
@@ -270,12 +288,18 @@ void BombsCanvas::Uncover(int x, int y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j=top; j<=bottom; j++)
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i=left; i<=right; i++)
                 if ( (i != x || j != y) && m_game->IsHidden(i, j)

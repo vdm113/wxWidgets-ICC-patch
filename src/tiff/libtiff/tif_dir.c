@@ -88,6 +88,9 @@ setDoubleArrayOneValue(double** vpp, double value, size_t nmemb)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (nmemb--)
 			((double*)*vpp)[nmemb] = value;
@@ -116,6 +119,9 @@ setExtraSamples(TIFFDirectory* td, va_list ap, uint32* v)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < *v; i++) {
 		if (va[i] > EXTRASAMPLE_UNASSALPHA) {
@@ -155,12 +161,18 @@ checkInkNamesString(TIFF* tif, uint32 slen, const char* s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (; i > 0; i--) {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (; cp < ep && *cp != '\0'; cp++) {}
 			if (cp >= ep)
@@ -441,6 +453,9 @@ _TIFFVSetField(TIFF* tif, uint32 tag, va_list ap)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < v; i++)
 			_TIFFsetShortArray(&td->td_transferfunction[i],
@@ -497,6 +512,9 @@ _TIFFVSetField(TIFF* tif, uint32 tag, va_list ap)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (iCustom = 0; iCustom < td->td_customValueCount; iCustom++) {
 			if (td->td_customValues[iCustom].info->field_tag == tag) {
@@ -807,6 +825,9 @@ TIFFUnsetField(TIFF* tif, uint32 tag)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < td->td_customValueCount; i++) {
                 
@@ -822,6 +843,9 @@ TIFFUnsetField(TIFF* tif, uint32 tag)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for( ; i < td->td_customValueCount-1; i++) {
                 td->td_customValues[i] = td->td_customValues[i+1];
@@ -918,6 +942,9 @@ _TIFFVGetField(TIFF* tif, uint32 tag, va_list ap)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for (i=1; i < td->td_samplesperpixel; ++i)
 					if( td->td_sminsamplevalue[i] < v )
@@ -937,6 +964,9 @@ _TIFFVGetField(TIFF* tif, uint32 tag, va_list ap)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for (i=1; i < td->td_samplesperpixel; ++i)
 					if( td->td_smaxsamplevalue[i] > v )
@@ -1082,6 +1112,9 @@ _TIFFVGetField(TIFF* tif, uint32 tag, va_list ap)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for (i = 0; i < td->td_customValueCount; i++) {
 					TIFFTagValue *tv = td->td_customValues + i;
@@ -1254,6 +1287,9 @@ TIFFFreeDirectory(TIFF* tif)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for( i = 0; i < td->td_customValueCount; i++ ) {
 		if (td->td_customValues[i].value)
@@ -1547,6 +1583,9 @@ TIFFNumberOfDirectories(TIFF* tif)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (nextdir != 0 && TIFFAdvanceDirectory(tif, &nextdir, NULL))
 		n++;
@@ -1571,6 +1610,9 @@ TIFFSetDirectory(TIFF* tif, uint16 dirn)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (n = dirn; n > 0 && nextdir != 0; n--)
 		if (!TIFFAdvanceDirectory(tif, &nextdir, NULL))
@@ -1662,6 +1704,9 @@ TIFFUnlinkDirectory(TIFF* tif, uint16 dirn)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (n = dirn-1; n > 0; n--) {
 		if (nextdir == 0) {

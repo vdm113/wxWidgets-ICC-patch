@@ -195,10 +195,13 @@ wxSizerItem *wxWizardSizer::Insert(size_t index, wxSizerItem *item)
 
 void wxWizardSizer::HidePages()
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxSizerItemList::compatibility_iterator node = GetChildren().GetFirst();
           node;
@@ -229,10 +232,13 @@ wxSize wxWizardSizer::GetMaxChildSize()
 {
     wxSize maxOfMin;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxSizerItemList::compatibility_iterator childNode = m_children.GetFirst();
           childNode;
@@ -265,10 +271,13 @@ wxSize wxWizardSizer::SiblingSize(wxSizerItem *child)
         wxWizardPage *page = wxDynamicCast(child->GetWindow(), wxWizardPage);
         if ( page )
         {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( wxWizardPage *sibling = page->GetNext();
                   sibling;
@@ -529,6 +538,9 @@ void wxWizard::FitToPage(const wxWizardPage *page)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( page )
     {
@@ -920,6 +932,9 @@ bool wxWizard::DoLayoutAdaptation()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxSizerItemList::compatibility_iterator node = m_sizerPage->GetChildren().GetFirst(); node; node = node->GetNext() )
     {
@@ -933,6 +948,9 @@ bool wxWizard::DoLayoutAdaptation()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while (page)
                 {
@@ -1040,6 +1058,9 @@ bool wxWizard::TileBitmap(const wxRect& rect, wxDC& dc, const wxBitmap& bitmap)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = rect.x; i < rect.x + rect.width; i += w)
     {
@@ -1047,6 +1068,9 @@ bool wxWizard::TileBitmap(const wxRect& rect, wxDC& dc, const wxBitmap& bitmap)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = rect.y; j < rect.y + rect.height; j+= h)
             dc.Blit(i, j, bitmap.GetWidth(), bitmap.GetHeight(), & dcMem, 0, 0);

@@ -261,6 +261,9 @@ void wxAuiGenericTabArt::DrawBorder(wxDC& dc, wxWindow* wnd, const wxRect& rect)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < border_width; ++i)
     {
@@ -748,6 +751,9 @@ int wxAuiGenericTabArt::ShowDropDown(wxWindow* wnd,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < count; ++i)
     {
@@ -809,6 +815,9 @@ int wxAuiGenericTabArt::GetBestTabCtrlSize(wxWindow* wnd,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < page_count; ++i)
     {
@@ -969,6 +978,9 @@ void wxAuiSimpleTabArt::DrawBorder(wxDC& dc, wxWindow* wnd, const wxRect& rect)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < border_width; ++i)
     {
@@ -1278,6 +1290,9 @@ int wxAuiSimpleTabArt::ShowDropDown(wxWindow* wnd,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < count; ++i)
     {

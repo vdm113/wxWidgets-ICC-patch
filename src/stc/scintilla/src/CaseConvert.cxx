@@ -423,6 +423,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (mixedPos < lenMixed) {
 			const unsigned char leadByte = static_cast<unsigned char>(mixed[mixedPos]);
@@ -437,6 +440,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for (int b=1; b<widthCharBytes; b++) {
 					bytes[b] = (mixedPos+b < lenMixed) ? mixed[mixedPos+b] : 0;
@@ -455,6 +461,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (*caseConverted) {
 					converted[lenConverted++] = *caseConverted++;
@@ -467,6 +476,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for (size_t i=0; i<lenMixedChar; i++) {
 					converted[lenConverted++] = mixed[mixedPos+i];
@@ -486,6 +498,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (CharacterToConversion::iterator it = characterToConversion.begin(); it != characterToConversion.end(); ++it) {
 			characters.push_back(it->character);
@@ -545,6 +560,9 @@ void SetupConversions(enum CaseConversion conversion) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ELEMENTS(symmetricCaseConversionRanges);) {
 		int lower = symmetricCaseConversionRanges[i++];
@@ -555,6 +573,9 @@ void SetupConversions(enum CaseConversion conversion) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int j=0; j<length*pitch; j+=pitch) {
 			AddSymmetric(conversion, lower+j, upper+j);
@@ -565,6 +586,9 @@ void SetupConversions(enum CaseConversion conversion) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ELEMENTS(symmetricCaseConversions);) {
 		int lower = symmetricCaseConversions[i++];
@@ -577,6 +601,9 @@ void SetupConversions(enum CaseConversion conversion) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (*sComplex) {
 		// Longest ligature is 3 character so 5 for safety
@@ -590,6 +617,9 @@ void SetupConversions(enum CaseConversion conversion) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (*sComplex && *sComplex != '|') {
 			originUTF8[i++] = *sComplex;
@@ -602,6 +632,9 @@ void SetupConversions(enum CaseConversion conversion) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (*sComplex && *sComplex != '|') {
 			foldedUTF8[i++] = *sComplex;
@@ -614,6 +647,9 @@ void SetupConversions(enum CaseConversion conversion) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (*sComplex && *sComplex != '|') {
 			upperUTF8[i++] = *sComplex;
@@ -626,6 +662,9 @@ void SetupConversions(enum CaseConversion conversion) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (*sComplex && *sComplex != '|') {
 			lowerUTF8[i++] = *sComplex;

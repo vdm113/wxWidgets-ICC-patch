@@ -17,6 +17,9 @@ getTok(const char **pp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (;;) {
     switch (**pp) {
@@ -90,6 +93,9 @@ matchkey(const char *start, const char *end, const char *key)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (; start != end; start++, key++)
     if (*start != *key && *start != 'A' + (*key - 'a'))
@@ -120,6 +126,9 @@ getXMLCharset(const char *buf, char *charset)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (p) {
     if (*p == ';') {
@@ -135,6 +144,9 @@ getXMLCharset(const char *buf, char *charset)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
               while (++p != next - 1) {
                 if (*p == '\\')
@@ -154,6 +166,9 @@ getXMLCharset(const char *buf, char *charset)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
               while (p != next)
                 *s++ = *p++;

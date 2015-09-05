@@ -128,6 +128,9 @@ void wxFileTypeInfo::DoVarArgInit(const wxString& mimeType,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ;; )
     {
@@ -179,6 +182,9 @@ wxFileTypeInfo::wxFileTypeInfo(const wxArrayString& sArray)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 4; i < count; i++ )
     {
@@ -215,6 +221,9 @@ wxString wxFileType::ExpandCommand(const wxString& command,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const wxChar *pc = command.c_str(); *pc != wxT('\0'); pc++ ) {
         if ( *pc == wxT('%') ) {
@@ -662,6 +671,9 @@ wxMimeTypesManager::GetFileTypeFromExtension(const wxString& ext)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ ) {
             if ( m_fallbacks[n].GetExtensions().Index(ext) != wxNOT_FOUND ) {
@@ -691,6 +703,9 @@ wxMimeTypesManager::GetFileTypeFromMimeType(const wxString& mimeType)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ ) {
             if ( wxMimeTypesManager::IsOfType(mimeType,
@@ -712,6 +727,9 @@ void wxMimeTypesManager::AddFallbacks(const wxFileTypeInfo *filetypes)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const wxFileTypeInfo *ft = filetypes; ft && ft->IsValid(); ft++ ) {
         AddFallback(*ft);
@@ -729,6 +747,9 @@ size_t wxMimeTypesManager::EnumAllFileTypes(wxArrayString& mimetypes)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ ) {
         if ( mimetypes.Index(m_fallbacks[n].GetMimeType()) == wxNOT_FOUND ) {

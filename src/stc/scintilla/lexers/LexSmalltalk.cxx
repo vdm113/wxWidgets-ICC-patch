@@ -112,6 +112,9 @@ static inline void skipComment(StyleContext& sc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (sc.More() && sc.ch != '\"')
         sc.Forward();
@@ -123,6 +126,9 @@ static inline void skipString(StyleContext& sc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (sc.More()) {
         if (sc.ch == '\'') {
@@ -153,6 +159,9 @@ static void handleHash(StyleContext& sc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (isAlphaNumeric(sc.chNext) || sc.chNext == ':')
                 sc.Forward();
@@ -162,6 +171,9 @@ static void handleHash(StyleContext& sc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (isBinSel(sc.chNext))
                 sc.Forward();
@@ -189,6 +201,9 @@ static inline void skipInt(StyleContext& sc, int radix)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (isDigitOfRadix(sc.chNext, radix))
         sc.Forward();
@@ -207,6 +222,9 @@ static void handleNumeric(StyleContext& sc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (isDecDigit(sc.chNext)) {
         num[nl++] = static_cast<char>(sc.chNext);
@@ -238,6 +256,9 @@ static void handleNumeric(StyleContext& sc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (isDecDigit(sc.chNext))
             sc.Forward();
@@ -258,6 +279,9 @@ static inline void handleBinSel(StyleContext& sc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (isBinSel(sc.chNext))
         sc.Forward();
@@ -278,6 +302,9 @@ static void handleLetter(StyleContext& sc, WordList* specialSelectorList)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (isAlphaNumeric(sc.chNext)) {
         ident[il++] = static_cast<char>(sc.chNext);
@@ -336,6 +363,9 @@ static void colorizeSmalltalkDoc(unsigned int startPos, int length, int initStyl
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (; sc.More(); sc.Forward()) {
         int ch;

@@ -153,6 +153,9 @@ void wxExtHelpController::DeleteList()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (node)
         {
@@ -182,6 +185,9 @@ bool wxExtHelpController::ParseMapFileLine(const wxString& line)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( isascii(*p) && wxIsspace(*p) )
         p++;
@@ -202,6 +208,9 @@ bool wxExtHelpController::ParseMapFileLine(const wxString& line)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( isascii(*p) && wxIsspace(*p) )
         p++;
@@ -213,6 +222,9 @@ bool wxExtHelpController::ParseMapFileLine(const wxString& line)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( isascii(*p) && !wxIsspace(*p) )
         url += *p++;
@@ -221,6 +233,9 @@ bool wxExtHelpController::ParseMapFileLine(const wxString& line)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( isascii(*p) && wxIsspace(*p) )
         p++;
@@ -234,6 +249,9 @@ bool wxExtHelpController::ParseMapFileLine(const wxString& line)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( isascii(*p) && wxIsspace(*p) )
             p++;
@@ -322,10 +340,13 @@ bool wxExtHelpController::LoadFile(const wxString& file)
     if ( !input.Open(mapFile.GetFullPath()) )
         return false;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString& line = input.GetFirstLine();
           !input.Eof();
@@ -363,6 +384,9 @@ bool wxExtHelpController::DisplayContents()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -400,6 +424,9 @@ bool wxExtHelpController::DisplaySection(int sectionNo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -459,6 +486,9 @@ bool wxExtHelpController::KeywordSearch(const wxString& k,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (node)
         {
@@ -484,6 +514,9 @@ bool wxExtHelpController::KeywordSearch(const wxString& k,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (int j=0; ; j++)
                 {

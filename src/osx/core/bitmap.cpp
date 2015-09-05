@@ -557,6 +557,9 @@ IconRef wxBitmapRefData::GetIconRef()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for ( int y = 0 ; y < h ; ++y, sourcePtr += m_bytesPerRow , masksourcePtr += mask ? mask->GetBytesPerRow() : 0 )
                 {
@@ -569,6 +572,9 @@ IconRef wxBitmapRefData::GetIconRef()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for ( int x = 0 ; x < w ; ++x )
                     {
@@ -643,6 +649,9 @@ IconRef wxBitmapRefData::GetIconRef()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for ( int y = 0 ; y < h ; ++y, sourcePtr += m_bytesPerRow , masksourcePtr += mask ? mask->GetBytesPerRow() : 0 )
                 {
@@ -656,6 +665,9 @@ IconRef wxBitmapRefData::GetIconRef()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for ( int x = 0 ; x < w ; ++x )
                     {
@@ -750,6 +762,9 @@ CGImageRef wxBitmapRefData::CreateCGImage() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for ( int y = 0 ; y < h ; ++y , destalphastart += m_bytesPerRow, sourcemaskstart += maskrowbytes)
                 {
@@ -759,6 +774,9 @@ CGImageRef wxBitmapRefData::CreateCGImage() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for ( int x = 0 ; x < w ; ++x , sourcemask += kMaskBytesPerPixel , destalpha += 4 )
                     {
@@ -794,6 +812,9 @@ CGImageRef wxBitmapRefData::CreateCGImage() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for( int y = 0 ; y < m_height ; bufData+= m_bytesPerRow, ++y )
                 {
@@ -802,6 +823,9 @@ CGImageRef wxBitmapRefData::CreateCGImage() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for ( int x = 0 ; x < m_width ; bufDataIter += 4, ++x, ++i )
                     {
@@ -954,6 +978,9 @@ bool wxBitmap::CopyFromIcon(const wxIcon& icon)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int y = 0 ; y < h ; ++y )
             {
@@ -961,6 +988,9 @@ bool wxBitmap::CopyFromIcon(const wxIcon& icon)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for ( int x = 0 ; x < w ; ++x )
                 {
@@ -1020,6 +1050,9 @@ wxBitmap::wxBitmap(const char bits[], int the_width, int the_height, int no_bits
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int y = 0 ; y < the_height ; ++y , linestart += linesize, destptr += M_BITMAPDATA->GetBytesPerRow() )
             {
@@ -1030,6 +1063,9 @@ wxBitmap::wxBitmap(const char bits[], int the_width, int the_height, int no_bits
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for ( int x = 0 ; x < the_width ; ++x )
                 {
@@ -1216,6 +1252,9 @@ wxBitmap wxBitmap::GetSubBitmap(const wxRect &rect) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (int yy = 0; yy < destheight; ++yy, source += sourcelinesize , dest += destlinesize)
             {
@@ -1248,6 +1287,9 @@ wxBitmap wxBitmap::GetSubBitmap(const wxRect &rect) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (int yy = 0; yy < destheight; ++yy, source += sourcelinesize , dest += destlinesize)
             {
@@ -1413,6 +1455,9 @@ wxBitmap::wxBitmap(const wxImage& image, int depth, double scale)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (int y = 0; y < height; destinationstart += M_BITMAPDATA->GetBytesPerRow(), y++)
             {
@@ -1421,6 +1466,9 @@ wxBitmap::wxBitmap(const wxImage& image, int depth, double scale)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (int x = 0; x < width; x++)
                 {
@@ -1508,6 +1556,9 @@ wxImage wxBitmap::ConvertToImage() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int yy = 0; yy < height; yy++ , sourcestart += M_BITMAPDATA->GetBytesPerRow() , mask += maskBytesPerRow )
     {
@@ -1519,6 +1570,9 @@ wxImage wxBitmap::ConvertToImage() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int xx = 0; xx < width; xx++)
         {
@@ -1821,6 +1875,9 @@ bool wxMask::Create(const wxBitmap& bitmap)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int y = 0 ; y < m_height ; ++y , destdatabase += m_bytesPerRow )
         {
@@ -1831,6 +1888,9 @@ bool wxMask::Create(const wxBitmap& bitmap)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int x = 0 ; x < m_width ; ++x )
             {
@@ -1874,6 +1934,9 @@ bool wxMask::Create(const wxBitmap& bitmap, const wxColour& colour)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int y = 0 ; y < m_height ; ++y , srcdatabase+= sourceBytesRow, destdatabase += m_bytesPerRow)
         {
@@ -1885,6 +1948,9 @@ bool wxMask::Create(const wxBitmap& bitmap, const wxColour& colour)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int x = 0 ; x < m_width ; ++x )
             {
@@ -1916,6 +1982,9 @@ wxBitmap wxMask::GetBitmap() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int j = 0; j < m_height; j++, src += m_bytesPerRow, dst += dst_stride)
     {
@@ -1924,6 +1993,9 @@ wxBitmap wxMask::GetBitmap() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < m_width; i++)
         {

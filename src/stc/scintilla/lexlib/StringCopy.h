@@ -30,6 +30,9 @@ void StringCopy(T (&dest)[count], const T* source) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<count; i++) {
 		dest[i] = source[i];

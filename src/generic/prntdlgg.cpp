@@ -540,6 +540,9 @@ void wxGenericPrintSetupDialog::Init(wxPrintData* data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < output.GetCount(); i++)
         {
@@ -590,6 +593,9 @@ void wxGenericPrintSetupDialog::Init(wxPrintData* data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while (tok2.HasMoreTokens())
                 {
@@ -707,6 +713,9 @@ void wxGenericPrintSetupDialog::OnPrinter(wxListEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (long item = 0; item < m_printerListCtrl->GetItemCount(); item++)
         m_printerListCtrl->SetItemImage( item, -1 );
@@ -812,6 +821,9 @@ wxComboBox *wxGenericPrintSetupDialog::CreatePaperTypeChoice()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < n; i++)
     {
@@ -875,6 +887,9 @@ wxGenericPageSetupDialog::wxGenericPageSetupDialog( wxWindow *parent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < n; i++)
     {
@@ -1079,6 +1094,9 @@ wxComboBox *wxGenericPageSetupDialog::CreatePaperTypeChoice(int *x, int *y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < n; i++)
     {

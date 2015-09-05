@@ -236,6 +236,9 @@ void wxToggleButton::DoApplyWidgetStyle(GtkRcStyle *style)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (GList* item = list; item; item = item->next)
             {

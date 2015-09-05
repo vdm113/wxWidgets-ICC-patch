@@ -380,6 +380,9 @@ main(argc, argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ( fgets(line, (unsigned)(buf + bufsize - line), in) != NULL )
 	   {
@@ -450,6 +453,9 @@ skipspace(p, dir)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while ( !(*p == '*' && p[dir] == '/') )
 		   {	if ( *p == 0 )
@@ -474,6 +480,9 @@ writeblanks(start, end)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for ( p = start; p < end; p++ )
 	  if ( *p != '\r' && *p != '\n' )
@@ -517,6 +526,9 @@ test1(buf)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ( isidchar(*p) )
 	  p++;
@@ -545,6 +557,9 @@ test1(buf)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while ( (kp = *key) != 0 )
 		   {	if ( strlen(kp) == len && !strncmp(kp, buf, len) )
@@ -577,6 +592,9 @@ convert1(buf, out, header, convert_varargs)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for ( endfn = buf; *(endfn++) != '('; )
 	  ;
@@ -595,6 +613,9 @@ top:	p = endfn;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	do
 	   {	int level = 0;
@@ -615,6 +636,9 @@ top:	p = endfn;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for ( ; end == NULL; p++ )
 		   {	switch(*p)
@@ -648,6 +672,9 @@ top:	p = endfn;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for ( ; ; )
 		   {	p = skipspace(p - 1, -1);
@@ -660,6 +687,9 @@ top:	p = endfn;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while ( level )
 				 switch ( *--p )
@@ -676,6 +706,9 @@ top:	p = endfn;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					while ( !isidfirstchar(*p) )
 					  p = skipspace(p, 1) + 1;
@@ -706,6 +739,14 @@ found:		if ( *p == '.' && p[-1] == '.' && p[-2] == '.' )
 		   }
 		p = end;
 	   }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
 	while ( *p++ == ',' );
 	*bp = p;
 	/* Make a special check for 'void' arglist */
@@ -721,10 +762,13 @@ found:		if ( *p == '.' && p[-1] == '.' && p[-2] == '.' )
 	   }
 	/* Put out the function name and left parenthesis. */
 	p = buf;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ( p != endfn ) putc(*p, out), p++;
 	/* Put out the declaration. */
@@ -734,6 +778,9 @@ found:		if ( *p == '.' && p[-1] == '.' && p[-2] == '.' )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for ( p = breaks[0]; *p; p++ )
 		  if ( *p == '\r' || *p == '\n' )
@@ -746,6 +793,9 @@ found:		if ( *p == '.' && p[-1] == '.' && p[-2] == '.' )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while ( isidchar(*p) )
 			  putc(*p, out), p++;
@@ -758,6 +808,9 @@ found:		if ( *p == '.' && p[-1] == '.' && p[-2] == '.' )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for ( ap = breaks+2; ap <= bp; ap += 2 )
 		  (*ap)[-1] = ';';

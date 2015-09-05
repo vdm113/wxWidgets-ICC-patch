@@ -4528,6 +4528,9 @@ void wxStyledTextCtrl::StyleSetSpec(int styleNum, const wxString& spec) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (tkz.HasMoreTokens()) {
         wxString token = tkz.GetNextToken();

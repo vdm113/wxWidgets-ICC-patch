@@ -259,6 +259,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((c = getopt(argc, argv, "c:r:o:h")) != -1) {
 		switch (c) {
@@ -296,6 +299,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (optind < argc-1) {
 		infilename = argv[optind];
@@ -476,6 +482,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for(clr = 0; clr < clr_tbl_size; clr++) {
 				    red_tbl[clr] = 257*clr_tbl[clr*n_clr_elems+2];
@@ -574,6 +583,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (row = 0; row < length; row++) {
 				if (info_hdr.iHeight > 0)
@@ -641,6 +653,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			    while(j < uncompr_size && i < compr_size) {
 				if ( comprbuf[i] ) {
@@ -649,6 +664,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				    while( runlength > 0
 					   && j < uncompr_size
@@ -677,6 +695,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					for (k = 0; k < runlength && j < uncompr_size && i < compr_size; k++)
 					    uncomprbuf[j++] = comprbuf[i++];
@@ -691,6 +712,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			    while( j < uncompr_size && i < compr_size ) {
 				if ( comprbuf[i] ) {
@@ -699,6 +723,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				    while( runlength > 0 && j < uncompr_size && i < compr_size ) {
 					if ( runlength & 0x01 )
@@ -728,6 +755,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					for (k = 0; k < runlength && j < uncompr_size && i < compr_size; k++) {
 					    if (k & 0x01)
@@ -748,6 +778,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (row = 0; row < length; row++) {
 				if (TIFFWriteScanline(out,
@@ -811,6 +844,9 @@ rearrangePixels(char *buf, uint32 width, uint32 bit_count)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (i = 0; i < width; i++, buf += 3) {
 				tmp = *buf;
@@ -826,6 +862,9 @@ rearrangePixels(char *buf, uint32 width, uint32 bit_count)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for (i = 0; i < width; i++, buf += 4) {
 					tmp = *buf;
@@ -855,6 +894,9 @@ processCompressOptions(char* opt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while( cp )
                 {
@@ -919,6 +961,9 @@ usage(void)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);

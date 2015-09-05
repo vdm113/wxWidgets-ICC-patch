@@ -66,6 +66,9 @@ bool FollowsPostfixOperator(StyleContext &sc, LexAccessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (--pos > 0) {
 		char ch = styler[pos];
@@ -85,6 +88,9 @@ bool followsReturnKeyword(StyleContext &sc, LexAccessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (--pos > lineStartPos) {
 		char ch = styler.SafeGetCharAt(pos);
@@ -98,6 +104,9 @@ bool followsReturnKeyword(StyleContext &sc, LexAccessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (*s
 		&& pos >= lineStartPos
@@ -117,6 +126,9 @@ bool OnlySpaceOrTab(const std::string &s) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (std::string::const_iterator it = s.begin(); it != s.end(); ++it) {
 		if (!IsSpaceOrTab(*it))
@@ -131,6 +143,9 @@ std::vector<std::string> StringSplit(const std::string &text, int separator) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (std::string::const_iterator it = text.begin(); it != text.end(); ++it) {
 		if (*it == separator) {
@@ -159,6 +174,9 @@ BracketPair FindBracketPair(std::vector<std::string> &tokens) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (itTok != tokens.end()) {
 			if (*itTok == "(") {
@@ -188,6 +206,9 @@ void highlightTaskMarker(StyleContext &sc, LexAccessor &styler,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (i < lengthMarker) {
 			char ch = styler.SafeGetCharAt(currPos + i);
@@ -250,6 +271,9 @@ std::string GetRestOfLine(LexAccessor &styler, int start, bool allowSpace) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (((start+i) < endLine) && (ch != '\r')) {
 		char chNext = styler.SafeGetCharAt(start + i + 1, '\n');

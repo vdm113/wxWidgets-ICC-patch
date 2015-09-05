@@ -255,6 +255,9 @@ void ArraysTestCase::wxStringArrayTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (wxArrayString::iterator it = a1.begin(), en = a1.end(); it != en; ++it)
         a4.Add(*it);
@@ -516,6 +519,9 @@ void ArraysTestCase::wxStringArraySplitJoinTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < WXSIZEOF(separators); i++)
     {
@@ -538,6 +544,9 @@ void ArraysTestCase::wxStringArraySplitJoinTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < WXSIZEOF(separators); i++)
     {
@@ -708,6 +717,9 @@ void ArraysTestCase::TestSTL()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < COUNT; ++i )
         list1.push_back(i);
@@ -715,10 +727,13 @@ void ArraysTestCase::TestSTL()
     CPPUNIT_ASSERT( list1.capacity() >= (size_t)COUNT );
     CPPUNIT_ASSERT_EQUAL( COUNT, list1.size() );
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( it = list1.begin(), en = list1.end(), i = 0;
           it != en; ++it, ++i )
@@ -728,10 +743,13 @@ void ArraysTestCase::TestSTL()
 
     CPPUNIT_ASSERT_EQUAL( COUNT, i );
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( rit = list1.rbegin(), ren = list1.rend(), i = COUNT;
           rit != ren; ++rit, --i )
@@ -754,10 +772,13 @@ void ArraysTestCase::TestSTL()
     list1.erase(list1.begin());
     list1.erase(list1.end()-1);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( it = list1.begin(), en = list1.end(), i = 1;
           it != en; ++it, ++i )

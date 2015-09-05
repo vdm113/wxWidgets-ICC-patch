@@ -203,10 +203,13 @@ print_mem_stats (j_common_ptr cinfo, int pool_id)
   fprintf(stderr, "Freeing pool %d, total space = %ld\n",
 	  pool_id, mem->total_space_allocated);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (lhdr_ptr = mem->large_list[pool_id]; lhdr_ptr != NULL;
        lhdr_ptr = lhdr_ptr->hdr.next) {
@@ -214,10 +217,13 @@ print_mem_stats (j_common_ptr cinfo, int pool_id)
 	    (long) lhdr_ptr->hdr.bytes_used);
   }
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (shdr_ptr = mem->small_list[pool_id]; shdr_ptr != NULL;
        shdr_ptr = shdr_ptr->hdr.next) {
@@ -297,6 +303,9 @@ alloc_small (j_common_ptr cinfo, int pool_id, size_t sizeofobject)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (hdr_ptr != NULL) {
     if (hdr_ptr->hdr.bytes_left >= sizeofobject)
@@ -321,6 +330,9 @@ alloc_small (j_common_ptr cinfo, int pool_id, size_t sizeofobject)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (;;) {
       hdr_ptr = (small_pool_ptr) jpeg_get_small(cinfo, min_request + slop);
@@ -450,6 +462,9 @@ alloc_sarray (j_common_ptr cinfo, int pool_id,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (currow < numrows) {
     rowsperchunk = MIN(rowsperchunk, numrows - currow);
@@ -460,6 +475,9 @@ alloc_sarray (j_common_ptr cinfo, int pool_id,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = rowsperchunk; i > 0; i--) {
       result[currow++] = workspace;
@@ -508,6 +526,9 @@ alloc_barray (j_common_ptr cinfo, int pool_id,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (currow < numrows) {
     rowsperchunk = MIN(rowsperchunk, numrows - currow);
@@ -518,6 +539,9 @@ alloc_barray (j_common_ptr cinfo, int pool_id,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = rowsperchunk; i > 0; i--) {
       result[currow++] = workspace;
@@ -646,6 +670,9 @@ realize_virt_arrays (j_common_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (sptr = mem->virt_sarray_list; sptr != NULL; sptr = sptr->next) {
     if (sptr->mem_buffer == NULL) { /* if not realized yet */
@@ -659,6 +686,9 @@ realize_virt_arrays (j_common_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (bptr = mem->virt_barray_list; bptr != NULL; bptr = bptr->next) {
     if (bptr->mem_buffer == NULL) { /* if not realized yet */
@@ -697,6 +727,9 @@ realize_virt_arrays (j_common_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (sptr = mem->virt_sarray_list; sptr != NULL; sptr = sptr->next) {
     if (sptr->mem_buffer == NULL) { /* if not realized yet */
@@ -726,6 +759,9 @@ realize_virt_arrays (j_common_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (bptr = mem->virt_barray_list; bptr != NULL; bptr = bptr->next) {
     if (bptr->mem_buffer == NULL) { /* if not realized yet */
@@ -766,6 +802,9 @@ do_sarray_io (j_common_ptr cinfo, jvirt_sarray_ptr ptr, wxjpeg_boolean writing)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; i < (long) ptr->rows_in_mem; i += ptr->rowsperchunk) {
     /* One chunk, but check for short chunk at end of buffer */
@@ -804,6 +843,9 @@ do_barray_io (j_common_ptr cinfo, jvirt_barray_ptr ptr, wxjpeg_boolean writing)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; i < (long) ptr->rows_in_mem; i += ptr->rowsperchunk) {
     /* One chunk, but check for short chunk at end of buffer */
@@ -901,6 +943,9 @@ access_virt_sarray (j_common_ptr cinfo, jvirt_sarray_ptr ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       while (undef_row < end_row) {
 	jzero_far((void FAR *) ptr->mem_buffer[undef_row], bytesperrow);
@@ -991,6 +1036,9 @@ access_virt_barray (j_common_ptr cinfo, jvirt_barray_ptr ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       while (undef_row < end_row) {
 	jzero_far((void FAR *) ptr->mem_buffer[undef_row], bytesperrow);
@@ -1038,6 +1086,9 @@ free_pool (j_common_ptr cinfo, int pool_id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (sptr = mem->virt_sarray_list; sptr != NULL; sptr = sptr->next) {
       if (sptr->b_s_open) {	/* there may be no backing store */
@@ -1050,6 +1101,9 @@ free_pool (j_common_ptr cinfo, int pool_id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (bptr = mem->virt_barray_list; bptr != NULL; bptr = bptr->next) {
       if (bptr->b_s_open) {	/* there may be no backing store */
@@ -1068,6 +1122,9 @@ free_pool (j_common_ptr cinfo, int pool_id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (lhdr_ptr != NULL) {
     large_pool_ptr next_lhdr_ptr = lhdr_ptr->hdr.next;
@@ -1087,6 +1144,9 @@ free_pool (j_common_ptr cinfo, int pool_id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (shdr_ptr != NULL) {
     small_pool_ptr next_shdr_ptr = shdr_ptr->hdr.next;
@@ -1118,6 +1178,9 @@ self_destruct (j_common_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (pool = JPOOL_NUMPOOLS-1; pool >= JPOOL_PERMANENT; pool--) {
     free_pool(cinfo, pool);
@@ -1198,6 +1261,9 @@ jinit_memory_mgr (j_common_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (pool = JPOOL_NUMPOOLS-1; pool >= JPOOL_PERMANENT; pool--) {
     mem->small_list[pool] = NULL;

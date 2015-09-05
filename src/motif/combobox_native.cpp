@@ -108,6 +108,9 @@ bool wxComboBox::Create(wxWindow *parent, wxWindowID id,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < n; ++i)
         Append( choices[i] );
@@ -211,6 +214,9 @@ int wxComboBox::DoInsertItems(const wxArrayStringsAdapter & items,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < numItems; ++i, ++pos )
     {
@@ -250,6 +256,9 @@ void wxComboBox::Clear()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while(n > 0)
     {

@@ -299,6 +299,9 @@ bool wxFile::ReadAll(wxString *str, const wxMBConv& conv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ;; )
     {

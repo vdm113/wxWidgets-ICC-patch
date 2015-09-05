@@ -101,6 +101,9 @@ int test_packbits()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < length; i++ )
     {
@@ -204,6 +207,9 @@ int rewrite_test( const char *filename, int length, int bigtiff,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < length; i++ )
     {
@@ -240,6 +246,9 @@ int rewrite_test( const char *filename, int length, int bigtiff,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( i = 0; i < length; i++ )
         upd_rowoffset[i] = base_value + i*10;
@@ -258,6 +267,9 @@ int rewrite_test( const char *filename, int length, int bigtiff,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( i = 0; i < length; i++ )
         upd_bytecount[i] = 100 + i*10;
@@ -291,6 +303,9 @@ int rewrite_test( const char *filename, int length, int bigtiff,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( i = 0; i < length; i++ )
     {
@@ -319,6 +334,9 @@ int rewrite_test( const char *filename, int length, int bigtiff,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( i = 0; i < length; i++ )
     {

@@ -175,6 +175,9 @@ int wxMenu::FindAccel(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (n = 0; n < nCount; n++)
         if (m_vAccels[n]->m_command == nId)
@@ -200,6 +203,9 @@ void wxMenu::UpdateAccel(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (node)
         {
@@ -508,6 +514,9 @@ wxMenuItem* wxMenu::DoRemove(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (nPos = 0; node; nPos++)
     {
@@ -581,6 +590,9 @@ size_t wxMenu::CopyAccels(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t n = 0; n < nCount; n++)
     {
@@ -689,10 +701,13 @@ wxMenuItem* wxMenu::FindItem(
 #   pragma swp
 #   pragma unroll
 #endif
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxMenuItemList::compatibility_iterator node = m_items.GetFirst();
           node && !pItem;
@@ -765,6 +780,9 @@ wxMenuBar::wxMenuBar(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < nCount; i++ )
     {
@@ -847,6 +865,9 @@ WXHMENU wxMenuBar::Create()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0, it = m_menus.begin(); i < nCount; i++, it++)
         {
@@ -1141,6 +1162,9 @@ void wxMenuBar::RebuildAccelTable()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0, it = m_menus.begin(); i < nCount; i++, it++)
     {
@@ -1161,6 +1185,9 @@ void wxMenuBar::RebuildAccelTable()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0, it = m_menus.begin(); i < nCount; i++, it++)
         {
@@ -1227,6 +1254,9 @@ int wxMenuBar::FindMenuItem(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0, it = m_menus.begin(); i < nCount; i++, it++)
     {
@@ -1258,6 +1288,9 @@ wxMenuItem* wxMenuBar::FindItem(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0, it = m_menus.begin(); !pItem && (i < nCount); i++, it++)
     {
@@ -1289,6 +1322,9 @@ wxMenuItem* wxMenuBar::FindItem(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0, it = m_menus.begin(); !pItem && (i < nCount); i++, it++)
     {

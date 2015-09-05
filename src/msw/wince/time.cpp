@@ -164,6 +164,9 @@ _add(const char * str, char * pt, const char * const ptlim)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (pt < ptlim && (*pt = *str++) != '\0')
         ++pt;
@@ -188,6 +191,9 @@ _fmt(const char * format, const struct tm * const t, char * pt, const char * con
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ; *format; ++format) {
         if (*format == '%') {
@@ -392,6 +398,9 @@ label:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for ( ; ; ) {
                         int    len;
@@ -691,6 +700,9 @@ static time_t __cdecl common_tm_to_time(int day, int month, int year, int hour, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (--month)
     {

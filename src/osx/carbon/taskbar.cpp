@@ -281,6 +281,9 @@ wxMenu * wxDeepCopyMenu( wxMenu *menu )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (theNode != NULL)
     {

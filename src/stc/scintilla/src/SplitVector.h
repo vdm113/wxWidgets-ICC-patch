@@ -58,6 +58,9 @@ protected:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (growSize < size / 6)
 				growSize *= 2;

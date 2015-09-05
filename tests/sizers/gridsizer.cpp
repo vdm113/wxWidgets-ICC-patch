@@ -98,10 +98,13 @@ void GridSizerTestCase::SetChildren(const wxVector<wxWindow*>& children,
                                     const wxSizerFlags& flags)
 {
     m_sizer->Clear();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxVector<wxWindow*>::const_iterator i = children.begin();
           i != children.end();
@@ -129,6 +132,9 @@ void GridSizerTestCase::Expand()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < 4; n++ )
     {

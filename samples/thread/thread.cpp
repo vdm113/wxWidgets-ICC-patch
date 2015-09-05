@@ -516,6 +516,9 @@ void MyFrame::UpdateThreadStatus()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < nCount; n++ )
     {
@@ -566,6 +569,9 @@ void MyFrame::OnStartThreads(wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
     {
@@ -595,6 +601,9 @@ void MyFrame::OnStartThreads(wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
     {
@@ -655,6 +664,9 @@ void MyFrame::OnResumeThread(wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( n < count && !wxGetApp().m_threads[n]->IsPaused() )
         n++;
@@ -683,6 +695,9 @@ void MyFrame::OnPauseThread(wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( n >= 0 && !wxGetApp().m_threads[n]->IsRunning() )
         n--;
@@ -961,6 +976,9 @@ wxThread::ExitCode MyThread::Entry()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( m_count = 0; m_count < 10; m_count++ )
     {
@@ -1027,6 +1045,9 @@ wxThread::ExitCode MyWorkerThread::Entry()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( m_count = 0; !m_frame->Cancelled() && (m_count < 100); m_count++ )
     {
@@ -1076,6 +1097,9 @@ wxThread::ExitCode MyGUIThread::Entry()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i=0; i<GUITHREAD_NUM_UPDATES && !TestDestroy(); i++)
     {

@@ -66,6 +66,9 @@ static DataBrowserItemID* CreateDataBrowserItemIDArray(size_t& noOfEntries, wxDa
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (size_t i=0; i<noOfItems; ++i)
     if (items[i].IsOk())
@@ -577,6 +580,9 @@ OSStatus wxMacDataBrowserTableViewControl::GetFreePropertyID(DataBrowserProperty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (*propertyID=kMinPropertyID; *propertyID<std::numeric_limits<DataBrowserPropertyID>::max(); ++(*propertyID))
     if (IsUsedPropertyID(*propertyID) == errDataBrowserPropertyNotFound)
@@ -668,6 +674,9 @@ OSStatus wxMacDataBrowserTableViewControl::GetFreeItemID(DataBrowserItemID* id) 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (*id=noOfItems; *id<std::numeric_limits<DataBrowserItemID>::max(); ++(*id))
       if (IsUsedItemID(*id) == errDataBrowserItemNotFound)
@@ -677,6 +686,9 @@ OSStatus wxMacDataBrowserTableViewControl::GetFreeItemID(DataBrowserItemID* id) 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (*id=0; *id<noOfItems; ++(*id))
       if (IsUsedItemID(*id) == errDataBrowserItemNotFound)
@@ -758,6 +770,9 @@ size_t wxMacDataBrowserTableViewControl::GetSelectedItemIDs(wxArrayDataBrowserIt
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (size_t i=0; i<noOfItems; ++i)
   {
@@ -875,6 +890,9 @@ bool wxMacDataViewDataBrowserListViewControl::ClearColumns()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (UInt32 i=0; i<noOfColumns; ++i)
     wxCHECK_MSG(RemoveColumnByIndex(0) == noErr,false,_("Could not remove column."));
@@ -1178,6 +1196,9 @@ int wxMacDataViewDataBrowserListViewControl::GetSelections(wxDataViewItemArray& 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (size_t i=0; i<noOfSelectedItems; ++i)
     sel[i] = wxDataViewItem(reinterpret_cast<void*>(itemIDs[i]));
@@ -1645,6 +1666,9 @@ void wxMacDataViewDataBrowserListViewControl::DataBrowserItemNotificationProc(Da
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
           for (size_t i=0; i<dataViewCtrlPtr->GetColumnCount(); ++i)
           {
@@ -1869,6 +1893,9 @@ Boolean wxMacDataViewDataBrowserListViewControl::DataBrowserAcceptDragProc(DragR
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (UInt16 indexDraggedItem=1; indexDraggedItem<=noOfDraggedItems; ++indexDraggedItem)
   {
@@ -1965,6 +1992,9 @@ Boolean wxMacDataViewDataBrowserListViewControl::DataBrowserAddDragItemProc(Drag
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t i=0; i<noOfFormats; ++i)
           switch (dataFormats[i].GetType())
@@ -2055,6 +2085,9 @@ Boolean wxMacDataViewDataBrowserListViewControl::DataBrowserReceiveDragProc(Drag
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (UInt16 indexDraggedItem=1; indexDraggedItem<=noOfDraggedItems; ++indexDraggedItem)
   {
@@ -2123,6 +2156,9 @@ wxDataFormat wxMacDataViewDataBrowserListViewControl::GetDnDDataFormat(wxDataObj
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ((indexFormat < noOfFormats) && compatible)
     {
@@ -2179,6 +2215,9 @@ wxDataObjectComposite* wxMacDataViewDataBrowserListViewControl::GetDnDDataObject
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (UInt16 indexFlavor=1; indexFlavor<=noOfFlavors; ++indexFlavor)
     {
@@ -2272,6 +2311,9 @@ wxDataViewColumn* wxMacDataViewDataBrowserListViewControl::GetColumnPtr(DataBrow
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i=0; i<noOfColumns; ++i)
       if (dataViewCtrlPtr->GetColumnPtr(i)->GetNativeData()->GetPropertyID() == propertyID)

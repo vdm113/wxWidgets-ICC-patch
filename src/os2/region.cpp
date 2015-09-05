@@ -610,6 +610,9 @@ void wxRegionIterator::Reset(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for( LONG i = 0; i < m_lNumRects; i++)
                 {

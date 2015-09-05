@@ -203,6 +203,9 @@ GetFileNameFromNode(const wxXmlNode *node, const wxXmlResourceDataRecords& files
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ;; )
     {
@@ -224,10 +227,13 @@ GetFileNameFromNode(const wxXmlNode *node, const wxXmlResourceDataRecords& files
 
     // NB: 'node' now points to the root of XML document
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxXmlResourceDataRecords::const_iterator i = files.begin();
           i != files.end(); ++i )
@@ -281,10 +287,13 @@ wxXmlResource::~wxXmlResource()
 {
     ClearHandlers();
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxXmlResourceDataRecords::iterator i = m_data->begin();
           i != m_data->end(); ++i )
@@ -360,6 +369,9 @@ bool wxXmlResource::LoadAllFiles(const wxString& dirname)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxArrayString::const_iterator i = files.begin(); i != files.end(); ++i )
     {
@@ -395,6 +407,9 @@ bool wxXmlResource::Load(const wxString& filemask_)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (!fnd.empty())
     {
@@ -435,10 +450,13 @@ bool wxXmlResource::Unload(const wxString& filename)
 #endif // wxUSE_FILESYSTEM
 
     bool unloaded = false;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxXmlResourceDataRecords::iterator i = Data().begin();
           i != Data().end(); ++i )
@@ -489,10 +507,13 @@ void wxXmlResource::InsertHandler(wxXmlResourceHandler *handler)
 
 void wxXmlResource::ClearHandlers()
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxVector<wxXmlResourceHandler*>::iterator i = m_handlers.begin();
           i != m_handlers.end(); ++i )
@@ -625,6 +646,9 @@ static void ProcessPlatformProperty(wxXmlNode *node)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (c)
     {
@@ -639,6 +663,9 @@ static void ProcessPlatformProperty(wxXmlNode *node)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (tkn.HasMoreTokens())
             {
@@ -681,6 +708,9 @@ static void PreprocessForIdRanges(wxXmlNode *rootnode)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (c)
     {
@@ -695,6 +725,9 @@ static void PreprocessForIdRanges(wxXmlNode *rootnode)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (c)
     {
@@ -712,10 +745,13 @@ bool wxXmlResource::UpdateResources()
 {
     bool rt = true;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxXmlResourceDataRecords::iterator i = Data().begin();
           i != Data().end(); ++i )
@@ -858,6 +894,9 @@ wxXmlNode *wxXmlResource::DoFindResource(wxXmlNode *parent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (node = parent->GetChildren(); node; node = node->GetNext())
     {
@@ -893,6 +932,9 @@ wxXmlNode *wxXmlResource::DoFindResource(wxXmlNode *parent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (node = parent->GetChildren(); node; node = node->GetNext())
         {
@@ -951,10 +993,13 @@ wxXmlResource::GetResourceNodeAndLocation(const wxString& name,
     // reloading of XRC files
     const_cast<wxXmlResource *>(this)->UpdateResources();
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxXmlResourceDataRecords::const_iterator f = Data().begin();
           f != Data().end(); ++f )
@@ -982,10 +1027,13 @@ static void MergeNodesOver(wxXmlNode& dest, wxXmlNode& overwriteWith,
                            const wxString& overwriteFilename)
 {
     // Merge attributes:
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxXmlAttribute *attr = overwriteWith.GetAttributes();
           attr; attr = attr->GetNext() )
@@ -995,6 +1043,9 @@ static void MergeNodesOver(wxXmlNode& dest, wxXmlNode& overwriteWith,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (dattr = dest.GetAttributes(); dattr; dattr = dattr->GetNext())
         {
@@ -1015,6 +1066,9 @@ static void MergeNodesOver(wxXmlNode& dest, wxXmlNode& overwriteWith,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (wxXmlNode* node = overwriteWith.GetChildren(); node; node = node->GetNext())
     {
@@ -1025,6 +1079,9 @@ static void MergeNodesOver(wxXmlNode& dest, wxXmlNode& overwriteWith,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (dnode = dest.GetChildren(); dnode; dnode = dnode->GetNext() )
         {
@@ -1125,10 +1182,13 @@ wxXmlResource::DoCreateResFromNode(wxXmlNode& node,
     }
     else if (node.GetName() == wxT("object"))
     {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxVector<wxXmlResourceHandler*>::iterator h = m_handlers.begin();
               h != m_handlers.end(); ++h )
@@ -1326,6 +1386,9 @@ void wxIdRange::Finalise(const wxXmlNode* node)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i=m_start; i <= m_end; ++i)
     {
@@ -1367,10 +1430,13 @@ wxIdRangeManager *wxIdRangeManager::ms_instance = NULL;
 
 wxIdRangeManager::~wxIdRangeManager()
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxVector<wxIdRange*>::iterator i = m_IdRanges.begin();
           i != m_IdRanges.end(); ++i )
@@ -1460,6 +1526,9 @@ int wxIdRangeManager::Find(const wxString& rangename) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i=0; i < (int)m_IdRanges.size(); ++i )
     {
@@ -1472,10 +1541,13 @@ int wxIdRangeManager::Find(const wxString& rangename) const
 
 void wxIdRangeManager::FinaliseRanges(const wxXmlNode* node) const
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxVector<wxIdRange*>::const_iterator i = m_IdRanges.begin();
           i != m_IdRanges.end(); ++i )
@@ -1559,10 +1631,13 @@ wxObject *wxXmlResourceHandlerImpl::CreateResource(wxXmlNode *node, wxObject *pa
         wxString subclass = node->GetAttribute(wxT("subclass"), wxEmptyString);
         if (!subclass.empty())
         {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (wxXmlSubclassFactories::iterator i = wxXmlResource::ms_subclassFactories->begin();
                  i != wxXmlResource::ms_subclassFactories->end(); ++i)
@@ -1623,6 +1698,9 @@ int wxXmlResourceHandlerImpl::GetStyle(const wxString& param, int defaults)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (tkn.HasMoreTokens())
     {
@@ -1665,6 +1743,9 @@ wxString wxXmlResourceHandlerImpl::GetText(const wxString& param, bool translate
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator dt = str1.begin(); dt != str1.end(); ++dt )
     {
@@ -2093,6 +2174,9 @@ wxImageList *wxXmlResourceHandlerImpl::GetImageList(const wxString& param)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (n)
         {
@@ -2132,6 +2216,9 @@ wxXmlNode *wxXmlResourceHandlerImpl::GetParamNode(const wxString& param)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (n)
     {
@@ -2174,6 +2261,9 @@ wxString wxXmlResourceHandlerImpl::GetNodeContent(const wxXmlNode *node)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (n)
     {
@@ -2488,6 +2578,9 @@ wxFont wxXmlResourceHandlerImpl::GetFont(const wxString& param, wxWindow* parent
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (tk.HasMoreTokens())
         {
@@ -2668,6 +2761,9 @@ void wxXmlResourceHandlerImpl::CreateChildren(wxObject *parent, bool this_hnd_on
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxXmlNode *n = m_handler->m_node->GetChildren(); n; n = n->GetNext() )
     {
@@ -2690,6 +2786,9 @@ void wxXmlResourceHandlerImpl::CreateChildrenPrivately(wxObject *parent, wxXmlNo
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (n)
     {
@@ -2781,10 +2880,13 @@ static inline unsigned XRCIdHash(const char *str_id)
 {
     unsigned index = 0;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (const char *c = str_id; *c != '\0'; c++) index += (unsigned int)*c;
     index %= XRCID_TABLE_SIZE;
@@ -2803,6 +2905,9 @@ static void XRCID_Assign(const wxString& str_id, int value)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (XRCID_record *rec = XRCID_Records[index]; rec; rec = rec->next)
     {
@@ -2832,6 +2937,9 @@ static int XRCID_Lookup(const char *str_id, int value_if_not_found = wxID_NONE)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (XRCID_record *rec = XRCID_Records[index]; rec; rec = rec->next)
     {
@@ -3044,6 +3152,9 @@ wxString wxXmlResource::FindXRCIDById(int numId)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < XRCID_TABLE_SIZE; i++ )
     {
@@ -3051,6 +3162,9 @@ wxString wxXmlResource::FindXRCIDById(int numId)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( XRCID_record *rec = XRCID_Records[i]; rec; rec = rec->next )
         {
@@ -3079,6 +3193,9 @@ static void CleanXRCID_Records()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < XRCID_TABLE_SIZE; i++)
     {
@@ -3121,10 +3238,13 @@ public:
         delete wxIdRangeManager::Set(NULL);
         if(wxXmlResource::ms_subclassFactories)
         {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( wxXmlSubclassFactories::iterator i = wxXmlResource::ms_subclassFactories->begin();
                   i != wxXmlResource::ms_subclassFactories->end(); ++i )

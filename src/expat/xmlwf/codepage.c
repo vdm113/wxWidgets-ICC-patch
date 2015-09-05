@@ -28,6 +28,9 @@ codepageMap(int cp, int *map)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; i < 256; i++)
     map[i] = -1;
@@ -36,6 +39,9 @@ codepageMap(int cp, int *map)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < MAX_LEADBYTES; i+=2) {
       int j, lim;
@@ -46,6 +52,9 @@ codepageMap(int cp, int *map)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (j = info.LeadByte[i]; j <= lim; j++)
         map[j] = -2;
@@ -55,6 +64,9 @@ codepageMap(int cp, int *map)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; i < 256; i++) {
    if (map[i] == -1) {

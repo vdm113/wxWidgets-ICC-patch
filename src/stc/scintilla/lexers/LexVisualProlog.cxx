@@ -221,6 +221,9 @@ static void endLookAhead(char s[], LexAccessor &styler, int start) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (' ' == ch) {
         start++;
@@ -231,6 +234,9 @@ static void endLookAhead(char s[], LexAccessor &styler, int start) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (i < 100 && isLowerLetter(ch)){
         s[i] = ch;
@@ -285,6 +291,9 @@ void SCI_METHOD LexerVisualProlog::Lex(unsigned int startPos, int length, int in
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (; sc.More(); sc.Forward()) {
 
@@ -487,6 +496,9 @@ void SCI_METHOD LexerVisualProlog::Fold(unsigned int startPos, int length, int i
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = startPos; i < endPos; i++) {
         char ch = chNext;

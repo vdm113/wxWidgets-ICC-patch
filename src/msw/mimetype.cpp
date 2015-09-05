@@ -101,6 +101,9 @@ static bool CanonicalizeParams(wxString& command)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; (n < len) && !foundFilename; n++ )
     {
@@ -180,6 +183,9 @@ size_t wxFileTypeImpl::GetAllCommands(wxArrayString *verbs,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( ok )
     {
@@ -567,6 +573,9 @@ size_t wxMimeTypesManagerImpl::EnumAllFileTypes(wxArrayString& mimetypes)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( cont )
     {
@@ -671,6 +680,9 @@ wxFileType *wxMimeTypesManagerImpl::Associate(const wxFileTypeInfo& ftInfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (iExtCount=1; iExtCount < ftInfo.GetExtensionsCount(); iExtCount++ )
     {

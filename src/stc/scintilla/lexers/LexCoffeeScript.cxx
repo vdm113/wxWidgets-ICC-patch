@@ -60,6 +60,9 @@ static bool FollowsPostfixOperator(StyleContext &sc, Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (--pos > 0) {
 		char ch = styler[pos];
@@ -79,6 +82,9 @@ static bool followsReturnKeyword(StyleContext &sc, Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (--pos > lineStartPos) {
 		char ch = styler.SafeGetCharAt(pos);
@@ -92,6 +98,9 @@ static bool followsReturnKeyword(StyleContext &sc, Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (*s
 	       && pos >= lineStartPos
@@ -127,6 +136,9 @@ static void ColouriseCoffeeScriptDoc(unsigned int startPos, int length, int init
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (back > 0 && IsSpaceEquiv(styler.StyleAt(--back)))
 			;
@@ -148,6 +160,9 @@ static void ColouriseCoffeeScriptDoc(unsigned int startPos, int length, int init
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
 
@@ -221,6 +236,9 @@ static void ColouriseCoffeeScriptDoc(unsigned int startPos, int length, int init
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					while ((sc.ch < 0x80) && islower(sc.ch))
 						sc.Forward();    // gobble regex flags
@@ -312,6 +330,9 @@ static bool IsCommentLine(int line, Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i = pos; i < eol_pos; i++) {
 		char ch = styler[i];
@@ -346,6 +367,9 @@ static void FoldCoffeeScriptDoc(unsigned int startPos, int length, int,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (lineCurrent > 0) {
 		lineCurrent--;
@@ -368,6 +392,9 @@ static void FoldCoffeeScriptDoc(unsigned int startPos, int length, int,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((lineCurrent <= docLines) && ((lineCurrent <= maxLines) || prevComment)) {
 
@@ -405,6 +432,9 @@ static void FoldCoffeeScriptDoc(unsigned int startPos, int length, int,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while ((lineNext < docLines) &&
 		        ((indentNext & SC_FOLDLEVELWHITEFLAG) ||
@@ -429,6 +459,9 @@ static void FoldCoffeeScriptDoc(unsigned int startPos, int length, int,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (--skipLine > lineCurrent) {
 			int skipLineIndent = styler.IndentAmount(skipLine, &spaceFlags, NULL);

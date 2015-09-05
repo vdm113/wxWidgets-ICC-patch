@@ -111,6 +111,9 @@ static void ColouriseMagikDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
 
@@ -119,10 +122,13 @@ static void ColouriseMagikDoc(unsigned int startPos, int length, int initStyle,
         if(sc.ch == '#') {
             if (sc.chNext == '#') sc.SetState(SCE_MAGIK_HYPER_COMMENT);
             else sc.SetState(SCE_MAGIK_COMMENT);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for(; sc.More() && !(sc.atLineEnd); sc.Forward());
             sc.SetState(SCE_MAGIK_DEFAULT);
@@ -135,10 +141,13 @@ static void ColouriseMagikDoc(unsigned int startPos, int length, int initStyle,
             if(sc.More())
             {
                 sc.Forward();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for(; sc.More() && sc.ch != '"'; sc.Forward());
             }
@@ -160,6 +169,9 @@ static void ColouriseMagikDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	            for(
                     int scanPosition = 0;
@@ -210,15 +222,21 @@ static void ColouriseMagikDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	            for(sc.Forward(); sc.More(); sc.Forward()) {
 	                if(firstTrip && IsAlphaSym(sc.ch));
 	                else if(!firstTrip && IsAlNumSym(sc.ch));
 	                else if(sc.ch == '|') {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	                    for(sc.Forward();
                             sc.More() && sc.ch != '|';
@@ -240,6 +258,9 @@ static void ColouriseMagikDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	            for(sc.Forward(); sc.More(); sc.Forward()) {
 	                if(firstTrip && IsAlphaCore(sc.ch)) {
@@ -263,6 +284,9 @@ static void ColouriseMagikDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	            for(
                     int scanPosition = 0;
@@ -421,6 +445,9 @@ static void FoldMagikDoc(unsigned int startPos, int length, int,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(
         int currentPos = startPos;
@@ -451,6 +478,9 @@ static void FoldMagikDoc(unsigned int startPos, int length, int,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for(
                     int scanPosition = 0;

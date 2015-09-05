@@ -280,6 +280,9 @@ int wxTextCtrl::GetNumberOfLines() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (!finished)
         {
@@ -313,10 +316,13 @@ long wxTextCtrl::XYToPosition(long x, long y) const
     */
     /* Now a little workaround: */
     long r=0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i=0; i<y; i++) r+=(GetLineLength(i)+1);
     return r+x;
@@ -359,6 +365,9 @@ wxString wxTextCtrl::GetLineText(long lineNo) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; currentLine != lineNo && s[i]; i++ )
             if (s[i] == '\n')
@@ -369,6 +378,9 @@ wxString wxTextCtrl::GetLineText(long lineNo) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (j = 0; s[i] && s[i] != '\n'; i++, j++ )
                 buf += s[i];
@@ -599,6 +611,9 @@ static void MergeChangesIntoString(wxString& value,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < cbs->startPos; ++i)
             *dest++ = *p++;
@@ -609,6 +624,9 @@ static void MergeChangesIntoString(wxString& value,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (*insert)
                 *dest++ = *insert++;
@@ -618,6 +636,9 @@ static void MergeChangesIntoString(wxString& value,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (p = passwd + cbs->endPos; *p; )
             *dest++ = *p++;
@@ -662,6 +683,9 @@ wxTextWindowModifyProc (Widget WXUNUSED(w), XtPointer clientData, XmTextVerifyCa
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0; i < cbs->text->length; ++i)
                 cbs->text->ptr[i] = '*';

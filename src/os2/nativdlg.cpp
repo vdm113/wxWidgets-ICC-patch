@@ -99,6 +99,9 @@ bool wxWindow::LoadNativeDialog (
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ((hWndNext = ::WinGetNextWindow(hEnum)) != NULLHANDLE)
         pChild = CreateWindowFromHWND( this
@@ -164,6 +167,9 @@ wxWindow* wxWindow::GetWindowChild1 (
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {

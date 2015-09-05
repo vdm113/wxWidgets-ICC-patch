@@ -51,6 +51,9 @@ generatePatternedData(void* buff, size_t len, unsigned char startVal,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while(len--)
     {
@@ -66,6 +69,9 @@ static void generateRandomData(void* buff, size_t len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while(len--)
     {
@@ -83,6 +89,9 @@ static void generateGibberish(void* buff, size_t len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while(len--)
     {

@@ -209,6 +209,9 @@ void wxEditableListBox::SetStrings(const wxArrayString& strings)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < strings.GetCount(); i++)
         m_listCtrl->InsertItem(i, strings[i]);
@@ -225,6 +228,9 @@ void wxEditableListBox::GetStrings(wxArrayString& strings) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < m_listCtrl->GetItemCount()-1; i++)
         strings.Add(m_listCtrl->GetItemText(i));

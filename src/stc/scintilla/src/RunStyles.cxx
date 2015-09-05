@@ -38,6 +38,9 @@ int RunStyles::RunFromPosition(int position) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((run > 0) && (position == starts->PositionFromPartition(run-1))) {
 		run--;
@@ -166,6 +169,9 @@ bool RunStyles::FillRange(int &position, int value, int &fillLength) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int run=runStart+1; run<runEnd; run++) {
 			RemoveRun(runStart+1);
@@ -241,6 +247,9 @@ void RunStyles::DeleteRange(int position, int deleteLength) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int run=runStart; run<runEnd; run++) {
 			RemoveRun(runStart);
@@ -259,6 +268,9 @@ bool RunStyles::AllSame() const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int run = 1; run < starts->Partitions(); run++) {
 		if (styles->ValueAt(run) != styles->ValueAt(run - 1))
@@ -281,6 +293,9 @@ int RunStyles::Find(int value, int start) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (run < starts->Partitions()) {
 			if (styles->ValueAt(run) == value)
@@ -306,6 +321,9 @@ void RunStyles::Check() const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (start < Length()) {
 		int end = EndRun(start);
@@ -321,6 +339,9 @@ void RunStyles::Check() const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int j=1; j<styles->Length()-1; j++) {
 		if (styles->ValueAt(j) == styles->ValueAt(j-1)) {

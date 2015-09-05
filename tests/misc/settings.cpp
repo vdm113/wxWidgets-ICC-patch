@@ -72,6 +72,9 @@ void SettingsTestCase::GetColour()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i=wxSYS_COLOUR_SCROLLBAR; i < wxSYS_COLOUR_MAX; i++)
         CPPUNIT_ASSERT( wxSystemSettings::GetColour((wxSystemColour)i).IsOk() );
@@ -94,6 +97,9 @@ void SettingsTestCase::GetFont()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i < WXSIZEOF(ids); i++)
     {
@@ -120,6 +126,9 @@ void SettingsTestCase::GlobalColours()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i < WXSIZEOF(col); i++)
         CPPUNIT_ASSERT( col[i].IsOk() );
@@ -139,6 +148,9 @@ void SettingsTestCase::GlobalFonts()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i < WXSIZEOF(font); i++)
     {
@@ -175,6 +187,9 @@ void SettingsTestCase::GlobalBrushes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i < WXSIZEOF(brush); i++)
         CPPUNIT_ASSERT( brush[i].IsOk() );
@@ -201,6 +216,9 @@ void SettingsTestCase::GlobalPens()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i < WXSIZEOF(pen); i++)
         CPPUNIT_ASSERT( pen[i].IsOk() );

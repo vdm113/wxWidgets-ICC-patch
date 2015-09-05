@@ -117,6 +117,9 @@ void RegExMatchTestCase::runTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < re.GetMatchCount() && tkz.HasMoreTokens(); i++) {
             wxString expected = tkz.GetNextToken();
@@ -325,6 +328,9 @@ wxString wxRegExTestSuite::FlagStr(int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; (unsigned)flags >> i; i++) {
         switch (flags & (1 << i)) {

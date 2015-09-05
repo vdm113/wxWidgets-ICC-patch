@@ -123,6 +123,9 @@ bool wxColourBase::FromString(const wxString& str)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( unsigned n = 0; n < len; n++ )
                 alphaPtr[n] = '\0';

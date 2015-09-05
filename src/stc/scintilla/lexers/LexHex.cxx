@@ -234,6 +234,9 @@ static bool ForwardWithinLine(StyleContext &sc, int nb)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i = 0; i < nb; i++) {
 		if (sc.atLineEnd) {
@@ -269,6 +272,9 @@ static int CountByteCount(unsigned int startPos, int uncountedDigits, Accessor &
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (!IsNewline(styler.SafeGetCharAt(pos, '\n'))) {
 		pos++;
@@ -300,6 +306,9 @@ static int CalcChecksum(unsigned int startPos, int cnt, bool twosCompl, Accessor
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int pos = startPos; pos < startPos + cnt; pos += 2) {
 		int val = GetHexaChar(pos, styler);
@@ -329,6 +338,9 @@ static unsigned int GetSrecRecStartPosition(unsigned int pos, Accessor &styler)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (styler.SafeGetCharAt(pos) != 'S') {
 		pos--;
@@ -480,6 +492,9 @@ static unsigned int GetIHexRecStartPosition(unsigned int pos, Accessor &styler)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (styler.SafeGetCharAt(pos) != ':') {
 		pos--;
@@ -624,6 +639,9 @@ static int CountTEHexDigitCount(unsigned int recStartPos, Accessor &styler)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (!IsNewline(styler.SafeGetCharAt(pos, '\n'))) {
 		pos++;
@@ -670,6 +688,9 @@ static int CalcTEHexChecksum(unsigned int recStartPos, Accessor &styler)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; pos <= recStartPos + length; ++pos) {
 		int val = GetHexaNibble(styler.SafeGetCharAt(pos));
@@ -695,6 +716,9 @@ static void ColouriseSrecDoc(unsigned int startPos, int length, int initStyle, W
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (sc.More()) {
 		unsigned int recStartPos;
@@ -770,6 +794,9 @@ static void ColouriseSrecDoc(unsigned int startPos, int length, int initStyle, W
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					for (int i = 0; i < dataFieldSize * 2; i++) {
 						if ((i & 0x3) == 0) {
@@ -829,6 +856,9 @@ static void ColouriseIHexDoc(unsigned int startPos, int length, int initStyle, W
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (sc.More()) {
 		unsigned int recStartPos;
@@ -899,6 +929,9 @@ static void ColouriseIHexDoc(unsigned int startPos, int length, int initStyle, W
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					for (int i = 0; i < dataFieldSize * 2; i++) {
 						if ((i & 0x3) == 0) {
@@ -968,6 +1001,9 @@ static void FoldIHexDoc(unsigned int startPos, int length, int, WordList *[], Ac
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
 		bool atEOL = i == (lineStartNext - 1);
@@ -1008,6 +1044,9 @@ static void ColouriseTEHexDoc(unsigned int startPos, int length, int initStyle, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (sc.More()) {
 		unsigned int recStartPos;
@@ -1086,6 +1125,9 @@ static void ColouriseTEHexDoc(unsigned int startPos, int length, int initStyle, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for (int i = 0; i < digitCount; i++) {
 					if ((i & 0x3) == 0) {

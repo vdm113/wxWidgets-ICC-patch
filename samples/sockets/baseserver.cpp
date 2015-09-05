@@ -353,10 +353,13 @@ bool Server::OnInit()
 
 int Server::OnExit()
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( TList::compatibility_iterator it = m_threadWorkers.GetFirst();
           it;
@@ -366,10 +369,13 @@ int Server::OnExit()
         delete it->GetData();
     }
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( EList::compatibility_iterator it2 = m_eventWorkers.GetFirst();
           it2;
@@ -450,6 +456,9 @@ void  Server::OnWorkerEvent(WorkerEvent& pEvent)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(TList::compatibility_iterator it = m_threadWorkers.GetFirst(); it ; it = it->GetNext())
     {
@@ -471,6 +480,9 @@ void  Server::OnWorkerEvent(WorkerEvent& pEvent)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(EList::compatibility_iterator it2 = m_eventWorkers.GetFirst(); it2 ; it2 = it2->GetNext())
     {
@@ -535,6 +547,9 @@ wxThread::ExitCode ThreadWorker::Entry()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         do
         {
@@ -549,6 +564,14 @@ wxThread::ExitCode ThreadWorker::Entry()
             LogWorker(wxString::Format("to_process: %d",to_process));
 
         }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
         while (!m_socket->Error() && to_process != 0);
 
         if (signature[0] == 0)
@@ -575,6 +598,9 @@ wxThread::ExitCode ThreadWorker::Entry()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         do
         {
@@ -589,6 +615,14 @@ wxThread::ExitCode ThreadWorker::Entry()
             LogWorker(wxString::Format("ThreadWorker: %d bytes readed, %d todo",m_socket->LastCount(),to_process));
 
         }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
         while(!m_socket->Error() && to_process != 0);
 
         to_process = size;
@@ -597,6 +631,9 @@ wxThread::ExitCode ThreadWorker::Entry()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         do
         {
@@ -609,6 +646,14 @@ wxThread::ExitCode ThreadWorker::Entry()
            to_process -= m_socket->LastCount();
            LogWorker(wxString::Format("ThreadWorker: %d bytes written, %d todo",m_socket->LastCount(),to_process));
         }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
         while(!m_socket->Error() && to_process != 0);
     }
 
@@ -650,6 +695,9 @@ EventWorker::DoRead()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         do
         {
@@ -694,6 +742,14 @@ EventWorker::DoRead()
                 }
             }
         }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
         while(!m_socket->Error() && (2 - m_infill != 0));
     }
 
@@ -704,6 +760,9 @@ EventWorker::DoRead()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do
     {
@@ -735,6 +794,14 @@ EventWorker::DoRead()
             DoWrite();
         }
     }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
     while(!m_socket->Error());
 };
 
@@ -772,6 +839,9 @@ void  EventWorker::DoWrite()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do
     {
@@ -813,6 +883,14 @@ void  EventWorker::DoWrite()
         LogWorker(wxString::Format("Written %d of %d bytes, todo %d",
                   m_written, m_size, m_size - m_written));
     }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
     while (!m_socket->Error());
 }
 

@@ -249,6 +249,9 @@ LZWSetupDecode(TIFF* tif)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		do {
 			sp->dec_codetab[code].value = code;
@@ -408,6 +411,9 @@ LZWDecode(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			do {
 				codep = codep->next;
@@ -418,6 +424,9 @@ LZWDecode(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				do {
 					*--tp = codep->value;
@@ -435,6 +444,9 @@ LZWDecode(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		do {
 			int t;
@@ -459,6 +471,9 @@ LZWDecode(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (occ > 0) {
 		NextCode(tif, sp, bp, code, GetNextCode);
@@ -540,6 +555,9 @@ LZWDecode(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				do {
 					codep = codep->next;
@@ -551,6 +569,9 @@ LZWDecode(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					do  {
 						*--tp = codep->value;
@@ -567,6 +588,9 @@ LZWDecode(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			do {
 				int t;
@@ -667,6 +691,9 @@ LZWDecodeCompat(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			do {
 				codep = codep->next;
@@ -676,6 +703,9 @@ LZWDecodeCompat(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			do {
 				*--tp = codep->value;
@@ -692,6 +722,9 @@ LZWDecodeCompat(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		do {
 			*--tp = codep->value;
@@ -713,6 +746,9 @@ LZWDecodeCompat(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (occ > 0) {
 		NextCode(tif, sp, bp, code, GetNextCodeCompat);
@@ -792,6 +828,9 @@ LZWDecodeCompat(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				do {
 					codep = codep->next;
@@ -802,6 +841,9 @@ LZWDecodeCompat(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				do  {
 					*--tp = codep->value;
@@ -816,6 +858,9 @@ LZWDecodeCompat(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			do {
 				*--tp = codep->value;
@@ -986,6 +1031,9 @@ LZWEncode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (cc > 0) {
 		c = *bp++; cc--; incount++;
@@ -1014,6 +1062,9 @@ LZWEncode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			do {
 				/*
@@ -1152,6 +1203,9 @@ cl_hash(LZWCodecState* sp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	do {
 		i -= 8;
@@ -1169,6 +1223,9 @@ cl_hash(LZWCodecState* sp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i += 8; i > 0; i--, hp--)
 		hp->hash = -1;

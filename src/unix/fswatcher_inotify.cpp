@@ -159,6 +159,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( ; it != m_watches.end(); ++it )
         {
@@ -187,6 +190,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (left > 0) // OPT checking 'memory' would suffice
         {
@@ -510,6 +516,9 @@ protected:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( it != m_cookies.end() )
         {
@@ -623,6 +632,9 @@ protected:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned int i=0; i < WXSIZEOF(flag_mapping); ++i)
         {
@@ -661,6 +673,9 @@ protected:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( ; i < WXSIZEOF(flag_mapping); ++i) {
             // in this mapping multiple flags at once don't happen

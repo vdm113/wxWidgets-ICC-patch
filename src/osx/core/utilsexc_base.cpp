@@ -118,6 +118,9 @@ bool wxMacLaunch(char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(char** argvcopy = argv; *argvcopy != NULL ; ++argvcopy)
     {
@@ -195,6 +198,9 @@ bool wxMacLaunch(char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( ; *argv != NULL ; ++argv)
     {

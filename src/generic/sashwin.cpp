@@ -125,6 +125,9 @@ void wxSashWindow::OnMouseEvent(wxMouseEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (parent && !wxDynamicCast(parent, wxDialog) &&
                              !wxDynamicCast(parent, wxFrame))
@@ -392,6 +395,9 @@ wxSashEdgePosition wxSashWindow::SashHitTest(int x, int y, int WXUNUSED(toleranc
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 4; i++)
     {
@@ -484,6 +490,9 @@ void wxSashWindow::DrawSashes(wxDC& dc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 4; i++)
         if (m_sashes[i].m_show)

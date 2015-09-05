@@ -65,6 +65,9 @@ wxJoystick::wxJoystick(int joystick)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( i=0; i<maxsticks; i++ )
     {
@@ -298,6 +301,9 @@ int wxJoystick::GetNumberJoysticks()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( i=0; i<maxsticks; i++ )
     {

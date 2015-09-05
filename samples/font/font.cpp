@@ -518,6 +518,9 @@ bool MyFrame::DoEnumerateFamilies(bool fixedWidthOnly,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( n = 0; n < nFacenames; n++ )
                 facenames[n] = fontEnumerator.GetFacenames().Item(n);
@@ -667,6 +670,9 @@ wxFontEncoding MyFrame::GetEncodingFromUser()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
@@ -937,6 +943,9 @@ void MyFrame::OnViewMsg(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
     {
@@ -960,6 +969,9 @@ void MyFrame::OnViewMsg(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( *pc && *pc != wxT('"') )
             {
@@ -1127,6 +1139,9 @@ void MyCanvas::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < 7; i++ )
     {
@@ -1134,6 +1149,9 @@ void MyCanvas::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int j = 0; j < 32; j++ )
         {
@@ -1159,6 +1177,9 @@ void MyCanvas::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( l = 0; l < 8; l++ )
     {
@@ -1171,6 +1192,9 @@ void MyCanvas::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( l = 0; l < 33; l++ )
     {

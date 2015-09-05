@@ -130,6 +130,9 @@ png_do_pack(png_row_infop row_info, png_bytep row, png_uint_32 bit_depth)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
             {
@@ -172,6 +175,9 @@ png_do_pack(png_row_infop row_info, png_bytep row, png_uint_32 bit_depth)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
             {
@@ -216,6 +222,9 @@ png_do_pack(png_row_infop row_info, png_bytep row, png_uint_32 bit_depth)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
             {
@@ -325,6 +334,9 @@ png_do_shift(png_row_infop row_info, png_bytep row,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (i = 0; i < row_bytes; i++, bp++)
          {
@@ -338,6 +350,9 @@ png_do_shift(png_row_infop row_info, png_bytep row,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (j = shift_start[0]; j > -shift_dec[0]; j -= shift_dec[0])
             {
@@ -362,6 +377,9 @@ png_do_shift(png_row_infop row_info, png_bytep row,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (i = 0; i < istop; i++, bp++)
          {
@@ -377,6 +395,9 @@ png_do_shift(png_row_infop row_info, png_bytep row,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (j = shift_start[c]; j > -shift_dec[c]; j -= shift_dec[c])
             {
@@ -401,6 +422,9 @@ png_do_shift(png_row_infop row_info, png_bytep row,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (bp = row, i = 0; i < istop; i++)
          {
@@ -415,6 +439,9 @@ png_do_shift(png_row_infop row_info, png_bytep row,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (j = shift_start[c]; j > -shift_dec[c]; j -= shift_dec[c])
             {
@@ -452,6 +479,9 @@ png_do_write_swap_alpha(png_row_infop row_info, png_bytep row)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0, sp = dp = row; i < row_width; i++)
             {
@@ -475,6 +505,9 @@ png_do_write_swap_alpha(png_row_infop row_info, png_bytep row)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0, sp = dp = row; i < row_width; i++)
             {
@@ -507,6 +540,9 @@ png_do_write_swap_alpha(png_row_infop row_info, png_bytep row)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0, sp = dp = row; i < row_width; i++)
             {
@@ -528,6 +564,9 @@ png_do_write_swap_alpha(png_row_infop row_info, png_bytep row)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0, sp = dp = row; i < row_width; i++)
             {
@@ -566,6 +605,9 @@ png_do_write_invert_alpha(png_row_infop row_info, png_bytep row)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0, sp = dp = row; i < row_width; i++)
             {
@@ -591,6 +633,9 @@ png_do_write_invert_alpha(png_row_infop row_info, png_bytep row)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0, sp = dp = row; i < row_width; i++)
             {
@@ -623,6 +668,9 @@ png_do_write_invert_alpha(png_row_infop row_info, png_bytep row)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0, sp = dp = row; i < row_width; i++)
             {
@@ -643,6 +691,9 @@ png_do_write_invert_alpha(png_row_infop row_info, png_bytep row)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0, sp = dp = row; i < row_width; i++)
             {
@@ -691,6 +742,9 @@ png_do_write_intrapixel(png_row_infop row_info, png_bytep row)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (i = 0, rp = row; i < row_width; i++, rp += bytes_per_pixel)
          {
@@ -718,6 +772,9 @@ png_do_write_intrapixel(png_row_infop row_info, png_bytep row)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (i = 0, rp = row; i < row_width; i++, rp += bytes_per_pixel)
          {

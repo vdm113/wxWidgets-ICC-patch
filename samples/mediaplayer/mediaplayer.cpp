@@ -334,6 +334,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ((nLast = this->GetNextItem(nLast,
                                          wxLIST_NEXT_ALL,
@@ -371,6 +374,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < files.GetCount(); ++i)
         {
@@ -457,6 +463,9 @@ bool wxMediaPlayerApp::OnCmdLineParsed(wxCmdLineParser& parser)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t paramNr=0; paramNr < parser.GetParamCount(); ++paramNr)
         m_params.push_back(parser.GetParam(paramNr));
@@ -493,6 +502,9 @@ bool wxMediaPlayerApp::OnInit()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < m_params.size(); n++ )
             frame->AddToPlayList(m_params[n]);
@@ -770,6 +782,9 @@ wxMediaPlayerFrame::wxMediaPlayerFrame(const wxString& title)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(int i = 0; ; ++i)
         {
@@ -829,6 +844,9 @@ wxMediaPlayerFrame::~wxMediaPlayerFrame()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(int i = 0; i < playlist->GetItemCount(); ++i)
     {
@@ -1282,6 +1300,9 @@ void wxMediaPlayerFrame::OnKeyDown(wxKeyEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
        while(true)
        {
@@ -1365,6 +1386,9 @@ void wxMediaPlayerFrame::OnPrev(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while(true)
     {
@@ -1423,6 +1447,9 @@ void wxMediaPlayerFrame::OnNext(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while(true)
     {

@@ -95,6 +95,9 @@ fsdither(TIFF* in, TIFF* out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (j = 0; j < imagewidth; ++j)
 		*nextptr++ = *inptr++;
@@ -102,6 +105,9 @@ fsdither(TIFF* in, TIFF* out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 1; i < imagelength; ++i) {
 		tmpptr = thisline;
@@ -116,6 +122,9 @@ fsdither(TIFF* in, TIFF* out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (j = 0; j < imagewidth; ++j)
 			*nextptr++ = *inptr++;
@@ -127,6 +136,9 @@ fsdither(TIFF* in, TIFF* out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (j = 0; j < imagewidth; ++j) {
 			register int v;
@@ -178,6 +190,9 @@ processG3Options(char* cp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		do {
 			cp++;
@@ -237,6 +252,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((c = getopt(argc, argv, "c:f:r:t:")) != -1)
 		switch (c) {
@@ -358,6 +376,9 @@ usage(void)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);

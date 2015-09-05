@@ -97,6 +97,9 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < cmsize; i++) {
             if (i < 32)
@@ -251,12 +254,18 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < HEIGHT; i++) {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 0, k = 0; j < WIDTH;) {
             cmap_index = (j / chunk_size) + ((i / chunk_size) * nchunks);

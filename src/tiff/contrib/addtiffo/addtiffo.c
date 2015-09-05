@@ -101,6 +101,9 @@ int main( int argc, char ** argv )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while( argv[1][0] == '-' )
     {
@@ -132,6 +135,9 @@ int main( int argc, char ** argv )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while( nOverviewCount < argc - 2 && nOverviewCount < 100 )
     {

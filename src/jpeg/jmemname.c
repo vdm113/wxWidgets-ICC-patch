@@ -108,6 +108,9 @@ select_file_name (char * fname)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (;;) {
     next_file_num++;		/* advance counter */

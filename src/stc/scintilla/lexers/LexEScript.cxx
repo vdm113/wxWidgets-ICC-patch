@@ -63,6 +63,9 @@ static void ColouriseESCRIPTDoc(unsigned int startPos, int length, int initStyle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
 
@@ -209,6 +212,9 @@ static void FoldESCRIPTDoc(unsigned int startPos, int length, int initStyle, Wor
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
@@ -253,6 +259,9 @@ static void FoldESCRIPTDoc(unsigned int startPos, int length, int initStyle, Wor
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for(j = 0; ( j < 31 ) && ( j < i-lastStart+1 ); j++) {
 					s[j] = static_cast<char>(tolower(styler[lastStart + j]));

@@ -277,6 +277,9 @@ int wxMemStruct::CheckAllPrevious ()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (wxMemStruct * st = this->m_prev; st != 0; st = st->m_prev) {
         if (st->AssertIt ())
@@ -573,6 +576,9 @@ void wxDebugContext::TraverseList (PmSFV func, wxMemStruct *from)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (st = from; st != 0; st = st->m_next)
   {
@@ -635,6 +641,9 @@ static wxDebugStatsStruct *FindStatsStruct(wxDebugStatsStruct *st, wxChar *name)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (st)
   {
@@ -686,6 +695,9 @@ bool wxDebugContext::PrintStatistics(bool detailed)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (st = from; st != 0; st = st->m_next)
   {
@@ -728,6 +740,9 @@ bool wxDebugContext::PrintStatistics(bool detailed)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (list)
     {
@@ -771,6 +786,9 @@ bool wxDebugContext::PrintClasses(void)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (wxClassInfo::const_iterator node = wxClassInfo::begin_classinfo(),
                                     end = wxClassInfo::end_classinfo();
@@ -829,6 +847,9 @@ int wxDebugContext::Check(bool checkAll)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (wxMemStruct * st = from; st != 0; st = st->m_next)
   {
@@ -857,6 +878,9 @@ int wxDebugContext::CountObjectsLeft(bool sinceCheckpoint)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (wxMemStruct * st = from; st != 0; st = st->m_next)
   {

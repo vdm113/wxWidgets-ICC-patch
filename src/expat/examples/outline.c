@@ -61,6 +61,9 @@ start(void *data, const char *el, const char **attr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; i < Depth; i++)
     printf("  ");
@@ -71,6 +74,9 @@ start(void *data, const char *el, const char **attr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; attr[i]; i += 2) {
     printf(" %s='%s'", attr[i], attr[i + 1]);
@@ -101,6 +107,9 @@ main(int argc, char *argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (;;) {
     int done;

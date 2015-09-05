@@ -70,6 +70,9 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < (WIDTH / 8) / 2; i++)
         scan_line[i] = 0;
@@ -78,6 +81,9 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = (WIDTH / 8) / 2; i < (WIDTH / 8); i++)
         scan_line[i] = 255;
@@ -86,6 +92,9 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < HEIGHT / 2; i++)
         TIFFWriteScanline(tif, scan_line, i, 0);
@@ -94,6 +103,9 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < (WIDTH / 8) / 2; i++)
         scan_line[i] = 255;
@@ -102,6 +114,9 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = (WIDTH / 8) / 2; i < (WIDTH / 8); i++)
         scan_line[i] = 0;
@@ -110,6 +125,9 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = HEIGHT / 2; i < HEIGHT; i++)
         TIFFWriteScanline(tif, scan_line, i, 0);

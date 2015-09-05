@@ -183,10 +183,13 @@ void TreeListCtrlTestCase::Traversal()
 
     // Get{First,Next}Item() test:
     unsigned numItems = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxTreeListItem item = m_treelist->GetFirstItem();
           item.IsOk();

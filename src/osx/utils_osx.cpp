@@ -260,6 +260,9 @@ CGColorRef wxMacCreateCGColorFromHITheme( ThemeBrush brush )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int i = 0 ; i <= maxcachedbrush ; ++i )
                 HIThemeBrushCreateCGColor( i-5, &themecolors[i] );

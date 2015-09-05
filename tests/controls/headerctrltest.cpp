@@ -123,6 +123,9 @@ void HeaderCtrlTestCase::Reorder()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < COL_COUNT; n++ )
         m_header->AppendColumn(wxHeaderColumnSimple(wxString::Format("%d", n)));
@@ -132,6 +135,9 @@ void HeaderCtrlTestCase::Reorder()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < COL_COUNT; n++ )
         CPPUNIT_ASSERT_EQUAL( n, order[n] );

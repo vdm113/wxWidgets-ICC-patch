@@ -132,6 +132,9 @@ void HashesTestCase::wxHashTableTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < COUNT; ++i )
             hash.Put(i, &o + i);
@@ -144,6 +147,9 @@ void HashesTestCase::wxHashTableTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (it)
         {
@@ -157,6 +163,9 @@ void HashesTestCase::wxHashTableTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( i = 99; i >= 0; --i )
             CPPUNIT_ASSERT( hash.Get(i) == &o + i );
@@ -165,6 +174,9 @@ void HashesTestCase::wxHashTableTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < COUNT; ++i )
             hash.Put(i, &o + i + 20);
@@ -173,6 +185,9 @@ void HashesTestCase::wxHashTableTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( i = 99; i >= 0; --i )
             CPPUNIT_ASSERT( hash.Get(i) == &o + i);
@@ -181,6 +196,9 @@ void HashesTestCase::wxHashTableTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < COUNT/2; ++i )
             CPPUNIT_ASSERT( hash.Delete(i) == &o + i);
@@ -189,6 +207,9 @@ void HashesTestCase::wxHashTableTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( i = COUNT/2; i < COUNT; ++i )
             CPPUNIT_ASSERT( hash.Get(i) == &o + i);
@@ -197,6 +218,9 @@ void HashesTestCase::wxHashTableTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < COUNT/2; ++i )
             CPPUNIT_ASSERT( hash.Get(i) == &o + i + 20);
@@ -205,6 +229,9 @@ void HashesTestCase::wxHashTableTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < COUNT/2; ++i )
             CPPUNIT_ASSERT( hash.Delete(i) == &o + i + 20);
@@ -213,6 +240,9 @@ void HashesTestCase::wxHashTableTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < COUNT/2; ++i )
             CPPUNIT_ASSERT( hash.Get(i) == NULL);
@@ -303,6 +333,9 @@ void HashesTestCase::wxUntypedHashTableDeleteContents()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < WXSIZEOF(hashTestData); n++ )
         {
@@ -346,6 +379,9 @@ void HashesTestCase::wxTypedHashTableTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < WXSIZEOF(hashTestData); n++ )
         {
@@ -359,6 +395,9 @@ void HashesTestCase::wxTypedHashTableTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < WXSIZEOF(hashTestData); n++ )
         {
@@ -475,6 +514,9 @@ HashMapTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( i = 0; i < count; ++i )
     {
@@ -489,6 +531,9 @@ HashMapTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( i = 0; i < count; ++i )
     {
@@ -502,6 +547,9 @@ HashMapTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( i = 0, it = sh.begin(); it != sh.end(); ++it, ++i )
     {
@@ -519,6 +567,9 @@ HashMapTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( i = 0, it = sh.begin(); it != sh.end(); ++it, ++i )
     {
@@ -531,6 +582,9 @@ HashMapTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( i = 0; i < count; ++i )
     {

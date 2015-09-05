@@ -101,6 +101,9 @@ static bool DoRegionUnion(wxRegionBase& region,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int y=0; y < height; y++)
     {
@@ -112,6 +115,9 @@ static bool DoRegionUnion(wxRegionBase& region,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int x=0; x < width; x++)
         {
@@ -121,6 +127,9 @@ static bool DoRegionUnion(wxRegionBase& region,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( x < width)
             {

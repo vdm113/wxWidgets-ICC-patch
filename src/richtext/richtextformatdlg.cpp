@@ -294,6 +294,9 @@ wxWindow* wxRichTextFormattingDialog::FindPage(wxClassInfo* info) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < GetBookCtrl()->GetPageCount(); i++)
     {
@@ -322,6 +325,9 @@ bool wxRichTextFormattingDialogFactory::CreatePages(long pages, wxRichTextFormat
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < availablePageCount; i ++)
     {
@@ -588,6 +594,9 @@ wxRichTextFormattingDialog* wxRichTextFormattingDialog::GetDialog(wxWindow* win)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (p && !wxDynamicCast(p, wxRichTextFormattingDialog))
         p = p->GetParent();
@@ -795,6 +804,9 @@ void wxRichTextColourSwatchCtrl::OnMouseEvent(wxMouseEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (parent != NULL && !wxDynamicCast(parent, wxDialog) && !wxDynamicCast(parent, wxFrame))
             parent = parent->GetParent();

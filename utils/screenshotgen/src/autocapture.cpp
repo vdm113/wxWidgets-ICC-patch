@@ -71,6 +71,9 @@ void AutoCaptureMechanism::Delay(int seconds)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( clock() - start < (clock_t)CLOCKS_PER_SEC * seconds)
         wxYieldIfNeeded();
@@ -96,11 +99,22 @@ bool AutoCaptureMechanism::Capture(wxBitmap* bitmap, int x, int y,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do
     {
         fullscreen = wxBitmap(wxT("/tmp/wx_screen_capture.png"), wxBITMAP_TYPE_PNG);
     }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
     while(!fullscreen.IsOk());
 
     *bitmap = fullscreen.GetSubBitmap(wxRect(x, y, width, height));
@@ -165,6 +179,9 @@ void AutoCaptureMechanism::Save(wxBitmap* screenshot, const wxString& fileName)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (fullFileName.FileExists())
         fullFileName.SetName(fullFileName.GetName() + "_");
@@ -179,10 +196,13 @@ void AutoCaptureMechanism::CaptureAll()
     m_notebook->SetSelection(0);
     wxYield();
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (ControlList::iterator it = m_controlList.begin();
          it != m_controlList.end();
@@ -208,6 +228,9 @@ void AutoCaptureMechanism::CaptureAll()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             do
             {
@@ -219,6 +242,14 @@ void AutoCaptureMechanism::CaptureAll()
                 Union(&screenshot, &screenshot2, &combined);
                 screenshot = combined;
             }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
             while(!(it->flag & AJ_UnionEnd));
         }
 
@@ -342,6 +373,9 @@ wxRect AutoCaptureMechanism::GetRect(wxWindow* ctrl, int flag)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < 4; ++i)
             l[i] = new wxStaticText(parent, wxID_ANY, wxT(" "));
@@ -384,6 +418,9 @@ void AutoCaptureMechanism::PutBack(wxWindow * ctrl)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (wxSizerItemList::iterator it = children.begin(); it != children.end(); ++it)
     {

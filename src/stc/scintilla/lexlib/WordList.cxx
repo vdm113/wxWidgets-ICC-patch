@@ -41,6 +41,9 @@ static char **ArrayFromWordList(char *wordlist, int *len, bool onlyLineEnds = fa
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i=0; i<256; i++) {
 		wordSeparator[i] = false;
@@ -55,6 +58,9 @@ static char **ArrayFromWordList(char *wordlist, int *len, bool onlyLineEnds = fa
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int j = 0; wordlist[j]; j++) {
 		int curr = static_cast<unsigned char>(wordlist[j]);
@@ -71,6 +77,9 @@ static char **ArrayFromWordList(char *wordlist, int *len, bool onlyLineEnds = fa
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (size_t k = 0; k < slen; k++) {
 			if (!wordSeparator[static_cast<unsigned char>(wordlist[k])]) {
@@ -110,6 +119,9 @@ bool WordList::operator!=(const WordList &other) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i=0; i<len; i++) {
 		if (strcmp(words[i], other.words[i]) != 0)
@@ -165,6 +177,9 @@ void WordList::Set(const char *s) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int k = 0; k < ELEMENTS(starts); k++)
 		starts[k] = -1;
@@ -172,6 +187,9 @@ void WordList::Set(const char *s) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int l = len - 1; l >= 0; l--) {
 		unsigned char indexChar = words[l][0];
@@ -194,6 +212,9 @@ bool WordList::InList(const char *s) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (static_cast<unsigned char>(words[j][0]) == firstChar) {
 			if (s[1] == words[j][1]) {
@@ -203,6 +224,9 @@ bool WordList::InList(const char *s) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (*a && *a == *b) {
 					a++;
@@ -220,6 +244,9 @@ bool WordList::InList(const char *s) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (words[j][0] == '^') {
 			const char *a = words[j] + 1;
@@ -228,6 +255,9 @@ bool WordList::InList(const char *s) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (*a && *a == *b) {
 				a++;
@@ -256,6 +286,9 @@ bool WordList::InListAbbreviated(const char *s, const char marker) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (static_cast<unsigned char>(words[j][0]) == firstChar) {
 			bool isSubword = false;
@@ -271,6 +304,9 @@ bool WordList::InListAbbreviated(const char *s, const char marker) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (*a && *a == *b) {
 					a++;
@@ -292,6 +328,9 @@ bool WordList::InListAbbreviated(const char *s, const char marker) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (words[j][0] == '^') {
 			const char *a = words[j] + 1;
@@ -300,6 +339,9 @@ bool WordList::InListAbbreviated(const char *s, const char marker) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (*a && *a == *b) {
 				a++;

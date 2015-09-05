@@ -46,6 +46,9 @@ static int tillEndOfTripleQuote(Accessor &styler, int pos, int max) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (;;) {
     if (styler.SafeGetCharAt(pos, '\0') == '\0') return pos;
@@ -69,6 +72,9 @@ static int scanString(Accessor &styler, int pos, int max, bool rawMode) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (;;) {
     if (pos >= max) return pos;
@@ -88,6 +94,9 @@ static int scanChar(Accessor &styler, int pos, int max) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (;;) {
     if (pos >= max) return pos;
@@ -111,6 +120,9 @@ static int scanIdent(Accessor &styler, int pos, WordList &keywords) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (;;) {
     char ch = styler.SafeGetCharAt(pos, '\0');
@@ -142,6 +154,9 @@ static int scanNumber(Accessor &styler, int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (;;) {
       ch = styler.SafeGetCharAt(pos, '\0');
@@ -156,6 +171,9 @@ static int scanNumber(Accessor &styler, int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (;;) {
       ch = styler.SafeGetCharAt(pos, '\0');
@@ -169,6 +187,9 @@ static int scanNumber(Accessor &styler, int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (;;) {
       ch = styler.SafeGetCharAt(pos, '\0');
@@ -183,6 +204,9 @@ static int scanNumber(Accessor &styler, int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (;;) {
       ch = styler.SafeGetCharAt(pos, '\0');
@@ -196,6 +220,9 @@ static int scanNumber(Accessor &styler, int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (;;) {
         ch = styler.SafeGetCharAt(pos, '\0');
@@ -211,6 +238,9 @@ static int scanNumber(Accessor &styler, int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (;;) {
         ch = styler.SafeGetCharAt(pos, '\0');
@@ -226,6 +256,9 @@ static int scanNumber(Accessor &styler, int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (;;) {
       ch = styler.SafeGetCharAt(pos);
@@ -265,6 +298,9 @@ static void ColouriseNimrodDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (pos < max) {
     ch = styler.SafeGetCharAt(pos, '\0');
@@ -272,10 +308,13 @@ static void ColouriseNimrodDoc(unsigned int startPos, int length, int initStyle,
       case '\0': return;
       case '#': {
         bool doccomment = (styler.SafeGetCharAt(pos+1) == '#');
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (pos < max && !isNewLine(styler.SafeGetCharAt(pos, LF))) pos++;
         if (doccomment)
@@ -318,6 +357,9 @@ static void ColouriseNimrodDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
           while (pos < max) {
             ch = styler.SafeGetCharAt(pos, LF);
@@ -348,6 +390,9 @@ static bool IsCommentLine(int line, Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i = pos; i < eol_pos; i++) {
 		char ch = styler[i];
@@ -385,6 +430,9 @@ static void FoldNimrodDoc(unsigned int startPos, int length,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (lineCurrent > 0) {
 		lineCurrent--;
@@ -414,6 +462,9 @@ static void FoldNimrodDoc(unsigned int startPos, int length,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((lineCurrent <= docLines) && ((lineCurrent <= maxLines) ||
 	                                      prevQuote || prevComment)) {
@@ -466,6 +517,9 @@ static void FoldNimrodDoc(unsigned int startPos, int length,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (!quote &&
 		        (lineNext < docLines) &&
@@ -492,6 +546,9 @@ static void FoldNimrodDoc(unsigned int startPos, int length,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (--skipLine > lineCurrent) {
 			int skipLineIndent = styler.IndentAmount(skipLine, &spaceFlags, NULL);

@@ -142,6 +142,9 @@ void ItemContainerWidgetsPage::EndTest(const wxArrayString& items)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned i = 0; i < count; ++i )
         {
@@ -198,6 +201,9 @@ ItemContainerWidgetsPage::DumpContainerData(const wxArrayString& expected) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < m_container->GetCount(); ++i )
     {
@@ -223,6 +229,9 @@ ItemContainerWidgetsPage::DumpContainerData(const wxArrayString& expected) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < expected.GetCount(); ++i )
     {
@@ -232,6 +241,9 @@ ItemContainerWidgetsPage::DumpContainerData(const wxArrayString& expected) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for( unsigned j = 0; j < m_items.GetCount(); ++j )
         {
@@ -267,6 +279,9 @@ ItemContainerWidgetsPage::MakeArray(const wxSortedArrayString& sorted)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
         a.push_back(sorted[n]);
@@ -303,6 +318,9 @@ void ItemContainerWidgetsPage::OnButtonTestItemContainer(wxCommandEvent&)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < m_items.GetCount(); ++i )
         objects[i] = CreateClientData(i);
@@ -316,6 +334,9 @@ void ItemContainerWidgetsPage::OnButtonTestItemContainer(wxCommandEvent&)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < m_items.GetCount(); ++i )
         data[i] = wxUIntToPtr(i);
@@ -328,6 +349,9 @@ void ItemContainerWidgetsPage::OnButtonTestItemContainer(wxCommandEvent&)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < m_items.GetCount(); ++i )
         m_container->Append(m_items[i], wxUIntToPtr(i));
@@ -338,6 +362,9 @@ void ItemContainerWidgetsPage::OnButtonTestItemContainer(wxCommandEvent&)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < m_items.GetCount(); ++i )
         m_container->Append(m_items[i], CreateClientData(i));
@@ -350,6 +377,9 @@ void ItemContainerWidgetsPage::OnButtonTestItemContainer(wxCommandEvent&)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned i = m_items.GetCount(); i; --i )
             m_container->Insert(m_items[i - 1], 0, wxUIntToPtr(i - 1));

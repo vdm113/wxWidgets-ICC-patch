@@ -126,6 +126,9 @@ srunner_run_all(SRunner *runner, int verbosity)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (tc != NULL) {
         int i;
@@ -133,6 +136,9 @@ srunner_run_all(SRunner *runner, int verbosity)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < tc->ntests; ++i) {
             runner->nchecks++;

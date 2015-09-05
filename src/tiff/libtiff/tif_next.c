@@ -70,6 +70,9 @@ NeXTDecode(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (op = (unsigned char*) buf, cc = occ; cc-- > 0;)
 		*op++ = 0xff;
@@ -86,6 +89,9 @@ NeXTDecode(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (row = buf; occ > 0; occ -= scanline, row += scanline) {
 		n = *bp++, cc--;
@@ -130,6 +136,9 @@ NeXTDecode(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (;;) {
 				grey = (uint32)((n>>6) & 0x3);
@@ -143,6 +152,9 @@ NeXTDecode(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (n-- > 0 && npixels < imagewidth)
 					SETPIXEL(op, grey);

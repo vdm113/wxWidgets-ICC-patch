@@ -112,6 +112,9 @@ bool wxApp::Initialize(int& argC, wxChar **argV)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < argCOrig; i++ )
     {
@@ -171,6 +174,9 @@ bool wxApp::Initialize(int& argC, wxChar **argV)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int i = 0; i < argC; i++ )
         {
@@ -178,6 +184,9 @@ bool wxApp::Initialize(int& argC, wxChar **argV)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( !argV[i] )
             {
@@ -331,6 +340,9 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while (XCheckIfEvent( wxGlobalDisplay(), &tmp_event, wxX11ExposePredicate, (XPointer) &info ))
                 {
@@ -355,6 +367,9 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while (XCheckIfEvent( wxGlobalDisplay(), &tmp_event, wxX11ExposePredicate, (XPointer) &info ))
                 {
@@ -571,6 +586,14 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
 
             //  to avoid flicker
             report = * event;
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
             while( XCheckTypedWindowEvent (disp, actualWindow, ResizeRequest, &report));
 
             wxSize sz = win->GetSize();
@@ -609,6 +632,9 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (tlw && !tlw->IsTopLevel())
                 tlw = tlw->GetParent();

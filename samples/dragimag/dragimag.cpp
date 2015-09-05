@@ -266,6 +266,9 @@ void MyCanvas::DrawShapes(wxDC& dc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -298,6 +301,9 @@ void MyCanvas::ClearShapes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -315,6 +321,9 @@ DragShape* MyCanvas::FindShape(const wxPoint& pt) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -408,6 +417,9 @@ bool MyApp::OnInit()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 1; i < 4; i++)
     {
@@ -466,6 +478,9 @@ bool MyApp::TileBitmap(const wxRect& rect, wxDC& dc, wxBitmap& bitmap)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = rect.x; i < rect.x + rect.width; i += w)
     {
@@ -473,6 +488,9 @@ bool MyApp::TileBitmap(const wxRect& rect, wxDC& dc, wxBitmap& bitmap)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = rect.y; j < rect.y + rect.height; j+= h)
             dc.DrawBitmap(bitmap, i, j);

@@ -186,6 +186,9 @@ wxRegKey::StdKey wxRegKey::ExtractKeyName(wxString& strKey)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for ( ui = 0; ui < nStdKeys; ui++ ) {
     if ( strRoot.CmpNoCase(aStdKeys[ui].szName) == 0 ||
@@ -214,6 +217,9 @@ wxRegKey::StdKey wxRegKey::GetStdKeyFromHkey(WXHKEY hkey)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for ( size_t ui = 0; ui < nStdKeys; ui++ ) {
     if ( aStdKeys[ui].hkey == (HKEY)hkey )
@@ -680,6 +686,9 @@ bool wxRegKey::Copy(wxRegKey& keyDst)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( ok && bCont ) {
         wxRegKey key(*this, strKey);
@@ -702,6 +711,9 @@ bool wxRegKey::Copy(wxRegKey& keyDst)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( ok && bCont ) {
         ok = CopyValue(strVal, keyDst);
@@ -760,6 +772,9 @@ bool wxRegKey::DeleteSelf()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while ( bCont ) {
     astrSubkeys.Add(strKey);
@@ -772,6 +787,9 @@ bool wxRegKey::DeleteSelf()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for ( size_t nKey = 0; nKey < nKeyCount; nKey++ ) {
     wxRegKey key(*this, astrSubkeys[nKey]);
@@ -1318,6 +1336,9 @@ FormatAsHex(const void *data,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < size; n++ )
     {
@@ -1358,10 +1379,13 @@ wxString wxRegKey::FormatValue(const wxString& name) const
 
                 // there can be no NULs here
                 bool useHex = false;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for ( wxString::const_iterator p = value.begin();
                       p != value.end() && !useHex; ++p )
@@ -1496,6 +1520,9 @@ bool wxRegKey::DoExport(wxOutputStream& ostr) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( cont )
     {
@@ -1515,6 +1542,9 @@ bool wxRegKey::DoExport(wxOutputStream& ostr) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( cont )
     {

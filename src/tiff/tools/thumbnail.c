@@ -91,6 +91,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ((c = getopt(argc, argv, "w:h:c:")) != -1) {
 	switch (c) {
@@ -131,6 +134,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	do {
 	    if (!generateThumbnail(in, out))
@@ -293,6 +299,9 @@ cpTags(TIFF* in, TIFF* out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (p = tags; p < &tags[NTAGS]; p++)
 	cpTag(in, out, p->tag, p->count, p->type);
@@ -314,6 +323,9 @@ cpStrips(TIFF* in, TIFF* out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (s = 0; s < ns; s++) {
 	  if (bytecounts[s] > (uint64) bufsize) {
@@ -353,6 +365,9 @@ cpTiles(TIFF* in, TIFF* out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (t = 0; t < nt; t++) {
 	    if (bytecounts[t] > (uint64) bufsize) {
@@ -410,6 +425,9 @@ setupBitsTables()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 256; i++) {
 	int n = 0;
@@ -441,6 +459,9 @@ expFill(float pct[], uint32 p, uint32 n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 1; i < c; i++)
 	pct[i] = (float) (1-exp(i/((double)(n-1)))/ M_E);
@@ -448,6 +469,9 @@ expFill(float pct[], uint32 p, uint32 n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (; i < n; i++)
 	pct[i] = 0.;
@@ -471,6 +495,9 @@ setupCmap()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 1; i < 256; i++)
 	    pct[i] = 1-((float)i)/(256-1);
@@ -482,6 +509,9 @@ setupCmap()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < 256; i++)
 	    cmap[i] = clamp(255*pct[(256-1)-i], 0, 255);
@@ -491,6 +521,9 @@ setupCmap()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < 256; i++)
 	    cmap[i] = clamp(255*pct[i], 0, 255);
@@ -529,6 +562,9 @@ setupStepTables(uint32 sw)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (x = 0; x < tnw; x++) {
 	    uint32 sx0 = sx;
@@ -537,6 +573,9 @@ setupStepTables(uint32 sw)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	    while (err >= limit) {
 		err -= limit;
@@ -567,6 +606,9 @@ setrow(uint8* row, uint32 nrows, const uint8* rows[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (x = 0; x < tnw; x++) {
 	uint32 mask0 = src0[x];
@@ -579,6 +621,9 @@ setrow(uint8* row, uint32 nrows, const uint8* rows[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (y = 0; y < nrows; y++) {
 	    const uint8* src = rows[y] + off;
@@ -589,6 +634,9 @@ setrow(uint8* row, uint32 nrows, const uint8* rows[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (i = fw; i > 8; i--)
 		    acc += bits[*src++];
@@ -629,6 +677,9 @@ setImage1(const uint8* br, uint32 rw, uint32 rh)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (dy = 0; dy < tnh; dy++) {
 	const uint8* rows[256];
@@ -640,6 +691,9 @@ setImage1(const uint8* br, uint32 rw, uint32 rh)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (err >= limit) {
 	    err -= limit;
@@ -692,6 +746,9 @@ generateThumbnail(TIFF* in, TIFF* out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (s = 0; s < ns; s++) {
 	(void) TIFFReadEncodedStrip(in, s, rp, -1);
@@ -749,6 +806,9 @@ usage(void)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);

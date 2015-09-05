@@ -74,6 +74,9 @@ jpeg_CreateCompress (j_compress_ptr cinfo, int version, size_t structsize)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; i < NUM_QUANT_TBLS; i++)
     cinfo->quant_tbl_ptrs[i] = NULL;
@@ -82,6 +85,9 @@ jpeg_CreateCompress (j_compress_ptr cinfo, int version, size_t structsize)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; i < NUM_HUFF_TBLS; i++) {
     cinfo->dc_huff_tbl_ptrs[i] = NULL;
@@ -143,6 +149,9 @@ jpeg_suppress_tables (j_compress_ptr cinfo, wxjpeg_boolean suppress)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; i < NUM_QUANT_TBLS; i++) {
     if ((qtbl = cinfo->quant_tbl_ptrs[i]) != NULL)
@@ -153,6 +162,9 @@ jpeg_suppress_tables (j_compress_ptr cinfo, wxjpeg_boolean suppress)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; i < NUM_HUFF_TBLS; i++) {
     if ((htbl = cinfo->dc_huff_tbl_ptrs[i]) != NULL)
@@ -188,6 +200,9 @@ jpeg_finish_compress (j_compress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (! cinfo->master->is_last_pass) {
     (*cinfo->master->prepare_for_pass) (cinfo);
@@ -195,6 +210,9 @@ jpeg_finish_compress (j_compress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (iMCU_row = 0; iMCU_row < cinfo->total_iMCU_rows; iMCU_row++) {
       if (cinfo->progress != NULL) {
@@ -243,6 +261,9 @@ jpeg_write_marker (j_compress_ptr cinfo, int marker,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (datalen--) {
     (*write_marker_byte) (cinfo, *dataptr);

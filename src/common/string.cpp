@@ -134,6 +134,9 @@ struct wxStrCacheDumper
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned n = 0; n < wxString::Cache::SIZE; n++ )
         {
@@ -286,6 +289,9 @@ void wxString::PosLenToImpl(size_t pos, size_t len,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( len && i <= e )
             {
@@ -937,6 +943,9 @@ size_t wxString::find_first_of(const wxChar* sz, size_t nStart, size_t n) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const_iterator i = begin() + nStart; i != end(); ++idx, ++i )
     {
@@ -956,6 +965,9 @@ size_t wxString::find_first_not_of(const wxChar* sz, size_t nStart, size_t n) co
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const_iterator i = begin() + nStart; i != end(); ++idx, ++i )
     {
@@ -991,10 +1003,13 @@ size_t wxString::find_last_of(const wxChar* sz, size_t nStart, size_t n) const
     }
 
     size_t idx = nStart;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const_reverse_iterator i = rbegin() + (len - nStart - 1);
           i != rend(); --idx, ++i )
@@ -1020,10 +1035,13 @@ size_t wxString::find_last_not_of(const wxChar* sz, size_t nStart, size_t n) con
     }
 
     size_t idx = nStart;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const_reverse_iterator i = rbegin() + (len - nStart - 1);
           i != rend(); --idx, ++i )
@@ -1044,6 +1062,9 @@ size_t wxString::find_first_not_of(wxUniChar ch, size_t nStart) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const_iterator i = begin() + nStart; i != end(); ++idx, ++i )
     {
@@ -1068,10 +1089,13 @@ size_t wxString::find_last_not_of(wxUniChar ch, size_t nStart) const
     }
 
     size_t idx = nStart;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const_reverse_iterator i = rbegin() + (len - nStart - 1);
           i != rend(); --idx, ++i )
@@ -1147,6 +1171,9 @@ int wxString::CmpNoCase(const wxString& s) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ;; )
     {
@@ -1165,6 +1192,9 @@ int wxString::CmpNoCase(const wxString& s) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( ; !*thisCur; thisCur++, thatCur++ )
         {
@@ -1205,6 +1235,9 @@ int wxString::CmpNoCase(const wxString& s) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ; i1 != end1 && i2 != end2; ++i1, ++i2 )
     {
@@ -1243,6 +1276,9 @@ wxString wxString::FromAscii(const char *ascii, size_t len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( ; len > 0; --len )
         {
@@ -1284,6 +1320,9 @@ const wxScopedCharBuffer wxString::ToAscii() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const_iterator i = begin(); i != end(); ++i )
     {
@@ -1493,6 +1532,9 @@ size_t wxString::Replace(const wxString& strOld,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t pos = 0; ; )
         {
@@ -1527,10 +1569,13 @@ size_t wxString::Replace(const wxString& strOld,
         wxVector<size_t> replacePositions;
 
         size_t pos;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( pos = m_impl.find(strOld.m_impl, 0);
               pos != npos;
@@ -1553,6 +1598,9 @@ size_t wxString::Replace(const wxString& strOld,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( pos = 0; replNum < uiCount; replNum++ )
         {
@@ -1585,6 +1633,9 @@ bool wxString::IsAscii() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const_iterator i = begin(); i != end(); ++i )
     {
@@ -1601,6 +1652,9 @@ bool wxString::IsWord() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const_iterator i = begin(); i != end(); ++i )
     {
@@ -1625,6 +1679,9 @@ bool wxString::IsNumber() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ; i != end(); ++i )
     {
@@ -1653,6 +1710,9 @@ wxString& wxString::MakeUpper()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for ( iterator it = begin(), en = end(); it != en; ++it )
     *it = (wxChar)wxToupper(*it);
@@ -1666,6 +1726,9 @@ wxString& wxString::MakeLower()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for ( iterator it = begin(), en = end(); it != en; ++it )
     *it = (wxChar)wxTolower(*it);
@@ -1684,6 +1747,9 @@ wxString& wxString::MakeCapitalized()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( ++it; it != en; ++it )
             *it = (wxChar)wxTolower(*it);
@@ -1723,6 +1789,9 @@ wxString& wxString::Trim(bool bFromRight)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( (psz != rend()) && wxSafeIsspace(*psz) )
                 ++psz;
@@ -1738,6 +1807,9 @@ wxString& wxString::Trim(bool bFromRight)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( (psz != end()) && wxSafeIsspace(*psz) )
                 ++psz;
@@ -2168,6 +2240,9 @@ static int DoStringPrintfV(wxString& str,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ;; )
     {
@@ -2313,6 +2388,9 @@ bool wxString::Matches(const wxString& mask) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( *pszMask )
     {
@@ -2374,6 +2452,9 @@ match:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for ( ; *pszMask != wxT('\0'); pszMask++, pszTxt++ ) {
     switch ( *pszMask ) {
@@ -2397,6 +2478,9 @@ match:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
           while ( *pszMask == wxT('*') || *pszMask == wxT('?') )
             pszMask++;
@@ -2464,6 +2548,9 @@ int wxString::Freq(wxUniChar ch) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const_iterator i = begin(); i != end(); ++i )
     {

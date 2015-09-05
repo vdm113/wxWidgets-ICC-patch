@@ -220,6 +220,9 @@ wxDCCacheEntry* wxPMDCImpl::FindBitmapInCache(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while(pNode)
     {
@@ -295,6 +298,9 @@ wxDCCacheEntry* wxPMDCImpl::FindDCInCache(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while(pNode)
     {
@@ -919,6 +925,9 @@ void wxPMDCImpl::DoDrawPolygon( int n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(i = 0; i < n; i++)
     {
@@ -966,6 +975,9 @@ void wxPMDCImpl::DoDrawLines(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(i = 1; i < n; i++)
         {
@@ -994,6 +1006,9 @@ void wxPMDCImpl::DoDrawLines(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < n; i++)
         {
@@ -1499,6 +1514,9 @@ void wxPMDCImpl::DoDrawBitmap(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (i = 0; i < rBmp.GetHeight(); i++)
                 {
@@ -1511,6 +1529,9 @@ void wxPMDCImpl::DoDrawBitmap(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (j = 0; j < rBmp.GetWidth(); j++)
                     {
@@ -1556,6 +1577,9 @@ void wxPMDCImpl::DoDrawBitmap(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (j = 0; j < nPadding; j++)
                     {
@@ -1702,6 +1726,9 @@ void wxPMDCImpl::DoDrawBitmap(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (i = 0; i < rBmp.GetHeight(); i++)
                 {
@@ -1714,6 +1741,9 @@ void wxPMDCImpl::DoDrawBitmap(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (j = 0; j < rBmp.GetWidth(); j++)
                     {
@@ -2305,6 +2335,9 @@ void wxPMDCImpl::DoGetTextExtent(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 1; i < 4; i++)
     {

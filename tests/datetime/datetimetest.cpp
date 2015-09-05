@@ -92,6 +92,9 @@ static wxString TranslateDate(const wxString& str)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = str.begin(); i != end; ++i )
     {
@@ -104,10 +107,13 @@ static wxString TranslateDate(const wxString& str)
 
     wxString trans(str);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxDateTime::WeekDay wd = wxDateTime::Sun;
           wd < wxDateTime::Inv_WeekDay;
@@ -120,10 +126,13 @@ static wxString TranslateDate(const wxString& str)
               );
     }
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxDateTime::Month mon = wxDateTime::Jan;
           mon < wxDateTime::Inv_Month;
@@ -313,6 +322,9 @@ void DateTimeTestCase::TestLeapYears()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(years); n++ )
     {
@@ -329,6 +341,9 @@ void DateTimeTestCase::TestTimeSet()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(testDates); n++ )
     {
@@ -352,6 +367,9 @@ void DateTimeTestCase::TestTimeJDN()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(testDates); n++ )
     {
@@ -377,6 +395,9 @@ void DateTimeTestCase::TestTimeWDays()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < WXSIZEOF(testDates); n++ )
     {
@@ -485,6 +506,9 @@ for n in range(20):
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < WXSIZEOF(weekDatesTestData); n++ )
     {
@@ -600,6 +624,9 @@ for n in range(20):
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(weekNumberTestDates); n++ )
     {
@@ -693,6 +720,9 @@ void DateTimeTestCase::TestTimeDST()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(datesDST[0]); n++ )
     {
@@ -770,6 +800,9 @@ void DateTimeTestCase::TestTimeFormat()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned idxtz = 0; idxtz < WXSIZEOF(timeZonesOffsets); ++idxtz )
     {
@@ -780,6 +813,9 @@ void DateTimeTestCase::TestTimeFormat()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t d = 0; d < WXSIZEOF(formatTestDates); d++ )
         {
@@ -788,6 +824,9 @@ void DateTimeTestCase::TestTimeFormat()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( unsigned n = 0; n < WXSIZEOF(formatTestFormats); n++ )
             {
@@ -846,6 +885,9 @@ void DateTimeTestCase::TestTimeFormat()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     while ( *result && (*result >= 'A' && *result <= 'Z') )
                         result++;
@@ -992,6 +1034,9 @@ void DateTimeTestCase::TestTimeSpanFormat()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(testSpans); n++ )
     {
@@ -1014,6 +1059,9 @@ void DateTimeTestCase::TestTimeTicks()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(testDates); n++ )
     {
@@ -1087,6 +1135,9 @@ void DateTimeTestCase::TestParseRFC822()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < WXSIZEOF(parseTestDates); n++ )
     {
@@ -1145,6 +1196,9 @@ void DateTimeTestCase::TestDateParse()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(parseTestDates); n++ )
     {
@@ -1215,6 +1269,9 @@ void DateTimeTestCase::TestDateParseISO()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(parseTestDates); n++ )
     {
@@ -1229,6 +1286,9 @@ void DateTimeTestCase::TestDateParseISO()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( size_t m = 0; m < WXSIZEOF(parseTestTimes); m++ )
             {
@@ -1301,6 +1361,9 @@ void DateTimeTestCase::TestDateTimeParse()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(parseTestDates); n++ )
     {
@@ -1399,6 +1462,9 @@ void DateTimeTestCase::TestDateWeekFormat()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(testWeeks); n++ )
     {
@@ -1431,6 +1497,9 @@ void DateTimeTestCase::TestTimeArithmetics()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(testArithmData); n++ )
     {

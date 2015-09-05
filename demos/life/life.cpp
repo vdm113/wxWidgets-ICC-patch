@@ -452,6 +452,9 @@ void LifeFrame::OnMenu(wxCommandEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (m_running && m_topspeed)
             {
@@ -845,6 +848,9 @@ void LifeCanvas::DrawChanged()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (!done)
     {
@@ -854,6 +860,9 @@ void LifeCanvas::DrawChanged()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t m = 0; m < ncells; m++)
             DrawCell(cells[m].i, cells[m].j, dc);
@@ -906,6 +915,9 @@ void LifeCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (wxInt32 yy = y; yy <= (y + h - m_cellsize); yy += m_cellsize)
             dc.DrawRectangle(x, yy, w, m_cellsize + 1);
@@ -913,6 +925,9 @@ void LifeCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (wxInt32 xx = x; xx <= (x + w - m_cellsize); xx += m_cellsize)
             dc.DrawLine(xx, y, xx, y + h);
@@ -926,6 +941,9 @@ void LifeCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (!done)
     {
@@ -933,6 +951,9 @@ void LifeCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t m = 0; m < ncells; m++)
             DrawCell(cells[m].i, cells[m].j, dc);
@@ -945,6 +966,9 @@ void LifeCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t m = 0; m < ncells; m++)
         DrawCell(cells[m].i, cells[m].j, dc);
@@ -1022,6 +1046,9 @@ void LifeCanvas::OnMouse(wxMouseEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (ii != i)
             {
@@ -1045,6 +1072,9 @@ void LifeCanvas::OnMouse(wxMouseEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (jj != j)
             {

@@ -62,6 +62,9 @@ static void classifyWordLisp(unsigned int start, unsigned int end, WordList &key
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; (i < end - start + 1) && (i < 99); i++) {
 		s[i] = styler[start + i];
@@ -102,6 +105,9 @@ static void ColouriseLispDoc(unsigned int startPos, int length, int initStyle, W
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
@@ -263,6 +269,9 @@ static void FoldLispDoc(unsigned int startPos, int length, int /* initStyle */, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;

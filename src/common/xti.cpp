@@ -57,6 +57,9 @@ wxEnumData::wxEnumData( wxEnumMemberData* data )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( m_count = 0; m_members[m_count].m_name; m_count++)
     {};
@@ -69,6 +72,9 @@ bool wxEnumData::HasEnumMemberValue(const wxChar *name, int *value) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; m_members[i].m_name; i++ )
     {
@@ -89,6 +95,9 @@ int wxEnumData::GetEnumMemberValue(const wxChar *name) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; m_members[i].m_name; i++ )
     {
@@ -107,6 +116,9 @@ const wxChar *wxEnumData::GetEnumMemberName(int value) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; m_members[i].m_name; i++)
         if (value == m_members[i].m_value)
@@ -430,6 +442,9 @@ void wxSetStringToArray( const wxString &s, wxArrayString &array )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (tokenizer.HasMoreTokens())
     {
@@ -453,6 +468,9 @@ void wxPropertyInfo::Insert(wxPropertyInfo* &iter)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while( i->m_next )
             i = i->m_next;
@@ -474,6 +492,9 @@ void wxPropertyInfo::Remove()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (info)
         {
@@ -505,6 +526,9 @@ void wxHandlerInfo::Insert(wxHandlerInfo* &iter)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while( i->m_next )
             i = i->m_next;
@@ -526,6 +550,9 @@ void wxHandlerInfo::Remove()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (info)
         {
@@ -583,6 +610,9 @@ bool wxClassInfo::IsKindOf(const wxClassInfo *info) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int i = 0; m_parents[i]; ++ i )
         {
@@ -611,6 +641,9 @@ wxPropertyInfo *wxClassInfo::FindPropertyInfoInThisClass (const wxChar *Property
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while( info )
     {
@@ -633,6 +666,9 @@ const wxPropertyInfo *wxClassInfo::FindPropertyInfo (const wxChar *PropertyName)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; parents[i]; ++ i )
     {
@@ -651,6 +687,9 @@ wxHandlerInfo *wxClassInfo::FindHandlerInfoInThisClass (const wxChar *PropertyNa
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while( info )
     {
@@ -674,6 +713,9 @@ const wxHandlerInfo *wxClassInfo::FindHandlerInfo (const wxChar *PropertyName) c
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; parents[i]; ++ i )
     {
@@ -695,6 +737,9 @@ wxObjectStreamingCallback wxClassInfo::GetStreamingCallback() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; parents[i] && retval == NULL; ++ i )
     {
@@ -766,6 +811,9 @@ void wxClassInfo::GetProperties( wxPropertyInfoMap &infomap ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while( pi )
     {
@@ -780,6 +828,9 @@ void wxClassInfo::GetProperties( wxPropertyInfoMap &infomap ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; parents[i]; ++ i )
     {
@@ -970,6 +1021,9 @@ void wxDynamicClassInfo::RemoveProperty( const wxChar *propertyName )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxDynamicObjectList::iterator iter = m_data->m_dynamicObjects.begin(); iter != m_data->m_dynamicObjects.end(); ++iter )
         (*iter)->RemoveProperty( propertyName );
@@ -993,6 +1047,9 @@ void wxDynamicClassInfo::RenameProperty( const wxChar *oldPropertyName, const wx
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxDynamicObjectList::iterator iter = m_data->m_dynamicObjects.begin(); iter != m_data->m_dynamicObjects.end(); ++iter )
         (*iter)->RenameProperty( oldPropertyName, newPropertyName );

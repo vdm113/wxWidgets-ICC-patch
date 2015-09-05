@@ -74,6 +74,9 @@ void GraphicsContextDrawingTestCase::DoFontDrawings (wxGraphicsContext *gc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int n = -180; n < 180; n += 30 )
     {

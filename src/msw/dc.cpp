@@ -934,6 +934,9 @@ void wxMSWDCImpl::DoDrawPolygon(int n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < n; i++)
         {
@@ -958,6 +961,9 @@ void wxMSWDCImpl::DoDrawPolygon(int n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < n; i++)
             CalcBoundingBox(points[i].x, points[i].y);
@@ -989,6 +995,9 @@ wxMSWDCImpl::DoDrawPolyPolygon(int n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = cnt = 0; i < n; i++)
         cnt += count[i];
@@ -1001,6 +1010,9 @@ wxMSWDCImpl::DoDrawPolyPolygon(int n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < cnt; i++)
         {
@@ -1024,6 +1036,9 @@ wxMSWDCImpl::DoDrawPolyPolygon(int n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < cnt; i++)
             CalcBoundingBox(points[i].x, points[i].y);
@@ -1051,6 +1066,9 @@ void wxMSWDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoffset, wx
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < n; i++)
         {
@@ -1069,6 +1087,9 @@ void wxMSWDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoffset, wx
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < n; i++)
             CalcBoundingBox(points[i].x, points[i].y);
@@ -1215,6 +1236,9 @@ void wxMSWDCImpl::DoDrawSpline(const wxPointList *points)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ((node = node->GetNext()) != NULL)
 #else
@@ -1222,6 +1246,9 @@ void wxMSWDCImpl::DoDrawSpline(const wxPointList *points)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ((node = node->GetNext()))
 #endif // !wxUSE_STD_CONTAINERS
@@ -1568,6 +1595,9 @@ void wxMSWDCImpl::DoDrawRotatedText(const wxString& text,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t lineNum = 0; lineNum < lines.size(); lineNum++ )
     {
@@ -2589,6 +2619,9 @@ wxDCCacheEntry* wxMSWDCImpl::FindBitmapInCache(WXHDC dc, int w, int h)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -2630,6 +2663,9 @@ wxDCCacheEntry* wxMSWDCImpl::FindDCInCache(wxDCCacheEntry* notThis, WXHDC dc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -2750,6 +2786,9 @@ static bool AlphaBlt(wxMSWDCImpl* dcDst,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for ( int y = 0; y < data.GetHeight(); y++ )
                 {
@@ -2759,6 +2798,9 @@ static bool AlphaBlt(wxMSWDCImpl* dcDst,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for ( int x = 0; x < data.GetWidth(); x++ )
                     {

@@ -286,6 +286,9 @@ wxGDIImageHandler *wxGDIImage::FindHandler(const wxString& name)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( node )
     {
@@ -306,6 +309,9 @@ wxGDIImageHandler *wxGDIImage::FindHandler(const wxString& extension,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( node )
     {
@@ -328,6 +334,9 @@ wxGDIImageHandler *wxGDIImage::FindHandler(long type)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( node )
     {
@@ -348,6 +357,9 @@ void wxGDIImage::CleanUpHandlers()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( node )
     {
@@ -612,6 +624,9 @@ bool wxICOResourceHandler::LoadIcon(wxIcon *icon,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t nIcon = 0; !hicon && nIcon < WXSIZEOF(stdIcons); nIcon++ )
         {

@@ -78,6 +78,9 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < CMSIZE; i++) {
         if (i == 0)
@@ -119,12 +122,18 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 255; i++) {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 0; j < 75; j++) {
              scan_line[j * 3] = 255;
@@ -135,6 +144,9 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 75; j < 150; j++) {
              scan_line[j * 3] = 255 - i;
@@ -145,6 +157,9 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 150; j < 225; j++) {
              scan_line[j * 3] = 255 - i;
@@ -155,6 +170,9 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 225; j < 300; j++) {
              scan_line[j * 3] = (i - 1) / 2;
@@ -165,6 +183,9 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 300; j < 375; j++) {
              scan_line[j * 3] = 255 - i;
@@ -175,6 +196,9 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 375; j < 450; j++) {
              scan_line[j * 3] = 255;
@@ -185,6 +209,9 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 450; j < 525; j++) {
              scan_line[j * 3] = 255;
@@ -197,12 +224,18 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 255; i < 512; i++) {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 0; j < 75; j++) {
              scan_line[j * 3] = i;
@@ -213,6 +246,9 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 75; j < 150; j++) {
              scan_line[j * 3] = 0;
@@ -223,6 +259,9 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 150; j < 225; j++) {
              scan_line[j * 3] = 0;
@@ -233,6 +272,9 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 225; j < 300; j++) {
              scan_line[j * 3] = (i - 1) / 2;
@@ -243,6 +285,9 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 300; j < 375; j++) {
              scan_line[j * 3] = 0;
@@ -253,6 +298,9 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 375; j < 450; j++) {
              scan_line[j * 3] = i;
@@ -263,6 +311,9 @@ int main(int argc, char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 450; j < 525; j++) {
              scan_line[j * 3] = i;

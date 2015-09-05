@@ -78,6 +78,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((c = getopt(argc, argv, "c:r:t:bn8")) != -1)
 		switch (c) {
@@ -132,6 +135,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; optind < argc-1; optind++) {
 		in = TIFFOpen(argv[optind], "r");
@@ -140,6 +146,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			do {
 				if (!tiffcvt(in, out) ||
@@ -205,6 +214,9 @@ cvt_by_tile( TIFF *in, TIFF *out )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( row = 0; ok && row < height; row += tile_height )
     {
@@ -212,6 +224,9 @@ cvt_by_tile( TIFF *in, TIFF *out )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for( col = 0; ok && col < width; col += tile_width )
         {
@@ -240,6 +255,9 @@ cvt_by_tile( TIFF *in, TIFF *out )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for( i_row = 0; i_row < tile_height / 2; i_row++ )
             {
@@ -320,6 +338,9 @@ cvt_by_strip( TIFF *in, TIFF *out )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( row = 0; ok && row < height; row += rowsperstrip )
     {
@@ -356,6 +377,9 @@ cvt_by_strip( TIFF *in, TIFF *out )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for( i_row = 0; i_row < rows_to_write / 2; i_row++ )
         {
@@ -454,6 +478,9 @@ cvt_whole_image( TIFF *in, TIFF *out )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (count > 0)
         {
@@ -472,6 +499,9 @@ cvt_whole_image( TIFF *in, TIFF *out )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (row = 0; row < height; row += rowsperstrip)
     {
@@ -586,6 +616,9 @@ usage(int code)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);

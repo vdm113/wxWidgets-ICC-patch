@@ -99,6 +99,9 @@ bool wxChoice::Create(wxWindow *parent, wxWindowID id,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < n; i++)
             Append (choices[i]);
@@ -205,6 +208,9 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter& items,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( unsigned int i = 0; i < numItems; ++i, ++pos )
     {
@@ -274,6 +280,9 @@ void wxChoice::DoClear()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < m_stringArray.GetCount(); i++)
     {
@@ -309,6 +318,9 @@ int wxChoice::GetSelection() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t i=0; i<m_stringArray.GetCount(); i++)
             if (m_stringArray[i] == s)
@@ -397,6 +409,9 @@ void wxChoice::DoSetSize(int x, int y, int width, int height, int sizeFlags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < m_stringArray.GetCount(); i++)
             XtVaSetValues ((Widget) m_widgetArray[i],
@@ -413,6 +428,9 @@ void wxChoice::DoSetSize(int x, int y, int width, int height, int sizeFlags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < m_stringArray.GetCount(); i++)
             XtVaSetValues ((Widget) m_widgetArray[i],
@@ -484,6 +502,9 @@ void wxChoice::ChangeFont(bool keepOriginalSize)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for( unsigned int i = 0; i < m_stringArray.GetCount(); ++i )
             XtVaSetValues( (Widget)m_widgetArray[i],
@@ -508,6 +529,9 @@ void wxChoice::ChangeBackgroundColour()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < m_stringArray.GetCount(); i++)
         wxDoChangeBackgroundColour(m_widgetArray[i], m_backgroundColour);
@@ -523,6 +547,9 @@ void wxChoice::ChangeForegroundColour()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < m_stringArray.GetCount(); i++)
         wxDoChangeForegroundColour(m_widgetArray[i], m_foregroundColour);
@@ -549,6 +576,9 @@ wxSize wxChoice::GetItemsSize() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i=0; i<m_stringArray.GetCount(); i++)
     {

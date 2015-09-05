@@ -199,6 +199,9 @@ wxMenu* SearchCtrlWidgetsPage::CreateTestMenu()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < SEARCH_MENU_SIZE; i++ )
     {

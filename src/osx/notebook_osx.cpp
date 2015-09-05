@@ -298,6 +298,9 @@ void wxNotebook::OnSize(wxSizeEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned int nPage = 0; nPage < nCount; nPage++ )
     {

@@ -206,6 +206,9 @@ void ZipPipeTestCase::runTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (len > 0 && buf[len - 1] <= 32)
         --len;
@@ -251,6 +254,9 @@ ArchiveTestSuite *ziptest::makeSuite()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int options = 0; options <= PipeIn; options += PipeIn) {
             string name = Description(wxT("ZipPipeTestCase"), options,

@@ -115,6 +115,9 @@ unsigned short FAR *work;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (len = 0; len <= MAXBITS; len++)
         count[len] = 0;
@@ -122,6 +125,9 @@ unsigned short FAR *work;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (sym = 0; sym < codes; sym++)
         count[lens[sym]]++;
@@ -132,6 +138,9 @@ unsigned short FAR *work;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (max = MAXBITS; max >= 1; max--)
         if (count[max] != 0) break;
@@ -149,6 +158,9 @@ unsigned short FAR *work;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (min = 1; min < max; min++)
         if (count[min] != 0) break;
@@ -160,6 +172,9 @@ unsigned short FAR *work;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (len = 1; len <= MAXBITS; len++) {
         left <<= 1;
@@ -175,6 +190,9 @@ unsigned short FAR *work;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (len = 1; len < MAXBITS; len++)
         offs[len + 1] = offs[len] + count[len];
@@ -184,6 +202,9 @@ unsigned short FAR *work;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (sym = 0; sym < codes; sym++)
         if (lens[sym] != 0) work[offs[lens[sym]]++] = (unsigned short)sym;
@@ -259,6 +280,9 @@ unsigned short FAR *work;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (;;) {
         /* create table entry */
@@ -284,6 +308,9 @@ unsigned short FAR *work;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         do {
             fill -= incr;
@@ -296,6 +323,9 @@ unsigned short FAR *work;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (huff & incr)
             incr >>= 1;
@@ -329,6 +359,9 @@ unsigned short FAR *work;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (curr + drop < max) {
                 left -= count[curr + drop];

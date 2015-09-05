@@ -335,6 +335,9 @@ bool DoStatAny(wxStructStat& st, wxString path, bool dereference)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( wxEndsWithPathSeparator(path) )
     {
@@ -514,6 +517,9 @@ void wxFileName::SetPath( const wxString& pathOrig, wxPathFormat format )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( tn.HasMoreTokens() )
     {
@@ -645,6 +651,9 @@ void RemoveTrailingSeparatorsFromPath(wxString& strPath)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( wxEndsWithPathSeparator( strPath ) )
     {
@@ -949,6 +958,9 @@ static wxString wxCreateTempImpl(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (wxFileName::FileExists(path))
     {
@@ -1050,6 +1062,9 @@ static wxString wxCreateTempImpl(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < numTries; n++ )
     {
@@ -1336,6 +1351,9 @@ bool wxFileName::Mkdir( const wxString& dir, int perm, int flags )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < count; i++ )
         {
@@ -1437,6 +1455,9 @@ bool wxFileName::Rmdir(const wxString& dir, int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( cont )
         {
@@ -1456,6 +1477,9 @@ bool wxFileName::Rmdir(const wxString& dir, int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( cont )
             {
@@ -1564,6 +1588,9 @@ bool wxFileName::Normalize(int flags,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
@@ -1636,6 +1663,9 @@ bool wxFileName::Normalize(int flags,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < count; i++ )
         {
@@ -1832,6 +1862,9 @@ bool wxFileName::MakeRelativeTo(const wxString& pathBase, wxPathFormat format)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( !m_dirs.IsEmpty() && !fnBase.m_dirs.IsEmpty() &&
                 m_dirs[0u].IsSameAs(fnBase.m_dirs[0u], withCase) )
@@ -1846,6 +1879,9 @@ bool wxFileName::MakeRelativeTo(const wxString& pathBase, wxPathFormat format)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )
     {
@@ -2052,6 +2088,9 @@ wxFileName::IsMSWUniqueVolumeNamePath(const wxString& path, wxPathFormat format)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < len; n++ )
     {
@@ -2174,6 +2213,9 @@ wxString wxFileName::GetPath( int flags, wxPathFormat format ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < dirCount; i++ )
     {
@@ -2343,6 +2385,9 @@ wxString wxFileName::GetLongPath() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )
     {
@@ -2375,6 +2420,9 @@ wxString wxFileName::GetLongPath() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( i += 1; i < count; i++ )
                 tmpPath += wxFILE_SEP_PATH + dirs[i];
@@ -3000,6 +3048,9 @@ void MacEnsureDefaultExtensionsLoaded()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0 ; i < WXSIZEOF( gDefaults ) ; ++i )
         {
@@ -3069,6 +3120,9 @@ bool wxFileName::MacFindDefaultTypeAndCreator( const wxString& ext , wxUint32 *t
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for( int i = gMacDefaultExtensions.Count() - 1 ; i >= 0 ; --i )
   {

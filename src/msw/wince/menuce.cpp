@@ -100,6 +100,9 @@ wxMenu *wxTopLevelWindowMSW::ButtonMenu::DuplicateMenu(wxMenu *menu)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (node)
         {
@@ -141,6 +144,9 @@ void wxMenuToHMenu(wxMenu* in, HMENU hMenu)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( node )
     {

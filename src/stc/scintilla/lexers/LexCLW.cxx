@@ -59,6 +59,9 @@ static void StringUpper(char *szString) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (*szString) {
 		*szString = CharacterUpper(*szString);
@@ -135,6 +138,9 @@ inline bool SetNumericConstantState(StyleContext &scDoc) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int iIndex = 0; cNumericString[iIndex] != '\0'; iIndex++) {
 		// Depending on the character
@@ -168,6 +174,9 @@ inline bool GetNextWordUpper(Accessor &styler, unsigned int uiStartPos, int iLen
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int iOffset = uiStartPos; iOffset < iLength; iOffset++) {
 		// Get the character from the buffer using the offset
@@ -233,6 +242,9 @@ static void ColouriseClarionDoc(unsigned int uiStartPos, int iLength, int iInitS
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (; scDoc.More(); scDoc.Forward())
 	{
@@ -569,6 +581,9 @@ static void FillBuffer(unsigned int uiStart, unsigned int uiEnd, Accessor &accSt
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((uiPos < uiEnd - uiStart + 1) && (uiPos < uiLength-1)) {
 		szBuffer[uiPos] = static_cast<char>(toupper(accStyler[uiStart + uiPos]));
@@ -647,6 +662,9 @@ static void FoldClarionDoc(unsigned int uiStartPos, int iLength, int iInitStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int uiPos = uiStartPos; uiPos < uiEndPos; uiPos++) {
 

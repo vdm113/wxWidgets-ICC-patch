@@ -146,6 +146,9 @@ RegExTestCase::RegExTestCase(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (it = expected.begin(); it != expected.end(); ++it) {
         m_expected.push_back(Conv(*it));
@@ -194,6 +197,9 @@ void RegExTestCase::parseFlags(const wxString& flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator p = flags.begin(); p != flags.end(); ++p )
     {
@@ -283,6 +289,9 @@ void RegExTestCase::doTest(int flavor)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < m_expected.size(); i++) {
         wxString result;
@@ -333,6 +342,9 @@ void RegExTestCase::fail(const wxString& msg) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (it = m_expected.begin(); it != m_expected.end(); ++it)
         str << wxT(" ") << quote(*it);
@@ -358,6 +370,9 @@ wxString RegExTestCase::quote(const wxString& arg)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < arg.length(); i++) {
         wxChar ch = (wxChar)arg[i];
@@ -406,6 +421,9 @@ void RegExTestSuite::add(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (va_start(ap, expected); expected; expected = va_arg(ap, const char *))
         expected_results.push_back(expected);

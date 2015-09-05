@@ -125,6 +125,9 @@ static int GetSendKey(const char *szLine, char *szKey)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ( ( (cTemp = szLine[nPos]) != '\0'))
 	{
@@ -191,6 +194,9 @@ static bool IsContinuationLine(unsigned int szLine, Accessor &styler)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (nsPos < nePos)
 	{
@@ -234,6 +240,9 @@ static void ColouriseAU3Doc(unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while ((lineCurrent > 0 && IsContinuationLine(lineCurrent,styler)) ||
 			   (lineCurrent > 1 && IsContinuationLine(lineCurrent-1,styler))) {
@@ -259,6 +268,9 @@ static void ColouriseAU3Doc(unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (; sc.More(); sc.Forward()) {
 		char s[100];
@@ -526,6 +538,9 @@ static void ColouriseAU3Doc(unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					while (!(nState == 2) && ((cTemp = s[nPos]) != '\0'))
 					{
@@ -699,6 +714,9 @@ static int GetStyleFirstWord(unsigned int szLine, Accessor &styler)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (isspacechar(styler.SafeGetCharAt(nsPos)) && nsPos < nePos)
 	{
@@ -735,6 +753,9 @@ static void FoldAU3Doc(unsigned int startPos, int length, int, WordList *[], Acc
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((lineCurrent > 0 && IsContinuationLine(lineCurrent,styler)) ||
 	       (lineCurrent > 1 && IsContinuationLine(lineCurrent-1,styler))) {
@@ -766,6 +787,9 @@ static void FoldAU3Doc(unsigned int startPos, int length, int, WordList *[], Acc
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i = startPos; i < endPos; i++) {
 		char ch = chNext;

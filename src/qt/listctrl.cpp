@@ -342,6 +342,9 @@ bool wxListCtrl::SetItem(wxListItem& info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int col=0; col<GetColumnCount(); col++)
         {
@@ -610,6 +613,9 @@ long wxListCtrl::GetNextItem(long item, int WXUNUSED(geometry), int state) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t line = (size_t)ret; line < count; line++ )
     {
@@ -772,6 +778,9 @@ long wxListCtrl::FindItem(long start, const wxString& str, bool partial)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i=0; i<qitems.length(); i++)
     {

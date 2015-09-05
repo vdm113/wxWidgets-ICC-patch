@@ -827,6 +827,9 @@ attlist2(PROLOG_STATE *state,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0; i < (int)(sizeof(types)/sizeof(types[0])); i++)
         if (XmlNameMatchesAscii(enc, ptr, end, types[i])) {

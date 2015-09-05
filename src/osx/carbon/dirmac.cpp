@@ -88,6 +88,9 @@ wxDirData::wxDirData(const wxString& dirname)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( n > 0 && wxIsPathSeparator(m_dirname[--n]) )
         ;
@@ -141,6 +144,9 @@ bool wxDirData::Read(wxString *filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while( noErr == err )
     {

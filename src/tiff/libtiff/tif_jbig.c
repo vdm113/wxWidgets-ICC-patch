@@ -127,6 +127,9 @@ static int JBIGCopyEncodedData(TIFF* tif, unsigned char* pp, size_t cc, uint16 s
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (cc > 0)
 	{

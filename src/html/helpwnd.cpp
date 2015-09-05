@@ -185,6 +185,9 @@ void wxHtmlHelpWindow::UpdateMergedIndex()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < len; i++)
     {
@@ -433,6 +436,9 @@ bool wxHtmlHelpWindow::Create(wxWindow* parent, wxWindowID id,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (unsigned i = 0; i < m_BookmarksNames.GetCount(); i++)
                 m_Bookmarks->Append(m_BookmarksNames[i]);
@@ -800,6 +806,9 @@ void wxHtmlHelpWindow::DisplayIndexItem(const wxHtmlHelpMergedIndexItem *it)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < len; i++)
         {
@@ -811,6 +820,9 @@ void wxHtmlHelpWindow::DisplayIndexItem(const wxHtmlHelpMergedIndexItem *it)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (size_t j = 0; j < clen; j++)
             {
@@ -892,6 +904,9 @@ bool wxHtmlHelpWindow::KeywordSearch(const wxString& keyword,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (status.IsActive())
         {
@@ -999,6 +1014,9 @@ void wxHtmlHelpWindow::CreateContents()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < cnt; i++)
     {
@@ -1076,6 +1094,9 @@ void wxHtmlHelpWindow::CreateIndex()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < cnt; i++)
         m_IndexList->Append((*m_mergedIndex)[i].name,
@@ -1098,6 +1119,9 @@ void wxHtmlHelpWindow::CreateSearch()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < cnt; i++)
         m_SearchChoice->Append(bookrec[i].GetTitle());
@@ -1157,6 +1181,9 @@ void wxHtmlHelpWindow::ReadCustomization(wxConfigBase *cfg, const wxString& path
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0; i < cnt; i++)
             {
@@ -1214,6 +1241,9 @@ void wxHtmlHelpWindow::WriteCustomization(wxConfigBase *cfg, const wxString& pat
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < cnt; i++)
         {
@@ -1394,6 +1424,9 @@ void wxHtmlHelpWindow::OptionsDialog()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < m_NormalFonts->GetCount(); i++)
             dlg.NormalFont->Append((*m_NormalFonts)[i]);
@@ -1401,6 +1434,9 @@ void wxHtmlHelpWindow::OptionsDialog()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < m_FixedFonts->GetCount(); i++)
             dlg.FixedFont->Append((*m_FixedFonts)[i]);
@@ -1500,6 +1536,9 @@ void wxHtmlHelpWindow::OnToolbar(wxCommandEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     while (ind >= 0 && it->level != level)
                     {
@@ -1528,10 +1567,13 @@ void wxHtmlHelpWindow::OnToolbar(wxCommandEvent& event)
                 {
                     size_t idx = ha->m_Index + 1;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     while (contents[idx].GetFullPath() == page) idx++;
 
@@ -1706,6 +1748,9 @@ void wxHtmlHelpWindow::DoIndexFind()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (unsigned i = 0; i < cnt; i++)
         {
@@ -1733,6 +1778,9 @@ void wxHtmlHelpWindow::DoIndexFind()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while (parent)
                 {
@@ -1756,6 +1804,9 @@ void wxHtmlHelpWindow::DoIndexFind()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while (i < cnt && index[i].items[0]->level > level)
                 {
@@ -1793,6 +1844,9 @@ void wxHtmlHelpWindow::DoIndexAll()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned i = 0; i < cnt; i++)
     {

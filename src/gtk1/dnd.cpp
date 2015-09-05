@@ -508,6 +508,9 @@ GdkAtom wxDropTarget::GetMatchingPair(bool quiet)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (child)
     {
@@ -880,6 +883,9 @@ wxDragResult wxDropSource::DoDragDrop(int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < count; i++)
     {
@@ -912,6 +918,9 @@ wxDragResult wxDropSource::DoDragDrop(int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (m_waiting)
             gtk_main_iteration();

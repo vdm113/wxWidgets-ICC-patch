@@ -78,6 +78,9 @@ class LexerRegistry : public ILexer {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (i < 10) {
 			i++;
@@ -97,6 +100,9 @@ class LexerRegistry : public ILexer {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (i < 100) {
 			i++;
@@ -121,6 +127,9 @@ class LexerRegistry : public ILexer {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (!atEOL) {
 			i++;
@@ -148,6 +157,9 @@ class LexerRegistry : public ILexer {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (!atEOL) {
 			i++;
@@ -171,6 +183,9 @@ class LexerRegistry : public ILexer {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (portion < 5) {
 			int i = 0;
@@ -178,6 +193,9 @@ class LexerRegistry : public ILexer {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (i < count) {
 				digit = styler.SafeGetCharAt(start+offset);
@@ -259,6 +277,9 @@ void SCI_METHOD LexerRegistry::Lex(unsigned startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (context.More()) {
 		if (context.atLineStart) {
@@ -410,6 +431,9 @@ void SCI_METHOD LexerRegistry::Fold(unsigned startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned i = startPos; i < endPos; i++) {
 		atKeyPath = IsKeyPathState(styler.StyleAt(i)) ? true : atKeyPath;

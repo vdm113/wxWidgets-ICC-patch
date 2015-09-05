@@ -173,6 +173,9 @@ bool wxMask::Create( const wxBitmap& bitmap,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int j = 0; j < height; j++)
     {
@@ -182,6 +185,9 @@ bool wxMask::Create( const wxBitmap& bitmap,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < width; i++)
         {
@@ -542,6 +548,9 @@ bool wxBitmap::CreateFromImage( const wxImage& image, int depth )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < w; i++)
     {
@@ -549,6 +558,9 @@ bool wxBitmap::CreateFromImage( const wxImage& image, int depth )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 0; j < h; j++)
         {
@@ -700,6 +712,9 @@ bool wxBitmap::CreateFromImage( const wxImage& image, int depth )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int y = 0; y < height; y++)
         {
@@ -707,6 +722,9 @@ bool wxBitmap::CreateFromImage( const wxImage& image, int depth )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (int x = 0; x < width; x++)
             {
@@ -921,6 +939,9 @@ wxImage wxBitmap::ConvertToImage() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int j = 0; j < height; j++)
     {
@@ -928,6 +949,9 @@ wxImage wxBitmap::ConvertToImage() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < width; i++)
         {
@@ -1254,6 +1278,9 @@ bool wxGetImageFromDrawable(GR_DRAW_ID drawable, int srcX, int srcY, int width, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(x = 0; x < sinfo.cols; x++) {
 

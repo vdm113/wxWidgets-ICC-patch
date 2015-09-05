@@ -895,6 +895,9 @@ void WebFrame::OnToolsClicked(wxCommandEvent& WXUNUSED(evt))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( it = m_histMenuItems.begin(); it != m_histMenuItems.end(); ++it )
     {
@@ -912,6 +915,9 @@ void WebFrame::OnToolsClicked(wxCommandEvent& WXUNUSED(evt))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(i = 0; i < back.size(); i++)
     {
@@ -934,6 +940,9 @@ void WebFrame::OnToolsClicked(wxCommandEvent& WXUNUSED(evt))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(i = 0; i < forward.size(); i++)
     {

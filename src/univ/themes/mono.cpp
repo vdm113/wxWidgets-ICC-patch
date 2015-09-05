@@ -1074,6 +1074,9 @@ void wxMonoRenderer::DrawScrollbarThumb(wxDC& dc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxCoord y = rect.GetTop(); y <= rect.GetBottom(); y++ )
     {
@@ -1081,6 +1084,9 @@ void wxMonoRenderer::DrawScrollbarThumb(wxDC& dc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxCoord x = rect.GetLeft() + (y % 2); x <= rect.GetRight(); x+=2 )
         {

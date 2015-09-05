@@ -186,6 +186,9 @@ int ClassListDialog::AddClassesWithParent(const wxClassInfo *parent, const wxTre
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (ci)
     {
@@ -234,6 +237,9 @@ void ClassListDialog::InitControls()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (ci)
     {
@@ -248,6 +254,9 @@ void ClassListDialog::InitControls()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i<arr.GetCount(); i++)
         if (!IsToDiscard(arr[i]))
@@ -262,6 +271,9 @@ void ClassListDialog::InitControls()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i<arr.GetCount(); i++)
         if (!IsToDiscard(arr[i]))
@@ -479,10 +491,13 @@ int DumpProperties(const wxClassInfo *info, wxString& infostr, bool recursive)
 {
     const wxPropertyInfo *prop;
     int pcount;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (prop = info->GetFirstProperty(), pcount = 0;
          prop;
@@ -504,6 +519,9 @@ int DumpProperties(const wxClassInfo *info, wxString& infostr, bool recursive)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i=0; parent[i] != NULL; i++)
         {
@@ -524,10 +542,13 @@ int DumpHandlers(const wxClassInfo *info, wxString& infostr, bool recursive)
 {
     const wxHandlerInfo *h;
     int hcount;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (h = info->GetFirstHandler(), hcount = 0;
          h;
@@ -549,6 +570,9 @@ int DumpHandlers(const wxClassInfo *info, wxString& infostr, bool recursive)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i=0; parent[i] != NULL; i++)
         {

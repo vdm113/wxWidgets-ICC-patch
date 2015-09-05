@@ -389,6 +389,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < count; i++)
         {
@@ -430,6 +433,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (unsigned i = 0; i < count; i++)
             {
@@ -474,6 +480,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (pos = 0; pos < count; pos++)
             {
@@ -497,6 +506,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int i = 0; i < len; i++ )
         {
@@ -1729,6 +1741,9 @@ bool wxGtkDataViewModelNotifier::ValueChanged( const wxDataViewItem &item, unsig
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (index = 0; index < ctrl->GetColumnCount(); index++)
     {
@@ -1812,6 +1827,9 @@ bool wxGtkDataViewModelNotifier::Cleared()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < count; i++)
         gtk_tree_model_row_deleted( GTK_TREE_MODEL(wxgtk_model), path );
@@ -2710,6 +2728,9 @@ wxDataViewChoiceRenderer::wxDataViewChoiceRenderer( const wxArrayString &choices
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t n = 0; n < m_choices.GetCount(); n++)
     {
@@ -3317,6 +3338,9 @@ void wxGtkTreeModelNode::Resort()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < child_count; i++)
        ptrs.Add( &(m_children[i]) );
@@ -3332,6 +3356,9 @@ void wxGtkTreeModelNode::Resort()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < child_count; i++)
     {
@@ -3353,6 +3380,9 @@ void wxGtkTreeModelNode::Resort()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < child_count; i++)
     {
@@ -3369,6 +3399,9 @@ void wxGtkTreeModelNode::Resort()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < child_count; i++)
     {
@@ -3393,6 +3426,9 @@ void wxGtkTreeModelNode::Resort()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (pos = 0; pos < child_count; pos++)
     {
@@ -3418,6 +3454,9 @@ void wxGtkTreeModelNode::Resort()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (pos = 0; pos < node_count; pos++)
     {
@@ -3508,6 +3547,9 @@ void wxDataViewCtrlInternal::BuildBranch( wxGtkTreeModelNode *node )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (pos = 0; pos < count; pos++)
         {
@@ -3736,10 +3778,13 @@ bool wxDataViewCtrlInternal::ItemAdded( const wxDataViewItem &parent, const wxDa
             // append to the end if we won't find a better position:
             nodePos = nodeSiblingsSize;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int nextItemPos = posInModel + 1;
                   nextItemPos < modelSiblingsSize;
@@ -3849,6 +3894,9 @@ gboolean wxDataViewCtrlInternal::get_iter( GtkTreeIter *iter, GtkTreePath *path 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < depth; i++)
         {
@@ -3873,6 +3921,9 @@ gboolean wxDataViewCtrlInternal::get_iter( GtkTreeIter *iter, GtkTreePath *path 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (pos2 = 0; pos2 < count; pos2++)
             {
@@ -3915,6 +3966,9 @@ GtkTreePath *wxDataViewCtrlInternal::get_path( GtkTreeIter *iter )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (node)
         {
@@ -4167,6 +4221,9 @@ int wxDataViewCtrlInternal::GetIndexOf( const wxDataViewItem &parent, const wxDa
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 0; j < children.GetCount(); j++)
         {
@@ -4192,6 +4249,9 @@ wxDataViewCtrlInternal_FindNode( wxDataViewModel * model, wxGtkTreeModelNode *tr
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while( it.IsOk() )
     {
@@ -4205,6 +4265,9 @@ wxDataViewCtrlInternal_FindNode( wxDataViewModel * model, wxGtkTreeModelNode *tr
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( ItemList::compatibility_iterator n = list.GetFirst(); n; n = n->GetNext() )
     {
@@ -4217,6 +4280,9 @@ wxDataViewCtrlInternal_FindNode( wxDataViewModel * model, wxGtkTreeModelNode *tr
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for( ; j < len; j ++)
             {
@@ -4299,6 +4365,9 @@ wxDataViewCtrlInternal_FindParentNode( wxDataViewModel * model, wxGtkTreeModelNo
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while( it.IsOk() )
     {
@@ -4312,6 +4381,9 @@ wxDataViewCtrlInternal_FindParentNode( wxDataViewModel * model, wxGtkTreeModelNo
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( ItemList::compatibility_iterator n = list.GetFirst(); n; n = n->GetNext() )
     {
@@ -4324,6 +4396,9 @@ wxDataViewCtrlInternal_FindParentNode( wxDataViewModel * model, wxGtkTreeModelNo
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for( ; j < len; j ++)
             {
@@ -4348,6 +4423,9 @@ wxDataViewCtrlInternal_FindParentNode( wxDataViewModel * model, wxGtkTreeModelNo
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( int i = 0; i < len ; i ++ )
     {
@@ -4712,6 +4790,9 @@ void wxDataViewCtrl::OnInternalIdle()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < cols; i++)
     {
@@ -4827,6 +4908,9 @@ wxDataViewColumn* wxDataViewCtrl::FromGTKColumn(GtkTreeViewColumn *gtk_col) cons
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (iter = m_cols.begin(); iter != m_cols.end(); ++iter)
     {
@@ -4866,6 +4950,9 @@ bool wxDataViewCtrl::ClearColumns()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (iter = m_cols.begin(); iter != m_cols.end(); ++iter)
     {
@@ -5024,6 +5111,9 @@ int wxDataViewCtrl::GetSelections( wxDataViewItemArray & sel ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( GList* current = list; current; current = g_list_next(current) )
         {
@@ -5061,6 +5151,9 @@ void wxDataViewCtrl::SetSelections( const wxDataViewItemArray & sel )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < sel.GetCount(); i++)
     {
@@ -5209,6 +5302,9 @@ void wxDataViewCtrl::HitTest(const wxPoint& point,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned int i=0, cols=GetColumnCount(); i<cols; ++i )  // search the wx column
         {

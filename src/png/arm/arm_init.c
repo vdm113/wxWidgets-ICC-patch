@@ -74,6 +74,9 @@ safe_read(png_structp png_ptr, int fd, void *buffer_in, size_t nbytes)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    while (nbytes > 0)
    {
@@ -144,6 +147,9 @@ png_have_neon(png_structp png_ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    while (safe_read(png_ptr, fd, &aux, sizeof aux) == sizeof aux)
    {

@@ -506,6 +506,9 @@ void MyFrame::OnFileSystemEvent(wxFileSystemWatcherEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t n = m_filesList->GetItemCount(); n > 0; --n)
         {

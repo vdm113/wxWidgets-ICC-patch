@@ -352,6 +352,9 @@ bool MyApp::OnInit()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int i = 0; i <= PROGRESS_COUNT; i++ )
         {
@@ -632,6 +635,9 @@ MyFrame::MyFrame(const wxString& title)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < wxColourData::NUM_CUSTOM; i++)
     {
@@ -769,6 +775,9 @@ void MyFrame::ChooseColourGeneric(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < 16; i++)
     {
@@ -1128,6 +1137,9 @@ void MyFrame::MultiChoice(wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int n = 0; n < count; n++ )
             {
@@ -1252,6 +1264,9 @@ private:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned n = 0; n < count; n++ )
         {
@@ -1342,6 +1357,9 @@ void MyFrame::Rearrange(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned n = 0; n < WXSIZEOF(items); n++ )
         {
@@ -1361,6 +1379,9 @@ void MyFrame::Rearrange(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < s_order.size(); n++ )
     {
@@ -1656,6 +1677,9 @@ void MyFrame::FilesOpen(wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )
         {
@@ -1744,6 +1768,9 @@ void MyFrame::FilesOpenGeneric(wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )
         {
@@ -2373,6 +2400,9 @@ void MyFrame::ShowProgress( wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i <= max; i++ )
     {
@@ -2468,6 +2498,9 @@ void MyFrame::ShowAppProgress( wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < range; i++ )
     {
@@ -2601,6 +2634,9 @@ void MyFrame::ShowBusyInfo(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < 18; i++ )
     {
@@ -3276,6 +3312,9 @@ bool TestMessageBoxDialog::Create()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < Btn_Max; n++ )
     {
@@ -3365,6 +3404,9 @@ void TestMessageBoxDialog::OnUpdateLabelUI(wxUpdateUIEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < Btn_Max; n++ )
     {
@@ -3391,6 +3433,9 @@ long TestMessageBoxDialog::GetStyle()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < Btn_Max; n++ )
     {

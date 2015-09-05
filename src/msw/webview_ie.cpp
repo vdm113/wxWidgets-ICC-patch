@@ -140,6 +140,9 @@ wxWebViewIE::~wxWebViewIE()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(unsigned int i = 0; i < m_factories.size(); i++)
         {
@@ -458,6 +461,9 @@ void wxWebViewIE::LoadHistoryItem(wxSharedPtr<wxWebViewHistoryItem> item)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(unsigned int i = 0; i < m_historyList.size(); i++)
     {
@@ -481,6 +487,9 @@ wxVector<wxSharedPtr<wxWebViewHistoryItem> > wxWebViewIE::GetBackwardHistory()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(int i = 0; i < m_historyPosition; i++)
     {
@@ -498,6 +507,9 @@ wxVector<wxSharedPtr<wxWebViewHistoryItem> > wxWebViewIE::GetForwardHistory()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(int i = m_historyPosition + 1; i < static_cast<int>(m_historyList.size()); i++)
     {
@@ -989,6 +1001,9 @@ bool wxWebViewIE::IsElementVisible(wxCOMPtr<IHTMLElement> elm)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while(elm1)
     {
@@ -1070,6 +1085,9 @@ void wxWebViewIE::FindInternal(const wxString& text, int flags, int internal_fla
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while(ptrBegin->FindText(text_bstr, find_flag, ptrEnd, NULL) == S_OK)
             {
@@ -1200,6 +1218,9 @@ void wxWebViewIE::FindClear()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(size_t i = 0; i < count; i++)
     {

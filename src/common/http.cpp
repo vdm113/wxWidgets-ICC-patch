@@ -90,6 +90,9 @@ wxHTTP::wxHeaderIterator wxHTTP::FindHeader(const wxString& header)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxHeaderIterator en = m_headers.end(); it != en; ++it )
     {
@@ -107,6 +110,9 @@ wxHTTP::wxHeaderConstIterator wxHTTP::FindHeader(const wxString& header) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxHeaderConstIterator en = m_headers.end(); it != en; ++it )
     {
@@ -124,6 +130,9 @@ wxHTTP::wxCookieIterator wxHTTP::FindCookie(const wxString& cookie)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxCookieIterator en = m_cookies.end(); it != en; ++it )
     {
@@ -141,6 +150,9 @@ wxHTTP::wxCookieConstIterator wxHTTP::FindCookie(const wxString& cookie) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxCookieConstIterator en = m_cookies.end(); it != en; ++it )
     {
@@ -198,6 +210,9 @@ wxString wxHTTP::GenerateAuthString(const wxString& user, const wxString& pass) 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (len >= 3) { // encode full blocks first
         buf << wxString::Format(wxT("%c%c"), base64[(from[0] >> 2) & 0x3f], base64[((from[0] << 4) & 0x30) | ((from[1] >> 4) & 0xf)]);
@@ -274,6 +289,9 @@ void wxHTTP::SendHeaders()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (iterator it = m_headers.begin(), en = m_headers.end(); it != en; ++it )
     {
@@ -297,6 +315,9 @@ bool wxHTTP::ParseHeaders()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ;; )
     {

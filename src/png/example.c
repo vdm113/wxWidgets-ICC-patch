@@ -558,6 +558,9 @@ void read_png(FILE *fp, unsigned int sig_read)  /* File is already open */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (row = 0; row < height; row++)
       row_pointers[row] = NULL;
@@ -566,6 +569,9 @@ void read_png(FILE *fp, unsigned int sig_read)  /* File is already open */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (row = 0; row < height; row++)
       row_pointers[row] = png_malloc(png_ptr, png_get_rowbytes(png_ptr,
@@ -582,6 +588,9 @@ void read_png(FILE *fp, unsigned int sig_read)  /* File is already open */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (pass = 0; pass < number_passes; pass++)
    {
@@ -590,6 +599,9 @@ void read_png(FILE *fp, unsigned int sig_read)  /* File is already open */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (y = 0; y < height; y++)
       {
@@ -601,6 +613,9 @@ void read_png(FILE *fp, unsigned int sig_read)  /* File is already open */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (y = 0; y < height; y += number_of_rows)
       {
@@ -1027,6 +1042,9 @@ void write_png(char *file_name /* , ... other image information ... */)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (k = 0; k < height; k++)
      row_pointers[k] = image + k*width*bytes_per_pixel;
@@ -1047,6 +1065,9 @@ void write_png(char *file_name /* , ... other image information ... */)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (pass = 0; pass < number_passes; pass++)
    {
@@ -1058,6 +1079,9 @@ void write_png(char *file_name /* , ... other image information ... */)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (y = 0; y < height; y++)
          png_write_rows(png_ptr, &row_pointers[y], 1);

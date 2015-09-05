@@ -71,6 +71,9 @@ WXDLLEXPORT bool IsIidFromList(REFIID riid, const IID *aIids[], size_t nCount)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for ( size_t i = 0; i < nCount; i++ ) {
     if ( riid == *aIids[i] )
@@ -674,6 +677,9 @@ static wxString GetIidName(REFIID riid)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for ( size_t ui = 0; ui < WXSIZEOF(aKnownIids); ui++ ) {
     if ( riid == *aKnownIids[ui].pIid ) {

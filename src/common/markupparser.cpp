@@ -73,6 +73,9 @@ ExtractUntil(char ch, wxString::const_iterator& it, wxString::const_iterator end
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ; it != end; ++it )
     {
@@ -112,6 +115,9 @@ wxMarkupParser::ParseAttrs(wxString attrs, TagAndAttrs& tagAndAttrs)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( !attrs.empty() )
     {
@@ -255,6 +261,9 @@ bool wxMarkupParser::OutputTag(const TagAndAttrs& tagAndAttrs, bool start)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned n = 0; n < WXSIZEOF(tagHandlers); n++ )
         {
@@ -291,6 +300,9 @@ bool wxMarkupParser::Parse(const wxString& text)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator it = text.begin(); it != end; ++it )
     {
@@ -396,6 +408,9 @@ bool wxMarkupParser::Parse(const wxString& text)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for ( n = 0; n < WXSIZEOF(xmlEntities); n++ )
                     {
@@ -448,6 +463,9 @@ wxString wxMarkupParser::Quote(const wxString& text)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator it = text.begin(); it != text.end(); ++it )
     {
@@ -456,6 +474,9 @@ wxString wxMarkupParser::Quote(const wxString& text)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < WXSIZEOF(xmlEntities); n++ )
         {

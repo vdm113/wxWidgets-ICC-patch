@@ -72,6 +72,9 @@ bool wxRearrangeList::Create(wxWindow *parent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
     {
@@ -91,6 +94,9 @@ bool wxRearrangeList::Create(wxWindow *parent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
     {

@@ -142,6 +142,9 @@ int mfs_open (void *buffer, int size, char *mode)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < MAX_BUFFS; i++)
     {
@@ -584,6 +587,9 @@ static void mem_init ()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < MAX_BUFFS; i++)
     {

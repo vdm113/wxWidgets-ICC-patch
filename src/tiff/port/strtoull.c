@@ -66,6 +66,9 @@ strtoull(const char *nptr, char **endptr, int base)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	do {
 		c = *s++;
@@ -99,6 +102,9 @@ strtoull(const char *nptr, char **endptr, int base)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for ( ; ; c = *s++) {
 		if (c >= '0' && c <= '9')

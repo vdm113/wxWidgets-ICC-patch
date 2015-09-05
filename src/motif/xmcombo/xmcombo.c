@@ -663,6 +663,9 @@ static Window GetDecorationWindow(XmComboBoxWidget w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do {
 	AWindow = Parent;
@@ -818,6 +821,9 @@ static int WidgetToScreen(Widget w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < NumScreens; ++i )
 	if ( ScreenOfDisplay(display, i) == screen )
@@ -1308,6 +1314,9 @@ static int UpdateColors(XmComboBoxWidget w, int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i=0; i<size; i++ )
 	if ( flags & ColorResources[i].Flag ) {
@@ -1527,6 +1536,9 @@ static Boolean SetValues(XmComboBoxWidget current, XmComboBoxWidget req,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
      for ( i = 0; i < *NumArgs; i++ ) {
 /* Ist es eine vorgespiegelte Resource ? Wenn ja, dann leite die
@@ -1536,6 +1548,9 @@ static Boolean SetValues(XmComboBoxWidget current, XmComboBoxWidget req,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for ( j = 0; j < MirrorSize; j++ ) {
 	    if ( (strcmp(args[i].name, MirroredResources[j].rsc) == 0) ) {
@@ -1561,6 +1576,9 @@ static Boolean SetValues(XmComboBoxWidget current, XmComboBoxWidget req,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		    for ( k = 0; k < TransformationSize; k++ )
 			if ( strcmp(args[i].name, Transformations[k].from) == 0 ) {
@@ -1579,6 +1597,9 @@ static Boolean SetValues(XmComboBoxWidget current, XmComboBoxWidget req,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		    for ( k = 0; k < *NumArgs; k++ )
 			if ( strcmp(args[k].name, XmNitemCount) == 0 ) {
@@ -1637,6 +1658,9 @@ static void GetValuesAlmost(XmComboBoxWidget w, ArgList args,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < *NumArgs; i++ ) {
 /* Ist es eine vorgespiegelte Resource ? Wenn ja, dann leite die
@@ -1646,6 +1670,9 @@ static void GetValuesAlmost(XmComboBoxWidget w, ArgList args,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for ( j = 0; j < MirrorSize; j++ ) {
 	    if ( strcmp(args[i].name, MirroredResources[j].rsc) == 0 ) {
@@ -1666,6 +1693,9 @@ static void GetValuesAlmost(XmComboBoxWidget w, ArgList args,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		    for ( k = 0; k < TransformationSize; k++ )
 			if ( strcmp(args[i].name, Transformations[k].from) == 0 ) {
@@ -2214,6 +2244,9 @@ static void EditVerifyCallback(Widget w, XtPointer pClientData,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     	    while ( i != Start || Ignore ) {
     	        Ignore = False;
@@ -2272,6 +2305,9 @@ static void EditChangedCallback(Widget w, XtPointer pClientDate,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < ItemCount; i++ )
 	if ( XmStringCompare(Items[i], EditStr) ) {
@@ -2531,6 +2567,9 @@ static Boolean FetchXmStringTableResource(Widget w,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ( *p )
 	    if ( *p++ == ',' ) ++Entries;
@@ -2542,13 +2581,19 @@ static Boolean FetchXmStringTableResource(Widget w,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for ( Entry = 0; Entry < Entries; ++Entry ) {
 	    pStart = p;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	    while ( (*p != 0) && (*p != ',') ) ++p;
 	    *p++ = 0;
@@ -2687,6 +2732,9 @@ static void InitMirrorResources(XmComboBoxWidget w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i=0; i < size; i++ ) {
 	switch ( ResourceMirror[i].Converter ) {
@@ -2865,6 +2913,9 @@ static void Initialize(Widget request, XmComboBoxWidget newW,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ( !XtIsSubclass(w, shellWidgetClass) )
 	    w = XtParent(w);
@@ -3252,6 +3303,9 @@ static int FindSortedItemPos(XmComboBoxWidget w, XmString item)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do {
 	index = (Left + Right) / 2;
@@ -3388,6 +3442,9 @@ void    XmComboBoxDeleteItems(Widget w, XmString *items, int item_count)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < item_count; i++ )
 	XmListDeleteItem(w, items[i]);
@@ -3411,6 +3468,9 @@ void    XmComboBoxDeleteItemsPos(Widget w, int item_count, int pos)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < item_count; i++ )
 	XmComboBoxDeletePos(w, pos++);

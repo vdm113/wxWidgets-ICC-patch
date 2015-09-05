@@ -228,6 +228,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int n = 0; n < wxAnyButton::State_Max; n++ )
         {
@@ -912,6 +915,9 @@ void DrawButtonText(HDC hdc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t lineNum = 0; lineNum < lines.size(); lineNum++ )
         {

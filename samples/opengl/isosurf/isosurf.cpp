@@ -222,6 +222,9 @@ void TestGLCanvas::LoadSurface(const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (!stream->Eof() && m_numverts < MAXVERTS)// && m_numverts<MAXVERTS)
         {
@@ -273,6 +276,9 @@ void TestGLCanvas::OnPaint( wxPaintEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i=0;i<m_numverts;i++)
         {

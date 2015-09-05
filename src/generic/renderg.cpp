@@ -753,6 +753,9 @@ wxRendererGeneric::DrawFocusRect(wxWindow* WXUNUSED(win), wxDC& dc, const wxRect
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( z = x1 + 1; z < x2; z += 2 )
         dc.DrawPoint(z, rect.GetTop());
@@ -762,6 +765,9 @@ wxRendererGeneric::DrawFocusRect(wxWindow* WXUNUSED(win), wxDC& dc, const wxRect
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( z = y1 + shift; z < y2; z += 2 )
         dc.DrawPoint(x2, z);
@@ -771,6 +777,9 @@ wxRendererGeneric::DrawFocusRect(wxWindow* WXUNUSED(win), wxDC& dc, const wxRect
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( z = x2 - shift; z > x1; z -= 2 )
         dc.DrawPoint(z, y2);
@@ -780,6 +789,9 @@ wxRendererGeneric::DrawFocusRect(wxWindow* WXUNUSED(win), wxDC& dc, const wxRect
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( z = y2 - shift; z > y1; z -= 2 )
         dc.DrawPoint(x1, z);

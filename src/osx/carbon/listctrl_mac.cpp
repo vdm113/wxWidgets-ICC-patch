@@ -794,6 +794,9 @@ void wxListCtrl::DoSetSize( int x, int y, int width, int height, int sizeFlags )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int column = 0; column < GetColumnCount(); column++)
         {
@@ -1026,6 +1029,9 @@ bool wxListCtrl::SetColumnWidth(int col, int width)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (int column = 0; column < GetColumnCount(); column++)
             {
@@ -1228,6 +1234,9 @@ bool wxListCtrl::SetItemState(long item, long state, long stateMask)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for(int i = 0; i < GetItemCount();i++)
                 {
@@ -1632,6 +1641,9 @@ long wxListCtrl::GetNextItem(long item, int geom, int state) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( long line = item + 1 ; line < count; line++ )
             {
@@ -1660,6 +1672,9 @@ long wxListCtrl::GetNextItem(long item, int geom, int state) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( long line = item2 - 1 ; line >= 0; line-- )
             {
@@ -1809,6 +1824,9 @@ bool wxListCtrl::DeleteAllColumns()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (UInt32 col = 0; col < cols; col++)
         {
@@ -1931,6 +1949,9 @@ long wxListCtrl::FindItem(long start, const wxString& str, bool partial)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (idx < count)
     {
@@ -1968,6 +1989,9 @@ long wxListCtrl::FindItem(long start, long data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (idx < count)
     {
@@ -2032,6 +2056,9 @@ wxListCtrl::HitTest(const wxPoint& point, int& flags, long *ptrSubItem) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for( column = 0; column < GetColumnCount(); column++ )
             {
@@ -2440,6 +2467,9 @@ void wxListCtrl::RefreshItems(long itemFrom, long itemTo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( long i = 0; i < count; i++ )
             {
@@ -2453,6 +2483,9 @@ void wxListCtrl::RefreshItems(long itemFrom, long itemTo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( long i = 0; i < count; i++ )
                 ids[i] = itemFrom+i+1;
@@ -3429,6 +3462,9 @@ int wxListCtrl::CalcColumnAutoWidth(int col) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < GetItemCount(); i++ )
     {

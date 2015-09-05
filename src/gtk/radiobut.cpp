@@ -81,6 +81,9 @@ bool wxRadioButton::Create( wxWindow *parent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (; node; node = node->GetPrevious())
         {

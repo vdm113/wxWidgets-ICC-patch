@@ -433,6 +433,9 @@ void wxFontRefData::ClearX11Fonts()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -952,6 +955,9 @@ wxXFont* wxFont::GetInternalFont(double scale, WXDisplay* display) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {

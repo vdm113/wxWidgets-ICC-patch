@@ -350,6 +350,9 @@ private:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int i = 0; i < 100; i++ )
         {
@@ -1650,6 +1653,9 @@ RichTextFrame::RichTextFrame(wxWindow* parent, const wxString& title):
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 10; i++)
     {
@@ -1658,6 +1664,9 @@ RichTextFrame::RichTextFrame(wxWindow* parent, const wxString& title):
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 0; j < 10; j++)
         {
@@ -1779,6 +1788,9 @@ void RichTextFrame::OnChangeTextColour(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < 16; i++)
     {
@@ -1813,6 +1825,9 @@ void RichTextFrame::OnChangeBackgroundColour(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < 16; i++)
     {
@@ -1903,6 +1918,9 @@ void RichTextFrame::OnTabStops(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (tokens.HasMoreTokens())
     {

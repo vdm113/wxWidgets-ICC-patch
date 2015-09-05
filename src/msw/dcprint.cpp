@@ -441,6 +441,9 @@ bool wxPrinterDCImpl::DoBlit(wxCoord xdest, wxCoord ydest,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int x = 0; x < width; x++)
         {
@@ -448,6 +451,9 @@ bool wxPrinterDCImpl::DoBlit(wxCoord xdest, wxCoord ydest,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (int y = 0; y < height; y++)
             {
@@ -480,6 +486,9 @@ bool wxPrinterDCImpl::DoBlit(wxCoord xdest, wxCoord ydest,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (int y = 0; y < height; y++)
             {
@@ -488,6 +497,9 @@ bool wxPrinterDCImpl::DoBlit(wxCoord xdest, wxCoord ydest,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (int x = 0; x < width; x++)
                 {
@@ -500,6 +512,9 @@ bool wxPrinterDCImpl::DoBlit(wxCoord xdest, wxCoord ydest,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     while( (x + 1 < width) &&
                                 (::GetPixel(dcSrc, x + 1, y) == col ) )

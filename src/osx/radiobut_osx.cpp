@@ -57,6 +57,9 @@ bool wxRadioButton::Create( wxWindow *parent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (node)
         {
@@ -98,6 +101,9 @@ void wxRadioButton::SetValue(bool val)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (cycle != this)
             {
@@ -136,6 +142,9 @@ bool wxRadioButton::OSXHandleClicked( double WXUNUSED(timestampsec) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (cycle != this)
         {
@@ -171,6 +180,9 @@ wxRadioButton *wxRadioButton::AddInCycle(wxRadioButton *cycle)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (current->m_cycle != cycle)
             current = current->m_cycle;
@@ -193,6 +205,9 @@ void wxRadioButton::RemoveFromCycle()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (prev->m_cycle != this)
         prev = prev->m_cycle;

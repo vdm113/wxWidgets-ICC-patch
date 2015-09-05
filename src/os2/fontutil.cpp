@@ -424,6 +424,9 @@ void wxFillLogFont( LOGFONT*      pFattrs,  // OS2 GPI FATTRS
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(unsigned long LCNum = 0; LCNum < (unsigned long)lNumLids; LCNum++)
             if(alIds[LCNum] == *pflId)
@@ -497,6 +500,9 @@ void wxOS2SelectMatchingFontByName(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(i = 0;i < 16; i++)
         anMinDiff[i] = nMinDiff0;
@@ -591,6 +597,9 @@ void wxOS2SelectMatchingFontByName(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(i = 0, nIs = 0; i < nNumFonts; i++)
     {
@@ -736,6 +745,9 @@ int wxGpiStrcmp(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(i=0;i<l;i++)
     {

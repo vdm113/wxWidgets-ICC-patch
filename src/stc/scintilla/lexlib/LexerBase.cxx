@@ -39,6 +39,9 @@ LexerBase::LexerBase() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int wl = 0; wl < numWordLists; wl++)
 		keyWordLists[wl] = new WordList;
@@ -50,6 +53,9 @@ LexerBase::~LexerBase() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int wl = 0; wl < numWordLists; wl++) {
 		delete keyWordLists[wl];

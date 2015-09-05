@@ -54,6 +54,9 @@ static unsigned int SpaceCount(char* lineBuffer) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (*headBuffer == ' ')
 		headBuffer++;
@@ -105,6 +108,9 @@ static void ColouriseYAMLLine(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((i < lengthLine) && lineBuffer[i] == ' ') { // YAML always uses space, never TABS or anything else
 		i++;
@@ -122,6 +128,9 @@ static void ColouriseYAMLLine(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (i < lengthLine) {
 		if (lineBuffer[i] == '\'' || lineBuffer[i] == '\"') {
@@ -135,6 +144,9 @@ static void ColouriseYAMLLine(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while ((i < lengthLine) && isspacechar(lineBuffer[i]))
 				i++;
@@ -143,6 +155,9 @@ static void ColouriseYAMLLine(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while ((endValue >= i) && isspacechar(lineBuffer[endValue]))
 				endValue--;
@@ -155,6 +170,9 @@ static void ColouriseYAMLLine(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while ((i < lengthLine) && isspacechar(lineBuffer[i]))
 					i++;
@@ -190,6 +208,9 @@ static void ColouriseYAMLLine(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while ((i < lengthLine) && lineBuffer[i]) {
 					if (!(IsASCII(lineBuffer[i]) && isdigit(lineBuffer[i])) && lineBuffer[i] != '-' && lineBuffer[i] != '.' && lineBuffer[i] != ',') {
@@ -224,6 +245,9 @@ static void ColouriseYAMLDoc(unsigned int startPos, int length, int, WordList *k
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < maxPos && i < endPos; i++) {
 		lineBuffer[linePos++] = styler[i];
@@ -266,6 +290,9 @@ static void FoldYAMLDoc(unsigned int startPos, int length, int /*initStyle - unu
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (lineCurrent > 0) {
 		lineCurrent--;
@@ -288,6 +315,9 @@ static void FoldYAMLDoc(unsigned int startPos, int length, int /*initStyle - unu
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((lineCurrent <= docLines) && ((lineCurrent <= maxLines) || prevComment)) {
 
@@ -325,6 +355,9 @@ static void FoldYAMLDoc(unsigned int startPos, int length, int /*initStyle - unu
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while ((lineNext < docLines) &&
 		        ((indentNext & SC_FOLDLEVELWHITEFLAG) ||
@@ -349,6 +382,9 @@ static void FoldYAMLDoc(unsigned int startPos, int length, int /*initStyle - unu
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (--skipLine > lineCurrent) {
 			int skipLineIndent = styler.IndentAmount(skipLine, &spaceFlags, NULL);

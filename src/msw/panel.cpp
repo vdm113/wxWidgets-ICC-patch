@@ -43,6 +43,9 @@ bool wxPanel::HasTransparentBackground()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindow *win = GetParent(); win; win = win->GetParent() )
     {

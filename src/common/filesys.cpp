@@ -72,6 +72,9 @@ wxString wxFileSystemHandler::GetMimeTypeFromExt(const wxString& location)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = l-1; i >= 0; i--)
     {
@@ -172,15 +175,21 @@ wxString wxFileSystemHandler::GetProtocol(const wxString& location)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = l-1; (i >= 0) && ((location[i] != wxT('#')) || (!fnd)); i--) {
         if ((location[i] == wxT(':')) && (i != 1 /*win: C:\path*/)) fnd = true;
     }
     if (!fnd) return wxT("file");
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (++i; (i < l) && (location[i] != wxT(':')); i++) s << location[i];
     return s;
@@ -197,6 +206,9 @@ wxString wxFileSystemHandler::GetLeftLocation(const wxString& location)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = location.length()-1; i >= 0; i--) {
         if ((location[i] == wxT(':')) && (i != 1 /*win: C:\path*/)) fnd = true;
@@ -211,10 +223,13 @@ wxString wxFileSystemHandler::GetRightLocation(const wxString& location)
     int i, l = location.length();
     int l2 = l + 1;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = l-1;
          (i >= 0) &&
@@ -237,6 +252,9 @@ wxString wxFileSystemHandler::GetAnchor(const wxString& location)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = l-1; i >= 0; i--) {
         c = location[i];
@@ -354,6 +372,9 @@ static wxString MakeCorrectPath(const wxString& path)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < cnt; i++)
       if (p.GetChar(i) == wxT('\\')) p.GetWritableChar(i) = wxT('/'); // Want to be windows-safe
@@ -365,10 +386,13 @@ static wxString MakeCorrectPath(const wxString& path)
     r << p.GetChar(0) << p.GetChar(1);
 
     // skip trailing ../.., if any
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 2; i < cnt && (p.GetChar(i) == wxT('/') || p.GetChar(i) == wxT('.')); i++) r << p.GetChar(i);
 
@@ -377,6 +401,9 @@ static wxString MakeCorrectPath(const wxString& path)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (; i < cnt; i++)
     {
@@ -387,6 +414,9 @@ static wxString MakeCorrectPath(const wxString& path)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (j = r.length() - 2; j >= 0 && r.GetChar(j) != wxT('/') && r.GetChar(j) != wxT(':'); j--) {}
             if (j >= 0 && r.GetChar(j) != wxT(':'))
@@ -395,6 +425,9 @@ static wxString MakeCorrectPath(const wxString& path)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (j = j - 1; j >= 0 && r.GetChar(j) != wxT('/') && r.GetChar(j) != wxT(':'); j--) {}
                 r.Remove(j + 1);
@@ -402,10 +435,13 @@ static wxString MakeCorrectPath(const wxString& path)
         }
     }
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (; i < cnt; i++) r << p.GetChar(i);
 
@@ -431,6 +467,9 @@ void wxFileSystem::ChangePathTo(const wxString& location, bool is_dir)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = m_Path.length()-1; i >= 0; i--)
         {
@@ -458,6 +497,9 @@ void wxFileSystem::ChangePathTo(const wxString& location, bool is_dir)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0; i < (int) m_Path.length(); i++)
             {
@@ -515,6 +557,9 @@ wxFSFile* wxFileSystem::OpenFile(const wxString& location, int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < ln; i++)
     {
@@ -536,6 +581,9 @@ wxFSFile* wxFileSystem::OpenFile(const wxString& location, int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (node)
         {
@@ -557,6 +605,9 @@ wxFSFile* wxFileSystem::OpenFile(const wxString& location, int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (node)
         {
@@ -594,6 +645,9 @@ wxString wxFileSystem::FindFirst(const wxString& spec, int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = spec2.length()-1; i >= 0; i--)
         if (spec2[(unsigned int) i] == wxT('\\')) spec2.GetWritableChar(i) = wxT('/'); // Want to be windows-safe
@@ -603,6 +657,9 @@ wxString wxFileSystem::FindFirst(const wxString& spec, int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -620,6 +677,9 @@ wxString wxFileSystem::FindFirst(const wxString& spec, int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -663,6 +723,9 @@ bool wxFileSystem::FindFileInPath(wxString *pStr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( tokenizer.HasMoreTokens() )
     {
@@ -706,10 +769,13 @@ wxFileSystemHandler* wxFileSystem::RemoveHandler(wxFileSystemHandler *handler)
 
 bool wxFileSystem::HasHandlerForPath(const wxString &location)
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxList::compatibility_iterator node = m_Handlers.GetFirst();
            node; node = node->GetNext() )
@@ -781,6 +847,9 @@ static wxString EscapeFileNameCharsInURL(const char *in)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const unsigned char *p = (const unsigned char*)in; *p; ++p )
     {

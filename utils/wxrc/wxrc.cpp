@@ -73,6 +73,9 @@ private:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (node)
         {
@@ -151,6 +154,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(i=0;i<m_wdata.GetCount();++i)
         {
@@ -171,6 +177,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(i=0;i<m_wdata.GetCount();++i)
         {
@@ -209,10 +218,13 @@ public:
                        wxT(" }\n")
                        wxT("};\n"));
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( StringSet::const_iterator it = m_ancestorClassNames.begin();
                   it != m_ancestorClassNames.end();
@@ -381,6 +393,9 @@ void XmlResApp::ParseParams(const wxCmdLineParser& cmdline)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < cmdline.GetParamCount(); i++)
     {
@@ -390,6 +405,9 @@ void XmlResApp::ParseParams(const wxCmdLineParser& cmdline)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (!fn.empty())
         {
@@ -446,6 +464,9 @@ wxString XmlResApp::GetInternalFileName(const wxString& name, const wxArrayStrin
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = 0;; i++)
         {
@@ -465,6 +486,9 @@ wxArrayString XmlResApp::PrepareTempFiles()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < parFiles.GetCount(); i++)
     {
@@ -492,6 +516,9 @@ wxArrayString XmlResApp::PrepareTempFiles()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while(node){
                     if(node->GetName() == wxT("object")
@@ -577,6 +604,9 @@ void XmlResApp::FindFilesInXML(wxXmlNode *node, wxArrayString& flist, const wxSt
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (n)
     {
@@ -620,6 +650,9 @@ void XmlResApp::DeleteTempFiles(const wxArrayString& flist)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < flist.GetCount(); i++)
         wxRemoveFile(parOutputPath + wxFILE_SEP_PATH + flist[i]);
@@ -635,6 +668,9 @@ void XmlResApp::MakePackageZIP(const wxArrayString& flist)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < flist.GetCount(); i++)
         files += flist[i] + wxT(" ");
@@ -688,6 +724,9 @@ static wxString FileToCppArray(wxString filename, int num)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0, linelng = 0; i < lng; i++)
     {
@@ -747,6 +786,9 @@ void XmlResApp::MakePackageCPP(const wxArrayString& flist)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < flist.GetCount(); i++)
         file.Write(
@@ -771,6 +813,9 @@ void XmlResApp::MakePackageCPP(const wxArrayString& flist)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < flist.GetCount(); i++)
     {
@@ -802,6 +847,9 @@ void XmlResApp::MakePackageCPP(const wxArrayString& flist)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < parFiles.GetCount(); i++)
     {
@@ -832,6 +880,9 @@ void XmlResApp::GenCPPHeader()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(size_t i=0;i<aXRCWndClassData.GetCount();++i){
                 aXRCWndClassData.Item(i).GenerateHeaderCode(file);
@@ -865,6 +916,9 @@ static wxString FileToPythonArray(wxString filename, int num)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0, linelng = 0; i < lng; i++)
     {
@@ -920,6 +974,9 @@ void XmlResApp::MakePackagePython(const wxArrayString& flist)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < flist.GetCount(); i++)
         file.Write(
@@ -944,6 +1001,9 @@ void XmlResApp::MakePackagePython(const wxArrayString& flist)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < flist.GetCount(); i++)
     {
@@ -956,6 +1016,9 @@ void XmlResApp::MakePackagePython(const wxArrayString& flist)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < parFiles.GetCount(); i++)
     {
@@ -982,6 +1045,9 @@ void XmlResApp::OutputGettext()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (ExtractedStrings::const_iterator i = str.begin(); i != str.end(); ++i)
     {
@@ -1008,6 +1074,9 @@ ExtractedStrings XmlResApp::FindStrings()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < parFiles.GetCount(); i++)
     {
@@ -1040,6 +1109,9 @@ static wxString ConvertText(const wxString& str)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (dt = str.c_str(); *dt; dt++)
     {
@@ -1089,6 +1161,9 @@ XmlResApp::FindStrings(const wxString& filename, wxXmlNode *node)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (n)
     {
@@ -1178,6 +1253,9 @@ bool XmlResApp::Validate()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < parFiles.GetCount(); i++ )
         cmdline << wxString::Format(" \"%s\"", parFiles[i]);

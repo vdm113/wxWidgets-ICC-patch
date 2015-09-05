@@ -86,6 +86,9 @@ protected:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )
         {
@@ -315,6 +318,9 @@ void MyFrame::OnListLoadedDLLs(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
@@ -325,6 +331,9 @@ void MyFrame::OnListLoadedDLLs(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ;; )
     {
@@ -408,6 +417,9 @@ void MyFrame::OnPaint(wxPaintEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxCoord x = 0; x < size.x; x += size.x/m_numLines )
         dc.DrawLine(x, 0, x, size.y);

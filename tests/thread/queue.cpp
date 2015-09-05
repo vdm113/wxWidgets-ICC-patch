@@ -113,6 +113,9 @@ void QueueTestCase::TestReceive()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < threadCount; ++i )
     {
@@ -128,6 +131,9 @@ void QueueTestCase::TestReceive()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < threadCount; ++i )
     {
@@ -140,6 +146,9 @@ void QueueTestCase::TestReceive()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < msgCount; ++i )
     {
@@ -150,6 +159,9 @@ void QueueTestCase::TestReceive()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < threadCount; ++i )
     {
@@ -201,6 +213,9 @@ void *QueueTestCase::MyThread::Entry()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( messagesReceived < m_maxMsgCount )
     {

@@ -182,6 +182,9 @@ void wxHeaderCtrlBase::SetColumnsOrder(const wxArrayInt& order)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < count; n++ )
     {
@@ -205,6 +208,9 @@ void wxHeaderCtrlBase::ResetColumnsOrder()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < count; n++ )
         order[n] = n;
@@ -268,6 +274,9 @@ wxHeaderCtrlBase::DoResizeColumnIndices(wxArrayInt& colIndices, unsigned int cou
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned n = countOld; n < count; n++ )
             colIndices.push_back(n);
@@ -282,6 +291,9 @@ wxHeaderCtrlBase::DoResizeColumnIndices(wxArrayInt& colIndices, unsigned int cou
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned n = 0; n < countOld; n++ )
         {
@@ -310,6 +322,9 @@ void wxHeaderCtrlBase::AddColumnsItems(wxMenu& menu, int idColumnsBase)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < count; n++ )
     {
@@ -373,6 +388,9 @@ bool wxHeaderCtrlBase::ShowCustomizeDialog()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < count; n++ )
         titles.push_back(GetColumn(n).GetTitle());
@@ -383,6 +401,9 @@ bool wxHeaderCtrlBase::ShowCustomizeDialog()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( pos = 0; pos < count; pos++ )
     {
@@ -404,6 +425,9 @@ bool wxHeaderCtrlBase::ShowCustomizeDialog()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( pos = 0; pos < count; pos++ )
         {

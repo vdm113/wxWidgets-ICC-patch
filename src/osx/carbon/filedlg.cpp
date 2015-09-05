@@ -103,6 +103,9 @@ OpenUserDataRec::OpenUserDataRec( wxFileDialog* d)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0 ; i < numFilters ; ++i )
         {
@@ -298,6 +301,9 @@ void OpenUserDataRec::MakeUserDataRec( const wxString& filter )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned int i = 0; i < filter2.length() ; i++ )
         {
@@ -339,6 +345,9 @@ void OpenUserDataRec::MakeUserDataRec( const wxString& filter )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0 ; i < extCount; i++ )
         {
@@ -382,6 +391,9 @@ bool OpenUserDataRec::CheckFile( const wxString &filename , OSType type)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( tokenizer.HasMoreTokens() )
             {
@@ -608,6 +620,9 @@ int wxFileDialog::ShowModal()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (long i = 1; i <= count; ++i)
         {

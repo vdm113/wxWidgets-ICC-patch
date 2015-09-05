@@ -112,6 +112,9 @@ void wxFileDialog::GetPaths (
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < nCount; n++ )
     {
@@ -175,6 +178,9 @@ int wxFileDialog::ShowModal()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < nLen; i++ )
     {
@@ -201,6 +207,9 @@ int wxFileDialog::ShowModal()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while (i < nLen - 1)
                 {
@@ -243,6 +252,9 @@ int wxFileDialog::ShowModal()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while(pzFilterBuffer != NULL)
     {
@@ -280,6 +292,9 @@ int wxFileDialog::ShowModal()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (int i = 0; i < (int)vFileDlg.ulFQFCount; i++)
             {
@@ -337,6 +352,9 @@ int wxFileDialog::ShowModal()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for( int i = 0; i < (int)sFilterBuffer.length(); i++ )
                 {

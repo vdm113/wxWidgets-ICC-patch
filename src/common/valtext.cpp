@@ -51,6 +51,9 @@ static bool wxIsNumeric(const wxString& val)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator i = val.begin(); i != val.end(); ++i )
     {
@@ -241,6 +244,9 @@ bool CheckString(bool (*func)(const wxUniChar&), const wxString& str)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator i = str.begin(); i != str.end(); ++i )
     {
@@ -281,6 +287,9 @@ bool wxTextValidator::ContainsOnlyIncludedCharacters(const wxString& val) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator i = val.begin(); i != val.end(); ++i )
         if (m_includes.Index((wxString) *i) == wxNOT_FOUND)
@@ -297,6 +306,9 @@ bool wxTextValidator::ContainsExcludedCharacters(const wxString& val) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator i = val.begin(); i != val.end(); ++i )
         if (m_excludes.Index((wxString) *i) != wxNOT_FOUND)
@@ -315,6 +327,9 @@ void wxTextValidator::SetCharIncludes(const wxString& chars)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator i = chars.begin(); i != chars.end(); ++i )
         arr.Add(*i);
@@ -330,6 +345,9 @@ void wxTextValidator::SetCharExcludes(const wxString& chars)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator i = chars.begin(); i != chars.end(); ++i )
         arr.Add(*i);

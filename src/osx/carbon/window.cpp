@@ -220,6 +220,9 @@ static pascal OSStatus wxMacWindowControlEventHandler( EventHandlerCallRef handl
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                             while ( iter )
                             {
@@ -453,6 +456,9 @@ wxMacWindowServiceEventHandler(EventHandlerCallRef WXUNUSED(handler),
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for ( size_t i = 0 ; i < WXSIZEOF(textDataTypes) ; ++i )
                 {
@@ -502,6 +508,9 @@ wxMacWindowServiceEventHandler(EventHandlerCallRef WXUNUSED(handler),
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for( UInt32 itemIndex = 1; itemIndex <= itemCount; itemIndex++ )
                 {
@@ -577,6 +586,9 @@ WXDLLEXPORT pascal OSStatus wxMacUnicodeTextEventHandler( EventHandlerCallRef ha
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (int pos=0 ; pos < numChars ; pos++)
                 {
@@ -638,6 +650,9 @@ WXDLLEXPORT pascal OSStatus wxMacUnicodeTextEventHandler( EventHandlerCallRef ha
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (int pos=0 ; pos < numChars ; pos++)
                 {
@@ -1423,6 +1438,9 @@ static void InvalidateControlAndChildren( HIViewRef control )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( UInt16 i = childrenCount; i >=1; --i )
     {

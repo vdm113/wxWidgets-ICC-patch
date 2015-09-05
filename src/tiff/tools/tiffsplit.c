@@ -80,6 +80,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		do {
 			size_t path_len;
@@ -256,6 +259,9 @@ cpStrips(TIFF* in, TIFF* out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (s = 0; s < ns; s++) {
 			if (bytecounts[s] > (uint64)bufsize) {
@@ -294,6 +300,9 @@ cpTiles(TIFF* in, TIFF* out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (t = 0; t < nt; t++) {
 			if (bytecounts[t] > (uint64) bufsize) {

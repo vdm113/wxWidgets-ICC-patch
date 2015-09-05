@@ -275,6 +275,9 @@ void wxListBox::DoSetSelection(int N, bool select)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0; i < n; i++)
                 XmListSelectPos ((Widget) m_mainWidget,
@@ -311,6 +314,9 @@ bool wxListBox::IsSelected(int N) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 0; j < count; j++)
             if (theSelections[j] == N)
@@ -339,6 +345,9 @@ int wxListBox::GetSelections(wxArrayInt& aSelections) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0; i < posCnt; i++)
                 aSelections.Add(posList[i] - 1);
@@ -411,6 +420,9 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter & items,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < numItems; i++)
     {
@@ -426,6 +438,9 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter & items,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < numItems; i++, idx++ )
     {
@@ -438,6 +453,9 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter & items,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < numItems; i++)
         XmStringFree(text[i]);
@@ -618,6 +636,9 @@ wxSize wxDoGetListBoxBestSize( Widget listWidget, const wxWindow* window )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( size_t i = 0; i < (size_t)max; ++i )
     {

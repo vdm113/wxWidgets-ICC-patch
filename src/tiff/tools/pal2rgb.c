@@ -60,6 +60,9 @@ checkcmap(int n, uint16* r, uint16* g, uint16* b)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (n-- > 0)
 	    if (*r++ >= 256 || *g++ >= 256 || *b++ >= 256)
@@ -99,6 +102,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((c = getopt(argc, argv, "C:c:p:r:")) != -1)
 		switch (c) {
@@ -191,6 +197,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (i = (1<<bitspersample)-1; i >= 0; i--) {
 #define	CVT(x)		(((x) * 255) / ((1L<<16)-1))
@@ -210,6 +219,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (row = 0; row < imagelength; row++) {
 			if (!TIFFReadScanline(in, ibuf, row, 0))
@@ -219,6 +231,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (x = 0; x < imagewidth; x++) {
 				*pp++ = (unsigned char) rmap[ibuf[x]];
@@ -234,6 +249,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (row = 0; row < imagelength; row++) {
 			if (!TIFFReadScanline(in, ibuf, row, 0))
@@ -242,6 +260,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (pp = obuf, x = 0; x < imagewidth; x++)
 				*pp++ = (unsigned char) rmap[ibuf[x]];
@@ -251,6 +272,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (pp = obuf, x = 0; x < imagewidth; x++)
 				*pp++ = (unsigned char) gmap[ibuf[x]];
@@ -260,6 +284,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (pp = obuf, x = 0; x < imagewidth; x++)
 				*pp++ = (unsigned char) bmap[ibuf[x]];
@@ -292,6 +319,9 @@ processCompressOptions(char* opt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while( cp )
                 {
@@ -447,6 +477,9 @@ cpTags(TIFF* in, TIFF* out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (p = tags; p < &tags[NTAGS]; p++)
 	cpTag(in, out, p->tag, p->count, p->type);
@@ -485,6 +518,9 @@ usage(void)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);

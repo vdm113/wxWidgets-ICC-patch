@@ -824,6 +824,9 @@ static int readContigTilesIntoBuffer (TIFF* in, uint8* buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = 0; row < imagelength; row += tl)
     {
@@ -832,6 +835,9 @@ static int readContigTilesIntoBuffer (TIFF* in, uint8* buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (col = 0; col < imagewidth; col += tw)
       {
@@ -868,6 +874,9 @@ static int readContigTilesIntoBuffer (TIFF* in, uint8* buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (trow = 0; trow < nrow; trow++)
           {
@@ -887,6 +896,9 @@ static int readContigTilesIntoBuffer (TIFF* in, uint8* buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (trow = 0; trow < nrow; trow++)
           {
@@ -997,6 +1009,9 @@ static int  readSeparateTilesIntoBuffer (TIFF* in, uint8 *obuf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (sample = 0; (sample < spp) && (sample < MAX_SAMPLES); sample++)
     {
@@ -1010,6 +1025,9 @@ static int  readSeparateTilesIntoBuffer (TIFF* in, uint8 *obuf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0; i < sample; i++)
         _TIFFfree (srcbuffs[i]);
@@ -1024,6 +1042,9 @@ static int  readSeparateTilesIntoBuffer (TIFF* in, uint8 *obuf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = 0; row < imagelength; row += tl)
     {
@@ -1032,6 +1053,9 @@ static int  readSeparateTilesIntoBuffer (TIFF* in, uint8 *obuf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (col = 0; col < imagewidth; col += tw)
       {
@@ -1039,6 +1063,9 @@ static int  readSeparateTilesIntoBuffer (TIFF* in, uint8 *obuf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (s = 0; s < spp; s++)
         {  /* Read each plane of a tile set into srcbuffs[s] */
@@ -1055,6 +1082,9 @@ static int  readSeparateTilesIntoBuffer (TIFF* in, uint8 *obuf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
           for (sample = 0; (sample < spp) && (sample < MAX_SAMPLES); sample++)
             {
@@ -1145,6 +1175,9 @@ static int  readSeparateTilesIntoBuffer (TIFF* in, uint8 *obuf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (sample = 0; (sample < spp) && (sample < MAX_SAMPLES); sample++)
     {
@@ -1167,6 +1200,9 @@ static int writeBufferToContigStrips(TIFF* out, uint8* buf, uint32 imagelength)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = 0; row < imagelength; row += rowsperstrip)
     {
@@ -1222,6 +1258,9 @@ writeBufferToSeparateStrips (TIFF* out, uint8* buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (s = 0; s < spp; s++)
     {
@@ -1229,6 +1268,9 @@ writeBufferToSeparateStrips (TIFF* out, uint8* buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (row = 0; row < length; row += rowsperstrip)
       {
@@ -1305,6 +1347,9 @@ static int writeBufferToContigTiles (TIFF* out, uint8* buf, uint32 imagelength,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = 0; row < imagelength; row += tl)
     {
@@ -1313,6 +1358,9 @@ static int writeBufferToContigTiles (TIFF* out, uint8* buf, uint32 imagelength,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (col = 0; col < imagewidth; col += tw)
       {
@@ -1376,6 +1424,9 @@ static int writeBufferToSeparateTiles (TIFF* out, uint8* buf, uint32 imagelength
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = 0; row < imagelength; row += tl)
     {
@@ -1384,6 +1435,9 @@ static int writeBufferToSeparateTiles (TIFF* out, uint8* buf, uint32 imagelength
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (col = 0; col < imagewidth; col += tw)
       {
@@ -1400,6 +1454,9 @@ static int writeBufferToSeparateTiles (TIFF* out, uint8* buf, uint32 imagelength
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (s = 0; s < spp; s++)
         {
@@ -1440,6 +1497,9 @@ processG3Options(char* cp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		do {
 			cp++;
@@ -1477,6 +1537,9 @@ processCompressOptions(char* opt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (cp)
       {
@@ -1530,6 +1593,9 @@ usage(void)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; usage_info[i] != NULL; i++)
     fprintf(stderr, "%s\n", usage_info[i]);
@@ -1665,6 +1731,9 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ((c = getopt(argc, argv,
        "ac:d:e:f:hil:m:p:r:stvw:z:BCD:E:F:H:I:J:K:LMN:O:P:R:S:U:V:X:Y:Z:")) != -1)
@@ -1764,10 +1833,13 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 		break;
       case 'z': /* regions of an image specified as x1,y1,x2,y2:x3,y3,x4,y4 etc */
 	        crop_data->crop_mode |= CROP_REGIONS;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (i = 0, opt_ptr = strtok (optarg, ":");
                    ((opt_ptr != NULL) &&  (i < MAX_REGIONS));
@@ -1820,6 +1892,9 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (i = 0; i < end; i++)
                       *(opt_ptr + i) = tolower(*(opt_ptr + i));
@@ -1832,6 +1907,9 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                       for (i = 1; i <= end; i++)
                         *(opt_offset + i) = tolower(*(opt_offset + i));
@@ -1893,10 +1971,13 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
       case 'm': /* margins to exclude from selection, uppercase M was already used */
 		/* order of values must be TOP, LEFT, BOTTOM, RIGHT */
 		crop_data->crop_mode |= CROP_MARGINS;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (i = 0, opt_ptr = strtok (optarg, ",:");
                     ((opt_ptr != NULL) &&  (i < 4));
@@ -1977,10 +2058,13 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
                 page->mode |= PAGE_MODE_MARGINS;
 		break;
       case 'N':	/* list of images to process */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (i = 0, opt_ptr = strtok (optarg, ",");
                     ((opt_ptr != NULL) &&  (i < MAX_IMAGES));
@@ -1997,6 +2081,9 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		       for (j = 1; j <= MAX_IMAGES; j += 2)
 			 imagelist[i++] = j;
@@ -2011,6 +2098,9 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			 for (j = 2; j <= MAX_IMAGES; j += 2)
 			   imagelist[i++] = j;
@@ -2038,6 +2128,9 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                              for (j = start; j <= end && j - start + i < MAX_IMAGES; j++)
 			       imagelist[i++] = j;
@@ -2078,6 +2171,9 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (i = 0; i < MAX_PAPERNAMES - 1; i++)
                       TIFFError ("", "%-15.15s %5.2f   %5.2f", 
@@ -2093,6 +2189,9 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                   for (i = 0; i < MAX_PAPERNAMES - 1; i++)
                     TIFFError ("", "%-15.15s %5.2f   %5.2f", 
@@ -2177,10 +2276,13 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 		break;
       case 'Z': /* zones of an image X:Y read as zone X of Y */
 		crop_data->crop_mode |= CROP_ZONES;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (i = 0, opt_ptr = strtok (optarg, ",");
                    ((opt_ptr != NULL) &&  (i < MAX_REGIONS));
@@ -2337,6 +2439,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (optind < argc - 1)
     {
@@ -2392,6 +2497,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (end_of_input == FALSE)
       {
@@ -2569,6 +2677,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (seg = 0; seg < crop.selections; seg++)
     _TIFFfree (seg_buffs[seg].buffer);
@@ -2612,6 +2723,9 @@ static int dump_data (FILE *dumpfile, int format, char *dump_tag, unsigned char 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < count; i++)
       {
@@ -2619,6 +2733,9 @@ static int dump_data (FILE *dumpfile, int format, char *dump_tag, unsigned char 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (j = 0, k = 7; j < 8; j++, k--)
         {
@@ -2661,6 +2778,9 @@ static int dump_byte (FILE *dumpfile, int format, char *dump_tag, unsigned char 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (j = 0, k = 7; j < 8; j++, k--)
       {
@@ -2701,6 +2821,9 @@ static int dump_short (FILE *dumpfile, int format, char *dump_tag, uint16 data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (j = 0, k = 15; k >= 0; j++, k--)
       {
@@ -2743,6 +2866,9 @@ static int dump_long (FILE *dumpfile, int format, char *dump_tag, uint32 data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (j = 0, k = 31; k >= 0; j++, k--)
       {
@@ -2784,6 +2910,9 @@ static int dump_wide (FILE *dumpfile, int format, char *dump_tag, uint64 data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (j = 0, k = 63; k >= 0; j++, k--)
       {
@@ -2836,6 +2965,9 @@ static int dump_buffer (FILE* dumpfile, int format, uint32 rows, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; i < rows; i++)
     {
@@ -2849,6 +2981,9 @@ static int dump_buffer (FILE* dumpfile, int format, uint32 rows, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (j = 0, k = width; k >= 10; j += 10, k -= 10, dump_ptr += 10)
       dump_data (dumpfile, format, "", dump_ptr, 10);
@@ -2909,6 +3044,9 @@ extractContigSamplesBytes (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (col = start; col < end; col++)
       {
@@ -2916,6 +3054,9 @@ extractContigSamplesBytes (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (sindex = sample; (sindex < spp) && (sindex < (sample + count)); sindex++)
         {
@@ -2935,6 +3076,9 @@ extractContigSamplesBytes (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < bytes_per_sample; i++)
             *dst++ = *src++;
@@ -2983,6 +3127,9 @@ extractContigSamples8bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (col = start; col < end; col++)
     {    /* Compute src byte(s) and bits within byte(s) */
@@ -2991,6 +3138,9 @@ extractContigSamples8bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (sindex = sample; (sindex < spp) && (sindex < (sample + count)); sindex++)
       {
@@ -3026,6 +3176,9 @@ extractContigSamples8bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ready_bits > 0)
     {
@@ -3076,6 +3229,9 @@ extractContigSamples16bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (col = start; col < end; col++)
     {    /* Compute src byte(s) and bits within byte(s) */
@@ -3084,6 +3240,9 @@ extractContigSamples16bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (sindex = sample; (sindex < spp) && (sindex < (sample + count)); sindex++)
       {
@@ -3129,6 +3288,9 @@ extractContigSamples16bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ready_bits > 0)
     {
@@ -3179,6 +3341,9 @@ extractContigSamples24bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (col = start; col < end; col++)
     {
@@ -3188,6 +3353,9 @@ extractContigSamples24bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (sindex = sample; (sindex < spp) && (sindex < (sample + count)); sindex++)
       {
@@ -3235,6 +3403,9 @@ extractContigSamples24bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ready_bits > 0)
     {
@@ -3290,6 +3461,9 @@ extractContigSamples32bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (col = start; col < end; col++)
     {
@@ -3299,6 +3473,9 @@ extractContigSamples32bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (sindex = sample; (sindex < spp) && (sindex < (sample + count)); sindex++)
       {
@@ -3357,6 +3534,9 @@ extractContigSamples32bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ready_bits > 0)
     {
@@ -3408,6 +3588,9 @@ extractContigSamplesShifted8bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (col = start; col < end; col++)
     {    /* Compute src byte(s) and bits within byte(s) */
@@ -3416,6 +3599,9 @@ extractContigSamplesShifted8bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (sindex = sample; (sindex < spp) && (sindex < (sample + count)); sindex++)
       {
@@ -3453,6 +3639,9 @@ extractContigSamplesShifted8bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ready_bits > 0)
     {
@@ -3503,6 +3692,9 @@ extractContigSamplesShifted16bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (col = start; col < end; col++)
     {    /* Compute src byte(s) and bits within byte(s) */
@@ -3511,6 +3703,9 @@ extractContigSamplesShifted16bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (sindex = sample; (sindex < spp) && (sindex < (sample + count)); sindex++)
       {
@@ -3557,6 +3752,9 @@ extractContigSamplesShifted16bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ready_bits > 0)
     {
@@ -3608,6 +3806,9 @@ extractContigSamplesShifted24bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (col = start; col < end; col++)
     {
@@ -3617,6 +3818,9 @@ extractContigSamplesShifted24bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (sindex = sample; (sindex < spp) && (sindex < (sample + count)); sindex++)
       {
@@ -3668,6 +3872,9 @@ extractContigSamplesShifted24bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ready_bits > 0)
     {
@@ -3724,6 +3931,9 @@ extractContigSamplesShifted32bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (col = start; col < end; col++)
     {
@@ -3733,6 +3943,9 @@ extractContigSamplesShifted32bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (sindex = sample; (sindex < spp) && (sindex < (sample + count)); sindex++)
       {
@@ -3793,6 +4006,9 @@ extractContigSamplesShifted32bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ready_bits > 0)
     {
@@ -3839,6 +4055,9 @@ extractContigSamplesToBuffer(uint8 *out, uint8 *in, uint32 rows, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = 0; row < rows; row++)
     {
@@ -3921,6 +4140,9 @@ extractContigSamplesToTileBuffer(uint8 *out, uint8 *in, uint32 rows, uint32 cols
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = 0; row < rows; row++)
     {
@@ -3982,6 +4204,9 @@ static int readContigStripsIntoBuffer (TIFF* in, uint8* buf)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (strip = 0; strip < nstrips; strip++)
     {
@@ -4030,6 +4255,9 @@ combineSeparateSamplesBytes (unsigned char *srcbuffs[], unsigned char *out,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = 0; row < rows; row++)
     {
@@ -4039,6 +4267,9 @@ combineSeparateSamplesBytes (unsigned char *srcbuffs[], unsigned char *out,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (s = 0; s < spp; s++)
         {
@@ -4052,6 +4283,9 @@ combineSeparateSamplesBytes (unsigned char *srcbuffs[], unsigned char *out,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (col = 0; col < cols; col++)
       {
@@ -4060,6 +4294,9 @@ combineSeparateSamplesBytes (unsigned char *srcbuffs[], unsigned char *out,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (s = 0; (s < spp) && (s < MAX_SAMPLES); s++)
         {
@@ -4068,6 +4305,9 @@ combineSeparateSamplesBytes (unsigned char *srcbuffs[], unsigned char *out,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < bytes_per_sample; i++)
           *(dst + i) = *(src + i);
@@ -4118,6 +4358,9 @@ combineSeparateSamples8bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = 0; row < rows; row++)
     {
@@ -4129,6 +4372,9 @@ combineSeparateSamples8bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (col = 0; col < cols; col++)
       {
@@ -4143,6 +4389,9 @@ combineSeparateSamples8bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (s = 0; s < spp; s++)
         {
@@ -4233,6 +4482,9 @@ combineSeparateSamples16bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = 0; row < rows; row++)
     {
@@ -4244,6 +4496,9 @@ combineSeparateSamples16bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (col = 0; col < cols; col++)
       {
@@ -4257,6 +4512,9 @@ combineSeparateSamples16bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (s = 0; s < spp; s++)
         {
@@ -4358,6 +4616,9 @@ combineSeparateSamples24bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = 0; row < rows; row++)
     {
@@ -4369,6 +4630,9 @@ combineSeparateSamples24bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (col = 0; col < cols; col++)
       {
@@ -4382,6 +4646,9 @@ combineSeparateSamples24bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (s = 0; s < spp; s++)
         {
@@ -4434,6 +4701,9 @@ combineSeparateSamples24bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (ready_bits > 0)
       {
@@ -4504,6 +4774,9 @@ combineSeparateSamples32bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = 0; row < rows; row++)
     {
@@ -4515,6 +4788,9 @@ combineSeparateSamples32bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (col = 0; col < cols; col++)
       {
@@ -4528,6 +4804,9 @@ combineSeparateSamples32bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (s = 0; s < spp; s++)
 	{
@@ -4587,6 +4866,9 @@ combineSeparateSamples32bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (ready_bits > 0)
       {
@@ -4648,6 +4930,9 @@ combineSeparateTileSamplesBytes (unsigned char *srcbuffs[], unsigned char *out,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = 0; row < rows; row++)
     {
@@ -4657,6 +4942,9 @@ combineSeparateTileSamplesBytes (unsigned char *srcbuffs[], unsigned char *out,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (s = 0; s < spp; s++)
         {
@@ -4674,6 +4962,9 @@ combineSeparateTileSamplesBytes (unsigned char *srcbuffs[], unsigned char *out,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (col = 0; col < cols; col++)
       {
@@ -4682,6 +4973,9 @@ combineSeparateTileSamplesBytes (unsigned char *srcbuffs[], unsigned char *out,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (s = 0; (s < spp) && (s < MAX_SAMPLES); s++)
         {
@@ -4690,6 +4984,9 @@ combineSeparateTileSamplesBytes (unsigned char *srcbuffs[], unsigned char *out,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < bytes_per_sample; i++)
           *(dst + i) = *(src + i);
@@ -4738,6 +5035,9 @@ combineSeparateTileSamples8bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = 0; row < rows; row++)
     {
@@ -4749,6 +5049,9 @@ combineSeparateTileSamples8bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (col = 0; col < cols; col++)
       {
@@ -4763,6 +5066,9 @@ combineSeparateTileSamples8bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (s = 0; s < spp; s++)
         {
@@ -4853,6 +5159,9 @@ combineSeparateTileSamples16bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = 0; row < rows; row++)
     {
@@ -4864,6 +5173,9 @@ combineSeparateTileSamples16bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (col = 0; col < cols; col++)
       {
@@ -4877,6 +5189,9 @@ combineSeparateTileSamples16bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (s = 0; s < spp; s++)
         {
@@ -4977,6 +5292,9 @@ combineSeparateTileSamples24bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = 0; row < rows; row++)
     {
@@ -4988,6 +5306,9 @@ combineSeparateTileSamples24bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (col = 0; col < cols; col++)
       {
@@ -5001,6 +5322,9 @@ combineSeparateTileSamples24bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (s = 0; s < spp; s++)
         {
@@ -5053,6 +5377,9 @@ combineSeparateTileSamples24bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (ready_bits > 0)
       {
@@ -5123,6 +5450,9 @@ combineSeparateTileSamples32bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = 0; row < rows; row++)
     {
@@ -5134,6 +5464,9 @@ combineSeparateTileSamples32bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (col = 0; col < cols; col++)
       {
@@ -5147,6 +5480,9 @@ combineSeparateTileSamples32bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (s = 0; s < spp; s++)
 	{
@@ -5207,6 +5543,9 @@ combineSeparateTileSamples32bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (ready_bits > 0)
       {
@@ -5305,6 +5644,9 @@ static int readSeparateStripsIntoBuffer (TIFF *in, uint8 *obuf, uint32 length,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (s = 0; (s < spp) && (s < MAX_SAMPLES); s++)
     {
@@ -5318,6 +5660,9 @@ static int readSeparateStripsIntoBuffer (TIFF *in, uint8 *obuf, uint32 length,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0; i < s; i++)
         _TIFFfree (srcbuffs[i]);
@@ -5331,6 +5676,9 @@ static int readSeparateStripsIntoBuffer (TIFF *in, uint8 *obuf, uint32 length,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (j = 0; (j < strips_per_sample) && (result == 1); j++)
     {
@@ -5338,6 +5686,9 @@ static int readSeparateStripsIntoBuffer (TIFF *in, uint8 *obuf, uint32 length,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (s = 0; (s < spp) && (s < MAX_SAMPLES); s++)
       {
@@ -5434,6 +5785,9 @@ static int readSeparateStripsIntoBuffer (TIFF *in, uint8 *obuf, uint32 length,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (s = 0; (s < spp) && (s < MAX_SAMPLES); s++)
     {
@@ -5455,6 +5809,9 @@ get_page_geometry (char *name, struct pagedef *page)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (ptr = name; *ptr; ptr++)
       *ptr = (char)tolower((int)*ptr);
@@ -5463,6 +5820,9 @@ get_page_geometry (char *name, struct pagedef *page)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (n = 0; n < MAX_PAPERNAMES; n++)
       {
@@ -5503,6 +5863,9 @@ initPageSetup (struct pagedef *page, struct pageseg *pagelist,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (i = 0; i < MAX_SECTIONS; i++)
      {
@@ -5519,6 +5882,9 @@ initPageSetup (struct pagedef *page, struct pageseg *pagelist,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (i = 0; i < MAX_OUTBUFFS; i++)
      {
@@ -5558,6 +5924,9 @@ initCropMasks (struct crop_mask *cps)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (i = 0; i < 4; i++)
      cps->margins[i] = 0.0;
@@ -5574,6 +5943,9 @@ initCropMasks (struct crop_mask *cps)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (i = 0; i < MAX_REGIONS; i++)
      {
@@ -5667,6 +6039,9 @@ computeInputPixelOffsets(struct crop_mask *crop, struct image_data *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < crop->regions; i++)
       {
@@ -5984,6 +6359,9 @@ getCropOffsets(struct image_data *image, struct crop_mask *crop, struct dump_opt
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; i < crop->zones; i++)
     {
@@ -6333,6 +6711,9 @@ computeOutputPixelOffsets (struct crop_mask *crop, struct image_data *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (k = 0, i = 0 && k <= MAX_SECTIONS; i < orows; i++)
     {
@@ -6344,6 +6725,9 @@ computeOutputPixelOffsets (struct crop_mask *crop, struct image_data *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (j = 0; j < ocols; j++, k++)
       {
@@ -6725,6 +7109,9 @@ loadImage(TIFF* in, struct image_data *image, struct dump_opts *dump, unsigned c
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < length; i++)
       dump_buffer(dump->infile, dump->format, 1, scanlinesize, 
@@ -6831,6 +7218,9 @@ extractCompositeRegions(struct image_data *image,  struct crop_mask *crop,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; i < crop->selections; i++)
     {
@@ -6870,6 +7260,9 @@ extractCompositeRegions(struct image_data *image,  struct crop_mask *crop,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
            for (row = first_row; row <= last_row; row++)
              {
@@ -6956,6 +7349,9 @@ extractCompositeRegions(struct image_data *image,  struct crop_mask *crop,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
            for (row = first_row; row <= last_row; row++)
              {
@@ -7104,6 +7500,9 @@ extractSeparateRegion(struct image_data *image,  struct crop_mask *crop,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = first_row; row <= last_row; row++)
     {
@@ -7247,6 +7646,9 @@ extractImageSection(struct image_data *image, struct pageseg *section,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (row = first_row; row <= last_row; row++)
       {
@@ -7269,6 +7671,9 @@ extractImageSection(struct image_data *image, struct pageseg *section,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (row = first_row; row <= last_row; row++)
       {
@@ -7282,6 +7687,9 @@ extractImageSection(struct image_data *image, struct pageseg *section,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (j = 0, k = 7; j < 8; j++, k--)
         {
@@ -7294,6 +7702,9 @@ extractImageSection(struct image_data *image, struct pageseg *section,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (j = 10, k = 7; j < 18; j++, k--)
         {
@@ -7318,6 +7729,9 @@ extractImageSection(struct image_data *image, struct pageseg *section,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 20, k = 7; j < 28; j++, k--)
           {
@@ -7340,6 +7754,9 @@ extractImageSection(struct image_data *image, struct pageseg *section,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
           for (j = 30, k = 7; j < 38; j++, k--)
             {
@@ -7361,6 +7778,9 @@ extractImageSection(struct image_data *image, struct pageseg *section,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 0; j <= full_bytes; j++) 
           {
@@ -7375,6 +7795,9 @@ extractImageSection(struct image_data *image, struct pageseg *section,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 20, k = 7; j < 28; j++, k--)
           {
@@ -7423,6 +7846,9 @@ extractImageSection(struct image_data *image, struct pageseg *section,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
           for (j = 30, k = 7; j < 38; j++, k--)
             {
@@ -7477,6 +7903,9 @@ writeSelections(TIFF *in, TIFF **out, struct crop_mask *crop,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (i = 0; i < crop->selections; i++)
            {
@@ -7516,6 +7945,9 @@ writeSelections(TIFF *in, TIFF **out, struct crop_mask *crop,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (i = 0; i < crop->selections; i++)
            {
@@ -7538,6 +7970,9 @@ writeSelections(TIFF *in, TIFF **out, struct crop_mask *crop,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (i = 0; i < crop->selections; i++)
            {
@@ -7587,6 +8022,9 @@ writeImageSections(TIFF *in, TIFF *out, struct image_data *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; i < k; i++)
     {
@@ -7843,6 +8281,9 @@ writeSingleSection(TIFF *in, TIFF *out, struct image_data *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	 while (ninks > 1) {
 	   cp = strchr(cp, '\0');
@@ -7870,6 +8311,9 @@ writeSingleSection(TIFF *in, TIFF *out, struct image_data *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (p = tags; p < &tags[NTAGS]; p++)
 		CopyTag(p->tag, p->count, p->type);
@@ -8070,6 +8514,9 @@ processCropSelections(struct image_data *image, struct crop_mask *crop,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < crop->selections; i++)
       {
@@ -8537,6 +8984,9 @@ writeCroppedImage(TIFF *in, TIFF *out, struct image_data *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	 while (ninks > 1) {
 	   cp = strchr(cp, '\0');
@@ -8561,6 +9011,9 @@ writeCroppedImage(TIFF *in, TIFF *out, struct image_data *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (p = tags; p < &tags[NTAGS]; p++)
 		CopyTag(p->tag, p->count, p->type);
@@ -8630,6 +9083,9 @@ rotateContigSamples8bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = 0; row < length ; row++)
     {
@@ -8638,6 +9094,9 @@ rotateContigSamples8bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (sample = 0; sample < spp; sample++)
       {
@@ -8716,6 +9175,9 @@ rotateContigSamples16bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = 0; row < length; row++)
     {
@@ -8724,6 +9186,9 @@ rotateContigSamples16bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (sample = 0; sample < spp; sample++)
       {
@@ -8810,6 +9275,9 @@ rotateContigSamples24bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = 0; row < length; row++)
     {
@@ -8818,6 +9286,9 @@ rotateContigSamples24bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (sample = 0; sample < spp; sample++)
       {
@@ -8874,6 +9345,9 @@ rotateContigSamples24bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ready_bits > 0)
     {
@@ -8925,6 +9399,9 @@ rotateContigSamples32bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = 0; row < length; row++)
     {
@@ -8933,6 +9410,9 @@ rotateContigSamples32bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (sample = 0; sample < spp; sample++)
       {
@@ -8998,6 +9478,9 @@ rotateContigSamples32bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ready_bits > 0)
     {
@@ -9076,6 +9559,9 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (row = 0; row < length; row++)
                    {
@@ -9084,6 +9570,9 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                    for (col = 0; col < width; col++)
                      { 
@@ -9094,6 +9583,9 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		     for (i = 0; i  < bytes_per_pixel; i++)
 		       *dst++ = *src++;
@@ -9106,6 +9598,9 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (row = 0; row < length; row++)
                   {
@@ -9160,6 +9655,9 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (col = 0; col < width; col++)
                   {
@@ -9171,6 +9669,9 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                   for (row = length; row > 0; row--)
                     {
@@ -9178,6 +9679,9 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (i = 0; i < bytes_per_pixel; i++)
                       *dst++ = *(src + i);
@@ -9191,6 +9695,9 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (col = 0; col < width; col++)
                   {
@@ -9257,6 +9764,9 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (col = 0; col < width; col++)
                   {
@@ -9268,6 +9778,9 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                   for (row = length; row > 0; row--)
                     {
@@ -9275,6 +9788,9 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (i = 0; i < bytes_per_pixel; i++)
                       *dst++ = *(src + i);
@@ -9288,6 +9804,9 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (col = 0; col < width; col++)
                   {
@@ -9381,6 +9900,9 @@ reverseSamples8bits (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (col = width; col > 0; col--)
     {
@@ -9390,6 +9912,9 @@ reverseSamples8bits (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (sample = 0; sample < spp; sample++)
       {
@@ -9457,6 +9982,9 @@ reverseSamples16bits (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (col = width; col > 0; col--)
     {
@@ -9466,6 +9994,9 @@ reverseSamples16bits (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (sample = 0; sample < spp; sample++)
       {
@@ -9542,6 +10073,9 @@ reverseSamples24bits (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (col = width; col > 0; col--)
     {
@@ -9551,6 +10085,9 @@ reverseSamples24bits (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (sample = 0; sample < spp; sample++)
       {
@@ -9598,6 +10135,9 @@ reverseSamples24bits (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ready_bits > 0)
     {
@@ -9651,6 +10191,9 @@ reverseSamples32bits (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (col = width; col > 0; col--)
     {
@@ -9660,6 +10203,9 @@ reverseSamples32bits (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (sample = 0; sample < spp; sample++)
       {
@@ -9716,6 +10262,9 @@ reverseSamples32bits (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ready_bits > 0)
     {
@@ -9762,6 +10311,9 @@ reverseSamplesBytes (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
              for (col = 0; col < (width / 2); col++)
                { 
@@ -9769,6 +10321,9 @@ reverseSamplesBytes (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	       for (i = 0; i < spp; i++)
                   {
@@ -9815,6 +10370,9 @@ mirrorImage(uint16 spp, uint16 bps, uint16 mirror, uint32 width, uint32 length, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
              for (row = 0; row < length / 2; row++)
                {
@@ -9835,6 +10393,9 @@ mirrorImage(uint16 spp, uint16 bps, uint16 mirror, uint32 width, uint32 length, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (row = 0; row < length; row++)
                   {
@@ -9865,6 +10426,9 @@ mirrorImage(uint16 spp, uint16 bps, uint16 mirror, uint32 width, uint32 length, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (row = 0; row < length; row++)
                   {
@@ -9950,12 +10514,18 @@ invertImage(uint16 photometric, uint16 spp, uint16 bps, uint32 width, uint32 len
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
              for (row = 0; row < length; row++)
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                for (col = 0; col < width; col++)
                  {
@@ -9968,12 +10538,18 @@ invertImage(uint16 photometric, uint16 spp, uint16 bps, uint32 width, uint32 len
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
              for (row = 0; row < length; row++)
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                for (col = 0; col < width; col++)
                  {
@@ -9986,6 +10562,9 @@ invertImage(uint16 photometric, uint16 spp, uint16 bps, uint32 width, uint32 len
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
               for (col = 0; col < width; col++)
                 {
@@ -9998,6 +10577,9 @@ invertImage(uint16 photometric, uint16 spp, uint16 bps, uint32 width, uint32 len
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
               for (col = 0; col < width; col++)
                 {
@@ -10012,6 +10594,9 @@ invertImage(uint16 photometric, uint16 spp, uint16 bps, uint32 width, uint32 len
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
               for (col = 0; col < width; col++)
                 {
@@ -10028,6 +10613,9 @@ invertImage(uint16 photometric, uint16 spp, uint16 bps, uint32 width, uint32 len
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
               for (col = 0; col < width; col += 8 /(spp * bps))
                 {

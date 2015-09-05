@@ -183,6 +183,9 @@ void wxRibbonGallery::OnMouseMove(wxMouseEvent& evt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(item_i = 0; item_i < item_count; ++item_i)
         {
@@ -286,6 +289,9 @@ void wxRibbonGallery::OnMouseDown(wxMouseEvent& evt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(item_i = 0; item_i < item_count; ++item_i)
         {
@@ -534,6 +540,9 @@ void wxRibbonGallery::OnPaint(wxPaintEvent& WXUNUSED(evt))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(item_i = 0; item_i < item_count; ++item_i)
     {
@@ -602,6 +611,9 @@ void wxRibbonGallery::Clear()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(item_i = 0; item_i < item_count; ++item_i)
     {
@@ -669,6 +681,9 @@ bool wxRibbonGallery::Layout()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(item_i = 0; item_i < item_count; ++item_i)
     {
@@ -705,6 +720,9 @@ bool wxRibbonGallery::Layout()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(; item_i < item_count; ++item_i)
     {

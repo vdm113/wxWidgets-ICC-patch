@@ -81,6 +81,9 @@ void wxFlushEvents(WXDisplay* wxdisplay)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (evtLoop.Pending())
     {
@@ -400,10 +403,13 @@ void wxAllocNearestColor(Display *d,Colormap cmp,XColor *xc)
     int num_colors = DisplayCells(d,screen);
 
     XColor *color_defs = new XColor[num_colors];
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(llp = 0;llp < num_colors;llp++) color_defs[llp].pixel = llp;
     XQueryColors(d,cmp,color_defs,num_colors);
@@ -417,6 +423,9 @@ void wxAllocNearestColor(Display *d,Colormap cmp,XColor *xc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(llp = 0;llp < num_colors;llp++)
     {
@@ -493,6 +502,9 @@ char wxFindMnemonic (const char *s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < len; i++)
     {
@@ -547,6 +559,9 @@ char* wxFindAccelerator( const char *s )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while( index < tmp.length() )
     {

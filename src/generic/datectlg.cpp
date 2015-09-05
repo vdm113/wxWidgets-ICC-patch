@@ -237,6 +237,9 @@ private:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( wxChar c = wxT('0'); c <= wxT('9'); c++ )
                 allowedChars.Add(wxString(c, 1));
@@ -246,6 +249,9 @@ private:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( *p2 )
             {

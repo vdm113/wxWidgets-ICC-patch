@@ -53,6 +53,9 @@ static void ColourisePODoc(unsigned int startPos, int length, int initStyle, Wor
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
 		// whether we should leave a state
@@ -120,6 +123,9 @@ static void ColourisePODoc(unsigned int startPos, int length, int initStyle, Wor
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (sc.More() && ! sc.atLineEnd && isspacechar(sc.ch))
 					sc.Forward();
@@ -171,6 +177,9 @@ static int FindNextNonEmptyLineState(unsigned int startPos, Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < length; i++) {
 		if (! isspacechar(styler[i])) {
@@ -199,6 +208,9 @@ static void FoldPODoc(unsigned int startPos, int length, int, WordList *[], Acce
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
 		int ch = chNext;

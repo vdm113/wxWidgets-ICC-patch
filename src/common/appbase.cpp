@@ -564,6 +564,9 @@ void wxAppConsoleBase::ProcessPendingEvents()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (!m_handlersWithPendingEvents.IsEmpty())
         {
@@ -606,6 +609,9 @@ void wxAppConsoleBase::DeletePendingEvents()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i<m_handlersWithPendingEvents.GetCount(); i++)
         m_handlersWithPendingEvents[i]->DeletePendingEvents();
@@ -645,6 +651,9 @@ void wxAppConsoleBase::DeletePendingObjects()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -1306,6 +1315,9 @@ static void LINKAGEMODE SetTraceMasks()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( tkn.HasMoreTokens() )
             wxLog::AddTraceMask(tkn.GetNextToken());

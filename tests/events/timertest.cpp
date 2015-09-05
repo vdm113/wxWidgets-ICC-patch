@@ -139,6 +139,9 @@ void TimerEventTestCase::Multiple()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( time(&t) < tEnd )
     {

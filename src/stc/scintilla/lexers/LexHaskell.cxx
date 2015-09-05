@@ -170,6 +170,9 @@ static int HaskellIndentAmount(Accessor &styler, const int line) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    while ((  ch == ' ' || ch == '\t'
           || IsCommentBlockStyle(style)
@@ -356,6 +359,9 @@ class LexerHaskell : public ILexer {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (sc.ch == '#') {
                sc.Forward();
@@ -375,6 +381,9 @@ class LexerHaskell : public ILexer {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          while (currentPos < eol_pos) {
             int ch = styler[currentPos];
@@ -523,6 +532,9 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    while (sc.More()) {
       // Check for state end
@@ -590,6 +602,9 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          while ((sc.ch == ' ' || sc.ch == '\t') && sc.More())
             sc.Forward();
@@ -603,6 +618,9 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (!sc.atLineEnd && sc.More()) {
                if (sc.ch != ' ' && sc.ch != '\t') {
@@ -627,6 +645,9 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          while (!sc.atLineEnd && sc.More()) {
             sc.Forward();
@@ -680,6 +701,9 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          while (IsAnHaskellOperatorChar(sc.ch))
                sc.Forward();
@@ -756,6 +780,9 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          while (sc.More()) {
             if (IsAHaskellWordChar(sc.ch)) {
@@ -774,6 +801,9 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                   while (IsAnHaskellOperatorChar(sc.ch))
                      sc.Forward();
@@ -1050,6 +1080,9 @@ void SCI_METHOD LexerHaskell::Fold(unsigned int startPos, int length, int // ini
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    while (lineCurrent > 0) {
       lineCurrent--;
@@ -1081,6 +1114,9 @@ void SCI_METHOD LexerHaskell::Fold(unsigned int startPos, int length, int // ini
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    while (lineCurrent <= docLines && lineCurrent <= maxLines) {
 
@@ -1106,6 +1142,9 @@ void SCI_METHOD LexerHaskell::Fold(unsigned int startPos, int length, int // ini
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       while (lineNext < docLines && (indentNext & SC_FOLDLEVELWHITEFLAG)) {
          lineNext++;
@@ -1142,6 +1181,9 @@ void SCI_METHOD LexerHaskell::Fold(unsigned int startPos, int length, int // ini
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       while (--skipLine > lineCurrent) {
          int skipLineIndent = IndentAmountWithOffset(styler, skipLine);

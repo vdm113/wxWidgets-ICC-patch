@@ -238,6 +238,9 @@ wxWindowMac::~wxWindowMac()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = s_hotkeys.size()-1; i>=0; -- i )
     {
@@ -261,6 +264,9 @@ wxWindowMac::~wxWindowMac()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindow *win = GetParent(); win; win = win->GetParent() )
     {
@@ -591,6 +597,9 @@ static bool wxIsWindowOrParentDisabled(wxWindow* w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (w && !w->IsTopLevel())
     {
@@ -1753,6 +1762,9 @@ void wxWindowMac::ScrollWindow(int dx, int dy, const wxRect *rect)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (wxWindowList::compatibility_iterator node = GetChildren().GetFirst(); node; node = node->GetNext())
     {
@@ -1901,6 +1913,9 @@ wxNonOwnedWindow* wxWindowMac::MacGetTopLevelWindow() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( iter )
     {
@@ -2005,6 +2020,9 @@ void wxWindowMac::MacUpdateClippedRects() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( !child->IsTopLevel() && ( parent = child->GetParent() ) != NULL )
     {
@@ -2159,6 +2177,9 @@ void wxWindowMac::MacPaintChildrenBorders()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (wxWindowList::compatibility_iterator node = GetChildren().GetFirst(); node; node = node->GetNext())
     {
@@ -2233,6 +2254,9 @@ bool wxWindowMac::MacHasScrollBarCorner() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( const wxWindow *win = (wxWindow*)this; win; win = win->GetParent() )
         {
@@ -2396,6 +2420,9 @@ void wxWindowMac::MacSuperChangedPosition()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( node )
     {
@@ -2416,6 +2443,9 @@ void wxWindowMac::MacTopLevelWindowChangedPosition()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( node )
     {
@@ -2684,6 +2714,9 @@ wxHotKeyHandler(EventHandlerCallRef WXUNUSED(nextHandler),
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned i = 0; i < s_hotkeys.size(); ++i )
     {
@@ -2718,6 +2751,9 @@ bool wxWindowMac::RegisterHotKey(int hotkeyId, int modifiers, int keycode)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned i = 0; i < s_hotkeys.size(); ++i )
     {
@@ -2782,6 +2818,9 @@ bool wxWindowMac::UnregisterHotKey(int hotkeyId)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = ((int)s_hotkeys.size())-1; i>=0; -- i )
     {
@@ -2819,6 +2858,9 @@ bool wxWindowMac::OSXHandleKeyEvent( wxKeyEvent& event )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (ancestor)
         {
@@ -2906,6 +2948,9 @@ void wxWidgetImpl::RemoveAssociations(wxWidgetImpl* impl)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( found )
     {
@@ -2915,6 +2960,9 @@ void wxWidgetImpl::RemoveAssociations(wxWidgetImpl* impl)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( it = wxWinMacControlList.begin(); it != wxWinMacControlList.end(); ++it )
         {

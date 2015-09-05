@@ -125,6 +125,9 @@ bool wxReparenter::Reparent(wxWindow* newParent, wxAdoptedWindow* toReparent)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (each=0; each<numchildren; each++)
         {
@@ -170,6 +173,9 @@ bool wxReparenter::WaitAndReparent(wxWindow* newParent, wxAdoptedWindow* toRepar
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (!sm_done)
     {
@@ -297,6 +303,9 @@ WXWindow wxReparenter::FindAClientWindow(WXWindow window, const wxString& name)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i=0; i<(int)numchildren && !result ;i++) {
         result = (Window) FindAClientWindow((WXWindow) children[i], name);

@@ -220,12 +220,18 @@ LogL16Decode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (shft = 2*8; (shft -= 8) >= 0; ) {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < npixels && cc > 0; )
 			if (*bp >= 128) {		/* run */
@@ -236,6 +242,9 @@ LogL16Decode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (rc-- && i < npixels)
 					tp[i++] |= b;
@@ -245,6 +254,9 @@ LogL16Decode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (--cc && rc-- && i < npixels)
 					tp[i++] |= (int16)*bp++ << shft;
@@ -304,6 +316,9 @@ LogLuvDecode24(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < npixels && cc > 0; i++) {
 		tp[i] = bp[0] << 16 | bp[1] << 8 | bp[2];
@@ -368,12 +383,18 @@ LogLuvDecode32(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (shft = 4*8; (shft -= 8) >= 0; ) {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < npixels && cc > 0; )
 			if (*bp >= 128) {		/* run */
@@ -384,6 +405,9 @@ LogLuvDecode32(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (rc-- && i < npixels)
 					tp[i++] |= b;
@@ -393,6 +417,9 @@ LogLuvDecode32(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (--cc && rc-- && i < npixels)
 					tp[i++] |= (uint32)*bp++ << shft;
@@ -435,6 +462,9 @@ LogLuvDecodeStrip(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (cc && (*tif->tif_decoderow)(tif, bp, rowlen, s))
 		bp += rowlen, cc -= rowlen;
@@ -456,6 +486,9 @@ LogLuvDecodeTile(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (cc && (*tif->tif_decoderow)(tif, bp, rowlen, s))
 		bp += rowlen, cc -= rowlen;
@@ -498,12 +531,18 @@ LogL16Encode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (shft = 2*8; (shft -= 8) >= 0; )
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < npixels; i += rc) {
 			if (occ < 4) {
@@ -519,6 +558,9 @@ LogL16Encode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (beg = i; beg < npixels; beg += rc) {
 				b = (int16) (tp[beg] & mask);
@@ -527,6 +569,9 @@ LogL16Encode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (rc < 127+2 && beg+rc < npixels &&
 				    (tp[beg+rc] & mask) == b)
@@ -541,6 +586,9 @@ LogL16Encode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while ((tp[j++] & mask) == b)
 					if (j == beg) {
@@ -555,6 +603,9 @@ LogL16Encode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (i < beg) {		/* write out non-run */
 				if ((j = beg-i) > 127) j = 127;
@@ -571,6 +622,9 @@ LogL16Encode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (j--) {
 					*op++ = (uint8) (tp[i++] >> shft & 0xff);
@@ -621,6 +675,9 @@ LogLuvEncode24(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = npixels; i--; ) {
 		if (occ < 3) {
@@ -679,12 +736,18 @@ LogLuvEncode32(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (shft = 4*8; (shft -= 8) >= 0; )
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < npixels; i += rc) {
 			if (occ < 4) {
@@ -700,6 +763,9 @@ LogLuvEncode32(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (beg = i; beg < npixels; beg += rc) {
 				b = tp[beg] & mask;
@@ -708,6 +774,9 @@ LogLuvEncode32(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (rc < 127+2 && beg+rc < npixels &&
 						(tp[beg+rc] & mask) == b)
@@ -722,6 +791,9 @@ LogLuvEncode32(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while ((tp[j++] & mask) == b)
 					if (j == beg) {
@@ -736,6 +808,9 @@ LogLuvEncode32(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (i < beg) {		/* write out non-run */
 				if ((j = beg-i) > 127) j = 127;
@@ -752,6 +827,9 @@ LogLuvEncode32(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (j--) {
 					*op++ = (uint8)(tp[i++] >> shft & 0xff);
@@ -785,6 +863,9 @@ LogLuvEncodeStrip(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (cc && (*tif->tif_encoderow)(tif, bp, rowlen, s) == 1)
 		bp += rowlen, cc -= rowlen;
@@ -805,6 +886,9 @@ LogLuvEncodeTile(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (cc && (*tif->tif_encoderow)(tif, bp, rowlen, s) == 1)
 		bp += rowlen, cc -= rowlen;
@@ -878,6 +962,9 @@ L16toY(LogLuvState* sp, uint8* op, tmsize_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (n-- > 0)
 		*yp++ = (float)LogL16toY(*l16++);
@@ -893,6 +980,9 @@ L16toGry(LogLuvState* sp, uint8* op, tmsize_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
 		double Y = LogL16toY(*l16++);
@@ -910,6 +1000,9 @@ L16fromY(LogLuvState* sp, uint8* op, tmsize_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (n-- > 0)
 		*l16++ = (int16) (LogL16fromY(*yp++, sp->encode_meth));
@@ -976,6 +1069,9 @@ oog_encode(double u, double v)		/* encode out-of-gamut chroma */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (i = NANGLES; i--; )
 			eps[i] = 2.;
@@ -983,6 +1079,9 @@ oog_encode(double u, double v)		/* encode out-of-gamut chroma */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (vi = UV_NVS; vi--; ) {
 			va = UV_VSTART + (vi+.5)*UV_SQSIZ;
@@ -993,6 +1092,9 @@ oog_encode(double u, double v)		/* encode out-of-gamut chroma */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (ui = uv_row[vi].nus-1; ui >= 0; ui -= ustep) {
 				ua = uv_row[vi].ustart + (ui+.5)*UV_SQSIZ;
@@ -1009,6 +1111,9 @@ oog_encode(double u, double v)		/* encode out-of-gamut chroma */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (i = NANGLES; i--; )	/* fill any holes */
 			if (eps[i] > 1.5) {
@@ -1017,6 +1122,9 @@ oog_encode(double u, double v)		/* encode out-of-gamut chroma */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for (i1 = 1; i1 < NANGLES/2; i1++)
 					if (eps[(i+i1)%NANGLES] < 1.5)
@@ -1025,6 +1133,9 @@ oog_encode(double u, double v)		/* encode out-of-gamut chroma */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for (i2 = 1; i2 < NANGLES/2; i2++)
 					if (eps[(i+NANGLES-i2)%NANGLES] < 1.5)
@@ -1084,6 +1195,9 @@ uv_decode(double *up, double *vp, int c)	/* decode (u',v') index */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (upper - lower > 1) {
 		vi = (lower + upper) >> 1;
@@ -1168,6 +1282,9 @@ Luv24toXYZ(LogLuvState* sp, uint8* op, tmsize_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
 		LogLuv24toXYZ(*luv, xyz);
@@ -1186,6 +1303,9 @@ Luv24toLuv48(LogLuvState* sp, uint8* op, tmsize_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
 		double u, v;
@@ -1211,6 +1331,9 @@ Luv24toRGB(LogLuvState* sp, uint8* op, tmsize_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
 		float xyz[3];
@@ -1231,6 +1354,9 @@ Luv24fromXYZ(LogLuvState* sp, uint8* op, tmsize_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
 		*luv++ = LogLuv24fromXYZ(xyz, sp->encode_meth);
@@ -1248,6 +1374,9 @@ Luv24fromLuv48(LogLuvState* sp, uint8* op, tmsize_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
 		int Le, Ce;
@@ -1334,6 +1463,9 @@ Luv32toXYZ(LogLuvState* sp, uint8* op, tmsize_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
 		LogLuv32toXYZ(*luv++, xyz);
@@ -1351,6 +1483,9 @@ Luv32toLuv48(LogLuvState* sp, uint8* op, tmsize_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
 		double u, v;
@@ -1374,6 +1509,9 @@ Luv32toRGB(LogLuvState* sp, uint8* op, tmsize_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
 		float xyz[3];
@@ -1394,6 +1532,9 @@ Luv32fromXYZ(LogLuvState* sp, uint8* op, tmsize_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
 		*luv++ = LogLuv32fromXYZ(xyz, sp->encode_meth);
@@ -1412,6 +1553,9 @@ Luv32fromLuv48(LogLuvState* sp, uint8* op, tmsize_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (n-- > 0) {
 			*luv++ = (uint32)luv3[0] << 16 |
@@ -1425,6 +1569,9 @@ Luv32fromLuv48(LogLuvState* sp, uint8* op, tmsize_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
 		*luv++ = (uint32)luv3[0] << 16 |

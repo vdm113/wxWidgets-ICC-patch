@@ -767,6 +767,9 @@ void wxMacDataItemBrowserControl::GetItems(const wxMacDataItem* container,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < itemCount; ++i)
     {
@@ -808,6 +811,9 @@ void wxMacDataItemBrowserControl::UpdateItems(const wxMacDataItem *container,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < noItems; ++i )
         items[i] = (DataBrowserItemID) itemArray[i];
@@ -893,6 +899,9 @@ void wxMacDataItemBrowserControl::AddItems(wxMacDataItem *container, wxArrayMacD
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < noItems; ++i )
         items[i] = (DataBrowserItemID) itemArray[i];
@@ -917,6 +926,9 @@ void wxMacDataItemBrowserControl::RemoveItems(wxMacDataItem *container, wxArrayM
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < noItems; ++i )
         items[i] = (DataBrowserItemID) itemArray[i];
@@ -952,6 +964,9 @@ void wxMacDataItemBrowserControl::SetSelectedItems(wxArrayMacDataItemPtr &itemAr
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < noItems; ++i )
         items[i] = (DataBrowserItemID) itemArray[i];
@@ -1001,6 +1016,9 @@ void wxMacDataItemBrowserControl::MacInsert( unsigned int n, wxMacDataItem* item
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned int i = n; i < lines; ++i)
         {

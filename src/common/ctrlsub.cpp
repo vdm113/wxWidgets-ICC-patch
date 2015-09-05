@@ -84,6 +84,9 @@ wxArrayString wxItemContainerImmutable::GetStrings() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned int n = 0; n < count; n++ )
         result.Add(GetString(n));
@@ -113,6 +116,9 @@ void wxItemContainer::Clear()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned i = 0; i < count; ++i )
             ResetItemClientObject(i);
@@ -154,6 +160,9 @@ int wxItemContainer::DoInsertItemsInLoop(const wxArrayStringsAdapter& items,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < count; ++i )
     {

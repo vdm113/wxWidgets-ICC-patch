@@ -59,6 +59,9 @@ wxPaletteRefData::wxPaletteRefData(const wxPaletteRefData& palette)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < m_count; i++ )
         m_entries[i] = palette.m_entries[i];
@@ -113,6 +116,9 @@ bool wxPalette::Create(int n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < n; i++, e++)
     {
@@ -138,6 +144,9 @@ int wxPalette::GetPixel( unsigned char red,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < M_PALETTEDATA->m_count; i++, e++)
     {

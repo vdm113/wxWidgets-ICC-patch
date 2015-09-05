@@ -340,6 +340,9 @@ START_TEST(test_illegal_utf8)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 128; i <= 255; ++i) {
         sprintf(text, "<e>%ccd</e>", i);
@@ -646,6 +649,9 @@ is_whitespace_normalized(const XML_Char *s, int is_cdata)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (*s) {
         if (*s == ' ')
@@ -705,6 +711,9 @@ check_attr_contains_normalized_whitespace(void *userData,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; atts[i] != NULL; i += 2) {
         const XML_Char *attrname = atts[i];
@@ -770,6 +779,9 @@ UnknownEncodingHandler(void *data,const XML_Char *encoding,XML_Encoding *info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < 256; ++i)
             info->map[i] = i;
@@ -1171,6 +1183,9 @@ overwrite_start_checker(void *userData, const XML_Char *name,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (*atts != NULL) {
         CharData_AppendString(storage, "\nattribute ");
@@ -1530,6 +1545,9 @@ main(int argc, char *argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 1; i < argc; ++i) {
         char *opt = argv[i];

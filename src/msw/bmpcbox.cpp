@@ -158,6 +158,9 @@ void wxBitmapComboBox::RecreateControl()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( i = 0; i < numItems; ++i )
                 objectClientData.push_back(GetClientObject(i));
@@ -169,6 +172,9 @@ void wxBitmapComboBox::RecreateControl()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( i = 0; i < numItems; ++i )
                 voidClientData.push_back(GetClientData(i));
@@ -189,6 +195,9 @@ void wxBitmapComboBox::RecreateControl()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < numItems; i++ )
     {
@@ -345,6 +354,9 @@ int wxBitmapComboBox::DoInsertItems(const wxArrayStringsAdapter & items,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned int i = 0; i < numItems; i++ )
         {
@@ -398,6 +410,9 @@ int wxBitmapComboBox::DoInsertItems(const wxArrayStringsAdapter & items,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( unsigned int i = 0; i < numItems; i++ )
             {
@@ -427,6 +442,9 @@ int wxBitmapComboBox::DoInsertItems(const wxArrayStringsAdapter & items,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int i = numItems-1; i >= 0; i-- )
                 BCBDoDeleteOneItem(pos + i);

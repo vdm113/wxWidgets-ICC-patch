@@ -313,6 +313,9 @@ struct colormap *cm;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (begin = open; begin <= close; begin++) {
 		MDEBUG(("\nfind trying at %ld\n", LOFF(begin)));
@@ -421,6 +424,9 @@ chr **coldp;			/* where to put coldstart pointer */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	do {
 		MDEBUG(("\ncsearch at %ld\n", LOFF(close)));
@@ -435,6 +441,9 @@ chr **coldp;			/* where to put coldstart pointer */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (begin = open; begin <= close; begin++) {
 			MDEBUG(("\ncfind trying at %ld\n", LOFF(begin)));
@@ -444,6 +453,9 @@ chr **coldp;			/* where to put coldstart pointer */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (;;) {
 				if (shorter)
@@ -505,6 +517,9 @@ size_t n;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = n-1; i > 0; i--) {
 		p[i].rm_so = -1;
@@ -651,6 +666,9 @@ chr *end;			/* end of same */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (longest(v, d2, mid, end, (int *)NULL) != end) {
 		/* that midpoint didn't work, find a new one */
@@ -707,6 +725,9 @@ chr *end;			/* end of same */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; t != NULL; t = t->right, i++) {
 		MDEBUG(("trying %dth\n", i));
@@ -828,6 +849,9 @@ chr *end;			/* end of same */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (;;) {
 		/* try this midpoint on for size */
@@ -926,6 +950,9 @@ chr *end;			/* end of same */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (;;) {
 		/* try this midpoint on for size */
@@ -1026,6 +1053,9 @@ chr *end;			/* end of same */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (p = begin; p <= stop && (i < max || max == INFINITY); p += len) {
 		if ((*v->g->compare)(paren, p, len) != 0)

@@ -205,10 +205,13 @@ TIFFReadPrivateDataSubDirectory(TIFF* tif, toff_t pdir_offset,
 	 */
 	td = &tif->tif_dir;
 	
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (fip = field_info, dp = dir, n = dircount;
 	     n > 0; n--, dp++) {
@@ -237,6 +240,9 @@ TIFFReadPrivateDataSubDirectory(TIFF* tif, toff_t pdir_offset,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (fip->field_tag && fip->field_tag < dp->tdir_tag)
 			fip++;
@@ -268,6 +274,9 @@ TIFFReadPrivateDataSubDirectory(TIFF* tif, toff_t pdir_offset,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (dp->tdir_type != (u_short)fip->field_type) {
 			if (fip->field_type == TIFF_ANY)	/* wildcard */
@@ -331,6 +340,9 @@ EstimateStripByteCounts(TIFF* tif, TIFFDirEntry* dir, uint16 dircount)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (dp = dir, n = dircount; n > 0; n--, dp++) {
 			uint32 cc = dp->tdir_count*TIFFDataWidth(dp->tdir_type);
@@ -342,6 +354,9 @@ EstimateStripByteCounts(TIFF* tif, TIFFDirEntry* dir, uint16 dircount)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < td->td_nstrips; i++)
 			td->td_stripbytecount[i] = space;
@@ -363,6 +378,9 @@ EstimateStripByteCounts(TIFF* tif, TIFFDirEntry* dir, uint16 dircount)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < td->td_nstrips; i++)
 			td->td_stripbytecount[i] = rowbytes*rowsperstrip;
@@ -635,6 +653,9 @@ TIFFFetchRationalArray(TIFF* tif, TIFFDirEntry* dir, float* v)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (i = 0; i < dir->tdir_count; i++) {
 				ok = cvtRational(tif, dir,
@@ -706,6 +727,9 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
@@ -715,6 +739,9 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
@@ -730,6 +757,9 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
@@ -739,6 +769,9 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
@@ -754,6 +787,9 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
@@ -763,6 +799,9 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (i = dir->tdir_count-1; i >= 0; i--)
 				v[i] = vp[i];
@@ -777,6 +816,9 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		  for (i = dir->tdir_count-1; i >= 0; i--)
 			v[i] = vp[i];
@@ -790,6 +832,9 @@ TIFFFetchAnyArray(TIFF* tif, TIFFDirEntry* dir, double* v)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		  for (i = dir->tdir_count-1; i >= 0; i--)
 			v[i] = vp[i];
@@ -981,6 +1026,9 @@ TIFFFetchPerSampleShorts(TIFF* tif, TIFFDirEntry* dir, int* pl)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (i = 1; i < samples; i++)
 				if (v[i] != v[0]) {
@@ -1022,6 +1070,9 @@ TIFFFetchPerSampleAnys(TIFF* tif, TIFFDirEntry* dir, double* pl)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (i = 1; i < samples; i++)
 				if (v[i] != v[0]) {
@@ -1076,6 +1127,9 @@ TIFFFetchStripThing(TIFF* tif, TIFFDirEntry* dir, long nstrips, uint32** lpp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (nstrips-- > 0)
 				*lp++ = *wp++;
@@ -1137,6 +1191,9 @@ TIFFFetchRefBlackWhite(TIFF* tif, TIFFDirEntry* dir)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (i = 0; i < dir->tdir_count; i++)
 				fp[i] = (float)((uint32*) cp)[i];
@@ -1208,6 +1265,9 @@ ChopUpSingleUncompressedStrip(TIFF* tif)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (strip = 0; strip < nstrips; strip++) {
 		if (stripbytes > bytecount)

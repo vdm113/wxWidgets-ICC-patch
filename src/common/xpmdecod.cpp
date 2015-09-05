@@ -154,6 +154,9 @@ wxImage wxXPMDecoder::ReadFile(wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (p = xpm_buffer; *p != '\0'; p++)
     {
@@ -165,6 +168,9 @@ wxImage wxXPMDecoder::ReadFile(wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
               for (p++; *p != '\0'; p++)
                 if ( (*p == '"') && (*(p - 1) != '\\') )
@@ -176,6 +182,9 @@ wxImage wxXPMDecoder::ReadFile(wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (p++; *p != '\0'; p++)
                     if ( (*p == '\'') && (*(p - 1) != '\\') )
@@ -191,6 +200,9 @@ wxImage wxXPMDecoder::ReadFile(wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (q = p + 2; *q != '\0'; q++)
         {
@@ -211,6 +223,9 @@ wxImage wxXPMDecoder::ReadFile(wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (p = xpm_buffer; *p != '\0'; p++)
     {
@@ -220,6 +235,9 @@ wxImage wxXPMDecoder::ReadFile(wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (q = p + 1; *q != '\0'; q++)
             if (*q == '"')
@@ -242,6 +260,9 @@ wxImage wxXPMDecoder::ReadFile(wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (p = xpm_buffer; *p != '\0'; p++)
     {
@@ -262,6 +283,9 @@ wxImage wxXPMDecoder::ReadFile(wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (p = xpm_buffer; (*p != '\0') && (line < lines_cnt); p++)
     {
@@ -601,6 +625,9 @@ static bool GetRGBFromName(const char *inname, bool *isNone,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ((p = strchr(name, ' ')) != NULL)
     {
@@ -608,6 +635,9 @@ static bool GetRGBFromName(const char *inname, bool *isNone,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (*(p))            // till eof of string
         {
@@ -621,6 +651,9 @@ static bool GetRGBFromName(const char *inname, bool *isNone,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (*p)
     {
@@ -651,6 +684,9 @@ static bool GetRGBFromName(const char *inname, bool *isNone,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         do
         {
@@ -695,6 +731,9 @@ static const char *ParseColor(const char *data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; targets[i] != NULL; i++)
     {
@@ -703,6 +742,9 @@ static const char *ParseColor(const char *data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (q = targets[i]; *r != '\0'; r++)
         {
@@ -715,6 +757,9 @@ static const char *ParseColor(const char *data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (;;)
             {
@@ -781,6 +826,9 @@ wxImage wxXPMDecoder::ReadData(const char* const* xpm_data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < colors_cnt; i++)
     {
@@ -798,6 +846,9 @@ wxImage wxXPMDecoder::ReadData(const char* const* xpm_data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i_key = 0; i_key < chars_per_pixel; i_key++)
             key[i_key] = xmpColLine[i_key];
@@ -838,6 +889,9 @@ wxImage wxXPMDecoder::ReadData(const char* const* xpm_data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < n; ++i, ++iter)
         {
@@ -849,6 +903,9 @@ wxImage wxXPMDecoder::ReadData(const char* const* xpm_data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (rgb = 0; rgb <= 0xffffff && rgb_table.count(rgb); ++rgb)
             ;
@@ -878,6 +935,9 @@ wxImage wxXPMDecoder::ReadData(const char* const* xpm_data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (j = 0; j < height; j++)
     {
@@ -885,6 +945,9 @@ wxImage wxXPMDecoder::ReadData(const char* const* xpm_data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < width; i++, img_data += 3)
         {
@@ -900,6 +963,9 @@ wxImage wxXPMDecoder::ReadData(const char* const* xpm_data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i_key = 0; i_key < chars_per_pixel; i_key++)
             {
@@ -933,6 +999,9 @@ wxImage wxXPMDecoder::ReadData(const char* const* xpm_data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (it = clr_tbl.begin(), i = 0; it != clr_tbl.end(); it++, i++)
     {

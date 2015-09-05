@@ -113,6 +113,9 @@ char * SCI_METHOD LexerDMIS::UpperCase(char *item)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (item && *item) {
 		*item = toupper(*item);
@@ -130,6 +133,9 @@ void SCI_METHOD LexerDMIS::InitWordListSets(void)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i=0; DMISWordListDesc[i]; i++) {
 		totalLen += strlen(DMISWordListDesc[i]);
@@ -144,6 +150,9 @@ void SCI_METHOD LexerDMIS::InitWordListSets(void)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i=0; DMISWordListDesc[i]; i++) {
 		strcat(this->m_wordListSets, DMISWordListDesc[i]);
@@ -224,6 +233,9 @@ void SCI_METHOD LexerDMIS::Lex(unsigned int startPos, int lengthDoc, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; scCTX.More(); scCTX.Forward()) {
 		if (scCTX.atLineEnd) {
@@ -331,6 +343,9 @@ void SCI_METHOD LexerDMIS::Fold(unsigned int startPos, int lengthDoc, int, IDocu
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int i=startPos; i<endPos; i++) {
 		char ch = chNext;

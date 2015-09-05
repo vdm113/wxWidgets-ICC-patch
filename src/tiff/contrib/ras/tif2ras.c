@@ -117,6 +117,9 @@ main(argc, argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (--argc) {
 	if ((++argv)[0][0] == '-')
@@ -206,6 +209,9 @@ main(argc, argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	    for (i = 0; i < numcolors; i++)
 		Map[i] = (255 * i) / numcolors;
@@ -221,6 +227,9 @@ main(argc, argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	    for (i = 0; i < numcolors; i++)
 		Map[i] = 255 - ((255 * i) / numcolors);
@@ -249,6 +258,9 @@ main(argc, argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	    for (i = 0; i < numcolors; i++) {
 		red[i] = (u_char) CVT(redcolormap[i]);
@@ -278,6 +290,9 @@ main(argc, argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (row = 0; row < height; row++) {
 	if (TIFFReadScanline(tif, buf, row, 0) < 0)
@@ -291,6 +306,9 @@ main(argc, argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (col = 0; col < width; col++) {
 		    *outp++ = *inp++;	/* Blue */
@@ -303,6 +321,9 @@ main(argc, argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (col = 0; col < width; col++) {
 		    *outp++ = *inp++;	/* Blue */
@@ -318,6 +339,9 @@ main(argc, argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (col = 0; col < ((width + 7) / 8); col++)
 		    *outp++ = *inp++;
@@ -327,6 +351,9 @@ main(argc, argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (col = 0; col < ((width + 3) / 4); col++) {
 		    *outp++ = (*inp >> 6) & 3;
@@ -340,6 +367,9 @@ main(argc, argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (col = 0; col < width / 2; col++) {
 		    *outp++ = *inp >> 4;
@@ -351,6 +381,9 @@ main(argc, argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (col = 0; col < width; col++)
 		    *outp++ = *inp++;

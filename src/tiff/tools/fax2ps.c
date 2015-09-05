@@ -100,6 +100,9 @@ printruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (runs < erun) {
 	if (runlength <= 0) {
@@ -126,6 +129,9 @@ printruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (runlength > 6) {	/* Run is greater than six... */
 	    if (runlength >= WBarr[l].width) {
@@ -142,6 +148,9 @@ printruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (runlength > 0 && runlength <= 6) {
 	    uint32 bitsleft = 6;
@@ -150,6 +159,9 @@ printruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	    while (bitsleft) {
 		if (runlength <= bitsleft) {
@@ -220,6 +232,9 @@ emitFont(FILE* fd)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; fontPrologue[i] != NULL; i++)
 	fprintf(fd, "%s\n", fontPrologue[i]);
@@ -296,6 +311,9 @@ printTIF(TIFF* tif, uint16 pageNumber)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (s = 0; s < ns; s++)
 	(void) TIFFReadEncodedStrip(tif, s, (tdata_t) NULL, (tsize_t) -1);
@@ -317,6 +335,9 @@ findPage(TIFF* tif, uint16 pageNumber)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (pn != (pageNumber-1) && TIFFReadDirectory(tif) && GetPageNumber(tif))
 	    ;
@@ -339,6 +360,9 @@ fax2ps(TIFF* tif, uint16 npages, uint16* pages, char* filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < npages; i++) {
 	    if (findPage(tif, pages[i]))
@@ -352,9 +376,20 @@ fax2ps(TIFF* tif, uint16 npages, uint16* pages, char* filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	do
 	    printTIF(tif, pageNumber++);
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
 	while (TIFFReadDirectory(tif));
     }
 }
@@ -384,6 +419,9 @@ main(int argc, char** argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ((c = getopt(argc, argv, "l:p:x:y:W:H:wS")) != -1)
 	switch (c) {
@@ -428,6 +466,9 @@ main(int argc, char** argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	do {
 	    tif = TIFFOpen(argv[optind], "r");
@@ -455,6 +496,9 @@ main(int argc, char** argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((n = read(fileno(stdin), buf, sizeof (buf))) > 0)
 	    write(fileno(fd), buf, n);
@@ -504,6 +548,9 @@ usage(int code)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);

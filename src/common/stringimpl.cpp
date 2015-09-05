@@ -324,6 +324,9 @@ wxStringImpl& wxStringImpl::append(size_t n, wxStringCharType ch)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < n; ++i )
         m_pchData[len + i] = ch;
@@ -501,6 +504,9 @@ size_t wxStringImpl::find(const wxStringImpl& str, size_t nStart) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( p - c_str() + nLenOther <= nLen &&
             wxStringMemcmp(p, other, nLenOther) )
@@ -558,6 +564,9 @@ size_t wxStringImpl::rfind(const wxStringImpl& str, size_t nStart) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         do
         {
@@ -589,10 +598,13 @@ size_t wxStringImpl::rfind(wxStringCharType ch, size_t nStart) const
     }
 
     const wxStringCharType *actual;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( actual = c_str() + ( nStart == npos ? length() : nStart + 1 );
           actual > c_str(); --actual )

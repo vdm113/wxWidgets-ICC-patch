@@ -551,6 +551,9 @@ MyFrame::~MyFrame()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < m_allAsync.size(); n++ )
     {
@@ -787,10 +790,13 @@ ExecQueryDialog::ExecQueryDialog(const wxString& cmd)
     wxEnvVariableHashMap env;
     if ( wxGetEnvMap(&env) )
     {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxEnvVariableHashMap::iterator it = env.begin();
               it != env.end();
@@ -816,6 +822,9 @@ void ExecQueryDialog::GetEnvironment(wxEnvVariableHashMap& env)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int l = 0; l < nb; l++ )
         {
@@ -1288,6 +1297,9 @@ void MyFrame::OnIdle(wxIdleEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
@@ -1362,6 +1374,9 @@ void MyFrame::ShowOutput(const wxString& cmd,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
@@ -1428,6 +1443,9 @@ void MyPipedProcess::OnTerminate(int pid, int status)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( HasInput() )
         ;
@@ -1531,6 +1549,9 @@ void MyPipeFrame::OnBtnSendFile(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( len )
     {
@@ -1563,6 +1584,9 @@ void MyPipeFrame::DoGetFromStream(wxTextCtrl *text, wxInputStream& in)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( in.CanRead() )
     {

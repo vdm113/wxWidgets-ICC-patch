@@ -69,6 +69,9 @@ ScoreCanvas::ScoreCanvas(wxWindow* parent, ScoreFile* scoreFile, const wxPoint& 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < players.Count(); i++)
     {
@@ -114,16 +117,22 @@ void ScoreCanvas::OnDraw(wxDC& dc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (*str)
     {
         wxChar text[256];
         wxChar* dest = text;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (*str && *str >= ' ') *dest++ = *str++;
         *dest = '\0';
@@ -169,6 +178,9 @@ ScoreDialog::ScoreDialog(wxWindow* parent, ScoreFile* file) :
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < players.Count(); i++)
     {

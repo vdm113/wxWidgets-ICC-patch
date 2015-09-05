@@ -225,6 +225,9 @@ bool wxPrintfConvSpec<CharType>::Parse(const CharType *format)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do
     {
@@ -356,6 +359,9 @@ bool wxPrintfConvSpec<CharType>::Parse(const CharType *format)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     while ( (*m_pArgEnd >= CharType('0')) &&
                             (*m_pArgEnd <= CharType('9')) )
@@ -385,6 +391,9 @@ bool wxPrintfConvSpec<CharType>::Parse(const CharType *format)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     do {
                         flagofs--;
@@ -520,6 +529,14 @@ bool wxPrintfConvSpec<CharType>::Parse(const CharType *format)
             return false;
         }
     }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
     while (!done);
 
     return true;        // parsing was successful
@@ -706,6 +723,9 @@ int wxPrintfConvSpec<CharType>::Process(CharType *buf, size_t lenMax, wxPrintfAr
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (i = 1; i < (size_t)m_nMinWidth; i++)
                         APPEND_CH(wxT(' '));
@@ -717,6 +737,9 @@ int wxPrintfConvSpec<CharType>::Process(CharType *buf, size_t lenMax, wxPrintfAr
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (i = 1; i < (size_t)m_nMinWidth; i++)
                         APPEND_CH(wxT(' '));
@@ -752,6 +775,9 @@ int wxPrintfConvSpec<CharType>::Process(CharType *buf, size_t lenMax, wxPrintfAr
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (i = len; i < m_nMinWidth; i++)
                         APPEND_CH(wxT(' '));
@@ -767,6 +793,9 @@ int wxPrintfConvSpec<CharType>::Process(CharType *buf, size_t lenMax, wxPrintfAr
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (i = len; i < m_nMinWidth; i++)
                         APPEND_CH(wxT(' '));
@@ -850,6 +879,9 @@ struct wxPrintfConvSpecParser
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( const CharType *toparse = fmt; *toparse != wxT('\0'); toparse++ )
         {
@@ -887,6 +919,9 @@ struct wxPrintfConvSpecParser
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for ( unsigned n = 0; n < numAsterisks; n++ )
                 {

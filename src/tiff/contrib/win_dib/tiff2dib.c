@@ -154,6 +154,9 @@ HDIB LoadTIFFinDIB(LPSTR lpFileName)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
           for (i = (1<<BitsPerSample)-1; i >= 0; i--) 
             {             
@@ -180,6 +183,9 @@ HDIB LoadTIFFinDIB(LPSTR lpFileName)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (row = 0; row < imageLength; row += RowsPerStrip) 
           {     
@@ -196,6 +202,9 @@ RowsPerStrip);
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (l = 0; l < nrow; l++) 
                       {
@@ -204,6 +213,9 @@ RowsPerStrip);
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                            for (i=0;i< (int) (imageWidth);i++)
                               {
@@ -251,6 +263,9 @@ static int checkcmap(int n, uint16* r, uint16* g, uint16* b)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (n-- > 0)
         if (*r++ >= 256 || *g++ >= 256 || *b++ >= 256)

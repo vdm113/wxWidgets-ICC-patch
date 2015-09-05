@@ -226,6 +226,9 @@ hostent *deepCopyHostent(hostent *h,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while(*(p++) != 0)
         pos += sizeof(char *);
@@ -235,6 +238,9 @@ hostent *deepCopyHostent(hostent *h,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (p = h->h_addr_list, q = h_addr_list; *p != 0; p++, q++)
     {
@@ -262,6 +268,9 @@ hostent *deepCopyHostent(hostent *h,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while(*(p++) != 0)
         pos += sizeof(char *);
@@ -271,6 +280,9 @@ hostent *deepCopyHostent(hostent *h,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (p = h->h_aliases, q = h_aliases; *p != 0; p++, q++)
     {
@@ -401,6 +413,9 @@ servent *deepCopyServent(servent *s,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while(*(p++) != 0)
         pos += sizeof(char *);
@@ -410,6 +425,9 @@ servent *deepCopyServent(servent *s,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (p = s->s_aliases, q = s_aliases; *p != 0; p++, q++){
         len = strlen(*p);
@@ -946,6 +964,9 @@ bool wxIPV6address::Hostname(unsigned char addr[16])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < 8; ++i )
     {
@@ -995,6 +1016,9 @@ wxString wxIPV6address::IPAddress() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < 8; ++i )
     {
@@ -1023,6 +1047,9 @@ wxString wxIPV6address::IPAddress() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( i = prefix_zero_count; i < 8; ++i )
         {

@@ -50,6 +50,9 @@ class SVector {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (; i<len; i++) {
 			newv[i] = v[i];
@@ -63,6 +66,9 @@ class SVector {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (; i<size; i++) {
 			newv[i] = 0;
@@ -96,6 +102,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (int i=0; i<other.Length(); i++)
 				v[i] = other.v[i];
@@ -120,6 +129,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for (int i=0; i<other.Length(); i++)
 					v[i] = other.v[i];

@@ -174,6 +174,9 @@ processStream(const XML_Char *filename, XML_Parser parser)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (;;) {
     int nread;

@@ -137,6 +137,9 @@ bool wxTextFile::OnRead(const wxMBConv& conv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t nRemaining = bufSize; nRemaining > 0; )
         {
@@ -176,6 +179,9 @@ bool wxTextFile::OnRead(const wxMBConv& conv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( ;; )
         {
@@ -232,6 +238,9 @@ bool wxTextFile::OnRead(const wxMBConv& conv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator p = lineStart; p != end; p++ )
     {
@@ -298,6 +307,9 @@ bool wxTextFile::OnWrite(wxTextFileType typeNew, const wxMBConv& conv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < nCount; n++ ) {
         fileTmp.Write(GetLine(n) +

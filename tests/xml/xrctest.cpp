@@ -175,6 +175,9 @@ void XrcTestCase::ObjectReferences()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < 2; ++n )
     {
@@ -203,6 +206,9 @@ void XrcTestCase::IDRanges()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < 2; ++n )
     {

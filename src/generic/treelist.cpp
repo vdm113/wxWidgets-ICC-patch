@@ -86,6 +86,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxTreeListModelNode* node = m_child; node; )
         {
@@ -161,6 +164,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned n = 1, m = 1; n < numColumns - 1; n++, m++ )
         {
@@ -194,6 +200,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned n = 1, m = 1; n < numColumns - 1; n++, m++ )
         {
@@ -288,6 +297,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxTreeListModelNode* node = m_parent; node; node = node->m_parent )
         {
@@ -639,6 +651,9 @@ void wxTreeListModel::InsertColumn(unsigned col)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( Node* node = m_root->GetChild(); node; node = node->NextInTree() )
     {
@@ -657,6 +672,9 @@ void wxTreeListModel::DeleteColumn(unsigned col)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( Node* node = m_root->GetChild(); node; node = node->NextInTree() )
         {
@@ -675,6 +693,9 @@ void wxTreeListModel::ClearColumns()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( Node* node = m_root->GetChild(); node; node = node->NextInTree() )
     {
@@ -723,6 +744,9 @@ wxTreeListModel::InsertItem(Node* parent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( ;; )
             {
@@ -770,6 +794,9 @@ void wxTreeListModel::DeleteItem(Node* item)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( ;; )
         {
@@ -794,6 +821,9 @@ void wxTreeListModel::DeleteAllItems()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( m_root->GetChild() )
     {
@@ -1006,6 +1036,9 @@ wxTreeListModel::GetChildren(const wxDataViewItem& item,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( Node* child = node->GetChild(); child; child = child->GetNext() )
     {
@@ -1430,6 +1463,9 @@ unsigned wxTreeListCtrl::GetSelections(wxTreeListItems& selections) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < numSelected; n++ )
         selections[n] = m_model->FromNonRootDVI(selectionsDV[n]);
@@ -1498,10 +1534,13 @@ wxTreeListCtrl::CheckItemRecursively(wxTreeListItem item, wxCheckBoxState state)
 
     m_model->CheckItem(item, state);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxTreeListItem child = GetFirstChild(item);
           child.IsOk();
@@ -1521,6 +1560,9 @@ void wxTreeListCtrl::UpdateItemParentStateRecursively(wxTreeListItem item)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ;; )
     {
@@ -1556,10 +1598,13 @@ wxTreeListCtrl::AreAllChildrenInState(wxTreeListItem item,
 {
     wxCHECK_MSG( item.IsOk(), false, "Invalid item" );
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxTreeListItem child = GetFirstChild(item);
           child.IsOk();
@@ -1590,6 +1635,9 @@ bool wxTreeListCtrl::GetSortColumn(unsigned* col, bool* ascendingOrder)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < numColumns; n++ )
     {
@@ -1728,6 +1776,9 @@ void wxTreeListCtrl::OnSize(wxSizeEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned n = 1; n < GetColumnCount(); n++ )
         {

@@ -132,6 +132,9 @@ wxProtocolError wxProtocol::ReadLine(wxSocketBase *sock, wxString& result)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( sock->WaitForRead() )
     {

@@ -781,6 +781,9 @@ wxCairoPenData::wxCairoPenData( wxGraphicsRenderer* renderer, const wxPen &pen )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for ( int i = 0 ; i < m_count ; ++i )
                 {
@@ -862,6 +865,9 @@ void wxCairoBrushData::AddGradientStops(const wxGraphicsGradientStops& stops)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < numStops; n++ )
     {
@@ -1386,6 +1392,9 @@ wxCairoBitmapData::wxCairoBitmapData( wxGraphicsRenderer* renderer, const wxBitm
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int y=0; y<m_height; y++)
         {
@@ -1395,6 +1404,9 @@ wxCairoBitmapData::wxCairoBitmapData( wxGraphicsRenderer* renderer, const wxBitm
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (int x=0; x<m_width; x++)
             {
@@ -1430,6 +1442,9 @@ wxCairoBitmapData::wxCairoBitmapData( wxGraphicsRenderer* renderer, const wxBitm
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int y=0; y<m_height; y++)
         {
@@ -1439,6 +1454,9 @@ wxCairoBitmapData::wxCairoBitmapData( wxGraphicsRenderer* renderer, const wxBitm
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (int x=0; x<m_width; x++)
             {
@@ -1473,6 +1491,9 @@ wxCairoBitmapData::wxCairoBitmapData( wxGraphicsRenderer* renderer, const wxBitm
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int y=0; y<m_height; y++)
         {
@@ -1482,6 +1503,9 @@ wxCairoBitmapData::wxCairoBitmapData( wxGraphicsRenderer* renderer, const wxBitm
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (int x=0; x<m_width; x++)
             {
@@ -1546,6 +1570,9 @@ wxCairoBitmapData::wxCairoBitmapData(wxGraphicsRenderer* renderer,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int y = 0; y < m_height; y++ )
         {
@@ -1555,6 +1582,9 @@ wxCairoBitmapData::wxCairoBitmapData(wxGraphicsRenderer* renderer,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int x = 0; x < m_width; x++ )
             {
@@ -1576,6 +1606,9 @@ wxCairoBitmapData::wxCairoBitmapData(wxGraphicsRenderer* renderer,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int y = 0; y < m_height; y++ )
         {
@@ -1585,6 +1618,9 @@ wxCairoBitmapData::wxCairoBitmapData(wxGraphicsRenderer* renderer,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int x = 0; x < m_width; x++ )
             {
@@ -1654,6 +1690,9 @@ wxImage wxCairoBitmapData::ConvertToImage() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int y = 0; y < m_height; y++ )
         {
@@ -1662,6 +1701,9 @@ wxImage wxCairoBitmapData::ConvertToImage() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int x = 0; x < m_width; x++ )
             {
@@ -1686,6 +1728,9 @@ wxImage wxCairoBitmapData::ConvertToImage() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int y = 0; y < m_height; y++ )
         {
@@ -1694,6 +1739,9 @@ wxImage wxCairoBitmapData::ConvertToImage() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int x = 0; x < m_width; x++ )
             {
@@ -2079,6 +2127,9 @@ void wxCairoContext::Clip( const wxRegion& region )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (ri)
     {
@@ -2372,6 +2423,9 @@ void wxCairoContext::GetPartialTextExtents(const wxString& text, wxArrayDouble& 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         do {
             pango_layout_iter_get_cluster_extents(iter, NULL, &rect);
@@ -2387,6 +2441,9 @@ void wxCairoContext::GetPartialTextExtents(const wxString& text, wxArrayDouble& 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (i++ < len)
         widths.Add(PANGO_PIXELS(w));

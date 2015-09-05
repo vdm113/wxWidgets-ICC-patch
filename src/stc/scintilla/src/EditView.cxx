@@ -80,6 +80,9 @@ bool ValidStyledText(const ViewStyle &vs, size_t styleOffset, const StyledText &
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (size_t iStyle = 0; iStyle<st.length; iStyle++) {
 			if (!vs.ValidStyle(styleOffset + st.styles[iStyle]))
@@ -100,6 +103,9 @@ static int WidthStyledText(Surface *surface, const ViewStyle &vs, int styleOffse
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (start < len) {
 		size_t style = styles[start];
@@ -108,6 +114,9 @@ static int WidthStyledText(Surface *surface, const ViewStyle &vs, int styleOffse
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while ((endSegment + 1 < len) && (static_cast<size_t>(styles[endSegment + 1]) == style))
 			endSegment++;
@@ -126,6 +135,9 @@ int WidestLineWidth(Surface *surface, const ViewStyle &vs, int styleOffset, cons
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (start < st.length) {
 		size_t lenLine = st.LineLength(start);
@@ -170,6 +182,9 @@ void DrawStyledText(Surface *surface, const ViewStyle &vs, int styleOffset, PRec
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (i < length) {
 			size_t end = i;
@@ -178,6 +193,9 @@ void DrawStyledText(Surface *surface, const ViewStyle &vs, int styleOffset, PRec
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (end < length - 1 && st.styles[start + end + 1] == style)
 				end++;
@@ -293,6 +311,9 @@ void EditView::LinesAddedOrRemoved(int lineOfPos, int linesAdded) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (int line = lineOfPos; line < lineOfPos + linesAdded; line++) {
 				ldTabstops->InsertLine(line);
@@ -302,6 +323,9 @@ void EditView::LinesAddedOrRemoved(int lineOfPos, int linesAdded) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (int line = (lineOfPos + -linesAdded) - 1; line >= lineOfPos; line--) {
 				ldTabstops->RemoveLine(line);
@@ -382,6 +406,9 @@ void EditView::RefreshPixMaps(Surface *surfaceWindow, WindowID wid, const ViewSt
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int stripe = 1; stripe < vsDraw.lineHeight + 1; stripe += 2) {
 			PRectangle rcPixel = PRectangle::FromInts(0, stripe, 1, stripe + 1);
@@ -433,6 +460,9 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (numCharsInLine < lineLength) {
 				int charInDoc = numCharsInLine + posLineStart;
@@ -483,6 +513,9 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int styleInLine = 0; styleInLine < numCharsInLine; styleInLine++) {
 			const unsigned char styleByte = ll->styles[styleInLine];
@@ -494,6 +527,9 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (int charInLine = 0; charInLine<lineLength; charInLine++) {
 				char chDoc = ll->chars[charInLine];
@@ -518,6 +554,9 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (bfLayout.More()) {
 
@@ -543,6 +582,9 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					for (int ii = 0; ii < ts.length; ii++)
 						ll->positions[ts.start + 1 + ii] = representationWidth;
@@ -562,6 +604,9 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (int posToIncrease = ts.start + 1; posToIncrease <= ts.end(); posToIncrease++) {
 				ll->positions[posToIncrease] += ll->positions[ts.start];
@@ -603,6 +648,9 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (int i = 0; i < ll->numCharsInLine; i++) {
 				if (!IsSpaceOrTab(ll->chars[i])) {
@@ -626,6 +674,9 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (p < ll->numCharsInLine) {
 				if ((ll->positions[p + 1] - startOffset) >= width) {
@@ -771,6 +822,9 @@ int EditView::DisplayFromPosition(Surface *surface, const EditModel &model, int 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int subLine = 0; subLine < ll->lines; subLine++) {
 			if (posInLine >= ll->LineStart(subLine)) {
@@ -794,6 +848,9 @@ int EditView::StartEndDisplayLine(Surface *surface, const EditModel &model, int 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (int subLine = 0; subLine < ll->lines; subLine++) {
 				if ((posInLine >= ll->LineStart(subLine)) && (posInLine <= ll->LineStart(subLine + 1))) {
@@ -906,6 +963,9 @@ void EditView::DrawEOL(Surface *surface, const EditModel &model, const ViewStyle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (size_t r = 0; r<model.sel.Count(); r++) {
 				int alpha = (r == model.sel.Main()) ? vsDraw.selAlpha : vsDraw.selAdditionalAlpha;
@@ -941,6 +1001,9 @@ void EditView::DrawEOL(Surface *surface, const EditModel &model, const ViewStyle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int eolPos = ll->numCharsBeforeEOL; eolPos<ll->numCharsInLine; eolPos++) {
 			rcSegment.left = xStart + ll->positions[eolPos] - static_cast<XYPOSITION>(subLineStart)+virtualSpace;
@@ -1074,6 +1137,9 @@ static void DrawIndicators(Surface *surface, const EditModel &model, const ViewS
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (Decoration *deco = model.pdoc->decorations.root; deco; deco = deco->next) {
 		if (under == vsDraw.indicators[deco->indicator].under) {
@@ -1085,6 +1151,9 @@ static void DrawIndicators(Surface *surface, const EditModel &model, const ViewS
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while ((startPos < posLineEnd) && (deco->rs.ValueAt(startPos))) {
 				int endPos = deco->rs.EndRun(startPos);
@@ -1160,6 +1229,9 @@ void EditView::DrawAnnotation(Surface *surface, const EditModel &model, const Vi
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while ((lineInAnnotation < annotationLine) && (start < stAnnotation.length)) {
 			start += lengthAnnotation + 1;
@@ -1209,6 +1281,9 @@ static void DrawBlockCaret(Surface *surface, const EditModel &model, const ViewS
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((posBefore > 0) && ((offsetLastChar - numCharsToDraw) >= lineStart)) {
 		if ((ll->positions[offsetLastChar] - ll->positions[offsetLastChar - numCharsToDraw]) > 0) {
@@ -1231,6 +1306,9 @@ static void DrawBlockCaret(Surface *surface, const EditModel &model, const ViewS
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((offsetLastChar < ll->LineStart(subLine + 1)) && (offsetLastChar <= ll->numCharsInLine)) {
 		// Update posAfter to point to the 2nd next char, this is where
@@ -1280,6 +1358,9 @@ void EditView::DrawCarets(Surface *surface, const EditModel &model, const ViewSt
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (size_t r = 0; (r<model.sel.Count()) || drawDrag; r++) {
 		const bool mainCaret = r == model.sel.Main();
@@ -1403,6 +1484,9 @@ void EditView::DrawBackground(Surface *surface, const EditModel &model, const Vi
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (bfBack.More()) {
 
@@ -1446,6 +1530,9 @@ void EditView::DrawBackground(Surface *surface, const EditModel &model, const Vi
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					for (int cpos = 0; cpos <= i - ts.start; cpos++) {
 						if (ll->chars[cpos + ts.start] == ' ') {
@@ -1491,6 +1578,9 @@ static void DrawMarkUnderline(Surface *surface, const EditModel &model, const Vi
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int markBit = 0; (markBit < 32) && marks; markBit++) {
 		if ((marks & 1) && (vsDraw.markers[markBit].markType == SC_MARK_UNDERLINE) &&
@@ -1519,6 +1609,9 @@ static void DrawTranslucentSelection(Surface *surface, const EditModel &model, c
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (size_t r = 0; r < model.sel.Count(); r++) {
 			int alpha = (r == model.sel.Main()) ? vsDraw.selAlpha : vsDraw.selAdditionalAlpha;
@@ -1556,6 +1649,9 @@ static void DrawTranslucentLineState(Surface *surface, const EditModel &model, c
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int markBit = 0; (markBit < 32) && marks; markBit++) {
 		if ((marks & 1) && (vsDraw.markers[markBit].markType == SC_MARK_BACKGROUND)) {
@@ -1574,6 +1670,9 @@ static void DrawTranslucentLineState(Surface *surface, const EditModel &model, c
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (int markBit = 0; (markBit < 32) && marksMasked; markBit++) {
 				if ((marksMasked & 1) && (vsDraw.markers[markBit].markType != SC_MARK_EMPTY)) {
@@ -1607,6 +1706,9 @@ void EditView::DrawForeground(Surface *surface, const EditModel &model, const Vi
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (bfFore.More()) {
 
@@ -1635,6 +1737,9 @@ void EditView::DrawForeground(Surface *surface, const EditModel &model, const Vi
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for (Decoration *deco = model.pdoc->decorations.root; deco; deco = deco->next) {
 					const int indicatorValue = deco->rs.ValueAt(ts.start + posLineStart);
@@ -1673,10 +1778,13 @@ void EditView::DrawForeground(Surface *surface, const EditModel &model, const Vi
 						surface->FillRectangle(rcSegment, textBack);
 					}
 					if (inIndentation && vsDraw.viewIndentationGuides == ivReal) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 						for (int indentCount = static_cast<int>((ll->positions[i] + epsilon) / indentWidth);
 							indentCount <= (ll->positions[i + 1] - epsilon) / indentWidth;
@@ -1736,6 +1844,9 @@ void EditView::DrawForeground(Surface *surface, const EditModel &model, const Vi
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					for (int cpos = 0; cpos <= i - ts.start; cpos++) {
 						if (ll->chars[cpos + ts.start] == ' ') {
@@ -1762,10 +1873,13 @@ void EditView::DrawForeground(Surface *surface, const EditModel &model, const Vi
 								}
 							}
 							if (inIndentation && vsDraw.viewIndentationGuides == ivReal) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 								for (int indentCount = static_cast<int>((ll->positions[cpos + ts.start] + epsilon) / indentWidth);
 									indentCount <= (ll->positions[cpos + ts.start + 1] - epsilon) / indentWidth;
@@ -1818,6 +1932,9 @@ void EditView::DrawIndentGuidesOverEmpty(Surface *surface, const EditModel &mode
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (lineLastWithText > Platform::Maximum(line - 20, 0) && model.pdoc->IsWhiteLine(lineLastWithText)) {
 			lineLastWithText--;
@@ -1846,6 +1963,9 @@ void EditView::DrawIndentGuidesOverEmpty(Surface *surface, const EditModel &mode
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (lineNextWithText < Platform::Minimum(line + 20, model.pdoc->LinesTotal()) && model.pdoc->IsWhiteLine(lineNextWithText)) {
 			lineNextWithText++;
@@ -1861,6 +1981,9 @@ void EditView::DrawIndentGuidesOverEmpty(Surface *surface, const EditModel &mode
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int indentPos = model.pdoc->IndentSize(); indentPos < indentSpace; indentPos += model.pdoc->IndentSize()) {
 			int xIndent = static_cast<int>(indentPos * vsDraw.spaceWidth);
@@ -2021,6 +2144,9 @@ void EditView::PaintText(Surface *surfaceWindow, const EditModel &model, PRectan
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (DrawPhase phase = drawBack; phase <= drawCarets; phase = static_cast<DrawPhase>(phase * 2)) {
 				phases.push_back(phase);
@@ -2032,6 +2158,9 @@ void EditView::PaintText(Surface *surfaceWindow, const EditModel &model, PRectan
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (std::vector<DrawPhase>::iterator it = phases.begin(); it != phases.end(); ++it) {
 			int ypos = 0;
@@ -2043,6 +2172,9 @@ void EditView::PaintText(Surface *surfaceWindow, const EditModel &model, PRectan
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (visibleLine < model.cs.LinesDisplayed() && yposScreen < rcArea.bottom) {
 
@@ -2177,6 +2309,9 @@ long EditView::FormatRange(bool draw, Sci_RangeToFormat *pfr, Surface *surface, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int margin = 0; margin <= SC_MAX_MARGIN; margin++) {
 		if ((vsPrint.ms[margin].style == SC_MARGIN_NUMBER) && (vsPrint.ms[margin].width > 0)) {
@@ -2208,6 +2343,9 @@ long EditView::FormatRange(bool draw, Sci_RangeToFormat *pfr, Surface *surface, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (size_t sty = 0; sty < vsPrint.styles.size(); sty++) {
 		if (printParameters.colourMode == SC_PRINT_INVERTLIGHT) {
@@ -2273,6 +2411,9 @@ long EditView::FormatRange(bool draw, Sci_RangeToFormat *pfr, Surface *surface, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (lineDoc <= linePrintLast && ypos < pfr->rc.bottom) {
 
@@ -2304,6 +2445,9 @@ long EditView::FormatRange(bool draw, Sci_RangeToFormat *pfr, Surface *surface, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (int iwl = 0; iwl < ll.lines - 1; iwl++) {
 				if (ll.LineStart(iwl) <= startWithinLine && ll.LineStart(iwl + 1) >= startWithinLine) {
@@ -2340,6 +2484,9 @@ long EditView::FormatRange(bool draw, Sci_RangeToFormat *pfr, Surface *surface, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int iwl = 0; iwl < ll.lines; iwl++) {
 			if (ypos + vsPrint.lineHeight <= pfr->rc.bottom) {

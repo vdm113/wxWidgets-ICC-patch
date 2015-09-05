@@ -162,6 +162,9 @@ void wxGridCellEditorEvtHandler::OnChar(wxKeyEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int i = 0; i < col; i++ )
             {
@@ -221,6 +224,9 @@ void wxGridCellEditorEvtHandler::OnChar(wxKeyEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int i = 0; i < col; i++ )
             {
@@ -1438,6 +1444,9 @@ wxGridCellChoiceEditor::wxGridCellChoiceEditor(size_t count,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )
         {
@@ -1601,6 +1610,9 @@ void wxGridCellChoiceEditor::SetParameters(const wxString& params)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( tk.HasMoreTokens() )
     {

@@ -302,10 +302,13 @@ wxWindow *wxFindFocusedChild(wxWindowGTK *win)
     if ( winFocus == win )
         return (wxWindow *)win;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst();
           node;
@@ -590,6 +593,9 @@ static void gtk_window_draw_callback( GtkWidget *widget,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (parent && !parent->IsTopLevel())
             parent = parent->GetParent();
@@ -620,6 +626,9 @@ static void gtk_window_draw_callback( GtkWidget *widget,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (children)
     {
@@ -1128,6 +1137,9 @@ static gint gtk_window_key_press_callback( GtkWidget *widget,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (parent && !parent->IsTopLevel())
             parent = parent->GetParent();
@@ -1136,6 +1148,9 @@ static gint gtk_window_key_press_callback( GtkWidget *widget,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for( const wxChar* pstr = string; *pstr; pstr++ )
         {
@@ -1171,6 +1186,9 @@ static gint gtk_window_key_press_callback( GtkWidget *widget,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (ancestor)
         {
@@ -1222,6 +1240,9 @@ static gint gtk_window_key_press_callback( GtkWidget *widget,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (parent && !parent->IsTopLevel())
                 parent = parent->GetParent();
@@ -1281,6 +1302,9 @@ static gint gtk_window_key_press_callback( GtkWidget *widget,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( winForCancel )
         {
@@ -1446,6 +1470,9 @@ wxWindowGTK *FindWindowForMouseEvent(wxWindowGTK *win, wxCoord& x, wxCoord& y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -3572,10 +3599,13 @@ void wxWindowGTK::GtkUpdate()
     // for consistency with other platforms (and also because it's convenient
     // to be able to update an entire TLW by calling Update() only once), we
     // should also update all our children here
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
           node;
@@ -3614,6 +3644,9 @@ void wxWindowGTK::GtkSendPaintEvents()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (upd)
             {
@@ -3659,6 +3692,9 @@ void wxWindowGTK::GtkSendPaintEvents()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (upd)
             {
@@ -3690,6 +3726,9 @@ void wxWindowGTK::GtkSendPaintEvents()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (children)
     {
@@ -3713,6 +3752,9 @@ void wxWindowGTK::GtkSendPaintEvents()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (upd)
             {

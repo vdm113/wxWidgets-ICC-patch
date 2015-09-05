@@ -127,6 +127,9 @@ wxCursor::wxCursor(const char bits[], int width, int height,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int j = 0; j < height; j++, data += stride)
         {
@@ -135,6 +138,9 @@ wxCursor::wxCursor(const char bits[], int width, int height,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (int i = 0; i < width; i++, p += n_channels)
             {
@@ -318,12 +324,18 @@ void wxCursor::InitFromImage( const wxImage & image )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (int j = 0; j < h; j++, d += stride)
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (int i = 0; i < w; i++, alpha++)
                     if (d[4 * i + 3])
@@ -392,6 +404,9 @@ static void UpdateCursors(wxWindow* win, bool isBusyOrGlobalCursor)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t n = children.size(); n--; ++i)
         UpdateCursors(*i, isBusyOrGlobalCursor);
@@ -406,6 +421,9 @@ static void SetGlobalCursor(const wxCursor& cursor)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t n = wxTopLevelWindows.size(); n--; ++i)
     {

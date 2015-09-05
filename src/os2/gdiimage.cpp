@@ -294,6 +294,9 @@ wxGDIImageHandler* wxGDIImage::FindHandler(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( pNode )
     {
@@ -321,6 +324,9 @@ wxGDIImageHandler* wxGDIImage::FindHandler(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( pNode )
     {
@@ -351,6 +357,9 @@ wxGDIImageHandler* wxGDIImage::FindHandler(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( pNode )
     {
@@ -376,6 +385,9 @@ void wxGDIImage::CleanUpHandlers()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( pNode )
     {

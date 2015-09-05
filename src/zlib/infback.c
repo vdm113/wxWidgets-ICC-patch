@@ -101,28 +101,40 @@ struct inflate_state FAR *state;
 
         /* literal/length table */
         sym = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (sym < 144) state->lens[sym++] = 8;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (sym < 256) state->lens[sym++] = 9;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (sym < 280) state->lens[sym++] = 7;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (sym < 288) state->lens[sym++] = 8;
         next = fixed;
@@ -132,10 +144,13 @@ struct inflate_state FAR *state;
 
         /* distance table */
         sym = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (sym < 32) state->lens[sym++] = 5;
         distfix = next;
@@ -333,6 +348,9 @@ void FAR *out_desc;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (;;)
         switch (state->mode) {
@@ -389,6 +407,9 @@ void FAR *out_desc;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (state->length != 0) {
                 copy = state->length;
@@ -431,6 +452,9 @@ void FAR *out_desc;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (state->have < state->ncode) {
                 NEEDBITS(3);
@@ -441,6 +465,9 @@ void FAR *out_desc;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (state->have < 19)
                 state->lens[order[state->have++]] = 0;
@@ -462,12 +489,18 @@ void FAR *out_desc;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (state->have < state->nlen + state->ndist) {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (;;) {
                     here = state->lencode[BITS(state->lenbits)];
@@ -514,6 +547,9 @@ void FAR *out_desc;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     while (copy--)
                         state->lens[state->have++] = (unsigned short)len;
@@ -571,6 +607,9 @@ void FAR *out_desc;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (;;) {
                 here = state->lencode[BITS(state->lenbits)];
@@ -583,6 +622,9 @@ void FAR *out_desc;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (;;) {
                     here = state->lencode[last.val +
@@ -635,6 +677,9 @@ void FAR *out_desc;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (;;) {
                 here = state->distcode[BITS(state->distbits)];
@@ -647,6 +692,9 @@ void FAR *out_desc;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (;;) {
                     here = state->distcode[last.val +
@@ -684,6 +732,9 @@ void FAR *out_desc;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             do {
                 ROOM();
@@ -703,6 +754,9 @@ void FAR *out_desc;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 do {
                     *put++ = *from++;

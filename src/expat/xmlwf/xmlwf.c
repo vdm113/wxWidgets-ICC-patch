@@ -39,6 +39,9 @@ characterData(void *userData, const XML_Char *s, int len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (; len > 0; --len, ++s) {
     switch (*s) {
@@ -81,6 +84,9 @@ attributeValue(FILE *fp, const XML_Char *s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (;;) {
     switch (*s) {
@@ -148,6 +154,9 @@ startElement(void *userData, const XML_Char *name, const XML_Char **atts)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (*p)
     ++p;
@@ -158,6 +167,9 @@ startElement(void *userData, const XML_Char *name, const XML_Char **atts)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (*atts) {
     puttc(T(' '), fp);
@@ -218,6 +230,9 @@ startElementNS(void *userData, const XML_Char *name, const XML_Char **atts)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (*p)
     ++p;
@@ -228,6 +243,9 @@ startElementNS(void *userData, const XML_Char *name, const XML_Char **atts)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (*atts) {
     name = *atts++;
@@ -339,6 +357,9 @@ markup(void *userData, const XML_Char *s, int len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (; len > 0; --len, ++s)
     puttc(*s, fp);
@@ -394,6 +415,9 @@ metaStartElement(void *userData, const XML_Char *name,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do {
       ftprintf(fp, T("<attribute name=\"%s\" value=\""), atts[0]);
@@ -616,6 +640,9 @@ unknownEncoding(void *userData, const XML_Char *name, XML_Encoding *info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; prefixU[i]; i++)
     if (name[i] != prefixU[i] && name[i] != prefixL[i])
@@ -626,6 +653,9 @@ unknownEncoding(void *userData, const XML_Char *name, XML_Encoding *info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (; name[i]; i++) {
     static const XML_Char digits[] = T("0123456789");
@@ -666,6 +696,9 @@ showVersion(XML_Char *prog)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while ((ch = *s) != 0) {
     if (ch == '/'
@@ -686,6 +719,9 @@ showVersion(XML_Char *prog)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (features[i].feature != XML_FEATURE_END) {
       ftprintf(stdout, T(", %s"), features[i].name);
@@ -731,6 +767,9 @@ tmain(int argc, XML_Char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (i < argc) {
     if (j == 0) {
@@ -827,6 +866,9 @@ tmain(int argc, XML_Char **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (; i < argc; i++) {
     FILE *fp = 0;

@@ -204,6 +204,9 @@ bool wxTarHeaderBlock::IsAllZeros() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < sizeof(data); i++)
         if (p[i])
@@ -223,6 +226,9 @@ wxUint32 wxTarHeaderBlock::Sum(bool SignedSum /*=false*/)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < sizeof(data); i++)
             n += (signed char)p[i];
@@ -231,6 +237,9 @@ wxUint32 wxTarHeaderBlock::Sum(bool SignedSum /*=false*/)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < sizeof(data); i++)
             n += (unsigned char)p[i];
@@ -248,6 +257,9 @@ wxUint32 wxTarHeaderBlock::SumField(int id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (p < q)
         n += *p++;
@@ -263,6 +275,9 @@ bool wxTarHeaderBlock::Read(wxInputStream& in)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int id = 0; id < TAR_NUMFIELDS && ok; id++)
         ok = in.Read(Get(id), Len(id)).LastRead() == Len(id);
@@ -278,6 +293,9 @@ bool wxTarHeaderBlock::Write(wxOutputStream& out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int id = 0; id < TAR_NUMFIELDS && ok; id++)
         ok = WriteField(out, id);
@@ -298,6 +316,9 @@ wxTarNumber wxTarHeaderBlock::GetOctal(int id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (*p == ' ')
         p++;
@@ -305,6 +326,9 @@ wxTarNumber wxTarHeaderBlock::GetOctal(int id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (*p >= '0' && *p < '8')
         n = (n << 3) | (*p++ - '0');
@@ -321,6 +345,9 @@ bool wxTarHeaderBlock::SetOctal(int id, wxTarNumber n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (p > field) {
         *--p = char('0' + (n & 7));
@@ -345,6 +372,9 @@ bool wxTarHeaderBlock::SetPath(const wxString& name, wxMBConv& conv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < len; i++)
         {
@@ -372,6 +402,9 @@ bool wxTarHeaderBlock::SetPath(const wxString& name, wxMBConv& conv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (;;) {
         fits = i < maxprefix && len - i <= maxname;
@@ -605,6 +638,9 @@ wxString wxTarEntry::GetName(wxPathFormat format /*=wxPATH_NATIVE*/) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (size_t i = 0; i < name.length(); i++)
                 if (name[i] == wxT('/'))
@@ -662,6 +698,9 @@ wxString wxTarEntry::GetInternalName(const wxString& name,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (!internal.empty() && *internal.begin() == '/')
         internal.erase(0, 1);
@@ -669,6 +708,9 @@ wxString wxTarEntry::GetInternalName(const wxString& name,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (!internal.empty() && internal.compare(0, 2, wxT("./")) == 0)
         internal.erase(0, 2);
@@ -851,6 +893,9 @@ bool wxTarInputStream::CloseEntry()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (remainder > 0 && m_parent_i_stream->IsOk())
             remainder -= m_parent_i_stream->Read(
@@ -875,6 +920,9 @@ wxStreamError wxTarInputStream::ReadHeaders()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (!done) {
         m_hdr->Read(*m_parent_i_stream);
@@ -993,6 +1041,9 @@ wxTarNumber wxTarInputStream::GetHeaderNumber(int id) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (p != value.end() && *p == ' ')
             p++;
@@ -1000,6 +1051,9 @@ wxTarNumber wxTarInputStream::GetHeaderNumber(int id) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (isdigit(*p))
             n = n * 10 + (*p++ - '0');
@@ -1047,6 +1101,9 @@ bool wxTarInputStream::ReadExtendedHeader(wxTarHeaderRecords*& recs)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (recPos = 0; recPos < len && ok; recPos += recSize) {
         char *pRec = buf.data() + recPos;
@@ -1058,6 +1115,9 @@ bool wxTarInputStream::ReadExtendedHeader(wxTarHeaderRecords*& recs)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (isdigit((unsigned char) *p))
             recSize = recSize * 10 + *p++ - '0';
@@ -1081,6 +1141,9 @@ bool wxTarInputStream::ReadExtendedHeader(wxTarHeaderRecords*& recs)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (*p && *p != '=')
             p++;
@@ -1334,6 +1397,9 @@ bool wxTarOutputStream::Close()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (count--)
         m_parent_o_stream->Write(m_hdr, TAR_BLOCKSIZE);
@@ -1464,6 +1530,9 @@ wxString wxTarOutputStream::PaxHeaderPath(const wxString& format,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (;;) {
         end = format.find('%', begin);

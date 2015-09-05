@@ -99,6 +99,9 @@ bool wxListBox::Create(wxWindow *parent, wxWindowID id,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( n-- > 0 )
     {

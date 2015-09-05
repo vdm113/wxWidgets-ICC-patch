@@ -79,6 +79,9 @@ LexerLibrary::LexerLibrary(const char *ModuleName) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (int i = 0; i < nl; i++) {
 				// Assign a buffer for the lexer name.
@@ -121,6 +124,9 @@ void LexerLibrary::Release() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (NULL != lm) {
 		lmNext = lm->next;
@@ -171,6 +177,9 @@ void LexerManager::LoadLexerLibrary(const char *module) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (LexerLibrary *ll = first; ll; ll= ll->next) {
 		if (strcmp(ll->m_sModuleName.c_str(), module) == 0)
@@ -194,6 +203,9 @@ void LexerManager::Clear() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (cur) {
 			next = cur->next;

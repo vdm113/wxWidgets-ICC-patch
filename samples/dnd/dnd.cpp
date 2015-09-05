@@ -1055,6 +1055,9 @@ DnDFrame::DnDFrame()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < sizer_top->GetChildren().size(); n++ )
         sizer_top->SetItemMinSize(n, 200, 300);
@@ -1462,6 +1465,9 @@ void DnDFrame::OnCopyFiles(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( dialog.ShowModal() == wxID_OK )
     {
@@ -1476,6 +1482,9 @@ void DnDFrame::OnCopyFiles(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )
         {
@@ -1612,6 +1621,9 @@ bool DnDFile::OnDropFiles(wxCoord, wxCoord, const wxArrayString& filenames)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < nFiles; n++ )
             m_pOwner->Append(filenames[n]);
@@ -1756,6 +1768,9 @@ void DnDShapeDialog::OnColour(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < 16; i++)
     {

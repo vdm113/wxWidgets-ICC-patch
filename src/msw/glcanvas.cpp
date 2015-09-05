@@ -334,6 +334,9 @@ bool wxGLCanvas::Create(wxWindow *parent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int i = 0; attribList[i]; )
         {
@@ -541,6 +544,9 @@ static int ChoosePixelFormatARB(HDC hdc, const int *attribList)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( attribList[src] )
         {
@@ -681,6 +687,9 @@ AdjustPFDForAttributes(PIXELFORMATDESCRIPTOR& pfd, const int *attribList)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int arg = 0; attribList[arg]; )
     {
@@ -930,6 +939,9 @@ wxPalette wxGLCanvas::CreateDefaultPalette()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i=0; i<paletteSize; ++i)
     {

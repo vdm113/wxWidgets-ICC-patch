@@ -123,6 +123,9 @@ main(argc, argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (--argc) {
 	if ((++argv)[0][0] == '-') {
@@ -235,6 +238,9 @@ main(argc, argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < Colormap.length; i++) {
 	    red[i] = SCALE(Colormap.map[0][i]);
@@ -249,6 +255,9 @@ main(argc, argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (row = 0; row < height; row++)
 	if (TIFFWriteScanline(tif,

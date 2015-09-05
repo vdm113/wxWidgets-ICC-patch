@@ -623,6 +623,9 @@ wxLogLevel wxLog::GetComponentLevel(wxString component)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( !component.empty() )
     {
@@ -702,6 +705,9 @@ void wxLog::ClearTraceMasks()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxArrayString::const_iterator it = masks.begin(),
                                         en = masks.end();
@@ -768,10 +774,13 @@ void wxLog::FlushThreadMessages()
 
     if ( !bufferedLogRecords.empty() )
     {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxLogRecords::const_iterator it = bufferedLogRecords.begin();
               it != bufferedLogRecords.end();
@@ -1053,12 +1062,18 @@ static void wxLogWrap(FILE *f, const char *pszPrefix, const char *psz)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( *psz != '\0' ) {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( n = nStart; (n < nMax) && (*psz != '\0'); n++ )
             putc(*psz++, f);
@@ -1070,6 +1085,9 @@ static void wxLogWrap(FILE *f, const char *pszPrefix, const char *psz)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( n = 0; n < nStart; n++ )
                 putc(' ', f);
@@ -1079,6 +1097,9 @@ static void wxLogWrap(FILE *f, const char *pszPrefix, const char *psz)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( isspace(*psz) )
                 psz++;

@@ -114,6 +114,9 @@ void InteractiveOutputTestCase::TestDllListLoaded()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; ++n )
     {
@@ -160,6 +163,9 @@ void InteractiveOutputTestCase::TestMimeEnum()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
@@ -182,6 +188,9 @@ void InteractiveOutputTestCase::TestMimeEnum()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t e = 0; e < exts.GetCount(); e++ )
         {
@@ -215,6 +224,9 @@ void InteractiveOutputTestCase::TestMimeFilename()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(filenames); n++ )
     {
@@ -387,6 +399,9 @@ protected:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; frame.GetParam(n, &type, &name, &val); n++ )
         {
@@ -496,6 +511,9 @@ void InteractiveOutputTestCase::TestFSVolume()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {

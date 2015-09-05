@@ -117,6 +117,9 @@ int wxGUIEventLoop::DoRun()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( ;; )
     {
@@ -148,6 +151,9 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (wxTheApp && wxTheApp->Pending())
         // TODO: implement event filtering using the eventsToProcess mask
@@ -249,6 +255,14 @@ void ProcessXEvent(XEvent* event)
 
         //  to avoid flicker
         report = * event;
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
         while( XCheckTypedWindowEvent (disp, win, ResizeRequest, &report));
 
         // TODO: when implementing refresh optimization, we can use
@@ -278,6 +292,9 @@ bool CheckForAccelerator(XEvent* event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (widget && ((win = wxGetWindowFromTable(widget))!=NULL))
             widget = XtParent(widget);
@@ -295,6 +312,9 @@ bool CheckForAccelerator(XEvent* event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (win)
         {
@@ -322,6 +342,9 @@ bool CheckForKeyDown(XEvent* event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (widget && ((win = wxGetWindowFromTable(widget))!=NULL))
             widget = XtParent(widget);
@@ -353,6 +376,9 @@ bool CheckForKeyUp(XEvent* event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (widget && ((win = wxGetWindowFromTable(widget))!=NULL))
                 widget = XtParent(widget);
@@ -381,6 +407,9 @@ bool wxDoEventLoopIteration( wxGUIEventLoop& evtLoop )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(;;)
     {
@@ -461,6 +490,9 @@ static void wxInputCallback( XtPointer, int* fd, XtInputId* )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(;;)
     {

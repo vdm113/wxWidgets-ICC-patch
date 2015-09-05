@@ -467,6 +467,9 @@ GetTIFFHeader()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < colormapSize; i++)
 	    dRed[i] = dGreen[i] = dBlue[i]
@@ -483,6 +486,9 @@ GetTIFFHeader()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0; i < colormapSize; i++)
                 dRed[i] = dGreen[i] = dBlue[i]
@@ -493,6 +499,9 @@ GetTIFFHeader()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0; i < colormapSize; i++) {
                 dRed[i] = (double) redMap[i];
@@ -510,6 +519,9 @@ GetTIFFHeader()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < colormapSize; i++)
 	    dRed[i] = dGreen[i] = dBlue[i] = (double)
@@ -524,6 +536,9 @@ GetTIFFHeader()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < colormapSize; i++)
 	    dRed[i] = dGreen[i] = dBlue[i] = (double) SCALE(i, colormapSize-1);
@@ -563,6 +578,9 @@ CheckAndCorrectColormap()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < colormapSize; i++)
         if ((redMap[i] > 255) || (greenMap[i] > 255) || (blueMap[i] > 255))
@@ -572,6 +590,9 @@ CheckAndCorrectColormap()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < colormapSize; i++) {
         redMap[i] = SCALE(redMap[i], 255);
@@ -591,6 +612,9 @@ SimpleGammaCorrection()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < colormapSize; i++) {
         if (((tfPhotometricInterpretation == PHOTOMETRIC_MINISWHITE)
@@ -647,6 +671,9 @@ GetVisual()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < colormapSize; i++) {
             colors[i].pixel = (i << 16) + (i << 8) + i;
@@ -687,6 +714,9 @@ GetVisual()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < colormapSize; i++) {
             colors[i].pixel = i;
@@ -776,6 +806,9 @@ SearchVisualList(image_depth, visual_class, visual)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < n_visuals; vl++, i++) {
         if ((vl->class == visual_class) && (vl->depth >= image_depth)
@@ -834,6 +867,9 @@ GetTIFFImage()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0; i < tfImageHeight; i++) {
                 if (TIFFReadScanline(tfFile, scan_line, i, 0) < 0)
@@ -842,6 +878,9 @@ GetTIFFImage()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (input_p = scan_line, j = 0; j < tfImageWidth; j++) {
                     *(output_p + red_shift) = *input_p++;
@@ -857,6 +896,9 @@ GetTIFFImage()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (s = 0; s < tfSamplesPerPixel; s++) {
                 if (s == 3)             /* skip the fourth channel */
@@ -865,6 +907,9 @@ GetTIFFImage()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (i = 0; i < tfImageHeight; i++) {
                     if (TIFFReadScanline(tfFile, scan_line, i, s) < 0)
@@ -875,6 +920,9 @@ GetTIFFImage()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (j = 0; j < tfImageWidth; j++, output_p += 4)
                         *output_p = *input_p++;
@@ -891,6 +939,9 @@ GetTIFFImage()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0; i < tfImageHeight; i++, output_p += tfBytesPerRow)
                 if (TIFFReadScanline(tfFile, output_p, i, 0) < 0)
@@ -909,6 +960,9 @@ GetTIFFImage()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0; i < tfImageHeight; i++) {
                 if (TIFFReadScanline(tfFile, scan_line, i, 0) < 0)
@@ -919,6 +973,9 @@ GetTIFFImage()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (j = 0; j < tfImageWidth; j += 2, input_p++) {
                     *output_p++ = (*input_p >> 4) + basePixel;
@@ -934,6 +991,9 @@ GetTIFFImage()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0; i < tfImageHeight; i++) {
                 if (TIFFReadScanline(tfFile, scan_line, i, 0) < 0)
@@ -944,6 +1004,9 @@ GetTIFFImage()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (j = 0; j < tfImageWidth; j += 4, input_p++) {
                     *output_p++ = (*input_p >> 6) + basePixel;
@@ -961,6 +1024,9 @@ GetTIFFImage()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0; i < tfImageHeight; i++) {
                 if (TIFFReadScanline(tfFile, scan_line, i, 0) < 0)
@@ -971,6 +1037,9 @@ GetTIFFImage()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (j = 0; j < tfImageWidth; j += 4, input_p++) {
                     *output_p++ = (((*input_p>>6) << 4)

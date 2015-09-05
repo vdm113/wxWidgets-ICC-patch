@@ -165,6 +165,9 @@ wxStatusBar::~wxStatusBar()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i=0; i<m_tooltips.size(); i++)
     {
@@ -197,6 +200,9 @@ void wxStatusBar::SetFieldsCount(int nFields, const int *widths)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i=0; i<m_tooltips.size(); i++)
     {
@@ -254,6 +260,9 @@ void wxStatusBar::MSWUpdateFieldsWidths()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < count; i++ )
     {
@@ -276,6 +285,9 @@ void wxStatusBar::MSWUpdateFieldsWidths()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < count; i++ )
     {
@@ -500,6 +512,9 @@ wxSize wxStatusBar::DoGetBestSize() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < m_panes.GetCount(); ++i )
     {
@@ -578,6 +593,9 @@ void wxStatusBar::SetStatusStyles(int n, const int styles[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < n; i++)
     {
@@ -642,6 +660,9 @@ wxStatusBar::MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( win = GetParent(); win; win = win->GetParent() )
             {
@@ -669,6 +690,9 @@ wxStatusBar::MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (int i=0; i<GetFieldsCount(); i++)
             {

@@ -44,6 +44,9 @@ static wxString LINKAGEMODE HtmlizeLinebreaks(const wxString& str)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator i = str.begin(); i != end; ++i )
     {
@@ -54,6 +57,9 @@ static wxString LINKAGEMODE HtmlizeLinebreaks(const wxString& str)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while ( i != end && *i != '>' )
                 {

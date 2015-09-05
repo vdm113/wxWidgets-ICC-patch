@@ -212,6 +212,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < variant.GetCount(); i++)
         {
@@ -239,6 +242,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < strings.size(); i++ )
         {
@@ -325,6 +331,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < dims; i++ )
             count *= m_array->rgsabound[i].cElements;
@@ -337,6 +346,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i1 = 0; i1 < count; i1++ )
         {
@@ -369,6 +381,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < dims; i++ )
             count *= m_array->rgsabound[i].cElements;
@@ -382,6 +397,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i1 = 0; i1 < count; i1++ )
         {

@@ -50,6 +50,9 @@ DecorationList::~DecorationList() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (deco) {
 		Decoration *decoNext = deco->next;
@@ -65,6 +68,9 @@ Decoration *DecorationList::DecorationFromIndicator(int indicator) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (Decoration *deco=root; deco; deco = deco->next) {
 		if (deco->indicator == indicator) {
@@ -86,6 +92,9 @@ Decoration *DecorationList::Create(int indicator, int length) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (deco && (deco->indicator < indicator)) {
 		decoPrev = deco;
@@ -113,6 +122,9 @@ void DecorationList::Delete(int indicator) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (deco->next && !decoToDelete) {
 				if (deco->next && deco->next->indicator == indicator) {
@@ -161,6 +173,9 @@ void DecorationList::InsertSpace(int position, int insertLength) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (Decoration *deco=root; deco; deco = deco->next) {
 		deco->rs.InsertSpace(position, insertLength);
@@ -177,6 +192,9 @@ void DecorationList::DeleteRange(int position, int deleteLength) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (deco=root; deco; deco = deco->next) {
 		deco->rs.DeleteRange(position, deleteLength);
@@ -190,6 +208,9 @@ void DecorationList::DeleteAnyEmpty() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (deco) {
 		if ((lengthDocument == 0) || deco->Empty()) {
@@ -207,6 +228,9 @@ int DecorationList::AllOnFor(int position) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (Decoration *deco=root; deco; deco = deco->next) {
 		if (deco->rs.ValueAt(position)) {

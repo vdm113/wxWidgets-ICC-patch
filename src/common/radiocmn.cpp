@@ -149,6 +149,9 @@ int wxRadioBoxBase::GetNextItem(int item, wxDirection dir, long style) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do
     {
@@ -241,6 +244,14 @@ int wxRadioBoxBase::GetNextItem(int item, wxDirection dir, long style) const
     // we shouldn't select the non-active items, continue looking for a
     // visible and shown one unless we came back to the item we started from in
     // which case bail out to avoid infinite loop
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
     while ( !(IsItemShown(item) && IsItemEnabled(item)) && item != itemStart );
 
     return item;
@@ -315,6 +326,9 @@ wxRadioBoxBase::~wxRadioBoxBase()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < n; i++ )
             delete (*m_itemsTooltips)[i];

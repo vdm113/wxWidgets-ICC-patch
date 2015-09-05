@@ -40,6 +40,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int i=0; i < size; i++) {
 			bset[i] = false;
@@ -60,6 +63,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int i=0; i < size; i++) {
 			bset[i] = other.bset[i];
@@ -77,6 +83,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (int i=0; i < other.size; i++) {
 				bsetNew[i] = other.bset[i];
@@ -98,6 +107,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (const char *cp=setToAdd; *cp; cp++) {
 			int val = static_cast<unsigned char>(*cp);

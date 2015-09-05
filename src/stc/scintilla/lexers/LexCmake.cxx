@@ -57,6 +57,9 @@ static bool CmakeNextLineHasElse(unsigned int start, unsigned int end, Accessor 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = start; i < end; i++ ) {
         char cNext = styler.SafeGetCharAt( i );
@@ -73,6 +76,9 @@ static bool CmakeNextLineHasElse(unsigned int start, unsigned int end, Accessor 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned int firstChar = nNextLine; firstChar < end; firstChar++ ) {
         char cNext = styler.SafeGetCharAt( firstChar );
@@ -101,6 +107,9 @@ static int calculateFoldCmake(unsigned int start, unsigned int end, int foldleve
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < end - start + 1 && i < 19; i++) {
         s[i] = static_cast<char>( styler[ start + i ] );
@@ -135,6 +144,9 @@ static int classifyWordCmake(unsigned int start, unsigned int end, WordList *key
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < end - start + 1 && i < 99; i++) {
         word[i] = static_cast<char>( styler[ start + i ] );
@@ -179,6 +191,9 @@ static int classifyWordCmake(unsigned int start, unsigned int end, WordList *key
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (unsigned int j = 1; j < end - start + 1 && j < 99; j++) {
             if ( !isCmakeNumber( word[j] ) ) {
@@ -215,6 +230,9 @@ static void ColouriseCmakeDoc(unsigned int startPos, int length, int, WordList *
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = startPos; i < nLengthDoc; i++ ) {
         cCurrChar = styler.SafeGetCharAt( i );
@@ -309,6 +327,9 @@ static void ColouriseCmakeDoc(unsigned int startPos, int length, int, WordList *
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while ( nBack > 0 ) {
                     if ( styler.GetLine(nBack) != nCurLine )
@@ -442,6 +463,9 @@ static void FoldCmakeDoc(unsigned int startPos, int length, int, WordList *[], A
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = safeStartPos; i < startPos + length; i++) {
         char chCurr = styler.SafeGetCharAt(i);

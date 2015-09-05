@@ -145,10 +145,13 @@ wxgtk_webview_webkit_navigation(WebKitWebView *,
         wxSharedPtr<wxWebViewHandler> handler;
         wxVector<wxSharedPtr<wxWebViewHandler> > handlers = webKitCtrl->GetHandlers();
         //We are not vetoed so see if we match one of the additional handlers
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(wxVector<wxSharedPtr<wxWebViewHandler> >::iterator it = handlers.begin();
             it != handlers.end(); ++it)
@@ -372,10 +375,13 @@ wxgtk_webview_webkit_resource_req(WebKitWebView *,
     wxVector<wxSharedPtr<wxWebViewHandler> > handlers = webKitCtrl->GetHandlers();
 
     //We are not vetoed so see if we match one of the additional handlers
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(wxVector<wxSharedPtr<wxWebViewHandler> >::iterator it = handlers.begin();
         it != handlers.end(); ++it)
@@ -649,6 +655,9 @@ wxVector<wxSharedPtr<wxWebViewHistoryItem> > wxWebViewWebKit::GetBackwardHistory
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(int i = g_list_length(list) - 1; i >= 0 ; i--)
     {
@@ -674,6 +683,9 @@ wxVector<wxSharedPtr<wxWebViewHistoryItem> > wxWebViewWebKit::GetForwardHistory(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(guint i = 0; i < g_list_length(list); i++)
     {

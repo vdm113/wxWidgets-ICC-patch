@@ -1169,10 +1169,13 @@ void FormMain::PopulateWithStandardItems ()
     wxPropertyGridIterator it;
     wxBitmap bmp = wxArtProvider::GetBitmap(wxART_FOLDER);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( it = pg->GetGrid()->GetIterator();
           !it.AtEnd();
@@ -2207,6 +2210,9 @@ void GenerateUniquePropertyLabel( wxPropertyGridManager* pg, wxString& baselabel
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (;;)
         {
@@ -2341,6 +2347,9 @@ void FormMain::OnDelPropRClick( wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (;;)
     {
@@ -2405,6 +2414,9 @@ void FormMain::OnIterate1Click( wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( it = m_pPropGridManager->GetCurrentPage()->
             GetIterator();
@@ -2427,6 +2439,9 @@ void FormMain::OnIterate2Click( wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( it = m_pPropGridManager->GetCurrentPage()->
             GetIterator( wxPG_ITERATE_VISIBLE );
@@ -2451,6 +2466,9 @@ void FormMain::OnIterate3Click( wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( it = m_pPropGridManager->GetCurrentPage()->
                 GetIterator( wxPG_ITERATE_DEFAULT, wxBOTTOM );
@@ -2474,6 +2492,9 @@ void FormMain::OnIterate4Click( wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( it = m_pPropGridManager->GetCurrentPage()->
             GetIterator( wxPG_ITERATE_CATEGORIES );
@@ -2688,6 +2709,9 @@ void FormMain::OnTestReplaceClick( wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( m_pPropGridManager->GetPropertyByName(propName) )
         {
@@ -2936,6 +2960,9 @@ void FormMain::OnSelectStyle( wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( ind = 0; ind < sel.size(); ind++ )
             flags |= vls[sel[ind]];
@@ -2973,6 +3000,9 @@ void FormMain::OnSelectStyle( wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( ind = 0; ind < sel.size(); ind++ )
             flags |= vls[sel[ind]];
@@ -3079,6 +3109,9 @@ void FormMain::OnMisc ( wxCommandEvent& event )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( it = pg->GetVIterator( wxPG_ITERATE_ALL ); !it.AtEnd(); it.Next() )
             it.GetProperty()->SetExpanded( false );
@@ -3253,6 +3286,9 @@ void GetColumnWidths(wxClientDC &dc, wxPropertyGrid *grid, wxPGProperty *root, i
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (ii = 0; ii < root->GetChildCount(); ++ii)
     {
@@ -3266,6 +3302,9 @@ void GetColumnWidths(wxClientDC &dc, wxPropertyGrid *grid, wxPGProperty *root, i
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (ii = 0; ii < root->GetChildCount(); ++ii)
     {

@@ -132,6 +132,9 @@ wxSetIconsX11(WXDisplay* display, WXWindow window, const wxIconBundle& ib)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < numIcons; ++i )
     {
@@ -151,6 +154,9 @@ wxSetIconsX11(WXDisplay* display, WXWindow window, const wxIconBundle& ib)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < numIcons; ++i )
         {
@@ -183,6 +189,9 @@ wxSetIconsX11(WXDisplay* display, WXWindow window, const wxIconBundle& ib)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( imageData < imageDataEnd )
             {
@@ -351,6 +360,9 @@ static bool wxQueryWMspecSupport(Display *display, Window rootWnd, Atom feature)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned i = 0; i < natoms; i++)
     {
@@ -2542,6 +2554,9 @@ int wxUnicodeCharXToWX(WXKeySym keySym)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( max >= min ) {
         mid = (min + max) / 2;
@@ -2588,6 +2603,9 @@ bool wxGetKeyState(wxKeyCode key)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < 8; ++i)
         {

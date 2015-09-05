@@ -193,6 +193,9 @@ wxFontFamily wxNativeFontInfo::GetFamily() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < n_families; ++i)
         {
@@ -660,6 +663,9 @@ bool wxNativeFontInfo::FromXFontName(const wxString& fontname)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(fontElements); n++ )
     {
@@ -694,6 +700,9 @@ wxString wxNativeFontInfo::GetXFontName() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < WXSIZEOF(fontElements); n++ )
         {
@@ -1076,6 +1085,9 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(int i = 0; i < 8; i++)
           newFontName += tokenizer.NextToken();
@@ -1088,6 +1100,9 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while(tokenizer.HasMoreTokens())
           newFontName += tokenizer.GetNextToken();
@@ -1115,6 +1130,9 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( round = 0; round < 3; round++ )
         {
@@ -1148,6 +1166,9 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( i = pointSize; !font && i >= 10 && i >= min_size; i -= 10 )
             {
@@ -1161,6 +1182,9 @@ wxNativeFont wxLoadQueryNearestFont(int pointSize,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( i = pointSize + 10; !font && i <= max_size; i += 10 )
             {

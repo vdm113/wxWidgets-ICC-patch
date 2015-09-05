@@ -148,6 +148,9 @@ png_calculate_crc(png_structrp png_ptr, png_const_bytep ptr, png_size_t length)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       do
       {
@@ -164,6 +167,14 @@ png_calculate_crc(png_structrp png_ptr, png_const_bytep ptr, png_size_t length)
          ptr += safe_length;
          length -= safe_length;
       }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
       while (length > 0);
 
       /* And the following is always safe because the crc is only 32 bits. */
@@ -185,6 +196,9 @@ png_user_version_check(png_structrp png_ptr, png_const_charp user_png_ver)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       do
       {
@@ -481,6 +495,9 @@ png_free_data(png_const_structrp png_ptr, png_inforp info_ptr, png_uint_32 mask,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (i = 0; i < info_ptr->num_text; i++)
              png_free_data(png_ptr, info_ptr, PNG_FREE_TEXT, i);
@@ -528,6 +545,9 @@ png_free_data(png_const_structrp png_ptr, png_inforp info_ptr, png_uint_32 mask,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0; i < info_ptr->pcal_nparams; i++)
             {
@@ -577,6 +597,9 @@ png_free_data(png_const_structrp png_ptr, png_inforp info_ptr, png_uint_32 mask,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0; i < info_ptr->splt_palettes_num; i++)
                png_free_data(png_ptr, info_ptr, PNG_FREE_SPLT, (int)i);
@@ -612,6 +635,9 @@ png_free_data(png_const_structrp png_ptr, png_inforp info_ptr, png_uint_32 mask,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0; i < info_ptr->unknown_chunks_num; i++)
                png_free_data(png_ptr, info_ptr, PNG_FREE_UNKN, (int)i);
@@ -654,6 +680,9 @@ png_free_data(png_const_structrp png_ptr, png_inforp info_ptr, png_uint_32 mask,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (row = 0; row < info_ptr->height; row++)
          {
@@ -884,6 +913,9 @@ png_handle_as_unknown(png_const_structrp png_ptr, png_const_bytep chunk_name)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    do /* num_chunk_list > 0, so at least one */
    {
@@ -892,6 +924,14 @@ png_handle_as_unknown(png_const_structrp png_ptr, png_const_bytep chunk_name)
       if (!memcmp(chunk_name, p, 4))
          return p[4];
    }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
    while (p > p_end);
 
    /* This means that known chunks should be processed and unknown chunks should
@@ -2089,6 +2129,9 @@ png_icc_check_tag_table(png_const_structrp png_ptr, png_colorspacerp colorspace,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (itag=0; itag < tag_count; ++itag, tag += 12)
    {
@@ -2208,6 +2251,9 @@ png_compare_ICC_profile_with_sRGB(png_const_structrp png_ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (i=0; i < (sizeof png_sRGB_checks) / (sizeof png_sRGB_checks[0]); ++i)
    {
@@ -2575,6 +2621,9 @@ png_check_fp_number(png_const_charp string, png_size_t size, int *statep,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    while (i < size)
    {
@@ -2738,6 +2787,9 @@ png_pow10(int power)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       do
       {
@@ -2745,6 +2797,14 @@ png_pow10(int power)
          mult *= mult;
          power >>= 1;
       }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
       while (power > 0);
 
       if (recip) d = 1/d;
@@ -2808,6 +2868,9 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          while (base < DBL_MIN || base < fp)
          {
@@ -2829,10 +2892,13 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
           * test on DBL_MAX above.
           */
          fp /= base;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          while (fp >= 1) fp /= 10, ++exp_b10;
 
@@ -2867,6 +2933,9 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             do
             {
@@ -2899,6 +2968,9 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         while (cdigits > 0 && d > 9)
                         {
@@ -2968,6 +3040,9 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                   while (czero > 0)
                   {
@@ -2993,6 +3068,14 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
                   *ascii++ = (char)(48 + (int)d), ++cdigits;
                }
             }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
             while (cdigits+czero-clead < (int)precision && fp > DBL_MIN);
 
             /* The total output count (max) is now 4+precision */
@@ -3013,10 +3096,13 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
                 * zeros were *not* output, so this doesn't increase
                 * the output count.
                 */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                while (--exp_b10 >= 0) *ascii++ = 48;
 
@@ -3060,6 +3146,9 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                while (uexp_b10 > 0)
                {
@@ -3073,10 +3162,13 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
              */
             if ((int)size > cdigits)
             {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                while (cdigits > 0) *ascii++ = exponent[--cdigits];
 
@@ -3137,6 +3229,9 @@ png_ascii_from_fixed(png_const_structrp png_ptr, png_charp ascii,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          while (num)
          {
@@ -3154,10 +3249,13 @@ png_ascii_from_fixed(png_const_structrp png_ptr, png_charp ascii,
 
          if (ndigits > 0)
          {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (ndigits > 5) *ascii++ = digits[--ndigits];
             /* The remaining digits are fractional digits, ndigits is '5' or
@@ -3172,16 +3270,22 @@ png_ascii_from_fixed(png_const_structrp png_ptr, png_charp ascii,
                 * then ndigits digits to first:
                 */
                i = 5;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                while (ndigits < i) *ascii++ = 48, --i;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                while (ndigits >= first) *ascii++ = digits[--ndigits];
                /* Don't output the trailing zeros! */
@@ -3305,6 +3409,9 @@ png_muldiv(png_fixed_point_p res, png_fixed_point a, png_int_32 times,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (--bitshift >= 0)
             {
@@ -3651,6 +3758,9 @@ png_32bit_exp[16] =
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 for (i=11;i>=0;--i){ print i, " ", (1 - e(-(2^i)/65536*l(2))) * 2^(32-i), "\n"}
    11 44937.64284865548751208448
@@ -3828,6 +3938,9 @@ png_build_16bit_table(png_structrp png_ptr, png_uint_16pp *ptable,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (i = 0; i < num; i++)
    {
@@ -3852,6 +3965,9 @@ png_build_16bit_table(png_structrp png_ptr, png_uint_16pp *ptable,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (j = 0; j < 256; j++)
          {
@@ -3877,6 +3993,9 @@ png_build_16bit_table(png_structrp png_ptr, png_uint_16pp *ptable,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (j = 0; j < 256; j++)
          {
@@ -3914,6 +4033,9 @@ png_build_16to8_table(png_structrp png_ptr, png_uint_16pp *ptable,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (i = 0; i < num; i++)
       table[i] = (png_uint_16p)png_malloc(png_ptr,
@@ -3940,6 +4062,9 @@ png_build_16to8_table(png_structrp png_ptr, png_uint_16pp *ptable,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (i = 0; i < 255; ++i) /* 8-bit output value */
    {
@@ -3956,6 +4081,9 @@ png_build_16to8_table(png_structrp png_ptr, png_uint_16pp *ptable,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       while (last < bound)
       {
@@ -3969,6 +4097,9 @@ png_build_16to8_table(png_structrp png_ptr, png_uint_16pp *ptable,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    while (last < (num << 8))
    {
@@ -4012,6 +4143,9 @@ png_destroy_gamma_table(png_structrp png_ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0; i < istop; i++)
       {
@@ -4037,6 +4171,9 @@ png_destroy_gamma_table(png_structrp png_ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0; i < istop; i++)
       {
@@ -4053,6 +4190,9 @@ png_destroy_gamma_table(png_structrp png_ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0; i < istop; i++)
       {

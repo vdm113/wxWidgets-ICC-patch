@@ -1174,6 +1174,9 @@ bool wxToolBar::Realize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( node )
     {
@@ -1213,6 +1216,9 @@ bool wxToolBar::Realize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( node )
     {
@@ -1267,10 +1273,13 @@ bool wxToolBar::Realize()
                         // if this is the first tool that gets newly inserted or repositioned
                         // first remove all 'old' tools from here to the right, because of this
                         // all following tools will have to be reinserted (insertAll).
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         for ( wxToolBarToolsList::compatibility_iterator node2 = m_tools.GetLast();
                               node2 != node;
@@ -1368,6 +1377,9 @@ bool wxToolBar::Realize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while ( nodePrev )
                 {
@@ -1530,6 +1542,9 @@ wxToolBarToolBase *wxToolBar::FindToolForPosition(wxCoord x, wxCoord y) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( node )
     {
@@ -1744,6 +1759,9 @@ bool wxToolBar::DoDeleteTool(size_t WXUNUSED(pos), wxToolBarToolBase *toolbase)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
@@ -1782,6 +1800,9 @@ bool wxToolBar::DoDeleteTool(size_t WXUNUSED(pos), wxToolBarToolBase *toolbase)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( /* node -> first after deleted */; node; node = node->GetNext() )
     {

@@ -209,6 +209,9 @@ wxGCDCImpl::wxGCDCImpl( wxDC *owner, const wxMemoryDC& dc ) :
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for ( int y = 0; y < data.GetHeight(); y++ )
                     {
@@ -218,6 +221,9 @@ wxGCDCImpl::wxGCDCImpl( wxDC *owner, const wxMemoryDC& dc ) :
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         for ( int x = 0; x < data.GetWidth(); x++ )
                         {
@@ -727,6 +733,9 @@ void wxGCDCImpl::DoDrawLines(int n, const wxPoint points[],
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( int i = 0; i < n; ++i)
     {
@@ -783,6 +792,9 @@ void wxGCDCImpl::DoDrawSpline(const wxPointList *points)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ((node = node->GetNext()) != NULL)
 #else
@@ -791,6 +803,9 @@ void wxGCDCImpl::DoDrawSpline(const wxPointList *points)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ((node = node->GetNext()))
 #endif // !wxUSE_STD_CONTAINERS
@@ -848,6 +863,9 @@ void wxGCDCImpl::DoDrawPolygon( int n, const wxPoint points[],
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( int i = 0; i < n; ++i)
     {
@@ -885,6 +903,9 @@ void wxGCDCImpl::DoDrawPolyPolygon(int n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int j = 0; j < n; ++j)
     {
@@ -896,6 +917,9 @@ void wxGCDCImpl::DoDrawPolyPolygon(int n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int k = 1; k < l; ++k)
         {
@@ -1120,6 +1144,9 @@ void wxGCDCImpl::DoDrawRotatedText(const wxString& text, wxCoord x, wxCoord y,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t lineNum = 0; lineNum < lines.size(); lineNum++ )
     {
@@ -1231,6 +1258,9 @@ bool wxGCDCImpl::DoGetPartialTextExtents(const wxString& text, wxArrayInt& width
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < widths.GetCount(); ++i )
         widths[i] = (wxCoord)(widthsD[i] + 0.5);

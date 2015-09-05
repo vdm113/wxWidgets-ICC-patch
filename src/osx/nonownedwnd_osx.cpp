@@ -79,6 +79,9 @@ void wxNonOwnedWindowImpl::RemoveAssociations( wxNonOwnedWindowImpl* impl)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( it = wxWinMacWindowList.begin(); it != wxWinMacWindowList.end(); ++it )
     {

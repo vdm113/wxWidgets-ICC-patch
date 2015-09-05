@@ -160,6 +160,9 @@ private:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( socket.Read(&ch, 1).LastCount() == 1 )
             ;

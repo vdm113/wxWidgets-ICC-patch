@@ -60,6 +60,9 @@ usage(void)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; usageMsg[i]; i++)
 		fprintf(stderr, "%s\n", usageMsg[i]);
@@ -101,6 +104,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( arg_index = 1; arg_index < argc-1; arg_index++ ) {
 	if (strcmp(argv[arg_index],"-d") == 0 && arg_index < argc-2) {
@@ -207,6 +213,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                                 for (i = 0; i < wc; i++)
                                     ((uint8 *)array)[i] = atoi(argv[arg_index+i]);
@@ -216,6 +225,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                                 for (i = 0; i < wc; i++)
                                     ((uint16 *)array)[i] = atoi(argv[arg_index+i]);
@@ -225,6 +237,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                                 for (i = 0; i < wc; i++)
                                     ((int8 *)array)[i] = atoi(argv[arg_index+i]);
@@ -234,6 +249,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                                 for (i = 0; i < wc; i++)
                                     ((int16 *)array)[i] = atoi(argv[arg_index+i]);
@@ -243,6 +261,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                                 for (i = 0; i < wc; i++)
                                     ((uint32 *)array)[i] = atol(argv[arg_index+i]);
@@ -253,6 +274,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                                 for (i = 0; i < wc; i++)
                                     ((uint32 *)array)[i] = atol(argv[arg_index+i]);
@@ -262,6 +286,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                                 for (i = 0; i < wc; i++)
                                     ((double *)array)[i] = atof(argv[arg_index+i]);
@@ -273,6 +300,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                                 for (i = 0; i < wc; i++)
                                     ((float *)array)[i] = (float)atof(argv[arg_index+i]);

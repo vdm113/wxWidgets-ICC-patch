@@ -59,6 +59,9 @@ static void ColouriseConfDoc(unsigned int startPos, int length, int, WordList *k
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;

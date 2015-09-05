@@ -118,6 +118,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((c = getopt(argc, argv, "c:r:H:w:l:b:d:LMp:si:o:h")) != -1) {
 		switch (c) {
@@ -297,6 +300,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (row = 0; row < length; row++) {
 		switch(interleaving) {
@@ -305,6 +311,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (band = 0; band < nbands; band++) {
 				lseek(fd,
@@ -323,6 +332,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for (col = 0; col < width; col++)
 					memcpy(buf1 + (col*nbands+band)*depth,
@@ -422,10 +434,13 @@ guessSize(int fd, TIFFDataType dtype, off_t hdr_size, uint32 nbands,
 	} else if (*width == 0 && *length == 0) {
 		fprintf(stderr,	"Image width and height are not specified.\n");
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (w = (uint32) sqrt(imagesize / longt);
 		     w < sqrt(imagesize * longt);
@@ -484,6 +499,9 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         for (i = 0; i < n_elem; i++) {
 				X = ((unsigned char *)buf1)[i];
@@ -498,6 +516,9 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         for (i = 0; i < n_elem; i++) {
 				X = ((signed char *)buf1)[i];
@@ -512,6 +533,9 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         for (i = 0; i < n_elem; i++) {
 				X = ((uint16 *)buf1)[i];
@@ -526,6 +550,9 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         for (i = 0; i < n_elem; i++) {
 				X = ((int16 *)buf1)[i];
@@ -540,6 +567,9 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         for (i = 0; i < n_elem; i++) {
 				X = ((uint32 *)buf1)[i];
@@ -554,6 +584,9 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         for (i = 0; i < n_elem; i++) {
 				X = ((int32 *)buf1)[i];
@@ -568,6 +601,9 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         for (i = 0; i < n_elem; i++) {
 				X = ((float *)buf1)[i];
@@ -582,6 +618,9 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         for (i = 0; i < n_elem; i++) {
 				X = ((double *)buf1)[i];
@@ -617,6 +656,9 @@ processCompressOptions(char* opt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while( cp )
                 {
@@ -716,6 +758,9 @@ usage(void)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);

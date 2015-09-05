@@ -173,6 +173,9 @@ Callback::OnDataAvailable(DWORD grfBSCF,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	  while ((*p1++ = (unsigned char)*p2++) != 0)
 	    ;
@@ -192,6 +195,9 @@ Callback::OnDataAvailable(DWORD grfBSCF,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (totalRead_ < dwSize) {
 #define READ_MAX (64*1024)
@@ -289,6 +295,9 @@ openStream(XML_Parser parser,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (int i = 0;; i++) {
     uriw[i] = uri[i];
@@ -404,6 +413,9 @@ processURL(XML_Parser parser, IMoniker *baseMoniker,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (!qi.stop && GetMessage (&msg, NULL, 0, 0)) {
     TranslateMessage (&msg);

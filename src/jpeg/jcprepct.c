@@ -119,6 +119,9 @@ expand_bottom_edge (JSAMPARRAY image_data, JDIMENSION num_cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (row = input_rows; row < output_rows; row++) {
     jcopy_sample_rows(image_data, input_rows-1, image_data, row,
@@ -152,6 +155,9 @@ pre_process_data (j_compress_ptr cinfo,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (*in_row_ctr < in_rows_avail &&
 	 *out_row_group_ctr < out_row_groups_avail) {
@@ -173,6 +179,9 @@ pre_process_data (j_compress_ptr cinfo,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (ci = 0; ci < cinfo->num_components; ci++) {
 	expand_bottom_edge(prep->color_buf[ci], cinfo->image_width,
@@ -193,10 +202,13 @@ pre_process_data (j_compress_ptr cinfo,
      */
     if (prep->rows_to_go == 0 &&
 	*out_row_group_ctr < out_row_groups_avail) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
 	   ci++, compptr++) {
@@ -234,6 +246,9 @@ pre_process_context (j_compress_ptr cinfo,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (*out_row_group_ctr < out_row_groups_avail) {
     if (*in_row_ctr < in_rows_avail) {
@@ -251,6 +266,9 @@ pre_process_context (j_compress_ptr cinfo,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (ci = 0; ci < cinfo->num_components; ci++) {
 	  int row;
@@ -258,6 +276,9 @@ pre_process_context (j_compress_ptr cinfo,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	  for (row = 1; row <= cinfo->max_v_samp_factor; row++) {
 	    jcopy_sample_rows(prep->color_buf[ci], 0,
@@ -279,6 +300,9 @@ pre_process_context (j_compress_ptr cinfo,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (ci = 0; ci < cinfo->num_components; ci++) {
 	  expand_bottom_edge(prep->color_buf[ci], cinfo->image_width,
@@ -327,10 +351,13 @@ create_context_buffer (j_compress_ptr cinfo)
 				(cinfo->num_components * 5 * rgroup_height) *
 				SIZEOF(JSAMPROW));
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
@@ -351,6 +378,9 @@ create_context_buffer (j_compress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < rgroup_height; i++) {
       fake_buffer[i] = true_buffer[2 * rgroup_height + i];
@@ -399,10 +429,13 @@ jinit_c_prep_controller (j_compress_ptr cinfo, wxjpeg_boolean need_full_buffer)
   } else {
     /* No context, just make it tall enough for one row group */
     prep->pub.pre_process_data = pre_process_data;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
 	 ci++, compptr++) {

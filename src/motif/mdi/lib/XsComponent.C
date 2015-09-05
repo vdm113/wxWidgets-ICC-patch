@@ -176,6 +176,9 @@ void XsComponent::_setResources (Widget w, const String *resources)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    while (resources[loop] != 0)
    {

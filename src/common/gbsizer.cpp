@@ -376,6 +376,9 @@ wxGBSizerItem* wxGridBagSizer::FindItem(wxWindow* window)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -395,6 +398,9 @@ wxGBSizerItem* wxGridBagSizer::FindItem(wxSizer* sizer)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -416,6 +422,9 @@ wxGBSizerItem* wxGridBagSizer::FindItemAtPosition(const wxGBPosition& pos)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -437,6 +446,9 @@ wxGBSizerItem* wxGridBagSizer::FindItemAtPoint(const wxPoint& pt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -460,6 +472,9 @@ wxGBSizerItem* wxGridBagSizer::FindItemWithData(const wxObject* userData)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -493,6 +508,9 @@ wxSize wxGridBagSizer::CalcMin()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -509,6 +527,9 @@ wxSize wxGridBagSizer::CalcMin()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( (int)m_rowHeights.GetCount() <= endrow )
                 m_rowHeights.Add(m_emptyCellSize.GetHeight());
@@ -516,6 +537,9 @@ wxSize wxGridBagSizer::CalcMin()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( (int)m_colWidths.GetCount() <= endcol )
                 m_colWidths.Add(m_emptyCellSize.GetWidth());
@@ -526,6 +550,9 @@ wxSize wxGridBagSizer::CalcMin()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (idx=row; idx <= endrow; idx++)
                 m_rowHeights[idx] = wxMax(m_rowHeights[idx], size.GetHeight() / (endrow-row+1));
@@ -533,6 +560,9 @@ wxSize wxGridBagSizer::CalcMin()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (idx=col; idx <= endcol; idx++)
                 m_colWidths[idx] = wxMax(m_colWidths[idx], size.GetWidth() / (endcol-col+1));
@@ -550,6 +580,9 @@ wxSize wxGridBagSizer::CalcMin()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (idx=0; idx < m_cols; idx++)
         width += m_colWidths[idx] + ( idx == m_cols-1 ? 0 : m_hgap );
@@ -560,6 +593,9 @@ wxSize wxGridBagSizer::CalcMin()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (idx=0; idx < m_rows; idx++)
         height += m_rowHeights[idx] + ( idx == m_rows-1 ? 0 : m_vgap );
@@ -596,6 +632,9 @@ void wxGridBagSizer::RecalcSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (idx=0; idx < m_rows; idx++)
     {
@@ -611,6 +650,9 @@ void wxGridBagSizer::RecalcSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (idx=0; idx < m_cols; idx++)
     {
@@ -626,6 +668,9 @@ void wxGridBagSizer::RecalcSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -642,6 +687,9 @@ void wxGridBagSizer::RecalcSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for(idx=row; idx <= endrow; idx++)
                 height += m_rowHeights[idx];
@@ -652,6 +700,9 @@ void wxGridBagSizer::RecalcSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (idx=col; idx <= endcol; idx++)
                 width += m_colWidths[idx];
@@ -679,6 +730,9 @@ void wxGridBagSizer::AdjustForOverflow()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (row=0; row<(int)m_rowHeights.GetCount(); row++)
     {
@@ -688,6 +742,9 @@ void wxGridBagSizer::AdjustForOverflow()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (col=0; col<(int)m_colWidths.GetCount(); col++)
         {
@@ -717,6 +774,9 @@ void wxGridBagSizer::AdjustForOverflow()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (int r=item->GetPos().GetRow(); r<row; r++)
                     itemHeight -= (m_rowHeights[r] + GetHGap());
@@ -737,6 +797,9 @@ void wxGridBagSizer::AdjustForOverflow()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (col=0; col<(int)m_colWidths.GetCount(); col++)
     {
@@ -746,6 +809,9 @@ void wxGridBagSizer::AdjustForOverflow()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (row=0; row<(int)m_rowHeights.GetCount(); row++)
         {
@@ -771,6 +837,9 @@ void wxGridBagSizer::AdjustForOverflow()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (int c=item->GetPos().GetCol(); c<col; c++)
                     itemWidth -= (m_colWidths[c] + GetVGap());
@@ -802,6 +871,9 @@ bool wxGridBagSizer::CheckForIntersection(const wxGBPosition& pos, const wxGBSpa
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -830,12 +902,18 @@ wxGBPosition wxGridBagSizer::FindEmptyCell()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (row=0; row<10; row++)
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (col=0; col<10; col++)
         {

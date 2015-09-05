@@ -141,6 +141,9 @@ DWORD WINAPI SocketThread(LPVOID data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while(socketHash[d->fd] == true)
     {
@@ -216,6 +219,9 @@ bool wxSocketMSWManager::OnInit()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; i < MAXSOCKETS; i++)
   {
@@ -273,6 +279,9 @@ void wxSocketMSWManager::OnExit()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(unsigned int i=0; i < currSocket; i++)
         CloseHandle(hThread[i]);
@@ -299,6 +308,9 @@ wxSocketImplMSW::wxSocketImplMSW(wxSocketBase& wxsocket)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (socketList[i] != NULL)
   {
@@ -330,6 +342,9 @@ wxSocketImplMSW::~wxSocketImplMSW()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       while ( ::PeekMessage(&msg, hWin, m_msgnumber, m_msgnumber, PM_REMOVE) )
           ;

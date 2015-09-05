@@ -49,6 +49,9 @@ void GraphicsContextDrawingTestCase::RunPluginsDrawingCase (
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t idx=0; idx<pluginsNameArray.size(); ++idx)
         {
@@ -91,6 +94,9 @@ void GraphicsContextDrawingTestCase::RunPluginsDrawingCase (
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t idxp=0; idxp<m_drawingPlugins.size(); ++idxp)
     {

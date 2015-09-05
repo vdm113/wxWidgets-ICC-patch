@@ -100,6 +100,9 @@ void FlipTGA(unsigned char* imageData, int width, int height, short pixelSize)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ; line1 < line2; line2 -= (lineLength * 2))
     {
@@ -107,6 +110,9 @@ void FlipTGA(unsigned char* imageData, int width, int height, short pixelSize)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int index = 0; index < lineLength; line1++, line2++, index++)
         {
@@ -131,6 +137,9 @@ int DecodeRLE(unsigned char* imageData, unsigned long imageSize,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (index < imageSize)
     {
@@ -165,6 +174,9 @@ int DecodeRLE(unsigned char* imageData, unsigned long imageSize,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (unsigned int i = 0; i < length; i++)
             {
@@ -297,6 +309,9 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (unsigned int i = 0; i < paletteLength; i++)
         {
@@ -351,6 +366,9 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
@@ -372,6 +390,9 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
@@ -422,6 +443,9 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
@@ -450,6 +474,9 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
@@ -468,6 +495,9 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
@@ -513,6 +543,9 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
@@ -531,6 +564,9 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
@@ -582,6 +618,9 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
@@ -603,6 +642,9 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
@@ -655,6 +697,9 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
@@ -683,6 +728,9 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
@@ -701,6 +749,9 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
@@ -748,6 +799,9 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
@@ -766,6 +820,9 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (unsigned long index = 0; index < imageSize; index += pixelSize)
                     {
@@ -839,6 +896,9 @@ int SaveTGA(const wxImage& image, wxOutputStream *stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int y = 0; y < size.y; ++y)
     {
@@ -847,6 +907,9 @@ int SaveTGA(const wxImage& image, wxOutputStream *stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int x = 0; x < size.x; ++x)
         {

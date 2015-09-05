@@ -154,6 +154,9 @@ bool wxMask::Create( const wxBitmap& bitmap,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int j = 0; j < image.GetHeight(); j++)
     {
@@ -163,6 +166,9 @@ bool wxMask::Create( const wxBitmap& bitmap,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < image.GetWidth(); i++)
         {
@@ -486,6 +492,9 @@ wxBitmap wxBitmap::Rescale( int clipx, int clipy, int clipwidth, int clipheight,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int x = 0; x < width; x++)
         tablex[x] = (int) (scx * (x+clipx));
@@ -493,6 +502,9 @@ wxBitmap wxBitmap::Rescale( int clipx, int clipy, int clipwidth, int clipheight,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int y = 0; y < height; y++)
         tabley[y] = (int) (scy * (y+clipy));
@@ -502,6 +514,9 @@ wxBitmap wxBitmap::Rescale( int clipx, int clipy, int clipwidth, int clipheight,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int h = 0; h < height; h++)
     {
@@ -513,6 +528,9 @@ wxBitmap wxBitmap::Rescale( int clipx, int clipy, int clipwidth, int clipheight,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int w = 0; w < width; w++)
         {
@@ -577,6 +595,9 @@ wxBitmap wxBitmap::Rescale( int clipx, int clipy, int clipwidth, int clipheight,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int h = 0; h < height; h++)
         {
@@ -588,6 +609,9 @@ wxBitmap wxBitmap::Rescale( int clipx, int clipy, int clipwidth, int clipheight,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (int w = 0; w < width; w++)
             {
@@ -709,6 +733,9 @@ bool wxBitmap::CreateFromImageAsBitmap(const wxImage& img)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int y = 0; y < height; y++)
     {
@@ -716,6 +743,9 @@ bool wxBitmap::CreateFromImageAsBitmap(const wxImage& img)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int x = 0; x < width; x++)
         {
@@ -870,6 +900,9 @@ bool wxBitmap::CreateFromImageAsPixmap(const wxImage& img)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int y = 0; y < height; y++)
     {
@@ -877,6 +910,9 @@ bool wxBitmap::CreateFromImageAsPixmap(const wxImage& img)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int x = 0; x < width; x++)
         {
@@ -914,6 +950,9 @@ bool wxBitmap::CreateFromImageAsPixmap(const wxImage& img)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         for (int i = 0; i < cmap->size; i++)
                         {
@@ -1114,6 +1153,9 @@ wxImage wxBitmap::ConvertToImage() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int j = 0; j < GetHeight(); j++)
     {
@@ -1121,6 +1163,9 @@ wxImage wxBitmap::ConvertToImage() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < GetWidth(); i++)
         {

@@ -784,6 +784,9 @@ void RichTextCtrlTestCase::Table()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int t = 0; t < 2; ++t)
     {
@@ -800,6 +803,9 @@ void RichTextCtrlTestCase::Table()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t n = 0; n < 3; ++n)
         {
@@ -818,6 +824,9 @@ void RichTextCtrlTestCase::Table()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t n = 0; n < 3; ++n)
         {
@@ -837,6 +846,9 @@ void RichTextCtrlTestCase::Table()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t n = 0; n < 3; ++n)
         {
@@ -851,6 +863,9 @@ void RichTextCtrlTestCase::Table()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t n = 0; n < 3; ++n)
         {
@@ -867,6 +882,9 @@ void RichTextCtrlTestCase::Table()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t n = 0; n < 3; ++n)
         {
@@ -881,6 +899,9 @@ void RichTextCtrlTestCase::Table()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t n = 0; n < 3; ++n)
         {

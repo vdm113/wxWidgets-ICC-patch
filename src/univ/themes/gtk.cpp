@@ -1082,6 +1082,9 @@ wxBitmap wxGTKRenderer::GetCheckBitmap(int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int i = 0; i < 2; i++ )
         {
@@ -1089,6 +1092,9 @@ wxBitmap wxGTKRenderer::GetCheckBitmap(int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int j = 0; j < 3; j++ )
                 m_bitmapsCheckbox[i][j].Create(rect.width, rect.height);
@@ -1777,10 +1783,13 @@ wxMenuGeometryInfo *wxGTKRenderer::GetMenuGeometry(wxWindow *win,
             widthAccelMax = 0,
             widthBmpMax = MENU_LEFT_MARGIN;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxMenuItemList::compatibility_iterator node = menu.GetMenuItems().GetFirst();
           node;
@@ -1868,6 +1877,9 @@ void wxGTKRenderer::InitComboBitmaps()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = ComboState_Normal; n < ComboState_Max; n++ )
     {
@@ -1889,6 +1901,9 @@ void wxGTKRenderer::InitComboBitmaps()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = ComboState_Normal; n < ComboState_Max; n++ )
     {
@@ -1987,6 +2002,9 @@ void wxGTKRenderer::DrawArrowBorder(wxDC& dc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < WXSIZEOF(sides); n++ )
     {
@@ -2002,6 +2020,9 @@ void wxGTKRenderer::DrawArrowBorder(wxDC& dc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < WXSIZEOF(sides); n++ )
     {

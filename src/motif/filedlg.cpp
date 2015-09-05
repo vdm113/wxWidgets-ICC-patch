@@ -324,6 +324,9 @@ int wxFileDialog::ShowModal()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (!m_fileSelectorReturned)
     {

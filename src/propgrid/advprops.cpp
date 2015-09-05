@@ -105,6 +105,9 @@ bool operator == (const wxArrayInt& array1, const wxArrayInt& array2)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < array1.size(); i++ )
     {
@@ -1066,6 +1069,9 @@ int wxSystemColourProperty::ColToInd( const wxColour& colour ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned int i=0; i<i_max; i++ )
     {
@@ -1259,6 +1265,9 @@ bool wxSystemColourProperty::QueryColourFromUser( wxVariant& variant ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < 16; i++ )
     {
@@ -1648,6 +1657,9 @@ wxColourProperty::wxColourProperty( const wxString& label,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int i = 0; *colourLabels; colourLabels++, i++ )
         {
@@ -1885,6 +1897,9 @@ const wxString& wxPGGetDefaultImageWildcard()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( node = handlers.begin(); node != handlers.end(); ++node )
         {
@@ -2069,6 +2084,9 @@ void wxMultiChoiceProperty::GenerateValueAsString( wxVariant& value,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < itemCount; i++ )
     {
@@ -2094,6 +2112,9 @@ wxArrayInt wxMultiChoiceProperty::GetValueAsIndices() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( i=0; i<valueArr.size(); i++ )
             selections.Add(-1);
@@ -2104,6 +2125,9 @@ wxArrayInt wxMultiChoiceProperty::GetValueAsIndices() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( i=0; i<valueArr.size(); i++ )
         {
@@ -2168,6 +2192,9 @@ bool wxMultiChoiceProperty::OnEvent( wxPropertyGrid* propgrid,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (n=0;n<extraStrings.size();n++)
                     value.push_back(extraStrings[n]);
@@ -2177,6 +2204,9 @@ bool wxMultiChoiceProperty::OnEvent( wxPropertyGrid* propgrid,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( size_t i = 0; i < arrInt.size(); i++ )
                 value.Add(m_choices.GetLabel(arrInt.Item(i)));
@@ -2187,6 +2217,9 @@ bool wxMultiChoiceProperty::OnEvent( wxPropertyGrid* propgrid,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (n=0;n<extraStrings.size();n++)
                     value.push_back(extraStrings[n]);
@@ -2341,6 +2374,9 @@ wxString wxDateProperty::DetermineDefaultDateFormat( bool showCentury )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( *p )
     {

@@ -605,6 +605,9 @@ wxSemaError wxSemaphoreInternal::Wait()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( m_count == 0 )
     {
@@ -647,6 +650,9 @@ wxSemaError wxSemaphoreInternal::WaitTimeout(unsigned long milliseconds)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( m_count == 0 )
     {
@@ -1870,6 +1876,9 @@ void wxThreadModule::OnExit()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0u; n < count; n++ )
     {

@@ -199,6 +199,9 @@ static wxDDEConnection *DDEFindConnection(HCONV hConv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (serverNode && !found)
     {
@@ -217,6 +220,9 @@ static wxDDEConnection *DDEFindConnection(HCONV hConv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (clientNode && !found)
     {
@@ -236,6 +242,9 @@ static void DDEDeleteConnection(HCONV hConv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (serverNode && !found)
     {
@@ -253,6 +262,9 @@ static void DDEDeleteConnection(HCONV hConv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (clientNode && !found)
     {
@@ -271,6 +283,9 @@ static wxDDEServer *DDEFindServer(const wxString& s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node && !found)
     {
@@ -353,6 +368,9 @@ wxDDEServer::~wxDDEServer()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -368,6 +386,9 @@ wxDDEServer::~wxDDEServer()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -391,6 +412,9 @@ wxDDEConnection *wxDDEServer::FindConnection(WXHCONV conv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node && !found)
     {
@@ -410,6 +434,9 @@ bool wxDDEServer::DeleteConnection(WXHCONV conv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -446,6 +473,9 @@ wxDDEClient::~wxDDEClient()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -523,6 +553,9 @@ wxDDEConnection *wxDDEClient::FindConnection(WXHCONV conv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node && !found)
     {
@@ -542,6 +575,9 @@ bool wxDDEClient::DeleteConnection(WXHCONV conv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {

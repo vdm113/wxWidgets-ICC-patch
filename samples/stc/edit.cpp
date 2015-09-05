@@ -350,6 +350,9 @@ void Edit::OnUseCharset (wxCommandEvent &event) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (Nr = 0; Nr < wxSTC_STYLE_LASTPREDEFINED; Nr++) {
         StyleSetCharacterSet (Nr, charset);
@@ -513,6 +516,9 @@ wxString Edit::DeterminePrefs (const wxString &filename) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (languageNr = 0; languageNr < g_LanguagePrefsSize; languageNr++) {
         curInfo = &g_LanguagePrefs [languageNr];
@@ -522,6 +528,9 @@ wxString Edit::DeterminePrefs (const wxString &filename) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (!filepattern.empty()) {
             wxString cur = filepattern.BeforeFirst (';');
@@ -550,6 +559,9 @@ bool Edit::InitializePrefs (const wxString &name) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (languageNr = 0; languageNr < g_LanguagePrefsSize; languageNr++) {
         curInfo = &g_LanguagePrefs [languageNr];
@@ -582,6 +594,9 @@ bool Edit::InitializePrefs (const wxString &name) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (Nr = 0; Nr < wxSTC_STYLE_LASTPREDEFINED; Nr++) {
         wxFont font(wxFontInfo(10).Family(wxFONTFAMILY_MODERN));
@@ -599,6 +614,9 @@ bool Edit::InitializePrefs (const wxString &name) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (Nr = 0; Nr < STYLE_TYPES_COUNT; Nr++) {
             if (curInfo->styles[Nr].type == -1) continue;
@@ -955,6 +973,9 @@ void EditPrint::GetPageInfo (int *minPage, int *maxPage, int *selPageFrom, int *
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (HasPage (*maxPage)) {
         m_printed = m_edit->FormatRange (0, m_printed, m_edit->GetLength(),

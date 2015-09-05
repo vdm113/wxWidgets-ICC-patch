@@ -131,6 +131,9 @@ void StringTestCase::String()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < 2; ++i)
     {
@@ -154,6 +157,9 @@ void StringTestCase::PChar()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < 2; ++i)
     {
@@ -180,6 +186,9 @@ void StringTestCase::Format()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(lengths); n++ )
     {
@@ -610,6 +619,9 @@ void StringTestCase::Contains()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(containsData); n++ )
     {
@@ -697,6 +709,9 @@ void StringTestCase::ToLong()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(longData); n++ )
     {
@@ -738,6 +753,9 @@ void StringTestCase::ToULong()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(longData); n++ )
     {
@@ -770,6 +788,9 @@ void StringTestCase::ToLongLong()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(longData); n++ )
     {
@@ -792,6 +813,9 @@ void StringTestCase::ToULongLong()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(longData); n++ )
     {
@@ -840,6 +864,9 @@ void StringTestCase::ToDouble()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < WXSIZEOF(doubleData); n++ )
     {
@@ -882,6 +909,9 @@ void StringTestCase::ToDouble()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < WXSIZEOF(doubleData2); n++ )
     {
@@ -921,6 +951,9 @@ void StringTestCase::FromDouble()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < WXSIZEOF(testData); n++ )
     {
@@ -938,6 +971,9 @@ void StringTestCase::FromDouble()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned m = 0; m < WXSIZEOF(testData); m++ )
     {

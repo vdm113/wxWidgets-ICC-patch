@@ -45,6 +45,9 @@ static int LongDelimCheck(StyleContext &sc) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (sc.GetRelative(sep) == '=' && sep < 0xFF)
 		sep++;
@@ -109,6 +112,9 @@ static void ColouriseLuaDoc(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
 		if (sc.atLineEnd) {
@@ -154,6 +160,9 @@ static void ColouriseLuaDoc(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (IsASpaceOrTab(sc.GetRelative(ln)))	// skip over spaces/tabs
 					ln++;
@@ -165,6 +174,9 @@ static void ColouriseLuaDoc(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					while (setWord.Contains(c = sc.GetRelative(ln))) {	// get potential label
 						if (i < 90)
@@ -177,6 +189,9 @@ static void ColouriseLuaDoc(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 						while (IsASpaceOrTab(sc.GetRelative(ln)))	// skip over spaces/tabs
 							ln++;
@@ -221,6 +236,9 @@ static void ColouriseLuaDoc(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 						while (IsASpaceOrTab(sc.ch) && !sc.atLineEnd)
 							sc.Forward();
@@ -231,6 +249,9 @@ static void ColouriseLuaDoc(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 							while (setWord.Contains(sc.ch))
 								sc.Forward();
@@ -404,6 +425,9 @@ static void FoldLuaDoc(unsigned int startPos, int length, int /* initStyle */, W
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
@@ -418,6 +442,9 @@ static void FoldLuaDoc(unsigned int startPos, int length, int /* initStyle */, W
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for (unsigned int j = 0; j < 8; j++) {
 					if (!iswordchar(styler[i + j])) {

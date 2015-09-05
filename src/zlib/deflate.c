@@ -371,6 +371,9 @@ int ZEXPORT deflateSetDictionary (strm, dictionary, dictLength)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (s->lookahead >= MIN_MATCH) {
         str = s->strstart;
@@ -379,6 +382,9 @@ int ZEXPORT deflateSetDictionary (strm, dictionary, dictLength)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         do {
             UPDATE_HASH(s, s->ins_h, s->window[str + MIN_MATCH-1]);
@@ -493,6 +499,9 @@ int ZEXPORT deflatePrime (strm, bits, value)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do {
         put = Buf_size - s->bi_valid;
@@ -620,6 +629,9 @@ uLong ZEXPORT deflateBound(strm, sourceLen)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 do {
                     wraplen++;
@@ -630,6 +642,9 @@ uLong ZEXPORT deflateBound(strm, sourceLen)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 do {
                     wraplen++;
@@ -801,6 +816,9 @@ int ZEXPORT deflate (strm, flush)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (s->gzindex < (s->gzhead->extra_len & 0xffff)) {
                 if (s->pending == s->pending_buf_size) {
@@ -835,6 +853,9 @@ int ZEXPORT deflate (strm, flush)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             do {
                 if (s->pending == s->pending_buf_size) {
@@ -871,6 +892,9 @@ int ZEXPORT deflate (strm, flush)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             do {
                 if (s->pending == s->pending_buf_size) {
@@ -1242,6 +1266,9 @@ local uInt longest_match(s, cur_match)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do {
         Assert(cur_match < s->strstart, "no future");
@@ -1277,6 +1304,9 @@ local uInt longest_match(s, cur_match)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         do {
         } while (*(ushf*)(scan+=2) == *(ushf*)(match+=2) &&
@@ -1316,6 +1346,9 @@ local uInt longest_match(s, cur_match)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         do {
         } while (*++scan == *++match && *++scan == *++match &&
@@ -1395,6 +1428,9 @@ local uInt longest_match(s, cur_match)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do {
     } while (*++scan == *++match && *++scan == *++match &&
@@ -1433,6 +1469,9 @@ local void check_match(s, start, match, length)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         do {
             fprintf(stderr, "%c%c", s->window[match++], s->window[start++]);
@@ -1472,6 +1511,9 @@ local void fill_window(s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do {
         more = (unsigned)(s->window_size -(ulg)s->lookahead -(ulg)s->strstart);
@@ -1511,6 +1553,9 @@ local void fill_window(s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             do {
                 m = *--p;
@@ -1524,6 +1569,9 @@ local void fill_window(s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             do {
                 m = *--p;
@@ -1565,6 +1613,9 @@ local void fill_window(s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (s->insert) {
                 UPDATE_HASH(s, s->ins_h, s->window[str + MIN_MATCH-1]);
@@ -1671,6 +1722,9 @@ local block_state deflate_stored(s, flush)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (;;) {
         /* Fill the window as much as possible: */
@@ -1732,6 +1786,9 @@ local block_state deflate_fast(s, flush)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (;;) {
         /* Make sure that we always have enough lookahead, except
@@ -1785,6 +1842,9 @@ local block_state deflate_fast(s, flush)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 do {
                     s->strstart++;
@@ -1845,6 +1905,9 @@ local block_state deflate_slow(s, flush)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (;;) {
         /* Make sure that we always have enough lookahead, except
@@ -1918,6 +1981,9 @@ local block_state deflate_slow(s, flush)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             do {
                 if (++s->strstart <= max_insert) {
@@ -1986,6 +2052,9 @@ local block_state deflate_rle(s, flush)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (;;) {
         /* Make sure that we always have enough lookahead, except
@@ -2011,6 +2080,9 @@ local block_state deflate_rle(s, flush)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 do {
                 } while (prev == *++scan && prev == *++scan &&
@@ -2067,6 +2139,9 @@ local block_state deflate_huff(s, flush)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (;;) {
         /* Make sure that we have a literal to write. */

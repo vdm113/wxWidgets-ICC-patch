@@ -82,6 +82,9 @@ static void colorFirstWord(WordList *keywordlists[], Accessor &styler,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (sc->More() && isSpaceOrNL(sc->ch))
 	{	sc->Forward();
@@ -95,6 +98,9 @@ static void colorFirstWord(WordList *keywordlists[], Accessor &styler,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (sc->More() && !isSpaceOrNL(sc->ch) && (c < length-1) && !isGCOperator(sc->ch))
 	{	buff[c] = static_cast<char>(sc->ch);
@@ -106,6 +112,9 @@ static void colorFirstWord(WordList *keywordlists[], Accessor &styler,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (*p)	// capitalize..
 	{	if (islower(*p)) *p = static_cast<char>(toupper(*p));
@@ -161,6 +170,9 @@ ColouriseGui4CliDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (sc.More())
 	{	noforward = 0;
@@ -287,6 +299,9 @@ static void FoldGui4Cli(unsigned int startPos, int length, int,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++)
 	{

@@ -310,6 +310,9 @@ void ChoiceWidgetsPage::CreateChoice()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int n = 0; n < count; n++ )
         {
@@ -398,6 +401,9 @@ void ChoiceWidgetsPage::OnButtonAddMany(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned int n = 0; n < 1000; n++ )
     {

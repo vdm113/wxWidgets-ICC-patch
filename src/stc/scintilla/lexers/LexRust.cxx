@@ -200,6 +200,9 @@ static void ScanWhitespace(Accessor& styler, int& pos, int max) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (IsWhitespace(styler.SafeGetCharAt(pos, '\0')) && pos < max) {
 		if (pos == styler.LineEnd(styler.GetLine(pos)))
@@ -214,6 +217,9 @@ static void GrabString(char* s, Accessor& styler, int start, int len) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int ii = 0; ii < len; ii++)
 		s[ii] = styler[ii + start];
@@ -226,6 +232,9 @@ static void ScanIdentifier(Accessor& styler, int& pos, WordList *keywords) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (IsIdentifierContinue(styler.SafeGetCharAt(pos, '\0')))
 		pos++;
@@ -243,6 +252,9 @@ static void ScanIdentifier(Accessor& styler, int& pos, WordList *keywords) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int ii = 0; ii < NUM_RUST_KEYWORD_LISTS; ii++) {
 			if (keywords[ii].InList(s)) {
@@ -264,6 +276,9 @@ static bool ScanDigits(Accessor& styler, int& pos, int base) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (;;) {
 		int c = styler.SafeGetCharAt(pos, '\0');
@@ -406,6 +421,9 @@ static bool ScanNumericEscape(Accessor &styler, int& pos, int num_digits, bool s
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (;;) {
 		int c = styler.SafeGetCharAt(pos, '\0');
@@ -437,6 +455,9 @@ static void ScanCharacterLiteralOrLifetime(Accessor &styler, int& pos, bool asci
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (!done) {
 		switch (c) {
@@ -525,6 +546,9 @@ static void ResumeBlockComment(Accessor &styler, int& pos, int max, CommentState
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (;;) {
 		int n = styler.SafeGetCharAt(pos + 1, '\0');
@@ -588,6 +612,9 @@ static void ResumeLineComment(Accessor &styler, int& pos, int max, CommentState 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (pos < max && c != '\n') {
 		if (pos == styler.LineEnd(styler.GetLine(pos)))
@@ -619,6 +646,9 @@ static void ResumeString(Accessor &styler, int& pos, int max, bool ascii_only) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (c != '"' && !error) {
 		if (pos >= max) {
@@ -662,6 +692,9 @@ static void ResumeRawString(Accessor &styler, int& pos, int max, int num_hashes,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (;;) {
 		if (pos == styler.LineEnd(styler.GetLine(pos)))
@@ -675,6 +708,9 @@ static void ResumeRawString(Accessor &styler, int& pos, int max, int num_hashes,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (styler.SafeGetCharAt(pos, '\0') == '#' && trailing_num_hashes < num_hashes) {
 				trailing_num_hashes++;
@@ -702,6 +738,9 @@ static void ScanRawString(Accessor &styler, int& pos, int max, bool ascii_only) 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (styler.SafeGetCharAt(pos, '\0') == '#') {
 		num_hashes++;
@@ -742,6 +781,9 @@ void SCI_METHOD LexerRust::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (pos < max) {
 		int c = styler.SafeGetCharAt(pos, '\0');
@@ -818,6 +860,9 @@ void SCI_METHOD LexerRust::Fold(unsigned int startPos, int length, int initStyle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;

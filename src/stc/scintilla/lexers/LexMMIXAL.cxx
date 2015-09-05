@@ -67,6 +67,9 @@ static void ColouriseMMIXALDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward())
 	{
@@ -119,6 +122,9 @@ static void ColouriseMMIXALDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					for (size_t i = 0; i != sizeof(s); ++i) {
 						*(s+i) = *(s+i+1);

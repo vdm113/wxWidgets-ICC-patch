@@ -114,6 +114,9 @@ local void make_crc_table()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (n = 0; n < (int)(sizeof(p)/sizeof(unsigned char)); n++)
             poly |= (z_crc_t)1 << (31 - p[n]);
@@ -123,6 +126,9 @@ local void make_crc_table()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (n = 0; n < 256; n++) {
             c = (z_crc_t)n;
@@ -130,6 +136,9 @@ local void make_crc_table()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (k = 0; k < 8; k++)
                 c = c & 1 ? poly ^ (c >> 1) : c >> 1;
@@ -143,6 +152,9 @@ local void make_crc_table()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (n = 0; n < 256; n++) {
             c = crc_table[0][n];
@@ -151,6 +163,9 @@ local void make_crc_table()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (k = 1; k < 4; k++) {
                 c = crc_table[0][c & 0xff] ^ (c >> 8);
@@ -168,6 +183,9 @@ local void make_crc_table()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (crc_table_empty)
             ;
@@ -191,6 +209,9 @@ local void make_crc_table()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (k = 1; k < 8; k++) {
             fprintf(out, "  },\n  {\n");
@@ -215,6 +236,9 @@ local void write_table(out, table)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (n = 0; n < 256; n++)
         fprintf(out, "%s0x%08lxUL%s", n % 5 ? "" : "    ",
@@ -275,6 +299,9 @@ unsigned long ZEXPORT crc32(crc, buf, len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (len >= 8) {
         DO8;
@@ -309,6 +336,9 @@ local unsigned long crc32_little(crc, buf, len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (len && ((ptrdiff_t)buf & 3)) {
         c = crc_table[0][(c ^ *buf++) & 0xff] ^ (c >> 8);
@@ -320,6 +350,9 @@ local unsigned long crc32_little(crc, buf, len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (len >= 32) {
         DOLIT32;
@@ -329,6 +362,9 @@ local unsigned long crc32_little(crc, buf, len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (len >= 4) {
         DOLIT4;
@@ -364,6 +400,9 @@ local unsigned long crc32_big(crc, buf, len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (len && ((ptrdiff_t)buf & 3)) {
         c = crc_table[4][(c >> 24) ^ *buf++] ^ (c << 8);
@@ -376,6 +415,9 @@ local unsigned long crc32_big(crc, buf, len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (len >= 32) {
         DOBIG32;
@@ -385,6 +427,9 @@ local unsigned long crc32_big(crc, buf, len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (len >= 4) {
         DOBIG4;
@@ -416,6 +461,9 @@ local unsigned long gf2_matrix_times(mat, vec)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (vec) {
         if (vec & 1)
@@ -437,6 +485,9 @@ local void gf2_matrix_square(square, mat)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (n = 0; n < GF2_DIM; n++)
         square[n] = gf2_matrix_times(mat, mat[n]);
@@ -464,6 +515,9 @@ local uLong crc32_combine_(crc1, crc2, len2)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (n = 1; n < GF2_DIM; n++) {
         odd[n] = row;
@@ -482,6 +536,9 @@ local uLong crc32_combine_(crc1, crc2, len2)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do {
         /* apply zeros operator for this bit of len2 */

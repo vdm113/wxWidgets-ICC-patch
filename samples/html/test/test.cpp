@@ -437,6 +437,9 @@ void MyHtmlWindow::OnEraseBgEvent(wxEraseEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int x = 0; x < size.x; x += 15 )
     {
@@ -447,6 +450,9 @@ void MyHtmlWindow::OnEraseBgEvent(wxEraseEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int y = 0; y < size.y; y += 15 )
     {

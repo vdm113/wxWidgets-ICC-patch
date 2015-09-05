@@ -344,6 +344,9 @@ void wxConfigPathChanger::UpdateIfDeleted()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( !m_pContainer->HasGroup(m_strOldPath) )
     {
@@ -372,6 +375,9 @@ wxString wxConfigBase::RemoveTrailingSeparator(const wxString& key)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( path.length() > 1 )
     {
@@ -417,6 +423,9 @@ wxString wxExpandEnvVars(const wxString& str)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for ( size_t n = 0; n < str.length(); n++ ) {
     switch ( str[n].GetValue() ) {
@@ -457,6 +466,9 @@ wxString wxExpandEnvVars(const wxString& str)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
           while ( m < str.length() && (wxIsalnum(str[m]) || str[m] == wxT('_')) )
             m++;
@@ -542,6 +554,9 @@ void wxSplitPath(wxArrayString& aParts, const wxString& path)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for ( ;; ) {
     if ( pc == path.end() || *pc == wxCONFIG_PATH_SEPARATOR ) {

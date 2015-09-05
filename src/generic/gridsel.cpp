@@ -70,6 +70,9 @@ bool wxGridSelection::IsInSelection( int row, int col )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )
         {
@@ -86,6 +89,9 @@ bool wxGridSelection::IsInSelection( int row, int col )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
@@ -107,6 +113,9 @@ bool wxGridSelection::IsInSelection( int row, int col )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )
         {
@@ -125,6 +134,9 @@ bool wxGridSelection::IsInSelection( int row, int col )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )
         {
@@ -161,6 +173,9 @@ void wxGridSelection::SetSelectionMode( wxGrid::wxGridSelectionModes selmode )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( ( n = m_cellSelection.GetCount() ) > 0 )
         {
@@ -180,6 +195,9 @@ void wxGridSelection::SetSelectionMode( wxGrid::wxGridSelectionModes selmode )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (n = 0; n < m_blockSelectionTopLeft.GetCount(); n++)
         {
@@ -231,6 +249,9 @@ void wxGridSelection::SelectRow(int row, const wxKeyboardState& kbd)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < count; n++ )
         {
@@ -253,6 +274,9 @@ void wxGridSelection::SelectRow(int row, const wxKeyboardState& kbd)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
     {
@@ -296,6 +320,9 @@ void wxGridSelection::SelectRow(int row, const wxKeyboardState& kbd)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < count; n++ )
         {
@@ -341,6 +368,9 @@ void wxGridSelection::SelectCol(int col, const wxKeyboardState& kbd)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < count; n++ )
         {
@@ -362,6 +392,9 @@ void wxGridSelection::SelectCol(int col, const wxKeyboardState& kbd)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
     {
@@ -405,6 +438,9 @@ void wxGridSelection::SelectCol(int col, const wxKeyboardState& kbd)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < count; n++ )
         {
@@ -503,6 +539,9 @@ void wxGridSelection::SelectBlock( int topRow, int leftCol,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for( n = 0; n < m_rowSelection.GetCount(); n++)
         {
@@ -518,6 +557,9 @@ void wxGridSelection::SelectBlock( int topRow, int leftCol,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int row = topRow; row <= bottomRow; row++ )
         {
@@ -536,6 +578,9 @@ void wxGridSelection::SelectBlock( int topRow, int leftCol,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for( n = 0; n < m_colSelection.GetCount(); n++)
         {
@@ -551,6 +596,9 @@ void wxGridSelection::SelectBlock( int topRow, int leftCol,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int col = leftCol; col <= rightCol; col++ )
         {
@@ -570,6 +618,9 @@ void wxGridSelection::SelectBlock( int topRow, int leftCol,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( n = 0; n < count; n++ )
             {
@@ -592,6 +643,9 @@ void wxGridSelection::SelectBlock( int topRow, int leftCol,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < count; n++ )
         {
@@ -624,6 +678,9 @@ void wxGridSelection::SelectBlock( int topRow, int leftCol,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < count; n++ )
         {
@@ -651,6 +708,9 @@ void wxGridSelection::SelectBlock( int topRow, int leftCol,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < count; n++ )
         {
@@ -775,6 +835,9 @@ wxGridSelection::ToggleCellSelection(int row, int col,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < count; n++ )
         {
@@ -828,6 +891,9 @@ wxGridSelection::ToggleCellSelection(int row, int col,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
     {
@@ -874,6 +940,9 @@ wxGridSelection::ToggleCellSelection(int row, int col,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < count; n++ )
         {
@@ -906,6 +975,9 @@ wxGridSelection::ToggleCellSelection(int row, int col,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < count; n++ )
         {
@@ -961,6 +1033,9 @@ wxGridSelection::ToggleCellSelection(int row, int col,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int colFrom = 0, colTo = 0; colTo <= numCols; ++colTo )
             {
@@ -999,6 +1074,9 @@ wxGridSelection::ToggleCellSelection(int row, int col,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int rowFrom = 0, rowTo = 0; rowTo <= numRows; ++rowTo )
             {
@@ -1044,6 +1122,9 @@ void wxGridSelection::ClearSelection()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( ( n = m_cellSelection.GetCount() ) > 0)
         {
@@ -1067,6 +1148,9 @@ void wxGridSelection::ClearSelection()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( ( n = m_blockSelectionTopLeft.GetCount() ) > 0)
     {
@@ -1093,6 +1177,9 @@ void wxGridSelection::ClearSelection()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( ( n = m_rowSelection.GetCount() ) > 0)
         {
@@ -1119,6 +1206,9 @@ void wxGridSelection::ClearSelection()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( ( n = m_colSelection.GetCount() ) > 0)
         {
@@ -1162,6 +1252,9 @@ void wxGridSelection::UpdateRows( size_t pos, int numRows )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
     {
@@ -1198,6 +1291,9 @@ void wxGridSelection::UpdateRows( size_t pos, int numRows )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
     {
@@ -1248,6 +1344,9 @@ void wxGridSelection::UpdateRows( size_t pos, int numRows )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
     {
@@ -1289,6 +1388,9 @@ void wxGridSelection::UpdateCols( size_t pos, int numCols )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
     {
@@ -1325,6 +1427,9 @@ void wxGridSelection::UpdateCols( size_t pos, int numCols )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
     {
@@ -1375,6 +1480,9 @@ void wxGridSelection::UpdateCols( size_t pos, int numCols )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
     {

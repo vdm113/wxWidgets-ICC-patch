@@ -61,6 +61,9 @@ PlayerSelectionDialog::PlayerSelectionDialog(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < players.Count(); i++)
     {

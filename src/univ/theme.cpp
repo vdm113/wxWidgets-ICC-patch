@@ -70,6 +70,9 @@ wxThemeInfo::wxThemeInfo(Constructor c,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( info )
     {

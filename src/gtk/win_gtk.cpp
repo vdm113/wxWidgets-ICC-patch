@@ -111,6 +111,9 @@ static void pizza_size_allocate(GtkWidget* widget, GtkAllocation* alloc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (const GList* p = pizza->m_children; p; p = p->next)
     {
@@ -195,6 +198,9 @@ static void pizza_remove(GtkContainer* container, GtkWidget* widget)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (GList* p = pizza->m_children; p; p = p->next)
     {
@@ -381,6 +387,9 @@ void wxPizza::move(GtkWidget* widget, int x, int y, int width, int height)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (const GList* p = m_children; p; p = p->next)
     {

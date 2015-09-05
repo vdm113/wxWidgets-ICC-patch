@@ -47,6 +47,9 @@ static int GetLotLineState(std::string &line) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < line.length(); ++i) {
 			if (!(IsASCII(line[i]) && isspace(line[i])))
@@ -106,6 +109,9 @@ static void ColourizeLotDoc(unsigned int startPos, int length, int, WordList *[]
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = startPos; i < startPos + length; ++i) {
 		char ch = chNext;
@@ -154,6 +160,9 @@ static void FoldLotDoc(unsigned int startPos, int length, int, WordList *[], Acc
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;

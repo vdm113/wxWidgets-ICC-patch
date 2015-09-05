@@ -97,6 +97,9 @@ build_ycc_rgb_table (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0, x = -CENTERJSAMPLE; i <= MAXJSAMPLE; i++, x++) {
     /* i is the actual input pixel value, in the range 0..MAXJSAMPLE */
@@ -150,6 +153,9 @@ ycc_rgb_convert (j_decompress_ptr cinfo,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (--num_rows >= 0) {
     inptr0 = input_buf[0][input_row];
@@ -161,6 +167,9 @@ ycc_rgb_convert (j_decompress_ptr cinfo,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (col = 0; col < num_cols; col++) {
       y  = GETJSAMPLE(inptr0[col]);
@@ -201,12 +210,18 @@ null_convert (j_decompress_ptr cinfo,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (--num_rows >= 0) {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (ci = 0; ci < num_components; ci++) {
       inptr = input_buf[ci][input_row];
@@ -215,6 +230,9 @@ null_convert (j_decompress_ptr cinfo,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (count = num_cols; count > 0; count--) {
 	*outptr = *inptr++;	/* needn't bother with GETJSAMPLE() here */
@@ -262,6 +280,9 @@ gray_rgb_convert (j_decompress_ptr cinfo,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (--num_rows >= 0) {
     inptr = input_buf[0][input_row++];
@@ -270,6 +291,9 @@ gray_rgb_convert (j_decompress_ptr cinfo,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (col = 0; col < num_cols; col++) {
       /* We can dispense with GETJSAMPLE() here */
@@ -310,6 +334,9 @@ ycck_cmyk_convert (j_decompress_ptr cinfo,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (--num_rows >= 0) {
     inptr0 = input_buf[0][input_row];
@@ -322,6 +349,9 @@ ycck_cmyk_convert (j_decompress_ptr cinfo,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (col = 0; col < num_cols; col++) {
       y  = GETJSAMPLE(inptr0[col]);
@@ -409,6 +439,9 @@ jinit_color_deconverter (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (ci = 1; ci < cinfo->num_components; ci++)
 	cinfo->comp_info[ci].component_needed = FALSE;

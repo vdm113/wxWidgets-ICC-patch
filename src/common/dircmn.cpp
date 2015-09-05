@@ -125,6 +125,9 @@ size_t wxDir::Traverse(wxDirTraverser& sink,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( bool cont = GetFirst(&dirname, wxEmptyString,
                                    (flags & ~(wxDIR_FILES | wxDIR_DOTDOT))
@@ -158,6 +161,9 @@ size_t wxDir::Traverse(wxDirTraverser& sink,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         do
                         {
@@ -189,6 +195,14 @@ size_t wxDir::Traverse(wxDirTraverser& sink,
                                     break;
                             }
                         }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
                         while ( !ok );
 
                         if ( ok )
@@ -216,6 +230,9 @@ size_t wxDir::Traverse(wxDirTraverser& sink,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( cont )
         {

@@ -266,6 +266,9 @@ GtkLabel *wxButton::GTKGetLabel() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (GList* item = list; item; item = item->next)
         {
@@ -298,6 +301,9 @@ void wxButton::DoApplyWidgetStyle(GtkRcStyle *style)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (GList* item = list; item; item = item->next)
             {

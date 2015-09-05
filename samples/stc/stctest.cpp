@@ -499,6 +499,9 @@ void AppFrame::CreateMenu ()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (Nr = 0; Nr < g_LanguagePrefsSize; Nr++) {
         menuHighlight->Append (myID_HIGHLIGHTFIRST + Nr,

@@ -94,6 +94,9 @@ int wxImageList::Add( const wxBitmap &bitmap )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int subIndex = 0; subIndex < numImages; subIndex++)
         {

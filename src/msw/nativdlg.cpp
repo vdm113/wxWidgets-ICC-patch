@@ -81,6 +81,9 @@ bool wxWindow::LoadNativeDialog(wxWindow* parent, wxWindowID id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (hWndNext != (HWND) NULL)
     {
@@ -123,6 +126,9 @@ bool wxWindow::LoadNativeDialog(wxWindow* parent, const wxString& name)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (hWndNext != (HWND) NULL)
     {
@@ -148,6 +154,9 @@ wxWindow* wxWindow::GetWindowChild1(wxWindowID id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( node )
     {

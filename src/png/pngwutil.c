@@ -232,6 +232,9 @@ png_image_size(png_structrp png_ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (cb_base=0, pass=0; pass<=6; ++pass)
          {
@@ -285,12 +288,23 @@ optimize_cmf(png_bytep data, png_alloc_size_t data_size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             do
             {
                half_z_window_size >>= 1;
                --z_cinfo;
             }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
             while (z_cinfo > 0 && data_size <= half_z_window_size);
 
             z_cmf = (z_cmf & 0x0f) | (z_cinfo << 4);
@@ -399,6 +413,9 @@ png_deflate_claim(png_structrp png_ptr, png_uint_32 owner,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          while (data_size + 262 <= half_window_size)
          {
@@ -471,6 +488,9 @@ png_free_buffer_list(png_structrp png_ptr, png_compression_bufferp *listp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       do
       {
@@ -479,6 +499,14 @@ png_free_buffer_list(png_structrp png_ptr, png_compression_bufferp *listp)
          png_free(png_ptr, list);
          list = next;
       }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
       while (list != NULL);
    }
 }
@@ -556,6 +584,9 @@ png_text_compress(png_structrp png_ptr, png_uint_32 chunk_name,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       do
       {
@@ -619,6 +650,14 @@ png_text_compress(png_structrp png_ptr, png_uint_32 chunk_name,
          input_len += png_ptr->zstream.avail_in;
          png_ptr->zstream.avail_in = 0; /* safety */
       }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
       while (ret == Z_OK);
 
       /* There may be some space left in the last output buffer, this needs to
@@ -677,6 +716,9 @@ png_write_compressed_data_out(png_structrp png_ptr, compression_state *comp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (;;)
    {
@@ -733,6 +775,9 @@ png_check_keyword(png_structrp png_ptr, png_const_charp key, png_bytep new_key)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    while (*key && key_len < 79)
    {
@@ -1003,6 +1048,9 @@ png_write_PLTE(png_structrp png_ptr, png_const_colorp palette,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (i = 0, pal_ptr = palette; i < num_pal; i++, pal_ptr++)
    {
@@ -1022,6 +1070,9 @@ png_write_PLTE(png_structrp png_ptr, png_const_colorp palette,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (i = 0; i < num_pal; i++)
    {
@@ -1095,6 +1146,9 @@ png_compress_IDAT(png_structrp png_ptr, png_const_bytep input,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (;;)
    {
@@ -1337,6 +1391,9 @@ png_write_sPLT(png_structrp png_ptr, png_const_sPLT_tp spalette)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (ep = spalette->entries; ep<spalette->entries + spalette->nentries; ep++)
    {
@@ -1366,6 +1423,9 @@ png_write_sPLT(png_structrp png_ptr, png_const_sPLT_tp spalette)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (i = 0; i>spalette->nentries; i++)
    {
@@ -1633,6 +1693,9 @@ png_write_hIST(png_structrp png_ptr, png_const_uint_16p hist, int num_hist)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (i = 0; i < num_hist; i++)
    {
@@ -1900,6 +1963,9 @@ png_write_pCAL(png_structrp png_ptr, png_charp purpose, png_int_32 X0,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (i = 0; i < nparams; i++)
    {
@@ -1923,6 +1989,9 @@ png_write_pCAL(png_structrp png_ptr, png_charp purpose, png_int_32 X0,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (i = 0; i < nparams; i++)
    {
@@ -2168,6 +2237,9 @@ png_write_finish_row(png_structrp png_ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          do
          {
@@ -2252,10 +2324,13 @@ png_do_write_interlace(png_row_infop row_info, png_bytep row, int pass)
             d = 0;
             shift = 7;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = png_pass_start[pass]; i < row_width;
                i += png_pass_inc[pass])
@@ -2295,10 +2370,13 @@ png_do_write_interlace(png_row_infop row_info, png_bytep row, int pass)
             shift = 6;
             d = 0;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = png_pass_start[pass]; i < row_width;
                i += png_pass_inc[pass])
@@ -2336,10 +2414,13 @@ png_do_write_interlace(png_row_infop row_info, png_bytep row, int pass)
             dp = row;
             shift = 4;
             d = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = png_pass_start[pass]; i < row_width;
                 i += png_pass_inc[pass])
@@ -2379,10 +2460,13 @@ png_do_write_interlace(png_row_infop row_info, png_bytep row, int pass)
             pixel_bytes = (row_info->pixel_depth >> 3);
 
             /* Loop through the row, only looking at the pixels that matter */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = png_pass_start[pass]; i < row_width;
                i += png_pass_inc[pass])
@@ -2495,6 +2579,9 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0, rp = row_buf + 1; i < row_bytes; i++, rp++)
       {
@@ -2515,6 +2602,9 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (j = 0; j < num_p_filters; j++)
          {
@@ -2555,10 +2645,13 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
       png_bytep rp, lp, dp;
       png_size_t i;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0, rp = row_buf + 1, dp = png_ptr->sub_row + 1; i < bpp;
            i++, rp++, dp++)
@@ -2566,10 +2659,13 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
          *dp = *rp;
       }
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (lp = row_buf + 1; i < row_bytes;
          i++, rp++, lp++, dp++)
@@ -2603,6 +2699,9 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (j = 0; j < num_p_filters; j++)
          {
@@ -2630,10 +2729,13 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
       }
 #endif
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0, rp = row_buf + 1, dp = png_ptr->sub_row + 1; i < bpp;
            i++, rp++, dp++)
@@ -2643,10 +2745,13 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
          sum += (v < 128) ? v : 256 - v;
       }
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (lp = row_buf + 1; i < row_bytes;
          i++, rp++, lp++, dp++)
@@ -2671,6 +2776,9 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (j = 0; j < num_p_filters; j++)
          {
@@ -2715,6 +2823,9 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0, rp = row_buf + 1, dp = png_ptr->up_row + 1,
           pp = prev_row + 1; i < row_bytes;
@@ -2746,6 +2857,9 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (j = 0; j < num_p_filters; j++)
          {
@@ -2777,6 +2891,9 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0, rp = row_buf + 1, dp = png_ptr->up_row + 1,
           pp = prev_row + 1; i < row_bytes; i++)
@@ -2801,6 +2918,9 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (j = 0; j < num_p_filters; j++)
          {
@@ -2845,6 +2965,9 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0, rp = row_buf + 1, dp = png_ptr->avg_row + 1,
            pp = prev_row + 1; i < bpp; i++)
@@ -2856,6 +2979,9 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (lp = row_buf + 1; i < row_bytes; i++)
       {
@@ -2884,6 +3010,9 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (j = 0; j < num_p_filters; j++)
          {
@@ -2915,6 +3044,9 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0, rp = row_buf + 1, dp = png_ptr->avg_row + 1,
            pp = prev_row + 1; i < bpp; i++)
@@ -2928,6 +3060,9 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (lp = row_buf + 1; i < row_bytes; i++)
       {
@@ -2952,6 +3087,9 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (j = 0; j < num_p_filters; j++)
          {
@@ -2996,6 +3134,9 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0, rp = row_buf + 1, dp = png_ptr->paeth_row + 1,
           pp = prev_row + 1; i < bpp; i++)
@@ -3007,6 +3148,9 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (lp = row_buf + 1, cp = prev_row + 1; i < row_bytes; i++)
       {
@@ -3055,6 +3199,9 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (j = 0; j < num_p_filters; j++)
          {
@@ -3086,6 +3233,9 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0, rp = row_buf + 1, dp = png_ptr->paeth_row + 1,
           pp = prev_row + 1; i < bpp; i++)
@@ -3099,6 +3249,9 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (lp = row_buf + 1, cp = prev_row + 1; i < row_bytes; i++)
       {
@@ -3157,6 +3310,9 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (j = 0; j < num_p_filters; j++)
          {
@@ -3205,6 +3361,9 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (j = 1; j < num_p_filters; j++)
       {

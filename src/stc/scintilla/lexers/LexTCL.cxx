@@ -99,6 +99,9 @@ static void ColouriseTCLDoc(unsigned int startPos, int length, int , WordList *k
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; ; sc.Forward()) {
 next:
@@ -165,6 +168,9 @@ next:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (*s == ':') // ignore leading : like in ::set a 10
 					++s;

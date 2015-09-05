@@ -65,6 +65,9 @@ void RLEencode(unsigned char *p, unsigned int size, wxOutputStream& s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (size-- > 0)
     {
@@ -108,6 +111,9 @@ void RLEdecode(unsigned char *p, unsigned int size, wxInputStream& s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (size != 0)
     {
@@ -132,6 +138,9 @@ void RLEdecode(unsigned char *p, unsigned int size, wxInputStream& s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (unsigned int i = 1; i <= cont; i++)
                 *(p++) = (unsigned char)data;
@@ -250,6 +259,9 @@ int ReadPCX(wxImage *image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (j = height; j; j--)
     {
@@ -266,6 +278,9 @@ int ReadPCX(wxImage *image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (i = 0; i < width; i++)
                 {
@@ -281,6 +296,9 @@ int ReadPCX(wxImage *image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (i = 0; i < width; i++)
                 {
@@ -312,6 +330,9 @@ int ReadPCX(wxImage *image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (unsigned long k = height * width; k; k--)
         {
@@ -329,6 +350,9 @@ int ReadPCX(wxImage *image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < 256; i++)
         {
@@ -417,6 +441,9 @@ int SavePCX(wxImage *image, wxOutputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (; height; height--)
     {
@@ -430,6 +457,9 @@ int SavePCX(wxImage *image, wxOutputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (i = 0; i < width; i++)
                 {
@@ -448,6 +478,9 @@ int SavePCX(wxImage *image, wxOutputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (i = 0; i < width; i++)
                 {
@@ -472,10 +505,13 @@ int SavePCX(wxImage *image, wxOutputStream& stream)
 
         unsigned long index;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (wxImageHistogram::iterator entry = histogram.begin();
              entry != histogram.end(); ++entry )

@@ -59,6 +59,9 @@ Pile::Pile(int x, int y, int dx, int dy)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (m_topCard = 0; m_topCard < NumCards; m_topCard++)
     {
@@ -102,6 +105,9 @@ void Pile::Redraw(wxDC& dc )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (int i = 0; i <= m_topCard; i++)
             {
@@ -234,6 +240,9 @@ bool Pile::CanCardLeave(Card* card)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i <= m_topCard; i++)
     {
@@ -265,6 +274,9 @@ Card* Pile::GetCard(int x, int y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = m_topCard; i >= 0; i--)
     {
@@ -291,6 +303,9 @@ void Pile::GetCardPos(Card* card, int& x, int& y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i <= m_topCard; i++)
     {

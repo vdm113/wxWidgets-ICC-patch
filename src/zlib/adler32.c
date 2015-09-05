@@ -105,6 +105,9 @@ uLong ZEXPORT adler32(adler, buf, len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (len--) {
             adler += *buf++;
@@ -121,6 +124,9 @@ uLong ZEXPORT adler32(adler, buf, len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (len >= NMAX) {
         len -= NMAX;
@@ -129,6 +135,9 @@ uLong ZEXPORT adler32(adler, buf, len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         do {
             DO16(buf);          /* 16 sums unrolled */
@@ -144,6 +153,9 @@ uLong ZEXPORT adler32(adler, buf, len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (len >= 16) {
             len -= 16;
@@ -154,6 +166,9 @@ uLong ZEXPORT adler32(adler, buf, len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (len--) {
             adler += *buf++;

@@ -73,6 +73,9 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((c = getopt(argc, argv, "c:p:r:")) != -1)
 		switch (c) {
@@ -176,6 +179,9 @@ processCompressOptions(char* opt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while( cp )
                 {
@@ -220,6 +226,9 @@ cpContig(IMAGE* in, TIFF* out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (y = in->ysize-1; y >= 0; y--) {
 			uint8* pp = (uint8*) buf;
@@ -231,6 +240,9 @@ cpContig(IMAGE* in, TIFF* out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (x = 0; x < in->xsize; x++) {
 				pp[0] = r[x];
@@ -252,6 +264,9 @@ cpContig(IMAGE* in, TIFF* out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (y = in->ysize-1; y >= 0; y--) {
 			uint8* pp = (uint8*) buf;
@@ -264,6 +279,9 @@ cpContig(IMAGE* in, TIFF* out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (x = 0; x < in->xsize; x++) {
 				pp[0] = r[x];
@@ -283,6 +301,9 @@ cpContig(IMAGE* in, TIFF* out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (y = in->ysize-1; y >= 0; y--) {
 			getrow(in, r, y, 0);
@@ -290,6 +311,9 @@ cpContig(IMAGE* in, TIFF* out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (x = in->xsize-1; x >= 0; x--)
 				pp[x] = r[x];
@@ -320,12 +344,18 @@ cpSeparate(IMAGE* in, TIFF* out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (z = 0; z < in->zsize; z++) {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (y = in->ysize-1; y >= 0; y--) {
 			getrow(in, r, y, z);
@@ -333,6 +363,9 @@ cpSeparate(IMAGE* in, TIFF* out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (x = 0; x < in->xsize; x++)
 				pp[x] = r[x];
@@ -387,6 +420,9 @@ usage(void)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; stuff[i] != NULL; i++)
 		fprintf(stderr, "%s\n", stuff[i]);

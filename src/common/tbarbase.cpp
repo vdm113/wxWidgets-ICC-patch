@@ -241,10 +241,13 @@ wxToolBarBase::InsertControl(size_t pos,
 
 wxControl *wxToolBarBase::FindControl( int toolid )
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
           node;
@@ -310,6 +313,9 @@ wxToolBarToolBase *wxToolBarBase::RemoveTool(int toolid)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
@@ -365,6 +371,9 @@ bool wxToolBarBase::DeleteTool(int toolid)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
@@ -389,10 +398,13 @@ wxToolBarToolBase *wxToolBarBase::FindById(int toolid) const
 {
     wxToolBarToolBase *tool = NULL;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
           node;
@@ -426,6 +438,9 @@ void wxToolBarBase::UnToggleRadioGroup(wxToolBarToolBase *tool)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( nodeNext )
     {
@@ -447,6 +462,9 @@ void wxToolBarBase::UnToggleRadioGroup(wxToolBarToolBase *tool)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( nodePrev )
     {
@@ -470,6 +488,9 @@ void wxToolBarBase::ClearTools()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( GetToolsCount() )
     {
@@ -489,10 +510,13 @@ void wxToolBarBase::AdjustToolBitmapSize()
 
     wxSize sizeActual(sizeOrig);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxToolBarToolsList::const_iterator i = m_tools.begin();
           i != m_tools.end();
@@ -616,6 +640,9 @@ int wxToolBarBase::GetToolPos(int toolid) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
     {
@@ -760,10 +787,13 @@ void wxToolBarBase::UpdateWindowUI(long flags)
 
     wxEvtHandler* evtHandler = GetEventHandler() ;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
           node;

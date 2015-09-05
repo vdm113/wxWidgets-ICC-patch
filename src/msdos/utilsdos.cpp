@@ -66,6 +66,9 @@ void wxMilliSleep(unsigned long milliseconds)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ((clock() - start) * 1000 / CLOCKS_PER_SEC < (clock_t)milliseconds)
     {
@@ -336,6 +339,9 @@ long wxExecute(const wxString& command, int flags, wxProcess *process,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (n-- > 0)
         argv[n] = const_cast<wxChar*>((const char *)args[n].c_str());

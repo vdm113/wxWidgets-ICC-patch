@@ -472,6 +472,9 @@ bool wxNotebook::DeleteAllPages()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (nPage = 0; nPage < nPageCount; nPage++)
         delete m_pages[nPage];
@@ -701,6 +704,9 @@ void wxNotebook::OnSelChange (
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (nSel = 0; nSel < nPageCount; nSel++)
         {
@@ -729,6 +735,9 @@ void wxNotebook::OnSelChange (
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (nSel = 0; nSel < nPageCount; nSel++)
         {

@@ -81,6 +81,9 @@ bool wxControlContainerBase::HasAnyFocusableChildren() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::const_iterator i = children.begin(),
                                      end = children.end();
@@ -108,6 +111,9 @@ bool wxControlContainerBase::HasAnyChildrenAcceptingFocus() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::const_iterator i = children.begin(),
                                      end = children.end();
@@ -145,6 +151,9 @@ bool wxControlContainerBase::DoSetFocus()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( win )
     {
@@ -211,6 +220,9 @@ void wxControlContainer::SetLastFocus(wxWindow *win)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( winParent != m_winParent )
             {
@@ -265,6 +277,9 @@ wxRadioButton* wxGetPreviousButtonInGroup(wxRadioButton *btn)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (nodeBefore)
     {
@@ -300,6 +315,9 @@ wxRadioButton* wxGetNextButtonInGroup(wxRadioButton *btn)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (nodeNext)
     {
@@ -325,6 +343,9 @@ wxRadioButton* wxGetFirstButtonInGroup(wxRadioButton *btn)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (true)
     {
@@ -342,6 +363,9 @@ wxRadioButton* wxGetLastButtonInGroup(wxRadioButton *btn)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (true)
     {
@@ -369,6 +393,9 @@ wxRadioButton* wxGetSelectedButtonInGroup(wxRadioButton *btn)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (selBtn = wxGetPreviousButtonInGroup(btn); selBtn; selBtn = wxGetPreviousButtonInGroup(selBtn))
         if (selBtn->GetValue())
@@ -379,6 +406,9 @@ wxRadioButton* wxGetSelectedButtonInGroup(wxRadioButton *btn)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (selBtn = wxGetNextButtonInGroup(btn); selBtn; selBtn = wxGetNextButtonInGroup(selBtn))
         if (selBtn->GetValue())
@@ -424,6 +454,9 @@ void wxControlContainer::HandleOnNavigationKey( wxNavigationKeyEvent& event )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxWindowList::const_iterator i = children.begin(),
                                          end = children.end();
@@ -541,6 +574,9 @@ void wxControlContainer::HandleOnNavigationKey( wxNavigationKeyEvent& event )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ;; )
     {
@@ -570,6 +606,9 @@ void wxControlContainer::HandleOnNavigationKey( wxNavigationKeyEvent& event )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while ( parent )
                 {
@@ -759,6 +798,9 @@ bool wxSetFocusToChild(wxWindow *win, wxWindow **childLastFocused)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( *childLastFocused )
             {
@@ -800,6 +842,9 @@ bool wxSetFocusToChild(wxWindow *win, wxWindow **childLastFocused)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( node )
     {

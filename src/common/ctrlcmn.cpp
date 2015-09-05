@@ -202,6 +202,9 @@ int wxControlBase::FindAccelIndex(const wxString& label, wxString *labelOnly)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator pc = label.begin(); pc != label.end(); ++pc )
     {
@@ -448,6 +451,9 @@ wxString wxControlBase::DoEllipsizeSingleLine(const wxString& curLine, const wxD
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while ( !calc.IsShortEnough() )
                     calc.RemoveFromEnd();
@@ -478,6 +484,9 @@ wxString wxControlBase::DoEllipsizeSingleLine(const wxString& curLine, const wxD
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while ( !calc.IsShortEnough() )
                 {
@@ -522,6 +531,9 @@ wxString wxControlBase::DoEllipsizeSingleLine(const wxString& curLine, const wxD
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while ( !calc.IsShortEnough() )
                     calc.RemoveFromStart();
@@ -560,6 +572,9 @@ wxString wxControlBase::Ellipsize(const wxString& label, const wxDC& dc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator pc = label.begin(); ; ++pc )
     {

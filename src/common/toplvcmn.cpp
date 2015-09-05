@@ -78,10 +78,13 @@ wxTopLevelWindowBase::~wxTopLevelWindowBase()
     // on the stack) immediately afterwards and before the child TLW was really
     // destroyed -- not destroying it now would leave it alive with a dangling
     // parent pointer and result in a crash later
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxObjectList::iterator i = wxPendingDelete.begin();
           i != wxPendingDelete.end();
@@ -138,6 +141,9 @@ bool wxTopLevelWindowBase::Destroy()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::const_iterator i = wxTopLevelWindows.begin(),
                                      end = wxTopLevelWindows.end();
@@ -181,6 +187,9 @@ bool wxTopLevelWindowBase::IsLastBeforeExit() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = wxTopLevelWindows.begin(); i != end; ++i )
     {
@@ -197,6 +206,9 @@ bool wxTopLevelWindowBase::IsLastBeforeExit() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = wxTopLevelWindows.begin(); i != end; ++i )
     {
@@ -422,10 +434,13 @@ void wxTopLevelWindowBase::DoLayout()
     {
         // do we have _exactly_ one child?
         wxWindow *child = NULL;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
               node;

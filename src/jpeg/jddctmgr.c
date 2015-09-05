@@ -102,10 +102,13 @@ start_pass (j_decompress_ptr cinfo)
   inverse_DCT_method_ptr method_ptr = NULL;
   JQUANT_TBL * qtbl;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
@@ -180,6 +183,9 @@ start_pass (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < DCTSIZE2; i++) {
 	  ismtbl[i] = (ISLOW_MULT_TYPE) qtbl->quantval[i];
@@ -216,6 +222,9 @@ start_pass (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < DCTSIZE2; i++) {
 	  ifmtbl[i] = (IFAST_MULT_TYPE)
@@ -246,12 +255,18 @@ start_pass (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (row = 0; row < DCTSIZE; row++) {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	  for (col = 0; col < DCTSIZE; col++) {
 	    fmtbl[i] = (FLOAT_MULT_TYPE)
@@ -288,10 +303,13 @@ jinit_inverse_dct (j_decompress_ptr cinfo)
   cinfo->idct = (struct jpeg_inverse_dct *) idct;
   idct->pub.start_pass = start_pass;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {

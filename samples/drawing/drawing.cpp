@@ -839,6 +839,9 @@ void MyCanvas::DrawText(wxDC& dc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int n = -180; n < 180; n += 30 )
     {
@@ -930,6 +933,9 @@ void MyCanvas::DrawImages(wxDC& dc, DrawMode mode)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(rasterOperations); n++ )
     {
@@ -964,6 +970,9 @@ void MyCanvas::DrawWithLogicalOps(wxDC& dc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < WXSIZEOF(rasterOperations); n++ )
     {
@@ -984,6 +993,9 @@ void MyCanvas::DrawWithLogicalOps(wxDC& dc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < WXSIZEOF(rasterOperations); n++ )
     {
@@ -1079,6 +1091,9 @@ void MyCanvas::DrawGraphics(wxGraphicsContext* gc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( int i = 0 ; i < 3 ; ++i )
     {
@@ -1125,6 +1140,9 @@ void MyCanvas::DrawGraphics(wxGraphicsContext* gc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( int i = 0 ; i < 8 ; ++i )
     {
@@ -1148,6 +1166,9 @@ void MyCanvas::DrawGraphics(wxGraphicsContext* gc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int angle = 0 ; angle < 360 ; angle += 30 )
     {
@@ -1267,6 +1288,9 @@ void MyCanvas::DrawSplines(wxDC& dc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < n; i++ )
     {
@@ -1320,6 +1344,9 @@ void MyCanvas::DrawSplines(wxDC& dc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int m = 0; m < 4; m++ )
     {
@@ -1327,6 +1354,9 @@ void MyCanvas::DrawSplines(wxDC& dc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int n = 0; n < 5; n++ )
         {
@@ -1704,6 +1734,9 @@ void MyCanvas::Draw(wxDC& pdc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int i = 0; i < 200; i++ )
             dc.DrawLine(0, i*10, i*10, 0);

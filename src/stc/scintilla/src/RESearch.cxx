@@ -276,6 +276,9 @@ void RESearch::Clear() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i = 0; i < MAXTAG; i++) {
 		pat[i].clear();
@@ -289,6 +292,9 @@ void RESearch::GrabMatches(CharacterIndexer &ci) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = 0; i < MAXTAG; i++) {
 		if ((bopat[i] != NOTFOUND) && (eopat[i] != NOTFOUND)) {
@@ -298,6 +304,9 @@ void RESearch::GrabMatches(CharacterIndexer &ci) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (unsigned int j = 0; j < len; j++)
 				pat[i][j] = ci.CharAt(bopat[i] + j);
@@ -412,6 +421,9 @@ int RESearch::GetBackslashExpression(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (c = '0'; c <= '9'; c++) {
 			ChSet(static_cast<unsigned char>(c));
@@ -422,6 +434,9 @@ int RESearch::GetBackslashExpression(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (c = 0; c < MAXCHR; c++) {
 			if (c < '0' || c > '9') {
@@ -442,6 +457,9 @@ int RESearch::GetBackslashExpression(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (c = 0; c < MAXCHR; c++) {
 			if (c != ' ' && !(c >= 0x09 && c <= 0x0D)) {
@@ -454,6 +472,9 @@ int RESearch::GetBackslashExpression(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (c = 0; c < MAXCHR; c++) {
 			if (iswordc(static_cast<unsigned char>(c))) {
@@ -466,6 +487,9 @@ int RESearch::GetBackslashExpression(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (c = 0; c < MAXCHR; c++) {
 			if (!iswordc(static_cast<unsigned char>(c))) {
@@ -505,6 +529,9 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i=0; i<length; i++, p++) {
 		if (mp > mpMax)
@@ -561,6 +588,9 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (*p && *p != ']') {
 				if (*p == '-') {
@@ -603,6 +633,9 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 								while (c1 <= c2) {
 									ChSetWithCase(static_cast<unsigned char>(c1++), caseSensitive);
@@ -645,6 +678,9 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (n = 0; n < BITBLK; bittab[n++] = 0)
 				*mp++ = static_cast<char>(mask ^ bittab[n]);
@@ -677,6 +713,9 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for (sp = mp; lp < sp; lp++)
 					*mp++ = *lp;
@@ -689,6 +728,9 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (--mp > lp)
 				*mp = mp[-1];
@@ -762,6 +804,9 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 						for (n = 0; n < BITBLK; bittab[n++] = 0)
 							*mp++ = static_cast<char>(mask ^ bittab[n]);
@@ -803,6 +848,9 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					for (n = 0; n < BITBLK; bittab[n++] = 0)
 						*mp++ = static_cast<char>(mask ^ bittab[n]);
@@ -869,6 +917,9 @@ int RESearch::Execute(CharacterIndexer &ci, int lp, int endp) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while ((lp < endp) && (static_cast<unsigned char>(ci.CharAt(lp)) != c))
 			lp++;
@@ -879,6 +930,9 @@ int RESearch::Execute(CharacterIndexer &ci, int lp, int endp) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (lp < endp) {
 			ep = PMatch(ci, lp, endp, ap);
@@ -951,6 +1005,9 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((op = *ap++) != END)
 		switch (op) {
@@ -1001,6 +1058,9 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (bp < ep)
 				if (ci.CharAt(bp++) != ci.CharAt(lp++))
@@ -1018,6 +1078,9 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					while (lp < endp)
 						lp++;
@@ -1033,6 +1096,9 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					while ((lp < endp) && (c == ci.CharAt(lp)))
 						lp++;
@@ -1045,6 +1111,9 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while ((lp < endp) && isinset(ap+1,ci.CharAt(lp)))
 					lp++;
@@ -1063,6 +1132,9 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (llp >= are) {
 				int q;

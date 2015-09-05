@@ -1633,6 +1633,9 @@ IAccessible* wxIAccessible::GetChildStdAccessible(int id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < nChildren; i++)
         {

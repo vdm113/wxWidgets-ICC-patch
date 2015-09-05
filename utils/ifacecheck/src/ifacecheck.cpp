@@ -228,6 +228,9 @@ bool IfaceCheckApp::Compare()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i<interfaces.GetCount(); i++)
     {
@@ -308,6 +311,9 @@ int IfaceCheckApp::CompareClasses(const wxClass* iface, const wxClass* api)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i<iface->GetMethodCount(); i++)
     {
@@ -353,6 +359,9 @@ int IfaceCheckApp::CompareClasses(const wxClass* iface, const wxClass* api)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (unsigned int k=0; k<overloads.GetCount(); k++)
                 if (overloads[k]->MatchesExceptForAttributes(m) &&
@@ -377,6 +386,9 @@ int IfaceCheckApp::CompareClasses(const wxClass* iface, const wxClass* api)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (unsigned int k=0; k<overloads.GetCount(); k++)
                 if (overloads[k]->MatchesExceptForAttributes(m))
@@ -424,6 +436,9 @@ int IfaceCheckApp::CompareClasses(const wxClass* iface, const wxClass* api)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (unsigned int j=0; j<overloads.GetCount(); j++)
                         warning += "\n\treal header: " + overloads[j]->GetAsString(true, true, true, true);
@@ -514,6 +529,9 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         do
         {
@@ -526,6 +544,9 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (start > 0 && !founddecl &&
                !file.GetLine(start).Contains(";") &&
@@ -544,6 +565,9 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int k=start; k<=end; k++)
         file.RemoveLine(start);     // remove (end-start)-nth times the start-th line
@@ -577,6 +601,9 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j=0; j<doxygenargs.GetCount(); j++)
             if (doxygenargs[j]==realargs[j])
@@ -604,6 +631,9 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i=0; i<toinsert.GetCount(); i++)
     {
@@ -629,6 +659,9 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i=0; i<toinsert.GetCount(); i++)
         file.InsertLine(toinsert[i], start+i);
@@ -656,6 +689,9 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i=0; i < cToUpdate.GetCount(); i++)
     {
@@ -663,6 +699,9 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j=0; j < cToUpdate[i]->GetMethodCount(); j++)
         {
@@ -691,6 +730,9 @@ bool IfaceCheckApp::ParsePreprocessorOutput(const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i < tf.GetLineCount(); i++)
     {
@@ -753,6 +795,9 @@ void IfaceCheckApp::PrintStatistics(long secs)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i<arr.GetCount(); i++) {
         if (m_doxyInterface.FindClass(arr[i].GetName()) == NULL) {

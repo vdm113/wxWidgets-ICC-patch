@@ -84,6 +84,9 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (cp < realstop) {
 			FDEBUG(("+++ at c%d +++\n", css - d->ssets));
@@ -104,6 +107,9 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (cp < realstop) {
 			co = GETCOLOR(cm, *cp);
@@ -139,6 +145,9 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (ss = d->ssets, i = d->nssused; i > 0; ss++, i--)
 		if ((ss->flags&POSTSTATE) && post != ss->lastseen &&
@@ -200,6 +209,9 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (cp < realmax) {
 			FDEBUG(("--- at c%d ---\n", css - d->ssets));
@@ -222,6 +234,9 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (cp < realmax) {
 			co = GETCOLOR(cm, *cp);
@@ -282,6 +297,9 @@ struct dfa *d;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (ss = d->ssets, i = d->nssused; i > 0; ss++, i--)
 		if ((ss->flags&NOPROGRESS) && nopr < ss->lastseen)
@@ -413,6 +431,9 @@ int n;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < n; i++)
 		h ^= uv[i];
@@ -441,6 +462,9 @@ chr *start;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < d->wordsper; i++)
 			ss->states[i] = 0;
@@ -455,6 +479,9 @@ chr *start;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < d->nssused; i++)
 		d->ssets[i].lastseen = NULL;
@@ -501,6 +528,9 @@ chr *start;			/* where the attempt got started */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < d->wordsper; i++)
 		d->work[i] = 0;
@@ -511,6 +541,9 @@ chr *start;			/* where the attempt got started */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < d->nstates; i++)
 		if (ISBSET(css->states, i))
@@ -518,6 +551,9 @@ chr *start;			/* where the attempt got started */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (ca = cnfa->states[i]+1; ca->co != COLORLESS; ca++)
 				if (ca->co == co) {
@@ -535,6 +571,9 @@ chr *start;			/* where the attempt got started */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (dolacons) {		/* transitive closure */
 		dolacons = 0;
@@ -542,13 +581,19 @@ chr *start;			/* where the attempt got started */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < d->nstates; i++)
 			if (ISBSET(d->work, i))
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for (ca = cnfa->states[i]+1; ca->co != COLORLESS;
 									ca++) {
@@ -577,6 +622,9 @@ chr *start;			/* where the attempt got started */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (p = d->ssets, i = d->nssused; i > 0; p++, i--)
 		if (HIT(h, d->work, p, d->wordsper)) {
@@ -590,6 +638,9 @@ chr *start;			/* where the attempt got started */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < d->wordsper; i++)
 			p->states[i] = d->work[i];
@@ -671,6 +722,9 @@ chr *start;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((p = ap.ss) != NULL) {
 		co = ap.co;
@@ -686,6 +740,9 @@ chr *start;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < d->ncolors; i++) {
 		p = ss->outs[i];
@@ -701,6 +758,9 @@ chr *start;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (ap = p->ins; ap.ss != NULL &&
 						!(ap.ss == ss && ap.co == i);
@@ -759,6 +819,9 @@ chr *start;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < d->ncolors; i++) {
 			ss->outs[i] = NULL;
@@ -776,6 +839,9 @@ chr *start;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (ss = d->search, end = &d->ssets[d->nssets]; ss < end; ss++)
 		if ((ss->lastseen == NULL || ss->lastseen < ancient) &&
@@ -788,6 +854,9 @@ chr *start;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (ss = d->ssets, end = d->search; ss < end; ss++)
 		if ((ss->lastseen == NULL || ss->lastseen < ancient) &&

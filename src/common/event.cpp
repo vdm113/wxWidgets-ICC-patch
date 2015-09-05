@@ -727,6 +727,9 @@ int wxMouseEvent::GetButton() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 1; i < wxMOUSE_BTN_MAX; i++ )
     {
@@ -951,6 +954,9 @@ void wxEventHashTable::Clear()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < m_size; i++ )
     {
@@ -973,6 +979,9 @@ void wxEventHashTable::ClearAll()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (table)
     {
@@ -1009,6 +1018,9 @@ bool wxEventHashTable::HandleEvent(wxEvent &event, wxEvtHandler *self)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t n = 0; n < count; n++)
         {
@@ -1029,6 +1041,9 @@ void wxEventHashTable::InitHashTable()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (table)
     {
@@ -1038,6 +1053,9 @@ void wxEventHashTable::InitHashTable()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (entry->m_fn != 0)
         {
@@ -1056,6 +1074,9 @@ void wxEventHashTable::InitHashTable()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(i = 0; i < m_size; i++)
     {
@@ -1117,6 +1138,9 @@ void wxEventHashTable::GrowEventTypeTable()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < oldSize; /* */ )
     {
@@ -1173,6 +1197,9 @@ wxEvtHandler::~wxEvtHandler()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxList::iterator it = m_dynamicEvents->begin(),
                                end = m_dynamicEvents->end();
@@ -1249,6 +1276,9 @@ wxEventFilter* wxEvtHandler::ms_filterList = NULL;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxEventFilter* f = ms_filterList; f; f = f->m_next )
     {
@@ -1372,6 +1402,9 @@ void wxEvtHandler::ProcessPendingEvents()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (node && pEvent && !evtLoop->IsEventAllowedInsideYield(pEvent->GetEventCategory()))
         {
@@ -1527,6 +1560,9 @@ bool wxEvtHandler::ProcessEvent(wxEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxEventFilter* f = ms_filterList; f; f = f->m_next )
         {
@@ -1586,6 +1622,9 @@ bool wxEvtHandler::DoTryChain(wxEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxEvtHandler *h = GetNextHandler(); h; h = h->GetNextHandler() )
     {
@@ -1749,6 +1788,9 @@ bool wxEvtHandler::SearchEventTable(wxEventTable& table, wxEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; table.entries[i].m_fn != 0; i++ )
     {
@@ -1805,6 +1847,9 @@ wxEvtHandler::DoUnbind(int id,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -1845,6 +1890,9 @@ bool wxEvtHandler::SearchDynamicEventTable( wxEvent& event )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -1916,6 +1964,9 @@ wxEvtHandler::FindRefInTrackerList(wxEvtHandler *eventSink)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxTrackerNode *node = eventSink->GetFirst(); node; node = node->m_nxt )
     {
@@ -1941,6 +1992,9 @@ void wxEvtHandler::OnSinkDestroyed( wxEvtHandler *sink )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -1975,6 +2029,9 @@ wxWindow* wxFindFocusDescendant(wxWindow* ancestor)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (win)
     {
@@ -2017,6 +2074,9 @@ bool wxEventBlocker::ProcessEvent(wxEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < m_eventsToBlock.size(); i++ )
     {

@@ -178,6 +178,9 @@ wxHtmlTableCell::~wxHtmlTableCell()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < m_NumRows; i++)
             free(m_CellInfo[i]);
@@ -204,6 +207,9 @@ void wxHtmlTableCell::ReallocCols(int cols)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < m_NumRows; i++)
     {
@@ -212,6 +218,9 @@ void wxHtmlTableCell::ReallocCols(int cols)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = m_NumCols; j < cols; j++)
             m_CellInfo[i][j].flag = cellFree;
@@ -222,6 +231,9 @@ void wxHtmlTableCell::ReallocCols(int cols)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (j = m_NumCols; j < cols; j++)
     {
@@ -242,6 +254,9 @@ void wxHtmlTableCell::ReallocRows(int rows)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (alloc_rows = m_NumAllocatedRows; alloc_rows < rows;)
     {
@@ -263,6 +278,9 @@ void wxHtmlTableCell::ReallocRows(int rows)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int row = m_NumRows; row < rows ; ++row)
     {
@@ -275,6 +293,9 @@ void wxHtmlTableCell::ReallocRows(int rows)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (int col = 0; col < m_NumCols; col++)
                 m_CellInfo[row][col].flag = cellFree;
@@ -316,6 +337,9 @@ void wxHtmlTableCell::AddCell(wxHtmlContainerCell *cell, const wxHtmlTag& tag)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do
     {
@@ -392,12 +416,18 @@ void wxHtmlTableCell::AddCell(wxHtmlContainerCell *cell, const wxHtmlTag& tag)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = r; i < r + m_CellInfo[r][c].rowspan; i++)
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (j = c; j < c + m_CellInfo[r][c].colspan; j++)
                     m_CellInfo[i][j].flag = cellSpan;
@@ -444,6 +474,9 @@ void wxHtmlTableCell::ComputeMinMaxWidths()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int c = 0; c < m_NumCols; c++)
     {
@@ -451,6 +484,9 @@ void wxHtmlTableCell::ComputeMinMaxWidths()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int r = 0; r < m_NumRows; r++)
         {
@@ -469,6 +505,9 @@ void wxHtmlTableCell::ComputeMinMaxWidths()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (int j = 0; j < cell.colspan; j++) {
                     if (width > m_ColsInfo[c+j].minWidth)
@@ -552,6 +591,9 @@ void wxHtmlTableCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < m_NumCols; i++)
             if (m_ColsInfo[i].units == wxHTML_UNITS_PIXELS)
@@ -569,6 +611,9 @@ void wxHtmlTableCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < m_NumCols; i++)
             if (m_ColsInfo[i].width == 0)
@@ -588,6 +633,9 @@ void wxHtmlTableCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0; i < m_NumCols; i++)
                 if ((m_ColsInfo[i].units == wxHTML_UNITS_PERCENT) && (m_ColsInfo[i].width != 0))
@@ -610,6 +658,9 @@ void wxHtmlTableCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < m_NumCols; i++)
             if ((m_ColsInfo[i].units == wxHTML_UNITS_PERCENT) && (m_ColsInfo[i].width != 0))
@@ -622,6 +673,9 @@ void wxHtmlTableCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (j = 0; j < m_NumCols; j++)
                 {
@@ -646,6 +700,9 @@ void wxHtmlTableCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = j = 0; i < m_NumCols; i++)
             if (m_ColsInfo[i].width == 0) j++;
@@ -657,6 +714,9 @@ void wxHtmlTableCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < m_NumCols; i++)
             if (m_ColsInfo[i].width == 0)
@@ -674,6 +734,9 @@ void wxHtmlTableCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (r = i + 1; r < m_NumCols; r++)
                 {
@@ -703,6 +766,9 @@ void wxHtmlTableCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < m_NumCols; i++)
         {
@@ -724,16 +790,22 @@ void wxHtmlTableCell::Layout(int w)
         wxHtmlContainerCell *actcell;
 
         ypos[0] = m_Spacing + m_Border;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (actrow = 1; actrow <= m_NumRows; actrow++) ypos[actrow] = -1;
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (actrow = 0; actrow < m_NumRows; actrow++)
         {
@@ -744,6 +816,9 @@ void wxHtmlTableCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (actcol = 0; actcol < m_NumCols; actcol++) {
                 if (m_CellInfo[actrow][actcol].flag != cellUsed) continue;
@@ -753,6 +828,9 @@ void wxHtmlTableCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (int i = actcol; i < m_CellInfo[actrow][actcol].colspan + actcol; i++)
                     fullwid += m_ColsInfo[i].pixwidth;
@@ -770,6 +848,9 @@ void wxHtmlTableCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (actrow = 0; actrow < m_NumRows; actrow++)
         {
@@ -779,6 +860,9 @@ void wxHtmlTableCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (actcol = 0; actcol < m_NumCols; actcol++)
             {
@@ -792,6 +876,9 @@ void wxHtmlTableCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (int i = actcol; i < m_CellInfo[actrow][actcol].colspan + actcol; i++)
                     fullwid += m_ColsInfo[i].pixwidth;

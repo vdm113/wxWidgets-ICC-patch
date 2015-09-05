@@ -790,6 +790,9 @@ wxThreadInternal::WaitForTerminate(wxCriticalSection& cs,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do
     {
@@ -858,6 +861,9 @@ wxThreadInternal::WaitForTerminate(wxCriticalSection& cs,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ;; )
     {
@@ -1001,6 +1007,9 @@ bool wxThread::SetConcurrency(size_t WXUNUSED_IN_WINCE(level))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( bit )
     {

@@ -386,6 +386,9 @@ private:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int i = pos; i + 1 < eol_pos; i++) {
 			int style = styler.StyleAt(i);
@@ -461,6 +464,9 @@ void SCI_METHOD LexerSQL::Lex(unsigned int startPos, int length, int initStyle, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward(), offset++) {
 		// Determine if the current state should terminate.
@@ -582,6 +588,9 @@ void SCI_METHOD LexerSQL::Lex(unsigned int startPos, int length, int initStyle, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (int styleStartPos = sc.currentPos; styleStartPos > 0; --styleStartPos) {
 				if (styler.StyleAt(styleStartPos - 1) != SCE_SQL_QOPERATOR) {

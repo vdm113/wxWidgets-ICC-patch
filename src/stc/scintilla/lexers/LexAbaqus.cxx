@@ -69,6 +69,9 @@ static void ColouriseABAQUSDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
 		switch ( state ) {
@@ -354,6 +357,9 @@ static int LineType(int line, Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( i < eol_pos ) {
         c = styler.SafeGetCharAt(i);
@@ -404,6 +410,9 @@ static int LineType(int line, Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( (i < eol_pos) && (wlen < 255) ) {
         c = styler.SafeGetCharAt(i);
@@ -475,6 +484,9 @@ WordList *[], Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( prvKeyLine > 0 ) {
         prvKeyLine-- ;
@@ -498,6 +510,9 @@ WordList *[], Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int line = startLine; line <= endLine; line++ ) {
         int lineType = LineType(line, styler) ;
@@ -552,6 +567,9 @@ WordList *[], Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int ll = beginData; ll < beginComment; ll++ )
                 SafeSetLevel(ll, datLevel, styler) ;
@@ -573,6 +591,9 @@ WordList *[], Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int lll = beginComment; lll < line; lll++ )
                 SafeSetLevel(lll, level, styler) ;
@@ -597,6 +618,9 @@ WordList *[], Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int line = endLine + 1; line <= docLines; line++ ) {
             int lineType = LineType(line, styler) ;
@@ -629,6 +653,9 @@ WordList *[], Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int ll = beginData; ll < beginComment; ll++ )
         SafeSetLevel(ll, datLevel, styler) ;
@@ -644,6 +671,9 @@ WordList *[], Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for ( int m = beginComment; m <= endLine; m++ )
         SafeSetLevel(m, level, styler) ;

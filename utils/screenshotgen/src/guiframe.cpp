@@ -250,6 +250,9 @@ void GUIFrame::AddPanel_2()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(long index = 0; index < 5; index++) {
         m_listCtrl1->InsertItem( index, wxString::Format(_("Item%ld"),index));

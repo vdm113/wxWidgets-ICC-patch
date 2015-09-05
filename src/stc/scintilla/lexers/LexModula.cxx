@@ -74,6 +74,9 @@ static inline unsigned IsOperator( StyleContext & sc, WordList & op ) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for( i = 0; i < op.Length(); i++ ) {
 		if( ( strlen( op.WordAt(i) ) == 2 ) &&
@@ -86,6 +89,9 @@ static inline unsigned IsOperator( StyleContext & sc, WordList & op ) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for( i = 0; i < op.Length(); i++ ) {
 		if( ( strlen( op.WordAt(i) ) == 1 ) &&
@@ -115,6 +121,9 @@ static inline bool checkStatement(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for( i = 0; i < len; i++ ) {
 		if( styler.SafeGetCharAt( curPos + i ) != stt[i] ) {
@@ -141,6 +150,9 @@ static inline bool checkEndSemicolon(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for( i = 0; i < len; i++ ) {
 		if( styler.SafeGetCharAt( curPos + i ) != stt[i] ) {
@@ -151,6 +163,9 @@ static inline bool checkEndSemicolon(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while( isspace( styler.SafeGetCharAt( curPos + i ) ) ) {
 		i++;
@@ -183,6 +198,9 @@ static inline bool checkKeyIdentOper(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while( isspace( styler.SafeGetCharAt( newPos ) ) ) {
 		newPos++;
@@ -200,6 +218,9 @@ static inline bool checkKeyIdentOper(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while( isalpha( ch ) || isdigit( ch ) || ch == '_' ) {
 		newPos++;
@@ -210,6 +231,9 @@ static inline bool checkKeyIdentOper(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while( isspace( styler.SafeGetCharAt( newPos ) ) ) {
 		newPos++;
@@ -240,6 +264,9 @@ static void FoldModulaDoc( unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while( curPos < endPos ) {
 		if( ! isspace( styler.SafeGetCharAt( curPos ) ) ) visChars++;
@@ -311,6 +338,9 @@ static void FoldModulaDoc( unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while( cln > 0 ) {
 					clv_new = styler.LevelAt( cln - 1 ) >> 16;
@@ -321,6 +351,9 @@ static void FoldModulaDoc( unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 						while( ( ch = styler.SafeGetCharAt( pos ) ) != '\n' ) {
 							if( ch == 'P' ) {
@@ -349,6 +382,9 @@ static void FoldModulaDoc( unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while( styler.StyleAt( curPos + 1 ) == SCE_MODULA_KEYWORD )
 					curPos++;
@@ -386,6 +422,9 @@ static inline bool skipWhiteSpaces( StyleContext & sc ) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while( isspace( sc.ch ) ) {
 		sc.SetState( SCE_MODULA_DEFAULT );
@@ -422,6 +461,9 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while( sc.More() ) 	{
 		switch( sc.state )	{
@@ -444,6 +486,9 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					for( i = 0; i < BUFLEN - 1; i++ ) {
 						buf[i] = sc.GetRelative(i);
@@ -473,6 +518,9 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					for( i = 0; i < BUFLEN - 1; i++ ) {
 						buf[i] = sc.GetRelative(i);
@@ -544,6 +592,9 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					for( i = 0; i < BUFLEN - 1; i++ ) {
 						buf[i] = sc.GetRelative(i+1);
@@ -572,6 +623,9 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for( i = 1; i < BUFLEN - 1; i++ ) {
 					buf[i] = sc.GetRelative(i);
@@ -595,6 +649,9 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 							for( i = 0; i < BUFLEN - 1; i++ ) {
 								buf[i] = sc.GetRelative(kl+i);
@@ -607,6 +664,9 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 							for( i = 0; i < imax; i++ ) {
 								if( ! IsDigitOfBase( buf[i], base ) ) {
@@ -621,6 +681,9 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 						for( i = 0; i < kl; i++ ) {
 							sc.Forward();
@@ -637,6 +700,9 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 						for( i = 0; i < kl; i++ ) {
 							sc.Forward();
@@ -655,6 +721,9 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 							for( i = 0;; i++ ) {
 								if( !isdigit(sc.GetRelative(kl+i)) )
@@ -682,6 +751,9 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 									for( i = 0;; i++ ) {
 										if( !isdigit(sc.GetRelative(kl+i)) ) {
@@ -729,6 +801,9 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					for( i = 0; i < kl; i++ ) {
 						sc.Forward();
@@ -742,6 +817,9 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					for( i = 0; i < kl; i++ ) {
 						sc.Forward();
@@ -766,6 +844,9 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 						for( i = 1; i < BUFLEN - 1; i++ ) {
 							if( ! IsDigitOfBase(sc.GetRelative(i+1), 8 ) )
@@ -808,6 +889,9 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 						for( i = 1; i < BUFLEN - 1; i++ ) {
 							if( ! IsDigitOfBase(sc.GetRelative(i+1), 8 ) )
@@ -855,6 +939,9 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for( i = 2; i < BUFLEN - 1; i++ ) {
 					buf[i] = sc.GetRelative(i);

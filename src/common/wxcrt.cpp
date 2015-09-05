@@ -744,10 +744,13 @@ size_t wxStrlen(const wxChar16 *s )
 {
     if (!s) return 0;
     size_t i=0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (*s!=0) { ++i; ++s; };
     return i;
@@ -767,10 +770,13 @@ size_t wxStrlen(const wxChar32 *s )
 {
     if (!s) return 0;
     size_t i=0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (*s!=0) { ++i; ++s; };
     return i;
@@ -794,6 +800,9 @@ WXDLLIMPEXP_BASE int wxCRT_StricmpA(const char *psz1, const char *psz2)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   do {
     c1 = wxTolower(*psz1++);
@@ -811,6 +820,9 @@ WXDLLIMPEXP_BASE int wxCRT_StricmpW(const wchar_t *psz1, const wchar_t *psz2)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   do {
     c1 = wxTolower(*psz1++);
@@ -825,10 +837,13 @@ WXDLLIMPEXP_BASE int wxCRT_StrnicmpA(const char *s1, const char *s2, size_t n)
 {
   // initialize the variables just to suppress stupid gcc warning
   char c1 = 0, c2 = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (n && ((c1 = wxTolower(*s1)) == (c2 = wxTolower(*s2)) ) && c1) n--, s1++, s2++;
   if (n) {
@@ -844,10 +859,13 @@ WXDLLIMPEXP_BASE int wxCRT_StrnicmpW(const wchar_t *s1, const wchar_t *s2, size_
 {
   // initialize the variables just to suppress stupid gcc warning
   wchar_t c1 = 0, c2 = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (n && ((c1 = wxTolower(*s1)) == (c2 = wxTolower(*s2)) ) && c1) n--, s1++, s2++;
   if (n) {
@@ -872,6 +890,9 @@ extern "C" WXDLLIMPEXP_BASE size_t wxCRT_StrlenW(const wchar_t *s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( *s++ )
         n++;
@@ -933,10 +954,13 @@ wxCRT_StrtoullBase(const T* nptr, T** endptr, int base, T* sign)
     wxString::const_iterator end = wxstr.end();
 
     // Skip spaces
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( i != end && wxIsspace(*i) ) ++i;
 
@@ -994,6 +1018,9 @@ wxCRT_StrtoullBase(const T* nptr, T** endptr, int base, T* sign)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ; i != end; ++i )
     {
@@ -1383,6 +1410,9 @@ WXDLLEXPORT size_t android_mbstowcs(wchar_t * out, const char * in, size_t outle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while(*in++)
             outsize++;
@@ -1395,6 +1425,9 @@ WXDLLEXPORT size_t android_mbstowcs(wchar_t * out, const char * in, size_t outle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (outlen-- && *in)
     {
@@ -1415,6 +1448,9 @@ WXDLLEXPORT size_t android_wcstombs(char * out, const wchar_t * in, size_t outle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while(*in++)
             outsize++;
@@ -1427,6 +1463,9 @@ WXDLLEXPORT size_t android_wcstombs(char * out, const wchar_t * in, size_t outle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (outlen-- && *in)
     {

@@ -96,6 +96,9 @@ void wxArchiveClassFactory::Remove()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (*pp != this)
             pp = &(*pp)->m_next;

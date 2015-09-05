@@ -37,10 +37,13 @@ write_unknown_chunks(png_structrp png_ptr, png_const_inforp info_ptr,
 
       png_debug(5, "writing extra chunks");
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (up = info_ptr->unknown_chunks;
            up < info_ptr->unknown_chunks + info_ptr->unknown_chunks_num;
@@ -233,6 +236,9 @@ png_write_info(png_structrp png_ptr, png_const_inforp info_ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (j = 0; j<(int)info_ptr->num_trans; j++)
             info_ptr->trans_alpha[j] =
@@ -292,6 +298,9 @@ png_write_info(png_structrp png_ptr, png_const_inforp info_ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0; i < (int)info_ptr->splt_palettes_num; i++)
          png_write_sPLT(png_ptr, info_ptr->splt_palettes + i);
@@ -303,6 +312,9 @@ png_write_info(png_structrp png_ptr, png_const_inforp info_ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (i = 0; i < info_ptr->num_text; i++)
    {
@@ -403,6 +415,9 @@ png_write_end(png_structrp png_ptr, png_inforp info_ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0; i < info_ptr->num_text; i++)
       {
@@ -604,6 +619,9 @@ png_write_rows(png_structrp png_ptr, png_bytepp row,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (i = 0, rp = row; i < num_rows; i++, rp++)
    {
@@ -639,6 +657,9 @@ png_write_image(png_structrp png_ptr, png_bytepp image)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (pass = 0; pass < num_pass; pass++)
    {
@@ -647,6 +668,9 @@ png_write_image(png_structrp png_ptr, png_bytepp image)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0, rp = image; i < png_ptr->height; i++, rp++)
       {
@@ -1162,6 +1186,9 @@ png_init_filter_heuristics(png_structrp png_ptr, int heuristic_method,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (i = 0; i < num_weights; i++)
          {
@@ -1178,6 +1205,9 @@ png_init_filter_heuristics(png_structrp png_ptr, int heuristic_method,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (i = 0; i < num_weights; i++)
          {
@@ -1205,6 +1235,9 @@ png_init_filter_heuristics(png_structrp png_ptr, int heuristic_method,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0; i < PNG_FILTER_VALUE_LAST; i++)
       {
@@ -1253,6 +1286,9 @@ png_set_filter_heuristics(png_structrp png_ptr, int heuristic_method,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0; i < num_weights; i++)
       {
@@ -1283,6 +1319,9 @@ png_set_filter_heuristics(png_structrp png_ptr, int heuristic_method,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0; i < PNG_FILTER_VALUE_LAST; i++) if (filter_costs[i] >= 1.0)
       {
@@ -1318,6 +1357,9 @@ png_set_filter_heuristics_fixed(png_structrp png_ptr, int heuristic_method,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0; i < num_weights; i++)
       {
@@ -1348,6 +1390,9 @@ png_set_filter_heuristics_fixed(png_structrp png_ptr, int heuristic_method,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0; i < PNG_FILTER_VALUE_LAST; i++)
          if (filter_costs[i] >= PNG_FP_1)
@@ -1745,6 +1790,9 @@ png_write_image_16bit(png_voidp argument)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    while (y-- > 0)
    {
@@ -1755,6 +1803,9 @@ png_write_image_16bit(png_voidp argument)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       while (out_ptr < row_end)
       {
@@ -1777,6 +1828,9 @@ png_write_image_16bit(png_voidp argument)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          do /* always at least one channel */
          {
@@ -1804,6 +1858,14 @@ png_write_image_16bit(png_voidp argument)
 
             *out_ptr++ = component;
          }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
          while (--c > 0);
 
          /* Skip to next component (skip the intervening alpha channel) */
@@ -1909,6 +1971,9 @@ png_write_image_8bit(png_voidp argument)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       while (y-- > 0)
       {
@@ -1919,6 +1984,9 @@ png_write_image_8bit(png_voidp argument)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          while (out_ptr < row_end)
          {
@@ -1938,9 +2006,20 @@ png_write_image_8bit(png_voidp argument)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             do /* always at least one channel */
                *out_ptr++ = png_unpremultiply(*in_ptr++, alpha, reciprocal);
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
             while (--c > 0);
 
             /* Skip to next component (skip the intervening alpha channel) */
@@ -1965,6 +2044,9 @@ png_write_image_8bit(png_voidp argument)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       while (y-- > 0)
       {
@@ -1975,6 +2057,9 @@ png_write_image_8bit(png_voidp argument)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          while (out_ptr < row_end)
          {
@@ -2028,6 +2113,9 @@ png_image_set_PLTE(png_image_write_control *display)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (i=num_trans=0; i<entries; ++i)
    {
@@ -2331,6 +2419,9 @@ png_image_write_main(png_voidp argument)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       while (y-- > 0)
       {

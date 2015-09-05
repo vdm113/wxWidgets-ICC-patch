@@ -143,6 +143,9 @@ struct vars *v;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (; !ATEOS() && iscalpha(*v->now); v->now++)
 			switch (*v->now) {
@@ -563,6 +566,9 @@ struct vars *v;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (!ATEOS() && *v->now != CHR(')'))
 					v->now++;
@@ -845,6 +851,9 @@ int maxlen;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (len = 0; len < maxlen && !ATEOS(); len++) {
 		c = *v->now++;
@@ -1009,12 +1018,18 @@ struct vars *v;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (;;) {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (!ATEOS() && iscspace(*v->now))
 			v->now++;
@@ -1025,6 +1040,9 @@ struct vars *v;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (!ATEOS() && *v->now != CHR('\n'))
 			v->now++;

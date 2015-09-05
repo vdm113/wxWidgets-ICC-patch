@@ -216,6 +216,9 @@ void wxDirDialog::SetPath(const wxString& path)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( !m_path.empty() && (*(m_path.end() - 1) == wxT('\\')) )
     {

@@ -74,6 +74,9 @@ void ImageRawTestCase::RGBImage()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int y = 0; y < HEIGHT; y++ )
     {
@@ -83,6 +86,9 @@ void ImageRawTestCase::RGBImage()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int x = 0; x < WIDTH; x++ )
         {

@@ -1112,6 +1112,9 @@ void wxSlider::DoSetTickFreq( int n )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 1; i < (m_nRangeMax - m_nRangeMin)/n; i++)
     {

@@ -62,6 +62,9 @@ static void gtk_choice_clicked_callback( GtkWidget *WXUNUSED(widget), wxChoice *
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (child)
     {
@@ -149,6 +152,9 @@ bool wxChoice::Create( wxWindow *parent, wxWindowID id,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < (unsigned int)n; i++)
     {
@@ -186,6 +192,9 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter & items,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < count; ++i, ++pos )
     {
@@ -274,6 +283,9 @@ void wxChoice::DoDeleteOneItem(unsigned int n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned i = 0; i < count; i++, node = node->GetNext() )
     {
@@ -307,6 +319,9 @@ int wxChoice::FindString( const wxString &string, bool bCase ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (child)
     {
@@ -350,6 +365,9 @@ void wxChoice::SetString(unsigned int n, const wxString& str )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (child)
     {
@@ -384,6 +402,9 @@ wxString wxChoice::GetString(unsigned int n) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (child)
     {
@@ -420,6 +441,9 @@ unsigned int wxChoice::GetCount() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (child)
     {
@@ -467,6 +491,9 @@ void wxChoice::DoApplyWidgetStyle(GtkRcStyle *style)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (child)
     {
@@ -567,6 +594,9 @@ wxSize wxChoice::DoGetBestSize() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned int n = 0; n < count; n++ )
         {

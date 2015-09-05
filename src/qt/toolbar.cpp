@@ -193,10 +193,13 @@ void wxToolBar::SetWindowStyleFlag( long style )
     Qt::ToolButtonStyle buttonStyle = GetButtonStyle();
 
     // bring the initial state of all the toolbar items in line with the
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxToolBarToolsList::const_iterator i = m_tools.begin();
           i != m_tools.end();         ++i )
@@ -215,10 +218,13 @@ bool wxToolBar::Realize()
         return false;
 
     // bring the initial state of all the toolbar items in line with the
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxToolBarToolsList::const_iterator i = m_tools.begin();
           i != m_tools.end();         ++i )

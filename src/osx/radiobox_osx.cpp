@@ -73,6 +73,9 @@ wxRadioBox::~wxRadioBox()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (current != m_radioButtonCycle)
         {
@@ -129,6 +132,9 @@ bool wxRadioBox::Create( wxWindow *parent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < n; i++)
     {
@@ -171,6 +177,9 @@ bool wxRadioBox::Enable(bool enable)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < m_noItems; i++)
     {
@@ -194,6 +203,9 @@ bool wxRadioBox::Enable(unsigned int item, bool enable)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (i != item)
     {
@@ -215,6 +227,9 @@ bool wxRadioBox::IsItemEnabled(unsigned int item) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (i != item)
     {
@@ -247,6 +262,9 @@ wxString wxRadioBox::GetString(unsigned int item) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (i != item)
     {
@@ -270,6 +288,9 @@ int wxRadioBox::GetSelection() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (!current->GetValue())
     {
@@ -300,6 +321,9 @@ void wxRadioBox::SetString(unsigned int item,const wxString& label)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (i != item)
     {
@@ -327,6 +351,9 @@ void wxRadioBox::SetSelection(int item)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (i != item)
     {
@@ -348,6 +375,9 @@ bool wxRadioBox::Show(bool show)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i<m_noItems; i++)
     {
@@ -373,6 +403,9 @@ bool wxRadioBox::Show(unsigned int item, bool show)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (i != item)
     {
@@ -394,6 +427,9 @@ bool wxRadioBox::IsItemShown(unsigned int item) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (i != item)
     {
@@ -424,6 +460,9 @@ void wxRadioBox::SetFocus()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (!current->GetValue())
     {
@@ -488,6 +527,9 @@ void wxRadioBox::DoSetSize(int x, int y, int width, int height, int sizeFlags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0 ; i < m_noItems; i++)
     {
@@ -555,6 +597,9 @@ void wxRadioBox::DoSetSize(int x, int y, int width, int height, int sizeFlags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0 ; i < (int)m_noItems; i++)
     {
@@ -608,6 +653,9 @@ wxSize wxRadioBox::DoGetBestSize() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0 ; i < m_noItems; i++)
     {

@@ -80,6 +80,9 @@ static int wxCopyStrWithPercents(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < maxIn-1 && written < maxOut; source++, i++)
     {
@@ -135,6 +138,9 @@ static int wxDoVsnprintf(CharType *buf, size_t lenMax,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i=0; i < parser.nargs && ok; i++)
     {
@@ -160,6 +166,9 @@ static int wxDoVsnprintf(CharType *buf, size_t lenMax,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i=0; i < parser.nargs; i++)
     {

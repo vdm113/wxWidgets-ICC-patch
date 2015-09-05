@@ -162,6 +162,9 @@ void wxAutoScrollTimer::Notify()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( parentTop->GetParent() )
                 parentTop = parentTop->GetParent();
@@ -1058,6 +1061,9 @@ void wxScrollHelperBase::HandleOnMouseWheel(wxMouseEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (; times > 0; times--)
                 m_win->GetEventHandler()->ProcessEvent(newEvent);
@@ -1346,6 +1352,9 @@ void wxScrollHelper::AdjustScrollbars()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int iterationCount = 0; iterationCount < 5; iterationCount++ )
     {

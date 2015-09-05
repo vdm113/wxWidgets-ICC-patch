@@ -67,6 +67,9 @@ static void ColouriseEiffelDoc(unsigned int startPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
 
@@ -153,6 +156,9 @@ static void FoldEiffelDocIndent(unsigned int startPos, int length, int,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
@@ -198,6 +204,9 @@ static void FoldEiffelDocKeyWords(unsigned int startPos, int length, int /* init
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;
@@ -212,6 +221,9 @@ static void FoldEiffelDocKeyWords(unsigned int startPos, int length, int /* init
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while ((j < (sizeof(s) - 1)) && (iswordchar(styler[i + j]))) {
 				s[j] = styler[i + j];

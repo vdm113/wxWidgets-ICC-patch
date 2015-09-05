@@ -224,6 +224,9 @@ wxWindowID wxIdManager::ReserveId(int count)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while(count--)
         {
@@ -240,6 +243,9 @@ wxWindowID wxIdManager::ReserveId(int count)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(wxWindowID winid = wxID_AUTO_LOWEST; winid <= wxID_AUTO_HIGHEST; winid++)
         {
@@ -264,6 +270,9 @@ wxWindowID wxIdManager::ReserveId(int count)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     while(count--)
                         ReserveIdRefCount(winid--);
@@ -316,6 +325,9 @@ void wxIdManager::UnreserveId(wxWindowID winid, int count)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (count--)
         UnreserveIdRefCount(winid++);

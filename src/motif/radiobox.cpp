@@ -126,6 +126,9 @@ bool wxRadioBox::Create(wxWindow *parent, wxWindowID id, const wxString& title,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < n; i++)
     {
@@ -210,6 +213,9 @@ void wxRadioBox::SetSelection(int n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < m_noItems; i++)
         if (i != (unsigned int)n)
@@ -276,6 +282,9 @@ bool wxRadioBox::Enable(bool enable)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < m_noItems; i++)
         XtSetSensitive ((Widget) m_radioButtons[i], (Boolean) enable);
@@ -356,6 +365,9 @@ void wxRadioBox::ChangeFont(bool keepOriginalSize)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < m_noItems; i++)
     {
@@ -378,6 +390,9 @@ void wxRadioBox::ChangeBackgroundColour()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < m_noItems; i++)
     {
@@ -399,6 +414,9 @@ void wxRadioBox::ChangeForegroundColour()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < m_noItems; i++)
     {
@@ -422,6 +440,9 @@ void wxRadioBoxCallback (Widget w, XtPointer clientData,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; i < item->GetCount(); i++)
     if (((Widget)buttons[i]) == w)

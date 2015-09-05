@@ -238,6 +238,9 @@ void FormatConverterTestCase::testLonger()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < WXSIZEOF(formats); i++) {
         if (formats[i].input) {
@@ -251,6 +254,9 @@ void FormatConverterTestCase::testLonger()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (j = 0; j < WXSIZEOF(formats); j++)
                 if (formats[j].input)
@@ -287,12 +293,18 @@ void FormatConverterTestCase::doTest(const char *input,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (const wxChar **prec = precs; *prec; prec++)
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (const wxChar **width = flag_width; *width; width++)
             check(fmt + *width + *prec + input,

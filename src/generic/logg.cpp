@@ -285,6 +285,9 @@ wxLogGui::DoShowMultipleLogMessages(const wxArrayString& messages,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = nMsgCount; n > 0; n-- ) {
         message << m_aMessages[n - 1] << wxT("\n");
@@ -583,6 +586,9 @@ void wxLogFrame::OnSave(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int nLine = 0; bOk && nLine < nLines; nLine++ ) {
         bOk = file.Write(m_pTextCtrl->GetLineText(nLine) +
@@ -723,6 +729,9 @@ wxLogDialog::wxLogDialog(wxWindow *parent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
@@ -863,6 +872,9 @@ void wxLogDialog::CreateDetailsControls(wxWindow *parent)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t icon = 0; icon < WXSIZEOF(icons); icon++ )
     {
@@ -889,6 +901,9 @@ void wxLogDialog::CreateDetailsControls(wxWindow *parent)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
@@ -988,6 +1003,9 @@ wxString wxLogDialog::GetLogMessages() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {

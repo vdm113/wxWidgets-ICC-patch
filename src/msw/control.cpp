@@ -728,6 +728,9 @@ void wxControlWithItems::MSWAllocStorage(const wxArrayStringsAdapter& items,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned i = 0; i < numItems; ++i )
     {

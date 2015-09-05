@@ -326,6 +326,9 @@ int flags;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (j = 0; j < v->nsubs; j++)
 		v->subs[j] = NULL;
@@ -411,6 +414,9 @@ int flags;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 1; i < v->nlacons; i++) {
 		if (debug != NULL)
@@ -484,6 +490,9 @@ int wanted;			/* want enough room for this one */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (p = &v->subs[v->nsubs]; v->nsubs < n; p++, v->nsubs++)
 		*p = NULL;
@@ -547,6 +556,9 @@ struct nfa *nfa;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (a = pre->outs; a != NULL; a = a->outchain) {
 		assert(a->type == PLAIN);
@@ -578,6 +590,9 @@ struct nfa *nfa;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (a = pre->outs; a != NULL; a = a->outchain) {
 		s = a->to;
@@ -585,6 +600,9 @@ struct nfa *nfa;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (b = s->ins; b != NULL; b = b->inchain)
 			if (b->from != pre)
@@ -604,6 +622,9 @@ struct nfa *nfa;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (s = slist; s != NULL; s = s2) {
 		s2 = newstate(nfa);
@@ -612,6 +633,9 @@ struct nfa *nfa;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (a = s->ins; a != NULL; a = b) {
 			b = a->inchain;
@@ -676,6 +700,9 @@ struct state *final;		/* final state */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (t = branches; t != branch; t = t->right)
 				t->flags |= branch->flags;
@@ -734,6 +761,9 @@ int partial;			/* is this only part of a branch? */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (!SEE('|') && !SEE(stopper) && !SEE(EOS)) {
 		if (seencontent) {	/* implicit concat operator */
@@ -1209,6 +1239,9 @@ struct vars *v;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (SEE(DIGIT) && n < DUPMAX) {
 		n = n*10 + v->nextvalue;
@@ -1330,6 +1363,9 @@ struct state *rp;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (!SEE(']') && !SEE(EOS))
 		brackpart(v, lp, rp);
@@ -1384,6 +1420,9 @@ struct state *rp;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (p = v->mcces->chrs, i = v->mcces->nchrs; i > 0; p++, i--) {
 		co = GETCOLOR(v->cm, *p);
@@ -1417,6 +1456,9 @@ struct state *rp;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (pa = pa->to->outs; pa != NULL; pa = pa->outchain)
 				if (findarc(ba->to, PLAIN, pa->co) == NULL)
@@ -1562,6 +1604,9 @@ struct vars *v;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (SEE(PLAIN)) {
 		endp = v->now;
@@ -1599,6 +1644,9 @@ struct cvec *cv;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (mcce = 0; mcce < cv->nmcces; mcce++) {
 		p = cv->mcces[mcce];
@@ -1687,6 +1735,9 @@ struct state *rp;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (p = cv->chrs, i = cv->nchrs; i > 0; p++, i--) {
 		ch = *p;
@@ -1705,6 +1756,9 @@ struct state *rp;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (p = cv->ranges, i = cv->nranges; i > 0; p += 2, i--) {
 		from = *p;
@@ -1713,6 +1767,9 @@ struct state *rp;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (from <= to && (ce = nextleader(v, from, to)) != NOCELT) {
 			if (from < ce)
@@ -1736,6 +1793,9 @@ struct state *rp;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (p = leads->chrs, i = leads->nchrs; i > 0; p++, i--) {
 		co = GETCOLOR(v->cm, *p);
@@ -1762,6 +1822,9 @@ struct state *rp;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < cv->nmcces; i++) {
 		p = cv->mcces[i];
@@ -1813,6 +1876,9 @@ pchr to;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = v->mcces->nchrs, p = v->mcces->chrs; i > 0; i--, p++) {
 		ch = *p;
@@ -2018,6 +2084,9 @@ struct vars *v;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (t = v->treechain; t != NULL; t = next) {
 		next = t->chain;
@@ -2133,6 +2202,9 @@ int n;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (sub = subs + 1, i = n - 1; i > 0; sub++, i--)	/* no 0th */
 		if (!NULLCNFA(sub->cnfa))
@@ -2206,6 +2278,9 @@ FILE *f;
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 1; i < g->nlacons; i++) {
 		fprintf(f, "\nla%d (%s):\n", i,

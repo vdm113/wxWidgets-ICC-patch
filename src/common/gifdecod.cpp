@@ -116,6 +116,9 @@ void wxGIFDecoder::Destroy()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i<m_nFrames; i++)
     {
@@ -165,6 +168,9 @@ bool wxGIFDecoder::ConvertToImage(unsigned int frame, wxImage *image) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < GetNcolours(frame); i++)
         {
@@ -194,6 +200,9 @@ bool wxGIFDecoder::ConvertToImage(unsigned int frame, wxImage *image) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 256; i++)
     {
@@ -211,6 +220,9 @@ bool wxGIFDecoder::ConvertToImage(unsigned int frame, wxImage *image) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < npixel; i++, src++)
     {
@@ -295,6 +307,9 @@ int wxGIFDecoder::getcode(wxInputStream& stream, int bits, int ab_fin)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (bits > m_restbits)
     {
@@ -396,6 +411,9 @@ wxGIFDecoder::dgif(wxInputStream& stream, GIFImage *img, int interl, int bits)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do
     {
@@ -431,6 +449,9 @@ wxGIFDecoder::dgif(wxInputStream& stream, GIFImage *img, int interl, int bits)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (code > ab_clr)
         {
@@ -483,6 +504,9 @@ wxGIFDecoder::dgif(wxInputStream& stream, GIFImage *img, int interl, int bits)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (pos >= 0)
         {
@@ -518,6 +542,9 @@ wxGIFDecoder::dgif(wxInputStream& stream, GIFImage *img, int interl, int bits)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     while (y >= (img->h))
                     {
@@ -606,6 +633,14 @@ as an End of Information itself)
         pos = 0;
         lastcode = readcode;
     }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
     while (code != ab_fin);
 
     return wxGIF_OK;
@@ -710,6 +745,9 @@ wxGIFErrorCode wxGIFDecoder::LoadGIF(wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (!done)
     {
@@ -769,6 +807,9 @@ wxGIFErrorCode wxGIFDecoder::LoadGIF(wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         while (len)
                         {
@@ -799,6 +840,9 @@ wxGIFErrorCode wxGIFDecoder::LoadGIF(wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         while ((i = stream.GetC()) != 0)
                         {
@@ -929,6 +973,9 @@ wxGIFErrorCode wxGIFDecoder::LoadGIF(wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (type != GIF_MARKER_ENDOFDATA)
     {
@@ -948,6 +995,9 @@ wxGIFErrorCode wxGIFDecoder::LoadGIF(wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while ((i = stream.GetC()) != 0)
                 {
@@ -995,6 +1045,9 @@ wxGIFErrorCode wxGIFDecoder::LoadGIF(wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while ((i = stream.GetC()) != 0)
                 {

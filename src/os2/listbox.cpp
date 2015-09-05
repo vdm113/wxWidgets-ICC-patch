@@ -192,6 +192,9 @@ bool wxListBox::Create( wxWindow* pParent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (lUi = 0; lUi < (LONG)n; lUi++)
     {
@@ -304,6 +307,9 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter & items,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < count; i++)
     {
@@ -428,6 +434,9 @@ int wxListBox::GetSelections( wxArrayInt& raSelections ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ((lItem = LONGFROMMR(::WinSendMsg( GetHwnd()
                                                     ,LM_QUERYSELECTION
@@ -456,6 +465,9 @@ int wxListBox::GetSelections( wxArrayInt& raSelections ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ((lItem = LONGFROMMR(::WinSendMsg( GetHwnd()
                                                     ,LM_QUERYSELECTION
@@ -597,6 +609,9 @@ wxSize wxListBox::DoGetBestSize() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < m_nNumItems; i++)
     {

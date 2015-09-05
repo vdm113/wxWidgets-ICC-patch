@@ -59,10 +59,13 @@ wxTimerScheduler *wxTimerScheduler::ms_instance = NULL;
 
 wxTimerScheduler::~wxTimerScheduler()
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxTimerList::iterator node = m_timers.begin();
           node != m_timers.end();
@@ -85,6 +88,9 @@ void wxTimerScheduler::DoAddTimer(wxTimerSchedule *s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( node = m_timers.begin(); node != m_timers.end(); ++node )
     {
@@ -106,10 +112,13 @@ void wxTimerScheduler::RemoveTimer(wxUnixTimerImpl *timer)
 {
     wxLogTrace(wxTrace_Timer, wxT("Removing timer %d"), timer->GetId());
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxTimerList::iterator node = m_timers.begin();
           node != m_timers.end();
@@ -156,6 +165,9 @@ bool wxTimerScheduler::NotifyExpired()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxTimerList::iterator next,
             cur = m_timers.begin(); cur != m_timers.end(); cur = next )
@@ -209,6 +221,9 @@ bool wxTimerScheduler::NotifyExpired()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( TimerImpls::const_iterator i = toNotify.begin(),
                                      end = toNotify.end();

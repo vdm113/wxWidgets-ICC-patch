@@ -92,6 +92,9 @@ wxHtmlImageMapAreaCell::wxHtmlImageMapAreaCell( wxHtmlImageMapAreaCell::celltype
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ((i = x.Find( ',' )) != wxNOT_FOUND)
     {
@@ -167,6 +170,9 @@ wxHtmlLinkInfo *wxHtmlImageMapAreaCell::GetLink( int x, int y ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                  while (pointer < end)
                  {
@@ -178,6 +184,9 @@ wxHtmlLinkInfo *wxHtmlImageMapAreaCell::GetLink( int x, int y ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                          while ((pointer < end) && (coords[pointer] >= wherey))
                          {
@@ -205,6 +214,9 @@ wxHtmlLinkInfo *wxHtmlImageMapAreaCell::GetLink( int x, int y ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                          while ((pointer < end) && (coords[pointer] < wherey))
                          {
@@ -533,6 +545,9 @@ void wxHtmlImageCell::AdvanceAnimation(wxTimer *timer)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (wxHtmlCell *cell = this; cell; cell = cell->GetParent())
         {
@@ -662,6 +677,9 @@ wxHtmlLinkInfo *wxHtmlImageCell::GetLink( int x, int y ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (p)
         {

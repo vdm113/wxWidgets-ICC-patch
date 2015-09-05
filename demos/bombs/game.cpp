@@ -71,6 +71,9 @@ bool BombsGame::Init(int aWidth, int aHeight, bool easyCorner)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(x=0; x<m_width; x++)
     {
@@ -78,6 +81,9 @@ bool BombsGame::Init(int aWidth, int aHeight, bool easyCorner)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(y=0; y<m_height; y++)
         {
@@ -101,12 +107,18 @@ bool BombsGame::Init(int aWidth, int aHeight, bool easyCorner)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(x=0; x<m_width; x++)
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(y=0; y<m_height; y++)
             if (m_field[x+y*m_width] & BG_BOMB)
@@ -117,6 +129,9 @@ bool BombsGame::Init(int aWidth, int aHeight, bool easyCorner)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for(xx=x-1; xx<=x+1; xx++)
                     if (xx>=0 && xx<m_width)
@@ -124,6 +139,9 @@ bool BombsGame::Init(int aWidth, int aHeight, bool easyCorner)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         for(yy=y-1; yy<=y+1; yy++)
                             if (yy>=0 && yy<m_height && (yy!=y || xx!=x))

@@ -148,6 +148,9 @@ void wxAppBase::CleanUp()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( !wxTopLevelWindows.empty() )
     {
@@ -389,6 +392,9 @@ bool wxAppBase::ProcessIdle()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {

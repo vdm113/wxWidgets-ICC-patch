@@ -277,10 +277,13 @@ bool wxInfoBar::HasButtonId(wxWindowID btnid) const
 
     // as in the generic version, look for the button starting from the end
     const wxInfoBarGTKImpl::Buttons& buttons = m_impl->m_buttons;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxInfoBarGTKImpl::Buttons::const_reverse_iterator i = buttons.rbegin();
           i != buttons.rend();
@@ -303,10 +306,13 @@ void wxInfoBar::RemoveButton(wxWindowID btnid)
 
     // as in the generic version, look for the button starting from the end
     wxInfoBarGTKImpl::Buttons& buttons = m_impl->m_buttons;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxInfoBarGTKImpl::Buttons::reverse_iterator i = buttons.rbegin();
           i != buttons.rend();

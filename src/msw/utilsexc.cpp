@@ -178,6 +178,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for ( size_t n = 0; n < numThreads; n++ )
                 {
@@ -270,6 +273,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < WXSIZEOF(m_handles); n++ )
         {
@@ -373,10 +379,13 @@ wxExecuteWindowCbk(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         else
         {
             // asynchronous execution - we should do the clean up
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( wxVector<HANDLE>::iterator it = gs_asyncThreads.begin();
                   it != gs_asyncThreads.end();
@@ -534,6 +543,9 @@ size_t wxPipeOutputStream::OnSysWrite(const void *buffer, size_t len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( len > 0 )
     {
@@ -646,6 +658,9 @@ long wxExecute(const wxString& cmd, int flags, wxProcess *handler,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( *p && *p != wxT('#') )
         {
@@ -666,6 +681,9 @@ long wxExecute(const wxString& cmd, int flags, wxProcess *handler,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( *p && *p != wxT('#') )
         {
@@ -686,6 +704,9 @@ long wxExecute(const wxString& cmd, int flags, wxProcess *handler,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( *p && *p != wxT('#') )
         {
@@ -706,6 +727,9 @@ long wxExecute(const wxString& cmd, int flags, wxProcess *handler,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( *p )
         {
@@ -843,6 +867,9 @@ long wxExecute(const wxString& cmd, int flags, wxProcess *handler,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( it = env->env.begin(); it != env->env.end(); ++it )
             {
@@ -858,6 +885,9 @@ long wxExecute(const wxString& cmd, int flags, wxProcess *handler,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( it = env->env.begin(); it != env->env.end(); ++it )
             {
@@ -1104,6 +1134,9 @@ long wxExecute(const wxString& cmd, int flags, wxProcess *handler,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( data->state )
     {
@@ -1156,6 +1189,9 @@ long wxExecuteImpl(CharType **argv, int flags, wxProcess *handler,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ;; )
     {

@@ -149,6 +149,9 @@ bool wxANIDecoder::DoCanRead(wxInputStream& stream) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( stream.IsOk() )
     {
@@ -211,6 +214,9 @@ struct wxANIHeader
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxInt32 *p = start; p != end; p++ )
         {
@@ -262,6 +268,9 @@ bool wxANIDecoder::Load( wxInputStream& stream )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( !stream.Eof() )
     {
@@ -317,6 +326,9 @@ bool wxANIDecoder::Load( wxInputStream& stream )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (unsigned int i=0; i<m_nFrames; i++)
             {
@@ -336,6 +348,9 @@ bool wxANIDecoder::Load( wxInputStream& stream )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (unsigned int i=0; i<m_nFrames; i++)
             {
@@ -381,6 +396,9 @@ bool wxANIDecoder::Load( wxInputStream& stream )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (unsigned int i=0; i<m_nFrames; i++)
             if (m_info[i].m_imageIndex == -1)
@@ -393,6 +411,9 @@ bool wxANIDecoder::Load( wxInputStream& stream )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i<m_nFrames; i++)
         if (m_info[i].m_delay == 0)

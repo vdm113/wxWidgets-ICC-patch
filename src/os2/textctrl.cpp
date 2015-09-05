@@ -345,6 +345,9 @@ wxString wxTextCtrl::GetValue() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ; *zStr; zStr++ )
     {

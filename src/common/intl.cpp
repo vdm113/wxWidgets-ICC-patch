@@ -417,6 +417,9 @@ bool wxLocale::Init(int language, int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( *names )
         {
@@ -709,6 +712,9 @@ inline bool wxGetNonEmptyEnvVar(const wxString& name, wxString* value)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < count; i++ )
         {
@@ -724,6 +730,9 @@ inline bool wxGetNonEmptyEnvVar(const wxString& name, wxString* value)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < count; i++ )
         {
@@ -739,6 +748,9 @@ inline bool wxGetNonEmptyEnvVar(const wxString& name, wxString* value)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < count; i++ )
         {
@@ -756,6 +768,9 @@ inline bool wxGetNonEmptyEnvVar(const wxString& name, wxString* value)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < count; i++ )
         {
@@ -778,6 +793,9 @@ inline bool wxGetNonEmptyEnvVar(const wxString& name, wxString* value)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < count; i++ )
         {
@@ -798,6 +816,9 @@ inline bool wxGetNonEmptyEnvVar(const wxString& name, wxString* value)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < count; i++ )
         {
@@ -989,6 +1010,9 @@ const wxLanguageInfo *wxLocale::GetLanguageInfo(int lang)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )
     {
@@ -1041,6 +1065,9 @@ const wxLanguageInfo *wxLocale::FindLanguageInfo(const wxString& locale)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )
     {
@@ -1246,6 +1273,9 @@ wxString wxTranslateFromUnicodeFormat(const wxString& fmt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator p = fmt.begin(); /* end handled inside */; ++p )
     {
@@ -1496,6 +1526,9 @@ wxString wxTranslateFromUnicodeFormat(const wxString& fmt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( p != fmt.end() )
             {
@@ -1827,6 +1860,9 @@ wxString GetDateFormatFromLangInfo(wxLocaleInfo index)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator p = fmt.begin(); p != end; ++p )
     {

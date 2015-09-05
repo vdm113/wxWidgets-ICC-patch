@@ -58,6 +58,9 @@ BENCHMARK_FUNC(DummyTLS)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < NUM_ITER; n++ )
     {
@@ -85,6 +88,9 @@ BENCHMARK_FUNC(CompilerTLS)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < NUM_ITER; n++ )
     {
@@ -135,6 +141,9 @@ BENCHMARK_FUNC(PosixTLS)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < NUM_ITER; n++ )
     {
@@ -185,6 +194,9 @@ BENCHMARK_FUNC(Win32TLS)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < NUM_ITER; n++ )
     {
@@ -216,6 +228,9 @@ BENCHMARK_FUNC(BoostTLS)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < NUM_ITER; n++ )
     {
@@ -244,6 +259,9 @@ BENCHMARK_FUNC(wxTLS)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < NUM_ITER; n++ )
     {

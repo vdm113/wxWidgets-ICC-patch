@@ -105,6 +105,9 @@ bool wxPalette::Create( int n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < n; i ++)
     {
@@ -181,6 +184,9 @@ int wxPalette::GetPixel( unsigned char cRed,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < ulNumEntries; i++)
     {

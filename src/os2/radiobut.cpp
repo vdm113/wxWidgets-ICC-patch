@@ -221,10 +221,13 @@ void wxRadioButton::SetValue( bool bValue )
 #   pragma swp
 #   pragma unroll
 #endif
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( wxWindowList::compatibility_iterator nodeBefore = nodeThis->GetPrevious();
                   nodeBefore;
@@ -261,10 +264,13 @@ void wxRadioButton::SetValue( bool bValue )
 #   pragma swp
 #   pragma unroll
 #endif
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (wxWindowList::compatibility_iterator nodeAfter = nodeThis->GetNext();
              nodeAfter;

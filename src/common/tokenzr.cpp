@@ -59,6 +59,9 @@ find_first_of(const wxChar *delims, size_t len,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator i = from; i != end; ++i )
     {
@@ -80,6 +83,9 @@ find_first_not_of(const wxChar *delims, size_t len,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator i = from; i != end; ++i )
     {
@@ -132,6 +138,9 @@ void wxStringTokenizer::SetString(const wxString& str,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( p = delims.begin(); p != delims.end(); ++p )
         {
@@ -266,6 +275,9 @@ size_t wxStringTokenizer::CountTokens() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( tkz.HasMoreTokens() )
     {
@@ -288,6 +300,9 @@ wxString wxStringTokenizer::GetNextToken()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do
     {
@@ -331,6 +346,14 @@ wxString wxStringTokenizer::GetNextToken()
             m_lastDelim = (pos == m_stringEnd) ? wxT('\0') : (wxChar)*pos;
         }
     }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
     while ( !AllowEmpty() && token.empty() );
 
     return token;
@@ -350,6 +373,9 @@ wxArrayString wxStringTokenize(const wxString& str,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( tk.HasMoreTokens() )
     {

@@ -451,6 +451,9 @@ bool wxSingleChoiceDialog::Create( wxWindow *parent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < n; i++)
             m_listbox->SetClientData(i, clientData[i]);
@@ -567,6 +570,9 @@ void wxMultiChoiceDialog::SetSelections(const wxArrayInt& selections)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < count; ++n )
         {
@@ -580,6 +586,9 @@ void wxMultiChoiceDialog::SetSelections(const wxArrayInt& selections)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < count; n++ )
         {
@@ -597,6 +606,9 @@ void wxMultiChoiceDialog::SetSelections(const wxArrayInt& selections)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; ++n )
     {
@@ -609,6 +621,9 @@ void wxMultiChoiceDialog::SetSelections(const wxArrayInt& selections)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
     {
@@ -629,6 +644,9 @@ bool wxMultiChoiceDialog::TransferDataFromWindow()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )
         {
@@ -644,6 +662,9 @@ bool wxMultiChoiceDialog::TransferDataFromWindow()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {

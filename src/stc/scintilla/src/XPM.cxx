@@ -32,6 +32,9 @@ static const char *NextField(const char *s) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (*s && *s == ' ') {
 		s++;
@@ -40,6 +43,9 @@ static const char *NextField(const char *s) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (*s && *s != ' ') {
 		s++;
@@ -48,6 +54,9 @@ static const char *NextField(const char *s) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (*s && *s == ' ') {
 		s++;
@@ -62,6 +71,9 @@ static size_t MeasureLength(const char *s) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (s[i] && (s[i] != '\"'))
 		i++;
@@ -132,6 +144,9 @@ void XPM::Init(const char *const *linesForm) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int c=0; c<nColours; c++) {
 		const char *colourDef = linesForm[c+1];
@@ -150,6 +165,9 @@ void XPM::Init(const char *const *linesForm) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int y=0; y<height; y++) {
 		const char *lform = linesForm[y+nColours+1];
@@ -158,6 +176,9 @@ void XPM::Init(const char *const *linesForm) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (size_t x = 0; x<len; x++)
 			pixels[y * width + x] = static_cast<unsigned char>(lform[x]);
@@ -175,6 +196,9 @@ void XPM::Draw(Surface *surface, PRectangle &rc) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int y=0; y<height; y++) {
 		int prevCode = 0;
@@ -183,6 +207,9 @@ void XPM::Draw(Surface *surface, PRectangle &rc) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int x=0; x<width; x++) {
 			int code = pixels[y * width + x];
@@ -221,6 +248,9 @@ std::vector<const char *> XPM::LinesFormFromTextForm(const char *textForm) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; countQuotes < (2*strings) && textForm[j] != '\0'; j++) {
 		if (textForm[j] == '\"') {
@@ -269,12 +299,18 @@ RGBAImage::RGBAImage(const XPM &xpm) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int y=0; y<height; y++) {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int x=0; x<width; x++) {
 			ColourDesired colour;
@@ -318,6 +354,9 @@ void RGBAImageSet::Clear() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (ImageMap::iterator it=images.begin(); it != images.end(); ++it) {
 		delete it->second;
@@ -357,6 +396,9 @@ int RGBAImageSet::GetHeight() const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (ImageMap::const_iterator it=images.begin(); it != images.end(); ++it) {
 			if (height < it->second->GetHeight()) {
@@ -374,6 +416,9 @@ int RGBAImageSet::GetWidth() const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (ImageMap::const_iterator it=images.begin(); it != images.end(); ++it) {
 			if (width < it->second->GetWidth()) {

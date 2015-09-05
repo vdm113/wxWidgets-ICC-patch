@@ -119,6 +119,9 @@ static unsigned wxGetIndexFromEnumValue(int value)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( !(value & 1) )
     {
@@ -334,6 +337,9 @@ wxOperatingSystemId wxPlatformInfo::GetOperatingSystemId(const wxString &str)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < WXSIZEOF(wxOperatingSystemIdNames); i++ )
     {
@@ -351,6 +357,9 @@ wxPortId wxPlatformInfo::GetPortId(const wxString &str)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < WXSIZEOF(wxPortIdNames); i++ )
     {

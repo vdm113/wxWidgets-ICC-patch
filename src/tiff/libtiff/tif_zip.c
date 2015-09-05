@@ -177,6 +177,9 @@ ZIPDecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	do {
 		int state = inflate(&sp->stream, Z_PARTIAL_FLUSH);
@@ -286,6 +289,9 @@ ZIPEncode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	do {
 		if (deflate(&sp->stream, Z_NO_FLUSH) != Z_OK) {
@@ -319,6 +325,9 @@ ZIPPostEncode(TIFF* tif)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	do {
 		state = deflate(&sp->stream, Z_FINISH);

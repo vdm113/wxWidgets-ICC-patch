@@ -128,6 +128,9 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do {
         if (bits < 15) {
@@ -211,6 +214,9 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                             do {
                                 PUP(out) = 0;
@@ -222,6 +228,9 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         do {
                             PUP(out) = 0;
@@ -232,6 +241,9 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                             do {
                                 PUP(out) = PUP(from);
@@ -249,6 +261,9 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                             do {
                                 PUP(out) = PUP(from);
@@ -265,6 +280,9 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                             do {
                                 PUP(out) = PUP(from);
@@ -277,6 +295,9 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                                 do {
                                     PUP(out) = PUP(from);
@@ -293,6 +314,9 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                             do {
                                 PUP(out) = PUP(from);
@@ -304,6 +328,9 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     while (len > 2) {
                         PUP(out) = PUP(from);
@@ -323,6 +350,9 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     do {                        /* minimum length is three */
                         PUP(out) = PUP(from);

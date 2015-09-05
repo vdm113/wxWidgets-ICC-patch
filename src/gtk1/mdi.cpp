@@ -88,6 +88,9 @@ gtk_mdi_page_change_callback( GtkNotebook *WXUNUSED(widget),
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -206,6 +209,9 @@ void wxMDIParentFrame::OnInternalIdle()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -290,6 +296,9 @@ wxMDIChildFrame *wxMDIParentFrame::GetActiveChild() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {

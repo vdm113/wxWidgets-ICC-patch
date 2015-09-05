@@ -631,6 +631,9 @@ void MyFrame::OnSetStatusFields(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( long n = 0; n < nFields; n++ )
         {
@@ -670,6 +673,9 @@ void MyFrame::OnResetFieldsWidth(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < n; i++ )
         pStat->SetStatusText("same size", i);
@@ -690,6 +696,9 @@ void MyFrame::OnShowFieldsRect(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < n; i++ )
     {
@@ -790,6 +799,9 @@ void MyFrame::ApplyPaneStyle()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 1; i < fields; i++)
         styles[i] = wxSB_NORMAL;

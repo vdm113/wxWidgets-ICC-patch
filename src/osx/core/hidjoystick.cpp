@@ -299,6 +299,9 @@ int wxJoystick::GetNumberButtons() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(int nIndex = 0; nIndex < 40; ++nIndex)
     {
@@ -316,6 +319,9 @@ int wxJoystick::GetNumberAxes() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(int nIndex = 40; nIndex < 50; ++nIndex)
     {
@@ -608,6 +614,9 @@ void wxHIDJoystick::BuildCookies(CFArrayRef Array)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(int i = 0; i < 50; ++i)
         wxPrintf(wxT("\nVAL #%i:[%i]"), i, m_pCookies[i]);
@@ -622,6 +631,9 @@ void wxHIDJoystick::MakeCookies(CFArrayRef Array)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < CFArrayGetCount(Array); ++i)
     {
@@ -792,6 +804,9 @@ void* wxJoystickThread::Entry()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while(true)
     {
@@ -861,6 +876,9 @@ void* wxJoystickThread::Entry()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (ret != kIOReturnUnderrun)
     {
@@ -882,6 +900,9 @@ void* wxJoystickThread::Entry()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while(nIndex < 50)
         {

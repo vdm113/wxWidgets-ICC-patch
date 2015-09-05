@@ -257,6 +257,9 @@ int wxEventLoopManual::DoRun()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ;; )
     {
@@ -269,6 +272,9 @@ int wxEventLoopManual::DoRun()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( ;; )
             {
@@ -281,6 +287,9 @@ int wxEventLoopManual::DoRun()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while ( !m_shouldExit && !Pending() && ProcessIdle() )
                     ;
@@ -311,6 +320,9 @@ int wxEventLoopManual::DoRun()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( ;; )
             {

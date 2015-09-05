@@ -125,6 +125,9 @@ void XsMDICanvas::add (XsMDIWindow *win)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (int loop = 0; loop < _num; loop++)
          newList[loop] = _list[loop];
@@ -162,6 +165,9 @@ void XsMDICanvas::remove (XsMDIWindow *win)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (i = 0; i < _num; i++)
    {
@@ -174,6 +180,9 @@ void XsMDICanvas::remove (XsMDIWindow *win)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
          for (j = i; j < _num - 1; j++)
             _list[j] = _list[j + 1];
@@ -212,6 +221,9 @@ void XsMDICanvas::show ( )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
    for (int loop = 0; loop < _num; loop++)
       _placeWindow (_list[loop]);

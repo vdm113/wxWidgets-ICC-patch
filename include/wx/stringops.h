@@ -97,6 +97,9 @@ struct WXDLLIMPEXP_BASE wxStringOperationsUtf8
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( ((*i) & 0xC0) == 0x80 /* 2 highest bits are '10' */ )
             --i;
@@ -113,6 +116,9 @@ struct WXDLLIMPEXP_BASE wxStringOperationsUtf8
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( ptrdiff_t j = 0; j < n; ++j )
                 IncIter(out);
@@ -123,6 +129,9 @@ struct WXDLLIMPEXP_BASE wxStringOperationsUtf8
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( ptrdiff_t j = 0; j > n; --j )
                 DecIter(out);
@@ -142,6 +151,9 @@ struct WXDLLIMPEXP_BASE wxStringOperationsUtf8
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( i1 != i2 )
             {
@@ -155,6 +167,9 @@ struct WXDLLIMPEXP_BASE wxStringOperationsUtf8
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( i2 != i1 )
             {

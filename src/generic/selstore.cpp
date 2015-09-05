@@ -115,6 +115,9 @@ bool wxSelectionStore::SelectRange(unsigned itemFrom, unsigned itemTo,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( item = 0; item < itemFrom; item++ )
             {
@@ -126,6 +129,9 @@ bool wxSelectionStore::SelectRange(unsigned itemFrom, unsigned itemTo,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( item = itemTo + 1; item < m_count; item++ )
             {
@@ -160,6 +166,9 @@ bool wxSelectionStore::SelectRange(unsigned itemFrom, unsigned itemTo,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for ( int i = end; i >= (int)start; i-- )
                 {
@@ -193,6 +202,9 @@ bool wxSelectionStore::SelectRange(unsigned itemFrom, unsigned itemTo,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned item = itemFrom; item <= itemTo; item++ )
         {
@@ -229,6 +241,9 @@ void wxSelectionStore::OnItemsInserted(unsigned item, unsigned numItems)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = idx; i < count; i++ )
     {
@@ -244,6 +259,9 @@ void wxSelectionStore::OnItemsInserted(unsigned item, unsigned numItems)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned n = item; n < item + numItems; n++ )
         {
@@ -272,6 +290,9 @@ void wxSelectionStore::OnItemDelete(unsigned item)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( i < count )
     {
@@ -296,6 +317,9 @@ bool wxSelectionStore::OnItemsDeleted(unsigned item, unsigned numItems)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( i < m_itemsSel.size() )
     {
@@ -333,6 +357,9 @@ void wxSelectionStore::SetItemCount(unsigned count)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i = m_itemsSel.GetCount(); i > 0; i-- )
         {
@@ -367,6 +394,9 @@ unsigned wxSelectionStore::GetNextSelectedItem(IterationState& cookie) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned item = cookie; ; item++ )
         {

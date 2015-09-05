@@ -131,6 +131,9 @@ void wxIniConfig::SetPath(const wxString& strPath)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t nPart = 1; nPart < nPartsCount; nPart++ )
         {
@@ -172,6 +175,9 @@ const wxString& wxIniConfig::GetPath() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( const wxChar *p = m_strPath; *p != '\0'; p++ )
         {

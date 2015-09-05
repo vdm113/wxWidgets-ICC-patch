@@ -125,6 +125,9 @@ MakeValidCIdent(wxString* str)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString::iterator it = str->begin(); it != str->end(); ++it )
     {
@@ -171,6 +174,9 @@ bool wxXPMHandler::SaveFile(wxImage * image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( k = MaxCixels; cols > k; k *= MaxCixels)
         chars_per_pixel++;
@@ -211,10 +217,13 @@ bool wxXPMHandler::SaveFile(wxImage * image,
                    (image->GetMaskGreen() << 8) | image->GetMaskBlue();
 
     // 2b. generate colour table:
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (wxImageHistogram::iterator entry = histogram.begin();
          entry != histogram.end(); ++entry )
@@ -227,6 +236,9 @@ bool wxXPMHandler::SaveFile(wxImage * image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 0; j < chars_per_pixel; j++)
         {
@@ -258,6 +270,9 @@ bool wxXPMHandler::SaveFile(wxImage * image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (j = 0; j < image->GetHeight(); j++)
     {
@@ -267,6 +282,9 @@ bool wxXPMHandler::SaveFile(wxImage * image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < image->GetWidth(); i++, data += 3)
         {

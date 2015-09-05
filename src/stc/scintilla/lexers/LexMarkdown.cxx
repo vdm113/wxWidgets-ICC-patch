@@ -73,6 +73,9 @@ static bool FollowToLineEnd(const int ch, const int state, const unsigned int en
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (sc.GetRelative(++i) == ch)
         ;
@@ -81,6 +84,9 @@ static bool FollowToLineEnd(const int ch, const int state, const unsigned int en
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (IsASpaceOrTab(sc.GetRelative(i)) && sc.currentPos + i < endPos)
         ++i;
@@ -105,6 +111,9 @@ static void SetStateAndZoom(const int state, const int length, const int token, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (sc.More() && !IsNewline(sc.ch)) {
         if (sc.ch == token && !started) {
@@ -128,6 +137,9 @@ static bool HasPrevLineContent(StyleContext &sc) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ((--i + (int)sc.currentPos) >= 0 && !IsNewline(sc.GetRelative(i)))
         ;
@@ -135,6 +147,9 @@ static bool HasPrevLineContent(StyleContext &sc) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ((--i + (int)sc.currentPos) >= 0) {
         if (IsNewline(sc.GetRelative(i)))
@@ -156,6 +171,9 @@ static bool IsValidHrule(const unsigned int endPos, StyleContext &sc) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (;;) {
         ++i;
@@ -195,6 +213,9 @@ static void ColorizeMarkdownDoc(unsigned int startPos, int length, int initStyle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (sc.More()) {
         // Skip past escaped characters
@@ -272,6 +293,9 @@ static void ColorizeMarkdownDoc(unsigned int startPos, int length, int initStyle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while (!IsNewline(sc.GetRelative(i)) && sc.currentPos + i < endPos)
                     i++;
@@ -369,6 +393,9 @@ static void ColorizeMarkdownDoc(unsigned int startPos, int length, int initStyle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while (IsADigit(sc.GetRelative(++digitCount)))
                     ;
@@ -405,6 +432,9 @@ static void ColorizeMarkdownDoc(unsigned int startPos, int length, int initStyle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while (i < len && (sc.GetRelative(++i) != ']' || sc.GetRelative(i - 1) == '\\'))
                     ;
@@ -415,6 +445,9 @@ static void ColorizeMarkdownDoc(unsigned int startPos, int length, int initStyle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         while (i < len && (sc.GetRelative(++i) != ')' || sc.GetRelative(i - 1) == '\\'))
                             ;
@@ -426,6 +459,9 @@ static void ColorizeMarkdownDoc(unsigned int startPos, int length, int initStyle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         while (i < len && (sc.GetRelative(++i) != ']' || sc.GetRelative(i - 1) == '\\'))
                             ;

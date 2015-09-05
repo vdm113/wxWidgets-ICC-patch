@@ -83,6 +83,9 @@ static void swizzleBitmap(void * data, int rowBytes, int height)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( top < bottom )
     {

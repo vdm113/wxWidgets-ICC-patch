@@ -61,6 +61,9 @@ wxHtmlStyleParams::wxHtmlStyleParams(const wxHtmlTag& tag)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( tkz.HasMoreTokens() )
     {

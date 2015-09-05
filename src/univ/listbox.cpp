@@ -262,6 +262,9 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter& items,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < numItems; ++i )
     {
@@ -383,6 +386,9 @@ void wxListBox::DoDeleteOneItem(unsigned int n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned int item = 0; item < count; item++ )
     {
@@ -804,6 +810,9 @@ wxCoord wxListBox::GetMaxWidth() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned int n = 0; n < count; n++ )
         {
@@ -866,6 +875,9 @@ wxSize wxListBox::DoGetBestClientSize() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned int n = 0; n < count; n++ )
     {
@@ -980,6 +992,9 @@ bool wxListBox::FindItem(const wxString& prefix, bool strictlyAfter)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int item = first; item != (int)last; item < (int)(count - 1) ? item++ : item = 0 )
     {
@@ -1087,6 +1102,9 @@ void wxListBox::ExtendSelection(int itemTo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < itemFrom; n++ )
     {
@@ -1097,6 +1115,9 @@ void wxListBox::ExtendSelection(int itemTo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ; n <= itemTo; n++ )
     {
@@ -1108,6 +1129,9 @@ void wxListBox::ExtendSelection(int itemTo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ; n < (int)count; n++ )
     {

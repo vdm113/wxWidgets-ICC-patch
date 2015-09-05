@@ -591,6 +591,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (ULONG nCmd = 0; nCmd < cCmds; nCmd++)
         {
@@ -779,6 +782,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (DWORD i = 0; i < pDispParams->cArgs; i++)
         {
@@ -834,6 +840,9 @@ wxVariant &wxActiveXEvent::operator [](size_t idx)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( m_params.GetCount()<=idx )
         {
@@ -993,6 +1002,9 @@ void wxActiveXContainer::CreateActiveX(REFIID iid, IUnknown* pUnk)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < ta->cImplTypes; i++)
     {

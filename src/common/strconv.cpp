@@ -81,6 +81,9 @@ static bool NotAllNULs(const char *p, size_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( n && *p++ == '\0' )
         n--;
@@ -209,6 +212,9 @@ wxMBConv::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( char *s = p + srcLen; s < p + srcLen + nulLen; s++ )
                 *s = '\0';
@@ -242,6 +248,9 @@ wxMBConv::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ;; )
     {
@@ -282,6 +291,9 @@ wxMBConv::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( NotAllNULs(src, nulLen) )
         {
@@ -339,10 +351,13 @@ wxMBConv::FromWChar(char *dst, size_t dstLen,
     }
 
     const size_t lenNul = GetMBNulLen();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const wchar_t * const srcEnd = src + srcLen;
           src < srcEnd;
@@ -696,6 +711,9 @@ size_t wxMBConvUTF7::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( (src < srcEnd) && (!dst || (len < dstLen)) )
     {
@@ -881,6 +899,9 @@ size_t wxMBConvUTF7::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( src < srcEnd && (!dst || len < dstLen) )
     {
@@ -941,6 +962,9 @@ size_t wxMBConvUTF7::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( ;; )
             {
@@ -948,6 +972,9 @@ size_t wxMBConvUTF7::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for ( unsigned lsb = 0; lsb < 2; lsb++ )
                 {
@@ -958,6 +985,9 @@ size_t wxMBConvUTF7::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (state.bit += 8; state.bit >= 6; )
                     {
@@ -1046,6 +1076,9 @@ wxMBConvStrictUTF8::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const char *p = src; ; p++ )
     {
@@ -1123,6 +1156,9 @@ wxMBConvStrictUTF8::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( ; len; --len )
             {
@@ -1168,6 +1204,9 @@ wxMBConvStrictUTF8::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const wchar_t *wp = src; ; wp++ )
     {
@@ -1295,6 +1334,9 @@ size_t wxMBConvUTF8::ToWChar(wchar_t *buf, size_t n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ((isNulTerminated ? *psz : srcLen--) && ((!buf) || (len < n)))
     {
@@ -1306,6 +1348,9 @@ size_t wxMBConvUTF8::ToWChar(wchar_t *buf, size_t n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (cnt = 0; fc & 0x80; cnt++)
             fc <<= 1;
@@ -1342,6 +1387,9 @@ size_t wxMBConvUTF8::ToWChar(wchar_t *buf, size_t n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while (cnt--)
                 {
@@ -1411,6 +1459,9 @@ size_t wxMBConvUTF8::ToWChar(wchar_t *buf, size_t n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     while (opsz < psz && (!buf || len < n))
                     {
@@ -1436,6 +1487,9 @@ size_t wxMBConvUTF8::ToWChar(wchar_t *buf, size_t n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     while (opsz < psz && (!buf || len < n))
                     {
@@ -1493,6 +1547,9 @@ size_t wxMBConvUTF8::FromWChar(char *buf, size_t n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ((isNulTerminated ? *psz : srcLen--) && ((!buf) || (len < n)))
     {
@@ -1542,6 +1599,9 @@ size_t wxMBConvUTF8::FromWChar(char *buf, size_t n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (cnt = 0; cc > utf8_max[cnt]; cnt++)
             {
@@ -1564,6 +1624,9 @@ size_t wxMBConvUTF8::FromWChar(char *buf, size_t n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     while (cnt--)
                         *buf++ = (char) (0x80 | ((cc >> (cnt * 6)) & 0x3f));
@@ -1608,6 +1671,9 @@ size_t wxMBConvUTF16Base::GetLength(const char *src, size_t srcLen)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( srcLen = 1; *inBuff++; srcLen++ )
             ;
@@ -1697,6 +1763,9 @@ wxMBConvUTF16swap::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < srcLen; n++, inBuff++ )
         {
@@ -1726,6 +1795,9 @@ wxMBConvUTF16swap::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < srcLen; n += BYTES_PER_CHAR, src++ )
         {
@@ -1757,6 +1829,9 @@ wxMBConvUTF16straight::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const wxUint16 * const inEnd = inBuff + inLen; inBuff < inEnd; )
     {
@@ -1792,6 +1867,9 @@ wxMBConvUTF16straight::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < srcLen; n++ )
     {
@@ -1837,6 +1915,9 @@ wxMBConvUTF16swap::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const wxUint16 * const inEnd = inBuff + inLen; inBuff < inEnd; )
     {
@@ -1892,6 +1973,9 @@ wxMBConvUTF16swap::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const wchar_t *srcEnd = src + srcLen; src < srcEnd; src++ )
     {
@@ -1948,6 +2032,9 @@ size_t wxMBConvUTF32Base::GetLength(const char *src, size_t srcLen)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( srcLen = 1; *inBuff++; srcLen++ )
             ;
@@ -1986,6 +2073,9 @@ wxMBConvUTF32straight::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < inLen; n++ )
     {
@@ -2037,6 +2127,9 @@ wxMBConvUTF32straight::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const wchar_t * const srcEnd = src + srcLen; src < srcEnd; )
     {
@@ -2074,6 +2167,9 @@ wxMBConvUTF32swap::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < inLen; n++, inBuff++ )
     {
@@ -2125,6 +2221,9 @@ wxMBConvUTF32swap::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const wchar_t * const srcEnd = src + srcLen; src < srcEnd; )
     {
@@ -2214,6 +2313,9 @@ wxMBConvUTF32swap::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < srcLen; n++, inBuff++ )
         {
@@ -2243,6 +2345,9 @@ wxMBConvUTF32swap::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < srcLen; n += BYTES_PER_CHAR, src++ )
         {
@@ -2397,6 +2502,9 @@ wxMBConv_iconv::wxMBConv_iconv(const char *name)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( ; *names && ms_wcCharsetName.empty(); ++names )
         {
@@ -2528,6 +2636,9 @@ wxMBConv_iconv::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for ( p = src; NotAllNULs(p, nulLen); p += nulLen )
                     ;
@@ -2579,6 +2690,9 @@ wxMBConv_iconv::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( unsigned i = 0; i < res; i++ )
                 dst[i] = WC_BSWAP(dst[i]);
@@ -2594,6 +2708,9 @@ wxMBConv_iconv::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         do
         {
@@ -2606,6 +2723,14 @@ wxMBConv_iconv::ToWChar(wchar_t *dst, size_t dstLen,
 
             res += 8 - (dstLen / SIZEOF_WCHAR_T);
         }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
         while ((cres == (size_t)-1) && (errno == E2BIG));
     }
 
@@ -2646,6 +2771,9 @@ size_t wxMBConv_iconv::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < srcLen; i++ )
             tmpbuf[i] = WC_BSWAP(src[i]);
@@ -2670,6 +2798,9 @@ size_t wxMBConv_iconv::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         do
         {
@@ -2680,6 +2811,14 @@ size_t wxMBConv_iconv::FromWChar(char *dst, size_t dstLen,
 
             res += WXSIZEOF(tbuf) - outbuflen;
         }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
         while ((cres == (size_t)-1) && (errno == E2BIG));
     }
 
@@ -3272,6 +3411,9 @@ wxMBConv *wxCSConv::DoCreate() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for ( ; *names; ++names )
                 {
@@ -3418,6 +3560,9 @@ size_t wxCSConv::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < srcLen; n++ )
             dst[n] = (unsigned char)(src[n]);
@@ -3445,6 +3590,9 @@ size_t wxCSConv::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < srcLen; n++ )
         {
@@ -3461,6 +3609,9 @@ size_t wxCSConv::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < srcLen; n++ )
         {

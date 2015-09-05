@@ -132,10 +132,13 @@ bool wxAnimation::Load(wxInputStream &stream, wxAnimationType type)
     const wxAnimationDecoder *handler;
     if ( type == wxANIMATION_TYPE_ANY )
     {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxAnimationDecoderList::compatibility_iterator node = sm_handlers.GetFirst();
               node; node = node->GetNext() )
@@ -226,6 +229,9 @@ const wxAnimationDecoder *wxAnimation::FindHandler( wxAnimationType animType )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -253,6 +259,9 @@ void wxAnimation::CleanUpHandlers()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -483,6 +492,9 @@ bool wxAnimationCtrl::RebuildBackingStoreUpToFrame(unsigned int frame)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < frame; i++)
     {

@@ -203,6 +203,9 @@ void wxStackWalker::ProcessFrames(size_t skip)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < numFrames; n++ )
         OnStackFrame(frames[n]);
@@ -270,6 +273,9 @@ int wxStackWalker::InitFrames(wxStackFrame *arr, size_t n, void **addresses, cha
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i=0; i<n; i++)
     {
@@ -292,6 +298,9 @@ int wxStackWalker::InitFrames(wxStackFrame *arr, size_t n, void **addresses, cha
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for  ( size_t i = 0; i < n; i++ )
     {

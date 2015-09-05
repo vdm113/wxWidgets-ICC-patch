@@ -130,6 +130,9 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (lineCurrent > 0) {
 				int eolPos = styler.LineStart(lineCurrent) - 1;
@@ -202,6 +205,9 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
 
@@ -275,6 +281,9 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					while (ch != '\0') {
 						if (ch == '(') {
@@ -420,6 +429,9 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (nextIndex > (sc.currentPos + 1) && sc.More()) {
 					sc.Forward();
@@ -440,6 +452,9 @@ static bool IsCommentLine(int line, Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i = pos; i < eol_pos; i++) {
 		char ch = styler[i];
@@ -480,6 +495,9 @@ static void FoldPyDoc(unsigned int startPos, int length, int /*initStyle - unuse
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (lineCurrent > 0) {
 		lineCurrent--;
@@ -505,6 +523,9 @@ static void FoldPyDoc(unsigned int startPos, int length, int /*initStyle - unuse
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((lineCurrent <= docLines) && ((lineCurrent <= maxLines) || prevQuote)) {
 
@@ -546,6 +567,9 @@ static void FoldPyDoc(unsigned int startPos, int length, int /*initStyle - unuse
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (!quote &&
 		        (lineNext < docLines) &&
@@ -571,6 +595,9 @@ static void FoldPyDoc(unsigned int startPos, int length, int /*initStyle - unuse
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (--skipLine > lineCurrent) {
 			int skipLineIndent = styler.IndentAmount(skipLine, &spaceFlags, NULL);

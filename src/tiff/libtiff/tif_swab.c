@@ -86,6 +86,9 @@ TIFFSwabArrayOfShort(register uint16* wp, tmsize_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
 		cp = (unsigned char*) wp;
@@ -107,6 +110,9 @@ TIFFSwabArrayOfTriples(register uint8* tp, tmsize_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
 		cp = (unsigned char*) tp;
@@ -128,6 +134,9 @@ TIFFSwabArrayOfLong(register uint32* lp, tmsize_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
 		cp = (unsigned char *)lp;
@@ -150,6 +159,9 @@ TIFFSwabArrayOfLong8(register uint64* lp, tmsize_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
 		cp = (unsigned char *)lp;
@@ -186,6 +198,9 @@ TIFFSwabArrayOfFloat(register float* fp, tmsize_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
 		cp = (unsigned char *)fp;
@@ -222,6 +237,9 @@ TIFFSwabArrayOfDouble(double* dp, tmsize_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
 		cp = (unsigned char *)dp;
@@ -325,6 +343,9 @@ TIFFReverseBits(uint8* cp, tmsize_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; n > 8; n -= 8) {
 		cp[0] = TIFFBitRevTable[cp[0]];
@@ -341,6 +362,9 @@ TIFFReverseBits(uint8* cp, tmsize_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (n-- > 0)
 		*cp = TIFFBitRevTable[*cp], cp++;

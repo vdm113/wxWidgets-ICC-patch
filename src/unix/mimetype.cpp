@@ -78,6 +78,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
        while (tok.HasMoreTokens())
        {
@@ -102,6 +105,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(size_t i = iStart; i < GetLineCount(); i++)
         {
@@ -219,6 +225,9 @@ void wxMimeTypesManagerImpl::LoadXDGApp(const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while(tokenizer.HasMoreTokens()) {
         wxString mimetype = tokenizer.GetNextToken().Lower();
@@ -248,6 +257,9 @@ void wxMimeTypesManagerImpl::LoadXDGAppsFilesFromDir(const wxString& dirname)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (cont)
     {
@@ -262,6 +274,9 @@ void wxMimeTypesManagerImpl::LoadXDGAppsFilesFromDir(const wxString& dirname)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (cont)
     {
@@ -289,6 +304,9 @@ void wxMimeTypesManagerImpl::LoadXDGGlobs(const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < file.GetLineCount(); i++)
     {
@@ -315,6 +333,9 @@ wxString wxFileTypeImpl::GetExpandedCommand(const wxString & verb, const wxFileT
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( (i < m_index.GetCount() ) && sTmp.empty() )
     {
@@ -333,6 +354,9 @@ bool wxFileTypeImpl::GetIcon(wxIconLocation *iconLoc) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( (i < m_index.GetCount() ) && sTmp.empty() )
     {
@@ -359,6 +383,9 @@ bool wxFileTypeImpl::GetMimeTypes(wxArrayString& mimeTypes) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < nCount; i++)
         mimeTypes.Add(m_manager->m_aTypes[m_index[i]]);
@@ -380,6 +407,9 @@ size_t wxFileTypeImpl::GetAllCommands(wxArrayString *verbs,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t n = 0; ((count == 0) && (n < m_index.GetCount())); n++)
     {
@@ -390,6 +420,9 @@ size_t wxFileTypeImpl::GetAllCommands(wxArrayString *verbs,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < sPairs->GetCount(); i++ )
         {
@@ -434,6 +467,9 @@ bool wxFileTypeImpl::GetExtensions(wxArrayString& extensions)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator p = strExtensions.begin(); /* nothing */; ++p )
     {
@@ -494,6 +530,9 @@ wxFileTypeImpl::SetCommand(const wxString& cmd,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < nCount; i++ )
     {
@@ -538,6 +577,9 @@ bool wxFileTypeImpl::SetDefaultIcon(const wxString& strIcon, int WXUNUSED(index)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < nCount; i++ )
     {
@@ -638,6 +680,9 @@ void wxMimeTypesManagerImpl::Initialize(int mailcapStyles,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( tokenizer.HasMoreTokens() )
         {
@@ -652,6 +697,9 @@ void wxMimeTypesManagerImpl::Initialize(int mailcapStyles,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < dirs.GetCount(); i++)
         {
@@ -671,6 +719,9 @@ void wxMimeTypesManagerImpl::Initialize(int mailcapStyles,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t nDir = 0; nDir < nDirs; nDir++)
         {
@@ -694,6 +745,9 @@ void wxMimeTypesManagerImpl::Initialize(int mailcapStyles,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (i = nIndex+1; i < textfile.GetLineCount(); i++)
                     {
@@ -709,6 +763,9 @@ void wxMimeTypesManagerImpl::Initialize(int mailcapStyles,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                                 for (j = 0; j < dirs.GetCount(); j++)
                                 {
@@ -771,6 +828,9 @@ wxFileType * wxMimeTypesManagerImpl::Associate(const wxFileTypeInfo& ftInfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i=0; i < nExtCount; i++)
     {
@@ -784,6 +844,9 @@ wxFileType * wxMimeTypesManagerImpl::Associate(const wxFileTypeInfo& ftInfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (nIndex = 0; nIndex < nCount; nIndex++)
         {
@@ -897,6 +960,9 @@ int wxMimeTypesManagerImpl::AddToMimeData(const wxString& strType,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for ( size_t i = 0; i < count; i++ )
                 {
@@ -924,6 +990,9 @@ int wxMimeTypesManagerImpl::AddToMimeData(const wxString& strType,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )
     {
@@ -958,6 +1027,9 @@ wxFileType * wxMimeTypesManagerImpl::GetFileTypeFromExtension(const wxString& ex
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
@@ -967,6 +1039,9 @@ wxFileType * wxMimeTypesManagerImpl::GetFileTypeFromExtension(const wxString& ex
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( tk.HasMoreTokens() )
         {
@@ -1035,6 +1110,9 @@ wxFileType * wxMimeTypesManagerImpl::GetFileTypeFromMimeType(const wxString& mim
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < nCount; n++ )
     {
@@ -1071,6 +1149,9 @@ wxString wxMimeTypesManagerImpl::GetCommand(const wxString & verb, size_t nIndex
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < nCount; i++ )
     {
@@ -1093,6 +1174,9 @@ void wxMimeTypesManagerImpl::AddFallback(const wxFileTypeInfo& filetype)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t nExt = 0; nExt < nExts; nExt++ )
     {
@@ -1124,6 +1208,9 @@ void wxMimeTypesManagerImpl::AddMimeTypeInfo(const wxString& strMimeType,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (!sTmp.empty())
     {
@@ -1145,6 +1232,9 @@ size_t wxMimeTypesManagerImpl::EnumAllFileTypes(wxArrayString& mimetypes)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
@@ -1176,6 +1266,9 @@ bool wxMimeTypesManagerImpl::Unassociate(wxFileType *ft)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < nCount; i ++)
     {

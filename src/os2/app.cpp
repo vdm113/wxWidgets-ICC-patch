@@ -148,10 +148,13 @@ void wxApp::HandleSockets()
 #   pragma swp
 #   pragma unroll
 #endif
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = m_lastUsedHandle + 1; i != m_lastUsedHandle;
                  (i < m_maxSocketNr - 1) ? i++ : (i = 0))
@@ -168,6 +171,9 @@ void wxApp::HandleSockets()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (r = 0; r < m_maxSocketHandles; r++){
                         if(CallbackInfo[r].handle == i &&
@@ -192,6 +198,9 @@ void wxApp::HandleSockets()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (r = 0; r < m_maxSocketHandles; r++)
                         if(CallbackInfo[r].handle == i &&
@@ -552,6 +561,9 @@ int wxApp::AddSocketHandler(int handle, int mask,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (find = 0; find < m_maxSocketHandles; find++)
         if (CallbackInfo[find].handle == -1)
@@ -572,6 +584,9 @@ int wxApp::AddSocketHandler(int handle, int mask,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (find = m_maxSocketHandles - 10; find < m_maxSocketHandles; find++)
             CallbackInfo[find].handle = -1;

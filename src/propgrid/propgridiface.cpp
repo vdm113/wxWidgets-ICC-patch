@@ -322,6 +322,9 @@ bool wxPropertyGridInterface::ExpandAll( bool doExpand )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( it = GetVIterator( wxPG_ITERATE_ALL ); !it.AtEnd(); it.Next() )
     {
@@ -362,6 +365,9 @@ void wxPropertyGridInterface::ClearModifiedStatus()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (;;)
     {
@@ -473,6 +479,9 @@ void wxPropertyGridInterface::DoSetPropertyAttribute( wxPGPropArg id, const wxSt
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned int i = 0; i < p->GetChildCount(); i++ )
             DoSetPropertyAttribute(p->Item(i), name, value, argFlags);
@@ -490,6 +499,9 @@ void wxPropertyGridInterface::SetPropertyAttributeAll( const wxString& attrName,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (;;)
     {
@@ -512,10 +524,13 @@ void wxPropertyGridInterface::GetPropertiesWithFlag( wxArrayPGProperty* targetAr
     wxASSERT( targetArr );
     wxPGVIterator it = GetVIterator( iterFlags );
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ;
           !it.AtEnd();
@@ -635,6 +650,9 @@ void wxPropertyGridInterface::Sort( int flags )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (;;)
     {
@@ -880,6 +898,9 @@ static wxString EscapeDelimiters(const wxString& s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (*ch)
     {
@@ -904,6 +925,9 @@ wxString wxPropertyGridInterface::SaveEditableState( int includedStates ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (;;)
     {
@@ -919,6 +943,9 @@ wxString wxPropertyGridInterface::SaveEditableState( int includedStates ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( pageIndex=0; pageIndex < pageStates.size(); pageIndex++ )
     {
@@ -943,10 +970,13 @@ wxString wxPropertyGridInterface::SaveEditableState( int includedStates ) const
 
             result += wxS("expanded=");
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( ;
                   !it.AtEnd();
@@ -979,6 +1009,9 @@ wxString wxPropertyGridInterface::SaveEditableState( int includedStates ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( size_t i=0; i<pageState->GetColumnCount(); i++ )
                 result += wxString::Format(wxS("%i,"), pageState->DoGetSplitterPosition(i));
@@ -1030,6 +1063,9 @@ bool wxPropertyGridInterface::RestoreEditableState( const wxString& src, int res
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( pageIndex=0; pageIndex<pageStrings.size(); pageIndex++ )
     {
@@ -1043,6 +1079,9 @@ bool wxPropertyGridInterface::RestoreEditableState( const wxString& src, int res
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i=0; i<kvpairStrings.size(); i++ )
         {
@@ -1070,6 +1109,9 @@ bool wxPropertyGridInterface::RestoreEditableState( const wxString& src, int res
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         for ( ; !it.AtEnd(); it.Next() )
                         {
@@ -1082,6 +1124,9 @@ bool wxPropertyGridInterface::RestoreEditableState( const wxString& src, int res
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         for ( size_t n=0; n<values.size(); n++ )
                         {
@@ -1115,6 +1160,9 @@ bool wxPropertyGridInterface::RestoreEditableState( const wxString& src, int res
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         for ( size_t n=1; n<values.size(); n++ )
                         {
@@ -1195,6 +1243,9 @@ bool wxPropertyGridInterface::RestoreEditableState( const wxString& src, int res
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( pageState )
     {

@@ -97,6 +97,9 @@ wxRadioBox::~wxRadioBox()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (unsigned int i = 0; i < m_nNoItems; i++)
         {
@@ -133,6 +136,9 @@ bool wxRadioBox::ContainsHWND( WXHWND hWnd ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < nCount; i++)
     {
@@ -220,6 +226,9 @@ bool wxRadioBox::Create( wxWindow* pParent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < nNum; i++)
     {
@@ -451,6 +460,9 @@ void wxRadioBox::DoSetSize(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < m_nNoItems; i++)
     {
@@ -578,6 +590,9 @@ bool wxRadioBox::Enable(bool bEnable)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < m_nNoItems; i++)
         ::WinEnableWindow((HWND)m_ahRadioButtons[i], bEnable);
@@ -610,6 +625,9 @@ wxSize wxRadioBox::GetMaxButtonSize() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0 ; i < m_nNoItems; i++)
     {
@@ -672,6 +690,9 @@ void wxRadioBox::GetSize( int* pnWidth, int* pnHeight ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < m_nNoItems; i++)
         wxFindMaxSize( m_ahRadioButtons[i], &vRect );
@@ -775,6 +796,9 @@ bool wxRadioBox::OS2Command( WXUINT uCmd,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (unsigned int i = 0; i < m_nNoItems; i++)
         {
@@ -847,6 +871,9 @@ bool wxRadioBox::SetFont(const wxFont& rFont)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int n = 0; n < m_nNoItems; n++)
     {
@@ -907,6 +934,9 @@ bool wxRadioBox::Show(bool bShow)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < m_nNoItems; i++)
     {

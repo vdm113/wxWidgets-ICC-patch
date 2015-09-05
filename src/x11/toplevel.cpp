@@ -546,6 +546,9 @@ void wxTopLevelWindowX11::DoSetSize(int x, int y, int width, int height, int siz
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (next_parent != root) {
         Window *theChildren;
@@ -609,6 +612,9 @@ void wxTopLevelWindowX11::DoGetPosition(int *x, int *y) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (next_parent != root) {
         Window *theChildren;

@@ -200,6 +200,9 @@ void wxRegConfig::SetPath(const wxString& strPath)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < aParts.Count(); n++ ) {
             strRegPath << '\\' << aParts[n];
@@ -258,6 +261,9 @@ void wxRegConfig::SetPath(const wxString& strPath)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( ; src < end; src++, dst++ )
         {
@@ -290,6 +296,9 @@ void wxRegConfig::SetPath(const wxString& strPath)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                             while ( *dst != wxCONFIG_PATH_SEPARATOR )
                             {
@@ -378,6 +387,9 @@ void wxRegConfig::SetPath(const wxString& strPath)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( ; src < end; src++, dst++ )
         {
@@ -446,6 +458,9 @@ bool wxRegConfig::GetNextGroup(wxString& str, long& lIndex) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( m_keyGlobal.GetNextKey(str, lIndex) ) {
       if ( !m_keyLocal.Exists() || !LocalKey().HasSubKey(str) ) {
@@ -486,6 +501,9 @@ bool wxRegConfig::GetNextEntry(wxString& str, long& lIndex) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( m_keyGlobal.GetNextValue(str, lIndex) ) {
       if ( !m_keyLocal.Exists() || !LocalKey().HasValue(str) ) {
@@ -523,6 +541,9 @@ size_t wxRegConfig::GetNumberOfEntries(bool WXUNUSED(bRecursive)) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while ( bCont ) {
     nEntries++;
@@ -545,6 +566,9 @@ size_t wxRegConfig::GetNumberOfGroups(bool WXUNUSED(bRecursive)) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while ( bCont ) {
     nGroups++;

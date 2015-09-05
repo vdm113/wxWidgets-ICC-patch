@@ -184,6 +184,9 @@ wxCursor::wxCursor( const wxImage & image )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i=0; i<imagebitcount; i++)
     {
@@ -195,6 +198,9 @@ wxCursor::wxCursor( const wxImage & image )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j=0; j<8; j++)
         {
@@ -219,6 +225,9 @@ wxCursor::wxCursor( const wxImage & image )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i=0; i<imagebitcount; i++)
         {
@@ -230,6 +239,9 @@ wxCursor::wxCursor( const wxImage & image )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (j=0; j<8; j++)
             {
@@ -247,6 +259,9 @@ wxCursor::wxCursor( const wxImage & image )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i=0; i<imagebitcount; i++)
             maskBits[i] = 0xFF;
@@ -267,10 +282,13 @@ wxCursor::wxCursor( const wxImage & image )
     unsigned long nMost = 0;
     long colNextMostFreq = 0;
     unsigned long nNext = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxImageHistogram::iterator entry = histogram.begin();
           entry != histogram.end();

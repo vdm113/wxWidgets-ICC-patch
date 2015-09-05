@@ -307,6 +307,9 @@ static void EnsureParentHasControlParentStyle(wxWindow *parent)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( parent && !parent->IsTopLevel() )
     {
@@ -381,6 +384,9 @@ wxWindow *wxWindowMSW::FindItem(long id, WXHWND hWnd) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (current)
     {
@@ -404,6 +410,9 @@ wxWindow *wxWindowMSW::FindItemByHWND(WXHWND hWnd, bool controlOnly) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (current)
     {
@@ -479,6 +488,9 @@ wxWindowMSW::~wxWindowMSW()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindow *win = GetParent(); win; win = win->GetParent() )
     {
@@ -1093,6 +1105,9 @@ static bool ScrollVertically(HWND hwnd, int kind, int count)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < count; n++ )
     {
@@ -1529,6 +1544,9 @@ bool wxWindowMSW::IsMouseInWindow() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( hwnd && (hwnd != GetHwnd()) )
         hwnd = ::GetParent(hwnd);
@@ -1660,10 +1678,13 @@ static void AdjustStaticBoxZOrder(wxWindow *parent)
     if ( !parent )
         return;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = parent->GetChildren().GetFirst();
           node;
@@ -2067,6 +2088,9 @@ void wxWindowMSW::DoSetClientSize(int width, int height)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < 4; i++ )
     {
@@ -2206,6 +2230,9 @@ static void wxYieldForCommandsOnly()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( ::PeekMessage(&msg, (HWND)0, WM_COMMAND, WM_COMMAND, PM_REMOVE) )
     {
@@ -2478,6 +2505,9 @@ bool wxWindowMSW::MSWProcessMessage(WXMSG* pMsg)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                                 while ( win )
                                 {
@@ -2641,10 +2671,13 @@ bool wxWindowMSW::MSWSafeIsDialogMessage(WXMSG* msg)
         {
             // pessimistic by default
             bool canSafelyCallIsDlgMsg = false;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
                   node;
@@ -2674,6 +2707,9 @@ bool wxWindowMSW::MSWSafeIsDialogMessage(WXMSG* msg)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( hwndFocus )
         {
@@ -3904,6 +3940,9 @@ bool wxWindowMSW::HandleNotify(int idCtrl, WXLPARAM lParam, WXLPARAM *result)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( node )
     {
@@ -4253,6 +4292,9 @@ bool wxWindowMSW::HandleDropFiles(WXWPARAM wParam)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( UINT wIndex = 0; wIndex < gwFilesDropped; wIndex++ )
     {
@@ -4434,6 +4476,9 @@ bool wxWindowMSW::IsDoubleBuffered() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const wxWindowMSW *win = this; win; win = win->GetParent() )
     {
@@ -4634,6 +4679,9 @@ bool wxWindowMSW::HandlePaletteChanged(WXHWND hWndPalChange)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( win && !win->HasCustomPalette() )
         {
@@ -4700,6 +4748,9 @@ bool wxWindowMSW::HandleSettingChange(WXWPARAM wParam, WXLPARAM lParam)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( node )
     {
@@ -4723,10 +4774,13 @@ bool wxWindowMSW::HandleQueryNewPalette()
 #if wxUSE_PALETTE
     // check to see if we our our parents have a custom palette
     wxWindowMSW *win = this;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (!win->HasCustomPalette() && win->GetParent()) win = win->GetParent();
     if (win->HasCustomPalette()) {
@@ -4769,6 +4823,9 @@ void wxWindowMSW::OnSysColourChanged(wxSysColourChangedEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( node )
     {
@@ -4821,6 +4878,9 @@ extern wxCOLORMAP *wxGetStdColourMap()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for ( size_t i = 0; i < WXSIZEOF(s_stdColours); i++ )
                 {
@@ -5166,6 +5226,9 @@ WXHBRUSH wxWindowMSW::MSWGetBgBrush(WXHDC hDC)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindowMSW *win = this; win; win = win->GetParent() )
     {
@@ -5211,6 +5274,9 @@ bool wxWindowMSW::HandlePrintClient(WXHDC hDC)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindow *win = GetParent(); win; win = win->GetParent() )
     {
@@ -5286,10 +5352,13 @@ bool wxWindowMSW::BeginRepositioningChildren()
 {
 #if wxUSE_DEFERRED_SIZING
     int numChildren = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( HWND child = ::GetWindow(GetHwndOf(this), GW_CHILD);
           child;
@@ -5337,10 +5406,13 @@ void wxWindowMSW::EndRepositioningChildren()
     }
 
     // Reset our children's pending pos/size values.
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
           node;
@@ -6022,6 +6094,9 @@ int wxWindowMSW::HandleMenuChar(int WXUNUSED_IN_WINCE(chAccel),
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < count; i++ )
     {
@@ -6044,6 +6119,9 @@ int wxWindowMSW::HandleMenuChar(int WXUNUSED_IN_WINCE(chAccel),
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while ( p++ )
                 {
@@ -6435,6 +6513,9 @@ int VKToWX(WXWORD vk, WXLPARAM lParam, wchar_t *uc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(gs_specialKeys); n++ )
     {
@@ -6579,6 +6660,9 @@ WXWORD WXToVK(int wxk, bool *isExtended)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(gs_specialKeys); n++ )
     {
@@ -6808,6 +6892,9 @@ extern wxWindow *wxGetWindowFromHWND(WXHWND hWnd)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( hwnd && !win )
     {
@@ -7455,6 +7542,9 @@ wxWindow* wxFindWindowAtPoint(const wxPoint& pt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( ;; )
         {
@@ -7644,6 +7734,9 @@ static void wxAdjustZOrder(wxWindow* parent)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (current)
     {

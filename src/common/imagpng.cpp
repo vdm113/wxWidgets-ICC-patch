@@ -208,6 +208,9 @@ CheckTransparency(unsigned char **lines,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ; y < h; y++ )
     {
@@ -219,6 +222,9 @@ CheckTransparency(unsigned char **lines,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( png_uint_32 x2 = x; x2 < w; x2++ )
         {
@@ -255,6 +261,9 @@ unsigned char *InitAlpha(wxImage *image, png_uint_32 x, png_uint_32 y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( png_uint_32 i = 0; i < end; i++ )
     {
@@ -281,6 +290,9 @@ FindMaskColour(unsigned char **lines, png_uint_32 width, png_uint_32 height,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( png_uint_32 y2 = 0; y2 < height; y2++ )
     {
@@ -289,6 +301,9 @@ FindMaskColour(unsigned char **lines, png_uint_32 width, png_uint_32 height,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( png_uint_32 x2 = 0; x2 < width; x2++ )
         {
@@ -359,6 +374,9 @@ void CopyDataFromPNG(wxImage *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( png_uint_32 y = 0; y < height; y++ )
         {
@@ -367,6 +385,9 @@ void CopyDataFromPNG(wxImage *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( png_uint_32 x = 0; x < width; x++ )
             {
@@ -443,6 +464,9 @@ void CopyDataFromPNG(wxImage *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( png_uint_32 y = 0; y < height; y++ )
         {
@@ -451,6 +475,9 @@ void CopyDataFromPNG(wxImage *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( png_uint_32 x = 0; x < width; x++ )
             {
@@ -612,6 +639,9 @@ wxPNGHandler::LoadFile(wxImage *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < height; i++)
     {
@@ -638,6 +668,9 @@ wxPNGHandler::LoadFile(wxImage *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int j = 0; j < numPalette; j++)
         {
@@ -703,6 +736,9 @@ wxPNGHandler::LoadFile(wxImage *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < height; i++ )
         free( lines[i] );
@@ -727,6 +763,9 @@ error:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned int n = 0; n < height; n++ )
             free( lines[n] );
@@ -885,6 +924,9 @@ bool wxPNGHandler::SaveFile( wxImage *image, wxOutputStream& stream, bool verbos
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int y = 0; y < iHeight; y++)
         {
@@ -892,6 +934,9 @@ bool wxPNGHandler::SaveFile( wxImage *image, wxOutputStream& stream, bool verbos
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (int x = 0; x < iWidth; x++)
             {
@@ -1066,6 +1111,9 @@ bool wxPNGHandler::SaveFile( wxImage *image, wxOutputStream& stream, bool verbos
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int y = 0; y != iHeight; ++y)
     {
@@ -1074,6 +1122,9 @@ bool wxPNGHandler::SaveFile( wxImage *image, wxOutputStream& stream, bool verbos
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int x = 0; x != iWidth; x++)
         {

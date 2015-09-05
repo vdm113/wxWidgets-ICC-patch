@@ -37,6 +37,9 @@ static unsigned long DoStringHash(T *k)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while( *k )
     {
@@ -78,6 +81,9 @@ unsigned long _wxHashTableBase2::GetNextPrime( unsigned long n )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( size_t i = 0; i < prime_count; ++i, ++ptr )
     {
@@ -100,6 +106,9 @@ unsigned long _wxHashTableBase2::GetPreviousPrime( unsigned long n )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( size_t i = 0; i < prime_count; ++i, --ptr )
     {
@@ -121,6 +130,9 @@ void _wxHashTableBase2::DeleteNodes( size_t buckets,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( i = 0; i < buckets; ++i )
     {
@@ -131,6 +143,9 @@ void _wxHashTableBase2::DeleteNodes( size_t buckets,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while( node )
         {
@@ -153,6 +168,9 @@ void _wxHashTableBase2::CopyHashTable( _wxHashTable_NodeBase** srcTable,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( size_t i = 0; i < srcBuckets; ++i )
     {
@@ -162,6 +180,9 @@ void _wxHashTableBase2::CopyHashTable( _wxHashTable_NodeBase** srcTable,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for( _wxHashTable_NodeBase* node = srcTable[i]; node; node = nextnode )
         {

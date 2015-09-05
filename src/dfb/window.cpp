@@ -184,6 +184,9 @@ void wxWindowDFB::InvalidateDfbSurface()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::iterator i = children.begin(); i != children.end(); ++i )
     {
@@ -724,10 +727,13 @@ void wxWindowDFB::PaintWindow(const wxRect& rect)
     // paint the children:
     wxPoint origin = GetClientAreaOrigin();
     wxWindowList& children = GetChildren();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::iterator i = children.begin();
           i != children.end(); ++i )
@@ -761,10 +767,13 @@ void wxWindowDFB::PaintOverlays(const wxRect& rect)
     if ( !m_overlays )
         return;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxDfbOverlaysList::const_iterator i = m_overlays->begin();
           i != m_overlays->end(); ++i )

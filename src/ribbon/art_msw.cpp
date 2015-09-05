@@ -490,6 +490,9 @@ void wxRibbonMSWArtProvider::CloneTo(wxRibbonMSWArtProvider* copy) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(i = 0; i < 4; ++i)
     {
@@ -501,6 +504,9 @@ void wxRibbonMSWArtProvider::CloneTo(wxRibbonMSWArtProvider* copy) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(i = 0; i < 2; ++i)
     {
@@ -1439,6 +1445,9 @@ void wxRibbonMSWArtProvider::ReallyDrawTabSeparator(wxWindow* wnd, const wxRect&
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(int i = 0; i < rect.height - 1; ++i)
     {
@@ -1829,6 +1838,9 @@ void wxRibbonMSWArtProvider::DrawPanelBackground(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for(size_t len = label.Len() - 1; len >= 3; --len)
                 {
@@ -2328,6 +2340,9 @@ void wxRibbonMSWArtProvider::DrawPartialPageBackground(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(; parent; parent = parent->GetParent())
     {
@@ -2533,6 +2548,9 @@ void wxRibbonMSWArtProvider::DrawButtonBarButtonForeground(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 do
                 {
@@ -2846,6 +2864,9 @@ int wxRibbonMSWArtProvider::GetTabCtrlHeight(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(size_t i = 0; i < numpages; ++i)
         {
@@ -3121,6 +3142,9 @@ bool wxRibbonMSWArtProvider::GetButtonBarButtonSize(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for(i = 0; i < label.Len(); ++i)
             {

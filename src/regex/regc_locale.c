@@ -714,6 +714,9 @@ element(v, startp, endp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (cn=cnames; cn->name!=NULL; cn++) {
 	if (wxCRT_StrlenNative(cn->name)==len && wxCRT_StrncmpNative(cn->name, startp, len)==0) {
@@ -772,6 +775,9 @@ range(v, a, b, cases)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (c=a; c<=b; c++) {
 	addchr(cv, c);
@@ -903,6 +909,9 @@ cclass(v, startp, endp, cases)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (namePtr=classNames,i=0 ; *namePtr!=NULL ; namePtr++,i++) {
 	if ((wxCRT_StrlenNative(*namePtr) == len) && (wxCRT_StrncmpNative(*namePtr, np, len) == 0)) {
@@ -928,6 +937,9 @@ cclass(v, startp, endp, cases)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_ALPHA_CHAR ; i++) {
 		addchr(cv, alphaCharTable[i]);
@@ -936,6 +948,9 @@ cclass(v, startp, endp, cases)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_ALPHA_RANGE ; i++) {
 		addrange(cv, alphaRangeTable[i].start,
@@ -945,6 +960,9 @@ cclass(v, startp, endp, cases)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_DIGIT_RANGE ; i++) {
 		addrange(cv, digitRangeTable[i].start,
@@ -959,6 +977,9 @@ cclass(v, startp, endp, cases)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_ALPHA_RANGE ; i++) {
 		addrange(cv, alphaRangeTable[i].start,
@@ -968,6 +989,9 @@ cclass(v, startp, endp, cases)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_ALPHA_CHAR ; i++) {
 		addchr(cv, alphaCharTable[i]);
@@ -997,6 +1021,9 @@ cclass(v, startp, endp, cases)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_DIGIT_RANGE ; i++) {
 		addrange(cv, digitRangeTable[i].start,
@@ -1011,6 +1038,9 @@ cclass(v, startp, endp, cases)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_PUNCT_RANGE ; i++) {
 		addrange(cv, punctRangeTable[i].start,
@@ -1020,6 +1050,9 @@ cclass(v, startp, endp, cases)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_PUNCT_CHAR ; i++) {
 		addchr(cv, punctCharTable[i]);
@@ -1050,6 +1083,9 @@ cclass(v, startp, endp, cases)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_SPACE_RANGE ; i++) {
 		addrange(cv, spaceRangeTable[i].start,
@@ -1059,6 +1095,9 @@ cclass(v, startp, endp, cases)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_SPACE_CHAR ; i++) {
 		addchr(cv, spaceCharTable[i]);
@@ -1072,6 +1111,9 @@ cclass(v, startp, endp, cases)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_LOWER_RANGE ; i++) {
 		addrange(cv, lowerRangeTable[i].start,
@@ -1081,6 +1123,9 @@ cclass(v, startp, endp, cases)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_LOWER_CHAR ; i++) {
 		addchr(cv, lowerCharTable[i]);
@@ -1094,6 +1139,9 @@ cclass(v, startp, endp, cases)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_UPPER_RANGE ; i++) {
 		addrange(cv, upperRangeTable[i].start,
@@ -1103,6 +1151,9 @@ cclass(v, startp, endp, cases)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_UPPER_CHAR ; i++) {
 		addchr(cv, upperCharTable[i]);
@@ -1116,6 +1167,9 @@ cclass(v, startp, endp, cases)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_GRAPH_RANGE ; i++) {
 		addrange(cv, graphRangeTable[i].start,
@@ -1125,6 +1179,9 @@ cclass(v, startp, endp, cases)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_GRAPH_CHAR ; i++) {
 		addchr(cv, graphCharTable[i]);
@@ -1167,6 +1224,9 @@ int cases;                      /* case-independent? */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (cc = cclasses; cc->name != NULL; cc++)
             if (wxCRT_StrlenNative(cc->name) == len && wxCRT_StrncmpNative(cc->name, np, len) == 0)
@@ -1192,6 +1252,9 @@ int cases;                      /* case-independent? */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (p = cc->chars; *p != '\0'; p++)
                 addchr(cv, (chr)*p);
@@ -1203,6 +1266,9 @@ int cases;                      /* case-independent? */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < 256; i++)
             if (cc->isfunc(i))
@@ -1220,6 +1286,9 @@ int cases;                      /* case-independent? */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < count; i++)
             addchr(cv, buf[i]);
@@ -1296,6 +1365,9 @@ casecmp(x, y, len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (; len > 0; len--, x++, y++) {
 	if ((*x!=*y) && (Tcl_UniCharToLower(*x) != Tcl_UniCharToLower(*y))) {

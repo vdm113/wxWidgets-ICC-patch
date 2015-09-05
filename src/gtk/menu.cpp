@@ -85,6 +85,9 @@ static wxMenu* GetRootParentMenu(wxMenu* menu)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( menu->GetParent() )
         menu = menu->GetParent();
@@ -104,6 +107,9 @@ static void UpdateSubMenuItemLabels(wxMenuItem* itemMenu)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxMenuItemList::const_iterator
             it = items.begin(); it != items.end(); ++it )
@@ -156,6 +162,9 @@ void wxMenuBar::Init(size_t n, wxMenu *menus[], const wxString titles[], long st
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < n; ++i )
         Append(menus[i], titles[i]);
@@ -209,6 +218,9 @@ DetachFromFrame(wxMenu* menu, wxFrame* frame)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -237,6 +249,9 @@ AttachToFrame(wxMenu* menu, wxFrame* frame)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -272,10 +287,13 @@ void wxMenuBar::SetLayoutDirection(wxLayoutDirection dir)
 
     // also set the layout of all menus we already have (new ones will inherit
     // the current layout)
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxMenuList::compatibility_iterator node = m_menus.GetFirst();
           node;
@@ -300,6 +318,9 @@ void wxMenuBar::Attach(wxFrame *frame)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -318,6 +339,9 @@ void wxMenuBar::Detach()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -431,6 +455,9 @@ static int FindMenuItemRecursive( const wxMenu *menu, const wxString &menuString
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -451,6 +478,9 @@ int wxMenuBar::FindMenuItem( const wxString &menuString, const wxString &itemStr
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -474,6 +504,9 @@ static wxMenuItem* FindMenuItemByIdRecursive(const wxMenu* menu, int id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( node && result == NULL )
     {
@@ -496,6 +529,9 @@ wxMenuItem* wxMenuBar::FindItem( int id, wxMenu **menuForItem ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node && result == 0)
     {

@@ -116,6 +116,9 @@ x11_draw_layout_line_with_colors( Drawable         drawable,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (tmp_list)
     {
@@ -185,6 +188,9 @@ x11_draw_layout_with_colors( Drawable      drawable,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do
     {
@@ -253,6 +259,9 @@ x11_pango_get_item_properties( PangoItem      *item,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (tmp_list)
     {

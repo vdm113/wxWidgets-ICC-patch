@@ -129,6 +129,9 @@ wxRegion::wxRegion( size_t n, const wxPoint *points,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 1; i < n; i++)
     {
@@ -161,6 +164,9 @@ wxRegion::wxRegion( size_t n, const wxPoint *points,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 1; i < n; i++)
         cairo_line_to(cr, points[i].x, points[i].y);
@@ -177,6 +183,9 @@ wxRegion::wxRegion( size_t n, const wxPoint *points,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0 ; i < n ; i++ )
     {
@@ -504,6 +513,9 @@ void wxRegionIterator::CreateRects( const wxRegion& region )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < m_numRects; i++)
         {
@@ -531,6 +543,9 @@ void wxRegionIterator::CreateRects( const wxRegion& region )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < m_numRects; ++i)
         {

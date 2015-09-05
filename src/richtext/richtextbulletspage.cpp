@@ -303,6 +303,9 @@ void wxRichTextBulletsPage::CreateControls()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < standardBulletNames.GetCount(); i++)
         m_bulletNameCtrl->Append(wxGetTranslation(standardBulletNames[i]));

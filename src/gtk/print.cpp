@@ -205,6 +205,9 @@ static GtkPaperSize* wxGetGtkPaperSize(wxPaperSize paperId, const wxSize& size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (GList* p = list; p; p = p->next)
         {
@@ -487,6 +490,9 @@ bool wxGtkPrintNativeData::TransferTo( wxPrintData &data )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t i = 1; i < WXSIZEOF(gs_paperList); i++)
         {
@@ -1063,6 +1069,9 @@ void wxGtkPrinter::BeginPrint(wxPrintout *printout, GtkPrintOperation *operation
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (i=0; i<num_ranges; i++)
                 {
@@ -1519,6 +1528,9 @@ void wxGtkPrinterDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoff
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i =0; i<n ; i++ )
         CalcBoundingBox( points[i].x+xoffset, points[i].y+yoffset);
@@ -1529,6 +1541,9 @@ void wxGtkPrinterDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoff
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 1; i < n; i++)
         cairo_line_to ( m_cairo, XLOG2DEV(points[i].x+xoffset), YLOG2DEV(points[i].y+yoffset) );
@@ -1557,6 +1572,9 @@ void wxGtkPrinterDCImpl::DoDrawPolygon(int n, const wxPoint points[],
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 1; i < n; i++)
     {
@@ -1709,6 +1727,9 @@ void wxGtkPrinterDCImpl::DoDrawSpline(const wxPointList *points)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -1966,6 +1987,9 @@ void wxGtkPrinterDCImpl::SetPen( const wxPen& pen )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 0; i < num; ++i)
                 g_dashes[i] = (gdouble) wx_dashes[i];

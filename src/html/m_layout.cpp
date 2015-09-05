@@ -117,6 +117,9 @@ wxHtmlPageBreakCell::AdjustPagebreak(int* pagebreak,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxHtmlCell *parent = GetParent(); parent; parent = parent->GetParent() )
     {

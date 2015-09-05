@@ -1469,6 +1469,9 @@ bool wxVariantDataArrayString::Write(wxString& str) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
@@ -1498,6 +1501,9 @@ bool wxVariantDataArrayString::Read(wxString& str)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( tk.HasMoreTokens() )
     {
@@ -1996,6 +2002,9 @@ bool wxVariantDataList::GetAsAny(wxAny* any) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -2017,6 +2026,9 @@ wxVariantData* wxVariantDataList::VariantDataFactory(const wxAny& any)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -2050,6 +2062,9 @@ void wxVariantDataList::SetValue(const wxVariantList& value)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -2066,6 +2081,9 @@ void wxVariantDataList::Clear()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -2087,6 +2105,9 @@ bool wxVariantDataList::Eq(wxVariantData& data) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node1 && node2)
     {
@@ -2119,6 +2140,9 @@ bool wxVariantDataList::Write(wxString& str) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -2223,6 +2247,9 @@ bool wxVariant::Member(const wxVariant& value) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {

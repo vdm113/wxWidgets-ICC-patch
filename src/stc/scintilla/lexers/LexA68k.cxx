@@ -155,6 +155,9 @@ static void ColouriseA68kDoc (unsigned int startPos, int length, int initStyle, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ; sc.More(); sc.Forward())
     {

@@ -144,6 +144,9 @@ MainWindow::~MainWindow()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i=0;i<4;i++)
     {
@@ -225,6 +228,9 @@ void MainWindow::ScanBuffer(wxDC *dc, bool DrawIt, int *max_x, int *max_y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (ch != 0 && !page_break)
     {
@@ -234,6 +240,9 @@ void MainWindow::ScanBuffer(wxDC *dc, bool DrawIt, int *max_x, int *max_y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (((ch = poem_buffer[i]) != 13) && (ch != 0))
 #else
@@ -241,6 +250,9 @@ void MainWindow::ScanBuffer(wxDC *dc, bool DrawIt, int *max_x, int *max_y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (((ch = poem_buffer[i]) != 10) && (ch != 0))
 #endif
@@ -754,6 +766,9 @@ int LoadIndex(const wxChar *file_name)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < nitems; i++)
     {
@@ -850,6 +865,9 @@ bool LoadPoem(const wxChar *file_name, long position)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ((ch != EOF) && (ch != '#'))
     {
@@ -921,6 +939,9 @@ long MainWindow::DoSearch(void)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ((ch != EOF) && !found)
     {
@@ -1018,6 +1039,9 @@ bool Compile(void)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do {
         ch = getc(file);
@@ -1048,6 +1072,9 @@ bool Compile(void)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (j = 0; j < nitems; j++)
         wxFprintf(file, wxT("%ld\n"), poem_index[j]);

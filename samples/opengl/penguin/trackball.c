@@ -106,6 +106,9 @@ vcopy(const float *v1, float *v2)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0 ; i < 3 ; i++)
         v2[i] = v1[i];
@@ -303,10 +306,13 @@ normalize_quat(float q[4])
     float mag;
 
     mag = (q[0]*q[0] + q[1]*q[1] + q[2]*q[2] + q[3]*q[3]);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 4; i++) q[i] /= mag;
 }

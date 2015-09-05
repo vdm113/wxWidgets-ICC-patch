@@ -605,6 +605,9 @@ bool TestApp::OnCmdLineParsed(wxCmdLineParser& parser)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < parser.GetParamCount(); i++)
             m_registries.push_back(parser.GetParam(i));
@@ -687,6 +690,9 @@ int TestApp::RunTests()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < m_registries.size(); i++)
         {
@@ -768,6 +774,9 @@ void TestApp::List(Test *test, const string& parent /*=""*/) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ((j = name.find('.', j + 1)) != string::npos)
                 cout << "  ";
@@ -783,6 +792,9 @@ void TestApp::List(Test *test, const string& parent /*=""*/) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (Iter it = tests.begin(); it != tests.end(); ++it)
             List(*it, name);
@@ -793,6 +805,9 @@ void TestApp::List(Test *test, const string& parent /*=""*/) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ((i = parent.find('.', i + 1)) != string::npos)
             cout << "  ";

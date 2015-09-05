@@ -245,6 +245,9 @@ Fax3Decode1D(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (occ > 0) {
 		a0 = 0;
@@ -293,6 +296,9 @@ Fax3Decode2D(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (occ > 0) {
 		a0 = 0;
@@ -397,6 +403,9 @@ _TIFFFax3fillruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; runs < erun; runs += 2) {
 	    run = runs[0];
@@ -419,6 +428,9 @@ _TIFFFax3fillruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			    for (; n && !isAligned(cp, long); n--)
 				    *cp++ = 0x00;
@@ -429,6 +441,9 @@ _TIFFFax3fillruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			    do {
 				    *lp++ = 0L;
@@ -464,6 +479,9 @@ _TIFFFax3fillruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			    for (; n && !isAligned(cp, long); n--)
 				*cp++ = 0xff;
@@ -474,6 +492,9 @@ _TIFFFax3fillruns(unsigned char* buf, uint32* runs, uint32* erun, uint32 lastx)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			    do {
 				*lp++ = -1L;
@@ -688,6 +709,9 @@ putspan(TIFF* tif, int32 span, const tableentry* tab)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (span >= 2624) {
 		const tableentry* te = &tab[63 + (2560>>6)];
@@ -883,6 +907,9 @@ find0span(unsigned char* bp, int32 bs, int32 be)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (!isAligned(bp, long)) {
 			if (*bp != 0x00)
@@ -895,6 +922,9 @@ find0span(unsigned char* bp, int32 bs, int32 be)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while ((bits >= (int32)(8 * sizeof(long))) && (0 == *lp)) {
 			span += 8*sizeof (long), bits -= 8*sizeof (long);
@@ -909,6 +939,9 @@ find0span(unsigned char* bp, int32 bs, int32 be)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (bits >= 8) {
 		if (*bp != 0x00)	/* end of run */
@@ -957,6 +990,9 @@ find1span(unsigned char* bp, int32 bs, int32 be)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (!isAligned(bp, long)) {
 			if (*bp != 0xff)
@@ -969,6 +1005,9 @@ find1span(unsigned char* bp, int32 bs, int32 be)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while ((bits >= (int32)(8 * sizeof(long))) && (~0 == *lp)) {
 			span += 8*sizeof (long), bits -= 8*sizeof (long);
@@ -983,6 +1022,9 @@ find1span(unsigned char* bp, int32 bs, int32 be)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (bits >= 8) {
 		if (*bp != 0xff)	/* end of run */
@@ -1031,6 +1073,9 @@ Fax3Encode1DRow(TIFF* tif, unsigned char* bp, uint32 bits)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (;;) {
 		span = find0span(bp, bs, bits);		/* white span */
@@ -1085,6 +1130,9 @@ Fax3Encode2DRow(TIFF* tif, unsigned char* bp, unsigned char* rp, uint32 bits)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (;;) {
 		b2 = finddiff2(rp, b1, bits, PIXEL(rp,b1));
@@ -1137,6 +1185,9 @@ Fax3Encode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (cc > 0) {
 		if ((sp->b.mode & FAXMODE_NOEOL) == 0)
@@ -1192,6 +1243,9 @@ Fax3Close(TIFF* tif)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < 6; i++)
 			Fax3PutBits(tif, code, length);
@@ -1490,6 +1544,9 @@ Fax4Decode(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (occ > 0) {
 		a0 = 0;
@@ -1547,6 +1604,9 @@ Fax4Encode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (cc > 0) {
 		if (!Fax3Encode2DRow(tif, bp, sp->refline, sp->b.rowpixels))
@@ -1626,6 +1686,9 @@ Fax3DecodeRLE(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (occ > 0) {
 		a0 = 0;

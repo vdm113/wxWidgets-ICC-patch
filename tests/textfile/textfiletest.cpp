@@ -230,6 +230,9 @@ void TextFileTestCase::ReadMixedWithFuzzing()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int iteration = 0; iteration < 100; iteration++)
     {
@@ -247,6 +250,9 @@ void TextFileTestCase::ReadMixedWithFuzzing()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i = 1; i < BUF_LEN; i++ )
         {
@@ -284,6 +290,9 @@ void TextFileTestCase::ReadCRCRLF()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString str = f.GetFirstLine(); !f.Eof(); str = f.GetNextLine() )
         all += str;
@@ -344,6 +353,9 @@ void TextFileTestCase::ReadBig()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < NUM_LINES; n++ )
         {

@@ -192,6 +192,9 @@ format_message (j_common_ptr cinfo, char * buffer)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while ((ch = *msgptr++) != '\0') {
     if (ch == '%') {

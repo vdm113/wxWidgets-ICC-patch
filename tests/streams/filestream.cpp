@@ -128,6 +128,9 @@ wxString fileStream::GetInFileName() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < DATABUFFER_SIZE; i++)
             buf[i] = (i % 0xFF);

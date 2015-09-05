@@ -549,6 +549,9 @@ void TextCtrlTestCase::LongText()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < lenPattern - 1; i++)
     {
@@ -562,6 +565,9 @@ void TextCtrlTestCase::LongText()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < numLines; i++)
     {
@@ -573,6 +579,9 @@ void TextCtrlTestCase::LongText()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < numLines; i++)
     {

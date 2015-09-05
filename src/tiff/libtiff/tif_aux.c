@@ -113,6 +113,9 @@ TIFFDefaultTransferFunction(TIFFDirectory* td)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 1; i < n; i++) {
 		double t = (double)i/((double) n-1.);
@@ -164,6 +167,9 @@ TIFFDefaultRefBlackWhite(TIFFDirectory* td)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < 3; i++) {
 		    td->td_refblackwhite[2*i+0] = 0;

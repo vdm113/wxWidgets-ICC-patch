@@ -66,10 +66,13 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
   JQUANT_TBL * qtbl;
   DCTELEM * dtbl;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {
@@ -97,6 +100,9 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0; i < DCTSIZE2; i++) {
 	dtbl[i] = ((DCTELEM) qtbl->quantval[i]) << 3;
@@ -136,6 +142,9 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < DCTSIZE2; i++) {
 	  dtbl[i] = (DCTELEM)
@@ -175,12 +184,18 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (row = 0; row < DCTSIZE; row++) {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	  for (col = 0; col < DCTSIZE; col++) {
 	    fdtbl[i] = (FAST_FLOAT)
@@ -228,6 +243,9 @@ forward_DCT (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (bi = 0; bi < num_blocks; bi++, start_col += DCTSIZE) {
     /* Load data into workspace, applying unsigned->signed conversion */
@@ -240,6 +258,9 @@ forward_DCT (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (elemr = 0; elemr < DCTSIZE; elemr++) {
 	elemptr = sample_data[elemr] + start_col;
@@ -258,6 +279,9 @@ forward_DCT (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	  for (elemc = DCTSIZE; elemc > 0; elemc--) {
 	    *workspaceptr++ = GETJSAMPLE(*elemptr++) - CENTERJSAMPLE;
@@ -279,6 +303,9 @@ forward_DCT (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0; i < DCTSIZE2; i++) {
 	qval = divisors[i];
@@ -338,6 +365,9 @@ forward_DCT_float (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (bi = 0; bi < num_blocks; bi++, start_col += DCTSIZE) {
     /* Load data into workspace, applying unsigned->signed conversion */
@@ -350,6 +380,9 @@ forward_DCT_float (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (elemr = 0; elemr < DCTSIZE; elemr++) {
 	elemptr = sample_data[elemr] + start_col;
@@ -368,6 +401,9 @@ forward_DCT_float (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	  for (elemc = DCTSIZE; elemc > 0; elemc--) {
 	    *workspaceptr++ = (FAST_FLOAT)
@@ -390,6 +426,9 @@ forward_DCT_float (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (i = 0; i < DCTSIZE2; i++) {
 	/* Apply the quantization and scaling factor */
@@ -454,6 +493,9 @@ jinit_forward_dct (j_compress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; i < NUM_QUANT_TBLS; i++) {
     fdct->divisors[i] = NULL;

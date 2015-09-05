@@ -261,6 +261,9 @@ MyProportionsFrame::MyProportionsFrame(wxFrame *parent)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < WXSIZEOF(m_spins); n++ )
     {
@@ -275,6 +278,9 @@ MyProportionsFrame::MyProportionsFrame(wxFrame *parent)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < WXSIZEOF(m_spins); n++ )
         m_sizer->Add(m_spins[n], wxSizerFlags().Border());
@@ -299,6 +305,9 @@ void MyProportionsFrame::UpdateProportions()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(m_spins); n++ )
     {
@@ -328,6 +337,9 @@ void MyFlexSizerFrame::InitFlexSizer(wxFlexGridSizer *sizer, wxWindow* parent)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < 3; i++ )
     {
@@ -335,6 +347,9 @@ void MyFlexSizerFrame::InitFlexSizer(wxFlexGridSizer *sizer, wxWindow* parent)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int j = 0; j < 3; j++ )
         {
@@ -736,6 +751,9 @@ MyWrapSizerFrame::MyWrapSizerFrame(wxFrame* parent)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( int i = 0; i < 6; i++ )
         DoAddCheckbox();

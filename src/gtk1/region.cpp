@@ -120,6 +120,9 @@ wxRegion::wxRegion( size_t n, const wxPoint *points, wxPolygonFillMode fillStyle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0 ; i < n ; i++ )
     {
@@ -433,6 +436,9 @@ void wxRIRefData::CreateRects( const wxRegion& region )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (size_t i=0; i < m_numRects; ++i)
             {

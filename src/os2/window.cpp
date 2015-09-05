@@ -230,6 +230,9 @@ wxWindow* wxWindowOS2::FindItem(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (current)
     {
@@ -263,6 +266,9 @@ wxWindow* wxWindowOS2::FindItemByHWND(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (current)
     {
@@ -369,6 +375,9 @@ wxWindowOS2::~wxWindowOS2()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (wxWindow* pWin = GetParent(); pWin; pWin = pWin->GetParent())
     {
@@ -1740,6 +1749,9 @@ void wxWindowOS2::DoGetTextExtent( const wxString& rString,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (i = 1; i < 4; i++)
             {
@@ -1819,6 +1831,9 @@ bool wxWindowOS2::IsMouseInWindow() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (hWnd && (hWnd != GetHwnd()))
         hWnd = ::WinQueryWindow(hWnd, QW_PARENT);
@@ -1874,6 +1889,9 @@ bool wxWindowOS2::DoPopupMenu( wxMenu* pMenu, int nX, int nY )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while(bIsWaiting)
     {
@@ -3526,6 +3544,9 @@ void wxWindowOS2::OnSysColourChanged(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -3619,6 +3640,9 @@ bool wxWindowOS2::HandlePaint()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for(size_t i = 0; i < vRgnData.crc; i++)
             {
@@ -5071,6 +5095,9 @@ wxWindow* wxFindWindowAtPoint(const wxPoint& rPt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (!pWin && (hWnd != 0))
     {
@@ -5142,6 +5169,9 @@ wxWindowOS2* FindWindowForMouseEvent( wxWindow* pWin,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (current)
             {
@@ -5167,6 +5197,9 @@ wxWindowOS2* FindWindowForMouseEvent( wxWindow* pWin,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         while (current2)
                         {

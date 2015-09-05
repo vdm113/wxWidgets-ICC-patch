@@ -110,6 +110,9 @@ PREFIX(scanComment)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (ptr != end) {
       switch (BYTE_TYPE(enc, ptr)) {
@@ -163,6 +166,9 @@ PREFIX(scanDecl)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -254,6 +260,9 @@ PREFIX(scanPi)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -268,6 +277,9 @@ PREFIX(scanPi)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       while (ptr != end) {
         switch (BYTE_TYPE(enc, ptr)) {
@@ -322,6 +334,9 @@ PREFIX(scanCdataSection)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; i < 6; i++, ptr += MINBPC(enc)) {
     if (!CHAR_MATCHES(enc, ptr, CDATA_LSQB[i])) {
@@ -384,6 +399,9 @@ PREFIX(cdataSectionTok)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -432,6 +450,9 @@ PREFIX(scanEndTag)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -441,6 +462,9 @@ PREFIX(scanEndTag)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (ptr += MINBPC(enc); ptr != end; ptr += MINBPC(enc)) {
         switch (BYTE_TYPE(enc, ptr)) {
@@ -492,6 +516,9 @@ PREFIX(scanHexCharRef)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (ptr += MINBPC(enc); ptr != end; ptr += MINBPC(enc)) {
       switch (BYTE_TYPE(enc, ptr)) {
@@ -530,6 +557,9 @@ PREFIX(scanCharRef)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (ptr += MINBPC(enc); ptr != end; ptr += MINBPC(enc)) {
       switch (BYTE_TYPE(enc, ptr)) {
@@ -567,6 +597,9 @@ PREFIX(scanRef)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -595,6 +628,9 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -622,6 +658,9 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (;;) {
         int t;
@@ -653,6 +692,9 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (;;) {
           ptr += MINBPC(enc);
@@ -677,6 +719,9 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (;;) {
           int t;
@@ -726,6 +771,9 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (;;) {
           ptr += MINBPC(enc);
@@ -807,6 +855,9 @@ PREFIX(scanLt)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -836,6 +887,9 @@ PREFIX(scanLt)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (ptr != end) {
           switch (BYTE_TYPE(enc, ptr)) {
@@ -933,6 +987,9 @@ PREFIX(contentTok)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -1001,6 +1058,9 @@ PREFIX(scanPercent)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -1032,6 +1092,9 @@ PREFIX(scanPoundName)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -1057,6 +1120,9 @@ PREFIX(scanLit)(int open, const ENCODING *enc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
     int t = BYTE_TYPE(enc, ptr);
@@ -1140,6 +1206,9 @@ PREFIX(prologTok)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (;;) {
       ptr += MINBPC(enc);
@@ -1267,6 +1336,9 @@ PREFIX(prologTok)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -1338,6 +1410,9 @@ PREFIX(attributeValueTok)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -1401,6 +1476,9 @@ PREFIX(entityValueTok)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -1467,6 +1545,9 @@ PREFIX(ignoreSectionTok)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -1519,6 +1600,9 @@ PREFIX(isPublicId)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (; ptr != end; ptr += MINBPC(enc)) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -1587,6 +1671,9 @@ PREFIX(getAtts)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (ptr += MINBPC(enc);; ptr += MINBPC(enc)) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -1679,10 +1766,13 @@ PREFIX(charRefNumber)(const ENCODING *enc, const char *ptr)
   /* skip &# */
   ptr += 2*MINBPC(enc);
   if (CHAR_MATCHES(enc, ptr, ASCII_x)) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (ptr += MINBPC(enc);
          !CHAR_MATCHES(enc, ptr, ASCII_SEMI);
@@ -1714,6 +1804,9 @@ PREFIX(charRefNumber)(const ENCODING *enc, const char *ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (; !CHAR_MATCHES(enc, ptr, ASCII_SEMI); ptr += MINBPC(enc)) {
       int c = BYTE_TO_ASCII(enc, ptr);
@@ -1787,6 +1880,9 @@ PREFIX(sameName)(const ENCODING *enc, const char *ptr1, const char *ptr2)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (;;) {
     switch (BYTE_TYPE(enc, ptr1)) {
@@ -1857,6 +1953,9 @@ PREFIX(nameMatchesAscii)(const ENCODING *enc, const char *ptr1,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (; *ptr2; ptr1 += MINBPC(enc), ptr2++) {
     if (ptr1 == end1)
@@ -1875,6 +1974,9 @@ PREFIX(nameLength)(const ENCODING *enc, const char *ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (;;) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -1906,6 +2008,9 @@ PREFIX(skipS)(const ENCODING *enc, const char *ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (;;) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -1930,6 +2035,9 @@ PREFIX(updatePosition)(const ENCODING *enc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (ptr < end) {
     switch (BYTE_TYPE(enc, ptr)) {

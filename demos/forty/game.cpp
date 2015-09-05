@@ -47,10 +47,13 @@ Game::Game(int wins, int games, int score) :
     m_pack = new Pack(2, 2 + 4 * (CardHeight + 2));
     srand(time(0));
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 5; i++) m_pack->Shuffle();
 
@@ -60,6 +63,9 @@ Game::Game(int wins, int games, int score) :
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 8; i++)
     {
@@ -71,6 +77,9 @@ Game::Game(int wins, int games, int score) :
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 10; i++)
     {
@@ -100,6 +109,9 @@ void Game::Layout()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 8; i++)
     {
@@ -111,6 +123,9 @@ void Game::Layout()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 10; i++)
     {
@@ -133,6 +148,9 @@ Game::~Game()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 8; i++)
     {
@@ -142,6 +160,9 @@ Game::~Game()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 10; i++)
     {
@@ -269,6 +290,9 @@ void Game::DisplayScore(wxDC& dc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < 8; i++)
     {
@@ -328,6 +352,9 @@ void Game::Deal()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 5; i++)
     {
@@ -338,6 +365,9 @@ void Game::Deal()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 10; i++)
     {
@@ -347,6 +377,9 @@ void Game::Deal()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i <  8; i++)
     {
@@ -358,6 +391,9 @@ void Game::Deal()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 10; i++)
     {
@@ -365,6 +401,9 @@ void Game::Deal()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 1; j <= 4; j++)
         {
@@ -395,6 +434,9 @@ void Game::Redraw(wxDC& dc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 8; i++)
     {
@@ -404,6 +446,9 @@ void Game::Redraw(wxDC& dc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 10; i++)
     {
@@ -451,6 +496,9 @@ Pile* Game::WhichPile(int x, int y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 8; i++)
     {
@@ -465,6 +513,9 @@ Pile* Game::WhichPile(int x, int y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 10; i++)
     {
@@ -552,6 +603,9 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for(i = 0; i < 4; i++)
                 {
@@ -576,6 +630,9 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for(i = 0; i < 8; i++)
             {
@@ -592,6 +649,9 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for(i = 0; i < 10; i++)
             {
@@ -610,6 +670,9 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for(i = 0; i < 10; i++)
             {
@@ -636,6 +699,9 @@ bool Game::HaveYouWon()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(int i = 0; i < 10; i++)
     {
@@ -664,6 +730,9 @@ bool Game::CanYouGo(int x, int y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for(i = 0; i < 8; i++)
             {
@@ -676,6 +745,9 @@ bool Game::CanYouGo(int x, int y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for(i = 0; i < 10; i++)
             {
@@ -713,6 +785,9 @@ void Game::LButtonUp(wxDC& dc, int x, int y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < 8; i++)
         {
@@ -729,6 +804,9 @@ void Game::LButtonUp(wxDC& dc, int x, int y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < 10; i++)
         {
@@ -878,6 +956,9 @@ Pack::Pack(int x, int y) : Pile(x, y, 0, 0)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (m_topCard = 0; m_topCard < NumCards; m_topCard++)
     {
@@ -902,6 +983,9 @@ void Pack::Shuffle()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i <= m_topCard; i++)
     {
@@ -911,6 +995,9 @@ void Pack::Shuffle()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i <= m_topCard; i++)
     {
@@ -919,6 +1006,9 @@ void Pack::Shuffle()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (temp[pos])
         {
@@ -937,6 +1027,9 @@ void Pack::Shuffle()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i <= m_topCard; i++)
     {
@@ -945,6 +1038,9 @@ void Pack::Shuffle()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (m_cards[pos])
         {
@@ -990,6 +1086,9 @@ Pack::~Pack()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (m_topCard = 0; m_topCard < NumCards; m_topCard++)
     {
@@ -1081,6 +1180,9 @@ void Discard::Redraw(wxDC& dc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (int i = 0; i <= m_topCard; i++)
             {
@@ -1144,6 +1246,9 @@ Card* Discard::RemoveTopCard(wxDC& dc, int m_xOffset, int m_yOffset)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = m_topCard - 31; i <= m_topCard - 31 + CardWidth / m_dx; i++)
         {

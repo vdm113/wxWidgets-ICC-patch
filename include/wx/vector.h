@@ -90,6 +90,9 @@ struct wxVectorMemOpsGeneric
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < occupiedSize; i++ )
         {
@@ -109,6 +112,9 @@ struct wxVectorMemOpsGeneric
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i = count; i > 0; --i, ++destptr, ++sourceptr )
         {
@@ -126,6 +132,9 @@ struct wxVectorMemOpsGeneric
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i = count; i > 0; --i, --destptr, --sourceptr )
         {
@@ -260,6 +269,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < p_size; n++ )
             push_back(value_type());
@@ -273,6 +285,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < p_size; n++ )
             push_back(v);
@@ -303,6 +318,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < p_size; n++ )
             push_back(v);
@@ -321,6 +339,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( InputIterator it = first; it != last; ++it )
             push_back(*it);
@@ -340,6 +361,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_type i = 0; i < m_size; i++ )
         {
@@ -522,6 +546,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( iterator i = first; i < last; ++i )
             i->~T();
@@ -553,6 +580,9 @@ private:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( const_iterator i = vb.begin(); i != vb.end(); ++i )
             push_back(*i);
@@ -565,6 +595,9 @@ private:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_type i = n; i < m_size; i++ )
             m_values[i].~T();
@@ -578,6 +611,9 @@ private:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_type i = m_size; i < n; i++ )
             push_back(v);

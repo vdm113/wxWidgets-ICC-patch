@@ -531,6 +531,9 @@ bool wxSymbolPickerDialog::TransferDataToWindow()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < (int) WXSIZEOF(g_UnicodeSubsetTable); i++)
         {
@@ -648,6 +651,9 @@ void wxSymbolPickerDialog::OnSymbolSelected( wxCommandEvent& event )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < (int) WXSIZEOF(g_UnicodeSubsetTable); i++)
         {
@@ -878,6 +884,9 @@ bool wxSymbolListCtrl::DoSetCurrent(int current)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( (unsigned)lineNo + 1 == GetVisibleEnd() &&
                     ScrollToRow(GetVisibleBegin() + 1) )
@@ -949,6 +958,9 @@ void wxSymbolListCtrl::OnDrawItem(wxDC& dc, const wxRect& rect, size_t n) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < m_symbolsPerLine; i++)
     {
@@ -1032,6 +1044,9 @@ void wxSymbolListCtrl::OnPaint(wxPaintEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t line = GetVisibleBegin(); line < lineMax; line++ )
     {

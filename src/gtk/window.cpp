@@ -259,6 +259,9 @@ static bool wxGetTopLevel(GtkWidget** widget, GdkWindow** window)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (; i != wxTopLevelWindows.end(); ++i)
     {
@@ -1051,6 +1054,9 @@ gtk_window_key_press_callback( GtkWidget *WXUNUSED(widget),
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (ancestor)
         {
@@ -1195,6 +1201,9 @@ bool wxWindowGTK::GTKDoInsertTextFromIM(const char* str)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( wxString::const_iterator pstr = data.begin(); pstr != data.end(); ++pstr )
     {
@@ -1327,6 +1336,9 @@ wxWindowGTK *FindWindowForMouseEvent(wxWindowGTK *win, wxCoord& x, wxCoord& y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -1651,6 +1663,9 @@ static void SendSetCursorEvent(wxWindowGTK* win, int x, int y)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ;; )
     {
@@ -2407,6 +2422,9 @@ void wxWindowGTK::Init()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int dir = 0; dir < ScrollDir_Max; dir++ )
     {
@@ -2497,6 +2515,9 @@ void wxWindowGTK::GTKCreateScrolledWindowWith(GtkWidget* view)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int dir = 0; dir < ScrollDir_Max; dir++ )
     {
@@ -2878,6 +2899,9 @@ static gboolean queue_resize(void*)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (GSList* p = gs_queueResizeList; p; p = p->next)
     {
@@ -3105,6 +3129,9 @@ void wxWindowGTK::DoGetClientSize( int *width, int *height ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int i = 0; i < ScrollDir_Max; i++ )
             {
@@ -3865,10 +3892,13 @@ void wxWindowGTK::RealizeTabOrder()
             GList *chain = NULL;
             wxWindowGTK* mnemonicWindow = NULL;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( wxWindowList::const_iterator i = m_children.begin();
                   i != m_children.end();
@@ -3995,6 +4025,9 @@ void wxWindowGTK::GTKUpdateCursor(bool isBusyOrGlobalCursor, bool isRealize, con
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (size_t i = windows.size(); i--;)
             {
@@ -4052,6 +4085,9 @@ wxWindowGTK::ScrollDir wxWindowGTK::ScrollDirFromRange(GtkRange *range) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int dir = 0; dir < ScrollDir_Max; dir++ )
     {
@@ -4190,6 +4226,9 @@ void wxWindowGTK::GTKSendPaintEvents(const GdkRegion* region)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (upd)
         {
@@ -4314,6 +4353,9 @@ void wxWindowGTK::GTKSendPaintEvents(const GdkRegion* region)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( node = m_children.GetFirst(); node ; node = node->GetNext() )
         {
@@ -4666,6 +4708,9 @@ GdkWindow* wxWindowGTK::GTKFindWindow(GtkWidget* widget)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (const GList* p = gdk_window_peek_children(window); p; p = p->next)
     {
@@ -4685,6 +4730,9 @@ void wxWindowGTK::GTKFindWindow(GtkWidget* widget, wxArrayGdkWindows& windows)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (const GList* p = gdk_window_peek_children(window); p; p = p->next)
     {
@@ -4773,6 +4821,9 @@ bool wxWindowGTK::DoPopupMenu( wxMenu *menu, int x, int y )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (menu->m_popupShown)
     {
@@ -4832,6 +4883,9 @@ void wxWindowGTK::GTKSizeRevalidate()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (GList* p = gs_sizeRevalidateList; p; p = next)
     {

@@ -218,6 +218,9 @@ wxFontMapper::CharsetToEncoding(const wxString& charset, bool interactive)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < count; i++ )
         {
@@ -405,6 +408,9 @@ bool wxFontMapper::GetAltForEncoding(wxFontEncoding encoding,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < count && !foundEquivEncoding; i++ )
         {

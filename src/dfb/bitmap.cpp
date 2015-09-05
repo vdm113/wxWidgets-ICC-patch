@@ -61,6 +61,9 @@ void CopyPixelsAndSwapRGB(unsigned w, unsigned h,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned y = 0; y < h; y++, src += src_advance, dst += dst_advance )
     {
@@ -68,6 +71,9 @@ void CopyPixelsAndSwapRGB(unsigned w, unsigned h,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned x = 0; x < w; x++, src += SrcPixSize, dst += DstPixSize )
         {
@@ -131,12 +137,18 @@ void CopySurfaceToImage(const wxIDirectFBSurfacePtr& surface, wxImage& image)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned y = 0; y < height; y++, src += advance )
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( unsigned x = 0; x < width; x++, src += 4 )
                 *(alpha++) = *src;
@@ -194,12 +206,18 @@ void CopyImageToSurface(const wxImage& image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned y = 0; y < height; y++, dest += advance )
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( unsigned x = 0; x < width; x++, dest += 4 )
                 *dest = *(alpha++);
@@ -318,6 +336,9 @@ CopyBits(int width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( src < srcEnd )
     {
@@ -327,6 +348,9 @@ CopyBits(int width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int bit = 0; bit < BITS_PER_BYTE; bit++ )
         {

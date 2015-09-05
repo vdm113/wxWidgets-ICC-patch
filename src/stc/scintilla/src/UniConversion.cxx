@@ -34,6 +34,9 @@ unsigned int UTF8Length(const wchar_t *uptr, unsigned int tlen) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = 0; i < tlen && uptr[i];) {
 		unsigned int uch = uptr[i];
@@ -59,6 +62,9 @@ void UTF8FromUTF16(const wchar_t *uptr, unsigned int tlen, char *putf, unsigned 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = 0; i < tlen && uptr[i];) {
 		unsigned int uch = uptr[i];
@@ -106,6 +112,9 @@ size_t UTF16Length(const char *s, size_t len) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (size_t i = 0; i<len;) {
 		unsigned char ch = static_cast<unsigned char>(s[i]);
@@ -133,6 +142,9 @@ size_t UTF16FromUTF8(const char *s, size_t len, wchar_t *tbuf, size_t tlen) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((i<len) && (ui<tlen)) {
 		unsigned char ch = us[i++];
@@ -174,6 +186,9 @@ unsigned int UTF32FromUTF8(const char *s, unsigned int len, unsigned int *tbuf, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((i<len) && (ui<tlen)) {
 		unsigned char ch = us[i++];
@@ -241,6 +256,9 @@ void UTF8BytesOfLeadInitialise() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int i=0; i<256; i++) {
 			UTF8BytesOfLead[i] = BytesFromLead(i);

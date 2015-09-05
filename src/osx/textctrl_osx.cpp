@@ -713,6 +713,9 @@ int wxTextWidgetImpl::GetNumberOfLines() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < content.length() ; i++)
     {
@@ -738,6 +741,9 @@ wxString wxTextWidgetImpl::GetLineText(long lineNo) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < content.length() ; i++)
     {
@@ -750,6 +756,9 @@ wxString wxTextWidgetImpl::GetLineText(long lineNo) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (size_t j = i; j < content.length(); j++)
             {
@@ -780,6 +789,9 @@ int wxTextWidgetImpl::GetLineLength(long lineNo) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < content.length() ; i++)
     {
@@ -791,6 +803,9 @@ int wxTextWidgetImpl::GetLineLength(long lineNo) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (size_t j = i; j < content.length(); j++)
             {

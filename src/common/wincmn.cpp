@@ -609,6 +609,9 @@ bool wxWindowBase::DestroyChildren()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ;; )
     {
@@ -663,10 +666,13 @@ static bool wxHasRealChildren(const wxWindowBase* win)
 {
     int realChildCount = 0;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst();
           node;
@@ -714,10 +720,13 @@ wxSize wxWindowBase::DoGetBestSize() const
         int maxX = 0,
             maxY = 0;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
               node;
@@ -758,10 +767,13 @@ wxSize wxWindowBase::DoGetBestSize() const
         int maxX = 0,
             maxY = 0;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
               node;
@@ -1225,10 +1237,13 @@ void wxWindowBase::NotifyWindowOnEnableChange(bool enabled)
     // accept any input (at least under MSW where children don't accept input
     // if any of the windows in their parent chain is enabled).
 #ifndef wxHAS_NATIVE_ENABLED_MANAGEMENT
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
           node;
@@ -1289,10 +1304,13 @@ void wxWindowBase::Freeze()
         DoFreeze();
 
         // and recursively freeze all children:
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxWindowList::iterator i = GetChildren().begin();
               i != GetChildren().end(); ++i )
@@ -1313,10 +1331,13 @@ void wxWindowBase::Thaw()
     if ( !--m_freezeCount )
     {
         // recursively thaw all children:
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxWindowList::iterator i = GetChildren().begin();
               i != GetChildren().end(); ++i )
@@ -1344,6 +1365,9 @@ bool wxWindowBase::IsDescendant(wxWindowBase* win) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( win )
     {
@@ -1512,6 +1536,9 @@ void wxWindowBase::PushEventHandler(wxEvtHandler *handlerToPush)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( pLast && pLast != this )
         pLast = pLast->GetNextHandler();
@@ -1571,6 +1598,9 @@ bool wxWindowBase::RemoveEventHandler(wxEvtHandler *handlerToRemove)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( handlerCur != this && handlerCur )
     {
@@ -1822,6 +1852,9 @@ wxWindow *wxWindowBase::GetAncestorWithCustomPalette() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( win && !win->HasCustomPalette() )
     {
@@ -1920,6 +1953,9 @@ wxWindow *wxWindowBase::FindWindow(long id) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( node = m_children.GetFirst(); node && !res; node = node->GetNext() )
     {
@@ -1947,6 +1983,9 @@ wxWindow *wxWindowBase::FindWindow(const wxString& name) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( node = m_children.GetFirst(); node && !res; node = node->GetNext() )
     {
@@ -2006,10 +2045,13 @@ wxWindow *wxFindWindowRecursively(const wxWindow *parent,
         return (wxWindow *)parent;
 
     // It wasn't, so check all its children
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = parent->GetChildren().GetFirst();
           node;
@@ -2040,10 +2082,13 @@ wxWindow *wxFindWindowHelper(const wxWindow *parent,
     }
 
     // start at very top of wx's windows
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = wxTopLevelWindows.GetFirst();
           node;
@@ -2103,6 +2148,9 @@ void wxWindowBase::MakeModal(bool modal)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (node)
         {
@@ -2140,10 +2188,13 @@ public:
         const bool recurse = m_win->HasExtraStyle(wxWS_EX_VALIDATE_RECURSIVELY);
 
         wxWindowList& children = m_win->GetChildren();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxWindowList::iterator i = children.begin();
               i != children.end();
@@ -2512,6 +2563,9 @@ void wxWindowBase::DeleteRelatedConstraints()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (node)
         {
@@ -2612,6 +2666,9 @@ void wxWindowBase::SatisfyConstraints()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( noChanges > 0 )
         {
@@ -2691,16 +2748,22 @@ bool wxWindowBase::DoPhase(int phase)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int noIterations = 0; noIterations < maxIterations; noIterations++ )
     {
         int noChanges = 0;
 
         // loop over all children setting their constraints
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
               node;
@@ -2760,6 +2823,9 @@ void wxWindowBase::ResetConstraints()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -2811,6 +2877,9 @@ void wxWindowBase::SetConstraintSizes(bool recurse)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (node)
         {
@@ -2939,6 +3008,9 @@ void wxWindowBase::UpdateWindowUI(long flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (node)
         {
@@ -2985,6 +3057,9 @@ bool wxWindowBase::SendIdleEvents(wxIdleEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (; node; node = node->GetNext())
     {
@@ -3091,6 +3166,9 @@ void wxWindowBase::OnSysColourChanged(wxSysColourChangedEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( node )
     {
@@ -3220,6 +3298,9 @@ static void DrawSizer(wxWindowBase *win, wxSizer *sizer)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxSizerItemList::const_iterator i = items.begin(),
                                         end = items.end();
@@ -3261,6 +3342,9 @@ static void DrawSizers(wxWindowBase *win)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxWindowList::const_iterator i = children.begin(),
                                          end = children.end();
@@ -3433,10 +3517,13 @@ wxRecursionGuardFlag changing;
 
 bool IsInCaptureStack(wxWindowBase* win)
 {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxVector<wxWindow*>::const_iterator it = stack.begin();
           it != stack.end();
@@ -3553,6 +3640,9 @@ void wxWindowBase::NotifyCaptureLost()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( !wxMouseCapture::stack.empty() )
     {
@@ -3806,6 +3896,9 @@ wxWindow* wxGetTopLevelParent(wxWindow *win)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( win && !win->IsTopLevel() )
          win = win->GetParent();

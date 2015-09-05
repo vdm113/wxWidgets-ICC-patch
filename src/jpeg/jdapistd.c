@@ -62,6 +62,9 @@ jpeg_start_decompress (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (;;) {
 	int retcode;
@@ -117,6 +120,9 @@ output_pass_setup (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (cinfo->master->is_dummy_pass) {
 #ifdef QUANT_2PASS_SUPPORTED
@@ -125,6 +131,9 @@ output_pass_setup (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (cinfo->output_scanline < cinfo->output_height) {
       JDIMENSION last_scanline;
@@ -289,6 +298,9 @@ jpeg_finish_output (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (cinfo->input_scan_number <= cinfo->output_scan_number &&
 	 ! cinfo->inputctl->eoi_reached) {

@@ -60,6 +60,9 @@ void wxModule::RegisterModules()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (wxClassInfo::const_iterator it  = wxClassInfo::begin_classinfo(),
                                      end = wxClassInfo::end_classinfo();
@@ -101,6 +104,9 @@ bool wxModule::DoInitializeModule(wxModule *module,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < dependencies.size(); ++i )
     {
@@ -112,6 +118,9 @@ bool wxModule::DoInitializeModule(wxModule *module,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( node = initializedModules.GetFirst(); node; node = node->GetNext() )
         {
@@ -130,6 +139,9 @@ bool wxModule::DoInitializeModule(wxModule *module,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( node = m_modules.GetFirst(); node; node = node->GetNext() )
         {
@@ -176,10 +188,13 @@ bool wxModule::InitializeModules()
 {
     wxModuleList initializedModules;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxModuleList::compatibility_iterator node = m_modules.GetFirst();
           node;
@@ -213,10 +228,13 @@ void wxModule::DoCleanUpModules(const wxModuleList& modules)
 {
     // cleanup user-defined modules in the reverse order compared to their
     // initialization -- this ensures that dependencies are respected
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxModuleList::compatibility_iterator node = modules.GetLast();
           node;
@@ -245,6 +263,9 @@ bool wxModule::ResolveNamedDependencies()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < m_namedDependencies.size(); ++i )
     {

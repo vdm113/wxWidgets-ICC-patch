@@ -118,6 +118,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < MAX_LINES; ++i )
             m_heights[i] = rand()%25+16; // low: 16; high: 40
@@ -157,6 +160,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t line = lineFirst; line < lineLast; line++ )
         {
@@ -225,6 +231,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < MAX_LINES; ++i )
             m_heights[i] = rand()%25+16; // low: 15; high: 40
@@ -264,6 +273,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t line = lineFirst; line < lineLast; line++ )
         {
@@ -332,6 +344,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < MAX_LINES; ++i )
         {
@@ -380,6 +395,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t row = rowFirst; row < rowLast; row++ )
         {
@@ -391,6 +409,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( size_t col = columnFirst; col < columnLast; col++ )
             {

@@ -104,6 +104,9 @@ bool wxCheckForInterrupt(wxWindow *wnd)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( ::PeekMessage(&msg, GetHwndOf(wnd), 0, 0, PM_REMOVE) )
     {
@@ -206,6 +209,9 @@ wxString WXDLLEXPORT wxGetWindowClass(WXHWND hWnd)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( ;; )
         {

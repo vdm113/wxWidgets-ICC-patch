@@ -212,6 +212,9 @@ void VectorsTestCase::Iterators()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxVector<int>::iterator i = v.begin(); i != v.end(); ++i, ++value )
     {
@@ -325,6 +328,9 @@ void VectorsTestCase::Sort()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (idx=1; idx<v.size(); idx++)
     {

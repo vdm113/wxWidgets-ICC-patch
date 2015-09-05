@@ -228,10 +228,13 @@ wxHtmlCell *wxHtmlCell::FindCellByPos(wxCoord x, wxCoord y,
 wxPoint wxHtmlCell::GetAbsPos(wxHtmlCell *rootCell) const
 {
     wxPoint p(m_PosX, m_PosY);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (wxHtmlCell *parent = m_Parent; parent && parent != rootCell;
          parent = parent->m_Parent)
@@ -249,6 +252,9 @@ wxHtmlCell *wxHtmlCell::GetRootCell() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( c->m_Parent )
         c = c->m_Parent;
@@ -262,6 +268,9 @@ unsigned wxHtmlCell::GetDepth() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (wxHtmlCell *p = m_Parent; p; p = p->m_Parent)
         d++;
@@ -280,6 +289,9 @@ bool wxHtmlCell::IsBefore(wxHtmlCell *cell) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (; d1 != d2; d1-- )
             c1 = c1->m_Parent;
@@ -288,6 +300,9 @@ bool wxHtmlCell::IsBefore(wxHtmlCell *cell) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (; d1 != d2; d2-- )
             c2 = c2->m_Parent;
@@ -299,6 +314,9 @@ bool wxHtmlCell::IsBefore(wxHtmlCell *cell) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( c1 && c2 )
     {
@@ -308,6 +326,9 @@ bool wxHtmlCell::IsBefore(wxHtmlCell *cell) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( c1 )
             {
@@ -399,6 +420,9 @@ void wxHtmlWordCell::Split(const wxDC& dc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while( i < len && pt1.x >= widths[i] )
         i++ ;
@@ -414,6 +438,9 @@ void wxHtmlWordCell::Split(const wxDC& dc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( pt1.x > 0 && i < len )
     {
@@ -435,6 +462,9 @@ void wxHtmlWordCell::Split(const wxDC& dc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while( j < len && pt2.x >= widths[j] )
         j++ ;
@@ -451,6 +481,9 @@ void wxHtmlWordCell::Split(const wxDC& dc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( pt2.x > 0 && j < len )
     {
@@ -589,6 +622,9 @@ void wxHtmlWordCell::Draw(wxDC& dc, int x, int y,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( nextCell && nextCell->IsFormattingCell() )
             nextCell = nextCell->GetNext();
@@ -673,6 +709,9 @@ wxString wxHtmlWordWithTabsCell::GetPartAsText(int begin, int end) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ; pos < begin; ++i )
     {
@@ -695,6 +734,9 @@ wxString wxHtmlWordWithTabsCell::GetPartAsText(int begin, int end) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ; pos < end; ++i )
     {
@@ -742,6 +784,9 @@ wxHtmlContainerCell::~wxHtmlContainerCell()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( cell )
     {
@@ -805,6 +850,9 @@ wxHtmlContainerCell::AdjustPagebreak(int *pagebreak,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (c)
     {
@@ -868,6 +916,9 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext())
             cell->Layout(m_Width - (l + r));
@@ -890,6 +941,9 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (cell != NULL)
     {
@@ -932,6 +986,9 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             do
             {
@@ -970,6 +1027,9 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while (line != cell)
                 {
@@ -1004,6 +1064,9 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         for ( c = line; c != cell; c = c->GetNext() )
                         {
@@ -1022,6 +1085,9 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         while (line !=cell && !line->IsLinebreakAllowed())
                         {
@@ -1042,6 +1108,9 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         for ( int n = 0; line != cell; line = line->GetNext() )
                         {
@@ -1071,6 +1140,9 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     while (line != cell)
                     {
@@ -1102,6 +1174,9 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (cell)
             {
@@ -1238,6 +1313,9 @@ void wxHtmlContainerCell::Draw(wxDC& dc, int x, int y, int view_y1, int view_y2,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext())
         {
@@ -1274,6 +1352,9 @@ void wxHtmlContainerCell::DrawInvisible(wxDC& dc, int x, int y,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext())
         {
@@ -1367,6 +1448,9 @@ const wxHtmlCell* wxHtmlContainerCell::Find(int condition, const void* param) co
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext())
         {
@@ -1387,6 +1471,9 @@ wxHtmlCell *wxHtmlContainerCell::FindCellByPos(wxCoord x, wxCoord y,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( const wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext() )
         {
@@ -1407,6 +1494,9 @@ wxHtmlCell *wxHtmlContainerCell::FindCellByPos(wxCoord x, wxCoord y,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( const wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext() )
         {
@@ -1428,6 +1518,9 @@ wxHtmlCell *wxHtmlContainerCell::FindCellByPos(wxCoord x, wxCoord y,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( const wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext() )
         {
@@ -1470,6 +1563,9 @@ wxHtmlCell *wxHtmlContainerCell::GetFirstTerminal() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (wxHtmlCell *c = m_Cells; c; c = c->GetNext())
         {
@@ -1496,6 +1592,9 @@ wxHtmlCell *wxHtmlContainerCell::GetLastTerminal() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (c = m_Cells; c; c = c->GetNext())
         {
@@ -1516,6 +1615,9 @@ static bool IsEmptyContainer(wxHtmlContainerCell *cell)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxHtmlCell *c = cell->GetFirstChild(); c; c = c->GetNext() )
     {
@@ -1542,6 +1644,9 @@ void wxHtmlContainerCell::RemoveExtraSpacing(bool top, bool bottom)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( c = m_Cells; c; c = c->GetNext() )
             {
@@ -1573,6 +1678,9 @@ void wxHtmlContainerCell::RemoveExtraSpacing(bool top, bool bottom)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( c = m_Cells; c; c = c->GetNext() )
                 arr.Add((void*)c);
@@ -1581,6 +1689,9 @@ void wxHtmlContainerCell::RemoveExtraSpacing(bool top, bool bottom)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int i = arr.GetCount() - 1; i >= 0; i--)
             {
@@ -1720,6 +1831,9 @@ void wxHtmlWidgetCell::Draw(wxDC& WXUNUSED(dc),
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (c)
     {
@@ -1752,6 +1866,9 @@ void wxHtmlWidgetCell::DrawInvisible(wxDC& WXUNUSED(dc),
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (c)
     {
@@ -1792,6 +1909,9 @@ const wxHtmlCell* wxHtmlTerminalCellsInterator::operator++()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do
     {
@@ -1811,6 +1931,9 @@ const wxHtmlCell* wxHtmlTerminalCellsInterator::operator++()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( m_pos->GetNext() == NULL )
             {
@@ -1824,6 +1947,9 @@ const wxHtmlCell* wxHtmlTerminalCellsInterator::operator++()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( m_pos->GetFirstChild() != NULL )
             m_pos = m_pos->GetFirstChild();

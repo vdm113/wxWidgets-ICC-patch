@@ -85,6 +85,9 @@ static void ColouriseVHDLDoc(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (; sc.More(); sc.Forward())
   {
@@ -176,6 +179,9 @@ static bool IsCommentLine(int line, Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i = pos; i < eol_pos; i++) {
 		char ch = styler[i];
@@ -195,6 +201,9 @@ static bool IsCommentBlockStart(int line, Accessor &styler)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i = pos; i < eol_pos; i++) {
 		char ch = styler[i];
@@ -215,6 +224,9 @@ static bool IsCommentBlockEnd(int line, Accessor &styler)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i = pos; i < eol_pos; i++) {
 		char ch = styler[i];
@@ -280,6 +292,9 @@ static void FoldNoBoxVHDLDoc(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for(j = startPos; j>0; j--)
   {
@@ -304,6 +319,9 @@ static void FoldNoBoxVHDLDoc(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(k=0; (k<31 ) && (k<end-j+1 ); k++) {
           s[k] = static_cast<char>(tolower(styler[j+k]));
@@ -321,6 +339,9 @@ static void FoldNoBoxVHDLDoc(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for(j=j+static_cast<unsigned int>(strlen(prevWord)); j<endPos; j++)
   {
@@ -346,6 +367,9 @@ static void FoldNoBoxVHDLDoc(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (unsigned int i = startPos; i < endPos; i++)
   {
@@ -358,6 +382,9 @@ static void FoldNoBoxVHDLDoc(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while(IsABlank(chNextNonBlank) && j<endPos)
     {
@@ -422,6 +449,9 @@ static void FoldNoBoxVHDLDoc(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(k=0; (k<31 ) && (k<i-lastStart+1 ); k++) {
           s[k] = static_cast<char>(tolower(styler[lastStart+k]));
@@ -461,6 +491,9 @@ static void FoldNoBoxVHDLDoc(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
               do{// skip white spaces
                 pos--;
@@ -492,6 +525,9 @@ static void FoldNoBoxVHDLDoc(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
               for(int pos=i+1; pos<styler.Length(); pos++)
               {

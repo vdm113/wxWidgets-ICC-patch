@@ -73,6 +73,9 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (pos < lng)
     {
@@ -85,10 +88,13 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
             m_Cache[tg].Key = stpos;
 
             int i;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( i = 0;
                   pos < lng && i < (int)WXSIZEOF(tagBuffer) - 1 &&
@@ -102,10 +108,13 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
             m_Cache[tg].Name = new wxChar[i+1];
             memcpy(m_Cache[tg].Name, tagBuffer, (i+1)*sizeof(wxChar));
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (pos < lng && src[pos] != wxT('>')) pos++;
 
@@ -117,6 +126,9 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (i = tg; i >= 0; i--)
                     if ((m_Cache[i].End1 == -1) && (wxStrcmp(m_Cache[i].Name, tagBuffer+1) == 0))
@@ -143,6 +155,9 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     while (pos < lng)
                     {
@@ -151,6 +166,9 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         while (pos + 1 < lng &&
                                (src[pos] != '<' || src[pos+1] != '/'))
@@ -164,6 +182,9 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         while (pos < lng && match_pos < tag_len && src[pos] != '>' && src[pos] != '<') {
                             // cast to wxChar needed to suppress warning in
@@ -213,6 +234,9 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < m_CacheSize; i++)
     {
@@ -231,6 +255,9 @@ void wx28HtmlTagsCache::QueryTag(int at, int* end1, int* end2)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         do
         {
@@ -246,6 +273,14 @@ void wx28HtmlTagsCache::QueryTag(int at, int* end1, int* end2)
 
             m_CachePos += delta;
         }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
         while (m_Cache[m_CachePos].Key != at);
     }
     *end1 = m_Cache[m_CachePos].End1;
@@ -296,6 +331,9 @@ wx28HtmlTag::wx28HtmlTag(wx28HtmlTag *parent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ((i < end_pos) &&
            ((c = source[i++]) != wxT(' ') && c != wxT('\r') &&
@@ -331,6 +369,9 @@ wx28HtmlTag::wx28HtmlTag(wx28HtmlTag *parent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (i < end_pos)
         {
@@ -431,6 +472,9 @@ wx28HtmlTag::~wx28HtmlTag()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (t1)
     {
@@ -492,6 +536,9 @@ wxString wx28HtmlTag::GetAllParams() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < cnt; i++)
     {
@@ -516,6 +563,9 @@ wx28HtmlTag *wx28HtmlTag::GetFirstSibling() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (cur->m_Prev)
             cur = cur->m_Prev;
@@ -534,6 +584,9 @@ wx28HtmlTag *wx28HtmlTag::GetLastSibling() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (cur->m_Next)
             cur = cur->m_Next;
@@ -551,6 +604,9 @@ wx28HtmlTag *wx28HtmlTag::GetNextTag() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (cur->m_Parent && !cur->m_Next)
         cur = cur->m_Parent;

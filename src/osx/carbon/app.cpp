@@ -166,6 +166,9 @@ short wxApp::MacHandleAEODoc(const WXEVENTREF event, WXEVENTREF WXUNUSED(reply))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 1; i <= itemsInList; i++)
     {
@@ -245,6 +248,9 @@ short wxApp::MacHandleAEPDoc(const WXEVENTREF event , WXEVENTREF WXUNUSED(reply)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 1; i <= itemsInList; i++)
     {
@@ -313,6 +319,9 @@ void wxApp::MacOpenFiles(const wxArrayString & fileNames )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < fileCount; i++)
     {
@@ -341,6 +350,9 @@ void wxApp::MacPrintFiles(const wxArrayString & fileNames )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < fileCount; i++)
     {
@@ -409,6 +421,9 @@ void wxApp::MacReopenApp()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (node)
         {
@@ -529,6 +544,9 @@ int wxMacCommandToId( UInt32 macCommandId )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for ( size_t i = 0 ; i < WXSIZEOF(gCommandIds) ; ++i )
                 {
@@ -564,6 +582,9 @@ UInt32 wxIdToMacCommand( int wxId )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0 ; i < WXSIZEOF(gCommandIds) ; ++i )
         {
@@ -901,6 +922,9 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(int i=1; i < argc; ++i)
     {
@@ -1538,6 +1562,9 @@ bool wxApp::MacSendCharEvent( wxWindow* focus , long keymessage , long modifiers
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( iter && !handled )
         {

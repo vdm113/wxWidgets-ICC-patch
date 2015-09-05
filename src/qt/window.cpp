@@ -926,6 +926,9 @@ void wxWindowQt::SetAcceleratorTable( const wxAcceleratorTable& accel )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( !m_qtShortcuts.isEmpty() )
         delete m_qtShortcuts.takeFirst();

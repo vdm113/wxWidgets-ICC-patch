@@ -377,6 +377,9 @@ bool wxSizerXmlHandler::ValidateGridSizerChildren()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxXmlNode *n = m_node->GetChildren(); n; n = n->GetNext() )
         {
@@ -467,6 +470,9 @@ void wxSizerXmlHandler::SetGrowables(wxFlexGridSizer* sizer,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (tkn.HasMoreTokens())
     {
@@ -618,6 +624,9 @@ int wxSizerXmlHandler::GetSizerFlags()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( tkn.HasMoreTokens() )
     {
@@ -712,6 +721,9 @@ int wxSizerXmlHandler::GetSizerFlags()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int orient = 0; orient < Orient_Max; orient++ )
         {

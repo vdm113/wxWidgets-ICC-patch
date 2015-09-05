@@ -109,6 +109,9 @@ static void ColouriseRebolDoc(unsigned int startPos, int length, int initStyle, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
 
@@ -234,10 +237,13 @@ static void ColouriseRebolDoc(unsigned int startPos, int length, int initStyle, 
 			if (sc.MatchIgnoreCase("rebol"))
 			{
 				int i;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for (i=5; IsASpaceOrTab(styler.SafeGetCharAt(sc.currentPos+i, 0)); i++);
 				if (sc.GetRelative(i) == '[')
@@ -303,6 +309,9 @@ static void FoldRebolDoc(unsigned int startPos, int length, int /* initStyle */,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
 		char ch = chNext;

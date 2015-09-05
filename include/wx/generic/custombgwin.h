@@ -41,6 +41,9 @@ protected:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int x = 0; x < clientSize.x; x += bitmapSize.x )
         {
@@ -48,6 +51,9 @@ protected:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( int y = 0; y < clientSize.y; y += bitmapSize.y )
             {

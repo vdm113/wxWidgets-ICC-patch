@@ -246,6 +246,9 @@ static bool SelectRange(HWND hwndTV,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( htItem && cont )
     {
@@ -286,6 +289,9 @@ static bool SelectRange(HWND hwndTV,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( htItem && cont )
     {
@@ -311,6 +317,9 @@ static bool SelectRange(HWND hwndTV,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( htItem )
         {
@@ -447,6 +456,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < WXSIZEOF(m_images); n++ )
         {
@@ -720,6 +732,9 @@ bool wxTreeTraversal::Traverse(const wxTreeItemId& root, bool recursively)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( child.IsOk() )
     {
@@ -1423,6 +1438,9 @@ wxTreeItemId wxTreeCtrl::GetLastChild(const wxTreeItemId& item) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( child.IsOk() )
     {
@@ -1622,6 +1640,9 @@ wxTreeItemId wxTreeCtrl::DoInsertItem(const wxTreeItemId& parent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( index != 0 && idCur.IsOk() )
         {
@@ -1722,6 +1743,9 @@ void wxTreeCtrl::DeleteChildren(const wxTreeItemId& item)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( child.IsOk() )
     {
@@ -1735,6 +1759,9 @@ void wxTreeCtrl::DeleteChildren(const wxTreeItemId& item)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < nCount; n++ )
     {
@@ -1874,6 +1901,9 @@ void wxTreeCtrl::DoUnselectAll()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
     {
@@ -1918,6 +1948,9 @@ void wxTreeCtrl::DoSelectChildren(const wxTreeItemId& parent)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( child.IsOk() )
     {
@@ -2517,6 +2550,9 @@ bool wxTreeCtrl::MSWHandleSelectionKey(unsigned vkey)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for ( ;; )
                     {
@@ -2604,6 +2640,9 @@ bool wxTreeCtrl::MSWHandleSelectionKey(unsigned vkey)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for ( size_t n = 1; n < visibleCount; n++ )
                 {
@@ -2631,6 +2670,9 @@ bool wxTreeCtrl::MSWHandleSelectionKey(unsigned vkey)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for ( size_t n = 1; n < visibleCount; n++ )
                     {
@@ -2668,6 +2710,9 @@ bool wxTreeCtrl::MSWHandleSelectionKey(unsigned vkey)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for ( size_t n = 1; n < visibleCount; n++ )
                 {
@@ -3225,6 +3270,9 @@ wxTreeCtrl::MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( size_t n = 0; n < count; n++ )
             {
@@ -3621,6 +3669,9 @@ bool wxTreeCtrl::MSWOnNotify(int idCtrl, WXLPARAM lParam, WXLPARAM *result)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                                 for ( int i = index; i > 0; i-- )
                                 {

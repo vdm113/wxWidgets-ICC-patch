@@ -232,6 +232,9 @@ unsigned char *GetClipboardDataByFormat(Display* disp, Window win, Atom clipbrdT
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do
     {
@@ -281,6 +284,9 @@ void GetClipboardData(Display* disp, Window win, wxDataObject &data, wxDataForma
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( unsigned i = 0; i < atomVector.size(); i++ )
             {
@@ -373,6 +379,9 @@ extern "C" void wxClipboardHandleSelectionRequest(XEvent event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned i = 0; i <= atomVector.size(); i++ )
     {
@@ -577,6 +586,9 @@ bool wxClipboard::GetData( wxDataObject& data )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( size_t i = 0; i < count; ++i )
     {

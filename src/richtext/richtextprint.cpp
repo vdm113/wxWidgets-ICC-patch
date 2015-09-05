@@ -87,6 +87,9 @@ void wxRichTextPrintout::OnPreparePrinting()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (node)
         {
@@ -100,6 +103,9 @@ void wxRichTextPrintout::OnPreparePrinting()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 while (node2)
                 {
@@ -143,6 +149,9 @@ void wxRichTextPrintout::OnPreparePrinting()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                         while (contentLeft >= 0)
                         {
@@ -701,6 +710,9 @@ void wxRichTextHeaderFooterData::Copy(const wxRichTextHeaderFooterData& data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 12; i++)
         m_text[i] = data.m_text[i];
@@ -774,6 +786,9 @@ void wxRichTextHeaderFooterData::Clear()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 12; i++)
         m_text[i] = wxEmptyString;

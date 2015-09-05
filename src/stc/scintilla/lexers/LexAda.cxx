@@ -96,6 +96,9 @@ static void ColouriseContext(StyleContext& sc, char chEnd, int stateEOL) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (!sc.atLineEnd && !sc.Match(chEnd)) {
 		sc.Forward();
@@ -117,6 +120,9 @@ static void ColouriseComment(StyleContext& sc, bool& /*apostropheStartsAttribute
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (!sc.atLineEnd) {
 		sc.Forward();
@@ -144,6 +150,9 @@ static void ColouriseLabel(StyleContext& sc, WordList& keywords, bool& apostroph
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (!sc.atLineEnd && !IsSeparatorOrDelimiterCharacter(sc.ch)) {
 		identifier += static_cast<char>(tolower(sc.ch));
@@ -179,6 +188,9 @@ static void ColouriseNumber(StyleContext& sc, bool& apostropheStartsAttribute) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (!IsSeparatorOrDelimiterCharacter(sc.ch) || (sc.ch == '.' && sc.chNext != '.')) {
 		number += static_cast<char>(sc.ch);
@@ -195,6 +207,9 @@ static void ColouriseNumber(StyleContext& sc, bool& apostropheStartsAttribute) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (!IsSeparatorOrDelimiterCharacter(sc.ch)) {
 			number += static_cast<char>(sc.ch);
@@ -234,6 +249,9 @@ static void ColouriseWord(StyleContext& sc, WordList& keywords, bool& apostrophe
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (!sc.atLineEnd && !IsSeparatorOrDelimiterCharacter(sc.ch)) {
 		word += static_cast<char>(tolower(sc.ch));
@@ -275,6 +293,9 @@ static void ColouriseDocument(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (sc.More()) {
 		if (sc.atLineEnd) {
@@ -375,6 +396,9 @@ static bool IsValidIdentifier(const std::string& identifier) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (size_t i = 0; i < length; i++) {
 		if (!IsWordCharacter(identifier[i]) ||
@@ -411,6 +435,9 @@ static bool IsValidNumber(const std::string& number) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (; i < length; i++) {
 			if (number[i] == '_') {
@@ -443,6 +470,9 @@ static bool IsValidNumber(const std::string& number) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (; i < length; i++) {
 			int ch = number[i];
@@ -476,6 +506,9 @@ static bool IsValidNumber(const std::string& number) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (; i < length; i++) {
 			int ch = tolower(number[i]);
@@ -551,6 +584,9 @@ static bool IsValidNumber(const std::string& number) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (; i < length; i++) {
 			if (number[i] == '_') {

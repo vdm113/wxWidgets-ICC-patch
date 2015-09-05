@@ -158,6 +158,9 @@ void wxListBoxBase::DeselectAll(int itemToLeaveSelected)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )
         {
@@ -253,6 +256,9 @@ bool wxListBoxBase::CalcAndSendEvent()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t idx = 0; idx < countSel; idx++ )
         {
@@ -282,6 +288,9 @@ bool wxListBoxBase::CalcAndSendEvent()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t idx = 0; idx < countSel; idx++ )
         {
@@ -301,6 +310,9 @@ bool wxListBoxBase::CalcAndSendEvent()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( size_t idx = 0; idx < countSelOld; idx++ )
             {

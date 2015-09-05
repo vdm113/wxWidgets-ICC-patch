@@ -217,6 +217,14 @@ wxThread::ExitCode wxIOCPThread::Entry()
     wxLogTrace(wxTRACE_FSWATCHER, "[iocp] Started IOCP thread");
 
     // read events in a loop until we get false, which means we should exit
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
     while ( ReadEvents() );
 
     wxLogTrace(wxTRACE_FSWATCHER, "[iocp] Ended IOCP thread");
@@ -301,6 +309,9 @@ bool wxIOCPThread::ReadEvents()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do
     {
@@ -312,6 +323,14 @@ bool wxIOCPThread::ReadEvents()
         offset = e->NextEntryOffset;
         memory += offset;
     }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
     while (offset);
 
     // process events
@@ -330,6 +349,9 @@ void wxIOCPThread::ProcessNativeEvents(wxVector<wxEventProcessingData>& events)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ; it != events.end(); ++it )
     {
@@ -411,6 +433,9 @@ int wxIOCPThread::Native2WatcherFlags(int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i < WXSIZEOF(flag_mapping); ++i) {
         if (flags == flag_mapping[i][0])

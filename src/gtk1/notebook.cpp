@@ -496,6 +496,9 @@ bool wxNotebook::SetPageImage( size_t page, int image )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (child)
         {
@@ -568,6 +571,9 @@ void wxNotebook::SetPadding( const wxSize &padding )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i=0; i<int(GetPageCount()); i++)
     {
@@ -602,6 +608,9 @@ bool wxNotebook::DeleteAllPages()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (m_pagesData.GetCount() > 0)
         DeletePage( m_pagesData.GetCount()-1 );
@@ -781,6 +790,9 @@ int wxNotebook::HitTest(const wxPoint& pt, long *flags) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( ; i < count; i++ )
     {
@@ -801,6 +813,9 @@ int wxNotebook::HitTest(const wxPoint& pt, long *flags) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for ( GList *child = children; child; child = child->next )
                 {
@@ -870,6 +885,9 @@ void wxNotebook::DoApplyWidgetStyle(GtkRcStyle *style)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < cnt; i++)
         gtk_widget_modify_style(GTK_WIDGET(GetNotebookPage(i)->m_label), style);

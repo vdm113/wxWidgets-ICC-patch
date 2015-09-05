@@ -135,6 +135,9 @@ int wxColourDialog::ShowModal()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < WXSIZEOF(custColours); i++ )
     {
@@ -177,6 +180,9 @@ int wxColourDialog::ShowModal()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < WXSIZEOF(custColours); i++ )
     {

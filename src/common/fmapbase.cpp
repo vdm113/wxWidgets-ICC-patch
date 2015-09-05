@@ -651,6 +651,9 @@ wxFontMapperBase::NonInteractiveCharsetToEncoding(const wxString& charset)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < WXSIZEOF(gs_encodingNames); ++i )
         {
@@ -658,6 +661,9 @@ wxFontMapperBase::NonInteractiveCharsetToEncoding(const wxString& charset)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( const wxChar* const* encName = gs_encodingNames[i]; *encName; ++encName )
             {
@@ -819,6 +825,9 @@ wxString wxFontMapperBase::GetEncodingDescription(wxFontEncoding encoding)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )
     {
@@ -848,6 +857,9 @@ wxString wxFontMapperBase::GetEncodingName(wxFontEncoding encoding)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )
     {
@@ -872,6 +884,9 @@ const wxChar** wxFontMapperBase::GetAllEncodingNames(wxFontEncoding encoding)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < WXSIZEOF(gs_encodingNames); i++ )
     {
@@ -893,6 +908,9 @@ wxFontEncoding wxFontMapperBase::GetEncodingFromName(const wxString& name)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )
     {
@@ -900,6 +918,9 @@ wxFontEncoding wxFontMapperBase::GetEncodingFromName(const wxString& name)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( const wxChar* const* encName = gs_encodingNames[i]; *encName; ++encName )
         {

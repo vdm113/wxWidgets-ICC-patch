@@ -90,6 +90,9 @@ wxCursorRefData::~wxCursorRefData()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -122,6 +125,9 @@ wxCursor::wxCursor(const wxImage & image)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i=0; i<imagebitcount; i++)
     {
@@ -133,6 +139,9 @@ wxCursor::wxCursor(const wxImage & image)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j=0; j<8; j++)
         {
@@ -156,6 +165,9 @@ wxCursor::wxCursor(const wxImage & image)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i=0; i<imagebitcount; i++)
         {
@@ -167,6 +179,9 @@ wxCursor::wxCursor(const wxImage & image)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (j=0; j<8; j++)
             {
@@ -182,6 +197,9 @@ wxCursor::wxCursor(const wxImage & image)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i=0; i<imagebitcount; i++)
             maskBits[i] = 0xFF;
@@ -363,6 +381,9 @@ WXCursor wxCursor::GetXCursor(WXDisplay* display) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (node)
     {
@@ -517,10 +538,13 @@ wxXSetBusyCursor (wxWindow * win, const wxCursor * cursor)
 
     XFlush (display);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst (); node;
         node = node->GetNext())
@@ -536,10 +560,13 @@ void wxBeginBusyCursor(const wxCursor *cursor)
     wxBusyCursorCount++;
     if (wxBusyCursorCount == 1)
     {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(wxWindowList::compatibility_iterator node = wxTopLevelWindows.GetFirst (); node;
             node = node->GetNext())
@@ -559,10 +586,13 @@ void wxEndBusyCursor()
     wxBusyCursorCount--;
     if (wxBusyCursorCount == 0)
     {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(wxWindowList::compatibility_iterator node = wxTopLevelWindows.GetFirst (); node;
             node = node->GetNext())

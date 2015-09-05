@@ -72,6 +72,9 @@ void wxHashTableBase::Create( wxKeyType keyType, size_t size )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( size_t i = 0; i < m_size; ++i )
         m_table[i] = NULL;
@@ -83,6 +86,9 @@ void wxHashTableBase::Clear()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( size_t i = 0; i < m_size; ++i )
     {
@@ -97,6 +103,9 @@ void wxHashTableBase::Clear()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         do
         {
@@ -107,6 +116,14 @@ void wxHashTableBase::Clear()
 
             delete curr;
         }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
         while( curr != end );
 
         m_table[i] = NULL;
@@ -131,10 +148,13 @@ void wxHashTableBase::DoRemoveNode( wxHashTableBase_Node* node )
         Node *start = m_table[bucket], *curr;
         Node* prev = start;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for( curr = prev->GetNext(); curr != node;
              prev = curr, curr = curr->GetNext() ) ;
@@ -220,6 +240,9 @@ void* wxHashTableBase::DoGet( long key, long hash ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do
     {
@@ -228,6 +251,14 @@ void* wxHashTableBase::DoGet( long key, long hash ) const
 
         curr = curr->GetNext();
     }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
     while( curr != first );
 
     return NULL;
@@ -249,6 +280,9 @@ void* wxHashTableBase::DoGet( const wxString& key, long hash ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do
     {
@@ -257,6 +291,14 @@ void* wxHashTableBase::DoGet( const wxString& key, long hash ) const
 
         curr = curr->GetNext();
     }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
     while( curr != first );
 
     return NULL;
@@ -294,6 +336,9 @@ void* wxHashTableBase::DoDelete( long key, long hash )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do
     {
@@ -311,6 +356,14 @@ void* wxHashTableBase::DoDelete( long key, long hash )
         prev = curr;
         curr = curr->GetNext();
     }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
     while( curr != first );
 
     return NULL;
@@ -333,6 +386,9 @@ void* wxHashTableBase::DoDelete( const wxString& key, long hash )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do
     {
@@ -350,6 +406,14 @@ void* wxHashTableBase::DoDelete( const wxString& key, long hash )
         prev = curr;
         curr = curr->GetNext();
     }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
     while( curr != first );
 
     return NULL;
@@ -364,6 +428,9 @@ long wxHashTableBase::MakeKey( const wxString& str )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while( *p )
         int_key += *p++;
@@ -407,6 +474,9 @@ void wxHashTable::GetNextNode( size_t bucketStart )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( size_t i = bucketStart; i < m_size; ++i )
     {

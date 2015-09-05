@@ -173,6 +173,9 @@ void UndoHistory::EnsureUndoRoom() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int act = 0; act <= currentAction; act++)
 			actionsNew[act].Grab(&actions[act]);
@@ -202,6 +205,9 @@ const char *UndoHistory::AppendAction(actionType at, int position, const char *d
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while ((actPrevious->at == containerAction) && actPrevious->mayCoalesce) {
 				targetAct--;
@@ -299,6 +305,9 @@ void UndoHistory::DeleteUndoHistory() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i = 1; i < maxAction; i++)
 		actions[i].Destroy();
@@ -352,6 +361,9 @@ int UndoHistory::StartUndo() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (actions[act].at != startAction && act > 0) {
 		act--;
@@ -382,6 +394,9 @@ int UndoHistory::StartRedo() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (actions[act].at != startAction && act < maxAction) {
 		act++;
@@ -486,6 +501,9 @@ bool CellBuffer::SetStyleFor(int position, int lengthStyle, char styleValue) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (lengthStyle--) {
 		char curVal = style.ValueAt(position);
@@ -616,6 +634,9 @@ void CellBuffer::ResetLineEnds() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i = 0; i < length; i++) {
 		unsigned char ch = substance.ValueAt(position + i);
@@ -675,6 +696,9 @@ void CellBuffer::BasicInsertString(int position, const char *s, int insertLength
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i = 0; i < insertLength; i++) {
 		ch = s[i];
@@ -711,6 +735,9 @@ void CellBuffer::BasicInsertString(int position, const char *s, int insertLength
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int j = 0; j < UTF8SeparatorLength-1; j++) {
 			unsigned char chAt = substance.ValueAt(position + insertLength + j);
@@ -764,6 +791,9 @@ void CellBuffer::BasicDeleteChars(int position, int deleteLength) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int i = 0; i < deleteLength; i++) {
 			chNext = substance.ValueAt(position + i + 1);

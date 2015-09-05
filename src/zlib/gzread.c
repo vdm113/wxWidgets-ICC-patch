@@ -37,6 +37,9 @@ local int gz_load(state, buf, len, have)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do {
         ret = read(state->fd, buf + *have, len - *have);
@@ -77,6 +80,9 @@ local int gz_avail(state)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             do {
                 *p++ = *q++;
@@ -199,6 +205,9 @@ local int gz_decomp(state)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do {
         /* get more input for inflate() */
@@ -254,6 +263,9 @@ local int gz_fetch(state)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do {
         switch(state->how) {
@@ -291,6 +303,9 @@ local int gz_skip(state, len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (len)
         /* skip over whatever is in output buffer */
@@ -361,6 +376,9 @@ int ZEXPORT gzread(file, buf, len)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do {
         /* first just try copying data from the output buffer */
@@ -508,6 +526,9 @@ int ZEXPORT gzungetc(c, file)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (src > state->out)
             *--dest = *--src;

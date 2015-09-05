@@ -209,6 +209,9 @@ SelectionSegment Selection::Limits() const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (size_t i=1; i<ranges.size(); i++) {
 			sr.Extend(ranges[i].anchor);
@@ -276,6 +279,9 @@ bool Selection::Empty() const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ranges.size(); i++) {
 		if (!ranges[i].Empty())
@@ -290,6 +296,9 @@ SelectionPosition Selection::Last() const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ranges.size(); i++) {
 		if (lastPosition < ranges[i].caret)
@@ -306,6 +315,9 @@ int Selection::Length() const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ranges.size(); i++) {
 		len += ranges[i].Length();
@@ -318,6 +330,9 @@ void Selection::MovePositions(bool insertion, int startChange, int length) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ranges.size(); i++) {
 		ranges[i].MoveForInsertDelete(insertion, startChange, length);
@@ -332,6 +347,9 @@ void Selection::TrimSelection(SelectionRange range) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ranges.size();) {
 		if ((i != mainRange) && (ranges[i].Trim(range))) {
@@ -340,6 +358,9 @@ void Selection::TrimSelection(SelectionRange range) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (size_t j=i; j<ranges.size()-1; j++) {
 				ranges[j] = ranges[j+1];
@@ -405,6 +426,9 @@ int Selection::CharacterInSelection(int posCharacter) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ranges.size(); i++) {
 		if (ranges[i].ContainsCharacter(posCharacter))
@@ -418,6 +442,9 @@ int Selection::InSelectionForEOL(int pos) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ranges.size(); i++) {
 		if (!ranges[i].Empty() && (pos > ranges[i].Start().Position()) && (pos <= ranges[i].End().Position()))
@@ -432,6 +459,9 @@ int Selection::VirtualSpaceFor(int pos) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ranges.size(); i++) {
 		if ((ranges[i].caret.Position() == pos) && (virtualSpace < ranges[i].caret.VirtualSpace()))
@@ -457,6 +487,9 @@ void Selection::RemoveDuplicates() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ranges.size()-1; i++) {
 		if (ranges[i].Empty()) {
@@ -465,6 +498,9 @@ void Selection::RemoveDuplicates() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (j<ranges.size()) {
 				if (ranges[i] == ranges[j]) {

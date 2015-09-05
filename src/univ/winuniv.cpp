@@ -499,6 +499,9 @@ void wxWindow::Refresh(bool eraseBackground, const wxRect *rect)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::iterator i = children.begin(); i != children.end(); ++i )
     {
@@ -1100,10 +1103,13 @@ void wxWindow::ScrollWindow(int dx, int dy, const wxRect *rect)
     // scroll children accordingly:
     wxPoint offset(dx, dy);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
          node; node = node->GetNext())
@@ -1335,6 +1341,9 @@ void wxWindow::OnKeyDown(wxKeyEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxWindow *win = this; win; win = win->GetParent() )
     {
@@ -1402,6 +1411,9 @@ wxMenuBar *wxWindow::GetParentFrameMenuBar() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( const wxWindow *win = this; win; win = win->GetParent() )
     {

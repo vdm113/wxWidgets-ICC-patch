@@ -70,6 +70,9 @@ void wxTransformMatrix::operator = (const wxTransformMatrix& mat)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 3; i++)
     {
@@ -77,6 +80,9 @@ void wxTransformMatrix::operator = (const wxTransformMatrix& mat)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 0; j < 3; j++)
         {
@@ -96,6 +102,9 @@ bool wxTransformMatrix::operator == (const wxTransformMatrix& mat) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 3; i++)
     {
@@ -103,6 +112,9 @@ bool wxTransformMatrix::operator == (const wxTransformMatrix& mat) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 0; j < 3; j++)
         {
@@ -165,6 +177,9 @@ bool wxTransformMatrix::Invert(void)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < 3; i++)
     {
@@ -172,6 +187,9 @@ bool wxTransformMatrix::Invert(void)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int j = 0; j < 3; j++)
         {
@@ -204,6 +222,9 @@ bool wxTransformMatrix::Scale(double scale)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 3; i++)
     {
@@ -211,6 +232,9 @@ bool wxTransformMatrix::Scale(double scale)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j = 0; j < 3; j++)
         {
@@ -330,6 +354,9 @@ bool wxTransformMatrix::Translate(double dx, double dy)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 3; i++)
         m_matrix[i][0] += dx * m_matrix[i][2];
@@ -337,6 +364,9 @@ bool wxTransformMatrix::Translate(double dx, double dy)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 3; i++)
         m_matrix[i][1] += dy * m_matrix[i][2];
@@ -474,12 +504,18 @@ wxTransformMatrix& wxTransformMatrix::operator*=(const double& t)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < 3; i++)
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int j = 0; j < 3; j++)
             m_matrix[i][j]*= t;
@@ -493,12 +529,18 @@ wxTransformMatrix& wxTransformMatrix::operator/=(const double& t)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < 3; i++)
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int j = 0; j < 3; j++)
             m_matrix[i][j]/= t;
@@ -512,12 +554,18 @@ wxTransformMatrix& wxTransformMatrix::operator+=(const wxTransformMatrix& mat)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < 3; i++)
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int j = 0; j < 3; j++)
             m_matrix[i][j] += mat.m_matrix[i][j];
@@ -531,12 +579,18 @@ wxTransformMatrix& wxTransformMatrix::operator-=(const wxTransformMatrix& mat)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < 3; i++)
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int j = 0; j < 3; j++)
             m_matrix[i][j] -= mat.m_matrix[i][j];
@@ -561,6 +615,9 @@ wxTransformMatrix& wxTransformMatrix::operator*=(const wxTransformMatrix& mat)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < 3; i++)
         {
@@ -568,6 +625,9 @@ wxTransformMatrix& wxTransformMatrix::operator*=(const wxTransformMatrix& mat)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
            for (int j = 0; j < 3; j++)
            {
@@ -576,6 +636,9 @@ wxTransformMatrix& wxTransformMatrix::operator*=(const wxTransformMatrix& mat)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                for (int k = 0; k < 3; k++)
                    sum += m_matrix[k][i] * mat.m_matrix[j][k];
@@ -641,12 +704,18 @@ wxTransformMatrix  wxTransformMatrix::operator-() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < 3; i++)
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int j = 0; j < 3; j++)
             result.m_matrix[i][j] = -(this->m_matrix[i][j]);

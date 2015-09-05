@@ -203,6 +203,9 @@ void BoxSizerTestCase::Size3()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned i = 0; i < WXSIZEOF(layoutTestData); i++ )
     {
@@ -217,6 +220,9 @@ void BoxSizerTestCase::Size3()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned p = 0; p < 3; p++)
         {
@@ -248,6 +254,9 @@ void BoxSizerTestCase::Size3()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( j = 0; j < WXSIZEOF(child); j++ )
                 ltd.AddToSizer(m_sizer, child[j], j);
@@ -259,6 +268,9 @@ void BoxSizerTestCase::Size3()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for ( j = 0; j < WXSIZEOF(child); j++ )
             {
@@ -313,6 +325,9 @@ void BoxSizerTestCase::CalcMin()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < NUM_TEST_ITEM; n++ )
         child[n] = new wxWindow(m_win, wxID_ANY);
@@ -321,6 +336,9 @@ void BoxSizerTestCase::CalcMin()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned i = 0; i < WXSIZEOF(calcMinTestData); i++ )
     {
@@ -331,6 +349,9 @@ void BoxSizerTestCase::CalcMin()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < NUM_TEST_ITEM; n++ )
         {

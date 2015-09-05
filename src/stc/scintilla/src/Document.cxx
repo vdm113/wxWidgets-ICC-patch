@@ -137,6 +137,9 @@ Document::~Document() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (std::vector<WatcherWithUserData>::iterator it = watchers.begin(); it != watchers.end(); ++it) {
 		it->watcher->NotifyDeleted(this, it->userData);
@@ -145,6 +148,9 @@ Document::~Document() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int j=0; j<ldSize; j++) {
 		delete perLineData[j];
@@ -163,6 +169,9 @@ void Document::Init() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int j=0; j<ldSize; j++) {
 		if (perLineData[j])
@@ -209,6 +218,9 @@ void Document::InsertLine(int line) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int j=0; j<ldSize; j++) {
 		if (perLineData[j])
@@ -221,6 +233,9 @@ void Document::RemoveLine(int line) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int j=0; j<ldSize; j++) {
 		if (perLineData[j])
@@ -260,6 +275,9 @@ void Document::TentativeUndo() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (int step = 0; step < steps; step++) {
 				const int prevLinesTotal = LinesTotal();
@@ -340,6 +358,9 @@ void Document::AddMarkSet(int line, int valueSet) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int i = 0; m; i++, m >>= 1)
 		if (m & 1)
@@ -368,6 +389,9 @@ void Document::DeleteAllMarks(int markerNum) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int line = 0; line < LinesTotal(); line++) {
 		if (static_cast<LineMarkers *>(perLineData[ldMarkers])->DeleteMark(line, markerNum, true))
@@ -425,6 +449,9 @@ void SCI_METHOD Document::SetErrorStatus(int status) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (std::vector<WatcherWithUserData>::iterator it = watchers.begin(); it != watchers.end(); ++it) {
 		it->watcher->NotifyErrorOccurred(this, it->userData, status);
@@ -456,6 +483,9 @@ int Document::VCHomePosition(int position) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (startText < endLine && (cb.CharAt(startText) == ' ' || cb.CharAt(startText) == '\t'))
 		startText++;
@@ -502,6 +532,9 @@ int Document::GetLastChild(int lineParent, int level, int lastLine) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (lineMaxSubord < maxLine - 1) {
 		EnsureStyledTo(LineStart(lineMaxSubord + 2));
@@ -529,6 +562,9 @@ int Document::GetFoldParent(int line) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((lineLook > 0) && (
 	            (!(GetLevel(lineLook) & SC_FOLDLEVELHEADERFLAG)) ||
@@ -555,6 +591,9 @@ void Document::GetHighlightDelimiters(HighlightDelimiter &highlightDelimiter, in
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((lookLine > 0) && ((lookLineLevel & SC_FOLDLEVELWHITEFLAG) ||
 		((lookLineLevel & SC_FOLDLEVELHEADERFLAG) && (lookLineLevelNum >= (GetLevel(lookLine + 1) & SC_FOLDLEVELNUMBERMASK))))) {
@@ -578,6 +617,9 @@ void Document::GetHighlightDelimiters(HighlightDelimiter &highlightDelimiter, in
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while ((lookLine >= 0) && (lookLineLevelNum >= SC_FOLDLEVELBASE)) {
 			if (lookLineLevel & SC_FOLDLEVELHEADERFLAG) {
@@ -594,10 +636,13 @@ void Document::GetHighlightDelimiters(HighlightDelimiter &highlightDelimiter, in
 		}
 	}
 	if (firstChangeableLineBefore == -1) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (lookLine = line - 1, lookLineLevel = GetLevel(lookLine), lookLineLevelNum = lookLineLevel & SC_FOLDLEVELNUMBERMASK;
 			lookLine >= beginFoldBlock;
@@ -612,10 +657,13 @@ void Document::GetHighlightDelimiters(HighlightDelimiter &highlightDelimiter, in
 		firstChangeableLineBefore = beginFoldBlock - 1;
 
 	int firstChangeableLineAfter = -1;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (lookLine = line + 1, lookLineLevel = GetLevel(lookLine), lookLineLevelNum = lookLineLevel & SC_FOLDLEVELNUMBERMASK;
 		lookLine <= endFoldBlock;
@@ -672,6 +720,9 @@ bool Document::InGoodUTF8(int pos, int &start, int &end) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((trail>0) && (pos-trail < UTF8MaxBytes) && UTF8IsTrailByte(static_cast<unsigned char>(cb.CharAt(trail-1))))
 		trail--;
@@ -692,6 +743,9 @@ bool Document::InGoodUTF8(int pos, int &start, int &end) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int b=1; b<widthCharBytes && ((start+b) < Length()); b++)
 			charBytes[b] = cb.CharAt(static_cast<int>(start+b));
@@ -753,6 +807,9 @@ int Document::MovePositionOutsideChar(int pos, int moveDir, bool checkLineEnd) c
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while ((posCheck > posStartLine) && IsDBCSLeadByte(cb.CharAt(posCheck-1)))
 				posCheck--;
@@ -762,6 +819,9 @@ int Document::MovePositionOutsideChar(int pos, int moveDir, bool checkLineEnd) c
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (posCheck < pos) {
 				int mbsize = IsDBCSLeadByte(cb.CharAt(posCheck)) ? 2 : 1;
@@ -808,6 +868,9 @@ int Document::NextPosition(int pos, int moveDir) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					for (int b=1; b<widthCharBytes; b++)
 						charBytes[b] = cb.CharAt(static_cast<int>(pos+b));
@@ -856,6 +919,9 @@ int Document::NextPosition(int pos, int moveDir) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					while (posStartLine <= --posTemp && IsDBCSLeadByte(cb.CharAt(posTemp)))
 						;
@@ -893,6 +959,9 @@ int SCI_METHOD Document::GetRelativePosition(int positionStart, int characterOff
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (characterOffset != 0) {
 			const int posNext = NextPosition(pos, increment);
@@ -917,6 +986,9 @@ int Document::GetRelativePositionUTF16(int positionStart, int characterOffset) c
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (characterOffset != 0) {
 			const int posNext = NextPosition(pos, increment);
@@ -951,6 +1023,9 @@ int SCI_METHOD Document::GetCharacterAndWidth(int position, int *pWidth) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for (int b=1; b<widthCharBytes; b++)
 					charBytes[b] = static_cast<unsigned char>(cb.CharAt(position+b));
@@ -1037,6 +1112,9 @@ int Document::SafeSegment(const char *text, int length, int lengthSegment) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int j=0; j < lengthSegment;) {
 		unsigned char ch = static_cast<unsigned char>(text[j]);
@@ -1219,6 +1297,9 @@ int Document::Undo() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (int step = 0; step < steps; step++) {
 				const int prevLinesTotal = LinesTotal();
@@ -1304,6 +1385,9 @@ int Document::Redo() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (int step = 0; step < steps; step++) {
 				const int prevLinesTotal = LinesTotal();
@@ -1384,6 +1468,9 @@ static std::string CreateIndentation(int indent, int tabSize, bool insertSpaces)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (indent >= tabSize) {
 			indentation += '\t';
@@ -1394,6 +1481,9 @@ static std::string CreateIndentation(int indent, int tabSize, bool insertSpaces)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (indent > 0) {
 		indentation += ' ';
@@ -1411,6 +1501,9 @@ int SCI_METHOD Document::GetLineIndentation(int line) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int i = lineStart; i < length; i++) {
 			char ch = cb.CharAt(i);
@@ -1451,6 +1544,9 @@ int Document::GetLineIndentPosition(int line) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((pos < length) && IsSpaceOrTab(cb.CharAt(pos))) {
 		pos++;
@@ -1466,6 +1562,9 @@ int Document::GetColumn(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int i = LineStart(line); i < pos;) {
 			char ch = cb.CharAt(i);
@@ -1496,6 +1595,9 @@ int Document::CountCharacters(int startPos, int endPos) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (i < endPos) {
 		count++;
@@ -1515,6 +1617,9 @@ int Document::CountUTF16(int startPos, int endPos) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (i < endPos) {
 		count++;
@@ -1534,6 +1639,9 @@ int Document::FindColumn(int line, int column) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while ((columnCurrent < column) && (position < Length())) {
 			char ch = cb.CharAt(position);
@@ -1561,6 +1669,9 @@ void Document::Indent(bool forwards, int lineBottom, int lineTop) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int line = lineBottom; line >= lineTop; line--) {
 		int indentOfLine = GetLineIndentation(line);
@@ -1582,6 +1693,9 @@ std::string Document::TransformLineEnds(const char *s, size_t len, int eolModeWa
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (size_t i = 0; (i < len) && (s[i]); i++) {
 		if (s[i] == '\n' || s[i] == '\r') {
@@ -1610,6 +1724,9 @@ void Document::ConvertLineEnds(int eolModeSet) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int pos = 0; pos < Length(); pos++) {
 		if (cb.CharAt(pos) == '\r') {
@@ -1653,6 +1770,9 @@ bool Document::IsWhiteLine(int line) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (currentChar < endLine) {
 		if (cb.CharAt(currentChar) != ' ' && cb.CharAt(currentChar) != '\t') {
@@ -1670,6 +1790,9 @@ int Document::ParaUp(int pos) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (line >= 0 && IsWhiteLine(line)) { // skip empty lines
 		line--;
@@ -1678,6 +1801,9 @@ int Document::ParaUp(int pos) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (line >= 0 && !IsWhiteLine(line)) { // skip non-empty lines
 		line--;
@@ -1692,6 +1818,9 @@ int Document::ParaDown(int pos) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (line < LinesTotal() && !IsWhiteLine(line)) { // skip non-empty lines
 		line++;
@@ -1700,6 +1829,9 @@ int Document::ParaDown(int pos) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (line < LinesTotal() && IsWhiteLine(line)) { // skip empty lines
 		line++;
@@ -1729,6 +1861,9 @@ int Document::ExtendWordSelect(int pos, int delta, bool onlyWordCharacters) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (pos > 0 && (WordCharClass(cb.CharAt(pos - 1)) == ccStart))
 			pos--;
@@ -1739,6 +1874,9 @@ int Document::ExtendWordSelect(int pos, int delta, bool onlyWordCharacters) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (pos < (Length()) && (WordCharClass(cb.CharAt(pos)) == ccStart))
 			pos++;
@@ -1759,6 +1897,9 @@ int Document::NextWordStart(int pos, int delta) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (pos > 0 && (WordCharClass(cb.CharAt(pos - 1)) == CharClassify::ccSpace))
 			pos--;
@@ -1768,6 +1909,9 @@ int Document::NextWordStart(int pos, int delta) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (pos > 0 && (WordCharClass(cb.CharAt(pos - 1)) == ccStart)) {
 				pos--;
@@ -1779,6 +1923,9 @@ int Document::NextWordStart(int pos, int delta) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (pos < (Length()) && (WordCharClass(cb.CharAt(pos)) == ccStart))
 			pos++;
@@ -1786,6 +1933,9 @@ int Document::NextWordStart(int pos, int delta) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (pos < (Length()) && (WordCharClass(cb.CharAt(pos)) == CharClassify::ccSpace))
 			pos++;
@@ -1809,6 +1959,9 @@ int Document::NextWordEnd(int pos, int delta) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (pos > 0 && WordCharClass(cb.CharAt(pos - 1)) == ccStart) {
 					pos--;
@@ -1818,6 +1971,9 @@ int Document::NextWordEnd(int pos, int delta) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (pos > 0 && WordCharClass(cb.CharAt(pos - 1)) == CharClassify::ccSpace) {
 				pos--;
@@ -1828,6 +1984,9 @@ int Document::NextWordEnd(int pos, int delta) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (pos < Length() && WordCharClass(cb.CharAt(pos)) == CharClassify::ccSpace) {
 			pos++;
@@ -1838,6 +1997,9 @@ int Document::NextWordEnd(int pos, int delta) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (pos < Length() && WordCharClass(cb.CharAt(pos)) == ccStart) {
 				pos++;
@@ -1908,6 +2070,9 @@ Document::CharacterExtracted Document::ExtractCharacter(int position) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int b=1; b<widthCharBytes; b++)
 		charBytes[b] = static_cast<unsigned char>(cb.CharAt(position + b));
@@ -1960,6 +2125,9 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (forward ? (pos < endSearch) : (pos >= endSearch)) {
 				if (CharAt(pos) == charStartSearch) {
@@ -1968,6 +2136,9 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 					for (int indexSearch = 1; (indexSearch < lengthFind) && found; indexSearch++) {
 						found = CharAt(pos + indexSearch) == search[indexSearch];
@@ -1990,6 +2161,9 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (forward ? (pos < endPos) : (pos >= endPos)) {
 				int widthFirstCharacter = 0;
@@ -2000,6 +2174,9 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for (;;) {
 					const unsigned char leadByte = static_cast<unsigned char>(cb.CharAt(posIndexDocument));
@@ -2011,6 +2188,9 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 						for (int b=1; b<widthCharBytes; b++) {
 							bytes[b] = cb.CharAt(posIndexDocument+b);
@@ -2055,6 +2235,9 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (forward ? (pos < endPos) : (pos >= endPos)) {
 				int indexDocument = 0;
@@ -2064,6 +2247,9 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (characterMatches &&
 					((pos + indexDocument) < limitPos) &&
@@ -2100,6 +2286,9 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (forward ? (pos < endSearch) : (pos >= endSearch)) {
 				bool found = (pos + lengthFind) <= limitPos;
@@ -2107,6 +2296,9 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for (int indexSearch = 0; (indexSearch < lengthFind) && found; indexSearch++) {
 					char ch = CharAt(pos + indexSearch);
@@ -2182,6 +2374,9 @@ bool SCI_METHOD Document::SetStyles(int length, const char *styles) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int iPos = 0; iPos < length; iPos++, endStyled++) {
 			PLATFORM_ASSERT(endStyled < Length());
@@ -2212,10 +2407,13 @@ void Document::EnsureStyledTo(int pos) {
 			pli->Colourise(endStyledTo, pos);
 		} else {
 			// Ask the watchers to style, and stop as soon as one responds.
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (std::vector<WatcherWithUserData>::iterator it = watchers.begin();
 				(pos > GetEndStyled()) && (it != watchers.end()); ++it) {
@@ -2231,6 +2429,9 @@ void Document::LexerChanged() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (std::vector<WatcherWithUserData>::iterator it = watchers.begin(); it != watchers.end(); ++it) {
 		it->watcher->NotifyLexerChanged(this, it->userData);
@@ -2287,6 +2488,9 @@ void Document::MarginClearAll() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int l=0; l<maxEditorLine; l++)
 		MarginSetText(l, 0);
@@ -2333,6 +2537,9 @@ void Document::AnnotationClearAll() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int l=0; l<maxEditorLine; l++)
 		AnnotationSetText(l, 0);
@@ -2377,6 +2584,9 @@ void Document::NotifyModifyAttempt() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (std::vector<WatcherWithUserData>::iterator it = watchers.begin(); it != watchers.end(); ++it) {
 		it->watcher->NotifyModifyAttempt(this, it->userData);
@@ -2388,6 +2598,9 @@ void Document::NotifySavePoint(bool atSavePoint) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (std::vector<WatcherWithUserData>::iterator it = watchers.begin(); it != watchers.end(); ++it) {
 		it->watcher->NotifySavePoint(this, it->userData, atSavePoint);
@@ -2404,6 +2617,9 @@ void Document::NotifyModified(DocModification mh) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (std::vector<WatcherWithUserData>::iterator it = watchers.begin(); it != watchers.end(); ++it) {
 		it->watcher->NotifyModified(this, mh, it->userData);
@@ -2423,6 +2639,9 @@ int Document::WordPartLeft(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (pos > 0 && IsWordPartSeparator(cb.CharAt(pos))) {
 				--pos;
@@ -2436,6 +2655,9 @@ int Document::WordPartLeft(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (pos > 0 && IsLowerCase(cb.CharAt(pos)))
 					--pos;
@@ -2446,6 +2668,9 @@ int Document::WordPartLeft(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (pos > 0 && IsUpperCase(cb.CharAt(pos)))
 					--pos;
@@ -2456,6 +2681,9 @@ int Document::WordPartLeft(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (pos > 0 && IsADigit(cb.CharAt(pos)))
 					--pos;
@@ -2466,6 +2694,9 @@ int Document::WordPartLeft(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (pos > 0 && IsPunctuation(cb.CharAt(pos)))
 					--pos;
@@ -2476,6 +2707,9 @@ int Document::WordPartLeft(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (pos > 0 && isspacechar(cb.CharAt(pos)))
 					--pos;
@@ -2486,6 +2720,9 @@ int Document::WordPartLeft(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (pos > 0 && !IsASCII(cb.CharAt(pos)))
 					--pos;
@@ -2507,6 +2744,9 @@ int Document::WordPartRight(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (pos < length && IsWordPartSeparator(cb.CharAt(pos)))
 			++pos;
@@ -2517,6 +2757,9 @@ int Document::WordPartRight(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (pos < length && !IsASCII(cb.CharAt(pos)))
 			++pos;
@@ -2525,6 +2768,9 @@ int Document::WordPartRight(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (pos < length && IsLowerCase(cb.CharAt(pos)))
 			++pos;
@@ -2535,6 +2781,9 @@ int Document::WordPartRight(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (pos < length && IsLowerCase(cb.CharAt(pos)))
 				++pos;
@@ -2543,6 +2792,9 @@ int Document::WordPartRight(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (pos < length && IsUpperCase(cb.CharAt(pos)))
 				++pos;
@@ -2554,6 +2806,9 @@ int Document::WordPartRight(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (pos < length && IsADigit(cb.CharAt(pos)))
 			++pos;
@@ -2562,6 +2817,9 @@ int Document::WordPartRight(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (pos < length && IsPunctuation(cb.CharAt(pos)))
 			++pos;
@@ -2570,6 +2828,9 @@ int Document::WordPartRight(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (pos < length && isspacechar(cb.CharAt(pos)))
 			++pos;
@@ -2590,6 +2851,9 @@ int Document::ExtendStyleRange(int pos, int delta, bool singleLine) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (pos > 0 && (cb.StyleAt(pos) == sStart) && (!singleLine || !IsLineEndChar(cb.CharAt(pos))))
 			pos--;
@@ -2599,6 +2863,9 @@ int Document::ExtendStyleRange(int pos, int delta, bool singleLine) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (pos < (Length()) && (cb.StyleAt(pos) == sStart) && (!singleLine || !IsLineEndChar(cb.CharAt(pos))))
 			pos++;
@@ -2645,6 +2912,9 @@ int Document::BraceMatch(int position, int /*maxReStyle*/) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((position >= 0) && (position < Length())) {
 		char chAtPos = CharAt(position);
@@ -3015,6 +3285,9 @@ bool MatchOnLines(const Document *doc, const Regex &regexp, const RESearchRange 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int line = resr.lineRangeStart; line != resr.lineRangeBreak; line += resr.increment) {
 		const Range lineRange = resr.LineRange(line);
@@ -3029,6 +3302,9 @@ bool MatchOnLines(const Document *doc, const Regex &regexp, const RESearchRange 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (matched) {
 					Iterator itNext(doc, match[0].second.PosRoundUp());
@@ -3053,6 +3329,9 @@ bool MatchOnLines(const Document *doc, const Regex &regexp, const RESearchRange 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (size_t co = 0; co < match.size(); co++) {
 			search.bopat[co] = match[co].first.Pos();
@@ -3063,6 +3342,9 @@ bool MatchOnLines(const Document *doc, const Regex &regexp, const RESearchRange 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			for (size_t iPos = 0; iPos < lenMatch; iPos++) {
 				search.pat[co][iPos] = doc->CharAt(iPos + search.bopat[co]);
@@ -3168,6 +3450,9 @@ long BuiltinRegex::FindText(Document *doc, int minPos, int maxPos, const char *s
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int line = resr.lineRangeStart; line != resr.lineRangeBreak; line += resr.increment) {
 		int startOfLine = doc->LineStart(line);
@@ -3211,6 +3496,9 @@ long BuiltinRegex::FindText(Document *doc, int minPos, int maxPos, const char *s
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (success && (search.eopat[0] <= endOfLine) && (repetitions--)) {
 					success = search.Execute(di, pos+1, endOfLine);
@@ -3239,6 +3527,9 @@ const char *BuiltinRegex::SubstituteByPosition(Document *doc, const char *text, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (int j = 0; j < *length; j++) {
 		if (text[j] == '\\') {

@@ -75,6 +75,9 @@ size_t errbuf_size;		/* available space in errbuf, can be 0 */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (r = rerrs; r->code >= 0; r++)
 			if (strcmp(r->name, errbuf) == 0)
@@ -88,6 +91,9 @@ size_t errbuf_size;		/* available space in errbuf, can be 0 */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (r = rerrs; r->code >= 0; r++)
 			if (r->code == icode)
@@ -104,6 +110,9 @@ size_t errbuf_size;		/* available space in errbuf, can be 0 */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (r = rerrs; r->code >= 0; r++)
 			if (r->code == rxerrcode)

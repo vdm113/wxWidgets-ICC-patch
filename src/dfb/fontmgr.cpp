@@ -156,6 +156,9 @@ void wxFontsManager::AddAllFonts()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( tkn.HasMoreTokens() )
     {
@@ -171,10 +174,13 @@ void wxFontsManager::AddAllFonts()
         if ( !wxDir::GetAllFiles(dir, &indexFiles, "FontsIndex") )
             continue;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxArrayString::const_iterator i = indexFiles.begin();
               i != indexFiles.end(); ++i )
@@ -225,10 +231,13 @@ void wxFontsManager::AddFontsFromDir(const wxString& indexFile)
 
     long i;
     wxString name;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( bool cont = cfg.GetFirstGroup(name, i);
                cont;

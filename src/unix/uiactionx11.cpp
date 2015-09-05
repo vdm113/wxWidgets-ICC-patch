@@ -72,6 +72,9 @@ void SendButtonEvent(int button, bool isDown)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (event.xbutton.subwindow)
     {

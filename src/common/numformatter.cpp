@@ -260,6 +260,9 @@ void wxNumberFormatter::AddThousandsSeparators(wxString& s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( pos > start + GROUP_LEN )
     {

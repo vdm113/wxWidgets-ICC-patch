@@ -54,6 +54,9 @@ void wxCalendarCtrl::Init()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(m_attrs); n++ )
     {
@@ -67,6 +70,9 @@ wxCalendarCtrl::~wxCalendarCtrl()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(m_attrs); n++ )
     {

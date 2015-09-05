@@ -88,6 +88,9 @@ wxString wxTextBuffer::Translate(const wxString& text, wxTextFileType type)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator i = text.begin(); i != text.end(); ++i )
     {
@@ -238,6 +241,9 @@ wxTextFileType wxTextBuffer::GuessType() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < nScan; n++ )     // the beginning
         AnalyseLine(n);
@@ -245,6 +251,9 @@ wxTextFileType wxTextBuffer::GuessType() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = (nCount - nScan)/2; n < (nCount + nScan)/2; n++ )
         AnalyseLine(n);
@@ -252,6 +261,9 @@ wxTextFileType wxTextBuffer::GuessType() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = nCount - nScan; n < nCount; n++ )
         AnalyseLine(n);

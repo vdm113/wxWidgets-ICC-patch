@@ -88,6 +88,9 @@ int main (int argc, char *argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   while (i < nrOfLoops) {
     XMLBufPtr = XMLBuf;
@@ -97,6 +100,9 @@ int main (int argc, char *argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     do {
       int parseBufferSize = XMLBufEnd - XMLBufPtr;

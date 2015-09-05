@@ -80,6 +80,9 @@ void wxQtDCImpl::QtPreparePainter( )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (ri.HaveRects())
             {
@@ -780,6 +783,9 @@ void wxQtDCImpl::DoDrawLines(int n, const wxPoint points[],
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = 1; i < n; i++)
         {
@@ -807,6 +813,9 @@ void wxQtDCImpl::DoDrawPolygon(int n, const wxPoint points[],
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < n; i++) {
         qtPoints << wxQtConvertPoint(points[i]);

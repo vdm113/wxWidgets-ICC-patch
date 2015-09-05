@@ -123,6 +123,9 @@ void* wxJoystickThread::Entry()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (true)
     {
@@ -348,6 +351,9 @@ int wxJoystick::GetNumberJoysticks()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (j=0; j<4; j++) {
         dev_name.Printf(wxT("/dev/js%d"), j);
@@ -362,6 +368,9 @@ int wxJoystick::GetNumberJoysticks()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (j=0; j<4; j++) {
             dev_name.Printf(wxT("/dev/input/js%d"), j);

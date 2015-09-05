@@ -227,6 +227,9 @@ bool wxMenu::DoInsertOrAppend(wxMenuItem *item, size_t pos)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxMenuItemList::compatibility_iterator
                 node = GetMenuItems().Item(pos + 1);
@@ -300,6 +303,9 @@ wxMenuItem *wxMenu::DoRemove(wxMenuItem *item)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while ( node->GetData() != item )
             {
@@ -385,6 +391,9 @@ void wxMenu::DoRearrange()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (pos = 0, node = GetMenuItems().GetFirst(); node; node = node->GetNext(), pos++)
     {
@@ -684,6 +693,9 @@ wxMenuBar::wxMenuBar(size_t count, wxMenu *menus[], const wxString titles[], lon
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )
     {
@@ -765,6 +777,9 @@ void wxMenuBar::MacInstallMenuBar()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( int i = CountMenuItems( helpMenuHandle ) ; i >= firstUserHelpMenuItem ; --i )
             DeleteMenuItem( helpMenuHandle , i ) ;
@@ -803,6 +818,9 @@ void wxMenuBar::MacInstallMenuBar()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < m_menus.GetCount(); i++, menuIter = menuIter->GetNext())
     {
@@ -817,6 +835,9 @@ void wxMenuBar::MacInstallMenuBar()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (node = menu->GetMenuItems().GetFirst(); node; node = node->GetNext())
             {
@@ -974,6 +995,9 @@ bool wxMenuBar::Enable(bool enable)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < GetMenuCount(); i++)
         EnableTop(i, enable);

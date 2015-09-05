@@ -63,6 +63,9 @@ wxSourceUndoStep::wxSourceUndoStep( wxSourceUndo type, int y1, int y2, wxTextCtr
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = m_y1; i < m_y2+2; i++)
         {
@@ -78,6 +81,9 @@ wxSourceUndoStep::wxSourceUndoStep( wxSourceUndo type, int y1, int y2, wxTextCtr
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = m_y1; i < m_y2+1; i++)
         {
@@ -120,6 +126,9 @@ void wxSourceUndoStep::Undo()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = 1; i < (int)m_lines.GetCount(); i++)
             m_owner->m_lines.Insert( new wxSourceLine( m_lines[i] ), m_y1+i );
@@ -134,6 +143,9 @@ void wxSourceUndoStep::Undo()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < m_y2-m_y1; i++)
             m_owner->m_lines.RemoveAt( m_y1+1 );
@@ -295,6 +307,9 @@ wxString wxTextCtrl::GetValue() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < m_lines.GetCount(); i++)
     {
@@ -330,6 +345,9 @@ void wxTextCtrl::DoSetValue(const wxString& value, int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (;;)
         {
@@ -496,6 +514,9 @@ int wxTextCtrl::PixelToPos( int line, int pixel )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (res > 0)
     {
@@ -531,6 +552,9 @@ void wxTextCtrl::WriteText(const wxString& text2)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( (pos = text.Find('\n')) != -1 )
     {
@@ -551,6 +575,9 @@ void wxTextCtrl::WriteText(const wxString& text2)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < m_cursorX-len; i++)
             tmp.Append( ' ' );
@@ -581,6 +608,9 @@ void wxTextCtrl::WriteText(const wxString& text2)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 1; i < count; i++)
             m_lines.Insert( new wxSourceLine( lines[i] ), m_cursorY+i );
@@ -604,6 +634,9 @@ void wxTextCtrl::AppendText(const wxString& text2)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( (pos = text.Find('\n')) != -1 )
     {
@@ -635,6 +668,9 @@ void wxTextCtrl::AppendText(const wxString& text2)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 1; i < count; i++)
             m_lines.Insert( new wxSourceLine( lines[i] ), y+i );
@@ -657,6 +693,9 @@ long wxTextCtrl::XYToPosition(long x, long y) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < m_lines.GetCount(); i++)
     {
@@ -693,6 +732,9 @@ bool wxTextCtrl::PositionToXY(long pos, long *x, long *y) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < m_lines.GetCount(); i++)
     {
@@ -772,6 +814,9 @@ void wxTextCtrl::Copy()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = selStartY+1; i < selEndY; i++)
         {
@@ -832,6 +877,9 @@ void wxTextCtrl::Paste()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( (pos = text.Find('\n')) != -1 )
     {
@@ -852,6 +900,9 @@ void wxTextCtrl::Paste()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < m_cursorX-len; i++)
             tmp.Append( ' ' );
@@ -882,6 +933,9 @@ void wxTextCtrl::Paste()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 1; i < count; i++)
             m_lines.Insert( new wxSourceLine( lines[i] ), m_cursorY+i );
@@ -1012,6 +1066,9 @@ void wxTextCtrl::SearchForBrackets()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int y = m_cursorY; y >= endY; y--)
         {
@@ -1023,6 +1080,9 @@ void wxTextCtrl::SearchForBrackets()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (int n = current.Len()-1; n >= 0; n--)
             {
@@ -1033,6 +1093,9 @@ void wxTextCtrl::SearchForBrackets()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (int m = n-1; m >= 0; m--)
                     {
@@ -1053,6 +1116,9 @@ void wxTextCtrl::SearchForBrackets()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (int m = n-1; m >= 0; m--)
                     {
@@ -1107,6 +1173,9 @@ void wxTextCtrl::SearchForBrackets()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int y = m_cursorY; y <= endY; y++)
         {
@@ -1119,6 +1188,9 @@ void wxTextCtrl::SearchForBrackets()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (int n = start; n < (int)current.Len(); n++)
             {
@@ -1129,6 +1201,9 @@ void wxTextCtrl::SearchForBrackets()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (int m = n+1; m < (int)current.Len(); m++)
                     {
@@ -1149,6 +1224,9 @@ void wxTextCtrl::SearchForBrackets()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (int m = n+1; m < (int)current.Len(); m++)
                     {
@@ -1242,6 +1320,9 @@ void wxTextCtrl::Delete()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < selEndY-selStartY-1; i++)
             m_lines.RemoveAt( selStartY+1 );
@@ -1293,6 +1374,9 @@ void wxTextCtrl::DoChar( char c )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < m_cursorX - len; i++)
             tmp.Append( ' ' );
@@ -1413,6 +1497,9 @@ void wxTextCtrl::DoDelete()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < (m_cursorX-len); i++)
             tmp += ' ';
@@ -1460,10 +1547,13 @@ void wxTextCtrl::DoReturn()
         int cursorY = m_cursorY + 1;
 
         wxString new_tmp;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < indent; i++) new_tmp.Append( ' ' );
         m_lines.Insert( new wxSourceLine( new_tmp ), cursorY );
@@ -1485,10 +1575,13 @@ void wxTextCtrl::DoReturn()
         int cursorY = m_cursorY + 1;
 
         wxString new_tmp;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < indent; i++) new_tmp.Append( ' ' );
         new_tmp.Append( tmp2 );
@@ -1520,6 +1613,9 @@ void wxTextCtrl::DoDClick()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (((ch >= 'a') && (ch <= 'z')) ||
                    ((ch >= 'A') && (ch <= 'Z')) ||
@@ -1541,6 +1637,9 @@ void wxTextCtrl::DoDClick()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (((ch >= 'a') && (ch <= 'z')) ||
                    ((ch >= 'A') && (ch <= 'Z')) ||
@@ -1565,6 +1664,9 @@ wxString wxTextCtrl::GetNextToken( wxString &line, size_t &pos )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t p = pos; p < len; p++)
     {
@@ -1576,6 +1678,9 @@ wxString wxTextCtrl::GetNextToken( wxString &line, size_t &pos )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (size_t q = p; q < len; q++)
                     ret.Append( line[q] );
@@ -1591,6 +1696,9 @@ wxString wxTextCtrl::GetNextToken( wxString &line, size_t &pos )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (size_t q = p; q < len; q++)
                     ret.Append( line[q] );
@@ -1606,6 +1714,9 @@ wxString wxTextCtrl::GetNextToken( wxString &line, size_t &pos )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (size_t q = p+1; q < len; q++)
             {
@@ -1624,6 +1735,9 @@ wxString wxTextCtrl::GetNextToken( wxString &line, size_t &pos )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (size_t q = p+1; q < len; q++)
             {
@@ -1645,6 +1759,9 @@ wxString wxTextCtrl::GetNextToken( wxString &line, size_t &pos )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
            for (size_t q = p+1; q < len; q++)
            {
@@ -1684,6 +1801,9 @@ void wxTextCtrl::DrawLinePart( wxDC &dc, int x, int y, const wxString &toDraw, c
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (pos < len)
     {
@@ -1691,6 +1811,9 @@ void wxTextCtrl::DrawLinePart( wxDC &dc, int x, int y, const wxString &toDraw, c
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (toDraw[pos] == wxT(' '))
         {
@@ -1707,6 +1830,9 @@ void wxTextCtrl::DrawLinePart( wxDC &dc, int x, int y, const wxString &toDraw, c
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( (toDraw[pos] == origin[pos]) && (pos < len))
         {
@@ -1776,6 +1902,9 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while ( !token.empty() )
         {
@@ -1786,6 +1915,9 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (size_t i = pos; i < end_pos; i++)
                 {
@@ -1800,6 +1932,9 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (size_t i = pos; i < end_pos; i++)
                 {
@@ -1815,6 +1950,9 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (size_t i = pos; i < end_pos; i++)
                 {
@@ -1829,6 +1967,9 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (size_t i = pos; i < end_pos; i++)
                 {
@@ -1844,6 +1985,9 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (size_t i = pos; i < end_pos; i++)
                 {
@@ -1858,6 +2002,9 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for (size_t i = pos; i < end_pos; i++)
                 {
@@ -1894,6 +2041,9 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t i = (size_t)selStartX; i < (size_t)selEndX; i++)
         {
@@ -1909,6 +2059,9 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < line.Len(); i++)
         {
@@ -1926,6 +2079,9 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t i = (size_t)selStartX; i < line.Len(); i++)
         {
@@ -1943,6 +2099,9 @@ void wxTextCtrl::DrawLine( wxDC &dc, int x, int y, const wxString &line2, int li
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < (size_t)selEndX; i++)
         {
@@ -1989,6 +2148,9 @@ void wxTextCtrl::OnPaint( wxPaintEvent &event )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = scroll_y; i < upper; i++)
     {
@@ -2200,6 +2362,9 @@ void wxTextCtrl::OnChar( wxKeyEvent &event )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             for (int c = 0; c < i; c++)
                  DoChar( ' ' );
@@ -2280,6 +2445,9 @@ void wxTextCtrl::Indent()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = startY; i <= endY; i++)
     {
@@ -2310,6 +2478,9 @@ void wxTextCtrl::Unindent()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = startY; i <= endY; i++)
     {
@@ -2317,6 +2488,9 @@ void wxTextCtrl::Unindent()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (int n = 0; n < 4; n++)
         {

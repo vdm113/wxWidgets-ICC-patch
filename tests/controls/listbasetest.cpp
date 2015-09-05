@@ -64,6 +64,9 @@ void ListBaseTestCase::ColumnsOrder()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < NUM_COLS; n++ )
         CPPUNIT_ASSERT_EQUAL( n, orderOrig[n] );
@@ -82,6 +85,9 @@ void ListBaseTestCase::ColumnsOrder()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < NUM_COLS; n++ )
         CPPUNIT_ASSERT_EQUAL( order[n], orderNew[n] );
@@ -91,6 +97,9 @@ void ListBaseTestCase::ColumnsOrder()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < NUM_COLS; n++ )
         CPPUNIT_ASSERT_EQUAL( order[n], list->GetColumnIndexFromOrder(n) );
@@ -388,6 +397,9 @@ void ListBaseTestCase::Visible()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for( int i = 0; i < count + 10; i++ )
     {

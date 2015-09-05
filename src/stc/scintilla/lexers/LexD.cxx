@@ -264,6 +264,9 @@ void SCI_METHOD LexerD::Lex(unsigned int startPos, int length, int initStyle, ID
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
 

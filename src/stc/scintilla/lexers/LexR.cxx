@@ -76,6 +76,9 @@ static void ColouriseRDoc(unsigned int startPos, int length, int initStyle, Word
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
 
@@ -176,6 +179,9 @@ static void FoldRDoc(unsigned int startPos, int length, int, WordList *[],
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;

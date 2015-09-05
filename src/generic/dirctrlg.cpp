@@ -123,6 +123,9 @@ size_t wxGetAvailableDrives(wxArrayString &paths, wxArrayString &names, wxArrayI
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < as.GetCount(); i++)
     {
@@ -162,6 +165,9 @@ size_t wxGetAvailableDrives(wxArrayString &paths, wxArrayString &names, wxArrayI
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( char drive = 'A'; drive <= 'Z'; drive++ )
     {
@@ -187,6 +193,9 @@ size_t wxGetAvailableDrives(wxArrayString &paths, wxArrayString &names, wxArrayI
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while( noErr == err )
     {
@@ -532,6 +541,9 @@ void wxGenericDirCtrl::ShowHidden( bool show )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned n = 0; n < paths.size(); n++ )
         {
@@ -576,6 +588,9 @@ void wxGenericDirCtrl::SetupSections()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (n = 0; n < count; n++)
         AddSection(paths[n], names[n], icons[n]);
@@ -787,6 +802,9 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             do
             {
@@ -795,6 +813,14 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
                     dirs.Add(eachFilename);
                 }
             }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
             while (d.GetNext(&eachFilename));
         }
     }
@@ -817,6 +843,9 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while(strTok.HasMoreTokens())
             {
@@ -827,6 +856,9 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     do
                     {
@@ -835,6 +867,14 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
                             filenames.Add(eachFilename);
                         }
                     }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
                     while (d.GetNext(& eachFilename));
                 }
             }
@@ -852,6 +892,9 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < dirs.GetCount(); i++)
     {
@@ -882,6 +925,9 @@ void wxGenericDirCtrl::PopulateNode(wxTreeItemId parentId)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < filenames.GetCount(); i++)
         {
@@ -920,6 +966,9 @@ void wxGenericDirCtrl::CollapseTree()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (child.IsOk())
     {
@@ -953,6 +1002,9 @@ wxTreeItemId wxGenericDirCtrl::FindChild(wxTreeItemId parentId, const wxString& 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (childId.IsOk())
     {
@@ -1000,6 +1052,9 @@ bool wxGenericDirCtrl::ExpandPath(const wxString& path)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (treeid.IsOk() && !done)
     {
@@ -1027,6 +1082,9 @@ bool wxGenericDirCtrl::ExpandPath(const wxString& path)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         while (childId.IsOk())
         {
@@ -1067,6 +1125,9 @@ bool wxGenericDirCtrl::CollapsePath(const wxString& path)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( treeid.IsOk() && !done )
     {
@@ -1136,6 +1197,9 @@ void wxGenericDirCtrl::GetPaths(wxArrayString& paths) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < items.size(); n++ )
     {
@@ -1169,6 +1233,9 @@ void wxGenericDirCtrl::GetFilePaths(wxArrayString& paths) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < items.size(); n++ )
     {
@@ -1195,6 +1262,9 @@ void wxGenericDirCtrl::SelectPath(const wxString& path, bool select)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( treeid.IsOk() && !done )
     {
@@ -1220,6 +1290,9 @@ void wxGenericDirCtrl::SelectPaths(const wxArrayString& paths)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( unsigned n = 0; n < paths.size(); n++ )
         {
@@ -1267,6 +1340,9 @@ void wxGenericDirCtrl::FindChildFiles(wxTreeItemId treeid, int dirFlags, wxArray
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             do
             {
@@ -1275,6 +1351,14 @@ void wxGenericDirCtrl::FindChildFiles(wxTreeItemId treeid, int dirFlags, wxArray
                     filenames.Add(eachFilename);
                 }
             }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
             while (d.GetNext(& eachFilename)) ;
         }
     }
@@ -1440,6 +1524,9 @@ void wxDirFilterListCtrl::OnSelFilter(wxCommandEvent& WXUNUSED(event))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (unsigned int i = 0; i < paths.GetCount(); i++)
         {
@@ -1470,6 +1557,9 @@ void wxDirFilterListCtrl::FillFilterList(const wxString& filter, int defaultFilt
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < n; i++)
             Append(descriptions[i]);
@@ -1689,6 +1779,9 @@ static wxBitmap CreateAntialiasedBitmap(const wxImage& img)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (y = 0; y < size; y++)
     {
@@ -1696,6 +1789,9 @@ static wxBitmap CreateAntialiasedBitmap(const wxImage& img)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (x = 0; x < size; x++)
         {
@@ -1754,6 +1850,9 @@ static wxImage CutEmptyBorders(const wxImage& img)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (empt = true, top = 0; empt && top < h; top++)
     {
@@ -1762,6 +1861,9 @@ static wxImage CutEmptyBorders(const wxImage& img)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < w; i++, dttmp+=3)
             NOEMPTY_PIX(empt)
@@ -1770,6 +1872,9 @@ static wxImage CutEmptyBorders(const wxImage& img)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (empt = true, bottom = h-1; empt && bottom > top; bottom--)
     {
@@ -1778,6 +1883,9 @@ static wxImage CutEmptyBorders(const wxImage& img)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < w; i++, dttmp+=3)
             NOEMPTY_PIX(empt)
@@ -1786,6 +1894,9 @@ static wxImage CutEmptyBorders(const wxImage& img)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (empt = true, left = 0; empt && left < w; left++)
     {
@@ -1794,6 +1905,9 @@ static wxImage CutEmptyBorders(const wxImage& img)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < h; i++, dttmp+=3*w)
             NOEMPTY_PIX(empt)
@@ -1802,6 +1916,9 @@ static wxImage CutEmptyBorders(const wxImage& img)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (empt = true, right = w-1; empt && right > left; right--)
     {
@@ -1810,6 +1927,9 @@ static wxImage CutEmptyBorders(const wxImage& img)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (i = 0; i < h; i++, dttmp+=3*w)
             NOEMPTY_PIX(empt)

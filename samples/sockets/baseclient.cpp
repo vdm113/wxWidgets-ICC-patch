@@ -271,6 +271,9 @@ Client::OnRun()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (i = 0; i < m_stressWorkers; i++) {
                         if (m_message.empty())
@@ -284,6 +287,9 @@ Client::OnRun()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (i = 0; i < m_stressWorkers; i++) {
                         if (m_message.empty())
@@ -297,6 +303,9 @@ Client::OnRun()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                     for (i = 0; i < m_stressWorkers; i++) {
                         if (m_message.empty())
@@ -325,6 +334,9 @@ Client::OnExit()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(EList::compatibility_iterator it = m_eventWorkers.GetFirst(); it ; it->GetNext()) {
         delete it->GetData();
@@ -376,6 +388,9 @@ Client::StartWorker(workMode pMode) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 2; i < (msgsize); i++) {
         buf[i] = i % 256;
@@ -480,6 +495,9 @@ Client::OnWorkerEvent(WorkerEvent& pEvent) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(TList::compatibility_iterator it = m_threadWorkers.GetFirst(); it ; it = it->GetNext()) {
             if (it->GetData() == pEvent.m_sender) {
@@ -491,6 +509,9 @@ Client::OnWorkerEvent(WorkerEvent& pEvent) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for(EList::compatibility_iterator it2 = m_eventWorkers.GetFirst(); it2 ; it2 = it2->GetNext())
         {
@@ -520,6 +541,9 @@ Client::RemoveEventWorker(EventWorker* p_worker) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for(EList::compatibility_iterator it = m_eventWorkers.GetFirst(); it ; it = it->GetNext()) {
         if (it->GetData() == p_worker) {
@@ -593,6 +617,9 @@ EventWorker::OnSocketEvent(wxSocketEvent& pEvent) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             do {
                 if (m_readed == m_insize)
@@ -634,6 +661,9 @@ EventWorker::OnSocketEvent(wxSocketEvent& pEvent) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             do {
                 if (m_written == m_outsize)
@@ -741,6 +771,9 @@ wxThread::ExitCode ThreadWorker::Entry()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         do {
             m_clientSocket->Write(m_outbuf,m_outsize);
@@ -761,6 +794,9 @@ wxThread::ExitCode ThreadWorker::Entry()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             do {
                 m_clientSocket->Read(m_inbuf,m_insize);

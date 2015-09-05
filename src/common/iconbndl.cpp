@@ -133,6 +133,9 @@ void DoAddIcon(wxIconBundle& bundle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < count; ++i )
     {
@@ -243,6 +246,9 @@ wxIcon wxIconBundle::GetIcon(const wxSize& size, int flags) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )
     {
@@ -319,6 +325,9 @@ void wxIconBundle::AddIcon(const wxIcon& icon)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < count; ++i )
     {

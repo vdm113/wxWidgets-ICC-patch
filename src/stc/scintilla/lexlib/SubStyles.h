@@ -71,6 +71,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (*identifiers) {
 			const char *cpSpace = identifiers;
@@ -78,6 +81,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (*cpSpace && !(*cpSpace == ' ' || *cpSpace == '\t' || *cpSpace == '\r' || *cpSpace == '\n'))
 				cpSpace++;
@@ -106,6 +112,9 @@ class SubStyles {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (int b=0; b < classifications; b++) {
 			if (baseStyle == baseStyles[b])
@@ -120,6 +129,9 @@ class SubStyles {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (std::vector<WordClassifier>::const_iterator it=classifiers.begin(); it != classifiers.end(); ++it) {
 			if (it->IncludesStyle(style))
@@ -142,6 +154,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (baseStyles[classifications]) {
 			classifiers.push_back(WordClassifier(baseStyles[classifications]));
@@ -197,6 +212,9 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		for (std::vector<WordClassifier>::iterator it=classifiers.begin(); it != classifiers.end(); ++it)
 			it->Clear();

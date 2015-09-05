@@ -369,6 +369,9 @@ setTab(char *tab, struct range *ranges, size_t nRanges)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; i < nRanges; i++) {
     if (ranges[i].end) {
@@ -376,6 +379,9 @@ setTab(char *tab, struct range *ranges, size_t nRanges)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (j = ranges[i].start; j <= ranges[i].end; j++)
         tab[j] = 1;
@@ -402,6 +408,9 @@ printTabs(char *tab)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; i < 512; i++) {
     int kind = tab[i*256];
@@ -409,6 +418,9 @@ printTabs(char *tab)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (j = 1; j < 256; j++)
       if (tab[i*256 +j] != kind) {
@@ -423,6 +435,9 @@ printTabs(char *tab)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
       for (j = 0; j < 8; j++) {
         unsigned val = 0;
@@ -430,6 +445,9 @@ printTabs(char *tab)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for (k = 0; k < 32; k++) {
           if (tab[i*256 + j*32 +k])
@@ -448,6 +466,9 @@ printTabs(char *tab)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
   for (i = 0; i < 512; i++) {
     if (i == 256)

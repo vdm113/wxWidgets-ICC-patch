@@ -54,25 +54,34 @@ static inline bool IsALineEnd(char ch) {
 }
 /***************************************/
 static unsigned int GetContinuedPos(unsigned int pos, Accessor &styler) {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (!IsALineEnd(styler.SafeGetCharAt(pos++))) continue;
 	if (styler.SafeGetCharAt(pos) == '\n') pos++;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while (IsABlank(styler.SafeGetCharAt(pos++))) continue;
 	char chCur = styler.SafeGetCharAt(pos);
 	if (chCur == '&') {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while (IsABlank(styler.SafeGetCharAt(++pos))) continue;
 		return pos;
@@ -95,6 +104,9 @@ static void ColouriseFortranDoc(unsigned int startPos, int length, int initStyle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	while ((startPos > 1) && (styler.StyleAt(startPos) != SCE_F_WORD)) {
 		startPos--;
@@ -107,6 +119,9 @@ static void ColouriseFortranDoc(unsigned int startPos, int length, int initStyle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
 		// remember the start position of the line
@@ -134,6 +149,9 @@ static void ColouriseFortranDoc(unsigned int startPos, int length, int initStyle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (!sc.atLineEnd && sc.More()) sc.Forward(); // Until line end
 			} else if (toLineStart >= 72) {
@@ -142,6 +160,9 @@ static void ColouriseFortranDoc(unsigned int startPos, int length, int initStyle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (!sc.atLineEnd && sc.More()) sc.Forward(); // Until line end
 			} else if (toLineStart < 5) {
@@ -169,6 +190,9 @@ static void ColouriseFortranDoc(unsigned int startPos, int length, int initStyle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (!sc.atLineEnd && sc.More())
 				sc.Forward(); // Until line end
@@ -182,6 +206,9 @@ static void ColouriseFortranDoc(unsigned int startPos, int length, int initStyle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 			while (IsABlank(chTemp) && j<132) {
 				chTemp = static_cast<char>(sc.GetRelative(j));
@@ -194,10 +221,13 @@ static void ColouriseFortranDoc(unsigned int startPos, int length, int initStyle
 				int currentState = sc.state;
 				sc.SetState(SCE_F_CONTINUATION);
 				sc.ForwardSetState(SCE_F_DEFAULT);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				while (IsASpace(sc.ch) && sc.More()) sc.Forward();
 				if (sc.ch == '&') {
@@ -384,6 +414,9 @@ static void FoldFortranDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
@@ -398,6 +431,9 @@ static void FoldFortranDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 		while(IsABlank(chNextNonBlank) && j<endPos) {
 			j ++ ;
@@ -428,6 +464,9 @@ static void FoldFortranDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 				for(k=0; (k<31 ) && (k<i-lastStart+1 ); k++) {
 					s[k] = static_cast<char>(tolower(styler[lastStart+k]));
@@ -443,6 +482,9 @@ static void FoldFortranDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 						while (ch1 != chBrace && j<endPos) {
 							j++;
@@ -456,6 +498,9 @@ static void FoldFortranDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 						while (j<endPos) {
 							j++;
@@ -472,6 +517,9 @@ static void FoldFortranDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
 						while (j<endPos) {
 							j++;

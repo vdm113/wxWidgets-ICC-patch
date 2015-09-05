@@ -91,6 +91,9 @@ int wxQtEventLoopBase::DoRun()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ( !m_shouldExit )
     {
@@ -136,6 +139,9 @@ void wxQtEventLoopBase::DoYieldFor(long eventsToProcess)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (wxTheApp && wxTheApp->Pending())
         // TODO: implement event filtering using the eventsToProcess mask

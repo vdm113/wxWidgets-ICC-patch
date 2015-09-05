@@ -36,6 +36,9 @@ xmlstrlen(const XML_Char *s)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while (s[len] != 0)
         ++len;

@@ -67,6 +67,9 @@ wxColourData& wxColourData::operator=(const wxColourData& data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < NUM_CUSTOM; i++)
         m_custColours[i] = data.m_custColours[i];
@@ -92,6 +95,9 @@ wxString wxColourData::ToString() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < NUM_CUSTOM; i++ )
     {
@@ -115,6 +121,9 @@ bool wxColourData::FromString(const wxString& str)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (int i = 0; success && i < NUM_CUSTOM; i++)
     {

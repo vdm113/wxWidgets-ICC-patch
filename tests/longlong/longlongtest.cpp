@@ -108,6 +108,9 @@ void LongLongTestCase::Conversion()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < ITEMS; n++ )
     {
@@ -144,6 +147,9 @@ void LongLongTestCase::Comparison()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(testLongs); n++ )
     {
@@ -151,6 +157,9 @@ void LongLongTestCase::Comparison()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t m = 0; m < WXSIZEOF(lls); m++ )
         {
@@ -170,6 +179,9 @@ void LongLongTestCase::Addition()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < ITEMS; n++ )
     {
@@ -199,6 +211,9 @@ void LongLongTestCase::Multiplication()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < ITEMS; n++ )
     {
@@ -233,6 +248,9 @@ void LongLongTestCase::Division()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < ITEMS; n++ )
     {
@@ -246,11 +264,22 @@ void LongLongTestCase::Division()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         do
         {
            l = rand();
         }
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
         while ( !l );
 
         wxLongLong q = a / l;
@@ -284,6 +313,9 @@ void LongLongTestCase::BitOperations()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t m = 0; m < ITEMS; m++ )
     {
@@ -293,6 +325,9 @@ void LongLongTestCase::BitOperations()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < 33; n++ )
         {
@@ -335,6 +370,9 @@ void LongLongTestCase::ToString()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(testLongs); n++ )
     {

@@ -59,6 +59,9 @@ static void ColouriseDMAPDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ((startPos > 1) && (styler.StyleAt(startPos) != SCE_DMAP_WORD)) {
         startPos--;
@@ -71,6 +74,9 @@ static void ColouriseDMAPDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (; sc.More(); sc.Forward()) {
         // remember the start position of the line
@@ -89,6 +95,9 @@ static void ColouriseDMAPDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
             while (!sc.atLineEnd && sc.More()) sc.Forward(); // Until line end
             continue;
@@ -196,6 +205,9 @@ static void FoldDMAPDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (unsigned int i = startPos; i < endPos; i++) {
         char ch = chNext;
@@ -218,6 +230,9 @@ static void FoldDMAPDoc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
                 for(k=0; (k<31 ) && (k<i-lastStart+1 ); k++) {
                     s[k] = static_cast<char>(tolower(styler[lastStart+k]));

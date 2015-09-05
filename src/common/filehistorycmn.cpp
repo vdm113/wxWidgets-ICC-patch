@@ -105,6 +105,9 @@ void wxFileHistoryBase::AddFileToHistory(const wxString& file)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < numFiles; i++ )
     {
@@ -124,10 +127,13 @@ void wxFileHistoryBase::AddFileToHistory(const wxString& file)
     }
 
     // add a new menu item to all file menus (they will be updated below)
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxList::compatibility_iterator node = m_fileMenus.GetFirst();
         node;
@@ -152,6 +158,9 @@ void wxFileHistoryBase::AddFileToHistory(const wxString& file)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < numFiles; i++ )
     {
@@ -169,10 +178,13 @@ void wxFileHistoryBase::AddFileToHistory(const wxString& file)
             pathInMenu = m_fileHistory[i];
         }
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( wxList::compatibility_iterator node = m_fileMenus.GetFirst();
               node;
@@ -195,10 +207,13 @@ void wxFileHistoryBase::RemoveFileFromHistory(size_t i)
     m_fileHistory.RemoveAt(i);
     numFiles--;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxList::compatibility_iterator node = m_fileMenus.GetFirst();
           node;
@@ -211,6 +226,9 @@ void wxFileHistoryBase::RemoveFileFromHistory(size_t i)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t j = i; j < numFiles; j++ )
         {
@@ -264,6 +282,9 @@ void wxFileHistoryBase::Load(const wxConfigBase& config)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     while ((m_fileHistory.GetCount() < m_fileMaxFiles) &&
            config.Read(buf, &historyFile) && !historyFile.empty())
@@ -284,6 +305,9 @@ void wxFileHistoryBase::Save(wxConfigBase& config)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for (i = 0; i < m_fileMaxFiles; i++)
     {
@@ -302,10 +326,13 @@ void wxFileHistoryBase::AddFilesToMenu()
     if ( m_fileHistory.empty() )
         return;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxList::compatibility_iterator node = m_fileMenus.GetFirst();
           node;
@@ -327,6 +354,9 @@ void wxFileHistoryBase::AddFilesToMenu(wxMenu* menu)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < m_fileHistory.GetCount(); i++ )
     {
@@ -340,10 +370,13 @@ void wxFileHistoryBase::RemoveExistingHistory()
     if ( !count )
         return;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
     for ( wxList::compatibility_iterator node = m_fileMenus.GetFirst();
           node;
@@ -357,6 +390,9 @@ void wxFileHistoryBase::RemoveExistingHistory()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n <= count; n++ )
         {
