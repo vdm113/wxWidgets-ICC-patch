@@ -79,7 +79,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 
     unsigned cnt=0;
     bool changed=false;
-    bool in_stipped_comment=false;
+    bool in_stripped_comment=false;
 
     vector<string> scrollback;
     vector<string> lines;
@@ -196,8 +196,10 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
             if(!do_patch) {
                 changed=true;
                 scrollback.clear();
-                if(already_got_prologue)
+                if(already_got_prologue) {
                     ++i;
+                    scrollback.push_back(contents[i]);
+                }
                 continue;
             }
         }
@@ -327,8 +329,9 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
                 }
             }
         }
-        if(in_comment)
+        if(in_comment) {
             continue;
+        }
 
         auto command_winlets=[&]() {
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
@@ -354,7 +357,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
             }
         };
 
-        if(in_stipped_comment) {
+        if(in_stripped_comment) {
             continue;
         }
 
