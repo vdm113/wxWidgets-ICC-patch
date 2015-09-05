@@ -2473,7 +2473,7 @@ void wxImage::InitAlpha()
         const unsigned char mr = M_IMGDATA->m_maskRed;
         const unsigned char mg = M_IMGDATA->m_maskGreen;
         const unsigned char mb = M_IMGDATA->m_maskBlue;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -3081,7 +3081,7 @@ int wxImage::GetImageCount( wxInputStream &stream, wxBitmapType type )
     {
         const wxList& list = GetHandlers();
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -3212,7 +3212,7 @@ bool wxImage::LoadFile( wxInputStream& stream, wxBitmapType type, int index )
         }
 
         const wxList& list = GetHandlers();
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

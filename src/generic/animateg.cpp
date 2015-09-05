@@ -132,7 +132,7 @@ bool wxAnimation::Load(wxInputStream &stream, wxAnimationType type)
     const wxAnimationDecoder *handler;
     if ( type == wxANIMATION_TYPE_ANY )
     {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

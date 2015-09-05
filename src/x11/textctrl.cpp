@@ -1547,7 +1547,7 @@ void wxTextCtrl::DoReturn()
         int cursorY = m_cursorY + 1;
 
         wxString new_tmp;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1575,7 +1575,7 @@ void wxTextCtrl::DoReturn()
         int cursorY = m_cursorY + 1;
 
         wxString new_tmp;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

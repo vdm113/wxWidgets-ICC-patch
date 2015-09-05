@@ -372,7 +372,7 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
     // We also can't use strftime() if we use non standard specifier: either
     // our own extension "%l" or one of "%g", "%G", "%V", "%z" which are POSIX
     // but not supported under Windows.
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -800,7 +800,7 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
 
                 default:
                     // is it the format width?
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

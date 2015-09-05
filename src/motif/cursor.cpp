@@ -538,7 +538,7 @@ wxXSetBusyCursor (wxWindow * win, const wxCursor * cursor)
 
     XFlush (display);
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -560,7 +560,7 @@ void wxBeginBusyCursor(const wxCursor *cursor)
     wxBusyCursorCount++;
     if (wxBusyCursorCount == 1)
     {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -586,7 +586,7 @@ void wxEndBusyCursor()
     wxBusyCursorCount--;
     if (wxBusyCursorCount == 0)
     {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

@@ -188,7 +188,7 @@ bool wxModule::InitializeModules()
 {
     wxModuleList initializedModules;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -228,7 +228,7 @@ void wxModule::DoCleanUpModules(const wxModuleList& modules)
 {
     // cleanup user-defined modules in the reverse order compared to their
     // initialization -- this ensures that dependencies are respected
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

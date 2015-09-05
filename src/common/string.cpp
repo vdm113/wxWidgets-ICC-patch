@@ -1003,7 +1003,7 @@ size_t wxString::find_last_of(const wxChar* sz, size_t nStart, size_t n) const
     }
 
     size_t idx = nStart;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1035,7 +1035,7 @@ size_t wxString::find_last_not_of(const wxChar* sz, size_t nStart, size_t n) con
     }
 
     size_t idx = nStart;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1089,7 +1089,7 @@ size_t wxString::find_last_not_of(wxUniChar ch, size_t nStart) const
     }
 
     size_t idx = nStart;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1569,7 +1569,7 @@ size_t wxString::Replace(const wxString& strOld,
         wxVector<size_t> replacePositions;
 
         size_t pos;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

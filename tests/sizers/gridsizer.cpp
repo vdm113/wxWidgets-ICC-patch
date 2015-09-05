@@ -98,7 +98,7 @@ void GridSizerTestCase::SetChildren(const wxVector<wxWindow*>& children,
                                     const wxSizerFlags& flags)
 {
     m_sizer->Clear();
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

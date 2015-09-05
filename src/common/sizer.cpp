@@ -697,7 +697,7 @@ void wxSizer::SetContainingWindow(wxWindow *win)
 
     // set the same window for all nested sizers as well, they also are in the
     // same window
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1956,7 +1956,7 @@ void wxFlexGridSizer::FindWidthsAndHeights(int nrows, int ncols)
 
     // n is the index of the item in left-to-right top-to-bottom order
     size_t n = 0;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -2009,7 +2009,7 @@ wxSize wxFlexGridSizer::CalcMin()
     m_rowHeights.assign(nrows, -1);
     m_colWidths.assign(ncols, -1);
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -2246,7 +2246,7 @@ void wxFlexGridSizer::AdjustForGrowables(const wxSize& sz)
         // Iterate over all items and inform about column width
         const int ncols = GetEffectiveColsCount();
         int col = 0;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -2876,7 +2876,7 @@ wxSize wxBoxSizer::CalcMin()
     // condition we must find the greatest min-size-to-proportion ratio for all
     // elements with non-zero proportion.
     float maxMinSizeToProp = 0.;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -2965,7 +2965,7 @@ wxStaticBoxSizer::~wxStaticBoxSizer()
         // Reparent() calls in the loop.
         const wxWindowList children = m_staticBox->GetChildren();
         wxWindow* const parent = m_staticBox->GetParent();
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

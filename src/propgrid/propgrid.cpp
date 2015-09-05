@@ -962,7 +962,7 @@ bool wxPropertyGrid::AddToSelectionFromInputEvent( wxPGProperty* prop,
         // Iterate through properties in-between, and select them
         wxPropertyGridIterator it;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -2329,7 +2329,7 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
     int gridWidth = state->GetVirtualWidth();
 
     y = firstItemTopY;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -5853,7 +5853,7 @@ void wxPropertyGrid::ClearActionTriggers( int action )
     {
         didSomething = false;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

@@ -250,7 +250,7 @@ void wxXmlNode::AddChild(wxXmlNode *child)
     else
     {
         wxXmlNode *ch = m_children;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -403,7 +403,7 @@ void wxXmlNode::AddProperty(wxXmlAttribute *attr)
     else
     {
         wxXmlAttribute *p = m_attrs;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1274,7 +1274,7 @@ bool OutputNode(wxOutputStream& stream,
 
             if ( rc )
             {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1301,7 +1301,7 @@ bool OutputNode(wxOutputStream& stream,
                 rc = OutputString(stream, wxS(">"), convMem, convFile);
 
                 wxXmlNode *prev = NULL;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

@@ -1534,7 +1534,7 @@ wxTreeListCtrl::CheckItemRecursively(wxTreeListItem item, wxCheckBoxState state)
 
     m_model->CheckItem(item, state);
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1598,7 +1598,7 @@ wxTreeListCtrl::AreAllChildrenInState(wxTreeListItem item,
 {
     wxCHECK_MSG( item.IsOk(), false, "Invalid item" );
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

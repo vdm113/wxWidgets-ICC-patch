@@ -37,7 +37,7 @@ int main( int argc, char *argv [] )
   if (!(hInstance = MAIN_WinelibInit( &argc, argv ))) return 0;
 
   /* Alloc szCmdParam */
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -50,7 +50,7 @@ int main( int argc, char *argv [] )
   /* Concatenate arguments */
   if (argc > 1) strcpy(lpszCmdParam, argv[1]);
   else lpszCmdParam[0] = '\0';
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

@@ -159,7 +159,7 @@ void ListsTestCase::wxStdListTest()
     for ( i = 0; i < 5; ++i )
         list1.push_back(i + &i);
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -173,7 +173,7 @@ void ListsTestCase::wxStdListTest()
         CPPUNIT_ASSERT( *it == i + &i );
     }
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -197,7 +197,7 @@ void ListsTestCase::wxStdListTest()
     list1.erase(list1.begin());
     list1.erase(--list1.end());
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

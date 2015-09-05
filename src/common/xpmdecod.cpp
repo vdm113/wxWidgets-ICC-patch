@@ -899,7 +899,7 @@ wxImage wxXPMDecoder::ReadData(const char* const* xpm_data)
             rgb = (data.R << 16) + (data.G << 8) + data.B;
             rgb_table[rgb];
         }
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

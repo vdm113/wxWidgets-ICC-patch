@@ -338,7 +338,7 @@ wxSocketImplMSW::~wxSocketImplMSW()
       // them sent to a new socket which could reuse the same message number as
       // soon as we destroy this one
       MSG msg;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

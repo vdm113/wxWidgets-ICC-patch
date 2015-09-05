@@ -682,7 +682,7 @@ png_push_save_buffer(png_structrp png_ptr)
          png_bytep dp;
 
          istop = png_ptr->save_buffer_size;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

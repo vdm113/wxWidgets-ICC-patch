@@ -512,7 +512,7 @@ bool wxMenuBase::DoDestroy(wxMenuItem *item)
 int wxMenuBase::FindItem(const wxString& text) const
 {
     wxString label = wxMenuItem::GetLabelText(text);
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -551,7 +551,7 @@ wxMenuItem *wxMenuBase::FindItem(int itemId, wxMenu **itemMenu) const
         *itemMenu = NULL;
 
     wxMenuItem *item = NULL;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

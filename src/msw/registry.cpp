@@ -1379,7 +1379,7 @@ wxString wxRegKey::FormatValue(const wxString& name) const
 
                 // there can be no NULs here
                 bool useHex = false;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

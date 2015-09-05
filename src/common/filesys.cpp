@@ -183,7 +183,7 @@ wxString wxFileSystemHandler::GetProtocol(const wxString& location)
         if ((location[i] == wxT(':')) && (i != 1 /*win: C:\path*/)) fnd = true;
     }
     if (!fnd) return wxT("file");
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -223,7 +223,7 @@ wxString wxFileSystemHandler::GetRightLocation(const wxString& location)
     int i, l = location.length();
     int l2 = l + 1;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -386,7 +386,7 @@ static wxString MakeCorrectPath(const wxString& path)
     r << p.GetChar(0) << p.GetChar(1);
 
     // skip trailing ../.., if any
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -435,7 +435,7 @@ static wxString MakeCorrectPath(const wxString& path)
         }
     }
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -769,7 +769,7 @@ wxFileSystemHandler* wxFileSystem::RemoveHandler(wxFileSystemHandler *handler)
 
 bool wxFileSystem::HasHandlerForPath(const wxString &location)
 {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

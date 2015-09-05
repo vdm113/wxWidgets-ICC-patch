@@ -351,7 +351,7 @@ wxMBConv::FromWChar(char *dst, size_t dstLen,
     }
 
     const size_t lenNul = GetMBNulLen();
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1667,7 +1667,7 @@ size_t wxMBConvUTF16Base::GetLength(const char *src, size_t srcLen)
     {
         // count the number of bytes in input, including the trailing NULs
         const wxUint16 *inBuff = reinterpret_cast<const wxUint16 *>(src);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -2028,7 +2028,7 @@ size_t wxMBConvUTF32Base::GetLength(const char *src, size_t srcLen)
     {
         // count the number of bytes in input, including the trailing NULs
         const wxUint32 *inBuff = reinterpret_cast<const wxUint32 *>(src);
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -2632,7 +2632,7 @@ wxMBConv_iconv::ToWChar(wchar_t *dst, size_t dstLen,
                 // but they also have to start at character boundary and not
                 // span two adjacent characters
                 const char *p;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

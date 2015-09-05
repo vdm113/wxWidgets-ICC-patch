@@ -102,7 +102,7 @@ start_pass (j_decompress_ptr cinfo)
   inverse_DCT_method_ptr method_ptr = NULL;
   JQUANT_TBL * qtbl;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -303,7 +303,7 @@ jinit_inverse_dct (j_decompress_ptr cinfo)
   cinfo->idct = (struct jpeg_inverse_dct *) idct;
   idct->pub.start_pass = start_pass;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

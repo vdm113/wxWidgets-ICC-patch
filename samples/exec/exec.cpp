@@ -790,7 +790,7 @@ ExecQueryDialog::ExecQueryDialog(const wxString& cmd)
     wxEnvVariableHashMap env;
     if ( wxGetEnvMap(&env) )
     {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1439,7 +1439,7 @@ bool MyPipedProcess::HasInput()
 void MyPipedProcess::OnTerminate(int pid, int status)
 {
     // show the rest of the output
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

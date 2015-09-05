@@ -201,7 +201,7 @@ process_data_buffer_main (j_compress_ptr cinfo,
   while (mymain->cur_iMCU_row < cinfo->total_iMCU_rows) {
     /* Realign the virtual buffers if at the start of an iMCU row. */
     if (mymain->rowgroup_ctr == 0) {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -296,7 +296,7 @@ jinit_c_main_controller (j_compress_ptr cinfo, wxjpeg_boolean need_full_buffer)
 #ifdef FULL_MAIN_BUFFER_SUPPORTED
     /* Allocate a full-image virtual array for each component */
     /* Note we pad the bottom to a multiple of the iMCU height */
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -321,7 +321,7 @@ jinit_c_main_controller (j_compress_ptr cinfo, wxjpeg_boolean need_full_buffer)
     mymain->whole_image[0] = NULL; /* flag for no virtual arrays */
 #endif
     /* Allocate a strip buffer for each component */
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

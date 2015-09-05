@@ -486,7 +486,7 @@ static bool haveTargetMatch(int currPos,
         return false;
     }
     int i, j;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1805,7 +1805,7 @@ static bool keywordDoStartsLoop(int pos,
             char *dst = prevWord;
             int wordLen = 0;
             int start_word;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

@@ -163,7 +163,7 @@ static void InternalLexOrFold(int foldOrLex, unsigned int startPos, int length,
 	WindowAccessor wa(window, ps);
 	// create and initialize WordList(s)
 	int nWL = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

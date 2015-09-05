@@ -1778,7 +1778,7 @@ void EditView::DrawForeground(Surface *surface, const EditModel &model, const Vi
 						surface->FillRectangle(rcSegment, textBack);
 					}
 					if (inIndentation && vsDraw.viewIndentationGuides == ivReal) {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1873,7 +1873,7 @@ void EditView::DrawForeground(Surface *surface, const EditModel &model, const Vi
 								}
 							}
 							if (inIndentation && vsDraw.viewIndentationGuides == ivReal) {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

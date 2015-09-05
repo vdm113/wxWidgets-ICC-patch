@@ -132,7 +132,7 @@ static void ColouriseCoffeeScriptDoc(unsigned int startPos, int length, int init
         if (startPos > 0 && IsSpaceEquiv(initStyle)) {
 		unsigned int back = startPos;
 		styler.Flush();
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

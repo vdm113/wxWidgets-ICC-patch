@@ -241,7 +241,7 @@ wxToolBarBase::InsertControl(size_t pos,
 
 wxControl *wxToolBarBase::FindControl( int toolid )
 {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -398,7 +398,7 @@ wxToolBarToolBase *wxToolBarBase::FindById(int toolid) const
 {
     wxToolBarToolBase *tool = NULL;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -510,7 +510,7 @@ void wxToolBarBase::AdjustToolBitmapSize()
 
     wxSize sizeActual(sizeOrig);
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -787,7 +787,7 @@ void wxToolBarBase::UpdateWindowUI(long flags)
 
     wxEvtHandler* evtHandler = GetEventHandler() ;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

@@ -1303,7 +1303,7 @@ void MBConvTestCase::UTF8Octal(const char *charSequence,
 static wchar_t *wx_wcscpy(wchar_t *dest, const wchar_t *src)
 {
     wchar_t *d = dest;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1331,7 +1331,7 @@ static wchar_t *wx_wcscat(wchar_t *dest, const wchar_t *src)
 #endif /* VDM auto patch */
     while (*d)
         d++;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

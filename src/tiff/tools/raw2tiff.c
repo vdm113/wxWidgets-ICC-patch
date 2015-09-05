@@ -434,7 +434,7 @@ guessSize(int fd, TIFFDataType dtype, off_t hdr_size, uint32 nbands,
 	} else if (*width == 0 && *length == 0) {
 		fprintf(stderr,	"Image width and height are not specified.\n");
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

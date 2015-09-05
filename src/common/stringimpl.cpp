@@ -598,7 +598,7 @@ size_t wxStringImpl::rfind(wxStringCharType ch, size_t nStart) const
     }
 
     const wxStringCharType *actual;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

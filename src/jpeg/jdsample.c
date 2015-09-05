@@ -106,7 +106,7 @@ sep_upsample (j_decompress_ptr cinfo,
 
   /* Fill the conversion buffer, if it's empty */
   if (upsample->next_row_out >= cinfo->max_v_samp_factor) {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -534,7 +534,7 @@ jinit_upsampler (j_decompress_ptr cinfo)
   /* Verify we can handle the sampling factors, select per-component methods,
    * and create storage as needed.
    */
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

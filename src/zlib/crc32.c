@@ -179,7 +179,7 @@ local void make_crc_table()
     }
     else {      /* not first */
         /* wait for the other guy to finish (not efficient, but rare) */
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

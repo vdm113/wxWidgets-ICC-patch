@@ -543,7 +543,7 @@ void wxFrame::OnActivate(wxActivateEvent& event)
     if (!event.GetActive())
         return;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

@@ -194,7 +194,7 @@ void wxMacWakeUp()
 void wxCFEventLoop::DoYieldFor(long eventsToProcess)
 {
     // process all pending events:
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -301,7 +301,7 @@ void wxCFEventLoop::OSXDoRun()
         // Pending() returns true, do process them
         if ( m_shouldExit )
         {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

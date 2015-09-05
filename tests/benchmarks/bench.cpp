@@ -217,7 +217,7 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
 
     // construct sorted array for quick verification of benchmark names
     wxSortedArrayString benchmarks;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -258,7 +258,7 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
 int BenchApp::OnRun()
 {
     int rc = EXIT_SUCCESS;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -364,7 +364,7 @@ int BenchApp::OnExit()
 void BenchApp::ListBenchmarks()
 {
     wxPrintf("Available benchmarks:\n");
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

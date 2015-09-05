@@ -1567,7 +1567,7 @@ void wxHtmlHelpWindow::OnToolbar(wxCommandEvent& event)
                 {
                     size_t idx = ha->m_Index + 1;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

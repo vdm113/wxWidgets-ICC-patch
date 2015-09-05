@@ -101,7 +101,7 @@ struct inflate_state FAR *state;
 
         /* literal/length table */
         sym = 0;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -110,7 +110,7 @@ struct inflate_state FAR *state;
 #   endif
 #endif /* VDM auto patch */
         while (sym < 144) state->lens[sym++] = 8;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -119,7 +119,7 @@ struct inflate_state FAR *state;
 #   endif
 #endif /* VDM auto patch */
         while (sym < 256) state->lens[sym++] = 9;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -128,7 +128,7 @@ struct inflate_state FAR *state;
 #   endif
 #endif /* VDM auto patch */
         while (sym < 280) state->lens[sym++] = 7;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -144,7 +144,7 @@ struct inflate_state FAR *state;
 
         /* distance table */
         sym = 0;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

@@ -491,7 +491,7 @@ int DumpProperties(const wxClassInfo *info, wxString& infostr, bool recursive)
 {
     const wxPropertyInfo *prop;
     int pcount;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -542,7 +542,7 @@ int DumpHandlers(const wxClassInfo *info, wxString& infostr, bool recursive)
 {
     const wxHandlerInfo *h;
     int hcount;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

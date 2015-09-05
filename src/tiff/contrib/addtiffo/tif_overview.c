@@ -458,7 +458,7 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
     {
     	if( nSample == 0 )
         {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -473,7 +473,7 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
                 if( nDestY >= nOBlockYSize )
                     break;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -502,7 +502,7 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
         else
         {
             nSampleOffsetInSampleBlock = nHorSubsampling * nVerSubsampling + nSample - 1;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -517,7 +517,7 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
                 if( nDestY*nVerSubsampling >= nOBlockYSize )
                     break;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -618,7 +618,7 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
         else
         {
             nSampleOffsetInSampleBlock = nHorSubsampling * nVerSubsampling + nSample - 1;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -632,7 +632,7 @@ void TIFF_DownSample_Subsampled( unsigned char *pabySrcTile, int nSample,
                 if( nDestY*nVerSubsampling >= nOBlockYSize )
                     break;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

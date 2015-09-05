@@ -282,7 +282,7 @@ wxCursor::wxCursor( const wxImage & image )
     unsigned long nMost = 0;
     long colNextMostFreq = 0;
     unsigned long nNext = 0;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

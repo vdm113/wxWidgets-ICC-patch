@@ -222,7 +222,7 @@ void wxClipboard::Clear()
     }
     m_data.Clear();
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -301,7 +301,7 @@ void wxClipboardCallback( Widget xwidget, long* data_id,
     if( !dobj->GetDataHere( dfarr[*priv], buffer.data() ) )
         return;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -330,7 +330,7 @@ bool wxClipboard::AddData( wxDataObject *data )
 
     int retval;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -364,7 +364,7 @@ bool wxClipboard::AddData( wxDataObject *data )
         long data_id;
         wxString id = dfarr[i].GetId();
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -380,7 +380,7 @@ bool wxClipboard::AddData( wxDataObject *data )
         m_idToObject.Append( new wxDataIdToDataObject( data, data_id, size ) );
     }
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -410,7 +410,7 @@ bool wxClipboard::IsSupported(const wxDataFormat& format)
     unsigned long  max_name_length;
     wxString id = format.GetId();
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -467,7 +467,7 @@ public:
         : m_display( display ), m_window( window ) { }
     ~wxClipboardEndRetrieve()
     {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -497,7 +497,7 @@ bool wxClipboard::GetData( wxDataObject& data )
     ///////////////////////////////////////////////////////////////////////////
     // determine if the cliboard holds any format we like
     ///////////////////////////////////////////////////////////////////////////
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -577,7 +577,7 @@ bool wxClipboard::GetData( wxDataObject& data )
     long dummy2;
     wxString id = chosenFormat.GetId();
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -594,7 +594,7 @@ bool wxClipboard::GetData( wxDataObject& data )
 
     wxCharBuffer buf(length);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

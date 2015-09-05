@@ -538,7 +538,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
             {
                if ((int)png_ptr->quantize_sort[i] >= maximum_colors)
                {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -584,7 +584,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
                {
                   png_color tmp_color;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

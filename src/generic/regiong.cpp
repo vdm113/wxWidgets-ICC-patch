@@ -961,7 +961,7 @@ miCoalesce(
      */
     pCurBox = &pReg->rects[curStart];
     bandY1 = pCurBox->y1;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -2058,7 +2058,7 @@ wxRegionContain REGION::XRectInRegion(register Region region,
     partIn = false;
 
     /* can stop when both partOut and partIn are true, or we reach prect->y2 */
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

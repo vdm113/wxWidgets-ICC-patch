@@ -813,7 +813,7 @@ void wxHtmlEasyPrinting::SetFonts(const wxString& normal_face, const wxString& f
     if (sizes)
     {
         m_FontsSizes = m_FontsSizesArr;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

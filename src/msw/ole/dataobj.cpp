@@ -267,7 +267,7 @@ private:
 bool
 wxIDataObject::GetSystemData(wxDataFormat format, STGMEDIUM *pmedium) const
 {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -293,7 +293,7 @@ wxIDataObject::GetSystemData(wxDataFormat format, STGMEDIUM *pmedium) const
 bool
 wxIDataObject::HasSystemData(wxDataFormat format) const
 {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -323,7 +323,7 @@ wxIDataObject::SaveSystemData(FORMATETC *pformatetc,
         return E_INVALIDARG;
 
     // remove entry if already available
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -557,7 +557,7 @@ wxIDataObject::wxIDataObject(wxDataObject *pDataObject)
 wxIDataObject::~wxIDataObject()
 {
     // delete system data
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

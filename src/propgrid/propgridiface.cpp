@@ -524,7 +524,7 @@ void wxPropertyGridInterface::GetPropertiesWithFlag( wxArrayPGProperty* targetAr
     wxASSERT( targetArr );
     wxPGVIterator it = GetVIterator( iterFlags );
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -970,7 +970,7 @@ wxString wxPropertyGridInterface::SaveEditableState( int includedStates ) const
 
             result += wxS("expanded=");
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

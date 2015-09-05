@@ -651,7 +651,7 @@ alloc_downsampled_buffers(TIFF* tif, jpeg_component_info* comp_info,
 	JSAMPARRAY buf;
 	int samples_per_clump = 0;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1443,7 +1443,7 @@ JPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 			 * over the scanline for each row of each component.
 			 */
 			clumpoffset = 0;    /* first sample in clump */
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -2049,7 +2049,7 @@ JPEGEncodeRaw(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
 		 * over the scanline for each row of each component.
 		 */
 		clumpoffset = 0;		/* first sample in clump */
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -2159,7 +2159,7 @@ JPEGPostEncode(TIFF* tif)
 		int ci, ypos, n;
 		jpeg_component_info* compptr;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -2173,7 +2173,7 @@ JPEGPostEncode(TIFF* tif)
 			int vsamp = compptr->v_samp_factor;
 			tmsize_t row_width = compptr->width_in_blocks * DCTSIZE
 				* sizeof(JSAMPLE);
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

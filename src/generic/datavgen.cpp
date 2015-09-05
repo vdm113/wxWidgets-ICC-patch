@@ -432,7 +432,7 @@ public:
         if ( m_branchData )
         {
             wxDataViewTreeNodes& nodes = m_branchData->children;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -2495,7 +2495,7 @@ bool Walker( wxDataViewTreeNode * node, DoJob & func )
     {
         const wxDataViewTreeNodes& nodes = node->GetChildNodes();
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -2572,7 +2572,7 @@ bool wxDataViewMainWindow::ItemAdded(const wxDataViewItem & parent, const wxData
             // append to the end if we won't find a better position:
             nodePos = nodeSiblingsSize;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -2636,7 +2636,7 @@ bool wxDataViewMainWindow::ItemDeleted(const wxDataViewItem& parent,
         // later use.
         int itemPosInNode = 0;
         wxDataViewTreeNode *itemNode = NULL;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -5555,7 +5555,7 @@ int wxDataViewCtrl::GetSelections( wxDataViewItemArray & sel ) const
     const wxSelectionStore& selections = m_clientArea->GetSelections();
 
     wxSelectionStore::IterationState cookie;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

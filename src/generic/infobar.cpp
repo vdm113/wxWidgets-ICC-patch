@@ -293,7 +293,7 @@ size_t wxInfoBarGeneric::GetButtonCount() const
 
     // iterate over the sizer items in reverse order
     const wxSizerItemList& items = sizer->GetChildren();
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -335,7 +335,7 @@ wxWindowID wxInfoBarGeneric::GetButtonId(size_t idx) const
 
     size_t count = 0;
     const wxSizerItemList& items = sizer->GetChildren();
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -385,7 +385,7 @@ bool wxInfoBarGeneric::HasButtonId(wxWindowID btnid) const
     // iterate over the sizer items in reverse order to find the last added
     // button with this id
     const wxSizerItemList& items = sizer->GetChildren();
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -421,7 +421,7 @@ void wxInfoBarGeneric::RemoveButton(wxWindowID btnid)
     // button with this id (ids of all buttons should be unique anyhow but if
     // they are repeated removing the last added one probably makes more sense)
     const wxSizerItemList& items = sizer->GetChildren();
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

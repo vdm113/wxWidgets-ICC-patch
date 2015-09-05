@@ -279,7 +279,7 @@ void wxFromStringConverter( const wxString &s, wxAny &v)
 template<typename iter, typename collection_t > void wxListCollectionToAnyList( 
                                                                                const collection_t& coll, wxAnyList &value )
 {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

@@ -265,7 +265,7 @@ bool wxVListBox::DoSetCurrent(int current)
             // make it entirely visible
             // BUT scrolling down when m_current is first visible makes it
             // completely hidden, so that is even worse
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

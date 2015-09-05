@@ -37,7 +37,7 @@ write_unknown_chunks(png_structrp png_ptr, png_const_inforp info_ptr,
 
       png_debug(5, "writing extra chunks");
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -2002,7 +2002,7 @@ png_write_image_8bit(png_voidp argument)
                reciprocal = UNP_RECIPROCAL(alpha);
 
             c = channels;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

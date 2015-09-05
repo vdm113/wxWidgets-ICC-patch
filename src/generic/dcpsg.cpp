@@ -477,7 +477,7 @@ void wxPostScriptDCImpl::DoDrawArc (wxCoord x1, wxCoord y1, wxCoord x2, wxCoord 
             (y2 - yc < 0) ? 90.0 : -90.0 :
                 wxRadToDeg(-atan2(double(y2-yc), double(x2-xc)));
     }
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -504,7 +504,7 @@ void wxPostScriptDCImpl::DoDrawArc (wxCoord x1, wxCoord y1, wxCoord x2, wxCoord 
 #   endif
 #endif /* VDM auto patch */
     while (alpha1 > 360)  alpha1 -= 360; // 0 and 360 degree
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -2385,7 +2385,7 @@ void wxPostScriptDCImpl::DoGetTextExtent(const wxString& string,
         else
         {
             /* init the widths array */
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

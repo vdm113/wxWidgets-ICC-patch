@@ -174,7 +174,7 @@ void wxFontsManager::AddAllFonts()
         if ( !wxDir::GetAllFiles(dir, &indexFiles, "FontsIndex") )
             continue;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -231,7 +231,7 @@ void wxFontsManager::AddFontsFromDir(const wxString& indexFile)
 
     long i;
     wxString name;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

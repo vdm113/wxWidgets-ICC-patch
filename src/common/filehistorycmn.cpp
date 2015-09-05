@@ -127,7 +127,7 @@ void wxFileHistoryBase::AddFileToHistory(const wxString& file)
     }
 
     // add a new menu item to all file menus (they will be updated below)
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -178,7 +178,7 @@ void wxFileHistoryBase::AddFileToHistory(const wxString& file)
             pathInMenu = m_fileHistory[i];
         }
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -207,7 +207,7 @@ void wxFileHistoryBase::RemoveFileFromHistory(size_t i)
     m_fileHistory.RemoveAt(i);
     numFiles--;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -326,7 +326,7 @@ void wxFileHistoryBase::AddFilesToMenu()
     if ( m_fileHistory.empty() )
         return;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -370,7 +370,7 @@ void wxFileHistoryBase::RemoveExistingHistory()
     if ( !count )
         return;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

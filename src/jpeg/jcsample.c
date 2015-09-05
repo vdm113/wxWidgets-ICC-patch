@@ -143,7 +143,7 @@ sep_downsample (j_compress_ptr cinfo,
   jpeg_component_info * compptr;
   JSAMPARRAY in_ptr, out_ptr;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -200,7 +200,7 @@ int_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #endif /* VDM auto patch */
   for (outrow = 0; outrow < compptr->v_samp_factor; outrow++) {
     outptr = output_data[outrow];
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -607,7 +607,7 @@ jinit_downsampler (j_compress_ptr cinfo)
     ERREXIT(cinfo, JERR_CCIR601_NOTIMPL);
 
   /* Verify we can handle the sampling factors, and set up method pointers */
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

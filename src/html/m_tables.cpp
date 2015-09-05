@@ -790,7 +790,7 @@ void wxHtmlTableCell::Layout(int w)
         wxHtmlContainerCell *actcell;
 
         ypos[0] = m_Spacing + m_Border;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

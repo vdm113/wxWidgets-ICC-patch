@@ -215,7 +215,7 @@ inline void wxPNGReaderIter::SetRow(byte *buf, int n)
   if (n<0)
      n = ima->GetWidth();
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -228,7 +228,7 @@ inline void wxPNGReaderIter::SetRow(byte *buf, int n)
 
 inline void wxPNGReaderIter::GetRow(byte *buf, int n)
 {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

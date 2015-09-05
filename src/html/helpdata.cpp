@@ -1065,7 +1065,7 @@ bool wxHtmlSearchStatus::Search()
     if (!m_LastPage.empty())
     {
         const wxChar *p1, *p2;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

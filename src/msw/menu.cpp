@@ -109,7 +109,7 @@ public:
         // items in a menu and hence even fewer radio items ranges anyhow, so
         // normally there is no need to do anything fancy (like keeping the
         // array sorted and using binary search).
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -146,7 +146,7 @@ public:
     {
         bool inExistingGroup = false;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -205,7 +205,7 @@ public:
         // after removing the last radio button from it.
         Ranges::iterator itEmptyGroup = m_ranges.end();
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1280,7 +1280,7 @@ WXHMENU wxMenuBar::Create()
     }
     else
     {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

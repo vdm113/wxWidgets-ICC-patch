@@ -2587,7 +2587,7 @@ static Boolean FetchXmStringTableResource(Widget w,
 #endif /* VDM auto patch */
 	for ( Entry = 0; Entry < Entries; ++Entry ) {
 	    pStart = p;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

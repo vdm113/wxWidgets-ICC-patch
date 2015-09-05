@@ -121,7 +121,7 @@ wxPaletteRefData::~wxPaletteRefData()
 #   endif
 #endif /* VDM auto patch */
             for(i=j=0; i<pix_array_n; i=j) {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -131,7 +131,7 @@ wxPaletteRefData::~wxPaletteRefData()
 #endif /* VDM auto patch */
                 while(j<pix_array_n && pix_array[j]!=0) j++;
                 if(j > i) XFreeColors(display, cmap, &pix_array[i], j-i, 0);
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

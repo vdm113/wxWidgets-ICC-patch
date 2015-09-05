@@ -59,7 +59,7 @@ public:
         wxCriticalSectionLocker lock(m_csAllValues);
         if ( old )
         {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -107,7 +107,7 @@ public:
         //
         // NB: No need to lock m_csAllValues, by the time this code is called,
         //     no other thread can be using this key.
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

@@ -241,7 +241,7 @@ wxToolBarToolBase *wxToolBar::FindToolForPosition(wxCoord x, wxCoord y) const
             return NULL;
     }
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -442,7 +442,7 @@ bool wxToolBar::Realize()
     // with wxGTK and the menu radio items
     int radioGroupCount = 0;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -498,7 +498,7 @@ void wxToolBar::DoLayout()
     wxCoord *pCur = IsVertical() ? &y : &x;
 
     // calculate the positions of all elements
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -668,7 +668,7 @@ void wxToolBar::DoDraw(wxControlRenderer *renderer)
     GetRectLimits(rectUpdate, &start, &end);
 
     // and redraw all the tools intersecting it
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

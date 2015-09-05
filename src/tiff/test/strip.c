@@ -53,7 +53,7 @@ write_strips(TIFF *tif, const tdata_t array, const tsize_t size)
 	}
 
 	nstrips = TIFFNumberOfStrips(tif);
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -102,7 +102,7 @@ read_strips(TIFF *tif, const tdata_t array, const tsize_t size)
 	}
 
 	nstrips = TIFFNumberOfStrips(tif);
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

@@ -1833,7 +1833,7 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 		break;
       case 'z': /* regions of an image specified as x1,y1,x2,y2:x3,y3,x4,y4 etc */
 	        crop_data->crop_mode |= CROP_REGIONS;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1971,7 +1971,7 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
       case 'm': /* margins to exclude from selection, uppercase M was already used */
 		/* order of values must be TOP, LEFT, BOTTOM, RIGHT */
 		crop_data->crop_mode |= CROP_MARGINS;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -2058,7 +2058,7 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
                 page->mode |= PAGE_MODE_MARGINS;
 		break;
       case 'N':	/* list of images to process */
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -2276,7 +2276,7 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 		break;
       case 'Z': /* zones of an image X:Y read as zone X of Y */
 		crop_data->crop_mode |= CROP_ZONES;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

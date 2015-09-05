@@ -239,7 +239,7 @@ wxGetBestTreeSize(const wxTreeCtrlBase* treeCtrl, wxTreeItemId id, wxSize& size)
     }
 
     wxTreeItemIdValue cookie;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -265,7 +265,7 @@ wxSize wxTreeCtrlBase::DoGetBestSize() const
 
     if (GetQuickBestSize())
     {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -332,7 +332,7 @@ void wxTreeCtrlBase::ExpandAllChildren(const wxTreeItemId& item)
 
     // then (recursively) expand all the children
     wxTreeItemIdValue cookie;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -362,7 +362,7 @@ void wxTreeCtrlBase::CollapseAllChildren(const wxTreeItemId& item)
     Freeze();
     // first (recursively) collapse all the children
     wxTreeItemIdValue cookie;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

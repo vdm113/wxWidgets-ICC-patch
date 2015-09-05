@@ -1169,7 +1169,7 @@ void FormMain::PopulateWithStandardItems ()
     wxPropertyGridIterator it;
     wxBitmap bmp = wxArtProvider::GetBitmap(wxART_FOLDER);
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

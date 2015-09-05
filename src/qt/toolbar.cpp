@@ -193,7 +193,7 @@ void wxToolBar::SetWindowStyleFlag( long style )
     Qt::ToolButtonStyle buttonStyle = GetButtonStyle();
 
     // bring the initial state of all the toolbar items in line with the
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -218,7 +218,7 @@ bool wxToolBar::Realize()
         return false;
 
     // bring the initial state of all the toolbar items in line with the
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

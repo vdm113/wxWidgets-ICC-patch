@@ -120,7 +120,7 @@ OSErr BuildVolumeList(Boolean includeRemote, short *vols,
         return noErr;
 
     // iterate through volumes
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

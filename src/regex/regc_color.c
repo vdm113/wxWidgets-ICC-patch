@@ -213,7 +213,7 @@ pcolor co;
 		return COLORLESS;
 
 	t = cm->tree;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -564,7 +564,7 @@ struct state *rp;
 	/* find its color block, making new pointer blocks as needed */
 	t = cm->tree;
 	fillt = NULL;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

@@ -266,7 +266,7 @@ void wxWrapSizer::CalcMaxSingleItemSize()
     // Find max item size in each direction
     int maxMajor = 0;    // Widest item
     int maxMinor = 0;    // Line height
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -308,7 +308,7 @@ void wxWrapSizer::CalcMinFromMajor(int totMajor)
     int rowTotalMajor = 0;      // sum of major sizes of items in this row
 
     // pack the items in each row until we reach totMajor, then start a new row
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -581,7 +581,7 @@ void wxWrapSizer::RecalcSizes()
                 *itemSpace = NULL;  // spacer which we delayed adding
 
     // Now put our child items into child sizers instead
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

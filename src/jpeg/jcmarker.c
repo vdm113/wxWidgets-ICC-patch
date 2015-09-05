@@ -374,7 +374,7 @@ emit_sof (j_compress_ptr cinfo, JPEG_MARKER code)
 
   emit_byte(cinfo, cinfo->num_components);
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -596,7 +596,7 @@ write_frame_header (j_compress_ptr cinfo)
    * Note that emit_dqt() suppresses any duplicate tables.
    */
   prec = 0;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -618,7 +618,7 @@ write_frame_header (j_compress_ptr cinfo)
     is_baseline = FALSE;
   } else {
     is_baseline = TRUE;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

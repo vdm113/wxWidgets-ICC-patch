@@ -101,7 +101,7 @@ bool wxRibbonPanel::Create(wxWindow* parent,
 void wxRibbonPanel::SetArtProvider(wxRibbonArtProvider* art)
 {
     m_art = art;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -288,7 +288,7 @@ void wxRibbonPanel::DoSetSize(int x, int y, int width, int height, int sizeFlags
         // Note that for sizers, this routine disallows the use of mixed shown
         // and hidden controls
         // TODO ? use some list of user set invisible children to restore status.
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -677,7 +677,7 @@ bool wxRibbonPanel::Realize()
 {
     bool status = true;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

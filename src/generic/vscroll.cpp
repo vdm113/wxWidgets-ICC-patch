@@ -569,7 +569,7 @@ void wxVarScrollHelperBase::RefreshUnits(size_t from, size_t to)
 
     int nonorient_size = GetNonOrientationTargetSize();
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -812,7 +812,7 @@ void wxVarScrollHelperBase::HandleOnSize(wxSizeEvent& event)
 
         // decrement first visible item index as long as there is free space
         size_t idealUnitFirst;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1011,7 +1011,7 @@ void wxVarHVScrollHelper::RefreshRowsColumns(size_t fromRow, size_t toRow,
     wxRect v_rect, h_rect;
     size_t nBefore, nBetween;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1039,7 +1039,7 @@ void wxVarHVScrollHelper::RefreshRowsColumns(size_t fromRow, size_t toRow,
         v_rect.height += OnGetRowHeight(nBetween);
     }
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

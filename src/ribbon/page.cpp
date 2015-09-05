@@ -220,7 +220,7 @@ void wxRibbonPage::CommonInit(const wxString& label, const wxBitmap& icon)
 void wxRibbonPage::SetArtProvider(wxRibbonArtProvider* art)
 {
     m_art = art;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -331,7 +331,7 @@ bool wxRibbonPage::ScrollPixels(int pixels)
 
     m_scroll_amount += pixels;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -630,7 +630,7 @@ bool wxRibbonPage::Realize()
     bool status = true;
 
     m_collapse_stack.Clear();
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -673,7 +673,7 @@ void wxRibbonPage::PopulateSizeCalcArray(wxSize (wxWindow::*get_size)(void) cons
     }
 
     wxSize* node_size = m_size_calc_array;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -798,7 +798,7 @@ bool wxRibbonPage::DoActualLayout()
         }
     }
     size_index = 0;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -984,7 +984,7 @@ bool wxRibbonPage::ExpandPanels(wxOrientation direction, int maximum_amount)
         wxRibbonPanel* smallest_panel = NULL;
         wxSize* smallest_panel_size = NULL;
         wxSize* panel_size = m_size_calc_array;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1102,7 +1102,7 @@ bool wxRibbonPage::CollapsePanels(wxOrientation direction, int minimum_amount)
             // were recently expanded.
             largest_panel = wxDynamicCast(m_collapse_stack.Last(), wxRibbonPanel);
             m_collapse_stack.RemoveAt(m_collapse_stack.GetCount() - 1);
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1124,7 +1124,7 @@ bool wxRibbonPage::CollapsePanels(wxOrientation direction, int minimum_amount)
         }
         else
         {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1210,7 +1210,7 @@ bool wxRibbonPage::CollapsePanels(wxOrientation direction, int minimum_amount)
 
 bool wxRibbonPage::DismissExpandedPanel()
 {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1239,7 +1239,7 @@ wxSize wxRibbonPage::GetMinSize() const
 {
     wxSize min(wxDefaultCoord, wxDefaultCoord);
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1287,7 +1287,7 @@ wxSize wxRibbonPage::DoGetBestSize() const
     {
         best.y = wxDefaultCoord;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1320,7 +1320,7 @@ wxSize wxRibbonPage::DoGetBestSize() const
     {
         best.x = wxDefaultCoord;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

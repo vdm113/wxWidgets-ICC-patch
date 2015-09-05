@@ -727,7 +727,7 @@ void ArraysTestCase::TestSTL()
     CPPUNIT_ASSERT( list1.capacity() >= (size_t)COUNT );
     CPPUNIT_ASSERT_EQUAL( COUNT, list1.size() );
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -743,7 +743,7 @@ void ArraysTestCase::TestSTL()
 
     CPPUNIT_ASSERT_EQUAL( COUNT, i );
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -772,7 +772,7 @@ void ArraysTestCase::TestSTL()
     list1.erase(list1.begin());
     list1.erase(list1.end()-1);
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

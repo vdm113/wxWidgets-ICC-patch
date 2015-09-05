@@ -1050,7 +1050,7 @@ void wxNotebook::OnSize(wxSizeEvent& event)
     if ( !m_hasSubclassedUpdown )
     {
         // iterate over all child windows to find spin button
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

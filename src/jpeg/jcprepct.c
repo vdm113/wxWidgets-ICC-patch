@@ -202,7 +202,7 @@ pre_process_data (j_compress_ptr cinfo,
      */
     if (prep->rows_to_go == 0 &&
 	*out_row_group_ctr < out_row_groups_avail) {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -351,7 +351,7 @@ create_context_buffer (j_compress_ptr cinfo)
 				(cinfo->num_components * 5 * rgroup_height) *
 				SIZEOF(JSAMPROW));
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -429,7 +429,7 @@ jinit_c_prep_controller (j_compress_ptr cinfo, wxjpeg_boolean need_full_buffer)
   } else {
     /* No context, just make it tall enough for one row group */
     prep->pub.pre_process_data = pre_process_data;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

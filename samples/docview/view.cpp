@@ -83,7 +83,7 @@ void DrawingView::OnDraw(wxDC *dc)
 
     // simply draw all lines of all segments
     const DoodleSegments& segments = GetDocument()->GetSegments();
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -96,7 +96,7 @@ void DrawingView::OnDraw(wxDC *dc)
           ++i )
     {
         const DoodleLines& lines = i->GetLines();
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

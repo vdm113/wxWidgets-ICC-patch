@@ -82,7 +82,7 @@ static bool isPerlKeyword(unsigned int start, unsigned int end, WordList &keywor
 	char s[100];
 	unsigned int i, len = end - start;
 	if (len > 30) { len = 30; }
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

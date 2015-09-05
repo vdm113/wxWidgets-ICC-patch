@@ -203,7 +203,7 @@ print_mem_stats (j_common_ptr cinfo, int pool_id)
   fprintf(stderr, "Freeing pool %d, total space = %ld\n",
 	  pool_id, mem->total_space_allocated);
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -217,7 +217,7 @@ print_mem_stats (j_common_ptr cinfo, int pool_id)
 	    (long) lhdr_ptr->hdr.bytes_used);
   }
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

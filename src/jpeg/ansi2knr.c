@@ -762,7 +762,7 @@ found:		if ( *p == '.' && p[-1] == '.' && p[-2] == '.' )
 	   }
 	/* Put out the function name and left parenthesis. */
 	p = buf;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

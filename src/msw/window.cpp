@@ -1678,7 +1678,7 @@ static void AdjustStaticBoxZOrder(wxWindow *parent)
     if ( !parent )
         return;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -2671,7 +2671,7 @@ bool wxWindowMSW::MSWSafeIsDialogMessage(WXMSG* msg)
         {
             // pessimistic by default
             bool canSafelyCallIsDlgMsg = false;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -4774,7 +4774,7 @@ bool wxWindowMSW::HandleQueryNewPalette()
 #if wxUSE_PALETTE
     // check to see if we our our parents have a custom palette
     wxWindowMSW *win = this;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -5352,7 +5352,7 @@ bool wxWindowMSW::BeginRepositioningChildren()
 {
 #if wxUSE_DEFERRED_SIZING
     int numChildren = 0;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -5406,7 +5406,7 @@ void wxWindowMSW::EndRepositioningChildren()
     }
 
     // Reset our children's pending pos/size values.
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

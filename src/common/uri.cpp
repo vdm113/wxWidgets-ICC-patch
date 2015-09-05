@@ -1109,7 +1109,7 @@ bool wxURI::ParseIPvFuture(const char*& uri)
     if (*++uri != 'v' || !IsHex(*++uri))
         return false;
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

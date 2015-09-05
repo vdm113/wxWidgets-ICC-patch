@@ -595,7 +595,7 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
 
 
     // skip leading spaces
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1948,7 +1948,7 @@ bool wxFileConfigGroup::DeleteSubgroup(wxFileConfigGroup *pGroup)
             const size_t nSubgroups = m_aSubgroups.GetCount();
 
             m_pLastGroup = NULL;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

@@ -648,7 +648,7 @@ void wxToolTip::DoForAllWindows(void (wxToolTip::*func)(WXHWND))
 
     if ( m_others )
     {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

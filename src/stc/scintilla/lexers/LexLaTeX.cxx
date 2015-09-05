@@ -43,7 +43,7 @@ using namespace std;
 
 struct latexFoldSave {
 	latexFoldSave() : structLev(0) {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -54,7 +54,7 @@ struct latexFoldSave {
 		for (int i = 0; i < 8; ++i) openBegins[i] = 0;
 	}
 	latexFoldSave(const latexFoldSave &save) : structLev(save.structLev) {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -93,7 +93,7 @@ private:
 		if (line >= 0 && line < static_cast<int>(saves.size())) save = saves[line];
 		else {
 			save.structLev = 0;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

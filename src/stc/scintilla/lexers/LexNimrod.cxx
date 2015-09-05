@@ -308,7 +308,7 @@ static void ColouriseNimrodDoc(unsigned int startPos, int length, int initStyle,
       case '\0': return;
       case '#': {
         bool doccomment = (styler.SafeGetCharAt(pos+1) == '#');
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

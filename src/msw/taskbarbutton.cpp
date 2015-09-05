@@ -753,7 +753,7 @@ wxTaskBarButtonImpl::~wxTaskBarButtonImpl()
     if ( m_taskbarList )
       m_taskbarList->Release();
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -896,7 +896,7 @@ bool wxTaskBarButtonImpl::InsertThumbBarButton(size_t pos,
 wxThumbBarButton* wxTaskBarButtonImpl::RemoveThumbBarButton(
     wxThumbBarButton *button)
 {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -922,7 +922,7 @@ wxThumbBarButton* wxTaskBarButtonImpl::RemoveThumbBarButton(
 
 wxThumbBarButton* wxTaskBarButtonImpl::RemoveThumbBarButton(int id)
 {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1153,7 +1153,7 @@ wxTaskBarJumpListCategory::wxTaskBarJumpListCategory(wxTaskBarJumpList *parent,
 
 wxTaskBarJumpListCategory::~wxTaskBarJumpListCategory()
 {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1192,7 +1192,7 @@ void wxTaskBarJumpListCategory::Delete(wxTaskBarJumpListItem *item)
 wxTaskBarJumpListItem*
 wxTaskBarJumpListCategory::Remove(wxTaskBarJumpListItem *item)
 {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1366,7 +1366,7 @@ wxTaskBarJumpListImpl::~wxTaskBarJumpListImpl()
     if ( m_destinationList )
         m_destinationList->Release();
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1460,7 +1460,7 @@ wxTaskBarJumpListImpl::AddCustomCategory(wxTaskBarJumpListCategory *category)
 wxTaskBarJumpListCategory*
 wxTaskBarJumpListImpl::RemoveCustomCategory(const wxString& title)
 {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1519,7 +1519,7 @@ void wxTaskBarJumpListImpl::AddTasksToDestinationList()
         return;
 
     const wxTaskBarJumpListItems& tasks = m_tasks->GetItems();
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1542,7 +1542,7 @@ void wxTaskBarJumpListImpl::AddTasksToDestinationList()
 
 void wxTaskBarJumpListImpl::AddCustomCategoriesToDestionationList()
 {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1559,7 +1559,7 @@ void wxTaskBarJumpListImpl::AddCustomCategoriesToDestionationList()
             continue;
 
         const wxTaskBarJumpListItems& tasks = (*it)->GetItems();
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

@@ -521,7 +521,7 @@ wxPopupMenuWindow::GetMenuItemFromPoint(const wxPoint& pt) const
     if ( wxWindow::HitTest(pt) == wxHT_WINDOW_INSIDE )
     {
         wxCoord y = 0;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -577,7 +577,7 @@ void wxPopupMenuWindow::DoDraw(wxControlRenderer *renderer)
 
     wxCoord y = 0;
     const wxMenuGeometryInfo& gi = m_menu->GetGeometryInfo();
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1489,7 +1489,7 @@ bool wxMenu::ProcessAccelEvent(const wxKeyEvent& event)
     }
 
     // try our submenus
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -2496,7 +2496,7 @@ int wxMenuBar::FindNextItemForAccel(int idxStart, int key, bool *unique) const
 bool wxMenuBar::ProcessAccelEvent(const wxKeyEvent& event)
 {
     size_t n = 0;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

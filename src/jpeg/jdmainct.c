@@ -182,7 +182,7 @@ alloc_funny_pointers (j_decompress_ptr cinfo)
 				cinfo->num_components * 2 * SIZEOF(JSAMPARRAY));
   main->xbuffer[1] = main->xbuffer[0] + cinfo->num_components;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -223,7 +223,7 @@ make_funny_pointers (j_decompress_ptr cinfo)
   jpeg_component_info *compptr;
   JSAMPARRAY buf, xbuf0, xbuf1;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -295,7 +295,7 @@ set_wraparound_pointers (j_decompress_ptr cinfo)
   jpeg_component_info *compptr;
   JSAMPARRAY xbuf0, xbuf1;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -339,7 +339,7 @@ set_bottom_pointers (j_decompress_ptr cinfo)
   jpeg_component_info *compptr;
   JSAMPARRAY xbuf;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -581,7 +581,7 @@ jinit_d_main_controller (j_decompress_ptr cinfo, wxjpeg_boolean need_full_buffer
     ngroups = cinfo->min_DCT_scaled_size;
   }
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

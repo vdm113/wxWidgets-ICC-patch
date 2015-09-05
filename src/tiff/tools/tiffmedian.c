@@ -640,7 +640,7 @@ splitbox(Colorbox* ptr)
 	sum2 = ptr->total / 2;
 	histp = &hist2[first];
 	sum = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

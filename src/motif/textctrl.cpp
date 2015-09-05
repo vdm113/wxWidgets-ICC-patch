@@ -316,7 +316,7 @@ long wxTextCtrl::XYToPosition(long x, long y) const
     */
     /* Now a little workaround: */
     long r=0;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

@@ -74,7 +74,7 @@ _XTIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 	
 			num = xd->xd_num_multi;
 			fprintf(fd,"(");
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

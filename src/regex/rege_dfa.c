@@ -587,7 +587,7 @@ chr *start;			/* where the attempt got started */
 #endif /* VDM auto patch */
 		for (i = 0; i < d->nstates; i++)
 			if (ISBSET(d->work, i))
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

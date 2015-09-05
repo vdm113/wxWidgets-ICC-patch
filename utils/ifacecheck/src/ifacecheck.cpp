@@ -540,7 +540,7 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
             if (StringContainsMethodName(file.GetLine(start), iface))
                 founddecl = true;
         }
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

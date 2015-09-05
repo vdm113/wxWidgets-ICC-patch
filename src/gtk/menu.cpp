@@ -287,7 +287,7 @@ void wxMenuBar::SetLayoutDirection(wxLayoutDirection dir)
 
     // also set the layout of all menus we already have (new ones will inherit
     // the current layout)
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

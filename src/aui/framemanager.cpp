@@ -2141,7 +2141,7 @@ void wxAuiManager::LayoutAddPane(wxSizer* cont,
 
         // add pane buttons to the caption
         int i, button_count;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -4102,7 +4102,7 @@ wxRect wxAuiManager::CalculateHintRect(wxWindow* pane_window,
     sizer->SetDimension(0, 0, client_size.x, client_size.y);
     sizer->Layout();
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -4432,7 +4432,7 @@ void wxAuiManager::OnRender(wxAuiManagerEvent& evt)
     dc->Clear() ;
 #endif
     int i, part_count;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

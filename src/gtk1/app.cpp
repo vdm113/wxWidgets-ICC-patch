@@ -211,7 +211,7 @@ static gint wxapp_idle_callback( gpointer WXUNUSED(data) )
 
     // Send idle event to all who request them as long as
     // no events have popped up in the event queue.
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

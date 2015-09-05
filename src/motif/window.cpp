@@ -571,7 +571,7 @@ wxWindow *wxWindowBase::DoFindFocus()
     // (2) The widget with the focus may not be in the widget table
     // depending on which widgets I put in the table
     wxWindow *winFocus = NULL;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

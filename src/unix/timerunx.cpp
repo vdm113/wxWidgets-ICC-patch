@@ -59,7 +59,7 @@ wxTimerScheduler *wxTimerScheduler::ms_instance = NULL;
 
 wxTimerScheduler::~wxTimerScheduler()
 {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -112,7 +112,7 @@ void wxTimerScheduler::RemoveTimer(wxUnixTimerImpl *timer)
 {
     wxLogTrace(wxTrace_Timer, wxT("Removing timer %d"), timer->GetId());
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

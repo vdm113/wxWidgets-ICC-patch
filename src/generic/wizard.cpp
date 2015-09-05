@@ -195,7 +195,7 @@ wxSizerItem *wxWizardSizer::Insert(size_t index, wxSizerItem *item)
 
 void wxWizardSizer::HidePages()
 {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -232,7 +232,7 @@ wxSize wxWizardSizer::GetMaxChildSize()
 {
     wxSize maxOfMin;
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -271,7 +271,7 @@ wxSize wxWizardSizer::SiblingSize(wxSizerItem *child)
         wxWizardPage *page = wxDynamicCast(child->GetWindow(), wxWizardPage);
         if ( page )
         {
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

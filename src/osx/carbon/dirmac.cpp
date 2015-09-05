@@ -84,7 +84,7 @@ wxDirData::wxDirData(const wxString& dirname)
     size_t n = m_dirname.length();
     wxCHECK_RET( n, wxT("empty dir name in wxDir") );
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

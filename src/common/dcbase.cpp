@@ -1583,7 +1583,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
     {
         bUseAngles = true;
         // normalisation of angles
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1592,7 +1592,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   endif
 #endif /* VDM auto patch */
         while( sa<0 ) sa += 360;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1601,7 +1601,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   endif
 #endif /* VDM auto patch */
         while( ea<0 ) ea += 360;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -1610,7 +1610,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   endif
 #endif /* VDM auto patch */
         while( sa>=360 ) sa -= 360;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

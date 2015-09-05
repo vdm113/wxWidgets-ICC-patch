@@ -1956,7 +1956,7 @@ void Editor::AddCharUTF(const char *s, unsigned int len, bool treatAsDBCS) {
 		std::sort(selPtrs.begin(), selPtrs.end(), cmpSelPtrs);
 
 		// Loop in reverse to avoid disturbing positions of selections yet to be processed.
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

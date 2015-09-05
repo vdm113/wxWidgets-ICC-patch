@@ -88,7 +88,7 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
             m_Cache[tg].Key = stpos;
 
             int i;
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -108,7 +108,7 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
             m_Cache[tg].Name = new wxChar[i+1];
             memcpy(m_Cache[tg].Name, tagBuffer, (i+1)*sizeof(wxChar));
 
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

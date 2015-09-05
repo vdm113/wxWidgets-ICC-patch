@@ -477,7 +477,7 @@ wxPGProperty* wxPropertyGridPageState::GetLastItem( int flags )
     if ( pwc->HasFlag(itemExMask) )
     {
         wxPropertyGridIterator it( this, flags, pwc );
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -646,14 +646,6 @@ VDM_MACRO_PRAGMA_IVDEP \
         i = parent->m_arrIndex + 1; \
         parent = parent->m_parent; \
     } \
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   if 0
-#       pragma simd
-#   endif
-#endif /* VDM auto patch */
     while ( parent != NULL );
 
 bool wxPropertyGridPageState::EnableCategories( bool enable )
@@ -2073,7 +2065,7 @@ wxPGProperty* wxPropertyGridPageState::DoInsert( wxPGProperty* parent, int index
     property->UpdateParentValues();
 
     // Update editor controls of all parents if they are containers of composed values.
-#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll

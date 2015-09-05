@@ -69,7 +69,7 @@ static inline bool IsNewline(const int ch) {
 // True if can follow ch down to the end with possibly trailing whitespace
 static bool FollowToLineEnd(const int ch, const int state, const unsigned int endPos, StyleContext &sc) {
     unsigned int i = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -133,7 +133,7 @@ static void SetStateAndZoom(const int state, const int length, const int token, 
 static bool HasPrevLineContent(StyleContext &sc) {
     int i = 0;
     // Go back to the previous newline
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -389,7 +389,7 @@ static void ColorizeMarkdownDoc(unsigned int startPos, int length, int initStyle
             // Ordered list
             else if (IsADigit(sc.ch)) {
                 int digitCount = 0;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -428,7 +428,7 @@ static void ColorizeMarkdownDoc(unsigned int startPos, int length, int initStyle
             if (sc.Match("![") || sc.ch == '[') {
                 int i = 0, j = 0, k = 0;
                 int len = endPos - sc.currentPos;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
@@ -455,7 +455,7 @@ static void ColorizeMarkdownDoc(unsigned int startPos, int length, int initStyle
                             k = i;
                     }
                     else if (sc.GetRelative(i) == '[' || sc.GetRelative(++i) == '[') {
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#if defined(__INTEL_COMPILER) && 0 /* VDM auto patch */
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
