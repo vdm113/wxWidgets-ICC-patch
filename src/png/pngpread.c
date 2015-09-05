@@ -5,7 +5,6 @@
 #   define VDM_MACRO_PRAGMA_IVDEP
 #endif
 
-
 /* pngpread.c - read a png file in push mode
  *
  * Last changed in libpng 1.6.0 [February 14, 2013]
