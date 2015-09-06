@@ -6,5 +6,6 @@ X64
 *.sdf
 *.suo
 *.user
+ipch
 
 #eof
