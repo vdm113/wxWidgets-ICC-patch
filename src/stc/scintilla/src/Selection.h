@@ -168,6 +168,7 @@ public:
 	SelectionRange &Range(size_t r);
 	const SelectionRange &Range(size_t r) const;
 	SelectionRange &RangeMain();
+	const SelectionRange &RangeMain() const;
 	SelectionPosition Start() const;
 	bool MoveExtends() const;
 	void SetMoveExtends(bool moveExtends_);
