@@ -856,6 +856,8 @@ public :
 
     virtual void SetTitle( const wxString& title, wxFontEncoding encoding ) = 0;
 
+    virtual bool EnableCloseButton(bool enable) = 0;
+
     virtual bool IsMaximized() const = 0;
 
     virtual bool IsIconized() const= 0;
