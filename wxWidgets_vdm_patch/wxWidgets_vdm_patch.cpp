@@ -3,7 +3,8 @@
 #   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
+#   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
+#   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -69,7 +70,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
     static const vector<const char*> line2={ "#   pragma ivdep", "#   pragma swp", "#   pragma unroll", "#   if 0", "#       pragma simd", "#   endif", line_end };
 
     static const char* line_prologue_token="/* token_VDM_prologue */";
-    static const char* line_prologue="#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)\n#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)\n#   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */\n#elif !defined(VDM_MACRO_PRAGMA_IVDEP)\n#   define VDM_MACRO_PRAGMA_IVDEP\n#endif";
+    static const char* line_prologue="#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)\n#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)\n#   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */\n#elif !defined(VDM_MACRO_PRAGMA_IVDEP)\n#   define VDM_MACRO_PRAGMA_IVDEP /* NOP */\n#   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */\n#endif";
 
     static const char* inline_pragma="VDM_MACRO_PRAGMA_IVDEP \\";
     static const char* inline_no_pragma="VDM_MACRO_PRAGMA_NO_IVDEP \\";
@@ -178,7 +179,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #       pragma simd
 #   endif
 #endif /* VDM auto patch */
-                for(int i1=0; i1<6; ++i1) {
+                for(int i1=0; i1<7; ++i1) {
                     sprintf(buf,"%s",contents[i].c_str());
                     scrollback.push_back(buf);
                     ++i;
