@@ -3,9 +3,9 @@
 #   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP
+#   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
+#   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #endif
-
 
 float	ycbcrCoeffs[3] = { .299, .587, .114 };
 /* default coding range is CCIR Rec 601-1 with no headroom/footroom */
