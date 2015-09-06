@@ -7,6 +7,7 @@
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #endif
 
+
 /* pngwtran.c - transforms the data in a row for PNG writers
  *
  * Last changed in libpng 1.6.0 [February 14, 2013]

@@ -7,6 +7,7 @@
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #endif
 
+
 /*
  * tiff-bi.c -- create a Class B (bilevel) TIFF file
  *

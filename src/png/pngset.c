@@ -7,6 +7,7 @@
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #endif
 
+
 /* pngset.c - storage of image information into info struct
  *
  * Last changed in libpng 1.6.2 [April 25, 2013]

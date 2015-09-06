@@ -7,6 +7,7 @@
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #endif
 
+
 // Name:        wx/ustring.h
 // Purpose:     32-bit string (UCS-4)
 // Author:      Robert Roebling

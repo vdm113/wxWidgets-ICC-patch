@@ -7,6 +7,7 @@
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #endif
 
+
 /*
  * Copyright (c) 1992-1997 Sam Leffler
  * Copyright (c) 1992-1997 Silicon Graphics, Inc.

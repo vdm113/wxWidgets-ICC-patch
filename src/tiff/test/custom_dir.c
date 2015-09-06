@@ -7,6 +7,7 @@
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #endif
 
+
 /*
  * Copyright (c) 2012, Frank Warmerdam <warmerdam@pobox.com>
  *

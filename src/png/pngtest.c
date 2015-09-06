@@ -7,6 +7,7 @@
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #endif
 
+
 /* pngtest.c - a simple test program to test libpng
  *
  * Last changed in libpng 1.6.2 [April 25, 2013]

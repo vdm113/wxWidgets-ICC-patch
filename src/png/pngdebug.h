@@ -7,6 +7,7 @@
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #endif
 
+
 /* pngdebug.h - Debugging macros for libpng, also used in pngtest.c
  *
  * Copyright (c) 1998-2011 Glenn Randers-Pehrson

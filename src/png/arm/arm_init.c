@@ -7,6 +7,7 @@
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #endif
 
+
 /* arm_init.c - NEON optimised filter functions
  *
  * Copyright (c) 2013 Glenn Randers-Pehrson

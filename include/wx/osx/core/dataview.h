@@ -7,6 +7,7 @@
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/osx/core/dataview.h
 // Purpose:     wxDataViewCtrl native implementation header for OSX

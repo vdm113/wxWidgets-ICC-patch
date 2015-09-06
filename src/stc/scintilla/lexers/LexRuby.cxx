@@ -1011,9 +1011,9 @@ static void ColouriseRbDoc(unsigned int startPos, int length, int initStyle,
                     state = SCE_RB_DEFAULT;
                     preferRE = false;
                 } else if (isSafeWordcharOrHigh(chNext)) {
-					state = SCE_RB_SYMBOL;
+                    state = SCE_RB_SYMBOL;
                 } else if ((chNext == '@' || chNext == '$') &&
-                            isSafeWordcharOrHigh(chNext2)) {
+                           isSafeWordcharOrHigh(chNext2)) {
                     // instance and global variable followed by an identifier
                     advance_char(i, ch, chNext, chNext2);
                     state = SCE_RB_SYMBOL;
@@ -1416,11 +1416,11 @@ static void ColouriseRbDoc(unsigned int startPos, int length, int initStyle,
                    || state == SCE_RB_INSTANCE_VAR
                    || state == SCE_RB_SYMBOL) {
             if (state == SCE_RB_SYMBOL &&
-                 // FIDs suffices '?' and '!'
-                (((ch == '!' || ch == '?') && chNext != '=') ||
-                 // identifier suffix '='
-                 (ch == '=' && (chNext != '~' && chNext != '>' &&
-                               (chNext != '=' || chNext2 == '>'))))) {
+                    // FIDs suffices '?' and '!'
+                    (((ch == '!' || ch == '?') && chNext != '=') ||
+                     // identifier suffix '='
+                     (ch == '=' && (chNext != '~' && chNext != '>' &&
+                                    (chNext != '=' || chNext2 == '>'))))) {
                 styler.ColourTo(i, state);
                 state = SCE_RB_DEFAULT;
                 preferRE = false;

@@ -7,6 +7,7 @@
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #endif
 
+
 /* pngstruct.h - header file for PNG reference library
  *
  * Copyright (c) 1998-2013 Glenn Randers-Pehrson

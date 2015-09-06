@@ -7,6 +7,7 @@
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #endif
 
+
 /* png.h - header file for PNG reference library
  *
  * libpng version 1.6.2 - April 25, 2013

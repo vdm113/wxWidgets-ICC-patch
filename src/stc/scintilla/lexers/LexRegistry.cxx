@@ -1,3 +1,12 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
+#   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
+#endif
+
 // Scintilla source code edit control
 /**
  * @file LexRegistry.cxx
@@ -67,6 +76,14 @@ class LexerRegistry : public ILexer {
 
 	static bool AtValueType(LexAccessor &styler, int start) {
 		int i = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
 		while (i < 10) {
 			i++;
 			char curr = styler.SafeGetCharAt(start+i, '\0');
@@ -81,6 +98,14 @@ class LexerRegistry : public ILexer {
 
 	static bool IsNextNonWhitespace(LexAccessor &styler, int start, char ch) {
 		int i = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
 		while (i < 100) {
 			i++;
 			char curr = styler.SafeGetCharAt(start+i, '\0');
@@ -100,6 +125,14 @@ class LexerRegistry : public ILexer {
 		bool atEOL = false;
 		int i = 0;
 		bool escaped = false;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
 		while (!atEOL) {
 			i++;
 			char curr = styler.SafeGetCharAt(start+i, '\0');
@@ -122,6 +155,14 @@ class LexerRegistry : public ILexer {
 	static bool AtKeyPathEnd(LexAccessor &styler, int start) {
 		bool atEOL = false;
 		int i = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
 		while (!atEOL) {
 			i++;
 			char curr = styler.SafeGetCharAt(start+i, '\0');
@@ -140,8 +181,24 @@ class LexerRegistry : public ILexer {
 		int portion = 0;
 		int offset = 1;
 		char digit = '\0';
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
 		while (portion < 5) {
 			int i = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
 			while (i < count) {
 				digit = styler.SafeGetCharAt(start+offset);
 				if (!(isxdigit(digit) || digit == '-')) {
@@ -218,6 +275,14 @@ void SCI_METHOD LexerRegistry::Lex(unsigned startPos,
 	StyleContext context(startPos, length, initStyle, styler);
 	bool highlight = true;
 	bool afterEqualSign = false;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
 	while (context.More()) {
 		if (context.atLineStart) {
 			int currPos = static_cast<int>(context.currentPos);
@@ -364,6 +429,14 @@ void SCI_METHOD LexerRegistry::Fold(unsigned startPos,
 	int visibleChars = 0;
 	unsigned endPos = startPos + length;
 	bool atKeyPath = false;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
 	for (unsigned i = startPos; i < endPos; i++) {
 		atKeyPath = IsKeyPathState(styler.StyleAt(i)) ? true : atKeyPath;
 		char curr = styler.SafeGetCharAt(i);

@@ -7,6 +7,7 @@
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #endif
 
+
 /*
  * tiff-rgb.c -- create a 24-bit Class R (rgb) TIFF file
  *

@@ -7,6 +7,7 @@
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #endif
 
+
 /*
  * Copyright (c) 1988-1997 Sam Leffler
  * Copyright (c) 1991-1997 Silicon Graphics, Inc.
@@ -235,8 +236,15 @@ TIFFFdOpen(int ifd, const char* name, const char* mode)
 	int m;
 	fd_as_handle_union_t fdh;
 	fSuppressMap=0;
-	fd_as_handle_union_t fdh;
 	fdh.fd = ifd;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
 	for (m=0; mode[m]!=0; m++)
 	{
 		if (mode[m]=='u')

@@ -7,6 +7,7 @@
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #endif
 
+
 /* pngread.c - read a PNG file
  *
  * Last changed in libpng 1.6.1 [March 28, 2013]
