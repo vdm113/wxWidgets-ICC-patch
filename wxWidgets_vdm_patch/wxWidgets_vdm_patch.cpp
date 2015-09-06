@@ -198,7 +198,8 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
                 scrollback.clear();
                 if(already_got_prologue) {
                     ++i;
-                    scrollback.push_back(contents[i]);
+                    if(contents[i].length()!=0)
+                        scrollback.push_back(contents[i]);
                 }
                 continue;
             }
