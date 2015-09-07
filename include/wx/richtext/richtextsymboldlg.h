@@ -112,7 +112,7 @@ public:
     static void SetShowToolTips(bool show) { sm_showToolTips = show; }
 
     /// Data transfer
-    virtual bool TransferDataToWindow();
+    virtual bool TransferDataToWindow() wxOVERRIDE;
 
 ////@begin wxSymbolPickerDialog event handler declarations
 
@@ -240,7 +240,7 @@ public:
     // ---------
 
     // set the current font
-    virtual bool SetFont(const wxFont& font);
+    virtual bool SetFont(const wxFont& font) wxOVERRIDE;
 
     // set Unicode/ASCII mode
     void SetUnicodeMode(bool unicodeMode);
@@ -285,7 +285,7 @@ public:
     // change the background colour of the selected cells
     void SetSelectionBackground(const wxColour& col);
 
-    virtual wxVisualAttributes GetDefaultAttributes() const
+    virtual wxVisualAttributes GetDefaultAttributes() const wxOVERRIDE
     {
         return GetClassDefaultAttributes(GetWindowVariant());
     }
@@ -306,7 +306,7 @@ protected:
     virtual void OnDrawItem(wxDC& dc, const wxRect& rect, size_t n) const;
 
     // gets the line height
-    virtual wxCoord OnGetRowHeight(size_t line) const;
+    virtual wxCoord OnGetRowHeight(size_t line) const wxOVERRIDE;
 
     // event handlers
     void OnPaint(wxPaintEvent& event);

@@ -50,7 +50,7 @@ public:
 
     // Override base class method to not do anything but always return success:
     // we don't need this as we do our validation on the fly here.
-    virtual bool Validate(wxWindow * WXUNUSED(parent)) { return true; }
+    virtual bool Validate(wxWindow * WXUNUSED(parent)) wxOVERRIDE { return true; }
 
 protected:
     wxNumValidatorBase(int style)
@@ -288,7 +288,7 @@ protected:
     }
 
     // Implement wxNumValidatorBase pure virtual method.
-    virtual bool IsCharOk(const wxString& val, int pos, wxChar ch) const;
+    virtual bool IsCharOk(const wxString& val, int pos, wxChar ch) const wxOVERRIDE;
 
 private:
     // Minimal and maximal values accepted (inclusive).
@@ -383,7 +383,7 @@ protected:
     }
 
     // Implement wxNumValidatorBase pure virtual method.
-    virtual bool IsCharOk(const wxString& val, int pos, wxChar ch) const;
+    virtual bool IsCharOk(const wxString& val, int pos, wxChar ch) const wxOVERRIDE;
 
 private:
     // Maximum number of decimals digits after the decimal separator.

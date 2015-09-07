@@ -287,32 +287,32 @@ public:
         The end point of range is specified as the last character position of
         the span of text, plus one.
     */
-    virtual wxString GetRange(long from, long to) const;
+    virtual wxString GetRange(long from, long to) const wxOVERRIDE;
 
     /**
         Returns the length of the specified line in characters.
     */
-    virtual int GetLineLength(long lineNo) const ;
+    virtual int GetLineLength(long lineNo) const wxOVERRIDE ;
 
     /**
         Returns the text for the given line.
     */
-    virtual wxString GetLineText(long lineNo) const ;
+    virtual wxString GetLineText(long lineNo) const wxOVERRIDE ;
 
     /**
         Returns the number of lines in the buffer.
     */
-    virtual int GetNumberOfLines() const ;
+    virtual int GetNumberOfLines() const wxOVERRIDE ;
 
     /**
         Returns @true if the buffer has been modified.
     */
-    virtual bool IsModified() const ;
+    virtual bool IsModified() const wxOVERRIDE ;
 
     /**
         Returns @true if the control is editable.
     */
-    virtual bool IsEditable() const ;
+    virtual bool IsEditable() const wxOVERRIDE ;
 
     /**
         Returns @true if the control is single-line.
@@ -332,7 +332,7 @@ public:
         of text, plus one.
         If the return values @a from and @a to are the same, there is no selection.
     */
-    virtual void GetSelection(long* from, long* to) const;
+    virtual void GetSelection(long* from, long* to) const wxOVERRIDE;
     const wxRichTextSelection& GetSelection() const { return m_selection; }
     wxRichTextSelection& GetSelection() { return m_selection; }
     //@}
@@ -340,7 +340,7 @@ public:
     /**
         Returns the text within the current selection range, if any.
     */
-    virtual wxString GetStringSelection() const;
+    virtual wxString GetStringSelection() const wxOVERRIDE;
 
     /**
         Gets the current filename associated with the control.
@@ -557,18 +557,18 @@ public:
     /**
         Clears the buffer content, leaving a single empty paragraph. Cannot be undone.
     */
-    virtual void Clear();
+    virtual void Clear() wxOVERRIDE;
 
     /**
         Replaces the content in the specified range with the string specified by
         @a value.
     */
-    virtual void Replace(long from, long to, const wxString& value);
+    virtual void Replace(long from, long to, const wxString& value) wxOVERRIDE;
 
     /**
         Removes the content in the specified range.
     */
-    virtual void Remove(long from, long to);
+    virtual void Remove(long from, long to) wxOVERRIDE;
 
 #ifdef DOXYGEN
     /**
@@ -592,7 +592,7 @@ public:
 
         This function looks for a suitable wxRichTextFileHandler object.
     */
-    virtual bool DoLoadFile(const wxString& file, int fileType);
+    virtual bool DoLoadFile(const wxString& file, int fileType) wxOVERRIDE;
 #endif // wxUSE_FFILE && wxUSE_STREAMS
 
 #ifdef DOXYGEN
@@ -618,7 +618,7 @@ public:
         This function looks for a suitable wxRichTextFileHandler object.
     */
     virtual bool DoSaveFile(const wxString& file = wxEmptyString,
-                            int fileType = wxRICHTEXT_TYPE_ANY);
+                            int fileType = wxRICHTEXT_TYPE_ANY) wxOVERRIDE;
 #endif // wxUSE_FFILE && wxUSE_STREAMS
 
     /**
@@ -639,29 +639,29 @@ public:
     /**
         Marks the buffer as modified.
     */
-    virtual void MarkDirty();
+    virtual void MarkDirty() wxOVERRIDE;
 
     /**
         Sets the buffer's modified status to @false, and clears the buffer's command
         history.
     */
-    virtual void DiscardEdits();
+    virtual void DiscardEdits() wxOVERRIDE;
 
     /**
         Sets the maximum number of characters that may be entered in a single line
         text control. For compatibility only; currently does nothing.
     */
-    virtual void SetMaxLength(unsigned long WXUNUSED(len)) { }
+    virtual void SetMaxLength(unsigned long WXUNUSED(len)) wxOVERRIDE { }
 
     /**
         Writes text at the current position.
     */
-    virtual void WriteText(const wxString& text);
+    virtual void WriteText(const wxString& text) wxOVERRIDE;
 
     /**
         Sets the insertion point to the end of the buffer and writes the text.
     */
-    virtual void AppendText(const wxString& text);
+    virtual void AppendText(const wxString& text) wxOVERRIDE;
 
     //@{
     /**
@@ -677,7 +677,7 @@ public:
         returning a 2-element list (ok, attr).
         @endWxPerlOnly
     */
-    virtual bool GetStyle(long position, wxTextAttr& style);
+    virtual bool GetStyle(long position, wxTextAttr& style) wxOVERRIDE;
     virtual bool GetStyle(long position, wxRichTextAttr& style);
     virtual bool GetStyle(long position, wxRichTextAttr& style, wxRichTextParagraphLayoutBox* container);
     //@}
@@ -691,7 +691,7 @@ public:
         So, for example, to set the style for a character at position 5, use the range
         (5,6).
     */
-    virtual bool SetStyle(long start, long end, const wxTextAttr& style);
+    virtual bool SetStyle(long start, long end, const wxTextAttr& style) wxOVERRIDE;
     virtual bool SetStyle(long start, long end, const wxRichTextAttr& style);
     virtual bool SetStyle(const wxRichTextRange& range, const wxTextAttr& style);
     virtual bool SetStyle(const wxRichTextRange& range, const wxRichTextAttr& style);
@@ -773,7 +773,7 @@ public:
         Sets the current default style, which can be used to change how subsequently
         inserted text is displayed.
     */
-    virtual bool SetDefaultStyle(const wxTextAttr& style);
+    virtual bool SetDefaultStyle(const wxTextAttr& style) wxOVERRIDE;
     virtual bool SetDefaultStyle(const wxRichTextAttr& style);
     //@}
 
@@ -888,17 +888,17 @@ public:
     /**
         Translates from column and line number to position.
     */
-    virtual long XYToPosition(long x, long y) const;
+    virtual long XYToPosition(long x, long y) const wxOVERRIDE;
 
     /**
         Converts a text position to zero-based column and line numbers.
     */
-    virtual bool PositionToXY(long pos, long *x, long *y) const;
+    virtual bool PositionToXY(long pos, long *x, long *y) const wxOVERRIDE;
 
     /**
         Scrolls the buffer so that the given position is in view.
     */
-    virtual void ShowPosition(long pos);
+    virtual void ShowPosition(long pos) wxOVERRIDE;
 
     //@{
     /**
@@ -906,10 +906,10 @@ public:
         @a pt is in device coords (not adjusted for the client area origin nor for
         scrolling).
     */
-    virtual wxTextCtrlHitTestResult HitTest(const wxPoint& pt, long *pos) const;
+    virtual wxTextCtrlHitTestResult HitTest(const wxPoint& pt, long *pos) const wxOVERRIDE;
     virtual wxTextCtrlHitTestResult HitTest(const wxPoint& pt,
                                             wxTextCoord *col,
-                                            wxTextCoord *row) const;
+                                            wxTextCoord *row) const wxOVERRIDE;
 
     /**
         Finds the container at the given point, which is in screen coordinates.
@@ -929,18 +929,18 @@ public:
     /**
         Copies the selected content (if any) to the clipboard.
     */
-    virtual void Copy();
+    virtual void Copy() wxOVERRIDE;
 
     /**
         Copies the selected content (if any) to the clipboard and deletes the selection.
         This is undoable.
     */
-    virtual void Cut();
+    virtual void Cut() wxOVERRIDE;
 
     /**
         Pastes content from the clipboard to the buffer.
     */
-    virtual void Paste();
+    virtual void Paste() wxOVERRIDE;
 
     /**
         Deletes the content in the selection, if any. This is undoable.
@@ -950,17 +950,17 @@ public:
     /**
         Returns @true if selected content can be copied to the clipboard.
     */
-    virtual bool CanCopy() const;
+    virtual bool CanCopy() const wxOVERRIDE;
 
     /**
         Returns @true if selected content can be copied to the clipboard and deleted.
     */
-    virtual bool CanCut() const;
+    virtual bool CanCut() const wxOVERRIDE;
 
     /**
         Returns @true if the clipboard content can be pasted to the buffer.
     */
-    virtual bool CanPaste() const;
+    virtual bool CanPaste() const wxOVERRIDE;
 
     /**
         Returns @true if selected content can be deleted.
@@ -970,43 +970,43 @@ public:
     /**
         Undoes the command at the top of the command history, if there is one.
     */
-    virtual void Undo();
+    virtual void Undo() wxOVERRIDE;
 
     /**
         Redoes the current command.
     */
-    virtual void Redo();
+    virtual void Redo() wxOVERRIDE;
 
     /**
         Returns @true if there is a command in the command history that can be undone.
     */
-    virtual bool CanUndo() const;
+    virtual bool CanUndo() const wxOVERRIDE;
 
     /**
         Returns @true if there is a command in the command history that can be redone.
     */
-    virtual bool CanRedo() const;
+    virtual bool CanRedo() const wxOVERRIDE;
 
     /**
         Sets the insertion point and causes the current editing style to be taken from
         the new position (unlike wxRichTextCtrl::SetCaretPosition).
     */
-    virtual void SetInsertionPoint(long pos);
+    virtual void SetInsertionPoint(long pos) wxOVERRIDE;
 
     /**
         Sets the insertion point to the end of the text control.
     */
-    virtual void SetInsertionPointEnd();
+    virtual void SetInsertionPointEnd() wxOVERRIDE;
 
     /**
         Returns the current insertion point.
     */
-    virtual long GetInsertionPoint() const;
+    virtual long GetInsertionPoint() const wxOVERRIDE;
 
     /**
         Returns the last position in the buffer.
     */
-    virtual wxTextPos GetLastPosition() const;
+    virtual wxTextPos GetLastPosition() const wxOVERRIDE;
 
     //@{
     /**
@@ -1017,14 +1017,14 @@ public:
         So, for example, to set the selection for a character at position 5, use the
         range (5,6).
     */
-    virtual void SetSelection(long from, long to);
+    virtual void SetSelection(long from, long to) wxOVERRIDE;
     void SetSelection(const wxRichTextSelection& sel) { m_selection = sel; }
     //@}
 
     /**
         Makes the control editable, or not.
     */
-    virtual void SetEditable(bool editable);
+    virtual void SetEditable(bool editable) wxOVERRIDE;
 
     /**
         Returns @true if there is a selection and the object containing the selection
@@ -1369,7 +1369,7 @@ public:
     /**
         Cancels any selection.
     */
-    virtual void SelectNone();
+    virtual void SelectNone() wxOVERRIDE;
 
     /**
         Selects the word at the given character position.
@@ -1796,7 +1796,7 @@ public:
     /**
         Sends the event to the control.
     */
-    void Command(wxCommandEvent& event);
+    void Command(wxCommandEvent& event) wxOVERRIDE;
 
     /**
         Loads the first dropped file.
@@ -1937,7 +1937,7 @@ public:
         Sets the font, and also the basic and default attributes
         (see wxRichTextCtrl::SetDefaultStyle).
     */
-    virtual bool SetFont(const wxFont& font);
+    virtual bool SetFont(const wxFont& font) wxOVERRIDE;
 
     /**
         A helper function setting up scrollbars, for example after a resize.
@@ -1972,7 +1972,7 @@ public:
     virtual void DoWriteText(const wxString& value, int flags = 0);
 
     // Should we inherit colours?
-    virtual bool ShouldInheritColours() const { return false; }
+    virtual bool ShouldInheritColours() const wxOVERRIDE { return false; }
 
     /**
         Internal function to position the visible caret according to the current caret
@@ -2010,7 +2010,7 @@ public:
         Overrides standard refresh in order to provoke delayed image loading.
     */
     virtual void Refresh( bool eraseBackground = true,
-                       const wxRect *rect = (const wxRect *) NULL );
+                       const wxRect *rect = (const wxRect *) NULL ) wxOVERRIDE;
 
     /**
         Sets the caret position.
@@ -2271,7 +2271,7 @@ public:
     WX_FORWARD_TO_SCROLL_HELPER()
 
     // implement wxTextEntry methods
-    virtual wxString DoGetValue() const;
+    virtual wxString DoGetValue() const wxOVERRIDE;
 
     /**
         Do delayed image loading and garbage-collect other images
@@ -2291,11 +2291,11 @@ public:
 
 protected:
     // implement the wxTextEntry pure virtual method
-    virtual wxWindow *GetEditableWindow() { return this; }
+    virtual wxWindow *GetEditableWindow() wxOVERRIDE { return this; }
 
     // margins functions
-    virtual bool DoSetMargins(const wxPoint& pt);
-    virtual wxPoint DoGetMargins() const;
+    virtual bool DoSetMargins(const wxPoint& pt) wxOVERRIDE;
+    virtual wxPoint DoGetMargins() const wxOVERRIDE;
 
      // FIXME: this does not work, it allows this code to compile but will fail
      //        during run-time
@@ -2318,11 +2318,11 @@ protected:
     /**
         Currently this simply returns @c wxSize(10, 10).
     */
-    virtual wxSize DoGetBestSize() const ;
+    virtual wxSize DoGetBestSize() const wxOVERRIDE ;
 
-    virtual void DoSetValue(const wxString& value, int flags = 0);
+    virtual void DoSetValue(const wxString& value, int flags = 0) wxOVERRIDE;
 
-    virtual void DoThaw();
+    virtual void DoThaw() wxOVERRIDE;
 
 
 // Data members
@@ -2432,7 +2432,7 @@ public:
         : wxDropSource(data, tc), m_rtc(tc) {}
 
 protected:
-    bool GiveFeedback(wxDragResult effect);
+    bool GiveFeedback(wxDragResult effect) wxOVERRIDE;
 
     wxRichTextCtrl* m_rtc;
 };
@@ -2443,7 +2443,7 @@ public:
   wxRichTextDropTarget(wxRichTextCtrl* tc)
     : wxDropTarget(new wxRichTextBufferDataObject(new wxRichTextBuffer)), m_rtc(tc) {}
 
-    virtual wxDragResult OnData(wxCoord x, wxCoord y, wxDragResult def)
+    virtual wxDragResult OnData(wxCoord x, wxCoord y, wxDragResult def) wxOVERRIDE
     {
         if ( !GetData() )
             return wxDragNone;
@@ -2649,7 +2649,7 @@ public:
     */
     void SetOldContainer(wxRichTextParagraphLayoutBox* container) { m_oldContainer = container; }
 
-    virtual wxEvent *Clone() const { return new wxRichTextEvent(*this); }
+    virtual wxEvent *Clone() const wxOVERRIDE { return new wxRichTextEvent(*this); }
 
 protected:
     int                             m_flags;

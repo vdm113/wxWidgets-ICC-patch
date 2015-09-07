@@ -69,7 +69,7 @@ I STRONGLY recommend reading and understanding these macros!!
     {                                                                     \
         wxDECLARE_DYNAMIC_CLASS(wxHTML_Module##name );                    \
         public:                                                           \
-            void FillHandlersTable(wxHtmlWinParser *parser)               \
+            void FillHandlersTable(wxHtmlWinParser *parser) wxOVERRIDE    \
                 {
 
 

@@ -172,7 +172,7 @@ public: \
         const wxAnyValueType& otherRef = *otherType; \
         return wxTypeId(inst) == wxTypeId(otherRef); \
     } \
-    virtual bool IsSameType(const wxAnyValueType* otherType) const \
+    virtual bool IsSameType(const wxAnyValueType* otherType) const wxOVERRIDE \
     { \
         return IsSameClass(otherType); \
     } \
@@ -344,7 +344,7 @@ public:
 
     virtual bool ConvertValue(const wxAnyValueBuffer& src,
                               wxAnyValueType* dstType,
-                              wxAnyValueBuffer& dst) const
+                              wxAnyValueBuffer& dst) const wxOVERRIDE
     {
         wxUnusedVar(src);
         wxUnusedVar(dstType);
@@ -473,7 +473,7 @@ public: \
     virtual ~wxAnyValueTypeImpl##TYPENAME() { } \
     virtual bool ConvertValue(const wxAnyValueBuffer& src, \
                               wxAnyValueType* dstType, \
-                              wxAnyValueBuffer& dst) const \
+                              wxAnyValueBuffer& dst) const wxOVERRIDE \
     { \
         GV value = GetValue(src); \
         return CONVFUNC(value, dstType, dst); \
@@ -569,7 +569,7 @@ public: \
  \
     virtual bool ConvertValue(const wxAnyValueBuffer& src, \
                               wxAnyValueType* dstType, \
-                              wxAnyValueBuffer& dst) const \
+                              wxAnyValueBuffer& dst) const wxOVERRIDE \
     { \
         wxUnusedVar(src); \
         wxUnusedVar(dstType); \

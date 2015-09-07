@@ -201,8 +201,8 @@ public:
     void SetObject(wxRichTextObject* obj) { m_object = obj; }
 
     /// Transfers the data and from to the window
-    virtual bool TransferDataToWindow();
-    virtual bool TransferDataFromWindow();
+    virtual bool TransferDataToWindow() wxOVERRIDE;
+    virtual bool TransferDataFromWindow() wxOVERRIDE;
 
     /// Apply the styles when a different tab is selected, so the previews are
     /// up to date
@@ -321,7 +321,7 @@ public:
 
     wxColour& GetColour() { return m_colour; }
 
-    virtual wxSize DoGetBestSize() const { return GetSize(); }
+    virtual wxSize DoGetBestSize() const wxOVERRIDE { return GetSize(); }
 
 protected:
     wxColour    m_colour;
@@ -375,7 +375,7 @@ public:
 
 protected:
     /// Returns the HTML for this item
-    virtual wxString OnGetItem(size_t n) const;
+    virtual wxString OnGetItem(size_t n) const wxOVERRIDE;
 
 private:
 
