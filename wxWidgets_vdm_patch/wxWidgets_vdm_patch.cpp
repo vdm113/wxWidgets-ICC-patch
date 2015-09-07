@@ -69,11 +69,11 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
     static const char* line_end="#endif";
 #endif
 
-    static const vector<const char*> line2={ "#   pragma ivdep", "#   pragma swp", "#   pragma unroll", "#   if 0", "#       pragma simd noassert", "#   endif", line_end };
+    static const vector<const char*> line2={ "#   pragma ivdep", "#   pragma swp", "#   pragma unroll", "#   pragma prefetch", "#   if 0", "#       pragma simd noassert", "#   endif", line_end };
     static const vector<const char*> line2_simd={ "#   pragma ivdep", "#   pragma swp", "#   pragma unroll", "#   if 1", "#       pragma simd noassert", "#   endif", line_end };
 
     static const char* line_prologue_token="/* token_VDM_prologue */";
-    static const char* line_prologue="#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)\n#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)\n#   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */\n#elif !defined(VDM_MACRO_PRAGMA_IVDEP)\n#   define VDM_MACRO_PRAGMA_IVDEP /* NOP */\n#   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */\n#endif";
+    static const char* line_prologue="#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)\n#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)\n#   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */\n#elif !defined(VDM_MACRO_PRAGMA_IVDEP)\n#   define VDM_MACRO_PRAGMA_IVDEP /* NOP */\n#   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */\n#endif";
 
     static const char* inline_pragma="VDM_MACRO_PRAGMA_IVDEP \\";
     static const char* inline_no_pragma="VDM_MACRO_PRAGMA_NO_IVDEP \\";
