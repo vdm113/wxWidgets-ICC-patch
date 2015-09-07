@@ -193,7 +193,7 @@ bool MyApp::OnInit()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < frequentItems.size(); ++i )
@@ -209,7 +209,7 @@ bool MyApp::OnInit()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < recentItems.size(); ++i )

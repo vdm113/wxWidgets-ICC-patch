@@ -84,7 +84,7 @@ bool wxControlContainerBase::HasAnyFocusableChildren() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::const_iterator i = children.begin(),
@@ -114,7 +114,7 @@ bool wxControlContainerBase::HasAnyChildrenAcceptingFocus() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::const_iterator i = children.begin(),
@@ -154,7 +154,7 @@ bool wxControlContainerBase::DoSetFocus()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( win )
@@ -223,7 +223,7 @@ void wxControlContainer::SetLastFocus(wxWindow *win)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( winParent != m_winParent )
@@ -280,7 +280,7 @@ wxRadioButton* wxGetPreviousButtonInGroup(wxRadioButton *btn)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (nodeBefore)
@@ -318,7 +318,7 @@ wxRadioButton* wxGetNextButtonInGroup(wxRadioButton *btn)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (nodeNext)
@@ -346,7 +346,7 @@ wxRadioButton* wxGetFirstButtonInGroup(wxRadioButton *btn)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (true)
@@ -366,7 +366,7 @@ wxRadioButton* wxGetLastButtonInGroup(wxRadioButton *btn)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (true)
@@ -396,7 +396,7 @@ wxRadioButton* wxGetSelectedButtonInGroup(wxRadioButton *btn)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (selBtn = wxGetPreviousButtonInGroup(btn); selBtn; selBtn = wxGetPreviousButtonInGroup(selBtn))
@@ -409,7 +409,7 @@ wxRadioButton* wxGetSelectedButtonInGroup(wxRadioButton *btn)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (selBtn = wxGetNextButtonInGroup(btn); selBtn; selBtn = wxGetNextButtonInGroup(selBtn))
@@ -457,7 +457,7 @@ void wxControlContainer::HandleOnNavigationKey( wxNavigationKeyEvent& event )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxWindowList::const_iterator i = children.begin(),
@@ -577,7 +577,7 @@ void wxControlContainer::HandleOnNavigationKey( wxNavigationKeyEvent& event )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )
@@ -609,7 +609,7 @@ void wxControlContainer::HandleOnNavigationKey( wxNavigationKeyEvent& event )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while ( parent )
@@ -801,7 +801,7 @@ bool wxSetFocusToChild(wxWindow *win, wxWindow **childLastFocused)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( *childLastFocused )
@@ -845,7 +845,7 @@ bool wxSetFocusToChild(wxWindow *win, wxWindow **childLastFocused)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( node )

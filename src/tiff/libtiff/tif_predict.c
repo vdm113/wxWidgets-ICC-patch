@@ -269,7 +269,7 @@ horAcc8(TIFF* tif, uint8* cp0, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (cc>0) {
@@ -291,7 +291,7 @@ horAcc8(TIFF* tif, uint8* cp0, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (cc>0) {
@@ -309,7 +309,7 @@ horAcc8(TIFF* tif, uint8* cp0, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			do {
@@ -338,7 +338,7 @@ swabHorAcc16(TIFF* tif, uint8* cp0, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		do {
@@ -364,7 +364,7 @@ horAcc16(TIFF* tif, uint8* cp0, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		do {
@@ -391,7 +391,7 @@ swabHorAcc32(TIFF* tif, uint8* cp0, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		do {
@@ -417,7 +417,7 @@ horAcc32(TIFF* tif, uint8* cp0, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		do {
@@ -450,7 +450,7 @@ fpAcc(TIFF* tif, uint8* cp0, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (count > stride) {
@@ -465,7 +465,7 @@ fpAcc(TIFF* tif, uint8* cp0, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (count = 0; count < wc; count++) {
@@ -475,7 +475,7 @@ fpAcc(TIFF* tif, uint8* cp0, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (byte = 0; byte < bps; byte++) {
@@ -534,7 +534,7 @@ PredictorDecodeTile(TIFF* tif, uint8* op0, tmsize_t occ0, uint16 s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (occ0 > 0) {
@@ -571,7 +571,7 @@ horDiff8(TIFF* tif, uint8* cp0, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			do {
@@ -591,7 +591,7 @@ horDiff8(TIFF* tif, uint8* cp0, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			do {
@@ -608,7 +608,7 @@ horDiff8(TIFF* tif, uint8* cp0, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			do {
@@ -636,7 +636,7 @@ horDiff16(TIFF* tif, uint8* cp0, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		do {
@@ -664,7 +664,7 @@ horDiff32(TIFF* tif, uint8* cp0, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		do {
@@ -698,7 +698,7 @@ fpDiff(TIFF* tif, uint8* cp0, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (count = 0; count < wc; count++) {
@@ -708,7 +708,7 @@ fpDiff(TIFF* tif, uint8* cp0, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (byte = 0; byte < bps; byte++) {
@@ -729,7 +729,7 @@ fpDiff(TIFF* tif, uint8* cp0, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (count = cc; count > stride; count -= stride)
@@ -787,7 +787,7 @@ PredictorEncodeTile(TIFF* tif, uint8* bp0, tmsize_t cc0, uint16 s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (cc > 0) {

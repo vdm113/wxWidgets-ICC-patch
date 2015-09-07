@@ -89,7 +89,7 @@ static bool isPerlKeyword(unsigned int start, unsigned int end, WordList &keywor
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < len; i++, start++) s[i] = styler[start];
@@ -136,7 +136,7 @@ static int disambiguateBareword(LexAccessor &styler, unsigned int bk, unsigned i
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (ch = static_cast<unsigned char>(styler.SafeGetCharAt(fw)),
@@ -161,7 +161,7 @@ static void skipWhitespaceComment(LexAccessor &styler, unsigned int &p) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((p > 0) && (style = styler.StyleAt(p),
@@ -180,7 +180,7 @@ static int styleBeforeBracePair(LexAccessor &styler, unsigned int bk) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (--bk > 0) {
@@ -215,7 +215,7 @@ static int styleCheckIdentifier(LexAccessor &styler, unsigned int bk) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (bk > 0 && styler.StyleAt(bk) == SCE_PL_IDENTIFIER) {
@@ -226,7 +226,7 @@ static int styleCheckIdentifier(LexAccessor &styler, unsigned int bk) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (bk > 0) {
@@ -253,7 +253,7 @@ static int podLineScan(LexAccessor &styler, unsigned int &pos, unsigned int endP
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (pos < endPos) {
@@ -290,7 +290,7 @@ static bool styleCheckSubPrototype(LexAccessor &styler, unsigned int bk) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (bk > 0 && (styler.StyleAt(bk) == SCE_PL_IDENTIFIER)) {
@@ -328,7 +328,7 @@ static bool IsCommentLine(int line, LexAccessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i = pos; i < eol_pos; i++) {
@@ -501,7 +501,7 @@ int LexerPerl::InputSymbolScan(StyleContext &sc) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((c = sc.GetRelativeCharacter(++sLen)) != 0) {
@@ -525,7 +525,7 @@ void LexerPerl::InterpolateSegment(StyleContext &sc, int maxSeg, bool isPattern)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (maxSeg > 0) {
@@ -543,7 +543,7 @@ void LexerPerl::InterpolateSegment(StyleContext &sc, int maxSeg, bool isPattern)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while ((maxSeg > sLen) && (sc.GetRelativeCharacter(sLen) == '$'))	// >0 $ dereference within
@@ -562,7 +562,7 @@ void LexerPerl::InterpolateSegment(StyleContext &sc, int maxSeg, bool isPattern)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					while (maxSeg > sLen) {
@@ -594,7 +594,7 @@ void LexerPerl::InterpolateSegment(StyleContext &sc, int maxSeg, bool isPattern)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					while ((maxSeg > sLen) && IsADigit(sc.GetRelativeCharacter(sLen)))
@@ -741,7 +741,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while ((startPos > 1) && (styler.StyleAt(startPos) != delim)) {
@@ -773,7 +773,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (startPos > 1) {
@@ -797,7 +797,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while ((startPos > 1) && (styler.StyleAt(startPos - 1) == initStyle)) {
@@ -817,7 +817,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (ln > 0 && styler.GetLineState(ln) == SCE_PL_DEFAULT)
@@ -853,7 +853,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
@@ -989,7 +989,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					while ((i < endPos) && IsASpaceOrTab(delim_ch)) {
@@ -1036,7 +1036,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 							while (i < sc.width) {
@@ -1081,7 +1081,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (!sc.atLineEnd)
@@ -1093,7 +1093,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (!sc.atLineEnd) {		// "EOF" and `EOF` interpolated
@@ -1103,7 +1103,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while ((c = sc.GetRelativeCharacter(sLen)) != 0) {
@@ -1149,7 +1149,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 						while (fw2 < (endPos - 1) && pod == SCE_PL_DEFAULT) {
@@ -1191,7 +1191,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while ((c = sc.GetRelativeCharacter(sLen)) != 0) {
@@ -1235,7 +1235,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while ((c = sc.GetRelativeCharacter(sLen)) != 0) {
@@ -1299,7 +1299,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while ((c = sc.GetRelativeCharacter(sLen)) != 0) {
@@ -1348,7 +1348,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (setSubPrototype.Contains(sc.GetRelative(i)))
@@ -1375,7 +1375,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (!sc.atLineEnd)
@@ -1397,7 +1397,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (IsASpaceOrTab(sc.ch) && !sc.atLineEnd)
@@ -1411,7 +1411,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					do {
@@ -1423,7 +1423,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (IsASpaceOrTab(sc.ch) && !sc.atLineEnd)
@@ -1550,7 +1550,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					while (setWord.Contains(static_cast<unsigned char>(styler.SafeGetCharAt(fw))))
@@ -1697,7 +1697,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 							while (bk > 0 && styler.StyleAt(bk - 1) == SCE_PL_WORD) {
@@ -1807,7 +1807,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					while (setWord.Contains(sc.GetRelative(fw)))
@@ -1888,7 +1888,7 @@ void SCI_METHOD LexerPerl::Fold(unsigned int startPos, int length, int /* initSt
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {

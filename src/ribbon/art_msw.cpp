@@ -493,7 +493,7 @@ void wxRibbonMSWArtProvider::CloneTo(wxRibbonMSWArtProvider* copy) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(i = 0; i < 4; ++i)
@@ -507,7 +507,7 @@ void wxRibbonMSWArtProvider::CloneTo(wxRibbonMSWArtProvider* copy) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(i = 0; i < 2; ++i)
@@ -1448,7 +1448,7 @@ void wxRibbonMSWArtProvider::ReallyDrawTabSeparator(wxWindow* wnd, const wxRect&
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(int i = 0; i < rect.height - 1; ++i)
@@ -1841,7 +1841,7 @@ void wxRibbonMSWArtProvider::DrawPanelBackground(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for(size_t len = label.Len() - 1; len >= 3; --len)
@@ -2343,7 +2343,7 @@ void wxRibbonMSWArtProvider::DrawPartialPageBackground(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(; parent; parent = parent->GetParent())
@@ -2551,7 +2551,7 @@ void wxRibbonMSWArtProvider::DrawButtonBarButtonForeground(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 do
@@ -2867,7 +2867,7 @@ int wxRibbonMSWArtProvider::GetTabCtrlHeight(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for(size_t i = 0; i < numpages; ++i)
@@ -3145,7 +3145,7 @@ bool wxRibbonMSWArtProvider::GetButtonBarButtonSize(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for(i = 0; i < label.Len(); ++i)

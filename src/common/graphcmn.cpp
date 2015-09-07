@@ -500,7 +500,7 @@ void wxGraphicsGradientStops::Add(const wxGraphicsGradientStop& stop)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxVector<wxGraphicsGradientStop>::iterator it = m_stops.begin();
@@ -756,7 +756,7 @@ void wxGraphicsContext::StrokeLines( size_t n, const wxPoint2DDouble *points)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 1; i < n; ++i)
@@ -774,7 +774,7 @@ void wxGraphicsContext::DrawLines( size_t n, const wxPoint2DDouble *points, wxPo
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 1; i < n; ++i)
@@ -791,7 +791,7 @@ void wxGraphicsContext::StrokeLines( size_t n, const wxPoint2DDouble *beginPoint
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < n; ++i)

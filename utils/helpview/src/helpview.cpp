@@ -103,7 +103,7 @@ bool hvApp::OnInit()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( i=1; i<argc; i++ )
@@ -234,7 +234,7 @@ bool hvApp::OnInit()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( i=0; i<bookCount; i++ )
@@ -262,7 +262,7 @@ int hvApp::OnExit()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)

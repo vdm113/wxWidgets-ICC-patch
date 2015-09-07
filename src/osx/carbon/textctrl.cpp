@@ -1262,7 +1262,7 @@ long wxMacMLTEControl::XYToPosition(long x, long y) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0 ; n <= (ItemCount) lastpos ; ++n )
@@ -1313,7 +1313,7 @@ bool wxMacMLTEControl::PositionToXY( long pos, long *x, long *y ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( n = 0 ; n <= (ItemCount) pos ; ++n )
@@ -1402,7 +1402,7 @@ wxString wxMacMLTEControl::GetLineText(long lineNo) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (ypos < lineNo)
@@ -1422,7 +1422,7 @@ wxString wxMacMLTEControl::GetLineText(long lineNo) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (thePoint.v == currentPoint.v && theOffset < content.length())
@@ -1457,7 +1457,7 @@ int wxMacMLTEControl::GetLineLength(long lineNo) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (ypos < lineNo)
@@ -1477,7 +1477,7 @@ int wxMacMLTEControl::GetLineLength(long lineNo) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (thePoint.v == currentPoint.v && theOffset < content.length())

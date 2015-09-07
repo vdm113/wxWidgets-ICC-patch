@@ -220,7 +220,7 @@ png_crc_finish(png_structrp png_ptr, png_uint_32 skip)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    while (skip > 0)
@@ -475,7 +475,7 @@ png_inflate(png_structrp png_ptr, png_uint_32 owner, int finish,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       do
@@ -759,7 +759,7 @@ png_inflate_read(png_structrp png_ptr, png_bytep read_buffer, uInt read_size,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       do
@@ -799,7 +799,7 @@ png_inflate_read(png_structrp png_ptr, png_bytep read_buffer, uInt read_size,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       while (ret == Z_OK && (*out_size > 0 || png_ptr->zstream.avail_out > 0));
@@ -967,7 +967,7 @@ png_handle_PLTE(png_structrp png_ptr, png_inforp info_ptr, png_uint_32 length)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (i = 0, pal_ptr = palette; i < num; i++, pal_ptr++)
@@ -985,7 +985,7 @@ png_handle_PLTE(png_structrp png_ptr, png_inforp info_ptr, png_uint_32 length)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (i = 0; i < num; i++)
@@ -1404,7 +1404,7 @@ png_handle_iCCP(png_structrp png_ptr, png_inforp info_ptr, png_uint_32 length)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       while (keyword_length < 80 && keyword_length < read_length &&
@@ -1698,7 +1698,7 @@ png_handle_sPLT(png_structrp png_ptr, png_inforp info_ptr, png_uint_32 length)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (entry_start = buffer; *entry_start; entry_start++)
@@ -1753,7 +1753,7 @@ png_handle_sPLT(png_structrp png_ptr, png_inforp info_ptr, png_uint_32 length)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (i = 0; i < new_palette.nentries; i++)
@@ -1786,7 +1786,7 @@ png_handle_sPLT(png_structrp png_ptr, png_inforp info_ptr, png_uint_32 length)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (i = 0; i < new_palette.nentries; i++)
@@ -2064,7 +2064,7 @@ png_handle_hIST(png_structrp png_ptr, png_inforp info_ptr, png_uint_32 length)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (i = 0; i < num; i++)
@@ -2229,7 +2229,7 @@ png_handle_pCAL(png_structrp png_ptr, png_inforp info_ptr, png_uint_32 length)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (buf = buffer; *buf; buf++)
@@ -2276,7 +2276,7 @@ png_handle_pCAL(png_structrp png_ptr, png_inforp info_ptr, png_uint_32 length)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (buf = units; *buf; buf++)
@@ -2299,7 +2299,7 @@ png_handle_pCAL(png_structrp png_ptr, png_inforp info_ptr, png_uint_32 length)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (i = 0; i < nparams; i++)
@@ -2313,7 +2313,7 @@ png_handle_pCAL(png_structrp png_ptr, png_inforp info_ptr, png_uint_32 length)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (params[i] = (png_charp)buf; buf <= endptr && *buf != 0; buf++)
@@ -2541,7 +2541,7 @@ png_handle_tEXt(png_structrp png_ptr, png_inforp info_ptr, png_uint_32 length)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (text = key; *text; text++)
@@ -2618,7 +2618,7 @@ png_handle_zTXt(png_structrp png_ptr, png_inforp info_ptr, png_uint_32 length)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (keyword_length = 0;
@@ -2735,7 +2735,7 @@ png_handle_iTXt(png_structrp png_ptr, png_inforp info_ptr, png_uint_32 length)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (prefix_length=0;
@@ -2771,7 +2771,7 @@ png_handle_iTXt(png_structrp png_ptr, png_inforp info_ptr, png_uint_32 length)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (; prefix_length < length && buffer[prefix_length] != 0;
@@ -2786,7 +2786,7 @@ png_handle_iTXt(png_structrp png_ptr, png_inforp info_ptr, png_uint_32 length)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (; prefix_length < length && buffer[prefix_length] != 0;
@@ -3140,7 +3140,7 @@ png_check_chunk_name(png_structrp png_ptr, png_uint_32 chunk_name)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (i=1; i<=4; ++i)
@@ -3377,7 +3377,7 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          for (;;)
@@ -3472,7 +3472,7 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (;;)
@@ -3496,7 +3496,7 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                do
@@ -3515,7 +3515,7 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                while (row_width > 1);
@@ -3533,7 +3533,7 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for(;;)
@@ -3580,7 +3580,7 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                      do
@@ -3591,7 +3591,7 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         do
@@ -3604,7 +3604,7 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         while (c > 0);
@@ -3621,7 +3621,7 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                      while (bytes_to_copy <= row_width);
@@ -3637,7 +3637,7 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                      do
@@ -3647,7 +3647,7 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                      while (--row_width > 0);
@@ -3670,7 +3670,7 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                      do
@@ -3681,7 +3681,7 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         do
@@ -3694,7 +3694,7 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         while (c > 0);
@@ -3711,7 +3711,7 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                      while (bytes_to_copy <= row_width);
@@ -3724,7 +3724,7 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                      do
@@ -3734,7 +3734,7 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                      while (--row_width > 0);
@@ -3749,7 +3749,7 @@ png_combine_row(png_const_structrp png_ptr, png_bytep dp, int display)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (;;)
@@ -3840,7 +3840,7 @@ png_do_read_interlace(png_row_infop row_info, png_bytep row, int pass,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_info->width; i++)
@@ -3851,7 +3851,7 @@ png_do_read_interlace(png_row_infop row_info, png_bytep row, int pass,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (j = 0; j < jstop; j++)
@@ -3916,7 +3916,7 @@ png_do_read_interlace(png_row_infop row_info, png_bytep row, int pass,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_info->width; i++)
@@ -3930,7 +3930,7 @@ png_do_read_interlace(png_row_infop row_info, png_bytep row, int pass,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (j = 0; j < jstop; j++)
@@ -3995,7 +3995,7 @@ png_do_read_interlace(png_row_infop row_info, png_bytep row, int pass,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_info->width; i++)
@@ -4008,7 +4008,7 @@ png_do_read_interlace(png_row_infop row_info, png_bytep row, int pass,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (j = 0; j < jstop; j++)
@@ -4056,7 +4056,7 @@ png_do_read_interlace(png_row_infop row_info, png_bytep row, int pass,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_info->width; i++)
@@ -4071,7 +4071,7 @@ png_do_read_interlace(png_row_infop row_info, png_bytep row, int pass,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (j = 0; j < jstop; j++)
@@ -4111,7 +4111,7 @@ png_read_filter_row_sub(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (i = bpp; i < istop; i++)
@@ -4135,7 +4135,7 @@ png_read_filter_row_up(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (i = 0; i < istop; i++)
@@ -4160,7 +4160,7 @@ png_read_filter_row_avg(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (i = 0; i < bpp; i++)
@@ -4176,7 +4176,7 @@ png_read_filter_row_avg(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (i = 0; i < istop; i++)
@@ -4206,7 +4206,7 @@ png_read_filter_row_paeth_1byte_pixel(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    while (row < rp_end)
@@ -4259,7 +4259,7 @@ png_read_filter_row_paeth_multibyte_pixel(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    while (row < rp_end)
@@ -4276,7 +4276,7 @@ png_read_filter_row_paeth_multibyte_pixel(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    while (row < rp_end)
@@ -4376,7 +4376,7 @@ png_read_IDAT_data(png_structrp png_ptr, png_bytep output,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    do
@@ -4394,7 +4394,7 @@ png_read_IDAT_data(png_structrp png_ptr, png_bytep output,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          while (png_ptr->idat_size == 0)
@@ -4592,7 +4592,7 @@ png_read_finish_row(png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       do

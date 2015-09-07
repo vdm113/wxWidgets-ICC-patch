@@ -260,7 +260,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((c = getopt(argc, argv, "b:d:h:H:W:L:i:w:l:o:O:P:C:r:t:acemxyzps1238DT")) != -1)
@@ -480,7 +480,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; argc - optind > 0; optind++) {
@@ -1220,7 +1220,7 @@ int psMaskImage(FILE *fd, TIFF *tif, int rotation, int center,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < yimages; i++)
@@ -1230,7 +1230,7 @@ int psMaskImage(FILE *fd, TIFF *tif, int rotation, int center,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (j = 0; j < ximages; j++)
@@ -1524,7 +1524,7 @@ int TIFF2PS(FILE* fd, TIFF* tif, double pgwidth, double pgheight, double lm, dou
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   do {
@@ -1733,7 +1733,7 @@ checkcmap(TIFF* tif, int n, uint16* r, uint16* g, uint16* b)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (n-- > 0)
@@ -1796,7 +1796,7 @@ PS_Lvl2colorspace(FILE* fd, TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < num_colors; i++) {
@@ -1818,7 +1818,7 @@ PS_Lvl2colorspace(FILE* fd, TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < num_colors; i++) {
@@ -2128,7 +2128,7 @@ PS_Lvl2ImageDict(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (i = 1; i < samplesperpixel; i++)
@@ -2194,7 +2194,7 @@ PS_FlipBytes(unsigned char* buf, tsize_t count)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < count; i += 2) {
@@ -2285,7 +2285,7 @@ PS_Lvl2page(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (chunk_no = 0; chunk_no < num_chunks; chunk_no++) {
@@ -2340,7 +2340,7 @@ PS_Lvl2page(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (i = 0; i < byte_count; i+=samplesperpixel) {
@@ -2375,7 +2375,7 @@ PS_Lvl2page(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (cp = buf_data; byte_count > 0; byte_count--)
@@ -2389,7 +2389,7 @@ PS_Lvl2page(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (cp = buf_data; byte_count > 0; byte_count--) {
@@ -2515,7 +2515,7 @@ PSColorSeparatePreamble(FILE* fd, uint32 w, uint32 h, int nc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < nc; i++)
@@ -2530,7 +2530,7 @@ PSColorSeparatePreamble(FILE* fd, uint32 w, uint32 h, int nc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < nc; i++)
@@ -2565,7 +2565,7 @@ PSDataColorContig(FILE* fd, TIFF* tif, uint32 w, uint32 h, int nc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (row = 0; row < h; row++) {
@@ -2587,7 +2587,7 @@ PSDataColorContig(FILE* fd, TIFF* tif, uint32 w, uint32 h, int nc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (; cc < tf_bytesperrow; cc += samplesperpixel) {
@@ -2614,7 +2614,7 @@ PSDataColorContig(FILE* fd, TIFF* tif, uint32 w, uint32 h, int nc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (; cc < tf_bytesperrow; cc += samplesperpixel) {
@@ -2654,7 +2654,7 @@ PSDataColorSeparate(FILE* fd, TIFF* tif, uint32 w, uint32 h, int nc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (row = 0; row < h; row++) {
@@ -2663,7 +2663,7 @@ PSDataColorSeparate(FILE* fd, TIFF* tif, uint32 w, uint32 h, int nc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (s = 0; s < maxs; s++) {
@@ -2674,7 +2674,7 @@ PSDataColorSeparate(FILE* fd, TIFF* tif, uint32 w, uint32 h, int nc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (cp = tf_buf, cc = 0; cc < tf_bytesperrow; cc++) {
@@ -2726,7 +2726,7 @@ PSDataPalette(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (i = (1<<bitspersample)-1; i >= 0; i--) {
@@ -2741,7 +2741,7 @@ PSDataPalette(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (row = 0; row < h; row++) {
@@ -2752,7 +2752,7 @@ PSDataPalette(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (cp = tf_buf, cc = 0; cc < tf_bytesperrow; cc++) {
@@ -2841,7 +2841,7 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (s = 0; s < TIFFNumberOfStrips(tif); s++) {
@@ -2857,7 +2857,7 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (cp += cc; --cp >= tf_buf;)
@@ -2880,7 +2880,7 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (i = 0; i < cc; i+=2) {
@@ -2900,7 +2900,7 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (cc-- > 0)
@@ -2916,7 +2916,7 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (cc-- > 0) {
@@ -2937,7 +2937,7 @@ PSDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (cc-- > 0) {
@@ -2997,7 +2997,7 @@ PSRawDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for ( s = 0; ++s < (tstrip_t)tf_numberstrips; ) {
@@ -3038,7 +3038,7 @@ PSRawDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (s = 0; s < (tstrip_t) tf_numberstrips; s++) {
@@ -3055,7 +3055,7 @@ PSRawDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (cp = tf_buf; cc > 0; cc--) {
@@ -3078,7 +3078,7 @@ PSRawDataBW(FILE* fd, TIFF* tif, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (cp = tf_buf; cc > 0; cc--)
@@ -3144,7 +3144,7 @@ Ascii85Put(unsigned char code, FILE* fd)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (n = ascii85count, p = ascii85buf; n >= 4; n -= 4, p += 4) {
@@ -3154,7 +3154,7 @@ Ascii85Put(unsigned char code, FILE* fd)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (cp = Ascii85Encode(p); *cp; cp++) {
@@ -3243,7 +3243,7 @@ tsize_t Ascii85EncodeBlock( uint8 * ascii85_p, unsigned f_eod, const uint8 * raw
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( ; raw_l > 3; raw_l -= 4 )
@@ -3383,7 +3383,7 @@ usage(int code)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; stuff[i] != NULL; i++)

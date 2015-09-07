@@ -376,7 +376,7 @@ wxRegionIterator& wxRegionIterator::operator=(const wxRegionIterator& ri)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( long n = 0; n < m_numRects; n++ )
@@ -421,7 +421,7 @@ void wxRegionIterator::Reset(const wxRegion& region)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < header->nCount; i++)

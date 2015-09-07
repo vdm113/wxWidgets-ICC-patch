@@ -132,7 +132,7 @@ wxAcceleratorTable::wxAcceleratorTable(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < n; i++)
@@ -245,7 +245,7 @@ wxString wxPMTextToLabel( const wxString& rsTitle )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (zPc = rsTitle.c_str(); *zPc != wxT('\0'); zPc++)

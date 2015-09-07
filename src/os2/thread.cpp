@@ -276,7 +276,7 @@ wxSemaError wxSemaphoreInternal::WaitTimeout(unsigned long ulMilliseconds)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do {
@@ -774,7 +774,7 @@ wxThreadError wxThread::Delete(ExitCode *pRc, wxThreadWait WXUNUSED(waitMode))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do
@@ -857,7 +857,7 @@ wxThreadError wxThread::Delete(ExitCode *pRc, wxThreadWait WXUNUSED(waitMode))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do

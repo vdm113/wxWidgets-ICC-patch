@@ -254,7 +254,7 @@ bool wxComboBox::Create( wxWindow *parent, wxWindowID id, const wxString& value,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < n; i++)
@@ -314,7 +314,7 @@ wxComboBox::~wxComboBox()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -358,7 +358,7 @@ int wxComboBox::DoInsertItems(const wxArrayStringsAdapter& items,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( unsigned int i = 0; i < count; ++i, ++pos )
@@ -518,7 +518,7 @@ int wxComboBox::FindString( const wxString &item, bool bCase ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (child)
@@ -560,7 +560,7 @@ int wxComboBox::GetCurrentSelection() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (child)
@@ -629,7 +629,7 @@ unsigned int wxComboBox::GetCount() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (child) { count++; child = child->next; }
@@ -661,7 +661,7 @@ wxString wxComboBox::DoGetValue() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < wxStrlen(tmp.c_str()) +1; i++)
@@ -862,7 +862,7 @@ void wxComboBox::OnChar( wxKeyEvent &event )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (top_frame->GetParent() && !(top_frame->IsTopLevel()))
@@ -929,7 +929,7 @@ void wxComboBox::DoApplyWidgetStyle(GtkRcStyle *style)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (child)
@@ -969,7 +969,7 @@ wxSize wxComboBox::DoGetBestSize() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned int n = 0; n < count; n++ )

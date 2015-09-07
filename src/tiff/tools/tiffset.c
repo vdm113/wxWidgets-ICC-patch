@@ -63,7 +63,7 @@ usage(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; usageMsg[i]; i++)
@@ -107,7 +107,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( arg_index = 1; arg_index < argc-1; arg_index++ ) {
@@ -216,7 +216,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                                 for (i = 0; i < wc; i++)
@@ -228,7 +228,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                                 for (i = 0; i < wc; i++)
@@ -240,7 +240,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                                 for (i = 0; i < wc; i++)
@@ -252,7 +252,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                                 for (i = 0; i < wc; i++)
@@ -264,7 +264,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                                 for (i = 0; i < wc; i++)
@@ -277,7 +277,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                                 for (i = 0; i < wc; i++)
@@ -289,7 +289,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                                 for (i = 0; i < wc; i++)
@@ -303,7 +303,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                                 for (i = 0; i < wc; i++)

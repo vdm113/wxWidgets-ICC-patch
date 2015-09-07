@@ -195,7 +195,7 @@ LZMADecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do {
@@ -306,7 +306,7 @@ LZMAEncode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do {
@@ -344,7 +344,7 @@ LZMAPostEncode(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do {

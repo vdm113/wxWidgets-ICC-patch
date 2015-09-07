@@ -110,7 +110,7 @@ wxImageFloodFill(wxImage *image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i=0; i < qSz; i++)
@@ -131,7 +131,7 @@ wxImageFloodFill(wxImage *image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while(qr!=qs)
@@ -221,7 +221,7 @@ wxImageFloodFill(wxImage *image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i=0; i < qSz; i++)
@@ -242,7 +242,7 @@ wxImageFloodFill(wxImage *image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (qr!=qs)

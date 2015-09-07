@@ -73,7 +73,7 @@ int main(int argc, char **argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < (WIDTH / 8) / 2; i++)
@@ -84,7 +84,7 @@ int main(int argc, char **argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = (WIDTH / 8) / 2; i < (WIDTH / 8); i++)
@@ -95,7 +95,7 @@ int main(int argc, char **argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < HEIGHT / 2; i++)
@@ -106,7 +106,7 @@ int main(int argc, char **argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < (WIDTH / 8) / 2; i++)
@@ -117,7 +117,7 @@ int main(int argc, char **argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = (WIDTH / 8) / 2; i < (WIDTH / 8); i++)
@@ -128,7 +128,7 @@ int main(int argc, char **argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = HEIGHT / 2; i < HEIGHT; i++)

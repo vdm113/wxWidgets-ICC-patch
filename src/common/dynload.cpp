@@ -102,7 +102,7 @@ wxPluginLibrary::wxPluginLibrary(const wxString &libname, int flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( const wxClassInfo* info = m_ourFirst; ; info = info->GetNext() )
@@ -178,7 +178,7 @@ void wxPluginLibrary::UpdateClasses()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( const wxClassInfo *info = m_ourFirst; ; info = info->GetNext() )
@@ -209,7 +209,7 @@ void wxPluginLibrary::RestoreClasses()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( const wxClassInfo *info = m_ourFirst; ; info = info->GetNext() )
@@ -241,7 +241,7 @@ void wxPluginLibrary::RegisterModules()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( const wxClassInfo *info = m_ourFirst; ; info = info->GetNext() )
@@ -268,7 +268,7 @@ void wxPluginLibrary::RegisterModules()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxModuleList::iterator it = m_wxmodules.begin();
@@ -292,7 +292,7 @@ void wxPluginLibrary::RegisterModules()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             do {
@@ -318,7 +318,7 @@ void wxPluginLibrary::UnregisterModules()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( it = m_wxmodules.begin(); it != m_wxmodules.end(); ++it )
@@ -329,7 +329,7 @@ void wxPluginLibrary::UnregisterModules()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( it = m_wxmodules.begin(); it != m_wxmodules.end(); ++it )
@@ -461,7 +461,7 @@ void wxPluginManager::Unload()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxDLManifest::iterator i = ms_manifest->begin();

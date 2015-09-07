@@ -224,7 +224,7 @@ wxThread::ExitCode wxIOCPThread::Entry()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( ReadEvents() );
@@ -312,7 +312,7 @@ bool wxIOCPThread::ReadEvents()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -330,7 +330,7 @@ bool wxIOCPThread::ReadEvents()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (offset);
@@ -352,7 +352,7 @@ void wxIOCPThread::ProcessNativeEvents(wxVector<wxEventProcessingData>& events)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ; it != events.end(); ++it )
@@ -436,7 +436,7 @@ int wxIOCPThread::Native2WatcherFlags(int flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i < WXSIZEOF(flag_mapping); ++i) {

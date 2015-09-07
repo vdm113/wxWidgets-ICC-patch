@@ -83,7 +83,7 @@ bool ValidStyledText(const ViewStyle &vs, size_t styleOffset, const StyledText &
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (size_t iStyle = 0; iStyle<st.length; iStyle++) {
@@ -106,7 +106,7 @@ static int WidthStyledText(Surface *surface, const ViewStyle &vs, int styleOffse
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (start < len) {
@@ -117,7 +117,7 @@ static int WidthStyledText(Surface *surface, const ViewStyle &vs, int styleOffse
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while ((endSegment + 1 < len) && (static_cast<size_t>(styles[endSegment + 1]) == style))
@@ -138,7 +138,7 @@ int WidestLineWidth(Surface *surface, const ViewStyle &vs, int styleOffset, cons
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (start < st.length) {
@@ -185,7 +185,7 @@ void DrawStyledText(Surface *surface, const ViewStyle &vs, int styleOffset, PRec
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (i < length) {
@@ -196,7 +196,7 @@ void DrawStyledText(Surface *surface, const ViewStyle &vs, int styleOffset, PRec
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (end < length - 1 && st.styles[start + end + 1] == style)
@@ -314,7 +314,7 @@ void EditView::LinesAddedOrRemoved(int lineOfPos, int linesAdded) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (int line = lineOfPos; line < lineOfPos + linesAdded; line++) {
@@ -326,7 +326,7 @@ void EditView::LinesAddedOrRemoved(int lineOfPos, int linesAdded) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (int line = (lineOfPos + -linesAdded) - 1; line >= lineOfPos; line--) {
@@ -409,7 +409,7 @@ void EditView::RefreshPixMaps(Surface *surfaceWindow, WindowID wid, const ViewSt
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int stripe = 1; stripe < vsDraw.lineHeight + 1; stripe += 2) {
@@ -463,7 +463,7 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (numCharsInLine < lineLength) {
@@ -516,7 +516,7 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int styleInLine = 0; styleInLine < numCharsInLine; styleInLine++) {
@@ -530,7 +530,7 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (int charInLine = 0; charInLine<lineLength; charInLine++) {
@@ -557,7 +557,7 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (bfLayout.More()) {
@@ -585,7 +585,7 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for (int ii = 0; ii < ts.length; ii++)
@@ -607,7 +607,7 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (int posToIncrease = ts.start + 1; posToIncrease <= ts.end(); posToIncrease++) {
@@ -651,7 +651,7 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (int i = 0; i < ll->numCharsInLine; i++) {
@@ -677,7 +677,7 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (p < ll->numCharsInLine) {
@@ -825,7 +825,7 @@ int EditView::DisplayFromPosition(Surface *surface, const EditModel &model, int 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int subLine = 0; subLine < ll->lines; subLine++) {
@@ -851,7 +851,7 @@ int EditView::StartEndDisplayLine(Surface *surface, const EditModel &model, int 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (int subLine = 0; subLine < ll->lines; subLine++) {
@@ -966,7 +966,7 @@ void EditView::DrawEOL(Surface *surface, const EditModel &model, const ViewStyle
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (size_t r = 0; r<model.sel.Count(); r++) {
@@ -1004,7 +1004,7 @@ void EditView::DrawEOL(Surface *surface, const EditModel &model, const ViewStyle
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int eolPos = ll->numCharsBeforeEOL; eolPos<ll->numCharsInLine; eolPos++) {
@@ -1140,7 +1140,7 @@ static void DrawIndicators(Surface *surface, const EditModel &model, const ViewS
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (Decoration *deco = model.pdoc->decorations.root; deco; deco = deco->next) {
@@ -1154,7 +1154,7 @@ static void DrawIndicators(Surface *surface, const EditModel &model, const ViewS
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while ((startPos < posLineEnd) && (deco->rs.ValueAt(startPos))) {
@@ -1232,7 +1232,7 @@ void EditView::DrawAnnotation(Surface *surface, const EditModel &model, const Vi
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while ((lineInAnnotation < annotationLine) && (start < stAnnotation.length)) {
@@ -1284,7 +1284,7 @@ static void DrawBlockCaret(Surface *surface, const EditModel &model, const ViewS
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((posBefore > 0) && ((offsetLastChar - numCharsToDraw) >= lineStart)) {
@@ -1309,7 +1309,7 @@ static void DrawBlockCaret(Surface *surface, const EditModel &model, const ViewS
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((offsetLastChar < ll->LineStart(subLine + 1)) && (offsetLastChar <= ll->numCharsInLine)) {
@@ -1361,7 +1361,7 @@ void EditView::DrawCarets(Surface *surface, const EditModel &model, const ViewSt
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t r = 0; (r<model.sel.Count()) || drawDrag; r++) {
@@ -1487,7 +1487,7 @@ void EditView::DrawBackground(Surface *surface, const EditModel &model, const Vi
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (bfBack.More()) {
@@ -1533,7 +1533,7 @@ void EditView::DrawBackground(Surface *surface, const EditModel &model, const Vi
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for (int cpos = 0; cpos <= i - ts.start; cpos++) {
@@ -1581,7 +1581,7 @@ static void DrawMarkUnderline(Surface *surface, const EditModel &model, const Vi
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int markBit = 0; (markBit < 32) && marks; markBit++) {
@@ -1612,7 +1612,7 @@ static void DrawTranslucentSelection(Surface *surface, const EditModel &model, c
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (size_t r = 0; r < model.sel.Count(); r++) {
@@ -1652,7 +1652,7 @@ static void DrawTranslucentLineState(Surface *surface, const EditModel &model, c
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int markBit = 0; (markBit < 32) && marks; markBit++) {
@@ -1673,7 +1673,7 @@ static void DrawTranslucentLineState(Surface *surface, const EditModel &model, c
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (int markBit = 0; (markBit < 32) && marksMasked; markBit++) {
@@ -1709,7 +1709,7 @@ void EditView::DrawForeground(Surface *surface, const EditModel &model, const Vi
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (bfFore.More()) {
@@ -1740,7 +1740,7 @@ void EditView::DrawForeground(Surface *surface, const EditModel &model, const Vi
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (Decoration *deco = model.pdoc->decorations.root; deco; deco = deco->next) {
@@ -1785,7 +1785,7 @@ void EditView::DrawForeground(Surface *surface, const EditModel &model, const Vi
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 						for (int indentCount = static_cast<int>((ll->positions[i] + epsilon) / indentWidth);
@@ -1847,7 +1847,7 @@ void EditView::DrawForeground(Surface *surface, const EditModel &model, const Vi
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for (int cpos = 0; cpos <= i - ts.start; cpos++) {
@@ -1880,7 +1880,7 @@ void EditView::DrawForeground(Surface *surface, const EditModel &model, const Vi
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 								for (int indentCount = static_cast<int>((ll->positions[cpos + ts.start] + epsilon) / indentWidth);
@@ -1935,7 +1935,7 @@ void EditView::DrawIndentGuidesOverEmpty(Surface *surface, const EditModel &mode
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (lineLastWithText > Platform::Maximum(line - 20, 0) && model.pdoc->IsWhiteLine(lineLastWithText)) {
@@ -1966,7 +1966,7 @@ void EditView::DrawIndentGuidesOverEmpty(Surface *surface, const EditModel &mode
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (lineNextWithText < Platform::Minimum(line + 20, model.pdoc->LinesTotal()) && model.pdoc->IsWhiteLine(lineNextWithText)) {
@@ -1984,7 +1984,7 @@ void EditView::DrawIndentGuidesOverEmpty(Surface *surface, const EditModel &mode
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int indentPos = model.pdoc->IndentSize(); indentPos < indentSpace; indentPos += model.pdoc->IndentSize()) {
@@ -2147,7 +2147,7 @@ void EditView::PaintText(Surface *surfaceWindow, const EditModel &model, PRectan
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (DrawPhase phase = drawBack; phase <= drawCarets; phase = static_cast<DrawPhase>(phase * 2)) {
@@ -2161,7 +2161,7 @@ void EditView::PaintText(Surface *surfaceWindow, const EditModel &model, PRectan
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (std::vector<DrawPhase>::iterator it = phases.begin(); it != phases.end(); ++it) {
@@ -2175,7 +2175,7 @@ void EditView::PaintText(Surface *surfaceWindow, const EditModel &model, PRectan
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (visibleLine < model.cs.LinesDisplayed() && yposScreen < rcArea.bottom) {
@@ -2312,7 +2312,7 @@ long EditView::FormatRange(bool draw, Sci_RangeToFormat *pfr, Surface *surface, 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int margin = 0; margin <= SC_MAX_MARGIN; margin++) {
@@ -2346,7 +2346,7 @@ long EditView::FormatRange(bool draw, Sci_RangeToFormat *pfr, Surface *surface, 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t sty = 0; sty < vsPrint.styles.size(); sty++) {
@@ -2414,7 +2414,7 @@ long EditView::FormatRange(bool draw, Sci_RangeToFormat *pfr, Surface *surface, 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (lineDoc <= linePrintLast && ypos < pfr->rc.bottom) {
@@ -2448,7 +2448,7 @@ long EditView::FormatRange(bool draw, Sci_RangeToFormat *pfr, Surface *surface, 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (int iwl = 0; iwl < ll.lines - 1; iwl++) {
@@ -2487,7 +2487,7 @@ long EditView::FormatRange(bool draw, Sci_RangeToFormat *pfr, Surface *surface, 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int iwl = 0; iwl < ll.lines; iwl++) {

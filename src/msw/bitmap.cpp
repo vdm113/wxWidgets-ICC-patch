@@ -401,7 +401,7 @@ static void PremultiplyPixels(unsigned char* begin, unsigned char* end)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned char* pixels = begin; pixels < end; pixels += 4 )
@@ -438,7 +438,7 @@ static bool CheckAlpha(HBITMAP hbmp, HBITMAP* hdib = NULL)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ; pixels < end; pixels += 4 )
@@ -494,7 +494,7 @@ static HBITMAP CreatePremultipliedDIBIfNeeded(HBITMAP hbmp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ; pixels < end; pixels += 4 )
@@ -715,7 +715,7 @@ wxBitmap::wxBitmap(const char bits[], int width, int height, int depth)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int rows = 0; rows < height; rows++ )
@@ -725,7 +725,7 @@ wxBitmap::wxBitmap(const char bits[], int width, int height, int depth)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( size_t cols = 0; cols < bytesPerLine; cols++ )
@@ -738,7 +738,7 @@ wxBitmap::wxBitmap(const char bits[], int width, int height, int depth)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( int bit = 0; bit < 8; bit++)
@@ -965,7 +965,7 @@ bool wxBitmap::CreateFromImage(const wxImage& image, int depth, WXHDC hdc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int y = 0; y < h; y++, dst += len )
@@ -977,7 +977,7 @@ bool wxBitmap::CreateFromImage(const wxImage& image, int depth, WXHDC hdc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( int x = 0; x < w; x++, src += 3 )
@@ -1060,7 +1060,7 @@ wxImage wxBitmap::ConvertToImage() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( int y = 0; y < h; y++, maskLineStart -= maskBytesPerLine )
@@ -1072,7 +1072,7 @@ wxImage wxBitmap::ConvertToImage() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( int x = 0; x < w; x++, mask += maskBytesPerPixel )

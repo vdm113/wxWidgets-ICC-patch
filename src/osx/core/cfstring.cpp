@@ -41,7 +41,7 @@ void wxMacConvertNewlines13To10( char * data )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while( (buf=strchr(buf,0x0d)) != NULL )
@@ -59,7 +59,7 @@ void wxMacConvertNewlines10To13( char * data )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while( (buf=strchr(buf,0x0a)) != NULL )

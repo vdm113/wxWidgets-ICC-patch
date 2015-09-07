@@ -211,7 +211,7 @@ static gboolean target_drag_motion( GtkWidget *WXUNUSED(widget),
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (tmp_list = context->targets; tmp_list; tmp_list = tmp_list->next)
@@ -528,7 +528,7 @@ GdkAtom wxDropTarget::GTKGetMatchingPair(bool quiet)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (child)
@@ -871,7 +871,7 @@ wxDragResult wxDropSource::DoDragDrop(int flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < count; i++)
@@ -915,7 +915,7 @@ wxDragResult wxDropSource::DoDragDrop(int flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (m_waiting)

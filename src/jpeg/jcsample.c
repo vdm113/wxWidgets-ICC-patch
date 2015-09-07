@@ -108,7 +108,7 @@ expand_right_edge (JSAMPARRAY image_data, int num_rows,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (row = 0; row < num_rows; row++) {
@@ -119,7 +119,7 @@ expand_right_edge (JSAMPARRAY image_data, int num_rows,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (count = numcols; count > 0; count--)
@@ -150,7 +150,7 @@ sep_downsample (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -197,7 +197,7 @@ int_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (outrow = 0; outrow < compptr->v_samp_factor; outrow++) {
@@ -207,7 +207,7 @@ int_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (outcol = 0, outcol_h = 0; outcol < output_cols;
@@ -218,7 +218,7 @@ int_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (v = 0; v < v_expand; v++) {
@@ -228,7 +228,7 @@ int_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (h = 0; h < h_expand; h++) {
@@ -295,7 +295,7 @@ h2v1_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (outrow = 0; outrow < compptr->v_samp_factor; outrow++) {
@@ -307,7 +307,7 @@ h2v1_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (outcol = 0; outcol < output_cols; outcol++) {
@@ -349,7 +349,7 @@ h2v2_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (outrow = 0; outrow < compptr->v_samp_factor; outrow++) {
@@ -362,7 +362,7 @@ h2v2_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (outcol = 0; outcol < output_cols; outcol++) {
@@ -424,7 +424,7 @@ h2v2_smooth_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (outrow = 0; outrow < compptr->v_samp_factor; outrow++) {
@@ -453,7 +453,7 @@ h2v2_smooth_downsample (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (colctr = output_cols - 2; colctr > 0; colctr--) {
@@ -533,7 +533,7 @@ fullsize_smooth_downsample (j_compress_ptr cinfo, jpeg_component_info *compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (outrow = 0; outrow < compptr->v_samp_factor; outrow++) {
@@ -558,7 +558,7 @@ fullsize_smooth_downsample (j_compress_ptr cinfo, jpeg_component_info *compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (colctr = output_cols - 2; colctr > 0; colctr--) {
@@ -614,7 +614,7 @@ jinit_downsampler (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;

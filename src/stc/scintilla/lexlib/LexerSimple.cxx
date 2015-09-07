@@ -45,7 +45,7 @@ LexerSimple::LexerSimple(const LexerModule *module_) : module(module_) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int wl = 0; wl < module->GetNumWordLists(); wl++) {

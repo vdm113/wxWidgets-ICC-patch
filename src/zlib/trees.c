@@ -269,7 +269,7 @@ local void tr_static_init()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (code = 0; code < LENGTH_CODES-1; code++) {
@@ -279,7 +279,7 @@ local void tr_static_init()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (n = 0; n < (1<<extra_lbits[code]); n++) {
@@ -300,7 +300,7 @@ local void tr_static_init()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (code = 0 ; code < 16; code++) {
@@ -310,7 +310,7 @@ local void tr_static_init()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (n = 0; n < (1<<extra_dbits[code]); n++) {
@@ -324,7 +324,7 @@ local void tr_static_init()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ; code < D_CODES; code++) {
@@ -334,7 +334,7 @@ local void tr_static_init()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (n = 0; n < (1<<(extra_dbits[code]-7)); n++) {
@@ -349,7 +349,7 @@ local void tr_static_init()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (bits = 0; bits <= MAX_BITS; bits++) bl_count[bits] = 0;
@@ -359,7 +359,7 @@ local void tr_static_init()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (n <= 143) static_ltree[n++].Len = 8, bl_count[8]++;
@@ -368,7 +368,7 @@ local void tr_static_init()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (n <= 255) static_ltree[n++].Len = 9, bl_count[9]++;
@@ -377,7 +377,7 @@ local void tr_static_init()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (n <= 279) static_ltree[n++].Len = 7, bl_count[7]++;
@@ -386,7 +386,7 @@ local void tr_static_init()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (n <= 287) static_ltree[n++].Len = 8, bl_count[8]++;
@@ -402,7 +402,7 @@ local void tr_static_init()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (n = 0; n < D_CODES; n++) {
@@ -444,7 +444,7 @@ void gen_trees_header()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < L_CODES+2; i++) {
@@ -458,7 +458,7 @@ void gen_trees_header()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < D_CODES; i++) {
@@ -472,7 +472,7 @@ void gen_trees_header()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < DIST_CODE_LEN; i++) {
@@ -487,7 +487,7 @@ void gen_trees_header()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < MAX_MATCH-MIN_MATCH+1; i++) {
@@ -501,7 +501,7 @@ void gen_trees_header()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < LENGTH_CODES; i++) {
@@ -515,7 +515,7 @@ void gen_trees_header()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < D_CODES; i++) {
@@ -569,7 +569,7 @@ local void init_block(s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (n = 0; n < L_CODES;  n++) s->dyn_ltree[n].Freq = 0;
@@ -578,7 +578,7 @@ local void init_block(s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (n = 0; n < D_CODES;  n++) s->dyn_dtree[n].Freq = 0;
@@ -587,7 +587,7 @@ local void init_block(s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (n = 0; n < BL_CODES; n++) s->bl_tree[n].Freq = 0;
@@ -638,7 +638,7 @@ local void pqdownheap(s, tree, k)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (j <= s->heap_len) {
@@ -691,7 +691,7 @@ local void gen_bitlen(s, desc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (bits = 0; bits <= MAX_BITS; bits++) s->bl_count[bits] = 0;
@@ -706,7 +706,7 @@ local void gen_bitlen(s, desc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (h = s->heap_max+1; h < HEAP_SIZE; h++) {
@@ -736,7 +736,7 @@ local void gen_bitlen(s, desc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do {
@@ -746,7 +746,7 @@ local void gen_bitlen(s, desc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (s->bl_count[bits] == 0) bits--;
@@ -769,7 +769,7 @@ local void gen_bitlen(s, desc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (bits = max_length; bits != 0; bits--) {
@@ -779,7 +779,7 @@ local void gen_bitlen(s, desc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (n != 0) {
@@ -822,7 +822,7 @@ local void gen_codes (tree, max_code, bl_count)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (bits = 1; bits <= MAX_BITS; bits++) {
@@ -840,7 +840,7 @@ local void gen_codes (tree, max_code, bl_count)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (n = 0;  n <= max_code; n++) {
@@ -884,7 +884,7 @@ local void build_tree(s, desc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (n = 0; n < elems; n++) {
@@ -906,7 +906,7 @@ local void build_tree(s, desc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (s->heap_len < 2) {
@@ -926,7 +926,7 @@ local void build_tree(s, desc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (n = s->heap_len/2; n >= 1; n--) pqdownheap(s, tree, n);
@@ -940,7 +940,7 @@ local void build_tree(s, desc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do {
@@ -1003,7 +1003,7 @@ local void scan_tree (s, tree, max_code)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (n = 0; n <= max_code; n++) {
@@ -1056,7 +1056,7 @@ local void send_tree (s, tree, max_code)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (n = 0; n <= max_code; n++) {
@@ -1118,7 +1118,7 @@ local int build_bl_tree(s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (max_blindex = BL_CODES-1; max_blindex >= 3; max_blindex--) {
@@ -1155,7 +1155,7 @@ local void send_all_trees(s, lcodes, dcodes, blcodes)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (rank = 0; rank < blcodes; rank++) {
@@ -1353,7 +1353,7 @@ int ZLIB_INTERNAL _tr_tally (s, dist, lc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (dcode = 0; dcode < D_CODES; dcode++) {
@@ -1453,7 +1453,7 @@ local int detect_data_type(s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (n = 0; n <= 31; n++, black_mask >>= 1)
@@ -1469,7 +1469,7 @@ local int detect_data_type(s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (n = 32; n < LITERALS; n++)
@@ -1497,7 +1497,7 @@ local unsigned bi_reverse(code, len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do {
@@ -1569,7 +1569,7 @@ local void copy_block(s, buf, len, header)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (len--) {

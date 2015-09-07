@@ -608,7 +608,7 @@ bool TestApp::OnCmdLineParsed(wxCmdLineParser& parser)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < parser.GetParamCount(); i++)
@@ -693,7 +693,7 @@ int TestApp::RunTests()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < m_registries.size(); i++)
@@ -777,7 +777,7 @@ void TestApp::List(Test *test, const string& parent /*=""*/) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ((j = name.find('.', j + 1)) != string::npos)
@@ -795,7 +795,7 @@ void TestApp::List(Test *test, const string& parent /*=""*/) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (Iter it = tests.begin(); it != tests.end(); ++it)
@@ -808,7 +808,7 @@ void TestApp::List(Test *test, const string& parent /*=""*/) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ((i = parent.find('.', i + 1)) != string::npos)

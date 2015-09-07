@@ -214,7 +214,7 @@ wxArtProvider::~wxArtProvider()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( !sm_providers->empty() )
@@ -271,7 +271,7 @@ void wxArtProvider::RescaleBitmap(wxBitmap& bmp, const wxSize& sizeNeeded)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (wxArtProvidersList::compatibility_iterator node = sm_providers->GetFirst();
@@ -352,7 +352,7 @@ wxIconBundle wxArtProvider::DoGetIconBundle(const wxArtID& id, const wxArtClient
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (wxArtProvidersList::compatibility_iterator node = sm_providers->GetFirst();

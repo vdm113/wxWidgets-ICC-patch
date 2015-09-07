@@ -78,7 +78,7 @@ size_t errbuf_size;		/* available space in errbuf, can be 0 */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (r = rerrs; r->code >= 0; r++)
@@ -94,7 +94,7 @@ size_t errbuf_size;		/* available space in errbuf, can be 0 */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (r = rerrs; r->code >= 0; r++)
@@ -113,7 +113,7 @@ size_t errbuf_size;		/* available space in errbuf, can be 0 */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (r = rerrs; r->code >= 0; r++)

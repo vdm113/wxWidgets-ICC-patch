@@ -57,7 +57,7 @@ static unsigned int SpaceCount(char* lineBuffer) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (*headBuffer == ' ')
@@ -111,7 +111,7 @@ static void ColouriseYAMLLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((i < lengthLine) && lineBuffer[i] == ' ') { // YAML always uses space, never TABS or anything else
@@ -131,7 +131,7 @@ static void ColouriseYAMLLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (i < lengthLine) {
@@ -147,7 +147,7 @@ static void ColouriseYAMLLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while ((i < lengthLine) && isspacechar(lineBuffer[i]))
@@ -158,7 +158,7 @@ static void ColouriseYAMLLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while ((endValue >= i) && isspacechar(lineBuffer[endValue]))
@@ -173,7 +173,7 @@ static void ColouriseYAMLLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while ((i < lengthLine) && isspacechar(lineBuffer[i]))
@@ -211,7 +211,7 @@ static void ColouriseYAMLLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while ((i < lengthLine) && lineBuffer[i]) {
@@ -248,7 +248,7 @@ static void ColouriseYAMLDoc(unsigned int startPos, int length, int, WordList *k
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < maxPos && i < endPos; i++) {
@@ -293,7 +293,7 @@ static void FoldYAMLDoc(unsigned int startPos, int length, int /*initStyle - unu
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (lineCurrent > 0) {
@@ -318,7 +318,7 @@ static void FoldYAMLDoc(unsigned int startPos, int length, int /*initStyle - unu
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((lineCurrent <= docLines) && ((lineCurrent <= maxLines) || prevComment)) {
@@ -358,7 +358,7 @@ static void FoldYAMLDoc(unsigned int startPos, int length, int /*initStyle - unu
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while ((lineNext < docLines) &&
@@ -385,7 +385,7 @@ static void FoldYAMLDoc(unsigned int startPos, int length, int /*initStyle - unu
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (--skipLine > lineCurrent) {

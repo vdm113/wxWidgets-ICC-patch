@@ -74,7 +74,7 @@ static unsigned int GetBatchVarLen( char *wordBuffer )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for ( ; ( wordBuffer[nLength] ); nLength++ ) {
@@ -133,7 +133,7 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((offset < lengthLine) && (isspacechar(lineBuffer[offset]))) {
@@ -183,7 +183,7 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((offset < lengthLine) && (isspacechar(lineBuffer[offset]))) {
@@ -196,7 +196,7 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (offset < lengthLine) {
@@ -211,7 +211,7 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (; offset < lengthLine && ( wbl < 260 ) && !isspacechar(lineBuffer[offset]); wbl++, offset++) {
@@ -256,7 +256,7 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while ((wbo < wbl) && (wordBuffer[wbo] != '!') && (!IsBOperator(wordBuffer[wbo])) && (!IsBSeparator(wordBuffer[wbo]))) {
@@ -326,7 +326,7 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while ((wbo < wbl) && (wordBuffer[wbo] != '%') && (!isDelayedExpansion || wordBuffer[wbo] != '!') && (!IsBOperator(wordBuffer[wbo])) &&	(!IsBSeparator(wordBuffer[wbo]))) {
@@ -354,7 +354,7 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while ((n < wbl) && (wordBuffer[n] != ']')) {
@@ -371,7 +371,7 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while ((wbo < wbl) && (wordBuffer[wbo] != '%') && (!IsBOperator(wordBuffer[wbo])) && (!IsBSeparator(wordBuffer[wbo]))) {
@@ -385,7 +385,7 @@ static void ColouriseTCMDLine( char *lineBuffer, unsigned int lengthLine, unsign
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (( wordBuffer[n] ) && ( strchr( "%0123456789*#$", wordBuffer[n] ) != NULL ))
@@ -423,7 +423,7 @@ ColorizeArg:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (( wordBuffer[n] ) && (!IsBOperator(wordBuffer[n])) && (!IsBSeparator(wordBuffer[n])))
@@ -485,7 +485,7 @@ ColorizeArg:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while ((wbo < wbl) && (wordBuffer[wbo] != '%') && (!isDelayedExpansion || wordBuffer[wbo] != '!') && (!IsBOperator(wordBuffer[wbo])) &&	(!IsBSeparator(wordBuffer[wbo]))) {
@@ -503,7 +503,7 @@ ColorizeArg:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while ((offset < lengthLine) && (isspacechar(lineBuffer[offset]))) {
@@ -527,7 +527,7 @@ static void ColouriseTCMDDoc( unsigned int startPos, int length, int /*initStyle
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < startPos + length; i++) {
@@ -553,7 +553,7 @@ static void StrUpr(char *s) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (*s) {
@@ -579,7 +579,7 @@ static void FoldTCMDDoc(unsigned int startPos, int length, int, WordList *[], Ac
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
@@ -603,7 +603,7 @@ static void FoldTCMDDoc(unsigned int startPos, int length, int, WordList *[], Ac
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (unsigned int j = 0; j < 10; j++) {

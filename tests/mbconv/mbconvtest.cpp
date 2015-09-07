@@ -247,7 +247,7 @@ void MBConvTestCase::WC2CP1250()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(data); n++ )
@@ -279,7 +279,7 @@ wxString CByteArrayFormat( const void* data, size_t len, const wxChar* name )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < len; i++ )
@@ -1087,7 +1087,7 @@ void MBConvTestCase::TestDecoder(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = (wideChars+1)*sizeof(wchar_t); i < (outputBufferChars*sizeof(wchar_t)); i++ )
@@ -1154,7 +1154,7 @@ void MBConvTestCase::TestEncoder(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = multiBytes; i < multiBytes + sizeofNull; i++ )
@@ -1168,7 +1168,7 @@ void MBConvTestCase::TestEncoder(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = multiBytes + sizeofNull; i < outputBufferSize; i++ )
@@ -1202,7 +1202,7 @@ void MBConvTestCase::TestStreamDecoder(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < wideChars; i++ )
@@ -1241,7 +1241,7 @@ void MBConvTestCase::TestStreamEncoder(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < wideChars; i++ )
@@ -1310,7 +1310,7 @@ static wchar_t *wx_wcscpy(wchar_t *dest, const wchar_t *src)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((*d++ = *src++) != 0)
@@ -1328,7 +1328,7 @@ static wchar_t *wx_wcscat(wchar_t *dest, const wchar_t *src)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*d)
@@ -1338,7 +1338,7 @@ static wchar_t *wx_wcscat(wchar_t *dest, const wchar_t *src)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((*d++ = *src++) != 0)
@@ -1355,7 +1355,7 @@ static int wx_wcscmp(const wchar_t *s1, const wchar_t *s2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*s1 == *s2 && *s1 != 0)
@@ -1376,7 +1376,7 @@ static size_t wx_wcslen(const wchar_t *s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*t != 0)

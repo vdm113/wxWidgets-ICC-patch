@@ -60,7 +60,7 @@ static void ColourisePowerShellDoc(unsigned int startPos, int length, int initSt
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
@@ -76,7 +76,7 @@ static void ColourisePowerShellDoc(unsigned int startPos, int length, int initSt
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while(IsASpaceOrTab(sc.ch)) {
@@ -204,7 +204,7 @@ static void FoldPowerShellDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
@@ -239,7 +239,7 @@ static void FoldPowerShellDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while ((j < endPos) && IsASpaceOrTab(styler.SafeGetCharAt(j))) {

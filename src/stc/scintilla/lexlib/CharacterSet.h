@@ -43,7 +43,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int i=0; i < size; i++) {
@@ -66,7 +66,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int i=0; i < size; i++) {
@@ -86,7 +86,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (int i=0; i < other.size; i++) {
@@ -110,7 +110,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (const char *cp=setToAdd; *cp; cp++) {

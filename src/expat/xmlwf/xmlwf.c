@@ -42,7 +42,7 @@ characterData(void *userData, const XML_Char *s, int len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (; len > 0; --len, ++s) {
@@ -87,7 +87,7 @@ attributeValue(FILE *fp, const XML_Char *s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -157,7 +157,7 @@ startElement(void *userData, const XML_Char *name, const XML_Char **atts)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (*p)
@@ -170,7 +170,7 @@ startElement(void *userData, const XML_Char *name, const XML_Char **atts)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (*atts) {
@@ -233,7 +233,7 @@ startElementNS(void *userData, const XML_Char *name, const XML_Char **atts)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (*p)
@@ -246,7 +246,7 @@ startElementNS(void *userData, const XML_Char *name, const XML_Char **atts)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (*atts) {
@@ -360,7 +360,7 @@ markup(void *userData, const XML_Char *s, int len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (; len > 0; --len, ++s)
@@ -418,7 +418,7 @@ metaStartElement(void *userData, const XML_Char *name,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do {
@@ -643,7 +643,7 @@ unknownEncoding(void *userData, const XML_Char *name, XML_Encoding *info)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; prefixU[i]; i++)
@@ -656,7 +656,7 @@ unknownEncoding(void *userData, const XML_Char *name, XML_Encoding *info)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (; name[i]; i++) {
@@ -699,7 +699,7 @@ showVersion(XML_Char *prog)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while ((ch = *s) != 0) {
@@ -722,7 +722,7 @@ showVersion(XML_Char *prog)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (features[i].feature != XML_FEATURE_END) {
@@ -770,7 +770,7 @@ tmain(int argc, XML_Char **argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (i < argc) {
@@ -869,7 +869,7 @@ tmain(int argc, XML_Char **argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (; i < argc; i++) {

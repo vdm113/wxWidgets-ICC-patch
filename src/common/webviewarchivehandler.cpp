@@ -37,7 +37,7 @@ static wxString EscapeFileNameCharsInURL(const char *in)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( const unsigned char *p = (const unsigned char*)in; *p; ++p )
@@ -89,7 +89,7 @@ wxFSFile* wxWebViewArchiveHandler::GetFile(const wxString &uri)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(size_t i = 0; i < path.length(); i++)

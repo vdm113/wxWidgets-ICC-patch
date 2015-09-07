@@ -447,7 +447,7 @@ bool wxNotebook::SetPageText(size_t nPage, const wxString& strText)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t page = 0; page < count; page++ )
@@ -674,7 +674,7 @@ bool wxNotebook::DeleteAllPages()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( nPage = 0; nPage < nPageCount; nPage++ )
@@ -1025,7 +1025,7 @@ void wxNotebook::OnSize(wxSizeEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t nPage = 0; nPage < nCount; nPage++ ) {
@@ -1057,7 +1057,7 @@ void wxNotebook::OnSize(wxSizeEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( HWND child = ::GetWindow(GetHwnd(), GW_CHILD);

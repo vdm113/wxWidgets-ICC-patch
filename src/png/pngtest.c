@@ -235,7 +235,7 @@ count_zero_samples(png_structp png_ptr, png_row_infop row_info, png_bytep data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
        for (n = 0, nstop=row_info->width; n<nstop; n++)
@@ -300,7 +300,7 @@ count_zero_samples(png_structp png_ptr, png_row_infop row_info, png_bytep data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
        for (n = 0, nstop=row_info->width; n<nstop; n++)
@@ -310,7 +310,7 @@ count_zero_samples(png_structp png_ptr, png_row_infop row_info, png_bytep data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
           for (channel = 0; channel < color_channels; channel++)
@@ -598,7 +598,7 @@ png_debug_free(png_structp png_ptr, png_voidp ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (;;)
@@ -807,7 +807,7 @@ write_chunks(png_structp write_ptr, int location)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (i=0; i<2; ++i)
@@ -839,7 +839,7 @@ pngtest_check_text_support(png_const_structp png_ptr, png_textp text_ptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    while (num_text > 0)
@@ -1054,7 +1054,7 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (i = 0; i<256; i++)
@@ -1303,7 +1303,7 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i=0; i<num_text; i++)
@@ -1383,7 +1383,7 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < num_unknowns; i++)
@@ -1439,7 +1439,7 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (pass = 0; pass < num_pass; pass++)
@@ -1450,7 +1450,7 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (y = 0; y < height; y++)
@@ -1519,7 +1519,7 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i=0; i<num_text; i++)
@@ -1577,7 +1577,7 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < num_unknowns; i++)
@@ -1696,7 +1696,7 @@ test_one_file(PNG_CONST char *inname, PNG_CONST char *outname)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (;;)
@@ -1904,7 +1904,7 @@ main(int argc, char *argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (i=2; i<argc; ++i)
@@ -1929,7 +1929,7 @@ main(int argc, char *argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (k = 0; k<256; k++)
@@ -1967,7 +1967,7 @@ main(int argc, char *argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (pinfo != NULL)
@@ -2000,7 +2000,7 @@ main(int argc, char *argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (i = 0; i<3; ++i)
@@ -2039,7 +2039,7 @@ main(int argc, char *argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (k = 0; k<256; k++)
@@ -2079,7 +2079,7 @@ main(int argc, char *argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
              while (pinfo != NULL)

@@ -59,7 +59,7 @@ DumpModeEncode(TIFF* tif, uint8* pp, tmsize_t cc, uint16 s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (cc > 0) {

@@ -121,7 +121,7 @@ static void ColouriseEclDoc(unsigned int startPos, int length, int initStyle, Wo
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (--back && IsSpaceEquiv(styler.StyleAt(back)))
@@ -138,7 +138,7 @@ static void ColouriseEclDoc(unsigned int startPos, int length, int initStyle, Wo
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
@@ -208,7 +208,7 @@ static void ColouriseEclDoc(unsigned int startPos, int length, int initStyle, Wo
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 						while(i >= 0 && (isdigit(s[i]) || s[i] == '_'))
@@ -317,7 +317,7 @@ static void ColouriseEclDoc(unsigned int startPos, int length, int initStyle, Wo
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					while ((sc.ch < 0x80) && islower(sc.ch))

@@ -83,7 +83,7 @@ wxRichTextAttr wxRichTextStyleDefinition::GetStyleMergedWithBase(const wxRichTex
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (def)
@@ -116,7 +116,7 @@ wxRichTextAttr wxRichTextStyleDefinition::GetStyleMergedWithBase(const wxRichTex
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -173,7 +173,7 @@ void wxRichTextListStyleDefinition::Copy(const wxRichTextListStyleDefinition& de
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 10; i++)
@@ -190,7 +190,7 @@ bool wxRichTextListStyleDefinition::operator ==(const wxRichTextListStyleDefinit
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 10; i++)
@@ -258,7 +258,7 @@ int wxRichTextListStyleDefinition::FindLevelForIndent(int indent) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 10; i++)
@@ -408,7 +408,7 @@ wxRichTextStyleDefinition* wxRichTextStyleSheet::FindStyle(const wxList& list, c
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (wxList::compatibility_iterator node = list.GetFirst(); node; node = node->GetNext())
@@ -452,7 +452,7 @@ bool wxRichTextStyleSheet::AppendSheet(wxRichTextStyleSheet* after)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (last && last->m_nextSheet)
@@ -567,7 +567,7 @@ void wxRichTextStyleSheet::Copy(const wxRichTextStyleSheet& sheet)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (node = sheet.m_characterStyleDefinitions.GetFirst(); node; node = node->GetNext())
@@ -581,7 +581,7 @@ void wxRichTextStyleSheet::Copy(const wxRichTextStyleSheet& sheet)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (node = sheet.m_paragraphStyleDefinitions.GetFirst(); node; node = node->GetNext())
@@ -595,7 +595,7 @@ void wxRichTextStyleSheet::Copy(const wxRichTextStyleSheet& sheet)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (node = sheet.m_listStyleDefinitions.GetFirst(); node; node = node->GetNext())
@@ -609,7 +609,7 @@ void wxRichTextStyleSheet::Copy(const wxRichTextStyleSheet& sheet)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (node = sheet.m_boxStyleDefinitions.GetFirst(); node; node = node->GetNext())
@@ -731,7 +731,7 @@ void wxRichTextStyleListBox::UpdateStyles()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < GetStyleSheet()->GetParagraphStyleCount(); i++)
@@ -744,7 +744,7 @@ void wxRichTextStyleListBox::UpdateStyles()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < GetStyleSheet()->GetCharacterStyleCount(); i++)
@@ -757,7 +757,7 @@ void wxRichTextStyleListBox::UpdateStyles()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < GetStyleSheet()->GetListStyleCount(); i++)
@@ -770,7 +770,7 @@ void wxRichTextStyleListBox::UpdateStyles()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < GetStyleSheet()->GetBoxStyleCount(); i++)
@@ -913,7 +913,7 @@ wxString wxRichTextStyleListBox::CreateHTML(wxRichTextStyleDefinition* def) cons
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < GetStyleSheet()->GetParagraphStyleCount(); i++)
@@ -942,7 +942,7 @@ wxString wxRichTextStyleListBox::CreateHTML(wxRichTextStyleDefinition* def) cons
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i <= maxSize; i++)
@@ -952,7 +952,7 @@ wxString wxRichTextStyleListBox::CreateHTML(wxRichTextStyleDefinition* def) cons
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < m_styleNames.GetCount(); i++)
@@ -974,7 +974,7 @@ wxString wxRichTextStyleListBox::CreateHTML(wxRichTextStyleDefinition* def) cons
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i <= maxSize; i++)

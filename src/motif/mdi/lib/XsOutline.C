@@ -100,7 +100,7 @@ Boolean XsOutline::go (Boolean drawInitial)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    while (!done)
@@ -129,7 +129,7 @@ Boolean XsOutline::go (Boolean drawInitial)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (XPending (XtDisplay (_w)) > 0)

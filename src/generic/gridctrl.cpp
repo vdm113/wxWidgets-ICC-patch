@@ -264,7 +264,7 @@ void wxGridCellEnumRenderer::SetParameters(const wxString& params)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( tk.HasMoreTokens() )
@@ -329,7 +329,7 @@ wxGridCellAutoWrapStringRenderer::GetTextLines(wxGrid& grid,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxArrayString::const_iterator it = logicalLines.begin();
@@ -368,7 +368,7 @@ wxGridCellAutoWrapStringRenderer::BreakLine(wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( wordTokenizer.HasMoreTokens() )
@@ -431,7 +431,7 @@ wxGridCellAutoWrapStringRenderer::BreakWord(wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
@@ -528,7 +528,7 @@ wxGridCellAutoWrapStringRenderer::GetBestWidth(wxGrid& grid,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( GetTextLines(grid, dc, attr, wxSize(width, height),
@@ -591,7 +591,7 @@ wxSize wxGridCellStringRenderer::DoGetBestSize(const wxGridCellAttr& attr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( tk.HasMoreTokens() )
@@ -645,7 +645,7 @@ void wxGridCellStringRenderer::Draw(wxGrid& grid,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = col+cell_cols; i < cols; i++)
@@ -656,7 +656,7 @@ void wxGridCellStringRenderer::Draw(wxGrid& grid,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (int j=row; j < row + cell_rows; j++)
@@ -705,7 +705,7 @@ void wxGridCellStringRenderer::Draw(wxGrid& grid,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int i = col + cell_cols; i <= col_end; i++)

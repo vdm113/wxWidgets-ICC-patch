@@ -139,7 +139,7 @@ wxSound::~wxSound()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxVector<wxSoundData*>::reverse_iterator s = s_soundsPlaying.rbegin();
@@ -187,7 +187,7 @@ void wxSound::Stop()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxVector<wxSoundData*>::reverse_iterator s = s_soundsPlaying.rbegin();
@@ -205,7 +205,7 @@ void wxSound::SoundStopped(const wxSoundData* data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxVector<wxSoundData*>::iterator s = s_soundsPlaying.begin();

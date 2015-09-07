@@ -67,7 +67,7 @@ lfind(const void *key, const void *base, size_t *nmemb, size_t size,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (element = (char *)base; element < end; element += size)

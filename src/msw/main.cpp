@@ -232,7 +232,7 @@ struct wxMSWCommandLineArguments
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int i = 0; i < argc; i++ )
@@ -254,7 +254,7 @@ struct wxMSWCommandLineArguments
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int i = 0; i < argc; i++ )

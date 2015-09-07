@@ -282,7 +282,7 @@ void wxTipWindowView::Adjust(const wxString& text, wxCoord maxLength)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( const wxChar *p = text.c_str(); ; p++ )
@@ -364,7 +364,7 @@ void wxTipWindowView::OnPaint(wxPaintEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )

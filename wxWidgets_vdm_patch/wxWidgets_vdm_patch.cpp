@@ -178,7 +178,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#   if 1
+#   if 0
 #       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
@@ -343,7 +343,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#   if 1
+#   if 0
 #       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
@@ -541,7 +541,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#   if 1
+#   if 0
 #       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
@@ -639,7 +639,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#   if 1
+#   if 0
 #       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
@@ -744,7 +744,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#   if 1
+#   if 0
 #       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
@@ -931,7 +931,7 @@ int _tmain(int argc, _TCHAR* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#   if 1
+#   if 0
 #       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */

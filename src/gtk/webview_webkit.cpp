@@ -152,7 +152,7 @@ wxgtk_webview_webkit_navigation(WebKitWebView *,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for(wxVector<wxSharedPtr<wxWebViewHandler> >::iterator it = handlers.begin();
@@ -382,7 +382,7 @@ wxgtk_webview_webkit_resource_req(WebKitWebView *,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(wxVector<wxSharedPtr<wxWebViewHandler> >::iterator it = handlers.begin();
@@ -658,7 +658,7 @@ wxVector<wxSharedPtr<wxWebViewHistoryItem> > wxWebViewWebKit::GetBackwardHistory
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(int i = g_list_length(list) - 1; i >= 0 ; i--)
@@ -686,7 +686,7 @@ wxVector<wxSharedPtr<wxWebViewHistoryItem> > wxWebViewWebKit::GetForwardHistory(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(guint i = 0; i < g_list_length(list); i++)

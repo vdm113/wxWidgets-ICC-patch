@@ -427,7 +427,7 @@ void wxListCtrl::FreeAllInternalData()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < count; n++ )
@@ -672,7 +672,7 @@ int wxListCtrl::GetColumnOrder(int col) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int pos = 0; pos < numCols; pos++ )
@@ -1450,7 +1450,7 @@ bool wxListCtrl::DeleteAllColumns()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( m_colCount > 0 )
@@ -1595,7 +1595,7 @@ long wxListCtrl::FindItem(long start, wxUIntPtr data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < count; n++ )
@@ -1973,7 +1973,7 @@ int WXDLLIMPEXP_CORE wxMSWGetColumnClicked(NMHDR *nmhdr, POINT *ptClick)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int col = 0; col < colCount; col++ )
@@ -2464,7 +2464,7 @@ bool wxListCtrl::MSWOnNotify(int idCtrl, WXLPARAM lParam, WXLPARAM *result)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for ( int currentPos = startPos; ; )
@@ -2628,7 +2628,7 @@ bool wxListCtrl::MSWOnNotify(int idCtrl, WXLPARAM lParam, WXLPARAM *result)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( unsigned n = 0; n < count; n++ )
@@ -2815,7 +2815,7 @@ static void HandleItemPaint(LPNMLVCUSTOMDRAW pLVCD, HFONT hfont)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = -1;; )
@@ -2885,7 +2885,7 @@ static void HandleItemPaint(LPNMLVCUSTOMDRAW pLVCD, HFONT hfont)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int col = 0; col < colCount; col++ )
@@ -3013,7 +3013,7 @@ void wxListCtrl::OnPaint(wxPaintEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int i = top; i < top + GetCountPerPage() + 1; i++ )
@@ -3070,7 +3070,7 @@ void wxListCtrl::OnPaint(wxPaintEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int col = 0; col < numCols; col++)

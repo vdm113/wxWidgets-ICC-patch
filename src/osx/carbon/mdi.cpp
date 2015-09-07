@@ -187,7 +187,7 @@ void wxMDIParentFrame::RemoveChild(wxWindowBase *child)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
@@ -296,7 +296,7 @@ bool wxMDIParentFrame::ShouldBeVisible() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();

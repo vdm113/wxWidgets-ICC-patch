@@ -156,7 +156,7 @@ void wxExtHelpController::DeleteList()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (node)
@@ -188,7 +188,7 @@ bool wxExtHelpController::ParseMapFileLine(const wxString& line)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( isascii(*p) && wxIsspace(*p) )
@@ -211,7 +211,7 @@ bool wxExtHelpController::ParseMapFileLine(const wxString& line)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( isascii(*p) && wxIsspace(*p) )
@@ -225,7 +225,7 @@ bool wxExtHelpController::ParseMapFileLine(const wxString& line)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( isascii(*p) && !wxIsspace(*p) )
@@ -236,7 +236,7 @@ bool wxExtHelpController::ParseMapFileLine(const wxString& line)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( isascii(*p) && wxIsspace(*p) )
@@ -252,7 +252,7 @@ bool wxExtHelpController::ParseMapFileLine(const wxString& line)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( isascii(*p) && wxIsspace(*p) )
@@ -347,7 +347,7 @@ bool wxExtHelpController::LoadFile(const wxString& file)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString& line = input.GetFirstLine();
@@ -387,7 +387,7 @@ bool wxExtHelpController::DisplayContents()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -427,7 +427,7 @@ bool wxExtHelpController::DisplaySection(int sectionNo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -489,7 +489,7 @@ bool wxExtHelpController::KeywordSearch(const wxString& k,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (node)
@@ -517,7 +517,7 @@ bool wxExtHelpController::KeywordSearch(const wxString& k,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (int j=0; ; j++)

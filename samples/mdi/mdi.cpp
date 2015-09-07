@@ -309,7 +309,7 @@ void MyFrame::OnCloseAll(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::const_iterator i = GetChildren().begin();

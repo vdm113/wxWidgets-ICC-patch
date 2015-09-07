@@ -185,7 +185,7 @@ void wxHeaderCtrlBase::SetColumnsOrder(const wxArrayInt& order)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < count; n++ )
@@ -211,7 +211,7 @@ void wxHeaderCtrlBase::ResetColumnsOrder()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < count; n++ )
@@ -277,7 +277,7 @@ wxHeaderCtrlBase::DoResizeColumnIndices(wxArrayInt& colIndices, unsigned int cou
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned n = countOld; n < count; n++ )
@@ -294,7 +294,7 @@ wxHeaderCtrlBase::DoResizeColumnIndices(wxArrayInt& colIndices, unsigned int cou
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned n = 0; n < countOld; n++ )
@@ -325,7 +325,7 @@ void wxHeaderCtrlBase::AddColumnsItems(wxMenu& menu, int idColumnsBase)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < count; n++ )
@@ -391,7 +391,7 @@ bool wxHeaderCtrlBase::ShowCustomizeDialog()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < count; n++ )
@@ -404,7 +404,7 @@ bool wxHeaderCtrlBase::ShowCustomizeDialog()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( pos = 0; pos < count; pos++ )
@@ -428,7 +428,7 @@ bool wxHeaderCtrlBase::ShowCustomizeDialog()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( pos = 0; pos < count; pos++ )

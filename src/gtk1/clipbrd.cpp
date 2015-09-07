@@ -113,7 +113,7 @@ targets_selection_received( GtkWidget *WXUNUSED(widget),
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (unsigned int i=0; i<selection_data->length/sizeof(GdkAtom); i++)
@@ -390,7 +390,7 @@ void wxClipboard::Clear()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (m_waiting) gtk_main_iteration();
@@ -408,7 +408,7 @@ void wxClipboard::Clear()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (m_waiting) gtk_main_iteration();
@@ -475,7 +475,7 @@ bool wxClipboard::AddData( wxDataObject *data )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < m_data->GetFormatCount(); i++)
@@ -570,7 +570,7 @@ bool wxClipboard::IsSupported( const wxDataFormat& format )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (m_waiting) gtk_main_iteration();
@@ -591,7 +591,7 @@ bool wxClipboard::GetData( wxDataObject& data )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < data.GetFormatCount(); i++)
@@ -632,7 +632,7 @@ bool wxClipboard::GetData( wxDataObject& data )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (m_waiting) gtk_main_iteration();
@@ -675,7 +675,7 @@ bool wxClipboard::GetData( wxDataObject& data )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (m_waiting) gtk_main_iteration();

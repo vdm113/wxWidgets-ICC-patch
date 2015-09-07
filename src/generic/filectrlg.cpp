@@ -507,7 +507,7 @@ long wxFileListCtrl::Add( wxFileData *fd, wxListItem &item )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i = 1; i < wxFileData::FileList_Max; i++)
@@ -537,7 +537,7 @@ void wxFileListCtrl::UpdateItem(const wxListItem &item)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i = 1; i < wxFileData::FileList_Max; i++)
@@ -571,7 +571,7 @@ void wxFileListCtrl::UpdateFiles()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )
@@ -642,7 +642,7 @@ void wxFileListCtrl::UpdateFiles()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (cont)
@@ -664,7 +664,7 @@ void wxFileListCtrl::UpdateFiles()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( tokenWild.HasMoreTokens() )
@@ -676,7 +676,7 @@ void wxFileListCtrl::UpdateFiles()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while (cont)
@@ -720,7 +720,7 @@ void wxFileListCtrl::MakeDir()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do {
@@ -840,7 +840,7 @@ void wxFileListCtrl::FreeAllItemsData()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( item.m_itemId != -1 )
@@ -1196,7 +1196,7 @@ wxGenericFileCtrl::DoGetFilenames(wxArrayString& filenames, bool fullPath) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )
@@ -1248,7 +1248,7 @@ bool wxGenericFileCtrl::SetFilename( const wxString& name )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( ;; )
@@ -1323,7 +1323,7 @@ void wxGenericFileCtrl::SetWildcard( const wxString& wildCard )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -1376,7 +1376,7 @@ void wxGenericFileCtrl::OnTextChange( wxCommandEvent &WXUNUSED( event ) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( item != -1 )

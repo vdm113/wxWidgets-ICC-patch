@@ -57,7 +57,7 @@ strcasecmp(const char *s1, const char *s2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (tolower(*us1) == tolower(*us2++))

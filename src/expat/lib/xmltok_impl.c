@@ -113,7 +113,7 @@ PREFIX(scanComment)(const ENCODING *enc, const char *ptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (ptr != end) {
@@ -169,7 +169,7 @@ PREFIX(scanDecl)(const ENCODING *enc, const char *ptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
@@ -263,7 +263,7 @@ PREFIX(scanPi)(const ENCODING *enc, const char *ptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
@@ -280,7 +280,7 @@ PREFIX(scanPi)(const ENCODING *enc, const char *ptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       while (ptr != end) {
@@ -337,7 +337,7 @@ PREFIX(scanCdataSection)(const ENCODING *enc, const char *ptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < 6; i++, ptr += MINBPC(enc)) {
@@ -402,7 +402,7 @@ PREFIX(cdataSectionTok)(const ENCODING *enc, const char *ptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
@@ -453,7 +453,7 @@ PREFIX(scanEndTag)(const ENCODING *enc, const char *ptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
@@ -465,7 +465,7 @@ PREFIX(scanEndTag)(const ENCODING *enc, const char *ptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (ptr += MINBPC(enc); ptr != end; ptr += MINBPC(enc)) {
@@ -519,7 +519,7 @@ PREFIX(scanHexCharRef)(const ENCODING *enc, const char *ptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ptr += MINBPC(enc); ptr != end; ptr += MINBPC(enc)) {
@@ -560,7 +560,7 @@ PREFIX(scanCharRef)(const ENCODING *enc, const char *ptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ptr += MINBPC(enc); ptr != end; ptr += MINBPC(enc)) {
@@ -600,7 +600,7 @@ PREFIX(scanRef)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
@@ -631,7 +631,7 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
@@ -661,7 +661,7 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (;;) {
@@ -695,7 +695,7 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (;;) {
@@ -722,7 +722,7 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (;;) {
@@ -774,7 +774,7 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (;;) {
@@ -858,7 +858,7 @@ PREFIX(scanLt)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
@@ -890,7 +890,7 @@ PREFIX(scanLt)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (ptr != end) {
@@ -990,7 +990,7 @@ PREFIX(contentTok)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
@@ -1061,7 +1061,7 @@ PREFIX(scanPercent)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
@@ -1095,7 +1095,7 @@ PREFIX(scanPoundName)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
@@ -1123,7 +1123,7 @@ PREFIX(scanLit)(int open, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
@@ -1209,7 +1209,7 @@ PREFIX(prologTok)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;) {
@@ -1339,7 +1339,7 @@ PREFIX(prologTok)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
@@ -1413,7 +1413,7 @@ PREFIX(attributeValueTok)(const ENCODING *enc, const char *ptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
@@ -1479,7 +1479,7 @@ PREFIX(entityValueTok)(const ENCODING *enc, const char *ptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
@@ -1548,7 +1548,7 @@ PREFIX(ignoreSectionTok)(const ENCODING *enc, const char *ptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (ptr != end) {
@@ -1603,7 +1603,7 @@ PREFIX(isPublicId)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (; ptr != end; ptr += MINBPC(enc)) {
@@ -1674,7 +1674,7 @@ PREFIX(getAtts)(const ENCODING *enc, const char *ptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ptr += MINBPC(enc);; ptr += MINBPC(enc)) {
@@ -1773,7 +1773,7 @@ PREFIX(charRefNumber)(const ENCODING *enc, const char *ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ptr += MINBPC(enc);
@@ -1807,7 +1807,7 @@ PREFIX(charRefNumber)(const ENCODING *enc, const char *ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (; !CHAR_MATCHES(enc, ptr, ASCII_SEMI); ptr += MINBPC(enc)) {
@@ -1883,7 +1883,7 @@ PREFIX(sameName)(const ENCODING *enc, const char *ptr1, const char *ptr2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -1956,7 +1956,7 @@ PREFIX(nameMatchesAscii)(const ENCODING *enc, const char *ptr1,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (; *ptr2; ptr1 += MINBPC(enc), ptr2++) {
@@ -1977,7 +1977,7 @@ PREFIX(nameLength)(const ENCODING *enc, const char *ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -2011,7 +2011,7 @@ PREFIX(skipS)(const ENCODING *enc, const char *ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -2038,7 +2038,7 @@ PREFIX(updatePosition)(const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (ptr < end) {

@@ -82,7 +82,7 @@ LexerLibrary::LexerLibrary(const char *ModuleName) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (int i = 0; i < nl; i++) {
@@ -127,7 +127,7 @@ void LexerLibrary::Release() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (NULL != lm) {
@@ -180,7 +180,7 @@ void LexerManager::LoadLexerLibrary(const char *module) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (LexerLibrary *ll = first; ll; ll= ll->next) {
@@ -206,7 +206,7 @@ void LexerManager::Clear() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (cur) {

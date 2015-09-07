@@ -206,7 +206,7 @@ void wxStackWalker::ProcessFrames(size_t skip)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < numFrames; n++ )
@@ -276,7 +276,7 @@ int wxStackWalker::InitFrames(wxStackFrame *arr, size_t n, void **addresses, cha
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i=0; i<n; i++)
@@ -301,7 +301,7 @@ int wxStackWalker::InitFrames(wxStackFrame *arr, size_t n, void **addresses, cha
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for  ( size_t i = 0; i < n; i++ )

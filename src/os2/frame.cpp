@@ -789,7 +789,7 @@ void wxFrame::IconizeChildFrames( bool WXUNUSED(bIconize) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (wxWindowList::Node* pNode = GetChildren().GetFirst();
@@ -1149,7 +1149,7 @@ MRESULT EXPENTRY wxFrameMainWndProc( HWND   hWnd,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for(i = 0; i < nItemCount; i++)

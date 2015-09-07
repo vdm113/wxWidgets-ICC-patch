@@ -43,7 +43,7 @@ inline static void getRange( unsigned int start, unsigned int end, Accessor & st
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while( ( i < end - start + 1 ) && ( i < len - 1 ) )
@@ -66,7 +66,7 @@ inline bool HandleString( unsigned int & cur, unsigned int one_too_much, Accesso
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for( ; ; )
@@ -147,7 +147,7 @@ inline bool HandleCommentBlock( unsigned int & cur, unsigned int one_too_much, A
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for( ; ; )
@@ -233,7 +233,7 @@ inline bool HandleCommentLine( unsigned int & cur, unsigned int one_too_much, Ac
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for( ; ; )
@@ -301,7 +301,7 @@ inline bool HandleSpace( unsigned int & cur, unsigned int one_too_much, Accessor
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for( ; ; )
@@ -339,7 +339,7 @@ inline bool HandleInteger( unsigned int & cur, unsigned int one_too_much, Access
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for( ; ; )
@@ -372,7 +372,7 @@ inline bool HandleWord( unsigned int & cur, unsigned int one_too_much, Accessor 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for( ; ; )
@@ -488,7 +488,7 @@ static void ColouriseOpalDoc( unsigned int startPos, int length, int initStyle, 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for( ; ; )

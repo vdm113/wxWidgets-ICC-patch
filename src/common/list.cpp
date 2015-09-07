@@ -139,7 +139,7 @@ int wxNodeBase::IndexOf() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( i = 0; prev; i++ )
@@ -172,7 +172,7 @@ wxListBase::wxListBase(size_t count, void *elements[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for ( size_t n = 0; n < count; n++ )
@@ -200,7 +200,7 @@ void wxListBase::DoCopy(const wxListBase& list)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( wxNodeBase *node = list.GetFirst(); node; node = node->GetNext() )
@@ -217,7 +217,7 @@ void wxListBase::DoCopy(const wxListBase& list)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( wxNodeBase *node = list.GetFirst(); node; node = node->GetNext() )
@@ -234,7 +234,7 @@ void wxListBase::DoCopy(const wxListBase& list)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( wxNodeBase *node = list.GetFirst(); node; node = node->GetNext() )
@@ -256,7 +256,7 @@ wxListBase::~wxListBase()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while ( each != NULL )
@@ -368,7 +368,7 @@ wxNodeBase *wxListBase::Item(size_t n) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxNodeBase *current = GetFirst(); current; current = current->GetNext() )
@@ -394,7 +394,7 @@ wxNodeBase *wxListBase::Find(const wxListKey& key) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxNodeBase *current = GetFirst(); current; current = current->GetNext() )
@@ -416,7 +416,7 @@ wxNodeBase *wxListBase::Find(const void *object) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxNodeBase *current = GetFirst(); current; current = current->GetNext() )
@@ -494,7 +494,7 @@ bool wxListBase::DeleteObject(void *object)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxNodeBase *current = GetFirst(); current; current = current->GetNext() )
@@ -518,7 +518,7 @@ void wxListBase::Clear()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( current )
@@ -541,7 +541,7 @@ void wxListBase::ForEach(wxListIterateFunction F)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxNodeBase *current = GetFirst(); current; current = current->GetNext() )
@@ -557,7 +557,7 @@ void *wxListBase::FirstThat(wxListIterateFunction F)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxNodeBase *current = GetFirst(); current; current = current->GetNext() )
@@ -576,7 +576,7 @@ void *wxListBase::LastThat(wxListIterateFunction F)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxNodeBase *current = GetLast(); current; current = current->GetPrevious() )
@@ -630,7 +630,7 @@ void wxListBase::Sort(const wxSortCompareFunction compfunc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( node = GetFirst(); node; node = node->GetNext() )
@@ -652,7 +652,7 @@ void wxListBase::Sort(const wxSortCompareFunction compfunc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( node = GetFirst(); node; node = node->GetNext() )
@@ -674,7 +674,7 @@ void wxListBase::Reverse()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -701,7 +701,7 @@ void wxListBase::DeleteNodes(wxNodeBase* first, wxNodeBase* last)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node != last)
@@ -758,7 +758,7 @@ bool wxStringList::Delete(const wxChar *s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( current = GetFirst(); current; current = current->GetNext() )
@@ -784,7 +784,7 @@ void wxStringList::DoCopy(const wxStringList& other)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -815,7 +815,7 @@ wxStringList::wxStringList (const wxChar *first, ...)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;)
@@ -851,7 +851,7 @@ wxChar **wxStringList::ListToArray(bool new_copies) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < GetCount(); i++)
@@ -875,7 +875,7 @@ bool wxStringList::Member(const wxChar *s) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxStringListNode *node = GetFirst(); node; node = node->GetNext() )
@@ -921,7 +921,7 @@ void wxStringList::Sort()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( node = GetFirst(); node; node = node->GetNext() )
@@ -937,7 +937,7 @@ void wxStringList::Sort()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( node = GetFirst(); node; node = node->GetNext() )

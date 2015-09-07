@@ -858,7 +858,7 @@ int wxKillAllChildren(long pid, wxSignal sig, wxKillError *krc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do {
@@ -1645,7 +1645,7 @@ extern long wxCharsetToCodepage(const char *name)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )

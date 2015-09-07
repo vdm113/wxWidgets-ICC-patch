@@ -88,7 +88,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((c = getopt(argc, argv, "c:h:r:v:z")) != -1)
@@ -139,7 +139,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; optind < argc-1; optind++) {
@@ -150,7 +150,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			do {
@@ -183,7 +183,7 @@ setupLuma(float c)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < 256; i++)
@@ -223,7 +223,7 @@ cvtClump(unsigned char* op, uint32* raster, uint32 ch, uint32 cw, uint32 w)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (k = 0; k < ch; k++) {
@@ -232,7 +232,7 @@ cvtClump(unsigned char* op, uint32* raster, uint32 ch, uint32 cw, uint32 w)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (j = 0; j < cw; j++) {
@@ -252,7 +252,7 @@ cvtClump(unsigned char* op, uint32* raster, uint32 ch, uint32 cw, uint32 w)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (; j < horizSubSampling; j++)
@@ -263,7 +263,7 @@ cvtClump(unsigned char* op, uint32* raster, uint32 ch, uint32 cw, uint32 w)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; k < vertSubSampling; k++) {
@@ -272,7 +272,7 @@ cvtClump(unsigned char* op, uint32* raster, uint32 ch, uint32 cw, uint32 w)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (j = 0; j < horizSubSampling; j++)
@@ -303,7 +303,7 @@ cvtStrip(unsigned char* op, uint32* raster, uint32 nrows, uint32 width)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; nrows >= vertSubSampling; nrows -= vertSubSampling) {
@@ -313,7 +313,7 @@ cvtStrip(unsigned char* op, uint32* raster, uint32 nrows, uint32 width)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (x = width; x >= horizSubSampling; x -= horizSubSampling) {
@@ -335,7 +335,7 @@ cvtStrip(unsigned char* op, uint32* raster, uint32 nrows, uint32 width)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (x = width; x >= horizSubSampling; x -= horizSubSampling) {
@@ -369,7 +369,7 @@ cvtRaster(TIFF* tif, uint32* raster, uint32 width, uint32 height)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (y = height; (int32) y > 0; y -= nrows) {
@@ -492,7 +492,7 @@ usage(int code)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; stuff[i] != NULL; i++)

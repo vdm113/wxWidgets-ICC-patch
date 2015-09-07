@@ -82,7 +82,7 @@ static void clicked_hook(GtkLinkButton* button, const char*, void*)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (GSList* p = gs_hyperlinkctrl_list; p; p = p->next)

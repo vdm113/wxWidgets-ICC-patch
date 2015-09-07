@@ -203,7 +203,7 @@ void wxRegConfig::SetPath(const wxString& strPath)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < aParts.Count(); n++ ) {
@@ -264,7 +264,7 @@ void wxRegConfig::SetPath(const wxString& strPath)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( ; src < end; src++, dst++ )
@@ -299,7 +299,7 @@ void wxRegConfig::SetPath(const wxString& strPath)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                             while ( *dst != wxCONFIG_PATH_SEPARATOR )
@@ -390,7 +390,7 @@ void wxRegConfig::SetPath(const wxString& strPath)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( ; src < end; src++, dst++ )
@@ -461,7 +461,7 @@ bool wxRegConfig::GetNextGroup(wxString& str, long& lIndex) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( m_keyGlobal.GetNextKey(str, lIndex) ) {
@@ -504,7 +504,7 @@ bool wxRegConfig::GetNextEntry(wxString& str, long& lIndex) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( m_keyGlobal.GetNextValue(str, lIndex) ) {
@@ -544,7 +544,7 @@ size_t wxRegConfig::GetNumberOfEntries(bool WXUNUSED(bRecursive)) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while ( bCont ) {
@@ -569,7 +569,7 @@ size_t wxRegConfig::GetNumberOfGroups(bool WXUNUSED(bRecursive)) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while ( bCont ) {

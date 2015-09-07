@@ -43,7 +43,7 @@ bsearch(const void *key, const void *base, size_t num, size_t size,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( lo < hi )

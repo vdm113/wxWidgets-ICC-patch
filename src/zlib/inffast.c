@@ -131,7 +131,7 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do {
@@ -217,7 +217,7 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                             do {
@@ -231,7 +231,7 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         do {
@@ -244,7 +244,7 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                             do {
@@ -264,7 +264,7 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                             do {
@@ -283,7 +283,7 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                             do {
@@ -298,7 +298,7 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                                 do {
@@ -317,7 +317,7 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                             do {
@@ -331,7 +331,7 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     while (len > 2) {
@@ -353,7 +353,7 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     do {                        /* minimum length is three */

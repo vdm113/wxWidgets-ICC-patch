@@ -161,7 +161,7 @@ const wxMenuInfoHelperList& wxMenuBarBase::GetMenuInfos() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0 ; i < GetMenuCount(); ++i)
@@ -519,7 +519,7 @@ int wxMenuBase::FindItem(const wxString& text) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxMenuItemList::compatibility_iterator node = m_items.GetFirst();
@@ -558,7 +558,7 @@ wxMenuItem *wxMenuBase::FindItem(int itemId, wxMenu **itemMenu) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxMenuItemList::compatibility_iterator node = m_items.GetFirst();
@@ -598,7 +598,7 @@ wxMenuItem *wxMenuBase::FindChildItem(int itemid, size_t *ppos) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( pos = 0; node; pos++ )
@@ -654,7 +654,7 @@ void wxMenuBase::UpdateUI(wxEvtHandler* source)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( node )
@@ -813,7 +813,7 @@ wxWindow *wxMenuBase::GetWindow() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( menu->GetParent() )
@@ -1000,7 +1000,7 @@ int wxMenuBarBase::FindMenu(const wxString& title) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )
@@ -1055,7 +1055,7 @@ wxMenuItem *wxMenuBarBase::FindItem(int itemid, wxMenu **menu) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0, it = m_menus.begin(); !item && (i < count); i++, it++ )
@@ -1077,7 +1077,7 @@ int wxMenuBarBase::FindMenuItem(const wxString& menu, const wxString& item) cons
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( node = m_menus.GetFirst(); node; node = node->GetNext(), i++ )
@@ -1177,7 +1177,7 @@ void wxMenuBarBase::UpdateMenus()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int n = 0; n < nCount; n++)

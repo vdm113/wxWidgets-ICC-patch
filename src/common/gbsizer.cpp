@@ -379,7 +379,7 @@ wxGBSizerItem* wxGridBagSizer::FindItem(wxWindow* window)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -401,7 +401,7 @@ wxGBSizerItem* wxGridBagSizer::FindItem(wxSizer* sizer)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -425,7 +425,7 @@ wxGBSizerItem* wxGridBagSizer::FindItemAtPosition(const wxGBPosition& pos)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -449,7 +449,7 @@ wxGBSizerItem* wxGridBagSizer::FindItemAtPoint(const wxPoint& pt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -475,7 +475,7 @@ wxGBSizerItem* wxGridBagSizer::FindItemWithData(const wxObject* userData)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -511,7 +511,7 @@ wxSize wxGridBagSizer::CalcMin()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -530,7 +530,7 @@ wxSize wxGridBagSizer::CalcMin()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( (int)m_rowHeights.GetCount() <= endrow )
@@ -540,7 +540,7 @@ wxSize wxGridBagSizer::CalcMin()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( (int)m_colWidths.GetCount() <= endcol )
@@ -553,7 +553,7 @@ wxSize wxGridBagSizer::CalcMin()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (idx=row; idx <= endrow; idx++)
@@ -563,7 +563,7 @@ wxSize wxGridBagSizer::CalcMin()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (idx=col; idx <= endcol; idx++)
@@ -583,7 +583,7 @@ wxSize wxGridBagSizer::CalcMin()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (idx=0; idx < m_cols; idx++)
@@ -596,7 +596,7 @@ wxSize wxGridBagSizer::CalcMin()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (idx=0; idx < m_rows; idx++)
@@ -635,7 +635,7 @@ void wxGridBagSizer::RecalcSizes()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (idx=0; idx < m_rows; idx++)
@@ -653,7 +653,7 @@ void wxGridBagSizer::RecalcSizes()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (idx=0; idx < m_cols; idx++)
@@ -671,7 +671,7 @@ void wxGridBagSizer::RecalcSizes()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -690,7 +690,7 @@ void wxGridBagSizer::RecalcSizes()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for(idx=row; idx <= endrow; idx++)
@@ -703,7 +703,7 @@ void wxGridBagSizer::RecalcSizes()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (idx=col; idx <= endcol; idx++)
@@ -733,7 +733,7 @@ void wxGridBagSizer::AdjustForOverflow()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (row=0; row<(int)m_rowHeights.GetCount(); row++)
@@ -745,7 +745,7 @@ void wxGridBagSizer::AdjustForOverflow()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (col=0; col<(int)m_colWidths.GetCount(); col++)
@@ -777,7 +777,7 @@ void wxGridBagSizer::AdjustForOverflow()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (int r=item->GetPos().GetRow(); r<row; r++)
@@ -800,7 +800,7 @@ void wxGridBagSizer::AdjustForOverflow()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (col=0; col<(int)m_colWidths.GetCount(); col++)
@@ -812,7 +812,7 @@ void wxGridBagSizer::AdjustForOverflow()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (row=0; row<(int)m_rowHeights.GetCount(); row++)
@@ -840,7 +840,7 @@ void wxGridBagSizer::AdjustForOverflow()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (int c=item->GetPos().GetCol(); c<col; c++)
@@ -874,7 +874,7 @@ bool wxGridBagSizer::CheckForIntersection(const wxGBPosition& pos, const wxGBSpa
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -905,7 +905,7 @@ wxGBPosition wxGridBagSizer::FindEmptyCell()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (row=0; row<10; row++)
@@ -914,7 +914,7 @@ wxGBPosition wxGridBagSizer::FindEmptyCell()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (col=0; col<10; col++)

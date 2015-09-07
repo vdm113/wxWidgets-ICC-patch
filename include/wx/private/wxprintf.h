@@ -228,7 +228,7 @@ bool wxPrintfConvSpec<CharType>::Parse(const CharType *format)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -362,7 +362,7 @@ bool wxPrintfConvSpec<CharType>::Parse(const CharType *format)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     while ( (*m_pArgEnd >= CharType('0')) &&
@@ -394,7 +394,7 @@ bool wxPrintfConvSpec<CharType>::Parse(const CharType *format)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     do {
@@ -536,7 +536,7 @@ bool wxPrintfConvSpec<CharType>::Parse(const CharType *format)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (!done);
@@ -726,7 +726,7 @@ int wxPrintfConvSpec<CharType>::Process(CharType *buf, size_t lenMax, wxPrintfAr
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (i = 1; i < (size_t)m_nMinWidth; i++)
@@ -740,7 +740,7 @@ int wxPrintfConvSpec<CharType>::Process(CharType *buf, size_t lenMax, wxPrintfAr
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (i = 1; i < (size_t)m_nMinWidth; i++)
@@ -778,7 +778,7 @@ int wxPrintfConvSpec<CharType>::Process(CharType *buf, size_t lenMax, wxPrintfAr
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (i = len; i < m_nMinWidth; i++)
@@ -796,7 +796,7 @@ int wxPrintfConvSpec<CharType>::Process(CharType *buf, size_t lenMax, wxPrintfAr
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (i = len; i < m_nMinWidth; i++)
@@ -882,7 +882,7 @@ struct wxPrintfConvSpecParser
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( const CharType *toparse = fmt; *toparse != wxT('\0'); toparse++ )
@@ -922,7 +922,7 @@ struct wxPrintfConvSpecParser
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( unsigned n = 0; n < numAsterisks; n++ )

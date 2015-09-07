@@ -374,7 +374,7 @@ int ZEXPORT deflateSetDictionary (strm, dictionary, dictLength)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (s->lookahead >= MIN_MATCH) {
@@ -385,7 +385,7 @@ int ZEXPORT deflateSetDictionary (strm, dictionary, dictLength)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do {
@@ -502,7 +502,7 @@ int ZEXPORT deflatePrime (strm, bits, value)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do {
@@ -632,7 +632,7 @@ uLong ZEXPORT deflateBound(strm, sourceLen)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 do {
@@ -645,7 +645,7 @@ uLong ZEXPORT deflateBound(strm, sourceLen)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 do {
@@ -819,7 +819,7 @@ int ZEXPORT deflate (strm, flush)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (s->gzindex < (s->gzhead->extra_len & 0xffff)) {
@@ -856,7 +856,7 @@ int ZEXPORT deflate (strm, flush)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             do {
@@ -895,7 +895,7 @@ int ZEXPORT deflate (strm, flush)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             do {
@@ -1269,7 +1269,7 @@ local uInt longest_match(s, cur_match)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do {
@@ -1307,7 +1307,7 @@ local uInt longest_match(s, cur_match)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do {
@@ -1349,7 +1349,7 @@ local uInt longest_match(s, cur_match)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do {
@@ -1431,7 +1431,7 @@ local uInt longest_match(s, cur_match)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do {
@@ -1472,7 +1472,7 @@ local void check_match(s, start, match, length)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do {
@@ -1514,7 +1514,7 @@ local void fill_window(s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do {
@@ -1556,7 +1556,7 @@ local void fill_window(s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             do {
@@ -1572,7 +1572,7 @@ local void fill_window(s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             do {
@@ -1616,7 +1616,7 @@ local void fill_window(s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (s->insert) {
@@ -1725,7 +1725,7 @@ local block_state deflate_stored(s, flush)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;) {
@@ -1789,7 +1789,7 @@ local block_state deflate_fast(s, flush)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;) {
@@ -1845,7 +1845,7 @@ local block_state deflate_fast(s, flush)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 do {
@@ -1908,7 +1908,7 @@ local block_state deflate_slow(s, flush)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;) {
@@ -1984,7 +1984,7 @@ local block_state deflate_slow(s, flush)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             do {
@@ -2055,7 +2055,7 @@ local block_state deflate_rle(s, flush)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;) {
@@ -2083,7 +2083,7 @@ local block_state deflate_rle(s, flush)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 do {
@@ -2142,7 +2142,7 @@ local block_state deflate_huff(s, flush)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;) {

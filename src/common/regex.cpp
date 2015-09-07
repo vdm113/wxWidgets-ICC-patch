@@ -343,7 +343,7 @@ bool wxRegExImpl::Compile(const wxString& expr, int flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( const wxChar *cptr = expr.c_str(); *cptr; cptr++ )
@@ -532,7 +532,7 @@ int wxRegExImpl::Replace(wxString *text,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( (!maxMatches || countRepl < maxMatches) &&
@@ -558,7 +558,7 @@ int wxRegExImpl::Replace(wxString *text,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( const wxChar *p = replacement.c_str(); *p; p++ )

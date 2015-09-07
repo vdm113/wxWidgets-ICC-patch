@@ -202,7 +202,7 @@ void wxWizardSizer::HidePages()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxSizerItemList::compatibility_iterator node = GetChildren().GetFirst();
@@ -239,7 +239,7 @@ wxSize wxWizardSizer::GetMaxChildSize()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxSizerItemList::compatibility_iterator childNode = m_children.GetFirst();
@@ -278,7 +278,7 @@ wxSize wxWizardSizer::SiblingSize(wxSizerItem *child)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( wxWizardPage *sibling = page->GetNext();
@@ -541,7 +541,7 @@ void wxWizard::FitToPage(const wxWizardPage *page)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( page )
@@ -935,7 +935,7 @@ bool wxWizard::DoLayoutAdaptation()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxSizerItemList::compatibility_iterator node = m_sizerPage->GetChildren().GetFirst(); node; node = node->GetNext() )
@@ -951,7 +951,7 @@ bool wxWizard::DoLayoutAdaptation()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while (page)
@@ -1061,7 +1061,7 @@ bool wxWizard::TileBitmap(const wxRect& rect, wxDC& dc, const wxBitmap& bitmap)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = rect.x; i < rect.x + rect.width; i += w)
@@ -1071,7 +1071,7 @@ bool wxWizard::TileBitmap(const wxRect& rect, wxDC& dc, const wxBitmap& bitmap)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (j = rect.y; j < rect.y + rect.height; j+= h)

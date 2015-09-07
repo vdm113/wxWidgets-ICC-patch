@@ -90,7 +90,7 @@ clearcvec(cv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < cv->mccespace; i++) {
@@ -158,7 +158,7 @@ addmcce(cv, startp, endp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (s = startp, i = len; i > 0; s++, i--) {
@@ -186,7 +186,7 @@ haschr(cv, c)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (p = cv->chrs, i = cv->nchrs; i > 0; p++, i--) {
@@ -199,7 +199,7 @@ haschr(cv, c)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (p = cv->ranges, i = cv->nranges; i > 0; p += 2, i--) {

@@ -338,7 +338,7 @@ bool wxVListBoxComboPopup::HandleKey( int keycode, bool saturate, wxChar keychar
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i=0; i<itemCount; i++)
@@ -465,7 +465,7 @@ void wxVListBoxComboPopup::OnMouseMove(wxMouseEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t line = GetVisibleBegin(); line < lineMax; line++ )
@@ -574,7 +574,7 @@ int wxVListBoxComboPopup::Append(const wxString& item)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( i=0; i<strings.GetCount(); i++ )
@@ -620,7 +620,7 @@ void wxVListBoxComboPopup::ClearClientDatas()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( i=0; i<m_clientDatas.GetCount(); i++ )
@@ -774,7 +774,7 @@ void wxVListBoxComboPopup::CalcWidths()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( i=0; i<n; i++ )
@@ -836,7 +836,7 @@ void wxVListBoxComboPopup::CalcWidths()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( i=0; i<n; i++ )
@@ -912,7 +912,7 @@ void wxVListBoxComboPopup::Populate( const wxArrayString& choices )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i=0; i<n; i++ )
@@ -1019,7 +1019,7 @@ bool wxOwnerDrawnComboBox::Create(wxWindow *parent,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i=0; i<n; i++ )
@@ -1170,7 +1170,7 @@ int wxOwnerDrawnComboBox::DoInsertItems(const wxArrayStringsAdapter& items,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned int i = 0; i < count; ++i )
@@ -1188,7 +1188,7 @@ int wxOwnerDrawnComboBox::DoInsertItems(const wxArrayStringsAdapter& items,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned int i = 0; i < count; ++i, ++pos )

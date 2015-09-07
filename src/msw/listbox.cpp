@@ -127,7 +127,7 @@ bool wxListBox::Create(wxWindow *parent,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < n; i++ )
@@ -413,7 +413,7 @@ int wxListBox::GetSelections(wxArrayInt& aSelections) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( int n = 0; n < countSel; n++ )
@@ -483,7 +483,7 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter & items,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < numItems; i++ )
@@ -595,7 +595,7 @@ void wxListBox::SetHorizontalExtent(const wxString& s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned int i = 0; i < m_noItems; i++ )
@@ -635,7 +635,7 @@ wxSize wxListBox::DoGetBestClientSize() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < m_noItems; i++)
@@ -733,7 +733,7 @@ bool wxListBox::SetFont(const wxFont &font)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned i = 0; i < count; i++ )

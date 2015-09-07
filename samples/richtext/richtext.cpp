@@ -709,7 +709,7 @@ void MyApp::CreateStyles()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 10; i++)
@@ -737,7 +737,7 @@ void MyApp::CreateStyles()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 10; i++)
@@ -767,7 +767,7 @@ void MyApp::CreateStyles()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 10; i++)
@@ -1276,7 +1276,7 @@ void MyFrame::WriteInitialText()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (j = 0; j < table->GetRowCount(); j++)
@@ -1286,7 +1286,7 @@ void MyFrame::WriteInitialText()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < table->GetColumnCount(); i++)
@@ -1885,7 +1885,7 @@ void MyFrame::OnSwitchStyleSheets(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < (int) gs_AlternateStyleSheet->GetParagraphStyleCount(); i++)
@@ -2221,7 +2221,7 @@ void MyRichTextCtrl::PrepareContent(wxRichTextParagraphLayoutBox& container)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (node)
@@ -2235,7 +2235,7 @@ void MyRichTextCtrl::PrepareContent(wxRichTextParagraphLayoutBox& container)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while (childNode)
@@ -2259,7 +2259,7 @@ bool MyRichTextCtrl::CanDeleteRange(wxRichTextParagraphLayoutBox& container, con
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = range.GetStart(); i < range.GetEnd(); i++)
@@ -2402,7 +2402,7 @@ wxRichTextTable* MyRichTextCtrl::FindTable() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (obj)

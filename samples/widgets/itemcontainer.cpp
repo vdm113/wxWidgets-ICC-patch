@@ -145,7 +145,7 @@ void ItemContainerWidgetsPage::EndTest(const wxArrayString& items)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned i = 0; i < count; ++i )
@@ -204,7 +204,7 @@ ItemContainerWidgetsPage::DumpContainerData(const wxArrayString& expected) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < m_container->GetCount(); ++i )
@@ -232,7 +232,7 @@ ItemContainerWidgetsPage::DumpContainerData(const wxArrayString& expected) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < expected.GetCount(); ++i )
@@ -244,7 +244,7 @@ ItemContainerWidgetsPage::DumpContainerData(const wxArrayString& expected) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for( unsigned j = 0; j < m_items.GetCount(); ++j )
@@ -282,7 +282,7 @@ ItemContainerWidgetsPage::MakeArray(const wxSortedArrayString& sorted)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -321,7 +321,7 @@ void ItemContainerWidgetsPage::OnButtonTestItemContainer(wxCommandEvent&)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < m_items.GetCount(); ++i )
@@ -337,7 +337,7 @@ void ItemContainerWidgetsPage::OnButtonTestItemContainer(wxCommandEvent&)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < m_items.GetCount(); ++i )
@@ -352,7 +352,7 @@ void ItemContainerWidgetsPage::OnButtonTestItemContainer(wxCommandEvent&)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < m_items.GetCount(); ++i )
@@ -365,7 +365,7 @@ void ItemContainerWidgetsPage::OnButtonTestItemContainer(wxCommandEvent&)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < m_items.GetCount(); ++i )
@@ -380,7 +380,7 @@ void ItemContainerWidgetsPage::OnButtonTestItemContainer(wxCommandEvent&)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned i = m_items.GetCount(); i; --i )

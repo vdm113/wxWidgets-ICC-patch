@@ -635,7 +635,7 @@ wxPalette *wxDIB::CreatePalette() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( DWORD i = 0; i < biClrUsed; i++, pRGB++ )
@@ -700,7 +700,7 @@ bool wxDIB::Create(const wxImage& image, PixelFormat pf)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int y = 0; y < h; y++ )
@@ -722,7 +722,7 @@ bool wxDIB::Create(const wxImage& image, PixelFormat pf)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for ( x = 0; x < w; x++ )
@@ -743,7 +743,7 @@ bool wxDIB::Create(const wxImage& image, PixelFormat pf)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for ( x = 0; x < w; x++ )
@@ -766,7 +766,7 @@ bool wxDIB::Create(const wxImage& image, PixelFormat pf)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( int x = 0; x < w; x++ )
@@ -835,7 +835,7 @@ wxImage wxDIB::ConvertToImage() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int y = 0; y < h; y++ )
@@ -847,7 +847,7 @@ wxImage wxDIB::ConvertToImage() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int x = 0; x < w; x++ )

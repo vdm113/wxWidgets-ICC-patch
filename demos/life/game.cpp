@@ -132,7 +132,7 @@ Life::Life()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < HASHSIZE; i++)
@@ -166,7 +166,7 @@ void Life::Clear()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < HASHSIZE; i++)
@@ -179,7 +179,7 @@ void Life::Clear()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (c)
@@ -197,7 +197,7 @@ void Life::Clear()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (c)
@@ -260,7 +260,7 @@ void Life::SetPattern(const LifePattern& pattern)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t n = 0; n < data.GetCount(); n++)
@@ -282,7 +282,7 @@ void Life::SetPattern(const LifePattern& pattern)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (size_t k = 0; k < line.Len(); k++)
@@ -316,7 +316,7 @@ LifeCellBox* Life::CreateBox(wxInt32 x, wxInt32 y, wxUint32 hv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i = 1; i <= ALLOCBOXES; i++)
@@ -382,7 +382,7 @@ LifeCellBox* Life::LinkBox(wxInt32 x, wxInt32 y, bool create)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c = m_boxes[hv]; c; c = c->m_hnext)
@@ -443,7 +443,7 @@ LifeCell Life::FindCenter()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c = m_head; c; c = c->m_next)
@@ -477,7 +477,7 @@ LifeCell Life::FindNorth()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c = m_head; c; c = c->m_next)
@@ -505,7 +505,7 @@ LifeCell Life::FindSouth()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c = m_head; c; c = c->m_next)
@@ -533,7 +533,7 @@ LifeCell Life::FindWest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c = m_head; c; c = c->m_next)
@@ -561,7 +561,7 @@ LifeCell Life::FindEast()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c = m_head; c; c = c->m_next)
@@ -598,7 +598,7 @@ void Life::DoLine(wxInt32 x, wxInt32 y, wxUint32 live, wxUint32 old)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (wxInt32 k = 8; k; k--, x++)
@@ -642,7 +642,7 @@ bool Life::FindMore(LifeCell *cells[], size_t *ncells)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( ; m_y <= m_y1; m_y += 8, m_x = m_x0)
@@ -651,7 +651,7 @@ bool Life::FindMore(LifeCell *cells[], size_t *ncells)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( ; m_x <= m_x1; m_x += 8)
@@ -683,7 +683,7 @@ bool Life::FindMore(LifeCell *cells[], size_t *ncells)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( ; m_y <= m_y1; m_y += 8, m_x = m_x0)
@@ -692,7 +692,7 @@ bool Life::FindMore(LifeCell *cells[], size_t *ncells)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( ; m_x <= m_x1; m_x += 8)
@@ -754,7 +754,7 @@ bool Life::NextTic()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (c)
@@ -961,7 +961,7 @@ bool Life::NextTic()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 1; i <= 3; i++)
@@ -979,7 +979,7 @@ bool Life::NextTic()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i <= 2; i++)
@@ -1010,7 +1010,7 @@ bool Life::NextTic()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (c)
@@ -1075,7 +1075,7 @@ bool Life::NextTic()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < 32; i++)
@@ -1137,7 +1137,7 @@ bool LifeModule::OnInit()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (wxUint32 i = 0; i < 0xfffff; i++)
@@ -1151,7 +1151,7 @@ bool LifeModule::OnInit()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int j = 0; j < 4; j++)

@@ -126,7 +126,7 @@ main(argc, argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (--argc) {
@@ -241,7 +241,7 @@ main(argc, argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < Colormap.length; i++) {
@@ -258,7 +258,7 @@ main(argc, argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (row = 0; row < height; row++)

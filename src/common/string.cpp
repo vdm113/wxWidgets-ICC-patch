@@ -137,7 +137,7 @@ struct wxStrCacheDumper
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned n = 0; n < wxString::Cache::SIZE; n++ )
@@ -292,7 +292,7 @@ void wxString::PosLenToImpl(size_t pos, size_t len,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( len && i <= e )
@@ -946,7 +946,7 @@ size_t wxString::find_first_of(const wxChar* sz, size_t nStart, size_t n) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( const_iterator i = begin() + nStart; i != end(); ++idx, ++i )
@@ -968,7 +968,7 @@ size_t wxString::find_first_not_of(const wxChar* sz, size_t nStart, size_t n) co
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( const_iterator i = begin() + nStart; i != end(); ++idx, ++i )
@@ -1010,7 +1010,7 @@ size_t wxString::find_last_of(const wxChar* sz, size_t nStart, size_t n) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( const_reverse_iterator i = rbegin() + (len - nStart - 1);
@@ -1042,7 +1042,7 @@ size_t wxString::find_last_not_of(const wxChar* sz, size_t nStart, size_t n) con
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( const_reverse_iterator i = rbegin() + (len - nStart - 1);
@@ -1065,7 +1065,7 @@ size_t wxString::find_first_not_of(wxUniChar ch, size_t nStart) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( const_iterator i = begin() + nStart; i != end(); ++idx, ++i )
@@ -1096,7 +1096,7 @@ size_t wxString::find_last_not_of(wxUniChar ch, size_t nStart) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( const_reverse_iterator i = rbegin() + (len - nStart - 1);
@@ -1174,7 +1174,7 @@ int wxString::CmpNoCase(const wxString& s) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )
@@ -1195,7 +1195,7 @@ int wxString::CmpNoCase(const wxString& s) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( ; !*thisCur; thisCur++, thatCur++ )
@@ -1238,7 +1238,7 @@ int wxString::CmpNoCase(const wxString& s) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ; i1 != end1 && i2 != end2; ++i1, ++i2 )
@@ -1279,7 +1279,7 @@ wxString wxString::FromAscii(const char *ascii, size_t len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( ; len > 0; --len )
@@ -1323,7 +1323,7 @@ const wxScopedCharBuffer wxString::ToAscii() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( const_iterator i = begin(); i != end(); ++i )
@@ -1535,7 +1535,7 @@ size_t wxString::Replace(const wxString& strOld,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t pos = 0; ; )
@@ -1576,7 +1576,7 @@ size_t wxString::Replace(const wxString& strOld,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( pos = m_impl.find(strOld.m_impl, 0);
@@ -1601,7 +1601,7 @@ size_t wxString::Replace(const wxString& strOld,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( pos = 0; replNum < uiCount; replNum++ )
@@ -1636,7 +1636,7 @@ bool wxString::IsAscii() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( const_iterator i = begin(); i != end(); ++i )
@@ -1655,7 +1655,7 @@ bool wxString::IsWord() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( const_iterator i = begin(); i != end(); ++i )
@@ -1682,7 +1682,7 @@ bool wxString::IsNumber() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ; i != end(); ++i )
@@ -1713,7 +1713,7 @@ wxString& wxString::MakeUpper()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for ( iterator it = begin(), en = end(); it != en; ++it )
@@ -1729,7 +1729,7 @@ wxString& wxString::MakeLower()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for ( iterator it = begin(), en = end(); it != en; ++it )
@@ -1750,7 +1750,7 @@ wxString& wxString::MakeCapitalized()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( ++it; it != en; ++it )
@@ -1792,7 +1792,7 @@ wxString& wxString::Trim(bool bFromRight)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( (psz != rend()) && wxSafeIsspace(*psz) )
@@ -1810,7 +1810,7 @@ wxString& wxString::Trim(bool bFromRight)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( (psz != end()) && wxSafeIsspace(*psz) )
@@ -2243,7 +2243,7 @@ static int DoStringPrintfV(wxString& str,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )
@@ -2391,7 +2391,7 @@ bool wxString::Matches(const wxString& mask) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( *pszMask )
@@ -2455,7 +2455,7 @@ match:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for ( ; *pszMask != wxT('\0'); pszMask++, pszTxt++ ) {
@@ -2481,7 +2481,7 @@ match:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
           while ( *pszMask == wxT('*') || *pszMask == wxT('?') )
@@ -2551,7 +2551,7 @@ int wxString::Freq(wxUniChar ch) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( const_iterator i = begin(); i != end(); ++i )

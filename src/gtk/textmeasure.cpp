@@ -202,7 +202,7 @@ bool wxTextMeasure::DoGetPartialTextExtents(const wxString& text,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (pango_layout_iter_next_cluster(iter))
@@ -218,7 +218,7 @@ bool wxTextMeasure::DoGetPartialTextExtents(const wxString& text,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (i < len)

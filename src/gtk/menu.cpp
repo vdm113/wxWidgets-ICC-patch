@@ -88,7 +88,7 @@ static wxMenu* GetRootParentMenu(wxMenu* menu)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( menu->GetParent() )
@@ -110,7 +110,7 @@ static void UpdateSubMenuItemLabels(wxMenuItem* itemMenu)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxMenuItemList::const_iterator
@@ -165,7 +165,7 @@ void wxMenuBar::Init(size_t n, wxMenu *menus[], const wxString titles[], long st
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < n; ++i )
@@ -221,7 +221,7 @@ DetachFromFrame(wxMenu* menu, wxFrame* frame)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -252,7 +252,7 @@ AttachToFrame(wxMenu* menu, wxFrame* frame)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -294,7 +294,7 @@ void wxMenuBar::SetLayoutDirection(wxLayoutDirection dir)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxMenuList::compatibility_iterator node = m_menus.GetFirst();
@@ -321,7 +321,7 @@ void wxMenuBar::Attach(wxFrame *frame)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -342,7 +342,7 @@ void wxMenuBar::Detach()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -458,7 +458,7 @@ static int FindMenuItemRecursive( const wxMenu *menu, const wxString &menuString
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -481,7 +481,7 @@ int wxMenuBar::FindMenuItem( const wxString &menuString, const wxString &itemStr
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -507,7 +507,7 @@ static wxMenuItem* FindMenuItemByIdRecursive(const wxMenu* menu, int id)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( node && result == NULL )
@@ -532,7 +532,7 @@ wxMenuItem* wxMenuBar::FindItem( int id, wxMenu **menuForItem ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node && result == 0)

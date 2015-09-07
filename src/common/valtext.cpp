@@ -54,7 +54,7 @@ static bool wxIsNumeric(const wxString& val)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator i = val.begin(); i != val.end(); ++i )
@@ -247,7 +247,7 @@ bool CheckString(bool (*func)(const wxUniChar&), const wxString& str)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator i = str.begin(); i != str.end(); ++i )
@@ -290,7 +290,7 @@ bool wxTextValidator::ContainsOnlyIncludedCharacters(const wxString& val) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator i = val.begin(); i != val.end(); ++i )
@@ -309,7 +309,7 @@ bool wxTextValidator::ContainsExcludedCharacters(const wxString& val) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator i = val.begin(); i != val.end(); ++i )
@@ -330,7 +330,7 @@ void wxTextValidator::SetCharIncludes(const wxString& chars)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator i = chars.begin(); i != chars.end(); ++i )
@@ -348,7 +348,7 @@ void wxTextValidator::SetCharExcludes(const wxString& chars)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator i = chars.begin(); i != chars.end(); ++i )

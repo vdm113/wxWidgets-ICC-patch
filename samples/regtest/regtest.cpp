@@ -572,7 +572,7 @@ RegImageList::RegImageList() : wxImageList(16, 16, true)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int n = 0; n < WXSIZEOF(aszIcons); n++ )
@@ -684,7 +684,7 @@ void RegTreeCtrl::AddStdKeys()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int ui = 0; ui < wxRegKey::nStdKeys; ui++ )
@@ -1053,7 +1053,7 @@ bool RegTreeCtrl::TreeNode::OnExpand()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( bCont )
@@ -1077,7 +1077,7 @@ bool RegTreeCtrl::TreeNode::OnExpand()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( bCont )
@@ -1209,7 +1209,7 @@ void RegTreeCtrl::TreeNode::DestroyChildren()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < nCount; n++ )
@@ -1256,7 +1256,7 @@ void RegTreeCtrl::TreeNode::SetRegistryView(wxRegKey::WOW64ViewMode viewMode)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t n = 0; n < nCount; n++)
@@ -1278,7 +1278,7 @@ void RegTreeCtrl::GoTo(const wxString& location)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( tk.HasMoreTokens() )
@@ -1300,7 +1300,7 @@ void RegTreeCtrl::GoTo(const wxString& location)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( size_t key = 0; key < wxRegKey::nStdKeys; key++ )
@@ -1322,7 +1322,7 @@ void RegTreeCtrl::GoTo(const wxString& location)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( id.IsOk() )

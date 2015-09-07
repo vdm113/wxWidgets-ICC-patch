@@ -218,7 +218,7 @@ static gint wxapp_idle_callback( gpointer WXUNUSED(data) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (wxTheApp->ProcessIdle() && (gtk_events_pending() == 0))
@@ -265,7 +265,7 @@ int wxPoll(wxPollFd *ufds, unsigned int nfds, int timeout)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < nfds; i++ )
@@ -294,7 +294,7 @@ int wxPoll(wxPollFd *ufds, unsigned int nfds, int timeout)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < nfds; i++ )
@@ -488,7 +488,7 @@ bool wxApp::OnInitGui()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int r = 0; r < 32; r++)
@@ -498,7 +498,7 @@ bool wxApp::OnInitGui()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int g = 0; g < 32; g++)
@@ -508,7 +508,7 @@ bool wxApp::OnInitGui()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int b = 0; b < 32; b++)
@@ -529,7 +529,7 @@ bool wxApp::OnInitGui()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (int i = 0; i < cmap->size; i++)
@@ -607,7 +607,7 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < argc; i++ )
@@ -634,7 +634,7 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < argcGTK; i++ )
@@ -644,7 +644,7 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( strcmp(wxConvUTF8.cWX2MB(argv[i]), argvGTK[i]) != 0 )
@@ -663,7 +663,7 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < argcGTK; i++ )

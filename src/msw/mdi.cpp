@@ -279,7 +279,7 @@ int wxMDIParentFrame::GetChildFramesCount() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::const_iterator i = GetChildren().begin();
@@ -444,7 +444,7 @@ void wxMDIParentFrame::DoMenuUpdates(wxMenu* menu)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (int n = 0; n < nCount; n++)
@@ -716,7 +716,7 @@ void wxMDIParentFrame::OnMDIChild(wxCommandEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( node )
@@ -1461,7 +1461,7 @@ void wxMDIClientWindow::DoSetSize(int x, int y, int width, int height, int sizeF
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (node)
@@ -1556,7 +1556,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( m_pos++; m_pos < m_numItems; m_pos++ )
@@ -1612,7 +1612,7 @@ void MDIInsertWindowMenu(wxWindow *win, WXHMENU hMenu, HMENU menuWin)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( it.GetNext(buf) )
@@ -1653,7 +1653,7 @@ void MDIRemoveWindowMenu(wxWindow *win, WXHMENU hMenu)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( it.GetNext(buf) )

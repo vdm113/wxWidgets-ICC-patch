@@ -470,7 +470,7 @@ GetTIFFHeader()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < colormapSize; i++)
@@ -489,7 +489,7 @@ GetTIFFHeader()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < colormapSize; i++)
@@ -502,7 +502,7 @@ GetTIFFHeader()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < colormapSize; i++) {
@@ -522,7 +522,7 @@ GetTIFFHeader()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < colormapSize; i++)
@@ -539,7 +539,7 @@ GetTIFFHeader()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < colormapSize; i++)
@@ -581,7 +581,7 @@ CheckAndCorrectColormap()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < colormapSize; i++)
@@ -593,7 +593,7 @@ CheckAndCorrectColormap()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < colormapSize; i++) {
@@ -615,7 +615,7 @@ SimpleGammaCorrection()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < colormapSize; i++) {
@@ -674,7 +674,7 @@ GetVisual()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < colormapSize; i++) {
@@ -717,7 +717,7 @@ GetVisual()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < colormapSize; i++) {
@@ -809,7 +809,7 @@ SearchVisualList(image_depth, visual_class, visual)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < n_visuals; vl++, i++) {
@@ -870,7 +870,7 @@ GetTIFFImage()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < tfImageHeight; i++) {
@@ -881,7 +881,7 @@ GetTIFFImage()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (input_p = scan_line, j = 0; j < tfImageWidth; j++) {
@@ -899,7 +899,7 @@ GetTIFFImage()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (s = 0; s < tfSamplesPerPixel; s++) {
@@ -910,7 +910,7 @@ GetTIFFImage()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (i = 0; i < tfImageHeight; i++) {
@@ -923,7 +923,7 @@ GetTIFFImage()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (j = 0; j < tfImageWidth; j++, output_p += 4)
@@ -942,7 +942,7 @@ GetTIFFImage()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < tfImageHeight; i++, output_p += tfBytesPerRow)
@@ -963,7 +963,7 @@ GetTIFFImage()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < tfImageHeight; i++) {
@@ -976,7 +976,7 @@ GetTIFFImage()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (j = 0; j < tfImageWidth; j += 2, input_p++) {
@@ -994,7 +994,7 @@ GetTIFFImage()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < tfImageHeight; i++) {
@@ -1007,7 +1007,7 @@ GetTIFFImage()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (j = 0; j < tfImageWidth; j += 4, input_p++) {
@@ -1027,7 +1027,7 @@ GetTIFFImage()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < tfImageHeight; i++) {
@@ -1040,7 +1040,7 @@ GetTIFFImage()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (j = 0; j < tfImageWidth; j += 4, input_p++) {

@@ -62,7 +62,7 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < argc; i++ )
@@ -85,7 +85,7 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < argcDFB; i++ )
@@ -95,7 +95,7 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( strcmp(wxConvUTF8.cWX2MB(argv[i]), argvDFB[i]) != 0 )
@@ -114,7 +114,7 @@ bool wxApp::Initialize(int& argc, wxChar **argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < argcDFB; i++ )

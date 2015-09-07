@@ -234,7 +234,7 @@ wxBitmap::wxBitmap(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (nRows = 0; nRows < nHeight; nRows++)
@@ -249,7 +249,7 @@ wxBitmap::wxBitmap(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (nCols = 0; nCols < nBytesPerLine; nCols++)
@@ -268,7 +268,7 @@ wxBitmap::wxBitmap(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (nBits = 0; nBits < 8; nBits++)
@@ -706,7 +706,7 @@ bool wxBitmap::CreateFromImage (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (n = 0; n < nNumDIB; n++)
@@ -732,7 +732,7 @@ bool wxBitmap::CreateFromImage (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (j = 0; j < nHeight; j++)
@@ -747,7 +747,7 @@ bool wxBitmap::CreateFromImage (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < nWidth; i++)
@@ -767,7 +767,7 @@ bool wxBitmap::CreateFromImage (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < nPadding; i++)
@@ -860,7 +860,7 @@ bool wxBitmap::CreateFromImage (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (n = 0; n < nNumDIB; n++)
@@ -886,7 +886,7 @@ bool wxBitmap::CreateFromImage (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int j = 0; j < nHeight; j++)
@@ -901,7 +901,7 @@ bool wxBitmap::CreateFromImage (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (i = 0; i < nWidth; i++)
@@ -933,7 +933,7 @@ bool wxBitmap::CreateFromImage (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (i = 0; i < nPadding; i++)
@@ -1129,7 +1129,7 @@ wxImage wxBitmap::ConvertToImage() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < nHeight; i++)
@@ -1144,7 +1144,7 @@ wxImage wxBitmap::ConvertToImage() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (j = 0; j < nWidth; j++)
@@ -1217,7 +1217,7 @@ wxImage wxBitmap::ConvertToImage() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < nHeight; i++)
@@ -1232,7 +1232,7 @@ wxImage wxBitmap::ConvertToImage() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (j = 0; j < nWidth; j++)
@@ -1611,7 +1611,7 @@ bool wxMask::Create(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int w = 0; w < rBitmap.GetWidth(); w++)
@@ -1626,7 +1626,7 @@ bool wxMask::Create(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int h = 0; h < rBitmap.GetHeight(); h++)

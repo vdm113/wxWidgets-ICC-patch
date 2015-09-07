@@ -61,7 +61,7 @@ static unsigned int GetContinuedPos(unsigned int pos, Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (!IsALineEnd(styler.SafeGetCharAt(pos++))) continue;
@@ -71,7 +71,7 @@ static unsigned int GetContinuedPos(unsigned int pos, Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (IsABlank(styler.SafeGetCharAt(pos++))) continue;
@@ -82,7 +82,7 @@ static unsigned int GetContinuedPos(unsigned int pos, Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (IsABlank(styler.SafeGetCharAt(++pos))) continue;
@@ -107,7 +107,7 @@ static void ColouriseFortranDoc(unsigned int startPos, int length, int initStyle
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((startPos > 1) && (styler.StyleAt(startPos) != SCE_F_WORD)) {
@@ -122,7 +122,7 @@ static void ColouriseFortranDoc(unsigned int startPos, int length, int initStyle
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
@@ -152,7 +152,7 @@ static void ColouriseFortranDoc(unsigned int startPos, int length, int initStyle
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (!sc.atLineEnd && sc.More()) sc.Forward(); // Until line end
@@ -163,7 +163,7 @@ static void ColouriseFortranDoc(unsigned int startPos, int length, int initStyle
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (!sc.atLineEnd && sc.More()) sc.Forward(); // Until line end
@@ -193,7 +193,7 @@ static void ColouriseFortranDoc(unsigned int startPos, int length, int initStyle
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (!sc.atLineEnd && sc.More())
@@ -209,7 +209,7 @@ static void ColouriseFortranDoc(unsigned int startPos, int length, int initStyle
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (IsABlank(chTemp) && j<132) {
@@ -228,7 +228,7 @@ static void ColouriseFortranDoc(unsigned int startPos, int length, int initStyle
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (IsASpace(sc.ch) && sc.More()) sc.Forward();
@@ -417,7 +417,7 @@ static void FoldFortranDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
@@ -434,7 +434,7 @@ static void FoldFortranDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while(IsABlank(chNextNonBlank) && j<endPos) {
@@ -467,7 +467,7 @@ static void FoldFortranDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for(k=0; (k<31 ) && (k<i-lastStart+1 ); k++) {
@@ -485,7 +485,7 @@ static void FoldFortranDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 						while (ch1 != chBrace && j<endPos) {
@@ -501,7 +501,7 @@ static void FoldFortranDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 						while (j<endPos) {
@@ -520,7 +520,7 @@ static void FoldFortranDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 						while (j<endPos) {

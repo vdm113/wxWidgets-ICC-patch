@@ -114,7 +114,7 @@ bool GetNumericToken(size_t len,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( p != end && wxIsdigit(*p) )
@@ -139,7 +139,7 @@ GetAlphaToken(wxString::const_iterator& p,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( p != end && wxIsalpha(*p) )
@@ -179,7 +179,7 @@ GetMonthFromName(wxString::const_iterator& p,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( mon = wxDateTime::Jan; mon < wxDateTime::Inv_Month; wxNextMonth(mon) )
@@ -266,7 +266,7 @@ GetWeekDayFromName(wxString::const_iterator& p,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wd = wxDateTime::Sun; wd < wxDateTime::Inv_WeekDay; wxNextWDay(wd) )
@@ -379,7 +379,7 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator p = format.begin();
@@ -469,7 +469,7 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator p = format.begin(); p != format.end(); ++p )
@@ -514,7 +514,7 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( restart )
@@ -603,7 +603,7 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         while ( (nLostWeekDays % 7) != 0 )
@@ -656,7 +656,7 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         while ( str.find(replacement) != wxString::npos )
@@ -807,7 +807,7 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for ( fmt.clear();
@@ -1140,7 +1140,7 @@ wxDateTime::ParseFormat(const wxString& date,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator fmt = format.begin(); fmt != format.end(); ++fmt )
@@ -1156,7 +1156,7 @@ wxDateTime::ParseFormat(const wxString& date,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while ( input != end && wxIsspace(*input) )
@@ -1188,7 +1188,7 @@ wxDateTime::ParseFormat(const wxString& date,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( wxIsdigit(*++fmt) )
@@ -1801,7 +1801,7 @@ wxDateTime::ParseDateTime(const wxString& date, wxString::const_iterator *end)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( endDate != date.end() && wxIsspace(*endDate) )
@@ -1824,7 +1824,7 @@ wxDateTime::ParseDateTime(const wxString& date, wxString::const_iterator *end)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( endTime != date.end() && wxIsspace(*endTime) )
@@ -1884,7 +1884,7 @@ wxDateTime::ParseDate(const wxString& date, wxString::const_iterator *end)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( p != pEnd && wxIsspace(*p) )
@@ -1908,7 +1908,7 @@ wxDateTime::ParseDate(const wxString& date, wxString::const_iterator *end)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(literalDates); n++ )
@@ -1964,7 +1964,7 @@ wxDateTime::ParseDate(const wxString& date, wxString::const_iterator *end)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( p != pEnd )
@@ -2137,7 +2137,7 @@ wxDateTime::ParseDate(const wxString& date, wxString::const_iterator *end)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for ( n = 0; n < WXSIZEOF(ordinals); n++ )
@@ -2297,7 +2297,7 @@ wxDateTime::ParseTime(const wxString& time, wxString::const_iterator *end)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(stdTimes); n++ )
@@ -2335,7 +2335,7 @@ wxDateTime::ParseTime(const wxString& time, wxString::const_iterator *end)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t nFmt = 0; nFmt < WXSIZEOF(timeFormats); nFmt++ )
@@ -2461,7 +2461,7 @@ wxString wxTimeSpan::Format(const wxString& format) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator pch = format.begin(); pch != format.end(); ++pch )

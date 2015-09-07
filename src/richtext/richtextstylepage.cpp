@@ -197,7 +197,7 @@ bool wxRichTextStylePage::TransferDataToWindow()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (i = 0; i < sheet->GetListStyleCount(); i++)
@@ -222,7 +222,7 @@ bool wxRichTextStylePage::TransferDataToWindow()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (i = 0; i < sheet->GetParagraphStyleCount(); i++)
@@ -248,7 +248,7 @@ bool wxRichTextStylePage::TransferDataToWindow()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (i = 0; i < sheet->GetListStyleCount(); i++)
@@ -266,7 +266,7 @@ bool wxRichTextStylePage::TransferDataToWindow()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (i = 0; i < sheet->GetParagraphStyleCount(); i++)
@@ -284,7 +284,7 @@ bool wxRichTextStylePage::TransferDataToWindow()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (i = 0; i < sheet->GetBoxStyleCount(); i++)
@@ -302,7 +302,7 @@ bool wxRichTextStylePage::TransferDataToWindow()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (i = 0; i < sheet->GetCharacterStyleCount(); i++)

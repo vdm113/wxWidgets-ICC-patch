@@ -127,7 +127,7 @@ void ContractionState::InsertLines(int lineDoc, int lineCount) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int l = 0; l < lineCount; l++) {
@@ -156,7 +156,7 @@ void ContractionState::DeleteLines(int lineDoc, int lineCount) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int l = 0; l < lineCount; l++) {
@@ -188,7 +188,7 @@ bool ContractionState::SetVisible(int lineDocStart, int lineDocEnd, bool isVisib
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (int line = lineDocStart; line <= lineDocEnd; line++) {
@@ -303,7 +303,7 @@ void ContractionState::Check() const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int vline = 0; vline < LinesDisplayed(); vline++) {
@@ -315,7 +315,7 @@ void ContractionState::Check() const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int lineDoc = 0; lineDoc < LinesInDoc(); lineDoc++) {

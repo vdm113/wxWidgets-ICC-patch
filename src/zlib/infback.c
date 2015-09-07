@@ -108,7 +108,7 @@ struct inflate_state FAR *state;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (sym < 144) state->lens[sym++] = 8;
@@ -117,7 +117,7 @@ struct inflate_state FAR *state;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (sym < 256) state->lens[sym++] = 9;
@@ -126,7 +126,7 @@ struct inflate_state FAR *state;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (sym < 280) state->lens[sym++] = 7;
@@ -135,7 +135,7 @@ struct inflate_state FAR *state;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (sym < 288) state->lens[sym++] = 8;
@@ -151,7 +151,7 @@ struct inflate_state FAR *state;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (sym < 32) state->lens[sym++] = 5;
@@ -351,7 +351,7 @@ void FAR *out_desc;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;)
@@ -410,7 +410,7 @@ void FAR *out_desc;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (state->length != 0) {
@@ -455,7 +455,7 @@ void FAR *out_desc;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (state->have < state->ncode) {
@@ -468,7 +468,7 @@ void FAR *out_desc;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (state->have < 19)
@@ -492,7 +492,7 @@ void FAR *out_desc;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (state->have < state->nlen + state->ndist) {
@@ -501,7 +501,7 @@ void FAR *out_desc;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (;;) {
@@ -550,7 +550,7 @@ void FAR *out_desc;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     while (copy--)
@@ -610,7 +610,7 @@ void FAR *out_desc;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (;;) {
@@ -625,7 +625,7 @@ void FAR *out_desc;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (;;) {
@@ -680,7 +680,7 @@ void FAR *out_desc;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (;;) {
@@ -695,7 +695,7 @@ void FAR *out_desc;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (;;) {
@@ -735,7 +735,7 @@ void FAR *out_desc;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             do {
@@ -757,7 +757,7 @@ void FAR *out_desc;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 do {

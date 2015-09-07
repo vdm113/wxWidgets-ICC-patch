@@ -63,7 +63,7 @@ static bool FollowsPostfixOperator(StyleContext &sc, Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (--pos > 0) {
@@ -85,7 +85,7 @@ static bool followsReturnKeyword(StyleContext &sc, Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (--pos > lineStartPos) {
@@ -101,7 +101,7 @@ static bool followsReturnKeyword(StyleContext &sc, Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (*s
@@ -139,7 +139,7 @@ static void ColouriseCoffeeScriptDoc(unsigned int startPos, int length, int init
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (back > 0 && IsSpaceEquiv(styler.StyleAt(--back)))
@@ -163,7 +163,7 @@ static void ColouriseCoffeeScriptDoc(unsigned int startPos, int length, int init
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
@@ -239,7 +239,7 @@ static void ColouriseCoffeeScriptDoc(unsigned int startPos, int length, int init
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					while ((sc.ch < 0x80) && islower(sc.ch))
@@ -333,7 +333,7 @@ static bool IsCommentLine(int line, Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i = pos; i < eol_pos; i++) {
@@ -370,7 +370,7 @@ static void FoldCoffeeScriptDoc(unsigned int startPos, int length, int,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (lineCurrent > 0) {
@@ -395,7 +395,7 @@ static void FoldCoffeeScriptDoc(unsigned int startPos, int length, int,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((lineCurrent <= docLines) && ((lineCurrent <= maxLines) || prevComment)) {
@@ -435,7 +435,7 @@ static void FoldCoffeeScriptDoc(unsigned int startPos, int length, int,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while ((lineNext < docLines) &&
@@ -462,7 +462,7 @@ static void FoldCoffeeScriptDoc(unsigned int startPos, int length, int,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (--skipLine > lineCurrent) {

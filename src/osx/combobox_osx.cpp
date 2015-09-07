@@ -106,7 +106,7 @@ int wxComboBox::DoInsertItems(const wxArrayStringsAdapter& items,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( unsigned int i = 0; i < numItems; ++i, ++pos )
@@ -186,7 +186,7 @@ int wxComboBox::FindString(const wxString& s, bool bCase) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (unsigned i = 0; i < GetCount(); i++)

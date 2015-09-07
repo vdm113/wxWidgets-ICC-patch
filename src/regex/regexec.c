@@ -316,7 +316,7 @@ struct colormap *cm;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (begin = open; begin <= close; begin++) {
@@ -427,7 +427,7 @@ chr **coldp;			/* where to put coldstart pointer */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do {
@@ -444,7 +444,7 @@ chr **coldp;			/* where to put coldstart pointer */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (begin = open; begin <= close; begin++) {
@@ -456,7 +456,7 @@ chr **coldp;			/* where to put coldstart pointer */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (;;) {
@@ -520,7 +520,7 @@ size_t n;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = n-1; i > 0; i--) {
@@ -669,7 +669,7 @@ chr *end;			/* end of same */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (longest(v, d2, mid, end, (int *)NULL) != end) {
@@ -728,7 +728,7 @@ chr *end;			/* end of same */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; t != NULL; t = t->right, i++) {
@@ -852,7 +852,7 @@ chr *end;			/* end of same */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (;;) {
@@ -953,7 +953,7 @@ chr *end;			/* end of same */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (;;) {
@@ -1056,7 +1056,7 @@ chr *end;			/* end of same */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (p = begin; p <= stop && (i < max || max == INFINITY); p += len) {

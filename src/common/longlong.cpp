@@ -808,7 +808,7 @@ wxLongLongWx& wxLongLongWx::operator*=(const wxLongLongWx& ll)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -824,7 +824,7 @@ wxLongLongWx& wxLongLongWx::operator*=(const wxLongLongWx& ll)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((counter < 64) && ((q.m_hi != 0) || (q.m_lo != 0)));
@@ -856,7 +856,7 @@ wxULongLongWx& wxULongLongWx::operator*=(const wxULongLongWx& ll)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -872,7 +872,7 @@ wxULongLongWx& wxULongLongWx::operator*=(const wxULongLongWx& ll)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((counter < 64) && ((q.m_hi != 0) || (q.m_lo != 0)));
@@ -966,7 +966,7 @@ void wxLongLongWx::Divide(const wxLongLongWx& divisorIn,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( remainder < divisor )
@@ -993,7 +993,7 @@ void wxLongLongWx::Divide(const wxLongLongWx& divisorIn,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < nBits; i++ )
@@ -1082,7 +1082,7 @@ void wxULongLongWx::Divide(const wxULongLongWx& divisorIn,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( remainder < divisor )
@@ -1109,7 +1109,7 @@ void wxULongLongWx::Divide(const wxULongLongWx& divisorIn,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < nBits; i++ )
@@ -1356,7 +1356,7 @@ WXDLLIMPEXP_BASE class wxTextInputStream &operator>>(class wxTextInputStream &o,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (ch==wxT(' ') || ch==wxT('\t'))
@@ -1369,7 +1369,7 @@ WXDLLIMPEXP_BASE class wxTextInputStream &operator>>(class wxTextInputStream &o,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (ch>=wxT('0') && ch<=wxT('9')) {
@@ -1397,7 +1397,7 @@ WXDLLIMPEXP_BASE class wxTextInputStream &operator>>(class wxTextInputStream &o,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (ch==wxT(' ') || ch==wxT('\t'))
@@ -1417,7 +1417,7 @@ WXDLLIMPEXP_BASE class wxTextInputStream &operator>>(class wxTextInputStream &o,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (ch>=wxT('0') && ch<=wxT('9')) {

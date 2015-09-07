@@ -69,7 +69,7 @@ void wxMilliSleep(unsigned long milliseconds)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((clock() - start) * 1000 / CLOCKS_PER_SEC < (clock_t)milliseconds)
@@ -342,7 +342,7 @@ long wxExecute(const wxString& command, int flags, wxProcess *process,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (n-- > 0)

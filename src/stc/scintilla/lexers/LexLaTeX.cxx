@@ -50,7 +50,7 @@ struct latexFoldSave {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int i = 0; i < 8; ++i) openBegins[i] = 0;
@@ -61,7 +61,7 @@ struct latexFoldSave {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int i = 0; i < 8; ++i) openBegins[i] = save.openBegins[i];
@@ -100,7 +100,7 @@ private:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (int i = 0; i < 8; ++i) save.openBegins[i] = 0;
@@ -141,7 +141,7 @@ static bool latexIsTagValid(int &i, int l, Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (i < l) {
@@ -151,7 +151,7 @@ static bool latexIsTagValid(int &i, int l, Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (i < l) {
@@ -178,7 +178,7 @@ static bool latexNextNotBlankIs(int i, Accessor &styler, char needle) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (i < styler.Length()) {
@@ -205,7 +205,7 @@ static bool latexLastWordIs(int start, Accessor &styler, const char *needle) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (i < l && i < 31) {
@@ -228,7 +228,7 @@ static bool latexLastWordIsMathEnv(int pos, Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = pos - 1; i >= 0; --i) {
@@ -242,7 +242,7 @@ static bool latexLastWordIsMathEnv(int pos, Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (j = 0; i + j < pos; ++j)
@@ -255,7 +255,7 @@ static bool latexLastWordIsMathEnv(int pos, Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < static_cast<int>(sizeof(mathEnvs) / sizeof(const char *)); ++i)
@@ -292,7 +292,7 @@ void SCI_METHOD LexerLaTeX::Lex(unsigned int startPos, int length, int initStyle
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i = startPos; i < lengthDoc; i++) {
@@ -565,7 +565,7 @@ static int latexFoldSaveToInt(const latexFoldSave &save) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i = 0; i <= save.structLev; ++i)
@@ -588,7 +588,7 @@ void SCI_METHOD LexerLaTeX::Fold(unsigned int startPos, int length, int, IDocume
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do {
@@ -600,7 +600,7 @@ void SCI_METHOD LexerLaTeX::Fold(unsigned int startPos, int length, int, IDocume
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (i = static_cast<int>(startPos); i < static_cast<int>(endPos); ++i) {
@@ -612,7 +612,7 @@ void SCI_METHOD LexerLaTeX::Fold(unsigned int startPos, int length, int, IDocume
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (j = 0; j < 15 && i + 1 < static_cast<int>(endPos); ++j, ++i) {
@@ -631,7 +631,7 @@ void SCI_METHOD LexerLaTeX::Fold(unsigned int startPos, int length, int, IDocume
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (save.structLev > 0 && save.openBegins[save.structLev] == 0)
@@ -645,7 +645,7 @@ void SCI_METHOD LexerLaTeX::Fold(unsigned int startPos, int length, int, IDocume
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (j = 0; j < 7; ++j)
@@ -657,7 +657,7 @@ void SCI_METHOD LexerLaTeX::Fold(unsigned int startPos, int length, int, IDocume
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (j = save.structLev + 1; j < 8; ++j) {

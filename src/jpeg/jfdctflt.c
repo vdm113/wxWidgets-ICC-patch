@@ -81,7 +81,7 @@ jpeg_fdct_float (FAST_FLOAT * data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ctr = DCTSIZE-1; ctr >= 0; ctr--) {
@@ -139,7 +139,7 @@ jpeg_fdct_float (FAST_FLOAT * data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ctr = DCTSIZE-1; ctr >= 0; ctr--) {

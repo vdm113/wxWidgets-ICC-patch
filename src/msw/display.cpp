@@ -355,7 +355,7 @@ wxArrayVideoModes wxDisplayMSW::GetModes(const wxVideoMode& modeMatch) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int iModeNum = 0;
@@ -607,7 +607,7 @@ int wxDisplayFactoryMSW::FindDisplayFromHMONITOR(HMONITOR hmon) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )

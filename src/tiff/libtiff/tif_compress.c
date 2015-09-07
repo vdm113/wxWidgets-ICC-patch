@@ -202,7 +202,7 @@ TIFFFindCODEC(uint16 scheme)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (cd = registeredCODECS; cd; cd = cd->next)
@@ -213,7 +213,7 @@ TIFFFindCODEC(uint16 scheme)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (c = _TIFFBuiltinCODECS; c->name; c++)
@@ -256,7 +256,7 @@ TIFFUnRegisterCODEC(TIFFCodec* c)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (pcd = &registeredCODECS; (cd = *pcd); pcd = &cd->next)
@@ -295,7 +295,7 @@ TIFFGetConfiguredCODECs()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (cd = registeredCODECS; cd; cd = cd->next) {
@@ -314,7 +314,7 @@ TIFFGetConfiguredCODECs()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (c = _TIFFBuiltinCODECS; c->name; c++) {

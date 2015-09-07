@@ -339,7 +339,7 @@ void wxAllocNearestColor(Display *d,Colormap cmp,XColor *xc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(llp = 0;llp < num_colors;llp++) color_defs[llp].pixel = llp;
@@ -355,7 +355,7 @@ void wxAllocNearestColor(Display *d,Colormap cmp,XColor *xc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(llp = 0;llp < num_colors;llp++)

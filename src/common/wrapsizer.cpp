@@ -109,7 +109,7 @@ void wxWrapSizer::ClearRows()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxSizerItemList::iterator i = rows.begin(),
@@ -273,7 +273,7 @@ void wxWrapSizer::CalcMaxSingleItemSize()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxSizerItemList::const_iterator i = m_children.begin();
@@ -315,7 +315,7 @@ void wxWrapSizer::CalcMinFromMajor(int totMajor)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxSizerItemList::const_iterator i = m_children.begin();
@@ -389,7 +389,7 @@ void wxWrapSizer::CalcMinFromMinor(int totMinor)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -449,7 +449,7 @@ void wxWrapSizer::CalcMinFromMinor(int totMinor)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )
@@ -465,7 +465,7 @@ void wxWrapSizer::CalcMinFromMinor(int totMinor)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( node=m_children.GetFirst(); node; node=node->GetNext() )
@@ -506,7 +506,7 @@ void wxWrapSizer::CalcMinFromMinor(int totMinor)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( int ix=0; ix<nrLines; ix++ )
@@ -529,7 +529,7 @@ void wxWrapSizer::CalcMinFromMinor(int totMinor)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxVector<wxWrapLine*>::iterator it=lines.begin(); it<lines.end(); ++it )
@@ -588,7 +588,7 @@ void wxWrapSizer::RecalcSizes()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxSizerItemList::iterator i = m_children.begin();

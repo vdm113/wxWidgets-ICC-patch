@@ -128,7 +128,7 @@ size_t wxDir::Traverse(wxDirTraverser& sink,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( bool cont = GetFirst(&dirname, wxEmptyString,
@@ -164,7 +164,7 @@ size_t wxDir::Traverse(wxDirTraverser& sink,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         do
@@ -202,7 +202,7 @@ size_t wxDir::Traverse(wxDirTraverser& sink,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         while ( !ok );
@@ -233,7 +233,7 @@ size_t wxDir::Traverse(wxDirTraverser& sink,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( cont )

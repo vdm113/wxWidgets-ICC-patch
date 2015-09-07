@@ -360,7 +360,7 @@ int Server::OnExit()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( TList::compatibility_iterator it = m_threadWorkers.GetFirst();
@@ -376,7 +376,7 @@ int Server::OnExit()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( EList::compatibility_iterator it2 = m_eventWorkers.GetFirst();
@@ -459,7 +459,7 @@ void  Server::OnWorkerEvent(WorkerEvent& pEvent)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(TList::compatibility_iterator it = m_threadWorkers.GetFirst(); it ; it = it->GetNext())
@@ -483,7 +483,7 @@ void  Server::OnWorkerEvent(WorkerEvent& pEvent)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(EList::compatibility_iterator it2 = m_eventWorkers.GetFirst(); it2 ; it2 = it2->GetNext())
@@ -550,7 +550,7 @@ wxThread::ExitCode ThreadWorker::Entry()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do
@@ -571,7 +571,7 @@ wxThread::ExitCode ThreadWorker::Entry()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (!m_socket->Error() && to_process != 0);
@@ -601,7 +601,7 @@ wxThread::ExitCode ThreadWorker::Entry()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do
@@ -622,7 +622,7 @@ wxThread::ExitCode ThreadWorker::Entry()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while(!m_socket->Error() && to_process != 0);
@@ -634,7 +634,7 @@ wxThread::ExitCode ThreadWorker::Entry()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do
@@ -653,7 +653,7 @@ wxThread::ExitCode ThreadWorker::Entry()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while(!m_socket->Error() && to_process != 0);
@@ -698,7 +698,7 @@ EventWorker::DoRead()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do
@@ -749,7 +749,7 @@ EventWorker::DoRead()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while(!m_socket->Error() && (2 - m_infill != 0));
@@ -763,7 +763,7 @@ EventWorker::DoRead()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -801,7 +801,7 @@ EventWorker::DoRead()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(!m_socket->Error());
@@ -842,7 +842,7 @@ void  EventWorker::DoWrite()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -890,7 +890,7 @@ void  EventWorker::DoWrite()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (!m_socket->Error());

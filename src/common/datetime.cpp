@@ -419,7 +419,7 @@ void wxDateTime::Tm::AddMonths(int monDiff)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( monDiff < -mon )
@@ -434,7 +434,7 @@ void wxDateTime::Tm::AddMonths(int monDiff)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( monDiff + mon >= MONTHS_IN_YEAR )
@@ -460,7 +460,7 @@ void wxDateTime::Tm::AddDays(int dayDiff)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( dayDiff + mday < 1 )
@@ -476,7 +476,7 @@ void wxDateTime::Tm::AddDays(int dayDiff)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( mday > GetNumOfDaysInMonth(year, mon) )
@@ -2043,7 +2043,7 @@ wxDateTime& wxDateTime::SetToYearDay(wxDateTime::wxDateTime_t yday)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( Month mon = Jan; mon < Inv_Month; wxNextMonth(mon) )
@@ -2178,7 +2178,7 @@ bool wxDateTimeHolidayAuthority::IsHoliday(const wxDateTime& dt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -2208,7 +2208,7 @@ wxDateTimeHolidayAuthority::GetHolidaysInRange(const wxDateTime& dtStart,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t nAuth = 0; nAuth < countAuth; nAuth++ )
@@ -2277,7 +2277,7 @@ size_t wxDateTimeWorkDays::DoGetHolidaysInRange(const wxDateTime& dtStart,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( dt = dtSatFirst; dt <= dtSatLast; dt += wxDateSpan::Week() )
@@ -2290,7 +2290,7 @@ size_t wxDateTimeWorkDays::DoGetHolidaysInRange(const wxDateTime& dtStart,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( dt = dtSunFirst; dt <= dtSunLast; dt += wxDateSpan::Week() )

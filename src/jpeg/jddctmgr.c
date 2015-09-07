@@ -109,7 +109,7 @@ start_pass (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -186,7 +186,7 @@ start_pass (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < DCTSIZE2; i++) {
@@ -225,7 +225,7 @@ start_pass (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < DCTSIZE2; i++) {
@@ -258,7 +258,7 @@ start_pass (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (row = 0; row < DCTSIZE; row++) {
@@ -267,7 +267,7 @@ start_pass (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	  for (col = 0; col < DCTSIZE; col++) {
@@ -310,7 +310,7 @@ jinit_inverse_dct (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;

@@ -65,7 +65,7 @@ static void ColouriseForthDoc(unsigned int startPos, int length, int initStyle, 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward())
@@ -139,7 +139,7 @@ static void ColouriseForthDoc(unsigned int startPos, int length, int initStyle, 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while(sc.More() && IsASCII(sc.chNext) && isxdigit(sc.chNext))
@@ -152,7 +152,7 @@ static void ColouriseForthDoc(unsigned int startPos, int length, int initStyle, 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while(sc.More() && IsASCII(sc.chNext) && (sc.chNext == '0' || sc.chNext == '1'))
@@ -174,7 +174,7 @@ static void ColouriseForthDoc(unsigned int startPos, int length, int initStyle, 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while(sc.More() && IsASCII(sc.chNext) && isspace(sc.chNext))

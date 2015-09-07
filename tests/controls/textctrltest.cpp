@@ -552,7 +552,7 @@ void TextCtrlTestCase::LongText()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < lenPattern - 1; i++)
@@ -568,7 +568,7 @@ void TextCtrlTestCase::LongText()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < numLines; i++)
@@ -582,7 +582,7 @@ void TextCtrlTestCase::LongText()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < numLines; i++)

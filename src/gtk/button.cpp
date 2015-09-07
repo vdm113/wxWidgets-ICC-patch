@@ -269,7 +269,7 @@ GtkLabel *wxButton::GTKGetLabel() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (GList* item = list; item; item = item->next)
@@ -304,7 +304,7 @@ void wxButton::DoApplyWidgetStyle(GtkRcStyle *style)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (GList* item = list; item; item = item->next)

@@ -176,7 +176,7 @@ void UndoHistory::EnsureUndoRoom() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int act = 0; act <= currentAction; act++)
@@ -208,7 +208,7 @@ const char *UndoHistory::AppendAction(actionType at, int position, const char *d
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while ((actPrevious->at == containerAction) && actPrevious->mayCoalesce) {
@@ -308,7 +308,7 @@ void UndoHistory::DeleteUndoHistory() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i = 1; i < maxAction; i++)
@@ -364,7 +364,7 @@ int UndoHistory::StartUndo() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (actions[act].at != startAction && act > 0) {
@@ -397,7 +397,7 @@ int UndoHistory::StartRedo() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (actions[act].at != startAction && act < maxAction) {
@@ -504,7 +504,7 @@ bool CellBuffer::SetStyleFor(int position, int lengthStyle, char styleValue) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (lengthStyle--) {
@@ -637,7 +637,7 @@ void CellBuffer::ResetLineEnds() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i = 0; i < length; i++) {
@@ -699,7 +699,7 @@ void CellBuffer::BasicInsertString(int position, const char *s, int insertLength
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i = 0; i < insertLength; i++) {
@@ -738,7 +738,7 @@ void CellBuffer::BasicInsertString(int position, const char *s, int insertLength
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int j = 0; j < UTF8SeparatorLength-1; j++) {
@@ -794,7 +794,7 @@ void CellBuffer::BasicDeleteChars(int position, int deleteLength) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int i = 0; i < deleteLength; i++) {

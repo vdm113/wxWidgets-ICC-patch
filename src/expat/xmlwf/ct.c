@@ -20,7 +20,7 @@ getTok(const char **pp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -96,7 +96,7 @@ matchkey(const char *start, const char *end, const char *key)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (; start != end; start++, key++)
@@ -129,7 +129,7 @@ getXMLCharset(const char *buf, char *charset)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (p) {
@@ -147,7 +147,7 @@ getXMLCharset(const char *buf, char *charset)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
               while (++p != next - 1) {
@@ -169,7 +169,7 @@ getXMLCharset(const char *buf, char *charset)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
               while (p != next)

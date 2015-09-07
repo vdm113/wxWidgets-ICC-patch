@@ -142,7 +142,7 @@ void StopWatchTestCase::BackwardsClockBug()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < 10; n++ )
@@ -154,7 +154,7 @@ void StopWatchTestCase::BackwardsClockBug()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t m = 0; m < 10000; m++ )

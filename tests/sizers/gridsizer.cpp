@@ -105,7 +105,7 @@ void GridSizerTestCase::SetChildren(const wxVector<wxWindow*>& children,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxVector<wxWindow*>::const_iterator i = children.begin();
@@ -135,7 +135,7 @@ void GridSizerTestCase::Expand()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < 4; n++ )

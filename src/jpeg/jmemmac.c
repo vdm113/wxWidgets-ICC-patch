@@ -248,7 +248,7 @@ jpeg_open_backing_store (j_common_ptr cinfo, backing_store_ptr info,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {

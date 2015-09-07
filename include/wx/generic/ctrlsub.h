@@ -95,7 +95,7 @@ protected:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( unsigned int n = 0; n < numItems; ++n, ++pos )

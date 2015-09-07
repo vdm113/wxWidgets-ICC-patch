@@ -993,7 +993,7 @@ wxUint32 wxSocketBase::DoRead(void* buffer_, wxUint32 nbytes)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( nbytes )
@@ -1118,7 +1118,7 @@ wxSocketBase& wxSocketBase::ReadMsg(void* buffer, wxUint32 nbytes)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 do
@@ -1134,7 +1134,7 @@ wxSocketBase& wxSocketBase::ReadMsg(void* buffer, wxUint32 nbytes)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while ((discard_len > 0) && len2);
@@ -1199,7 +1199,7 @@ wxUint32 wxSocketBase::DoWrite(const void *buffer_, wxUint32 nbytes)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( nbytes )
@@ -1321,7 +1321,7 @@ wxSocketBase& wxSocketBase::Discard()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -1334,7 +1334,7 @@ wxSocketBase& wxSocketBase::Discard()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (ret == MAX_DISCARD_SIZE);
@@ -1534,7 +1534,7 @@ wxSocketBase::DoWait(long timeout, wxSocketEventFlags flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( bool firstTime = true; !m_interrupt; firstTime = false )

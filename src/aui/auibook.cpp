@@ -256,7 +256,7 @@ bool wxAuiTabContainer::RemovePage(wxWindow* wnd)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < page_count; ++i)
@@ -289,7 +289,7 @@ bool wxAuiTabContainer::SetActivePage(wxWindow* wnd)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < page_count; ++i)
@@ -317,7 +317,7 @@ void wxAuiTabContainer::SetNoneActive()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < page_count; ++i)
@@ -343,7 +343,7 @@ int wxAuiTabContainer::GetActivePage() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < page_count; ++i)
@@ -372,7 +372,7 @@ int wxAuiTabContainer::GetIdxFromWindow(wxWindow* wnd) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < page_count; ++i )
@@ -432,7 +432,7 @@ void wxAuiTabContainer::RemoveButton(int id)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < button_count; ++i)
@@ -495,7 +495,7 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < page_count; ++i)
@@ -544,7 +544,7 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < button_count; ++i)
@@ -565,7 +565,7 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < button_count; ++i)
@@ -585,7 +585,7 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < button_count; ++i)
@@ -623,7 +623,7 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < button_count; ++i)
@@ -662,7 +662,7 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < button_count; ++i)
@@ -701,7 +701,7 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = page_count; i < m_tabCloseButtons.GetCount(); ++i)
@@ -713,7 +713,7 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (m_tabCloseButtons.GetCount() < page_count)
@@ -732,7 +732,7 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < m_tabOffset; ++i)
@@ -757,7 +757,7 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = m_tabOffset; i < page_count; ++i)
@@ -813,7 +813,7 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (++i; i < m_tabCloseButtons.GetCount(); ++i)
@@ -868,7 +868,7 @@ bool wxAuiTabContainer::IsTabVisible(int tabPage, int tabOffset, wxDC* dc, wxWin
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < button_count; ++i)
@@ -901,7 +901,7 @@ bool wxAuiTabContainer::IsTabVisible(int tabPage, int tabOffset, wxDC* dc, wxWin
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < button_count; ++i)
@@ -925,7 +925,7 @@ bool wxAuiTabContainer::IsTabVisible(int tabPage, int tabOffset, wxDC* dc, wxWin
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < button_count; ++i)
@@ -958,7 +958,7 @@ bool wxAuiTabContainer::IsTabVisible(int tabPage, int tabOffset, wxDC* dc, wxWin
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = tabOffset; i < page_count; ++i)
@@ -1011,7 +1011,7 @@ void wxAuiTabContainer::MakeTabVisible(int tabPage, wxWindow* win)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < (int) m_pages.GetCount(); i++)
@@ -1048,7 +1048,7 @@ bool wxAuiTabContainer::TabHitTest(int x, int y, wxWindow** hit) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = m_tabOffset; i < page_count; ++i)
@@ -1082,7 +1082,7 @@ bool wxAuiTabContainer::ButtonHitTest(int x, int y,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < button_count; ++i)
@@ -1103,7 +1103,7 @@ bool wxAuiTabContainer::ButtonHitTest(int x, int y,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < button_count; ++i)
@@ -1156,7 +1156,7 @@ void wxAuiTabContainer::DoShowHide()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < page_count; ++i)
@@ -1175,7 +1175,7 @@ void wxAuiTabContainer::DoShowHide()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < page_count; ++i)
@@ -1777,7 +1777,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < page_count; ++i)
@@ -1957,7 +1957,7 @@ wxAuiNotebook::~wxAuiNotebook()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( GetPageCount() > 0 )
@@ -1982,7 +1982,7 @@ void wxAuiNotebook::SetArtProvider(wxAuiTabArt* art)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < pane_count; ++i)
@@ -2057,7 +2057,7 @@ bool wxAuiNotebook::UpdateTabCtrlHeight()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < pane_count; ++i)
@@ -2102,7 +2102,7 @@ wxSize wxAuiNotebook::CalculateNewSplitSize()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < pane_count; ++i)
@@ -2173,7 +2173,7 @@ void wxAuiNotebook::SetWindowStyleFlag(long style)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < pane_count; ++i)
@@ -2555,7 +2555,7 @@ void wxAuiNotebook::DoSizing()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < pane_count; ++i)
@@ -2593,7 +2593,7 @@ wxAuiTabCtrl* wxAuiNotebook::GetActiveTabCtrl()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < pane_count; ++i)
@@ -2635,7 +2635,7 @@ bool wxAuiNotebook::FindTab(wxWindow* page, wxAuiTabCtrl** ctrl, int* idx)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < pane_count; ++i)
@@ -2889,7 +2889,7 @@ void wxAuiNotebook::OnTabDragMotion(wxAuiNotebookEvent& evt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (tab_ctrl)
@@ -2979,7 +2979,7 @@ void wxAuiNotebook::OnTabEndDrag(wxAuiNotebookEvent& evt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (tab_ctrl)
@@ -3024,7 +3024,7 @@ void wxAuiNotebook::OnTabEndDrag(wxAuiNotebookEvent& evt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while (p && !p->IsTopLevel())
@@ -3219,7 +3219,7 @@ wxAuiTabCtrl* wxAuiNotebook::GetTabCtrlFromPoint(const wxPoint& pt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < pane_count; ++i)
@@ -3246,7 +3246,7 @@ wxWindow* wxAuiNotebook::GetTabFrameFromTabCtrl(wxWindow* tab_ctrl)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < pane_count; ++i)
@@ -3275,7 +3275,7 @@ void wxAuiNotebook::RemoveEmptyTabFrames()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < pane_count; ++i)
@@ -3311,7 +3311,7 @@ void wxAuiNotebook::RemoveEmptyTabFrames()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < pane_count; ++i)
@@ -3350,7 +3350,7 @@ void wxAuiNotebook::OnChildFocusNotebook(wxChildFocusEvent& evt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < pane_count; ++i)
@@ -3371,7 +3371,7 @@ void wxAuiNotebook::OnChildFocusNotebook(wxChildFocusEvent& evt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( win )
@@ -3716,7 +3716,7 @@ bool wxAuiNotebook::DeleteAllPages()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(size_t i = 0; i < count; i++)
@@ -3807,7 +3807,7 @@ int wxAuiNotebook::DoModifySelection(size_t n, bool events)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < pane_count; ++i)

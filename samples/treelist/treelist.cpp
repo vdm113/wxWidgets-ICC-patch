@@ -386,7 +386,7 @@ void MyFrame::InitImageList()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < WXSIZEOF(icons); n++ )
@@ -542,7 +542,7 @@ void MyFrame::OnDumpSelection(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( unsigned n = 0; n < numSelected; n++ )

@@ -124,7 +124,7 @@ static void AddChoices( QButtonGroup *qtButtonGroup, QBoxLayout *qtBoxLayout, in
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( count-- > 0 )

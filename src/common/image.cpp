@@ -372,7 +372,7 @@ wxImage wxImage::ShrinkBy( int xFactor , int yFactor ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (long y = 0; y < height; y++)
@@ -382,7 +382,7 @@ wxImage wxImage::ShrinkBy( int xFactor , int yFactor ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (long x = 0; x < width; x++)
@@ -398,7 +398,7 @@ wxImage wxImage::ShrinkBy( int xFactor , int yFactor ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( int y1 = 0 ; y1 < yFactor ; ++y1 )
@@ -409,7 +409,7 @@ wxImage wxImage::ShrinkBy( int xFactor , int yFactor ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( int x1 = 0 ; x1 < xFactor ; ++x1 )
@@ -571,7 +571,7 @@ wxImage wxImage::ResampleNearest(int width, int height) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( long j = 0; j < height; j++ )
@@ -585,7 +585,7 @@ wxImage wxImage::ResampleNearest(int width, int height) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( long i = 0; i < width; i++ )
@@ -632,7 +632,7 @@ void ResampleBoxPrecalc(wxVector<BoxPrecalc>& boxes, int oldDim)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int dst = 0; dst < newDim; ++dst )
@@ -686,7 +686,7 @@ wxImage wxImage::ResampleBox(int width, int height) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int y = 0; y < height; y++ )         // Destination image - Y direction
@@ -699,7 +699,7 @@ wxImage wxImage::ResampleBox(int width, int height) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int x = 0; x < width; x++ )      // Destination image - X direction
@@ -716,7 +716,7 @@ wxImage wxImage::ResampleBox(int width, int height) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( int j = vPrecalc.boxStart; j <= vPrecalc.boxEnd; ++j )
@@ -726,7 +726,7 @@ wxImage wxImage::ResampleBox(int width, int height) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( int i = hPrecalc.boxStart; i <= hPrecalc.boxEnd; ++i )
@@ -779,7 +779,7 @@ void ResampleBilinearPrecalc(wxVector<BilinearPrecalc>& precalcs, int oldDim)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int dsty = 0; dsty < newDim; dsty++ )
@@ -838,7 +838,7 @@ wxImage wxImage::ResampleBilinear(int width, int height) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int dsty = 0; dsty < height; dsty++ )
@@ -856,7 +856,7 @@ wxImage wxImage::ResampleBilinear(int width, int height) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int dstx = 0; dstx < width; dstx++ )
@@ -936,7 +936,7 @@ void ResampleBicubicPrecalc(wxVector<BicubicPrecalc> &aWeight, int oldDim)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int dstd = 0; dstd < newDim; dstd++ )
@@ -952,7 +952,7 @@ void ResampleBicubicPrecalc(wxVector<BicubicPrecalc> &aWeight, int oldDim)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int k = -1; k <= 2; k++ )
@@ -1026,7 +1026,7 @@ wxImage wxImage::ResampleBicubic(int width, int height) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int dsty = 0; dsty < height; dsty++ )
@@ -1039,7 +1039,7 @@ wxImage wxImage::ResampleBicubic(int width, int height) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int dstx = 0; dstx < width; dstx++ )
@@ -1056,7 +1056,7 @@ wxImage wxImage::ResampleBicubic(int width, int height) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( int k = -1; k <= 2; k++ )
@@ -1070,7 +1070,7 @@ wxImage wxImage::ResampleBicubic(int width, int height) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( int i = -1; i <= 2; i++ )
@@ -1135,7 +1135,7 @@ wxImage wxImage::BlurHorizontal(int blurRadius) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int y = 0; y < M_IMGDATA->m_height; y++ )
@@ -1157,7 +1157,7 @@ wxImage wxImage::BlurHorizontal(int blurRadius) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int kernel_x = -blurRadius; kernel_x <= blurRadius; kernel_x++ )
@@ -1192,7 +1192,7 @@ wxImage wxImage::BlurHorizontal(int blurRadius) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int x = 1; x < M_IMGDATA->m_width; x++ )
@@ -1262,7 +1262,7 @@ wxImage wxImage::BlurVertical(int blurRadius) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int x = 0; x < M_IMGDATA->m_width; x++ )
@@ -1284,7 +1284,7 @@ wxImage wxImage::BlurVertical(int blurRadius) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int kernel_y = -blurRadius; kernel_y <= blurRadius; kernel_y++ )
@@ -1319,7 +1319,7 @@ wxImage wxImage::BlurVertical(int blurRadius) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int y = 1; y < M_IMGDATA->m_height; y++ )
@@ -1415,7 +1415,7 @@ wxImage wxImage::Rotate90( bool clockwise ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (long ii = 0; ii < width; )
@@ -1427,7 +1427,7 @@ wxImage wxImage::Rotate90( bool clockwise ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (long j = 0; j < height; j++)
@@ -1440,7 +1440,7 @@ wxImage wxImage::Rotate90( bool clockwise ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (long i = ii; i < next_ii; i++)
@@ -1473,7 +1473,7 @@ wxImage wxImage::Rotate90( bool clockwise ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (long ii = 0; ii < width; )
@@ -1485,7 +1485,7 @@ wxImage wxImage::Rotate90( bool clockwise ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (long j = 0; j < height; j++)
@@ -1497,7 +1497,7 @@ wxImage wxImage::Rotate90( bool clockwise ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (long i = ii; i < next_ii; i++)
@@ -1553,7 +1553,7 @@ wxImage wxImage::Rotate180() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (long j = 0; j < height; j++)
@@ -1563,7 +1563,7 @@ wxImage wxImage::Rotate180() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (long i = 0; i < width; i++)
@@ -1584,7 +1584,7 @@ wxImage wxImage::Rotate180() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (long j = 0; j < height; ++j)
@@ -1594,7 +1594,7 @@ wxImage wxImage::Rotate180() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (long i = 0; i < width; ++i)
@@ -1628,7 +1628,7 @@ wxImage wxImage::Mirror( bool horizontally ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (long j = 0; j < height; j++)
@@ -1640,7 +1640,7 @@ wxImage wxImage::Mirror( bool horizontally ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (long i = 0; i < width; i++)
@@ -1666,7 +1666,7 @@ wxImage wxImage::Mirror( bool horizontally ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (long jj = 0; jj < height; ++jj)
@@ -1676,7 +1676,7 @@ wxImage wxImage::Mirror( bool horizontally ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (long i = 0; i < width; ++i) {
@@ -1693,7 +1693,7 @@ wxImage wxImage::Mirror( bool horizontally ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (long i = 0; i < height; i++)
@@ -1717,7 +1717,7 @@ wxImage wxImage::Mirror( bool horizontally ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (long jj = 0; jj < height; ++jj)
@@ -1774,7 +1774,7 @@ wxImage wxImage::GetSubImage( const wxRect &rect ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (long j = 0; j < subheight; ++j)
@@ -1894,7 +1894,7 @@ void wxImage::Paste( const wxImage &image, int x, int y )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int j = 0; j < height; j++)
@@ -1922,7 +1922,7 @@ void wxImage::Paste( const wxImage &image, int x, int y )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int j = 0; j < height; j++,
@@ -1950,7 +1950,7 @@ void wxImage::Paste( const wxImage &image, int x, int y )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int j = 0; j < height; j++)
@@ -1960,7 +1960,7 @@ void wxImage::Paste( const wxImage &image, int x, int y )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int i = 0; i < width*3; i+=3)
@@ -1995,7 +1995,7 @@ void wxImage::Replace( unsigned char r1, unsigned char g1, unsigned char b1,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int j = 0; j < h; j++)
@@ -2004,7 +2004,7 @@ void wxImage::Replace( unsigned char r1, unsigned char g1, unsigned char b1,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < w; i++)
@@ -2053,7 +2053,7 @@ wxImage wxImage::ConvertToGreyscale(double weight_r, double weight_g, double wei
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (size--)
@@ -2101,7 +2101,7 @@ wxImage wxImage::ConvertToMono( unsigned char r, unsigned char g, unsigned char 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( long i = 0; i < size; i++, srcd += 3, tard += 3 )
@@ -2142,7 +2142,7 @@ wxImage wxImage::ConvertToDisabled(unsigned char brightness) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (size--)
@@ -2247,7 +2247,7 @@ void wxImage::SetRGB( const wxRect& rect_, unsigned char r, unsigned char g, uns
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (y = y1; y < y2; y++)
@@ -2258,7 +2258,7 @@ void wxImage::SetRGB( const wxRect& rect_, unsigned char r, unsigned char g, uns
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (x = x1; x < x2; x++)
@@ -2407,7 +2407,7 @@ wxImage::ConvertColourToAlpha(unsigned char r, unsigned char g, unsigned char b)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int y = 0; y < h; y++ )
@@ -2417,7 +2417,7 @@ wxImage::ConvertColourToAlpha(unsigned char r, unsigned char g, unsigned char b)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int x = 0; x < w; x++ )
@@ -2480,7 +2480,7 @@ void wxImage::InitAlpha()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned char *src = M_IMGDATA->m_data;
@@ -2647,7 +2647,7 @@ bool wxImage::SetMaskFromImage(const wxImage& mask,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int j = 0; j < h; j++)
@@ -2657,7 +2657,7 @@ bool wxImage::SetMaskFromImage(const wxImage& mask,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < w; i++)
@@ -2718,7 +2718,7 @@ bool wxImage::ConvertAlphaToMask(unsigned char mr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int y = 0; y < h; y++)
@@ -2728,7 +2728,7 @@ bool wxImage::ConvertAlphaToMask(unsigned char mr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int x = 0; x < w; x++, imgdata += 3, alphadata++)
@@ -3062,7 +3062,7 @@ bool wxImage::CanRead( wxInputStream &stream )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxList::compatibility_iterator node = list.GetFirst(); node; node = node->GetNext() )
@@ -3088,7 +3088,7 @@ int wxImage::GetImageCount( wxInputStream &stream, wxBitmapType type )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxList::compatibility_iterator node = list.GetFirst();
@@ -3164,7 +3164,7 @@ bool wxImage::DoLoad(wxImageHandler& handler, wxInputStream& stream, int index)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( (maxWidth && width > maxWidth) ||
@@ -3219,7 +3219,7 @@ bool wxImage::LoadFile( wxInputStream& stream, wxBitmapType type, int index )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxList::compatibility_iterator node = list.GetFirst();
@@ -3378,7 +3378,7 @@ wxImageHandler *wxImage::FindHandler( const wxString& name )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -3399,7 +3399,7 @@ wxImageHandler *wxImage::FindHandler( const wxString& extension, wxBitmapType bi
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -3425,7 +3425,7 @@ wxImageHandler *wxImage::FindHandler(wxBitmapType bitmapType )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -3445,7 +3445,7 @@ wxImageHandler *wxImage::FindHandlerMime( const wxString& mimetype )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -3472,7 +3472,7 @@ void wxImage::CleanUpHandlers()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -3497,7 +3497,7 @@ wxString wxImage::GetImageExtWildcard()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( Node )
@@ -3509,7 +3509,7 @@ wxString wxImage::GetImageExtWildcard()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < Handler->GetAltExtensions().size(); i++)
@@ -3674,7 +3674,7 @@ void wxImage::RotateHue(double angle)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do
@@ -3821,7 +3821,7 @@ wxImageHistogram::FindFirstUnusedColour(unsigned char *r,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( find(key) != end() )
@@ -3898,7 +3898,7 @@ unsigned long wxImage::CountColours( unsigned long stopafter ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned long j = 0; (j < size) && (nentries <= stopafter) ; j++)
@@ -3934,7 +3934,7 @@ unsigned long wxImage::ComputeHistogram( wxImageHistogram &h ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned long n = 0; n < size; n++ )
@@ -4002,7 +4002,7 @@ wxImage wxImage::Rotate(double angle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 1; i < h; i++)
@@ -4019,7 +4019,7 @@ wxImage wxImage::Rotate(double angle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 1; i < h; i++)
@@ -4093,7 +4093,7 @@ wxImage wxImage::Rotate(double angle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int y = 0; y < rH; y++)
@@ -4103,7 +4103,7 @@ wxImage wxImage::Rotate(double angle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int x = 0; x < rW; x++)
@@ -4256,7 +4256,7 @@ wxImage wxImage::Rotate(double angle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int y = 0; y < rH; y++)
@@ -4266,7 +4266,7 @@ wxImage wxImage::Rotate(double angle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int x = 0; x < rW; x++)

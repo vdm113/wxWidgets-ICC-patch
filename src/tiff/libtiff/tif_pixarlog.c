@@ -140,7 +140,7 @@ horizontalAccumulateF(uint16 *wp, int n, int stride, float *op,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -169,7 +169,7 @@ horizontalAccumulateF(uint16 *wp, int n, int stride, float *op,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -193,7 +193,7 @@ horizontalAccumulateF(uint16 *wp, int n, int stride, float *op,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -230,7 +230,7 @@ horizontalAccumulate12(uint16 *wp, int n, int stride, int16 *op,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -259,7 +259,7 @@ horizontalAccumulate12(uint16 *wp, int n, int stride, int16 *op,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -284,7 +284,7 @@ horizontalAccumulate12(uint16 *wp, int n, int stride, int16 *op,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -315,7 +315,7 @@ horizontalAccumulate16(uint16 *wp, int n, int stride, uint16 *op,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -337,7 +337,7 @@ horizontalAccumulate16(uint16 *wp, int n, int stride, uint16 *op,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -357,7 +357,7 @@ horizontalAccumulate16(uint16 *wp, int n, int stride, uint16 *op,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -388,7 +388,7 @@ horizontalAccumulate11(uint16 *wp, int n, int stride, uint16 *op)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -408,7 +408,7 @@ horizontalAccumulate11(uint16 *wp, int n, int stride, uint16 *op)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -428,7 +428,7 @@ horizontalAccumulate11(uint16 *wp, int n, int stride, uint16 *op)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -458,7 +458,7 @@ horizontalAccumulate8(uint16 *wp, int n, int stride, unsigned char *op,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -480,7 +480,7 @@ horizontalAccumulate8(uint16 *wp, int n, int stride, unsigned char *op,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -500,7 +500,7 @@ horizontalAccumulate8(uint16 *wp, int n, int stride, unsigned char *op,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -536,7 +536,7 @@ horizontalAccumulate8abgr(uint16 *wp, int n, int stride, unsigned char *op,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -566,7 +566,7 @@ horizontalAccumulate8abgr(uint16 *wp, int n, int stride, unsigned char *op,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -590,7 +590,7 @@ horizontalAccumulate8abgr(uint16 *wp, int n, int stride, unsigned char *op,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -692,7 +692,7 @@ PixarLogMakeTables(PixarLogState *sp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < nlin; i++)  {
@@ -705,7 +705,7 @@ PixarLogMakeTables(PixarLogState *sp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = nlin; i < TSIZE; i++)
@@ -718,7 +718,7 @@ PixarLogMakeTables(PixarLogState *sp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < TSIZEP1; i++)  {
@@ -734,7 +734,7 @@ PixarLogMakeTables(PixarLogState *sp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < lt2size; i++)  {
@@ -754,7 +754,7 @@ PixarLogMakeTables(PixarLogState *sp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 16384; i++)  {
@@ -763,7 +763,7 @@ PixarLogMakeTables(PixarLogState *sp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((i/16383.)*(i/16383.) > ToLinearF[j]*ToLinearF[j+1])
@@ -777,7 +777,7 @@ PixarLogMakeTables(PixarLogState *sp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 256; i++)  {
@@ -786,7 +786,7 @@ PixarLogMakeTables(PixarLogState *sp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((i/255.)*(i/255.) > ToLinearF[j]*ToLinearF[j+1])
@@ -986,7 +986,7 @@ PixarLogDecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do {
@@ -1039,7 +1039,7 @@ PixarLogDecode(TIFF* tif, uint8* op, tmsize_t occ, uint16 s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < nsamples; i += llen, up += llen) {
@@ -1170,7 +1170,7 @@ horizontalDifferenceF(float *ip, int n, int stride, uint16 *wp, uint16 *FromLT2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -1192,7 +1192,7 @@ horizontalDifferenceF(float *ip, int n, int stride, uint16 *wp, uint16 *FromLT2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -1213,7 +1213,7 @@ horizontalDifferenceF(float *ip, int n, int stride, uint16 *wp, uint16 *FromLT2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -1249,7 +1249,7 @@ horizontalDifference16(unsigned short *ip, int n, int stride,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -1269,7 +1269,7 @@ horizontalDifference16(unsigned short *ip, int n, int stride,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -1290,7 +1290,7 @@ horizontalDifference16(unsigned short *ip, int n, int stride,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -1326,7 +1326,7 @@ horizontalDifference8(unsigned char *ip, int n, int stride,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -1346,7 +1346,7 @@ horizontalDifference8(unsigned char *ip, int n, int stride,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -1367,7 +1367,7 @@ horizontalDifference8(unsigned char *ip, int n, int stride,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (n > 0) {
@@ -1425,7 +1425,7 @@ PixarLogEncode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0, up = sp->tbuf; i < n; i += llen, up += llen) {
@@ -1471,7 +1471,7 @@ PixarLogEncode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do {
@@ -1509,7 +1509,7 @@ PixarLogPostEncode(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do {

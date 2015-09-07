@@ -73,7 +73,7 @@ static void GetTextSegment(Accessor &styler, unsigned int start, unsigned int en
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; (i < end - start + 1) && (i < len-1); i++) {
@@ -90,7 +90,7 @@ static const char *GetNextWord(Accessor &styler, unsigned int start, char *s, si
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; i < sLen-1; i++) {
@@ -129,7 +129,7 @@ static script_type segIsScriptingIndicator(Accessor &styler, unsigned int start,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (const char *t=s; t<xml; t++) {
@@ -304,7 +304,7 @@ static int classifyTagHTML(unsigned int start, unsigned int end,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int cPos = start; cPos <= end && i < 30; cPos++) {
@@ -344,7 +344,7 @@ static int classifyTagHTML(unsigned int start, unsigned int end,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (unsigned int cPos = end; cPos <= end + 200; cPos++) {
@@ -376,7 +376,7 @@ static void classifyWordHTJS(unsigned int start, unsigned int end,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; i < end - start + 1 && i < 30; i++) {
@@ -424,7 +424,7 @@ static void classifyWordHTPy(unsigned int start, unsigned int end, WordList &key
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; i < end - start + 1 && i < 30; i++) {
@@ -470,7 +470,7 @@ static bool isWordHSGML(unsigned int start, unsigned int end, WordList &keywords
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; i < end - start + 1 && i < 30; i++) {
@@ -488,7 +488,7 @@ static bool isWordCdata(unsigned int start, unsigned int end, Accessor &styler) 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; i < end - start + 1 && i < 30; i++) {
@@ -611,7 +611,7 @@ static int FindPhpStringDelimiter(char *phpStringDelimiter, const int phpStringD
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (i < lengthDoc && (styler[i] == ' ' || styler[i] == '\t'))
@@ -637,7 +637,7 @@ static int FindPhpStringDelimiter(char *phpStringDelimiter, const int phpStringD
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (j = i; j < lengthDoc && !isLineEnd(styler[j]); j++) {
@@ -693,7 +693,7 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while ((startPos > 0) && (InTagState(styler.StyleAt(startPos - 1)))) {
@@ -710,7 +710,7 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (startPos > 0 && (isPHPStringState(state) || !isLineEnd(styler[startPos - 1]))) {
@@ -815,7 +815,7 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (--back) {
@@ -836,7 +836,7 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i = startPos; i < lengthDoc; i++) {
@@ -881,7 +881,7 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 						while ((j < lengthDoc) && IsASpaceOrTab(styler.SafeGetCharAt(j))) {
@@ -911,7 +911,7 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 						for (int j = 0; Findlevel > 0; j++) {
@@ -1027,7 +1027,7 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					do {
@@ -1459,7 +1459,7 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (setHTMLWord.Contains(static_cast<unsigned char>(styler.SafeGetCharAt(i + size))))
@@ -1877,7 +1877,7 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					while (IsASCII(chNext) && islower(chNext)) {   // gobble regex flags

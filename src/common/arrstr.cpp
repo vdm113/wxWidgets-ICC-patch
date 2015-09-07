@@ -50,7 +50,7 @@ wxArrayString::wxArrayString(size_t sz, const char** a)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i=0; i < sz; i++)
@@ -67,7 +67,7 @@ wxArrayString::wxArrayString(size_t sz, const wchar_t** a)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i=0; i < sz; i++)
@@ -84,7 +84,7 @@ wxArrayString::wxArrayString(size_t sz, const wxString* a)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i=0; i < sz; i++)
@@ -141,7 +141,7 @@ void wxArrayString::Copy(const wxArrayString& src)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for ( size_t n = 0; n < src.m_nCount; n++ )
@@ -192,7 +192,7 @@ wxString *wxArrayString::Grow(size_t nIncrement)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for ( size_t j = 0; j < m_nCount; j++ )
@@ -246,7 +246,7 @@ void wxArrayString::Alloc(size_t nSize)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t j = 0; j < m_nCount; j++ )
@@ -272,7 +272,7 @@ void wxArrayString::Shrink()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t j = 0; j < m_nCount; j++ )
@@ -300,7 +300,7 @@ int wxArrayString::Index(const wxString& str, bool bCase, bool bFromEnd) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( lo < hi ) {
@@ -327,7 +327,7 @@ int wxArrayString::Index(const wxString& str, bool bCase, bool bFromEnd) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do {
@@ -339,7 +339,7 @@ int wxArrayString::Index(const wxString& str, bool bCase, bool bFromEnd) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( ui != 0 );
@@ -351,7 +351,7 @@ int wxArrayString::Index(const wxString& str, bool bCase, bool bFromEnd) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for( size_t ui = 0; ui < m_nCount; ui++ ) {
@@ -378,7 +378,7 @@ size_t wxArrayString::Add(const wxString& str, size_t nInsert)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( lo < hi ) {
@@ -412,7 +412,7 @@ size_t wxArrayString::Add(const wxString& str, size_t nInsert)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < nInsert; i++)
@@ -440,7 +440,7 @@ void wxArrayString::Insert(const wxString& str, size_t nIndex, size_t nInsert)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (int j = m_nCount - nIndex - 1; j >= 0; j--)
@@ -451,7 +451,7 @@ void wxArrayString::Insert(const wxString& str, size_t nIndex, size_t nInsert)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (size_t i = 0; i < nInsert; i++)
@@ -478,7 +478,7 @@ wxArrayString::insert(iterator it, const_iterator first, const_iterator last)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( first != last )
@@ -512,7 +512,7 @@ void wxArrayString::SetCount(size_t count)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( m_nCount < count )
@@ -531,7 +531,7 @@ void wxArrayString::RemoveAt(size_t nIndex, size_t nRemove)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for ( size_t j =  0; j < m_nCount - nIndex -nRemove; j++)
@@ -622,7 +622,7 @@ bool wxArrayString::operator==(const wxArrayString& a) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < m_nCount; n++ )
@@ -663,7 +663,7 @@ wxString wxJoin(const wxArrayString& arr, const wxChar sep, const wxChar escape)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < count; i++ )
@@ -680,7 +680,7 @@ wxString wxJoin(const wxArrayString& arr, const wxChar sep, const wxChar escape)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )
@@ -693,7 +693,7 @@ wxString wxJoin(const wxArrayString& arr, const wxChar sep, const wxChar escape)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( wxString::const_iterator i = arr[n].begin(),
@@ -730,7 +730,7 @@ wxArrayString wxSplit(const wxString& str, const wxChar sep, const wxChar escape
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator i = str.begin(),

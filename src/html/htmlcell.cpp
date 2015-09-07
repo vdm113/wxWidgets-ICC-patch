@@ -235,7 +235,7 @@ wxPoint wxHtmlCell::GetAbsPos(wxHtmlCell *rootCell) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (wxHtmlCell *parent = m_Parent; parent && parent != rootCell;
@@ -255,7 +255,7 @@ wxHtmlCell *wxHtmlCell::GetRootCell() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( c->m_Parent )
@@ -271,7 +271,7 @@ unsigned wxHtmlCell::GetDepth() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (wxHtmlCell *p = m_Parent; p; p = p->m_Parent)
@@ -292,7 +292,7 @@ bool wxHtmlCell::IsBefore(wxHtmlCell *cell) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (; d1 != d2; d1-- )
@@ -303,7 +303,7 @@ bool wxHtmlCell::IsBefore(wxHtmlCell *cell) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (; d1 != d2; d2-- )
@@ -317,7 +317,7 @@ bool wxHtmlCell::IsBefore(wxHtmlCell *cell) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( c1 && c2 )
@@ -329,7 +329,7 @@ bool wxHtmlCell::IsBefore(wxHtmlCell *cell) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( c1 )
@@ -423,7 +423,7 @@ void wxHtmlWordCell::Split(const wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while( i < len && pt1.x >= widths[i] )
@@ -441,7 +441,7 @@ void wxHtmlWordCell::Split(const wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( pt1.x > 0 && i < len )
@@ -465,7 +465,7 @@ void wxHtmlWordCell::Split(const wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while( j < len && pt2.x >= widths[j] )
@@ -484,7 +484,7 @@ void wxHtmlWordCell::Split(const wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( pt2.x > 0 && j < len )
@@ -625,7 +625,7 @@ void wxHtmlWordCell::Draw(wxDC& dc, int x, int y,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( nextCell && nextCell->IsFormattingCell() )
@@ -712,7 +712,7 @@ wxString wxHtmlWordWithTabsCell::GetPartAsText(int begin, int end) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ; pos < begin; ++i )
@@ -737,7 +737,7 @@ wxString wxHtmlWordWithTabsCell::GetPartAsText(int begin, int end) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ; pos < end; ++i )
@@ -787,7 +787,7 @@ wxHtmlContainerCell::~wxHtmlContainerCell()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( cell )
@@ -853,7 +853,7 @@ wxHtmlContainerCell::AdjustPagebreak(int *pagebreak,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (c)
@@ -919,7 +919,7 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext())
@@ -944,7 +944,7 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (cell != NULL)
@@ -989,7 +989,7 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             do
@@ -1030,7 +1030,7 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while (line != cell)
@@ -1067,7 +1067,7 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         for ( c = line; c != cell; c = c->GetNext() )
@@ -1088,7 +1088,7 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         while (line !=cell && !line->IsLinebreakAllowed())
@@ -1111,7 +1111,7 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         for ( int n = 0; line != cell; line = line->GetNext() )
@@ -1143,7 +1143,7 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     while (line != cell)
@@ -1177,7 +1177,7 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (cell)
@@ -1316,7 +1316,7 @@ void wxHtmlContainerCell::Draw(wxDC& dc, int x, int y, int view_y1, int view_y2,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext())
@@ -1355,7 +1355,7 @@ void wxHtmlContainerCell::DrawInvisible(wxDC& dc, int x, int y,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext())
@@ -1451,7 +1451,7 @@ const wxHtmlCell* wxHtmlContainerCell::Find(int condition, const void* param) co
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext())
@@ -1474,7 +1474,7 @@ wxHtmlCell *wxHtmlContainerCell::FindCellByPos(wxCoord x, wxCoord y,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( const wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext() )
@@ -1497,7 +1497,7 @@ wxHtmlCell *wxHtmlContainerCell::FindCellByPos(wxCoord x, wxCoord y,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( const wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext() )
@@ -1521,7 +1521,7 @@ wxHtmlCell *wxHtmlContainerCell::FindCellByPos(wxCoord x, wxCoord y,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( const wxHtmlCell *cell = m_Cells; cell; cell = cell->GetNext() )
@@ -1566,7 +1566,7 @@ wxHtmlCell *wxHtmlContainerCell::GetFirstTerminal() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (wxHtmlCell *c = m_Cells; c; c = c->GetNext())
@@ -1595,7 +1595,7 @@ wxHtmlCell *wxHtmlContainerCell::GetLastTerminal() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (c = m_Cells; c; c = c->GetNext())
@@ -1618,7 +1618,7 @@ static bool IsEmptyContainer(wxHtmlContainerCell *cell)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxHtmlCell *c = cell->GetFirstChild(); c; c = c->GetNext() )
@@ -1647,7 +1647,7 @@ void wxHtmlContainerCell::RemoveExtraSpacing(bool top, bool bottom)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( c = m_Cells; c; c = c->GetNext() )
@@ -1681,7 +1681,7 @@ void wxHtmlContainerCell::RemoveExtraSpacing(bool top, bool bottom)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( c = m_Cells; c; c = c->GetNext() )
@@ -1692,7 +1692,7 @@ void wxHtmlContainerCell::RemoveExtraSpacing(bool top, bool bottom)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( int i = arr.GetCount() - 1; i >= 0; i--)
@@ -1834,7 +1834,7 @@ void wxHtmlWidgetCell::Draw(wxDC& WXUNUSED(dc),
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (c)
@@ -1869,7 +1869,7 @@ void wxHtmlWidgetCell::DrawInvisible(wxDC& WXUNUSED(dc),
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (c)
@@ -1912,7 +1912,7 @@ const wxHtmlCell* wxHtmlTerminalCellsInterator::operator++()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -1934,7 +1934,7 @@ const wxHtmlCell* wxHtmlTerminalCellsInterator::operator++()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( m_pos->GetNext() == NULL )
@@ -1950,7 +1950,7 @@ const wxHtmlCell* wxHtmlTerminalCellsInterator::operator++()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( m_pos->GetFirstChild() != NULL )

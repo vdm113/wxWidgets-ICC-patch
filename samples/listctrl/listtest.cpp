@@ -433,7 +433,7 @@ void MyFrame::OnDeselectAll(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < n; i++)
@@ -451,7 +451,7 @@ void MyFrame::OnSelectAll(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < n; i++)
@@ -527,7 +527,7 @@ void MyFrame::InitWithListItems()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < m_numListItems; i++ )
@@ -570,7 +570,7 @@ void MyFrame::InitWithReportItems()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < m_numListItems; i++ )
@@ -626,7 +626,7 @@ void MyFrame::InitWithIconItems(bool withText, bool sameIcon)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < NUM_ICONS; i++ )
@@ -749,7 +749,7 @@ void MyFrame::OnFind(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < itemCount; i++ )
@@ -774,7 +774,7 @@ void MyFrame::OnShowSelInfo(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( item != -1 )
@@ -815,7 +815,7 @@ static wxString DumpIntArray(const wxArrayInt& a)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -859,7 +859,7 @@ void MyFrame::OnGetColOrder(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
@@ -875,7 +875,7 @@ void MyFrame::OnGetColOrder(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
@@ -898,7 +898,7 @@ void MyFrame::OnShowColInfo(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int c = 0; c < count; c++ )
@@ -1335,7 +1335,7 @@ void MyListCtrl::OnListKeyDown(wxListEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( item != -1 )

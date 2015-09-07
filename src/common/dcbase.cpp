@@ -595,7 +595,7 @@ void wxDCImpl::DrawLines(const wxPointList *list, wxCoord xoffset, wxCoord yoffs
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxPointList::compatibility_iterator node = list->GetFirst(); node; node = node->GetNext(), i++ )
@@ -623,7 +623,7 @@ void wxDCImpl::DrawPolygon(const wxPointList *list,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxPointList::compatibility_iterator node = list->GetFirst(); node; node = node->GetNext(), i++ )
@@ -659,7 +659,7 @@ wxDCImpl::DoDrawPolyPolygon(int n,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = j = lastOfs = 0; i < n; i++)
@@ -673,7 +673,7 @@ wxDCImpl::DoDrawPolyPolygon(int n,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < j; i++)
@@ -683,7 +683,7 @@ wxDCImpl::DoDrawPolyPolygon(int n,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 2; i <= n; i++)
@@ -702,7 +702,7 @@ wxDCImpl::DoDrawPolyPolygon(int n,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = j = 0; i < n; i++)
@@ -731,7 +731,7 @@ void wxDCImpl::DrawSpline(int n, const wxPoint points[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < n; i++ )
@@ -773,7 +773,7 @@ void wx_quadratic_spline(double a1, double b1, double a2, double b2, double a3, 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (wx_spline_pop(&x1, &y1, &x2, &y2, &x3, &y3, &x4, &y4)) {
@@ -857,7 +857,7 @@ static void wx_spline_draw_point_array(wxDC *dc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -904,7 +904,7 @@ void wxDCImpl::DoDrawSpline( const wxPointList *points )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((node = node->GetNext())
@@ -971,7 +971,7 @@ void wxDCImpl::DoGradientFillLinear(const wxRect& rect,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (x >= xDelta)
@@ -1016,7 +1016,7 @@ void wxDCImpl::DoGradientFillLinear(const wxRect& rect,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (y > 0)
@@ -1095,7 +1095,7 @@ void wxDCImpl::DoGradientFillConcentric(const wxRect& rect,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxInt32 x = 0; x < rect.GetWidth(); x++ )
@@ -1105,7 +1105,7 @@ void wxDCImpl::DoGradientFillConcentric(const wxRect& rect,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxInt32 y = 0; y < rect.GetHeight(); y++ )
@@ -1266,7 +1266,7 @@ void wxDC::DrawLabel(const wxString& text,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator pc = text.begin(); ; ++pc )
@@ -1485,7 +1485,7 @@ void wxDCImpl::DoDrawEllipticArcRot( wxCoord x, wxCoord y,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( node = list.GetFirst(); node; node = node->GetNext(), i++ )
@@ -1529,7 +1529,7 @@ void wxDCImpl::Rotate( wxPointList* points, double angle, wxPoint center )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( node = points->GetFirst(); node; node = node->GetNext() )
@@ -1590,7 +1590,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while( sa<0 ) sa += 360;
@@ -1599,7 +1599,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while( ea<0 ) ea += 360;
@@ -1608,7 +1608,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while( sa>=360 ) sa -= 360;
@@ -1617,7 +1617,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while( ea>=360 ) ea -= 360;
@@ -1663,7 +1663,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( x = 0; x <= a; ++x )
@@ -1676,7 +1676,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while( y2 > c1 - c2 * x2 && y > 0 )
@@ -1719,7 +1719,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while( !bReady )
@@ -1730,7 +1730,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for( node = pointsarray[q].GetFirst(); node; node = node->GetNext() )
@@ -1780,7 +1780,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for( q = 0; q < 4; ++q )
@@ -1791,7 +1791,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for( node = pointsarray[q].GetFirst(); node; node = node->GetNext() )
@@ -1810,7 +1810,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for( node = pointsarray[0].GetFirst(); node; node = node->GetNext() )
@@ -1823,7 +1823,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for( node = pointsarray[1].GetFirst(); node; node = node->GetNext() )
@@ -1836,7 +1836,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for( node = pointsarray[2].GetFirst(); node; node = node->GetNext() )
@@ -1849,7 +1849,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for( node = pointsarray[3].GetFirst(); node; node = node->GetNext() )

@@ -174,7 +174,7 @@ BENCHMARK_FUNC_WITH_INIT(IPCPokeAdvise, ConnInit, ConnDone)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( !conn->GotAdvised() )

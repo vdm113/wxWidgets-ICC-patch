@@ -114,7 +114,7 @@ static void strcpyLC(char* szDst, const char* szSrc, int cch)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
  for (i = 0, ch = szSrc[i]; i < cch && ch != 0; ch = szSrc[++i])
@@ -142,7 +142,7 @@ struct servent * WINSOCKAPI getservbyport(int port, const char * proto)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
  while (NULL != ps->s_name)
@@ -183,7 +183,7 @@ struct servent * WINSOCKAPI getservbyname(const char * name,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
  while (NULL != ps->s_name)
@@ -213,7 +213,7 @@ struct protoent * WINSOCKAPI getprotobynumber(int proto)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
  while (NULL != pr->p_name)

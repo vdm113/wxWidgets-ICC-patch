@@ -86,7 +86,7 @@ _TIFFPrintField(FILE* fd, const TIFFField *fip,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for(j = 0; j < value_count; j++) {
@@ -211,7 +211,7 @@ _TIFFPrettyPrintField(TIFF* tif, const TIFFField *fip, FILE* fd, uint32 tag,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for(i = 0; i < value_count; i++)
@@ -396,7 +396,7 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < td->td_extrasamples; i++) {
@@ -429,7 +429,7 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (cp = td->td_inknames; 
@@ -528,7 +528,7 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < count; ++i)
@@ -543,7 +543,7 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < count; ++i)
@@ -578,7 +578,7 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (l = 0; l < n; l++)
@@ -597,7 +597,7 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < 3; i++)
@@ -615,7 +615,7 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (l = 0; l < n; l++) {
@@ -626,7 +626,7 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (i = 1; i < td->td_samplesperpixel; i++)
@@ -644,7 +644,7 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < td->td_nsubifd; i++)
@@ -671,7 +671,7 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for(i = 0; i < count; i++) {
@@ -766,7 +766,7 @@ TIFFPrintDirectory(TIFF* tif, FILE* fd, long flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (s = 0; s < td->td_nstrips; s++)
@@ -798,7 +798,7 @@ _TIFFprintAsciiBounded(FILE* fd, const char* cp, int max_chars)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; max_chars > 0 && *cp != '\0'; cp++, max_chars--) {
@@ -813,7 +813,7 @@ _TIFFprintAsciiBounded(FILE* fd, const char* cp, int max_chars)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (tp = "\tt\bb\rr\nn\vv"; *tp; tp++)

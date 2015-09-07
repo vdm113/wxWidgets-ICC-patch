@@ -64,7 +64,7 @@ png_error,(png_const_structrp png_ptr, png_const_charp error_message),
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (offset = 1; offset<15; offset++)
@@ -79,7 +79,7 @@ png_error,(png_const_structrp png_ptr, png_const_charp error_message),
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < offset - 1; i++)
@@ -145,7 +145,7 @@ png_safecat(png_charp buffer, size_t bufsize, size_t pos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          while (*string != '\0' && pos < bufsize-1)
@@ -180,7 +180,7 @@ png_format_number(png_const_charp start, png_charp end, int format,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    while (end > start && (number != 0 || count < mincount))
@@ -271,7 +271,7 @@ png_warning(png_const_structrp png_ptr, png_const_charp warning_message)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (offset = 1; offset < 15; offset++)
@@ -352,7 +352,7 @@ png_formatted_warning(png_const_structrp png_ptr, png_warning_parameters p,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    while (i<(sizeof msg)-1 && *message != '\0')
@@ -374,7 +374,7 @@ png_formatted_warning(png_const_structrp png_ptr, png_warning_parameters p,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          while (valid_parameters[parameter] != parameter_char &&
@@ -397,7 +397,7 @@ png_formatted_warning(png_const_structrp png_ptr, png_warning_parameters p,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (i<(sizeof msg)-1 && *parm != '\0' && parm < pend)
@@ -502,7 +502,7 @@ png_format_buffer(png_const_structrp png_ptr, png_charp buffer, png_const_charp
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    while (ishift >= 0)
@@ -539,7 +539,7 @@ png_format_buffer(png_const_structrp png_ptr, png_charp buffer, png_const_charp
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       while (iin < PNG_MAX_ERROR_TEXT-1 && error_message[iin] != '\0')
@@ -791,7 +791,7 @@ png_default_error,(png_const_structrp png_ptr, png_const_charp error_message),
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (offset = 0; offset<15; offset++)
@@ -861,7 +861,7 @@ png_default_warning(png_const_structrp png_ptr, png_const_charp warning_message)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (offset = 0; offset < 15; offset++)

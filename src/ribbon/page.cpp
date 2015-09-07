@@ -227,7 +227,7 @@ void wxRibbonPage::SetArtProvider(wxRibbonArtProvider* art)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
@@ -338,7 +338,7 @@ bool wxRibbonPage::ScrollPixels(int pixels)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
@@ -421,7 +421,7 @@ bool wxRibbonPage::ScrollSections(int sections)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(wxWindowList::compatibility_iterator
@@ -599,7 +599,7 @@ void wxRibbonPage::RemoveChild(wxWindowBase *child)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(src = 0, dst = 0; src < count; ++src, ++dst)
@@ -637,7 +637,7 @@ bool wxRibbonPage::Realize()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
@@ -680,7 +680,7 @@ void wxRibbonPage::PopulateSizeCalcArray(wxSize (wxWindow::*get_size)(void) cons
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
@@ -735,7 +735,7 @@ bool wxRibbonPage::DoActualLayout()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(size_index = 0; size_index < m_size_calc_array_size; ++size_index)
@@ -805,7 +805,7 @@ bool wxRibbonPage::DoActualLayout()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
@@ -977,7 +977,7 @@ bool wxRibbonPage::ExpandPanels(wxOrientation direction, int maximum_amount)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(maximum_amount > 0)
@@ -991,7 +991,7 @@ bool wxRibbonPage::ExpandPanels(wxOrientation direction, int maximum_amount)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
@@ -1089,7 +1089,7 @@ bool wxRibbonPage::CollapsePanels(wxOrientation direction, int minimum_amount)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(minimum_amount > 0)
@@ -1109,7 +1109,7 @@ bool wxRibbonPage::CollapsePanels(wxOrientation direction, int minimum_amount)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for(wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
@@ -1131,7 +1131,7 @@ bool wxRibbonPage::CollapsePanels(wxOrientation direction, int minimum_amount)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for(wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
@@ -1217,7 +1217,7 @@ bool wxRibbonPage::DismissExpandedPanel()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
@@ -1246,7 +1246,7 @@ wxSize wxRibbonPage::GetMinSize() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
@@ -1294,7 +1294,7 @@ wxSize wxRibbonPage::DoGetBestSize() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
@@ -1327,7 +1327,7 @@ wxSize wxRibbonPage::DoGetBestSize() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();

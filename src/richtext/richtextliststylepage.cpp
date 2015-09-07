@@ -565,7 +565,7 @@ iaculis malesuada. Donec bibendum ipsum ut ante porta fringilla.\n");
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 10; i++)

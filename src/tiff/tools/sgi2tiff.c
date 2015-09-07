@@ -76,7 +76,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((c = getopt(argc, argv, "c:p:r:")) != -1)
@@ -182,7 +182,7 @@ processCompressOptions(char* opt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while( cp )
@@ -229,7 +229,7 @@ cpContig(IMAGE* in, TIFF* out)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (y = in->ysize-1; y >= 0; y--) {
@@ -243,7 +243,7 @@ cpContig(IMAGE* in, TIFF* out)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (x = 0; x < in->xsize; x++) {
@@ -267,7 +267,7 @@ cpContig(IMAGE* in, TIFF* out)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (y = in->ysize-1; y >= 0; y--) {
@@ -282,7 +282,7 @@ cpContig(IMAGE* in, TIFF* out)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (x = 0; x < in->xsize; x++) {
@@ -304,7 +304,7 @@ cpContig(IMAGE* in, TIFF* out)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (y = in->ysize-1; y >= 0; y--) {
@@ -314,7 +314,7 @@ cpContig(IMAGE* in, TIFF* out)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (x = in->xsize-1; x >= 0; x--)
@@ -347,7 +347,7 @@ cpSeparate(IMAGE* in, TIFF* out)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (z = 0; z < in->zsize; z++) {
@@ -356,7 +356,7 @@ cpSeparate(IMAGE* in, TIFF* out)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (y = in->ysize-1; y >= 0; y--) {
@@ -366,7 +366,7 @@ cpSeparate(IMAGE* in, TIFF* out)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (x = 0; x < in->xsize; x++)
@@ -423,7 +423,7 @@ usage(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; stuff[i] != NULL; i++)

@@ -107,7 +107,7 @@ void wxStatusBar::UpdateFields()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( !m_qtPanes.isEmpty() )
@@ -121,7 +121,7 @@ void wxStatusBar::UpdateFields()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < m_panes.GetCount(); i++)

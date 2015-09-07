@@ -646,7 +646,7 @@ void wxMenuItem::Check(bool check)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( int n = start; n <= end && node; n++ )
@@ -1432,7 +1432,7 @@ int wxMenuItem::MSGetMenuItemPos() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < menuItems; i++ )

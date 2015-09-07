@@ -84,7 +84,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((c = getopt(argc, argv, "ltz:")) != -1)
@@ -116,7 +116,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (tiffcmp(tif1, tif2)) {
@@ -161,7 +161,7 @@ usage(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; stuff[i] != NULL; i++)
@@ -224,7 +224,7 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (row = 0; row < imagelength; row++) {
@@ -235,7 +235,7 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (s = 0; s < samplesperpixel; s++) {
@@ -252,7 +252,7 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (row = 0; row < imagelength; row++) {
@@ -263,7 +263,7 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (s = 0; s < samplesperpixel; s++) {
@@ -280,7 +280,7 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (s = 0; s < samplesperpixel; s++)
@@ -289,7 +289,7 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (row = 0; row < imagelength; row++) {
@@ -307,7 +307,7 @@ tiffcmp(TIFF* tif1, TIFF* tif2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (row = 0; row < imagelength; row++) {
@@ -422,7 +422,7 @@ ContigCompare(int sample, uint32 row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
           for (pix = 0; pix < imagewidth; pix += ppb) {
@@ -433,7 +433,7 @@ ContigCompare(int sample, uint32 row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
               for(s = 0; s < samples_to_test; s++) {
@@ -459,7 +459,7 @@ ContigCompare(int sample, uint32 row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
           for (pix = 0; pix < imagewidth; pix++) {
@@ -470,7 +470,7 @@ ContigCompare(int sample, uint32 row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
               for(s = 0; s < samples_to_test; s++) {
@@ -493,7 +493,7 @@ ContigCompare(int sample, uint32 row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (pix = 0; pix < imagewidth; pix++) {
@@ -504,7 +504,7 @@ ContigCompare(int sample, uint32 row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for(s = 0; s < samples_to_test; s++) {
@@ -525,7 +525,7 @@ ContigCompare(int sample, uint32 row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (pix = 0; pix < imagewidth; pix++) {
@@ -536,7 +536,7 @@ ContigCompare(int sample, uint32 row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for(s = 0; s < samples_to_test; s++) {
@@ -583,7 +583,7 @@ PrintIntDiff(uint32 row, int sample, uint32 pix, uint32 w1, uint32 w2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (; mask2 && pix < imagewidth;
@@ -658,7 +658,7 @@ SeparateCompare(int reversed, int sample, uint32 row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (pixel = 0; npixels-- > 0; pixel++, cp1 += samplesperpixel, p2++) {
@@ -757,7 +757,7 @@ CheckShortArrayTag(TIFF* tif1, TIFF* tif2, int tag, char* name)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (i = 0; i < n1; i++)
@@ -769,7 +769,7 @@ CheckShortArrayTag(TIFF* tif1, TIFF* tif2, int tag, char* name)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (i = 0; i < n2; i++)

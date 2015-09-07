@@ -168,7 +168,7 @@ private:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int y = 0; y < opts.height; ++y )
@@ -198,7 +198,7 @@ private:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int n = 0; n < opts.numIters; n++ )
@@ -300,7 +300,7 @@ private:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int n = 0; n < opts.numIters; n++ )
@@ -342,7 +342,7 @@ private:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int n = 0; n < opts.numIters; n++ )
@@ -378,7 +378,7 @@ private:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int n = 0; n < opts.numIters; n++ )
@@ -414,7 +414,7 @@ private:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int n = 0; n < opts.numIters; n++ )
@@ -450,7 +450,7 @@ private:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int n = 0; n < opts.numIters; n++ )
@@ -463,7 +463,7 @@ private:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( int y = 0; y < opts.height; ++y )
@@ -475,7 +475,7 @@ private:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for ( int x = 0; x < opts.width; ++x )

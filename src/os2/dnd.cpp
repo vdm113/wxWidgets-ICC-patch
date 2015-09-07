@@ -178,7 +178,7 @@ MRESULT CIDropTarget::DragOver ()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < ulItems; i++)
@@ -261,7 +261,7 @@ MRESULT CIDropTarget::Drop ()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < ulItems; i++)
@@ -366,7 +366,7 @@ wxDataFormat wxDropTarget::GetSupportedFormat (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (n = 0; n < ulFormats; n++)
@@ -441,7 +441,7 @@ wxDataFormat wxDropTarget::GetSupportedFormat (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < ulItems; i++)
@@ -637,7 +637,7 @@ void wxDropSource::Init ()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ULONG i = 0; i < m_ulItems; i++)

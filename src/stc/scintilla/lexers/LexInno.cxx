@@ -67,7 +67,7 @@ static void ColouriseInnoDoc(unsigned int startPos, int length, int, WordList *k
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i = startPos; i < lengthDoc; i++) {
@@ -280,7 +280,7 @@ static void FoldInnoDoc(unsigned int startPos, int length, int, WordList *[], Ac
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {

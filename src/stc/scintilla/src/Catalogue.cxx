@@ -44,7 +44,7 @@ const LexerModule *Catalogue::Find(int language) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (std::vector<LexerModule *>::iterator it=lexerCatalogue.begin();
@@ -64,7 +64,7 @@ const LexerModule *Catalogue::Find(const char *languageName) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (std::vector<LexerModule *>::iterator it=lexerCatalogue.begin();

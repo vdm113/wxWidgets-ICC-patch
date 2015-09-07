@@ -42,7 +42,7 @@ MarkerHandleSet::~MarkerHandleSet() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (mhn) {
@@ -61,7 +61,7 @@ int MarkerHandleSet::Length() const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (mhn) {
@@ -79,7 +79,7 @@ int MarkerHandleSet::MarkValue() const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (mhn) {
@@ -96,7 +96,7 @@ bool MarkerHandleSet::Contains(int handle) const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (mhn) {
@@ -124,7 +124,7 @@ void MarkerHandleSet::RemoveHandle(int handle) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (*pmhn) {
@@ -146,7 +146,7 @@ bool MarkerHandleSet::RemoveNumber(int markerNum, bool all) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (*pmhn) {
@@ -171,7 +171,7 @@ void MarkerHandleSet::CombineWith(MarkerHandleSet *other) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (*pmhn) {
@@ -191,7 +191,7 @@ void LineMarkers::Init() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int line = 0; line < markers.Length(); line++) {
@@ -224,7 +224,7 @@ int LineMarkers::LineFromHandle(int markerHandle) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int line = 0; line < markers.Length(); line++) {
@@ -264,7 +264,7 @@ int LineMarkers::MarkerNext(int lineStart, int mask) const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int iLine = lineStart; iLine < length; iLine++) {
@@ -427,7 +427,7 @@ static int NumberLines(const char *text) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (*text) {
@@ -536,7 +536,7 @@ void LineAnnotation::ClearAll() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int line = 0; line < annotations.Length(); line++) {
@@ -601,7 +601,7 @@ void LineTabstops::Init() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int line = 0; line < tabstops.Length(); line++) {
@@ -663,7 +663,7 @@ int LineTabstops::GetNextTabstop(int line, int x) const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (size_t i = 0; i < tl->size(); i++) {

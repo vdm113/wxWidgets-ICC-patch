@@ -549,7 +549,7 @@ void wxTopLevelWindowX11::DoSetSize(int x, int y, int width, int height, int siz
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (next_parent != root) {
@@ -615,7 +615,7 @@ void wxTopLevelWindowX11::DoGetPosition(int *x, int *y) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (next_parent != root) {

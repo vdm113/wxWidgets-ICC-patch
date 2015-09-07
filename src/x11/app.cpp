@@ -115,7 +115,7 @@ bool wxApp::Initialize(int& argC, wxChar **argV)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < argCOrig; i++ )
@@ -177,7 +177,7 @@ bool wxApp::Initialize(int& argC, wxChar **argV)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int i = 0; i < argC; i++ )
@@ -187,7 +187,7 @@ bool wxApp::Initialize(int& argC, wxChar **argV)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( !argV[i] )
@@ -343,7 +343,7 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while (XCheckIfEvent( wxGlobalDisplay(), &tmp_event, wxX11ExposePredicate, (XPointer) &info ))
@@ -370,7 +370,7 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while (XCheckIfEvent( wxGlobalDisplay(), &tmp_event, wxX11ExposePredicate, (XPointer) &info ))
@@ -593,7 +593,7 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while( XCheckTypedWindowEvent (disp, actualWindow, ResizeRequest, &report));
@@ -635,7 +635,7 @@ bool wxApp::ProcessXEvent(WXEvent* _event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (tlw && !tlw->IsTopLevel())

@@ -108,7 +108,7 @@ bool wxStringOperationsUtf8::IsValidUtf8String(const char *str, size_t len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ; c != end && *c; ++c )
@@ -163,7 +163,7 @@ bool wxStringOperationsUtf8::IsValidUtf8String(const char *str, size_t len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( int i = 0; i < 2; ++i )
@@ -185,7 +185,7 @@ bool wxStringOperationsUtf8::IsValidUtf8String(const char *str, size_t len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( int i = 0; i < 2; ++i )
@@ -202,7 +202,7 @@ bool wxStringOperationsUtf8::IsValidUtf8String(const char *str, size_t len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( int i = 0; i < 3; ++i )
@@ -222,7 +222,7 @@ bool wxStringOperationsUtf8::IsValidUtf8String(const char *str, size_t len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( int i = 0; i < 2; ++i )
@@ -338,7 +338,7 @@ wxStringOperationsUtf8::DecodeNonAsciiChar(wxStringImpl::const_iterator i)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ++i ; len > 1; --len, ++i )
@@ -366,7 +366,7 @@ wxCharBuffer wxStringOperationsUtf8::EncodeNChars(size_t n, const wxUniChar& ch)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < n; i++, ptr += len )

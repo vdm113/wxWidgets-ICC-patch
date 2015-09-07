@@ -167,7 +167,7 @@ emit_dqt (j_compress_ptr cinfo, int index)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < DCTSIZE2; i++) {
@@ -187,7 +187,7 @@ emit_dqt (j_compress_ptr cinfo, int index)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < DCTSIZE2; i++) {
@@ -231,7 +231,7 @@ emit_dht (j_compress_ptr cinfo, int index, wxjpeg_boolean is_ac)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 1; i <= 16; i++)
@@ -245,7 +245,7 @@ emit_dht (j_compress_ptr cinfo, int index, wxjpeg_boolean is_ac)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 1; i <= 16; i++)
@@ -256,7 +256,7 @@ emit_dht (j_compress_ptr cinfo, int index, wxjpeg_boolean is_ac)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < length; i++)
@@ -284,7 +284,7 @@ emit_dac (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < NUM_ARITH_TBLS; i++)
@@ -295,7 +295,7 @@ emit_dac (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < cinfo->comps_in_scan; i++) {
@@ -310,7 +310,7 @@ emit_dac (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < NUM_ARITH_TBLS; i++)
@@ -325,7 +325,7 @@ emit_dac (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < NUM_ARITH_TBLS; i++) {
@@ -381,7 +381,7 @@ emit_sof (j_compress_ptr cinfo, JPEG_MARKER code)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -411,7 +411,7 @@ emit_sos (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < cinfo->comps_in_scan; i++) {
@@ -603,7 +603,7 @@ write_frame_header (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -625,7 +625,7 @@ write_frame_header (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -682,7 +682,7 @@ write_scan_header (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < cinfo->comps_in_scan; i++) {
@@ -745,7 +745,7 @@ write_tables_only (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < NUM_QUANT_TBLS; i++) {
@@ -759,7 +759,7 @@ write_tables_only (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < NUM_HUFF_TBLS; i++) {

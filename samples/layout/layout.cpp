@@ -264,7 +264,7 @@ MyProportionsFrame::MyProportionsFrame(wxFrame *parent)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < WXSIZEOF(m_spins); n++ )
@@ -281,7 +281,7 @@ MyProportionsFrame::MyProportionsFrame(wxFrame *parent)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < WXSIZEOF(m_spins); n++ )
@@ -308,7 +308,7 @@ void MyProportionsFrame::UpdateProportions()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(m_spins); n++ )
@@ -340,7 +340,7 @@ void MyFlexSizerFrame::InitFlexSizer(wxFlexGridSizer *sizer, wxWindow* parent)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < 3; i++ )
@@ -350,7 +350,7 @@ void MyFlexSizerFrame::InitFlexSizer(wxFlexGridSizer *sizer, wxWindow* parent)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int j = 0; j < 3; j++ )
@@ -754,7 +754,7 @@ MyWrapSizerFrame::MyWrapSizerFrame(wxFrame* parent)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( int i = 0; i < 6; i++ )

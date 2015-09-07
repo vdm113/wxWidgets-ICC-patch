@@ -111,7 +111,7 @@ void LongLongTestCase::Conversion()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < ITEMS; n++ )
@@ -150,7 +150,7 @@ void LongLongTestCase::Comparison()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(testLongs); n++ )
@@ -160,7 +160,7 @@ void LongLongTestCase::Comparison()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t m = 0; m < WXSIZEOF(lls); m++ )
@@ -182,7 +182,7 @@ void LongLongTestCase::Addition()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < ITEMS; n++ )
@@ -214,7 +214,7 @@ void LongLongTestCase::Multiplication()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < ITEMS; n++ )
@@ -251,7 +251,7 @@ void LongLongTestCase::Division()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < ITEMS; n++ )
@@ -267,7 +267,7 @@ void LongLongTestCase::Division()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do
@@ -279,7 +279,7 @@ void LongLongTestCase::Division()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( !l );
@@ -316,7 +316,7 @@ void LongLongTestCase::BitOperations()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t m = 0; m < ITEMS; m++ )
@@ -328,7 +328,7 @@ void LongLongTestCase::BitOperations()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < 33; n++ )
@@ -373,7 +373,7 @@ void LongLongTestCase::ToString()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(testLongs); n++ )

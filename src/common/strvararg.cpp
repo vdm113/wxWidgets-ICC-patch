@@ -170,7 +170,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( *format )
@@ -196,7 +196,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while ( IsFlagChar(*format) )
@@ -424,7 +424,7 @@ private:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( **ptpc >= wxT('0') && **ptpc <= wxT('9') )

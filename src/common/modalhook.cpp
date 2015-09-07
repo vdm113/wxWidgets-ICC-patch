@@ -54,7 +54,7 @@ void wxModalDialogHook::Register()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( Hooks::const_iterator it = ms_hooks.begin();
@@ -87,7 +87,7 @@ bool wxModalDialogHook::DoUnregister()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( Hooks::iterator it = ms_hooks.begin();
@@ -122,7 +122,7 @@ int wxModalDialogHook::CallEnter(wxDialog* dialog)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( Hooks::const_iterator it = hooks.begin(); it != hooks.end(); ++it )
@@ -150,7 +150,7 @@ void wxModalDialogHook::CallExit(wxDialog* dialog)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( Hooks::const_iterator it = hooks.begin(); it != hooks.end(); ++it )

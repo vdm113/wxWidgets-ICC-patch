@@ -59,7 +59,7 @@ jpeg_add_quant_table (j_compress_ptr cinfo, int which_tbl,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < DCTSIZE2; i++) {
@@ -188,7 +188,7 @@ add_huff_table (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (len = 1; len <= 16; len++)
@@ -321,7 +321,7 @@ jpeg_set_defaults (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < NUM_ARITH_TBLS; i++) {
@@ -497,7 +497,7 @@ jpeg_set_colorspace (j_compress_ptr cinfo, J_COLOR_SPACE colorspace)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ci = 0; ci < cinfo->num_components; ci++) {
@@ -539,7 +539,7 @@ fill_scans (jpeg_scan_info * scanptr, int ncomps,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ci = 0; ci < ncomps; ci++) {
@@ -568,7 +568,7 @@ fill_dc_scans (jpeg_scan_info * scanptr, int ncomps, int Ah, int Al)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ci = 0; ci < ncomps; ci++)

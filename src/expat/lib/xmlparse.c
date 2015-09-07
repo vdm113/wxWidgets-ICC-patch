@@ -937,7 +937,7 @@ moveToFreeBindingList(XML_Parser parser, BINDING *bindings)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (bindings) {
@@ -962,7 +962,7 @@ XML_ParserReset(XML_Parser parser, const XML_Char *encodingName)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (tStk) {
@@ -980,7 +980,7 @@ XML_ParserReset(XML_Parser parser, const XML_Char *encodingName)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (openEntityList) {
@@ -1164,7 +1164,7 @@ destroyBindings(BINDING *bindings, XML_Parser parser)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -1191,7 +1191,7 @@ XML_ParserFree(XML_Parser parser)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -1215,7 +1215,7 @@ XML_ParserFree(XML_Parser parser)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -1798,7 +1798,7 @@ XML_GetBuffer(XML_Parser parser, int len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do {
@@ -2148,7 +2148,7 @@ storeRawNames(XML_Parser parser)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (tag) {
@@ -2352,7 +2352,7 @@ doContent(XML_Parser parser,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -2521,7 +2521,7 @@ doContent(XML_Parser parser,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
           for (;;) {
@@ -2595,7 +2595,7 @@ doContent(XML_Parser parser,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (bindings) {
@@ -2646,7 +2646,7 @@ doContent(XML_Parser parser,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (*localPart) *uri++ = *localPart++;
@@ -2658,7 +2658,7 @@ doContent(XML_Parser parser,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
               while (*prefix) *uri++ = *prefix++;
@@ -2674,7 +2674,7 @@ doContent(XML_Parser parser,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (tag->bindings) {
@@ -2787,7 +2787,7 @@ doContent(XML_Parser parser,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (;;) {
@@ -2908,7 +2908,7 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < n; i++) {
@@ -2953,7 +2953,7 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (j = 0; j < nDefaultAtts; j++) {
@@ -3010,7 +3010,7 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < attIndex; i += 2)
@@ -3028,7 +3028,7 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < nDefaultAtts; i++) {
@@ -3073,7 +3073,7 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       while (nPrefixes >> nsAttsPower++);
@@ -3094,7 +3094,7 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (j = nsAttsSize; j != 0; )
@@ -3108,7 +3108,7 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (; i < attIndex; i += 2) {
@@ -3129,7 +3129,7 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (j = 0; j < b->uriLen; j++) {
@@ -3143,7 +3143,7 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (*s++ != XML_T(ASCII_COLON))
@@ -3153,7 +3153,7 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do {  /* copies null terminator */
@@ -3174,7 +3174,7 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
           while (nsAtts[j].version == version) {
@@ -3188,7 +3188,7 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
               for (; *s1 == *s2 && *s1 != 0; s1++, s2++);
@@ -3209,7 +3209,7 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
           do {
@@ -3243,7 +3243,7 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (; i < attIndex; i += 2)
@@ -3253,7 +3253,7 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (binding = *bindingsPtr; binding; binding = binding->nextTagBinding)
@@ -3273,7 +3273,7 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*localPart++ != XML_T(ASCII_COLON))
@@ -3292,7 +3292,7 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (; binding->prefix->name[prefixLen++];)
@@ -3307,7 +3307,7 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; localPart[i++];)
@@ -3325,7 +3325,7 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (p = tagStack; p; p = p->parent)
@@ -3405,7 +3405,7 @@ addBinding(XML_Parser parser, PREFIX *prefix, const ATTRIBUTE_ID *attId,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (len = 0; uri[len]; len++) {
@@ -3529,7 +3529,7 @@ doCdataSection(XML_Parser parser,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -3571,7 +3571,7 @@ doCdataSection(XML_Parser parser,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (;;) {
@@ -3729,7 +3729,7 @@ initializeEncoding(XML_Parser parser)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; protocolEncodingName[i]; i++) {
@@ -3851,7 +3851,7 @@ handleUnknownEncoding(XML_Parser parser, const XML_Char *encodingName)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 256; i++)
@@ -3942,7 +3942,7 @@ entityValueInitProcessor(XML_Parser parser,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -4058,7 +4058,7 @@ entityValueProcessor(XML_Parser parser,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -4154,7 +4154,7 @@ doProlog(XML_Parser parser,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -5002,7 +5002,7 @@ doProlog(XML_Parser parser,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (; name[nameLen++]; )
@@ -5114,7 +5114,7 @@ epilogProcessor(XML_Parser parser,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -5330,7 +5330,7 @@ appendAttributeValue(XML_Parser parser, const ENCODING *enc, XML_Bool isCdata,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -5372,7 +5372,7 @@ appendAttributeValue(XML_Parser parser, const ENCODING *enc, XML_Bool isCdata,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < n; i++) {
@@ -5511,7 +5511,7 @@ storeEntityValue(XML_Parser parser,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -5630,7 +5630,7 @@ storeEntityValue(XML_Parser parser,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < n; i++) {
@@ -5676,7 +5676,7 @@ normalizeLines(XML_Char *s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;; s++) {
@@ -5691,7 +5691,7 @@ normalizeLines(XML_Char *s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   do {
@@ -5777,7 +5777,7 @@ reportDefault(XML_Parser parser, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do {
@@ -5807,7 +5807,7 @@ defineAttribute(ELEMENT_TYPE *type, ATTRIBUTE_ID *attId, XML_Bool isCdata,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < type->nDefaultAtts; i++)
@@ -5855,7 +5855,7 @@ setElementTypePrefix(XML_Parser parser, ELEMENT_TYPE *elementType)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (name = elementType->name; *name; name++) {
@@ -5867,7 +5867,7 @@ setElementTypePrefix(XML_Parser parser, ELEMENT_TYPE *elementType)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (s = elementType->name; s != name; s++) {
@@ -5933,7 +5933,7 @@ getAttributeId(XML_Parser parser, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (i = 0; name[i]; i++) {
@@ -5945,7 +5945,7 @@ getAttributeId(XML_Parser parser, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
           for (j = 0; j < i; j++) {
@@ -5990,7 +5990,7 @@ getContext(XML_Parser parser)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < len; i++)
@@ -6005,7 +6005,7 @@ getContext(XML_Parser parser)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -6024,7 +6024,7 @@ getContext(XML_Parser parser)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (s = prefix->name; *s; s++)
@@ -6040,7 +6040,7 @@ getContext(XML_Parser parser)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < len; i++)
@@ -6056,7 +6056,7 @@ getContext(XML_Parser parser)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -6073,7 +6073,7 @@ getContext(XML_Parser parser)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (s = e->name; *s; s++)
@@ -6098,7 +6098,7 @@ setContext(XML_Parser parser, const XML_Char *context)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (*context != XML_T('\0')) {
@@ -6137,7 +6137,7 @@ setContext(XML_Parser parser, const XML_Char *context)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (context = s + 1;
@@ -6174,7 +6174,7 @@ normalizePublicId(XML_Char *publicId)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (s = publicId; *s; s++) {
@@ -6237,7 +6237,7 @@ dtdReset(DTD *p, const XML_Memory_Handling_Suite *ms)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -6287,7 +6287,7 @@ dtdDestroy(DTD *p, XML_Bool isDocEntity, const XML_Memory_Handling_Suite *ms)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -6329,7 +6329,7 @@ dtdCopy(XML_Parser oldParser, DTD *newDtd, const DTD *oldDtd, const XML_Memory_H
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -6353,7 +6353,7 @@ dtdCopy(XML_Parser oldParser, DTD *newDtd, const DTD *oldDtd, const XML_Memory_H
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -6394,7 +6394,7 @@ dtdCopy(XML_Parser oldParser, DTD *newDtd, const DTD *oldDtd, const XML_Memory_H
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -6431,7 +6431,7 @@ dtdCopy(XML_Parser oldParser, DTD *newDtd, const DTD *oldDtd, const XML_Memory_H
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < newE->nDefaultAtts; i++) {
@@ -6497,7 +6497,7 @@ copyEntityTable(XML_Parser oldParser,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -6565,7 +6565,7 @@ keyeq(KEY s1, KEY s2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (; *s1 == *s2; s1++, s2++)
@@ -6583,7 +6583,7 @@ hash(XML_Parser parser, KEY s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (*s)
@@ -6621,7 +6621,7 @@ lookup(XML_Parser parser, HASH_TABLE *table, KEY name, size_t createSize)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (table->v[i]) {
@@ -6649,7 +6649,7 @@ lookup(XML_Parser parser, HASH_TABLE *table, KEY name, size_t createSize)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (i = 0; i < table->size; i++)
@@ -6662,7 +6662,7 @@ lookup(XML_Parser parser, HASH_TABLE *table, KEY name, size_t createSize)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
           while (newV[j]) {
@@ -6683,7 +6683,7 @@ lookup(XML_Parser parser, HASH_TABLE *table, KEY name, size_t createSize)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       while (table->v[i]) {
@@ -6711,7 +6711,7 @@ hashTableClear(HASH_TABLE *table)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < table->size; i++) {
@@ -6730,7 +6730,7 @@ hashTableDestroy(HASH_TABLE *table)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < table->size; i++)
@@ -6763,7 +6763,7 @@ hashTableIterNext(HASH_TABLE_ITER *iter)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (iter->p != iter->end) {
@@ -6797,7 +6797,7 @@ poolClear(STRING_POOL *pool)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (p) {
@@ -6822,7 +6822,7 @@ poolDestroy(STRING_POOL *pool)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (p) {
@@ -6836,7 +6836,7 @@ poolDestroy(STRING_POOL *pool)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (p) {
@@ -6857,7 +6857,7 @@ poolAppend(STRING_POOL *pool, const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -6878,7 +6878,7 @@ poolCopyString(STRING_POOL *pool, const XML_Char *s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   do {
@@ -6900,7 +6900,7 @@ poolCopyStringN(STRING_POOL *pool, const XML_Char *s, int n)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (; n > 0; --n, s++) {
@@ -6920,7 +6920,7 @@ poolAppendString(STRING_POOL *pool, const XML_Char *s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (*s) {
@@ -7074,7 +7074,7 @@ build_node(XML_Parser parser,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;) {
@@ -7097,7 +7097,7 @@ build_node(XML_Parser parser,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0, cn = dtd->scaffold[src_node].firstchild;

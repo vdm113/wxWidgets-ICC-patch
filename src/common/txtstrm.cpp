@@ -69,7 +69,7 @@ void wxTextInputStream::UngetLast()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(m_lastBytes[byteCount]) // pseudo ANSI strlen (even for Unicode!)
@@ -88,7 +88,7 @@ wxChar wxTextInputStream::NextChar()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(size_t inlen = 0; inlen < 9; inlen++)
@@ -147,7 +147,7 @@ wxChar wxTextInputStream::NextNonSeparators()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;)
@@ -269,7 +269,7 @@ wxString wxTextInputStream::ReadLine()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( !m_input.Eof() )
@@ -305,7 +305,7 @@ wxString wxTextInputStream::ReadWord()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( !m_input.Eof() )
@@ -494,7 +494,7 @@ void wxTextOutputStream::WriteString(const wxString& string)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < len; i++ )

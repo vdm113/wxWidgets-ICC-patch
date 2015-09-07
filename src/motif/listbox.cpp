@@ -278,7 +278,7 @@ void wxListBox::DoSetSelection(int N, bool select)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < n; i++)
@@ -317,7 +317,7 @@ bool wxListBox::IsSelected(int N) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (j = 0; j < count; j++)
@@ -348,7 +348,7 @@ int wxListBox::GetSelections(wxArrayInt& aSelections) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < posCnt; i++)
@@ -423,7 +423,7 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter & items,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < numItems; i++)
@@ -441,7 +441,7 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter & items,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < numItems; i++, idx++ )
@@ -456,7 +456,7 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter & items,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < numItems; i++)
@@ -639,7 +639,7 @@ wxSize wxDoGetListBoxBestSize( Widget listWidget, const wxWindow* window )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( size_t i = 0; i < (size_t)max; ++i )

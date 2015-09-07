@@ -88,7 +88,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (iter = m_list.begin(); iter != m_list.end(); ++iter)

@@ -117,7 +117,7 @@ void wxColourDialog::ColourDataToDialog()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned i = 0; i < WXSIZEOF(colors); i++)
@@ -166,7 +166,7 @@ void wxColourDialog::DialogToColourData()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < n_colors && i < wxColourData::NUM_CUSTOM; i++)

@@ -142,7 +142,7 @@ void FontTestCase::GetSet()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < numFonts; n++ )
@@ -261,7 +261,7 @@ void FontTestCase::NativeFontInfo()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < numFonts; n++ )
@@ -323,7 +323,7 @@ void FontTestCase::NativeFontInfoUserDesc()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < numFonts; n++ )

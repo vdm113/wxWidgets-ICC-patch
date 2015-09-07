@@ -142,7 +142,7 @@ static void wxCalcPrecAndShift( unsigned long mask, int *shift, int *prec )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (!(mask & 0x1))
@@ -156,7 +156,7 @@ static void wxCalcPrecAndShift( unsigned long mask, int *shift, int *prec )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (mask & 0x1)
@@ -217,7 +217,7 @@ void wxXVisualInfo::Init( Display* dpy, XVisualInfo* vi )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < m_visualColormapSize; i++)
@@ -233,7 +233,7 @@ void wxXVisualInfo::Init( Display* dpy, XVisualInfo* vi )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int r = 0; r < 32; r++)
@@ -243,7 +243,7 @@ void wxXVisualInfo::Init( Display* dpy, XVisualInfo* vi )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int g = 0; g < 32; g++)
@@ -253,7 +253,7 @@ void wxXVisualInfo::Init( Display* dpy, XVisualInfo* vi )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int b = 0; b < 32; b++)
@@ -273,7 +273,7 @@ void wxXVisualInfo::Init( Display* dpy, XVisualInfo* vi )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (int i = 0; i < m_visualColormapSize; i++)

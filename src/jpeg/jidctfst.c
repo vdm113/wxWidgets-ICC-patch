@@ -201,7 +201,7 @@ jpeg_idct_ifast (j_decompress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ctr = DCTSIZE; ctr > 0; ctr--) {
@@ -301,7 +301,7 @@ jpeg_idct_ifast (j_decompress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ctr = 0; ctr < DCTSIZE; ctr++) {

@@ -206,7 +206,7 @@ void wxHeaderCtrl::DoSetCount(unsigned int count)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < countOld; n++ )
@@ -228,7 +228,7 @@ void wxHeaderCtrl::DoSetCount(unsigned int count)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
@@ -390,7 +390,7 @@ void wxHeaderCtrl::DoSetColumnsOrder(const wxArrayInt& order)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < m_numColumns; n++ )
@@ -434,7 +434,7 @@ int wxHeaderCtrl::MSWToNativeIdx(int idx)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < idx; i++ )
@@ -461,7 +461,7 @@ int wxHeaderCtrl::MSWFromNativeIdx(int item)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < m_numColumns; n++ )
@@ -489,7 +489,7 @@ int wxHeaderCtrl::MSWToNativeOrder(int pos)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < pos; n++ )
@@ -514,7 +514,7 @@ int wxHeaderCtrl::MSWFromNativeOrder(int order)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < m_numColumns; n++ )

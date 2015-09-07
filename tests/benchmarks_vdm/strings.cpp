@@ -70,7 +70,7 @@ const wxString& GetTestAsciiString()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( long n = 0; n < num; n++ )
@@ -228,7 +228,7 @@ BENCHMARK_FUNC(ForCString)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(asciistr); n++ )
@@ -254,7 +254,7 @@ BENCHMARK_FUNC(ForStringIndex)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < len; n++ )
@@ -280,7 +280,7 @@ BENCHMARK_FUNC(ForStringIter)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator i = s.begin(); i != end; ++i )
@@ -306,7 +306,7 @@ BENCHMARK_FUNC(ForStringRIter)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString::const_reverse_iterator i = s.rbegin(); i != rend; ++i )
@@ -337,7 +337,7 @@ BENCHMARK_FUNC(ReplaceLoop)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < ASCIISTR_LEN; n++ )
@@ -542,7 +542,7 @@ BENCHMARK_FUNC(ParseHTML)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( long n = 0; n < num; n++ )

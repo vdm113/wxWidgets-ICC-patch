@@ -173,7 +173,7 @@ static void ColouriseTADSHTMLString(StyleContext &sc, int &lineState) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (sc.More()) {
@@ -222,7 +222,7 @@ static void ColouriseTADS3HTMLTagStart(StyleContext &sc) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (IsAnHTMLChar(sc.ch)) {
@@ -264,7 +264,7 @@ static void ColouriseTADS3HTMLTag(StyleContext &sc, int &lineState) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (sc.More()) {
@@ -315,7 +315,7 @@ static void ColouriseTADS3Keyword(StyleContext &sc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (sc.More() && (IsAWordChar(sc.ch))) {
@@ -330,7 +330,7 @@ static void ColouriseTADS3Keyword(StyleContext &sc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while (n + sc.currentPos < endPos && IsASpaceOrTab(sc.GetRelative(n)))
@@ -381,7 +381,7 @@ static void ColouriseTADS3MsgParam(StyleContext &sc, int &lineState) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (sc.More() && sc.ch != '}' && sc.ch != chQuote) {
@@ -427,7 +427,7 @@ static void ColouriseTADS3LibDirective(StyleContext &sc, int &lineState) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (sc.More() && IsADirectiveChar(sc.ch)) {
@@ -484,7 +484,7 @@ static void ColouriseTADS3String(StyleContext &sc, int &lineState) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (sc.More()) {
@@ -525,7 +525,7 @@ static void ColouriseTADS3Comment(StyleContext &sc, int endState) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (sc.More()) {
@@ -548,7 +548,7 @@ static void ColouriseToEndOfLine(StyleContext &sc, int initState, int endState) 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (sc.More()) {
@@ -584,7 +584,7 @@ static void ColouriseTADS3Number(StyleContext &sc) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (sc.More()) {
@@ -627,7 +627,7 @@ static void ColouriseTADS3Doc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (sc.More()) {
@@ -819,7 +819,7 @@ static char peekAhead(unsigned int startPos, unsigned int endPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (unsigned int i = startPos; i < endPos; i++) {
@@ -865,7 +865,7 @@ static void FoldTADS3Doc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (unsigned int i = startPos; i < endPos; i++) {

@@ -323,7 +323,7 @@ prescan_quantize (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (row = 0; row < num_rows; row++) {
@@ -333,7 +333,7 @@ prescan_quantize (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (col = width; col > 0; col--) {
@@ -390,7 +390,7 @@ find_biggest_color_pop (boxptr boxlist, int numboxes)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0, boxp = boxlist; i < numboxes; i++, boxp++) {
@@ -418,7 +418,7 @@ find_biggest_volume (boxptr boxlist, int numboxes)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0, boxp = boxlist; i < numboxes; i++, boxp++) {
@@ -454,7 +454,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c0 = c0min; c0 <= c0max; c0++)
@@ -463,7 +463,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (c1 = c1min; c1 <= c1max; c1++) {
@@ -473,7 +473,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c2 = c2min; c2 <= c2max; c2++)
@@ -489,7 +489,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c0 = c0max; c0 >= c0min; c0--)
@@ -498,7 +498,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (c1 = c1min; c1 <= c1max; c1++) {
@@ -508,7 +508,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c2 = c2min; c2 <= c2max; c2++)
@@ -524,7 +524,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c1 = c1min; c1 <= c1max; c1++)
@@ -533,7 +533,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (c0 = c0min; c0 <= c0max; c0++) {
@@ -543,7 +543,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c2 = c2min; c2 <= c2max; c2++)
@@ -559,7 +559,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c1 = c1max; c1 >= c1min; c1--)
@@ -568,7 +568,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (c0 = c0min; c0 <= c0max; c0++) {
@@ -578,7 +578,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c2 = c2min; c2 <= c2max; c2++)
@@ -594,7 +594,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c2 = c2min; c2 <= c2max; c2++)
@@ -603,7 +603,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (c0 = c0min; c0 <= c0max; c0++) {
@@ -613,7 +613,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c1 = c1min; c1 <= c1max; c1++, histp += HIST_C2_ELEMS)
@@ -629,7 +629,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c2 = c2max; c2 >= c2min; c2--)
@@ -638,7 +638,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (c0 = c0min; c0 <= c0max; c0++) {
@@ -648,7 +648,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c1 = c1min; c1 <= c1max; c1++, histp += HIST_C2_ELEMS)
@@ -679,7 +679,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (c0 = c0min; c0 <= c0max; c0++)
@@ -688,7 +688,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c1 = c1min; c1 <= c1max; c1++) {
@@ -698,7 +698,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (c2 = c2min; c2 <= c2max; c2++, histp++)
@@ -724,7 +724,7 @@ median_cut (j_decompress_ptr cinfo, boxptr boxlist, int numboxes,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (numboxes < desired_colors) {
@@ -820,7 +820,7 @@ compute_color (j_decompress_ptr cinfo, boxptr boxp, int icolor)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (c0 = c0min; c0 <= c0max; c0++)
@@ -829,7 +829,7 @@ compute_color (j_decompress_ptr cinfo, boxptr boxp, int icolor)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c1 = c1min; c1 <= c1max; c1++) {
@@ -839,7 +839,7 @@ compute_color (j_decompress_ptr cinfo, boxptr boxp, int icolor)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (c2 = c2min; c2 <= c2max; c2++) {
@@ -886,7 +886,7 @@ select_colors (j_decompress_ptr cinfo, int desired_colors)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < numboxes; i++)
@@ -1020,7 +1020,7 @@ find_nearby_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < numcolors; i++) {
@@ -1107,7 +1107,7 @@ find_nearby_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < numcolors; i++) {
@@ -1147,7 +1147,7 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = BOX_C0_ELEMS*BOX_C1_ELEMS*BOX_C2_ELEMS-1; i >= 0; i--)
@@ -1168,7 +1168,7 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < numcolors; i++) {
@@ -1193,7 +1193,7 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ic0 = BOX_C0_ELEMS-1; ic0 >= 0; ic0--) {
@@ -1204,7 +1204,7 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (ic1 = BOX_C1_ELEMS-1; ic1 >= 0; ic1--) {
@@ -1215,7 +1215,7 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ic2 = BOX_C2_ELEMS-1; ic2 >= 0; ic2--) {
@@ -1288,7 +1288,7 @@ fill_inverse_cmap (j_decompress_ptr cinfo, int c0, int c1, int c2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ic0 = 0; ic0 < BOX_C0_ELEMS; ic0++) {
@@ -1297,7 +1297,7 @@ fill_inverse_cmap (j_decompress_ptr cinfo, int c0, int c1, int c2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ic1 = 0; ic1 < BOX_C1_ELEMS; ic1++) {
@@ -1307,7 +1307,7 @@ fill_inverse_cmap (j_decompress_ptr cinfo, int c0, int c1, int c2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (ic2 = 0; ic2 < BOX_C2_ELEMS; ic2++) {
@@ -1341,7 +1341,7 @@ pass2_no_dither (j_decompress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (row = 0; row < num_rows; row++) {
@@ -1352,7 +1352,7 @@ pass2_no_dither (j_decompress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (col = width; col > 0; col--) {
@@ -1403,7 +1403,7 @@ pass2_fs_dither (j_decompress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (row = 0; row < num_rows; row++) {
@@ -1435,7 +1435,7 @@ pass2_fs_dither (j_decompress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (col = width; col > 0; col--) {
@@ -1567,7 +1567,7 @@ init_error_limit (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (in = 0; in < STEPSIZE; in++, out++) {
@@ -1579,7 +1579,7 @@ init_error_limit (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (; in < STEPSIZE*3; in++, out += (in&1) ? 0 : 1) {
@@ -1591,7 +1591,7 @@ init_error_limit (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (; in <= MAXJSAMPLE; in++) {
@@ -1667,7 +1667,7 @@ start_pass_2_quant (j_decompress_ptr cinfo, bool is_pre_scan)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < HIST_C0_ELEMS; i++) {
@@ -1718,7 +1718,7 @@ jinit_2pass_quantizer (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < HIST_C0_ELEMS; i++) {
@@ -1783,7 +1783,7 @@ prepare_range_limit_table (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i <= MAXJSAMPLE; i++)
@@ -1795,7 +1795,7 @@ prepare_range_limit_table (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = CENTERJSAMPLE; i < 2*(MAXJSAMPLE+1); i++)
@@ -1843,7 +1843,7 @@ void wxQuantize::DoQuantize(unsigned w, unsigned h, unsigned char **in_rows, uns
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < dec.desired_number_of_colors; i++) {
@@ -1857,7 +1857,7 @@ void wxQuantize::DoQuantize(unsigned w, unsigned h, unsigned char **in_rows, uns
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int ii = 0; ii < HIST_C0_ELEMS; ii++) free(cquantize->histogram[ii]);
@@ -1912,7 +1912,7 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < h; i++)
@@ -1928,7 +1928,7 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < h; i++)
@@ -1953,7 +1953,7 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < w * h; i++)
@@ -1977,7 +1977,7 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < w * h; i++)
@@ -2011,7 +2011,7 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < windowsSystemColourCount; i++)
@@ -2029,7 +2029,7 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < desiredNoColours; i++)
@@ -2045,7 +2045,7 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = desiredNoColours+paletteShift; i < 256; i++)

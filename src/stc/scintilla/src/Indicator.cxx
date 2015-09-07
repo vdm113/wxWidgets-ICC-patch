@@ -52,7 +52,7 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (x < xLast) {
@@ -77,7 +77,7 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int x = 0; x < width; x++) {
@@ -102,7 +102,7 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (x < rc.right) {
@@ -120,7 +120,7 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (x < rc.right) {
@@ -143,7 +143,7 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (x < rc.right) {
@@ -191,7 +191,7 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int x=0; x<width; x++) {
@@ -200,7 +200,7 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (int y = 0; y<static_cast<int>(rcBox.Height()); y += static_cast<int>(rcBox.Height()) - 1) {
@@ -213,7 +213,7 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int y = 1; y<static_cast<int>(rcBox.Height()); y++) {
@@ -222,7 +222,7 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (int x=0; x<width; x += width-1) {
@@ -237,7 +237,7 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (x < rc.right) {
@@ -252,7 +252,7 @@ void Indicator::Draw(Surface *surface, const PRectangle &rc, const PRectangle &r
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (x < static_cast<int>(rc.right)) {

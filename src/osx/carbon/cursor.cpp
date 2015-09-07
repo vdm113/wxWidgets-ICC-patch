@@ -232,7 +232,7 @@ CursHandle wxGetStockCursor( int number )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0 ; i < 2 * 16 /* image and mask */ ; ++i, ++sptr )
@@ -331,7 +331,7 @@ short GetCTabIndex( CTabHandle colors , RGBColor *col )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0 ; i < (**colors).ctSize ; ++i )
@@ -415,7 +415,7 @@ void wxCursor::CreateFromImage(const wxImage & image)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0 ; i < (**newColors).ctSize ; ++i )
@@ -464,7 +464,7 @@ void wxCursor::CreateFromImage(const wxImage & image)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int y = 0 ; y < h ; ++y )
@@ -476,7 +476,7 @@ void wxCursor::CreateFromImage(const wxImage & image)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int x = 0 ; x < w ; ++x )

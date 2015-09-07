@@ -75,7 +75,7 @@ void wxHashTableBase::Create( wxKeyType keyType, size_t size )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( size_t i = 0; i < m_size; ++i )
@@ -89,7 +89,7 @@ void wxHashTableBase::Clear()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( size_t i = 0; i < m_size; ++i )
@@ -106,7 +106,7 @@ void wxHashTableBase::Clear()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do
@@ -123,7 +123,7 @@ void wxHashTableBase::Clear()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while( curr != end );
@@ -155,7 +155,7 @@ void wxHashTableBase::DoRemoveNode( wxHashTableBase_Node* node )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for( curr = prev->GetNext(); curr != node;
@@ -243,7 +243,7 @@ void* wxHashTableBase::DoGet( long key, long hash ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -258,7 +258,7 @@ void* wxHashTableBase::DoGet( long key, long hash ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while( curr != first );
@@ -283,7 +283,7 @@ void* wxHashTableBase::DoGet( const wxString& key, long hash ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -298,7 +298,7 @@ void* wxHashTableBase::DoGet( const wxString& key, long hash ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while( curr != first );
@@ -339,7 +339,7 @@ void* wxHashTableBase::DoDelete( long key, long hash )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -363,7 +363,7 @@ void* wxHashTableBase::DoDelete( long key, long hash )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while( curr != first );
@@ -389,7 +389,7 @@ void* wxHashTableBase::DoDelete( const wxString& key, long hash )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -413,7 +413,7 @@ void* wxHashTableBase::DoDelete( const wxString& key, long hash )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while( curr != first );
@@ -431,7 +431,7 @@ long wxHashTableBase::MakeKey( const wxString& str )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while( *p )
@@ -477,7 +477,7 @@ void wxHashTable::GetNextNode( size_t bucketStart )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( size_t i = bucketStart; i < m_size; ++i )

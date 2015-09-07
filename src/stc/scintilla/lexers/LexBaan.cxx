@@ -64,7 +64,7 @@ static void ColouriseBaanDoc(unsigned int startPos, int length, int initStyle, W
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
@@ -107,7 +107,7 @@ static void ColouriseBaanDoc(unsigned int startPos, int length, int initStyle, W
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (unsigned int i = 0; i < 10; i++){
@@ -135,7 +135,7 @@ static void ColouriseBaanDoc(unsigned int startPos, int length, int initStyle, W
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					do {
@@ -156,7 +156,7 @@ static void ColouriseBaanDoc(unsigned int startPos, int length, int initStyle, W
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				do {
@@ -195,7 +195,7 @@ static void FoldBaanDoc(unsigned int startPos, int length, int initStyle, WordLi
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {

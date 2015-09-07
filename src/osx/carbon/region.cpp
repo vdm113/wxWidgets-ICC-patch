@@ -462,7 +462,7 @@ miInsertEdgeInET(EdgeTable *ET, EdgeTableEntry *ETE,  int scanline,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (pSLL && (pSLL->scanline < scanline))
@@ -505,7 +505,7 @@ miInsertEdgeInET(EdgeTable *ET, EdgeTableEntry *ETE,  int scanline,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (start && (start->bres.minor < ETE->bres.minor))
@@ -587,7 +587,7 @@ miCreateETandAET(int count, const wxPoint * pts, EdgeTable *ET, EdgeTableEntry *
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (count--)
@@ -659,7 +659,7 @@ miloadAET(EdgeTableEntry *AET, EdgeTableEntry *ETEs)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (ETEs)
@@ -669,7 +669,7 @@ miloadAET(EdgeTableEntry *AET, EdgeTableEntry *ETEs)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (AET && (AET->bres.minor < ETEs->bres.minor))
@@ -724,7 +724,7 @@ micomputeWAET(EdgeTableEntry *AET)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (AET)
@@ -769,7 +769,7 @@ miInsertionSort(EdgeTableEntry *AET)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (AET)
@@ -781,7 +781,7 @@ miInsertionSort(EdgeTableEntry *AET)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (pETEchase->back->bres.minor > AET->bres.minor)
@@ -817,7 +817,7 @@ miFreeStorage(ScanLineListBlock *pSLLBlock)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (pSLLBlock) 
@@ -878,7 +878,7 @@ scanFillGeneralPoly( wxRegion* rgn,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (y = ET.ymin; y < ET.ymax; y++)
@@ -903,7 +903,7 @@ scanFillGeneralPoly( wxRegion* rgn,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (pAET)
@@ -926,7 +926,7 @@ scanFillGeneralPoly( wxRegion* rgn,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for ( int i = 0 ; i < nPts; ++i)
@@ -958,7 +958,7 @@ scanFillGeneralPoly( wxRegion* rgn,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (y = ET.ymin; y < ET.ymax; y++)
@@ -985,7 +985,7 @@ scanFillGeneralPoly( wxRegion* rgn,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (pAET)
@@ -1014,7 +1014,7 @@ scanFillGeneralPoly( wxRegion* rgn,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         for ( int i = 0 ; i < nPts ; ++i)
@@ -1037,7 +1037,7 @@ scanFillGeneralPoly( wxRegion* rgn,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     while (pWETE != pAET)
@@ -1069,7 +1069,7 @@ scanFillGeneralPoly( wxRegion* rgn,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0 ; i < nPts; ++i)
@@ -1110,7 +1110,7 @@ wxRegion::wxRegion(size_t n, const wxPoint *points, wxPolygonFillMode fillStyle)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (idx=0; idx<n; idx++) 
@@ -1408,7 +1408,7 @@ void wxRegionIterator::SetRects(long numRects, wxRect *rects)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < numRects; i++)

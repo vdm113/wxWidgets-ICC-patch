@@ -334,7 +334,7 @@ FillTable(TIFFFaxTabEnt *T, int Size, struct proto *P, int State)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (P->val) {
@@ -347,7 +347,7 @@ FillTable(TIFFFaxTabEnt *T, int Size, struct proto *P, int State)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (code = P->code; code < limit; code += incr) {
@@ -381,7 +381,7 @@ WriteTable(FILE* fd, const TIFFFaxTabEnt* T, int Size, const char* name)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < Size; i++) {
@@ -400,7 +400,7 @@ WriteTable(FILE* fd, const TIFFFaxTabEnt* T, int Size, const char* name)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < Size; i++) {
@@ -431,7 +431,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((c = getopt(argc, argv, "c:s:bp")) != -1)

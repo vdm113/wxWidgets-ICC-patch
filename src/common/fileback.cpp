@@ -155,7 +155,7 @@ wxStreamError wxBackingFileImpl::ReadAt(wxFileOffset pos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (*size < reqestedSize)
@@ -167,7 +167,7 @@ wxStreamError wxBackingFileImpl::ReadAt(wxFileOffset pos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (pos - m_filelen + size_t(0) >= m_buflen)

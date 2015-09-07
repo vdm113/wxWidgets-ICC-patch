@@ -72,7 +72,7 @@ initial_setup (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -98,7 +98,7 @@ initial_setup (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -197,7 +197,7 @@ per_scan_setup (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
@@ -223,7 +223,7 @@ per_scan_setup (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       while (mcublks-- > 0) {
@@ -268,7 +268,7 @@ latch_quant_tables (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {

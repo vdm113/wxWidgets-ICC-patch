@@ -137,7 +137,7 @@ void wxObjectWriter::FindConnectEntry(const wxEvtHandler * evSource,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxList::const_iterator node = dynamicEvents->begin(); node != dynamicEvents->end(); ++node )
@@ -158,7 +158,7 @@ void wxObjectWriter::FindConnectEntry(const wxEvtHandler * evSource,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while ( sinkHandler )
@@ -186,7 +186,7 @@ void wxObjectWriter::WriteAllProperties( const wxObject * obj, const wxClassInfo
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < ci->GetCreateParamCount(); ++i )
@@ -210,7 +210,7 @@ void wxObjectWriter::WriteAllProperties( const wxObject * obj, const wxClassInfo
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for( wxPropertyInfoMap::iterator iter = map.begin(); iter != map.end(); ++iter )
@@ -228,7 +228,7 @@ void wxObjectWriter::WriteAllProperties( const wxObject * obj, const wxClassInfo
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for( wxPropertyInfoMap::iterator iter = map.begin(); iter != map.end(); ++iter )
@@ -290,7 +290,7 @@ void wxObjectWriter::WriteOneProperty( const wxObject *obj, const wxClassInfo* c
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( wxAnyList::const_iterator iter = data.begin(); iter != data.end(); ++iter )
@@ -575,7 +575,7 @@ void wxObjectRuntimeReaderCallback::CreateObject(int objectID,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < paramCount; ++i )
@@ -611,7 +611,7 @@ void wxObjectRuntimeReaderCallback::ConstructObject(int objectID,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < paramCount; ++i )
@@ -704,7 +704,7 @@ void wxObjectRuntimeReaderCallback::SetConnect(int eventSourceObjectID,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( wxEventType iter = delegateTypeInfo->GetEventType(); 

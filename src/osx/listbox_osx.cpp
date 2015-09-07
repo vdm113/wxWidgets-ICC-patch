@@ -259,7 +259,7 @@ wxSize wxListBox::DoGetBestSize() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (unsigned int i = 0; i < GetCount(); i++)
@@ -370,7 +370,7 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter& items,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < numItems; ++i )

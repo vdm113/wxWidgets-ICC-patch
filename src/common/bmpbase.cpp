@@ -125,7 +125,7 @@ wxBitmapHandler *wxBitmapBase::FindHandler(const wxString& name)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( node )
@@ -146,7 +146,7 @@ wxBitmapHandler *wxBitmapBase::FindHandler(const wxString& extension, wxBitmapTy
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( node )
@@ -168,7 +168,7 @@ wxBitmapHandler *wxBitmapBase::FindHandler(wxBitmapType bitmapType)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( node )
@@ -189,7 +189,7 @@ void wxBitmapBase::CleanUpHandlers()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( node )

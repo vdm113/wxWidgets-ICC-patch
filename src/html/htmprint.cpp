@@ -164,7 +164,7 @@ int wxHtmlDCRenderer::Render(int x, int y,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (m_Cells->AdjustPagebreak(&pbreak, known_pagebreaks, m_Height)) {}
@@ -459,7 +459,7 @@ void wxHtmlPrintout::SetHtmlFile(const wxString& htmlfile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -524,7 +524,7 @@ void wxHtmlPrintout::CountPages()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -820,7 +820,7 @@ void wxHtmlEasyPrinting::SetFonts(const wxString& normal_face, const wxString& f
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < 7; i++) m_FontsSizes[i] = sizes[i];

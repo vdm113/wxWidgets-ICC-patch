@@ -308,7 +308,7 @@ void wxGenericColourDialog::InitializeColours(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < WXSIZEOF(wxColourDialogNames); i++)
@@ -325,7 +325,7 @@ void wxGenericColourDialog::InitializeColours(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < WXSIZEOF(m_customColours); i++)
@@ -347,7 +347,7 @@ void wxGenericColourDialog::InitializeColours(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < WXSIZEOF(wxColourDialogNames); i++)
@@ -367,7 +367,7 @@ void wxGenericColourDialog::InitializeColours(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( i = 0; i < WXSIZEOF(m_customColours); i++ )
@@ -398,7 +398,7 @@ void wxGenericColourDialog::PaintBasicColours(wxDC& dc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 6; i++)
@@ -409,7 +409,7 @@ void wxGenericColourDialog::PaintBasicColours(wxDC& dc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (j = 0; j < 8; j++)
@@ -436,7 +436,7 @@ void wxGenericColourDialog::PaintCustomColours(wxDC& dc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < 2; i++)
@@ -447,7 +447,7 @@ void wxGenericColourDialog::PaintCustomColours(wxDC& dc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (j = 0; j < 8; j++)

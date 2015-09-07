@@ -439,7 +439,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( wxDataViewTreeNodes::iterator i = nodes.begin();
@@ -490,7 +490,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int i = 0; i < len; i++ )
@@ -513,7 +513,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while( node->GetParent()->GetParent() != NULL )
@@ -547,7 +547,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int i = 0;i < len; i ++)
@@ -1537,7 +1537,7 @@ void wxDataViewTreeNode::Resort()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < len; i++)
@@ -1793,7 +1793,7 @@ wxBitmap wxDataViewMainWindow::CreateItemBitmap( unsigned int row, int &indent )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (col = 0; col < cols; col++)
@@ -1832,7 +1832,7 @@ wxBitmap wxDataViewMainWindow::CreateItemBitmap( unsigned int row, int &indent )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (col = 0; col < cols; col++)
@@ -1892,7 +1892,7 @@ static void DrawSelectedCellFocusRect(wxDC& dc, const wxRect& rect)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( z = x1 + 1; z < x2; z += 2 )
@@ -1904,7 +1904,7 @@ static void DrawSelectedCellFocusRect(wxDC& dc, const wxRect& rect)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( z = y1 + shift; z < y2; z += 2 )
@@ -1916,7 +1916,7 @@ static void DrawSelectedCellFocusRect(wxDC& dc, const wxRect& rect)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( z = x2 - shift; z > x1; z -= 2 )
@@ -1928,7 +1928,7 @@ static void DrawSelectedCellFocusRect(wxDC& dc, const wxRect& rect)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( z = y2 - shift; z > y1; z -= 2 )
@@ -1990,7 +1990,7 @@ void wxDataViewMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (x_start = 0; col_start < cols; col_start++)
@@ -2013,7 +2013,7 @@ void wxDataViewMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (; col_last < cols; col_last++)
@@ -2055,7 +2055,7 @@ void wxDataViewMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (unsigned int item = item_start; item < item_last; item++)
@@ -2081,7 +2081,7 @@ void wxDataViewMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (unsigned int i = item_start; i <= item_last; i++)
@@ -2108,7 +2108,7 @@ void wxDataViewMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (unsigned int i = col_start; i < col_last; i++)
@@ -2130,7 +2130,7 @@ void wxDataViewMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int item = item_start; item < item_last; item++)
@@ -2183,7 +2183,7 @@ void wxDataViewMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for ( unsigned int i = col_start; i < col_last; i++ )
@@ -2260,7 +2260,7 @@ void wxDataViewMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i = col_start; i < col_last; i++)
@@ -2277,7 +2277,7 @@ void wxDataViewMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (unsigned int item = item_start; item < item_last; item++)
@@ -2502,7 +2502,7 @@ bool Walker( wxDataViewTreeNode * node, DoJob & func )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxDataViewTreeNodes::const_iterator i = nodes.begin();
@@ -2579,7 +2579,7 @@ bool wxDataViewMainWindow::ItemAdded(const wxDataViewItem & parent, const wxData
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( int nextItemPos = posInModel + 1;
@@ -2643,7 +2643,7 @@ bool wxDataViewMainWindow::ItemDeleted(const wxDataViewItem& parent,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxDataViewTreeNodes::const_iterator i = parentsChildren.begin();
@@ -2868,7 +2868,7 @@ void wxDataViewMainWindow::ScrollTo( int rows, int column )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (x_start = 0; colnum < column; colnum++)
@@ -2910,7 +2910,7 @@ int wxDataViewMainWindow::GetEndOfLastCol() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < GetOwner()->GetColumnCount(); i++)
@@ -2981,7 +2981,7 @@ void wxDataViewMainWindow::SelectAllRows( bool on )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (unsigned i = GetFirstVisibleRow(); i <= GetLastVisibleRow(); i++)
@@ -3009,7 +3009,7 @@ void wxDataViewMainWindow::SelectRows( unsigned int from, unsigned int to )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (unsigned i = 0; i < changed.size(); i++)
@@ -3028,7 +3028,7 @@ void wxDataViewMainWindow::Select( const wxArrayInt& aSelections )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i=0; i < aSelections.GetCount(); i++)
@@ -3133,7 +3133,7 @@ int wxDataViewMainWindow::GetLineStart( unsigned int row ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (r = 0; r < row; r++)
@@ -3151,7 +3151,7 @@ int wxDataViewMainWindow::GetLineStart( unsigned int row ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (col = 0; col < cols; col++)
@@ -3199,7 +3199,7 @@ int wxDataViewMainWindow::GetLineAt( unsigned int y ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;)
@@ -3221,7 +3221,7 @@ int wxDataViewMainWindow::GetLineAt( unsigned int y ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (col = 0; col < cols; col++)
@@ -3273,7 +3273,7 @@ int wxDataViewMainWindow::GetLineHeight( unsigned int row ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (col = 0; col < cols; col++)
@@ -3548,7 +3548,7 @@ wxDataViewTreeNode * wxDataViewMainWindow::FindNode( const wxDataViewItem & item
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while( it.IsOk() )
@@ -3565,7 +3565,7 @@ wxDataViewTreeNode * wxDataViewMainWindow::FindNode( const wxDataViewItem & item
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( unsigned iter = parentChain.size()-1; ; --iter )
@@ -3589,7 +3589,7 @@ wxDataViewTreeNode * wxDataViewMainWindow::FindNode( const wxDataViewItem & item
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (unsigned i = 0; i < nodes.GetCount(); ++i)
@@ -3630,7 +3630,7 @@ void wxDataViewMainWindow::HitTest( const wxPoint & point, wxDataViewItem & item
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned x_start = 0; colnum < cols; colnum++)
@@ -3664,7 +3664,7 @@ wxRect wxDataViewMainWindow::GetItemRect( const wxDataViewItem & item,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < cols; i++)
@@ -3800,7 +3800,7 @@ int wxDataViewMainWindow::GetRowByItem(const wxDataViewItem & item) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while( it.IsOk() )
@@ -3834,7 +3834,7 @@ static void BuildTreeHelper( wxDataViewMainWindow *window, const wxDataViewModel
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int index = 0; index < num; index++ )
@@ -3914,7 +3914,7 @@ wxDataViewMainWindow::FindColumnForEditing(const wxDataViewItem& item, wxDataVie
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned i = 0; i < cols; i++ )
@@ -4424,7 +4424,7 @@ void wxDataViewMainWindow::OnMouse( wxMouseEvent &event )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < cols; i++)
@@ -4886,7 +4886,7 @@ void wxDataViewMainWindow::OnColumnsCountChanged()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned i = 0; i < cols; i++ )
@@ -5256,7 +5256,7 @@ int wxDataViewCtrl::GetColumnIndex(const wxDataViewColumn *column) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < count; n++ )
@@ -5276,7 +5276,7 @@ int wxDataViewCtrl::GetModelColumnIndex( unsigned int model_column ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int index = 0; index < count; index++ )
@@ -5442,7 +5442,7 @@ void wxDataViewCtrl::UpdateColWidths()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned i = 0; i < len; i++ )
@@ -5479,7 +5479,7 @@ int wxDataViewCtrl::GetColumnPosition( const wxDataViewColumn *column ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < len; i++ )
@@ -5509,7 +5509,7 @@ wxVector<wxDataViewColumn *> wxDataViewCtrl::GetSortingColumns() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxVector<int>::const_iterator it = m_sortingColumnIdxs.begin(),
@@ -5562,7 +5562,7 @@ int wxDataViewCtrl::GetSelections( wxDataViewItemArray & sel ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned row = selections.GetFirstSelectedItem(cookie);
@@ -5594,7 +5594,7 @@ void wxDataViewCtrl::SetSelections( const wxDataViewItemArray & sel )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < sel.size(); i++ )
@@ -5761,7 +5761,7 @@ void wxDataViewCtrl::ResetAllSortColumns()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxVector<int>::const_iterator it = copy.begin(),
@@ -5802,7 +5802,7 @@ bool wxDataViewCtrl::IsColumnSorted(int idx) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxVector<int>::const_iterator it = m_sortingColumnIdxs.begin(),
@@ -5829,7 +5829,7 @@ void wxDataViewCtrl::DontUseColumnForSorting(int idx)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxVector<int>::iterator it = m_sortingColumnIdxs.begin(),

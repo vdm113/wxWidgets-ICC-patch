@@ -337,7 +337,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ((nLast = this->GetNextItem(nLast,
@@ -377,7 +377,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < files.GetCount(); ++i)
@@ -466,7 +466,7 @@ bool wxMediaPlayerApp::OnCmdLineParsed(wxCmdLineParser& parser)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t paramNr=0; paramNr < parser.GetParamCount(); ++paramNr)
@@ -505,7 +505,7 @@ bool wxMediaPlayerApp::OnInit()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < m_params.size(); n++ )
@@ -785,7 +785,7 @@ wxMediaPlayerFrame::wxMediaPlayerFrame(const wxString& title)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for(int i = 0; ; ++i)
@@ -847,7 +847,7 @@ wxMediaPlayerFrame::~wxMediaPlayerFrame()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(int i = 0; i < playlist->GetItemCount(); ++i)
@@ -1303,7 +1303,7 @@ void wxMediaPlayerFrame::OnKeyDown(wxKeyEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
        while(true)
@@ -1389,7 +1389,7 @@ void wxMediaPlayerFrame::OnPrev(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(true)
@@ -1450,7 +1450,7 @@ void wxMediaPlayerFrame::OnNext(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(true)

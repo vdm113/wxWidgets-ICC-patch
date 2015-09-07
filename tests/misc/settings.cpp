@@ -75,7 +75,7 @@ void SettingsTestCase::GetColour()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i=wxSYS_COLOUR_SCROLLBAR; i < wxSYS_COLOUR_MAX; i++)
@@ -100,7 +100,7 @@ void SettingsTestCase::GetFont()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i < WXSIZEOF(ids); i++)
@@ -129,7 +129,7 @@ void SettingsTestCase::GlobalColours()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i < WXSIZEOF(col); i++)
@@ -151,7 +151,7 @@ void SettingsTestCase::GlobalFonts()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i < WXSIZEOF(font); i++)
@@ -190,7 +190,7 @@ void SettingsTestCase::GlobalBrushes()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i < WXSIZEOF(brush); i++)
@@ -219,7 +219,7 @@ void SettingsTestCase::GlobalPens()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i < WXSIZEOF(pen); i++)

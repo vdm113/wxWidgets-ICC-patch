@@ -449,7 +449,7 @@ void MyFrame::OnQuery(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < childCount; i++)
@@ -465,7 +465,7 @@ void MyFrame::OnQuery(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < childCount; i++)
@@ -545,7 +545,7 @@ void MyFrame::LogObject(int indent, IAccessible* obj)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 1; i <= childCount; i++)

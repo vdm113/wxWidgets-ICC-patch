@@ -554,7 +554,7 @@ MyFrame::~MyFrame()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < m_allAsync.size(); n++ )
@@ -797,7 +797,7 @@ ExecQueryDialog::ExecQueryDialog(const wxString& cmd)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxEnvVariableHashMap::iterator it = env.begin();
@@ -825,7 +825,7 @@ void ExecQueryDialog::GetEnvironment(wxEnvVariableHashMap& env)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int l = 0; l < nb; l++ )
@@ -1300,7 +1300,7 @@ void MyFrame::OnIdle(wxIdleEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -1377,7 +1377,7 @@ void MyFrame::ShowOutput(const wxString& cmd,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -1446,7 +1446,7 @@ void MyPipedProcess::OnTerminate(int pid, int status)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( HasInput() )
@@ -1552,7 +1552,7 @@ void MyPipeFrame::OnBtnSendFile(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( len )
@@ -1587,7 +1587,7 @@ void MyPipeFrame::DoGetFromStream(wxTextCtrl *text, wxInputStream& in)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( in.CanRead() )

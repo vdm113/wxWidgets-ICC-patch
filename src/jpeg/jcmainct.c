@@ -130,7 +130,7 @@ process_data_simple_main (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (mymain->cur_iMCU_row < cinfo->total_iMCU_rows) {
@@ -197,7 +197,7 @@ process_data_buffer_main (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (mymain->cur_iMCU_row < cinfo->total_iMCU_rows) {
@@ -208,7 +208,7 @@ process_data_buffer_main (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -303,7 +303,7 @@ jinit_c_main_controller (j_compress_ptr cinfo, wxjpeg_boolean need_full_buffer)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -328,7 +328,7 @@ jinit_c_main_controller (j_compress_ptr cinfo, wxjpeg_boolean need_full_buffer)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;

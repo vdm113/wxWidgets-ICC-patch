@@ -91,7 +91,7 @@ setDoubleArrayOneValue(double** vpp, double value, size_t nmemb)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (nmemb--)
@@ -122,7 +122,7 @@ setExtraSamples(TIFFDirectory* td, va_list ap, uint32* v)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < *v; i++) {
@@ -164,7 +164,7 @@ checkInkNamesString(TIFF* tif, uint32 slen, const char* s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (; i > 0; i--) {
@@ -173,7 +173,7 @@ checkInkNamesString(TIFF* tif, uint32 slen, const char* s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (; cp < ep && *cp != '\0'; cp++) {}
@@ -456,7 +456,7 @@ _TIFFVSetField(TIFF* tif, uint32 tag, va_list ap)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < v; i++)
@@ -515,7 +515,7 @@ _TIFFVSetField(TIFF* tif, uint32 tag, va_list ap)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (iCustom = 0; iCustom < td->td_customValueCount; iCustom++) {
@@ -828,7 +828,7 @@ TIFFUnsetField(TIFF* tif, uint32 tag)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < td->td_customValueCount; i++) {
@@ -846,7 +846,7 @@ TIFFUnsetField(TIFF* tif, uint32 tag)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for( ; i < td->td_customValueCount-1; i++) {
@@ -945,7 +945,7 @@ _TIFFVGetField(TIFF* tif, uint32 tag, va_list ap)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (i=1; i < td->td_samplesperpixel; ++i)
@@ -967,7 +967,7 @@ _TIFFVGetField(TIFF* tif, uint32 tag, va_list ap)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (i=1; i < td->td_samplesperpixel; ++i)
@@ -1115,7 +1115,7 @@ _TIFFVGetField(TIFF* tif, uint32 tag, va_list ap)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (i = 0; i < td->td_customValueCount; i++) {
@@ -1290,7 +1290,7 @@ TIFFFreeDirectory(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for( i = 0; i < td->td_customValueCount; i++ ) {
@@ -1586,7 +1586,7 @@ TIFFNumberOfDirectories(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (nextdir != 0 && TIFFAdvanceDirectory(tif, &nextdir, NULL))
@@ -1613,7 +1613,7 @@ TIFFSetDirectory(TIFF* tif, uint16 dirn)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (n = dirn; n > 0 && nextdir != 0; n--)
@@ -1707,7 +1707,7 @@ TIFFUnlinkDirectory(TIFF* tif, uint16 dirn)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (n = dirn-1; n > 0; n--) {

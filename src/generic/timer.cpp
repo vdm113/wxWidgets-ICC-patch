@@ -112,7 +112,7 @@ void wxTimerScheduler::QueueTimer(wxTimerDesc *desc, wxTimerTick_t when)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( d->next && d->next->shotTime < when ) d = d->next;
@@ -154,7 +154,7 @@ void wxTimerScheduler::NotifyTimers()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxTimerDesc *desc = m_timers; desc; desc = desc->next )

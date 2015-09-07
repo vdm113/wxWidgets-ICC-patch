@@ -245,7 +245,7 @@ void wxFileDialogBase::SetFilterIndexFromExt(const wxString& ext)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (size_t n=0; n<filters.GetCount(); n++)

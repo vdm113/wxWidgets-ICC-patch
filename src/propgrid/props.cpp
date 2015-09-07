@@ -291,7 +291,7 @@ bool wxIntProperty::StringToValue( wxVariant& variant, const wxString& text, int
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( ; i != iMax; ++i )
@@ -894,7 +894,7 @@ const wxString& wxPropertyGrid::DoubleToString(wxString& target,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( ; i != target.begin(); --i )
@@ -923,7 +923,7 @@ const wxString& wxPropertyGrid::DoubleToString(wxString& target,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( ; i != target.end(); ++i )
@@ -1227,7 +1227,7 @@ wxEnumProperty::wxEnumProperty( const wxString& label, const wxString& name,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int i = 0; *untranslatedLabels; untranslatedLabels++ )
@@ -1350,7 +1350,7 @@ bool wxEnumProperty::ValueFromString_(wxVariant& value, int* pIndex, const wxStr
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i=0; i<m_choices.GetCount(); i++ )
@@ -1573,7 +1573,7 @@ void wxFlagsProperty::Init()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i=0; i<prevChildCount; i++ )
@@ -1596,7 +1596,7 @@ void wxFlagsProperty::Init()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( i=0; i<GetItemCount(); i++ )
@@ -1717,7 +1717,7 @@ void wxFlagsProperty::OnSetValue()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned int i = 0; i < GetItemCount(); i++ )
@@ -1748,7 +1748,7 @@ void wxFlagsProperty::OnSetValue()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned int i = 0; i < GetItemCount(); i++ )
@@ -1781,7 +1781,7 @@ wxString wxFlagsProperty::ValueToString( wxVariant& value,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < GetItemCount(); i++ )
@@ -1847,7 +1847,7 @@ long wxFlagsProperty::IdToBit( const wxString& id ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < GetItemCount(); i++ )
@@ -1872,7 +1872,7 @@ void wxFlagsProperty::RefreshChildren()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < GetItemCount(); i++ )
@@ -1917,7 +1917,7 @@ bool wxFlagsProperty::DoSetAttribute( const wxString& name, wxVariant& value )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t i=0; i<GetChildCount(); i++ )
@@ -2116,7 +2116,7 @@ void wxFileProperty::OnSetValue()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( pos != wxString::npos && pos < (len-3) )
@@ -2529,7 +2529,7 @@ bool wxPGArrayEditorDialog::Create( wxWindow *parent,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i=0; i<ArrayGetCount(); i++ )
@@ -2891,7 +2891,7 @@ wxArrayStringProperty::ArrayStringToString( wxString& dst,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < itemCount; i++ )
@@ -2975,7 +2975,7 @@ bool wxArrayStringProperty::OnButtonClick( wxPropertyGrid* propGrid,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;)

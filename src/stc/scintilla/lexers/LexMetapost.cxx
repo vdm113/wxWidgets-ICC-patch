@@ -144,7 +144,7 @@ static int CheckMETAPOSTInterface(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (unsigned int i = 0; i < startPos + length; i++) {
@@ -214,7 +214,7 @@ static void ColouriseMETAPOSTDoc(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; going; sc.Forward()) {
@@ -372,7 +372,7 @@ static int ParseMetapostWord(unsigned int pos, Accessor &styler, char *word)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while(isMETAPOSTidentifier(ch) && isalpha(ch) && length<100){
@@ -401,7 +401,7 @@ static void FoldMetapostDoc(unsigned int startPos, int length, int, WordList *ke
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i=startPos; i < endPos; i++) {

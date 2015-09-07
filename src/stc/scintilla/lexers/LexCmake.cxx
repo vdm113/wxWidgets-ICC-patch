@@ -60,7 +60,7 @@ static bool CmakeNextLineHasElse(unsigned int start, unsigned int end, Accessor 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = start; i < end; i++ ) {
@@ -79,7 +79,7 @@ static bool CmakeNextLineHasElse(unsigned int start, unsigned int end, Accessor 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int firstChar = nNextLine; firstChar < end; firstChar++ ) {
@@ -110,7 +110,7 @@ static int calculateFoldCmake(unsigned int start, unsigned int end, int foldleve
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < end - start + 1 && i < 19; i++) {
@@ -147,7 +147,7 @@ static int classifyWordCmake(unsigned int start, unsigned int end, WordList *key
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < end - start + 1 && i < 99; i++) {
@@ -194,7 +194,7 @@ static int classifyWordCmake(unsigned int start, unsigned int end, WordList *key
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (unsigned int j = 1; j < end - start + 1 && j < 99; j++) {
@@ -233,7 +233,7 @@ static void ColouriseCmakeDoc(unsigned int startPos, int length, int, WordList *
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = startPos; i < nLengthDoc; i++ ) {
@@ -330,7 +330,7 @@ static void ColouriseCmakeDoc(unsigned int startPos, int length, int, WordList *
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while ( nBack > 0 ) {
@@ -466,7 +466,7 @@ static void FoldCmakeDoc(unsigned int startPos, int length, int, WordList *[], A
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i = safeStartPos; i < startPos + length; i++) {

@@ -426,7 +426,7 @@ size_t wxStreamBuffer::Read(void *buffer, size_t size)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( size > 0 )
@@ -477,7 +477,7 @@ size_t wxStreamBuffer::Read(wxStreamBuffer *dbuf)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -494,7 +494,7 @@ size_t wxStreamBuffer::Read(wxStreamBuffer *dbuf)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( nRead );
@@ -532,7 +532,7 @@ size_t wxStreamBuffer::Write(const void *buffer, size_t size)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( size > 0 )
@@ -596,7 +596,7 @@ size_t wxStreamBuffer::Write(wxStreamBuffer *sbuf)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -625,7 +625,7 @@ size_t wxStreamBuffer::Write(wxStreamBuffer *sbuf)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( nWrite == WXSIZEOF(buf) );
@@ -909,7 +909,7 @@ wxInputStream& wxInputStream::Read(void *buf, size_t size)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )
@@ -965,7 +965,7 @@ wxInputStream& wxInputStream::Read(wxOutputStream& stream_out)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )
@@ -996,7 +996,7 @@ bool wxInputStream::ReadAll(void *buffer_, size_t size)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )
@@ -1065,7 +1065,7 @@ wxFileOffset wxInputStream::SeekI(wxFileOffset pos, wxSeekMode mode)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( ; pos >= BUF_TEMP_SIZE; pos -= bytes_read)
@@ -1171,7 +1171,7 @@ bool wxOutputStream::WriteAll(const void *buffer_, size_t size)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )
@@ -1366,7 +1366,7 @@ wxString::size_type wxFilterClassFactoryBase::FindExtension(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (const wxChar *const *p = GetProtocols(wxSTREAM_FILEEXT); *p; p++)
@@ -1389,7 +1389,7 @@ bool wxFilterClassFactoryBase::CanHandle(const wxString& protocol,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (const wxChar *const *p = GetProtocols(type); *p; p++)
@@ -1418,7 +1418,7 @@ void wxFilterClassFactory::Remove()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (*pp != this)

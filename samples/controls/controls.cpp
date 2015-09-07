@@ -736,7 +736,7 @@ MyPanel::MyPanel( wxFrame *frame, int x, int y, int w, int h )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < Image_Max; n++ )
@@ -878,7 +878,7 @@ MyPanel::MyPanel( wxFrame *frame, int x, int y, int w, int h )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int item = 0; item < WXSIZEOF(choices); ++item)
@@ -1190,7 +1190,7 @@ void MyPanel::SetAllToolTips()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int nb = 0; nb < m_radio->GetCount(); nb++ )
@@ -1325,7 +1325,7 @@ void MyPanel::OnChangeCheck(wxCommandEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int n=0; n < m_listbox->GetCount(); n++) {
@@ -1839,7 +1839,7 @@ void MyPanel::OnShowProgress( wxCommandEvent& WXUNUSED(event) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i <= max && cont; i++ )
@@ -2222,7 +2222,7 @@ static void SetListboxClientData(const wxChar *name, wxCheckListBox *control)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -2245,7 +2245,7 @@ static void SetChoiceClientData(const wxChar *name, wxChoice *control)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )

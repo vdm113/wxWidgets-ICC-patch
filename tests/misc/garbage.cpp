@@ -75,7 +75,7 @@ void GarbageTestCase::LoadGarbage()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t size = 1; size < GARBAGE_DATA_SIZE; size *= size+1)
@@ -87,7 +87,7 @@ void GarbageTestCase::LoadGarbage()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < size; i++)

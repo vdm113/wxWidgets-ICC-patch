@@ -1085,7 +1085,7 @@ wxBitmap wxGTKRenderer::GetCheckBitmap(int flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int i = 0; i < 2; i++ )
@@ -1095,7 +1095,7 @@ wxBitmap wxGTKRenderer::GetCheckBitmap(int flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( int j = 0; j < 3; j++ )
@@ -1790,7 +1790,7 @@ wxMenuGeometryInfo *wxGTKRenderer::GetMenuGeometry(wxWindow *win,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxMenuItemList::compatibility_iterator node = menu.GetMenuItems().GetFirst();
@@ -1880,7 +1880,7 @@ void wxGTKRenderer::InitComboBitmaps()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = ComboState_Normal; n < ComboState_Max; n++ )
@@ -1904,7 +1904,7 @@ void wxGTKRenderer::InitComboBitmaps()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = ComboState_Normal; n < ComboState_Max; n++ )
@@ -2005,7 +2005,7 @@ void wxGTKRenderer::DrawArrowBorder(wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < WXSIZEOF(sides); n++ )
@@ -2023,7 +2023,7 @@ void wxGTKRenderer::DrawArrowBorder(wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < WXSIZEOF(sides); n++ )

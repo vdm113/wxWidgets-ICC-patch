@@ -133,7 +133,7 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (lineCurrent > 0) {
@@ -208,7 +208,7 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
@@ -284,7 +284,7 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					while (ch != '\0') {
@@ -432,7 +432,7 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (nextIndex > (sc.currentPos + 1) && sc.More()) {
@@ -455,7 +455,7 @@ static bool IsCommentLine(int line, Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i = pos; i < eol_pos; i++) {
@@ -498,7 +498,7 @@ static void FoldPyDoc(unsigned int startPos, int length, int /*initStyle - unuse
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (lineCurrent > 0) {
@@ -526,7 +526,7 @@ static void FoldPyDoc(unsigned int startPos, int length, int /*initStyle - unuse
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((lineCurrent <= docLines) && ((lineCurrent <= maxLines) || prevQuote)) {
@@ -570,7 +570,7 @@ static void FoldPyDoc(unsigned int startPos, int length, int /*initStyle - unuse
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (!quote &&
@@ -598,7 +598,7 @@ static void FoldPyDoc(unsigned int startPos, int length, int /*initStyle - unuse
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (--skipLine > lineCurrent) {

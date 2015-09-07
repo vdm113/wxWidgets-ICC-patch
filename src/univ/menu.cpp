@@ -528,7 +528,7 @@ wxPopupMenuWindow::GetMenuItemFromPoint(const wxPoint& pt) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxMenuItemIter node = m_menu->GetMenuItems().GetFirst();
@@ -584,7 +584,7 @@ void wxPopupMenuWindow::DoDraw(wxControlRenderer *renderer)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxMenuItemIter node = m_menu->GetMenuItems().GetFirst();
@@ -957,7 +957,7 @@ bool wxPopupMenuWindow::ProcessKeyDown(int key)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while ( node && node->GetData()->IsSeparator() )
@@ -1019,7 +1019,7 @@ bool wxPopupMenuWindow::ProcessKeyDown(int key)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( ;; )
@@ -1496,7 +1496,7 @@ bool wxMenu::ProcessAccelEvent(const wxKeyEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxMenuItemIter node = GetMenuItems().GetFirst();
@@ -1688,7 +1688,7 @@ void wxMenuItem::Check(bool check)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int n = start; n <= end && node; n++ )
@@ -1764,7 +1764,7 @@ wxMenuBar::wxMenuBar(size_t n, wxMenu *menus[], const wxString titles[], long WX
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < n; ++i )
@@ -1987,7 +1987,7 @@ void wxMenuBar::DoDraw(wxControlRenderer *renderer)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -2048,7 +2048,7 @@ wxRect wxMenuBar::GetItemRect(size_t pos) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < pos; n++ )
@@ -2098,7 +2098,7 @@ int wxMenuBar::GetMenuFromPoint(const wxPoint& pos) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t item = 0; item < count; item++ )
@@ -2445,7 +2445,7 @@ int wxMenuBar::FindNextItemForAccel(int idxStart, int key, bool *unique) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )
@@ -2503,7 +2503,7 @@ bool wxMenuBar::ProcessAccelEvent(const wxKeyEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxMenuList::compatibility_iterator node = m_menus.GetFirst();

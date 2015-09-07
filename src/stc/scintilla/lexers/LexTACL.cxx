@@ -65,7 +65,7 @@ static void getRange(unsigned int start,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((i < end - start + 1) && (i < len-1)) {
@@ -174,7 +174,7 @@ static void ColouriseTACLDoc(unsigned int startPos, int length, int initStyle, W
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = startPos; i < lengthDoc; i++) {
@@ -327,7 +327,7 @@ static void FoldTACLDoc(unsigned int startPos, int length, int initStyle, WordLi
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
@@ -385,7 +385,7 @@ static void FoldTACLDoc(unsigned int startPos, int length, int initStyle, WordLi
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while ((j<endPos) && IsASpaceOrTab(styler.SafeGetCharAt(j))) {

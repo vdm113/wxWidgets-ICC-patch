@@ -634,7 +634,7 @@ void MyFrame::OnSetStatusFields(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( long n = 0; n < nFields; n++ )
@@ -676,7 +676,7 @@ void MyFrame::OnResetFieldsWidth(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < n; i++ )
@@ -699,7 +699,7 @@ void MyFrame::OnShowFieldsRect(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < n; i++ )
@@ -802,7 +802,7 @@ void MyFrame::ApplyPaneStyle()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 1; i < fields; i++)

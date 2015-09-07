@@ -143,7 +143,7 @@ void ImageTestCase::LoadFromFile()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i<WXSIZEOF(g_testfiles); i++)
@@ -173,7 +173,7 @@ void ImageTestCase::LoadFromSocketStream()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i<WXSIZEOF(testData); i++)
@@ -215,7 +215,7 @@ void ImageTestCase::LoadFromZipStream()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i<WXSIZEOF(g_testfiles); i++)
@@ -862,7 +862,7 @@ void ImageTestCase::SizeImage()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for ( unsigned i = 0; i < WXSIZEOF(sizeTestData); i++ )
@@ -900,7 +900,7 @@ void ImageTestCase::CompareLoadedImage()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i=0; i<WXSIZEOF(g_testfiles); i++)
@@ -1028,7 +1028,7 @@ static void SetAlpha(wxImage *image)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int y = 0; y < height; ++y)
@@ -1038,7 +1038,7 @@ static void SetAlpha(wxImage *image)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int x = 0; x < width; ++x)
@@ -1063,7 +1063,7 @@ void ImageTestCase::CompareSavedImage()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < 256; ++i)
@@ -1087,7 +1087,7 @@ void ImageTestCase::CompareSavedImage()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxList::compatibility_iterator node = list.GetFirst();
@@ -1150,7 +1150,7 @@ void ImageTestCase::SavePNG()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (y = 0; y < height; ++y)
@@ -1160,7 +1160,7 @@ void ImageTestCase::SavePNG()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (x = 0; x < width; ++x)
@@ -1260,7 +1260,7 @@ void ImageTestCase::SaveAnimatedGIF()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < 4-1; ++i)
@@ -1284,7 +1284,7 @@ void ImageTestCase::SaveAnimatedGIF()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < imageCount; ++i)
@@ -1382,7 +1382,7 @@ void ImageTestCase::GIFComment()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 4; ++i)
@@ -1415,7 +1415,7 @@ void ImageTestCase::GIFComment()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < imageCount; ++i)
@@ -1486,7 +1486,7 @@ CompareApprox(const wxImage& i1, const wxImage& i2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < numBytes; n++, p1++, p2++ )

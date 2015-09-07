@@ -93,7 +93,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (ms_clipboard)
@@ -183,7 +183,7 @@ targets_selection_received( GtkWidget *WXUNUSED(widget),
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < selection_data_length / sizeof(GdkAtom); i++)
@@ -437,7 +437,7 @@ async_targets_selection_received( GtkWidget *WXUNUSED(widget),
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < selection_data_length / sizeof(GdkAtom); i++)
@@ -671,7 +671,7 @@ bool wxClipboard::AddData( wxDataObject *data )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )
@@ -739,7 +739,7 @@ bool wxClipboard::GetData( wxDataObject& data )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )

@@ -75,7 +75,7 @@ static bool IsContinuationLine(unsigned int szLine, Accessor &styler)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (startPos < endPos)
@@ -106,7 +106,7 @@ static int GetStyleFirstWord(int szLine, Accessor &styler)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (ch > 0 && isspacechar(ch) && startPos < endPos)
@@ -135,7 +135,7 @@ static bool IsFunction(Accessor &styler, unsigned int currentPos) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = 0; i < numberOfCharacters; i++) {
@@ -152,7 +152,7 @@ static bool IsFunction(Accessor &styler, unsigned int currentPos) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int j = 0; j < 16; j++) {					//check up to 16 preceeding characters
@@ -192,7 +192,7 @@ static void ColourisePowerProDoc(unsigned int startPos, int length, int initStyl
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
@@ -445,7 +445,7 @@ static void FoldPowerProDoc(unsigned int startPos, int length, int, WordList *[]
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((lineCurrent > 0 && IsContinuationLine(lineCurrent, styler))
@@ -489,7 +489,7 @@ static void FoldPowerProDoc(unsigned int startPos, int length, int, WordList *[]
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i = startPos; i < endPos; i++) {
@@ -658,7 +658,7 @@ static void FoldPowerProDoc(unsigned int startPos, int length, int, WordList *[]
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (unsigned int i = 0; i < FIRST_WORD_MAX_LEN; i++)

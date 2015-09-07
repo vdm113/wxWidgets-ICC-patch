@@ -412,7 +412,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < nRows; n++ )
@@ -854,7 +854,7 @@ wxString wxTextCtrl::DoGetValue() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t n = 1; n < count; n++ )
@@ -1072,7 +1072,7 @@ void wxTextCtrl::Replace(wxTextPos from, wxTextPos to, const wxString& text)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( line = lineStart; line <= lineEnd; line++ )
@@ -1129,7 +1129,7 @@ void wxTextCtrl::Replace(wxTextPos from, wxTextPos to, const wxString& text)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( const wxChar *p = textNew.c_str(); ; p++ )
@@ -1163,7 +1163,7 @@ void wxTextCtrl::Replace(wxTextPos from, wxTextPos to, const wxString& text)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < lines.GetCount(); n++ )
@@ -1191,7 +1191,7 @@ void wxTextCtrl::Replace(wxTextPos from, wxTextPos to, const wxString& text)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( line = lineStart; line <= lineEnd; line++, nReplaceLine++ )
@@ -1216,7 +1216,7 @@ void wxTextCtrl::Replace(wxTextPos from, wxTextPos to, const wxString& text)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( wxTextCoord lineDel = lineEnd; lineDel >= line; lineDel-- )
@@ -1254,7 +1254,7 @@ void wxTextCtrl::Replace(wxTextPos from, wxTextPos to, const wxString& text)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             do
@@ -1268,7 +1268,7 @@ void wxTextCtrl::Replace(wxTextPos from, wxTextPos to, const wxString& text)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( nReplaceLine < nReplaceCount );
@@ -1473,7 +1473,7 @@ wxTextPos wxTextCtrl::GetLastPosition() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t nLine = 0; nLine < nLineCount; nLine++ )
@@ -1547,7 +1547,7 @@ wxString wxTextCtrl::GetSelectionText() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( wxTextCoord line = lineStart + 1; line < lineEnd; line++ )
@@ -1836,7 +1836,7 @@ wxTextPos wxTextCtrl::XYToPosition(wxTextCoord x, wxTextCoord y) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t nLine = 0; nLine < (size_t)y; nLine++ )
@@ -1881,7 +1881,7 @@ bool wxTextCtrl::PositionToXY(wxTextPos pos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t nLine = 0; nLine < nLineCount; nLine++ )
@@ -2227,7 +2227,7 @@ wxTextPos wxTextCtrl::GetWordStart() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( (p > p0) && !IsWordChar(*p) )
@@ -2239,7 +2239,7 @@ wxTextPos wxTextCtrl::GetWordStart() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( (p > p0) && IsWordChar(*p) )
@@ -2284,7 +2284,7 @@ wxTextPos wxTextCtrl::GetWordEnd() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( *p && !IsWordChar(*p) )
@@ -2296,7 +2296,7 @@ wxTextPos wxTextCtrl::GetWordEnd() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( *p && IsWordChar(*p) )
@@ -2308,7 +2308,7 @@ wxTextPos wxTextCtrl::GetWordEnd() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( *p && !IsWordChar(*p) )
@@ -2779,7 +2779,7 @@ wxTextCoord wxTextCtrl::GetRowInLine(wxTextCoord line,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( (row < rowMax) && (col >= lineData.GetExtraRowStart(row)) )
@@ -2818,7 +2818,7 @@ void wxTextCtrl::LayoutLine(wxTextCoord line, wxWrappedLineData& lineData) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -2842,7 +2842,7 @@ void wxTextCtrl::LayoutLine(wxTextCoord line, wxWrappedLineData& lineData) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( colRowStart < text.length() );
@@ -2878,7 +2878,7 @@ void wxTextCtrl::LayoutLines(wxTextCoord lineLast) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxTextCoord line = lineFirst; line <= lineLast; line++ )
@@ -2962,7 +2962,7 @@ size_t wxTextCtrl::GetPartOfWrappedLine(const wxChar* text,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for ( colWordStart = col;
@@ -3025,7 +3025,7 @@ size_t wxTextCtrl::GetPartOfWrappedLine(const wxChar* text,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wOld = w = 0; *text && (w <= widthMax); )
@@ -3140,7 +3140,7 @@ wxTextCtrlHitTestResult wxTextCtrl::HitTestLine(const wxString& line,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( ;; )
@@ -3334,7 +3334,7 @@ wxTextCtrlHitTestResult wxTextCtrl::HitTest2(wxCoord y0,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( lo < hi )
@@ -3480,7 +3480,7 @@ bool wxTextCtrl::GetLineAndRow(wxTextCoord row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( line = 0; line < nLines; line++ )
@@ -3804,7 +3804,7 @@ wxCoord wxTextCtrl::GetMaxWidth() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )
@@ -4023,7 +4023,7 @@ void wxTextCtrl::RefreshTextRange(wxTextPos start, wxTextPos end)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxTextCoord line = lineStart; line <= lineEnd; line++ )
@@ -4119,7 +4119,7 @@ void wxTextCtrl::RefreshPixelRange(wxTextCoord line,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( (row < rowLast) &&
@@ -4137,7 +4137,7 @@ void wxTextCtrl::RefreshPixelRange(wxTextCoord line,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( (row < rowLast) && (width > wLine - rect.x) )
@@ -4326,7 +4326,7 @@ void wxTextCtrl::DoDrawTextInRect(wxDC& dc, const wxRect& rectUpdate)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxTextCoord line = lineStart;
@@ -4462,7 +4462,7 @@ void wxTextCtrl::DoDrawLineWrapMarks(wxDC& dc, const wxRect& rectUpdate)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ; rectMark.y < yBottom; rectMark.y += hLine )
@@ -4526,7 +4526,7 @@ void wxTextCtrl::DoDraw(wxControlRenderer *renderer)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ; iter.HaveRects(); iter++ )
@@ -4877,7 +4877,7 @@ bool wxTextCtrl::PerformAction(const wxControlAction& actionOrig,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( size_t line = 0; line < count; line++ )
@@ -4910,7 +4910,7 @@ bool wxTextCtrl::PerformAction(const wxControlAction& actionOrig,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( size_t line = 0; line < count; line++ )

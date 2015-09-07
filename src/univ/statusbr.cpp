@@ -128,7 +128,7 @@ void wxStatusBarUniv::DoDraw(wxControlRenderer *renderer)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < (int)m_panes.GetCount(); n++ )
@@ -205,7 +205,7 @@ void wxStatusBarUniv::OnSize(wxSizeEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( field = 0; field < m_panes.GetCount(); field++ )
@@ -270,7 +270,7 @@ wxRect wxStatusBarUniv::DoGetFieldRect(int n) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i <= n; i++ )

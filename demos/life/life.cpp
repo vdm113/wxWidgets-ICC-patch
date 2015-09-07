@@ -455,7 +455,7 @@ void LifeFrame::OnMenu(wxCommandEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (m_running && m_topspeed)
@@ -851,7 +851,7 @@ void LifeCanvas::DrawChanged()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (!done)
@@ -863,7 +863,7 @@ void LifeCanvas::DrawChanged()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (size_t m = 0; m < ncells; m++)
@@ -918,7 +918,7 @@ void LifeCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (wxInt32 yy = y; yy <= (y + h - m_cellsize); yy += m_cellsize)
@@ -928,7 +928,7 @@ void LifeCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (wxInt32 xx = x; xx <= (x + w - m_cellsize); xx += m_cellsize)
@@ -944,7 +944,7 @@ void LifeCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (!done)
@@ -954,7 +954,7 @@ void LifeCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (size_t m = 0; m < ncells; m++)
@@ -969,7 +969,7 @@ void LifeCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t m = 0; m < ncells; m++)
@@ -1049,7 +1049,7 @@ void LifeCanvas::OnMouse(wxMouseEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (ii != i)
@@ -1075,7 +1075,7 @@ void LifeCanvas::OnMouse(wxMouseEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (jj != j)

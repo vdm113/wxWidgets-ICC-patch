@@ -217,7 +217,7 @@ static void wxFSEventCallback(ConstFSEventStreamRef WXUNUSED(streamRef), void *c
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < numEvents; i++ )
@@ -410,7 +410,7 @@ bool wxFsEventsFileSystemWatcher::RemoveTree(const wxFileName& path)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < dirsWatched.size(); i++ )
@@ -444,7 +444,7 @@ bool wxFsEventsFileSystemWatcher::RemoveAll()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( it != m_streams.end() )
@@ -486,7 +486,7 @@ void wxFsEventsFileSystemWatcher::PostChange(const wxFileName& oldFileName,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < WXSIZEOF(allEvents); i++ )
@@ -545,7 +545,7 @@ int wxFsEventsFileSystemWatcher::GetWatchedPaths(wxArrayString* paths) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ; it != m_streams.end(); it++ )

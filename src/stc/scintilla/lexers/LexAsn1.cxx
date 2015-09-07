@@ -71,7 +71,7 @@ static void ColouriseAsn1Doc(unsigned int startPos, int length, int initStyle, W
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward())
@@ -149,7 +149,7 @@ asn1_default:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (; sc.More(); sc.Forward())
@@ -176,7 +176,7 @@ asn1_default:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (; sc.More(); sc.Forward())

@@ -286,7 +286,7 @@ template<typename iter, typename collection_t > void wxListCollectionToAnyList(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( iter current = coll.GetFirst(); current; 
@@ -304,7 +304,7 @@ template<typename collection_t> void wxArrayCollectionToVariantArray(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( size_t i = 0; i < coll.GetCount(); i++ )

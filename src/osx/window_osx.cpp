@@ -241,7 +241,7 @@ wxWindowMac::~wxWindowMac()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = s_hotkeys.size()-1; i>=0; -- i )
@@ -267,7 +267,7 @@ wxWindowMac::~wxWindowMac()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxWindow *win = GetParent(); win; win = win->GetParent() )
@@ -600,7 +600,7 @@ static bool wxIsWindowOrParentDisabled(wxWindow* w)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (w && !w->IsTopLevel())
@@ -1765,7 +1765,7 @@ void wxWindowMac::ScrollWindow(int dx, int dy, const wxRect *rect)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (wxWindowList::compatibility_iterator node = GetChildren().GetFirst(); node; node = node->GetNext())
@@ -1916,7 +1916,7 @@ wxNonOwnedWindow* wxWindowMac::MacGetTopLevelWindow() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( iter )
@@ -2023,7 +2023,7 @@ void wxWindowMac::MacUpdateClippedRects() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( !child->IsTopLevel() && ( parent = child->GetParent() ) != NULL )
@@ -2180,7 +2180,7 @@ void wxWindowMac::MacPaintChildrenBorders()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (wxWindowList::compatibility_iterator node = GetChildren().GetFirst(); node; node = node->GetNext())
@@ -2257,7 +2257,7 @@ bool wxWindowMac::MacHasScrollBarCorner() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( const wxWindow *win = (wxWindow*)this; win; win = win->GetParent() )
@@ -2423,7 +2423,7 @@ void wxWindowMac::MacSuperChangedPosition()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( node )
@@ -2446,7 +2446,7 @@ void wxWindowMac::MacTopLevelWindowChangedPosition()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( node )
@@ -2717,7 +2717,7 @@ wxHotKeyHandler(EventHandlerCallRef WXUNUSED(nextHandler),
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned i = 0; i < s_hotkeys.size(); ++i )
@@ -2754,7 +2754,7 @@ bool wxWindowMac::RegisterHotKey(int hotkeyId, int modifiers, int keycode)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned i = 0; i < s_hotkeys.size(); ++i )
@@ -2821,7 +2821,7 @@ bool wxWindowMac::UnregisterHotKey(int hotkeyId)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = ((int)s_hotkeys.size())-1; i>=0; -- i )
@@ -2861,7 +2861,7 @@ bool wxWindowMac::OSXHandleKeyEvent( wxKeyEvent& event )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (ancestor)
@@ -2951,7 +2951,7 @@ void wxWidgetImpl::RemoveAssociations(wxWidgetImpl* impl)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( found )
@@ -2963,7 +2963,7 @@ void wxWidgetImpl::RemoveAssociations(wxWidgetImpl* impl)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( it = wxWinMacControlList.begin(); it != wxWinMacControlList.end(); ++it )

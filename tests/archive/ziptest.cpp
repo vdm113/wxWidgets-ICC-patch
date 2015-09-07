@@ -209,7 +209,7 @@ void ZipPipeTestCase::runTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (len > 0 && buf[len - 1] <= 32)
@@ -257,7 +257,7 @@ ArchiveTestSuite *ziptest::makeSuite()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int options = 0; options <= PipeIn; options += PipeIn) {

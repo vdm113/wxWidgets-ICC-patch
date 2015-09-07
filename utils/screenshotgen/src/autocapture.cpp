@@ -74,7 +74,7 @@ void AutoCaptureMechanism::Delay(int seconds)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( clock() - start < (clock_t)CLOCKS_PER_SEC * seconds)
@@ -102,7 +102,7 @@ bool AutoCaptureMechanism::Capture(wxBitmap* bitmap, int x, int y,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -114,7 +114,7 @@ bool AutoCaptureMechanism::Capture(wxBitmap* bitmap, int x, int y,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(!fullscreen.IsOk());
@@ -182,7 +182,7 @@ void AutoCaptureMechanism::Save(wxBitmap* screenshot, const wxString& fileName)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (fullFileName.FileExists())
@@ -203,7 +203,7 @@ void AutoCaptureMechanism::CaptureAll()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ControlList::iterator it = m_controlList.begin();
@@ -231,7 +231,7 @@ void AutoCaptureMechanism::CaptureAll()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             do
@@ -249,7 +249,7 @@ void AutoCaptureMechanism::CaptureAll()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while(!(it->flag & AJ_UnionEnd));
@@ -376,7 +376,7 @@ wxRect AutoCaptureMechanism::GetRect(wxWindow* ctrl, int flag)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < 4; ++i)
@@ -421,7 +421,7 @@ void AutoCaptureMechanism::PutBack(wxWindow * ctrl)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (wxSizerItemList::iterator it = children.begin(); it != children.end(); ++it)

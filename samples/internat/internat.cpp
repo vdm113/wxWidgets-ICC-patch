@@ -493,7 +493,7 @@ void MyFrame::OnTest2(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int n = first; n <= last; ++n)
@@ -522,7 +522,7 @@ void MyFrame::OnTest3(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < WXSIZEOF(lines); ++i)

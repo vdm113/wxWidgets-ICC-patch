@@ -64,7 +64,7 @@ _tiffReadProc(thandle_t fd, void* buf, tmsize_t size)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (mb>0)
@@ -102,7 +102,7 @@ _tiffWriteProc(thandle_t fd, void* buf, tmsize_t size)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (mb>0)
@@ -242,7 +242,7 @@ TIFFFdOpen(int ifd, const char* name, const char* mode)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (m=0; mode[m]!=0; m++)

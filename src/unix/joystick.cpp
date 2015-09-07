@@ -126,7 +126,7 @@ void* wxJoystickThread::Entry()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (true)
@@ -354,7 +354,7 @@ int wxJoystick::GetNumberJoysticks()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (j=0; j<4; j++) {
@@ -371,7 +371,7 @@ int wxJoystick::GetNumberJoysticks()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (j=0; j<4; j++) {

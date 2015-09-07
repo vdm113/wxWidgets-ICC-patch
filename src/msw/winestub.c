@@ -44,7 +44,7 @@ int main( int argc, char *argv [] )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 1; i < argc; i++) len += strlen(argv[i]) + 1;
@@ -57,7 +57,7 @@ int main( int argc, char *argv [] )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 2; i < argc; i++) strcat(strcat(lpszCmdParam, " "), argv[i]);

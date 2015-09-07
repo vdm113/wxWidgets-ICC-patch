@@ -154,7 +154,7 @@ int wxDisplayFactoryX11::GetFromPoint(const wxPoint& p)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned i = 0; i < numscreens; ++i )
@@ -216,7 +216,7 @@ wxArrayVideoModes wxXF86VidMode_GetModes(const wxVideoMode& mode, Display* displ
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < nNumModes; ++i)
@@ -270,7 +270,7 @@ bool wxXF86VidMode_ChangeMode(const wxVideoMode& mode, Display* display, int nSc
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < nNumModes; ++i)
@@ -286,7 +286,7 @@ bool wxXF86VidMode_ChangeMode(const wxVideoMode& mode, Display* display, int nSc
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < nNumModes; ++i)
@@ -347,7 +347,7 @@ wxArrayVideoModes wxX11_GetModes(const wxDisplayImpl* impl, const wxVideoMode& m
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int x = 0; x < count_return; ++x )

@@ -67,7 +67,7 @@ static void ColouriseLoutDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
@@ -175,7 +175,7 @@ static void FoldLoutDoc(unsigned int startPos, int length, int, WordList *[],
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
@@ -192,7 +192,7 @@ static void FoldLoutDoc(unsigned int startPos, int length, int, WordList *[],
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (unsigned int j = 0; j < 8; j++) {

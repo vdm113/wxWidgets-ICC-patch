@@ -99,7 +99,7 @@ void ListsTestCase::wxListTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < WXSIZEOF(dummy); ++i )
@@ -115,7 +115,7 @@ void ListsTestCase::wxListTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0, node = list1.GetFirst(); node; ++i, node = node->GetNext() )
@@ -134,7 +134,7 @@ void ListsTestCase::wxListTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0, node = list1.GetFirst(); i < 3; ++i, node = node->GetNext() )
@@ -155,7 +155,7 @@ void ListsTestCase::wxStdListTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < 5; ++i )
@@ -166,7 +166,7 @@ void ListsTestCase::wxStdListTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( it = list1.begin(), en = list1.end(), i = 0;
@@ -180,7 +180,7 @@ void ListsTestCase::wxStdListTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( rit = list1.rbegin(), ren = list1.rend(), i = 4;
@@ -204,7 +204,7 @@ void ListsTestCase::wxStdListTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( it = list1.begin(), en = list1.end(), i = 1;

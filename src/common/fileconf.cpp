@@ -447,7 +447,7 @@ wxFileConfig::wxFileConfig(wxInputStream &inStream, const wxMBConv& conv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -468,7 +468,7 @@ wxFileConfig::wxFileConfig(wxInputStream &inStream, const wxMBConv& conv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( !inStream.Eof() );
@@ -495,7 +495,7 @@ wxFileConfig::wxFileConfig(wxInputStream &inStream, const wxMBConv& conv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( const wxChar *s = cbuf; ; ++s )
@@ -506,7 +506,7 @@ wxFileConfig::wxFileConfig(wxInputStream &inStream, const wxMBConv& conv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( *e != '\0' && *e != '\n' && *e != '\r' )
@@ -547,7 +547,7 @@ void wxFileConfig::CleanUp()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( pCur != NULL ) {
@@ -580,7 +580,7 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for ( size_t n = 0; n < nLineCount; n++ )
@@ -602,7 +602,7 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( pStart = buf; wxIsspace(*pStart); pStart++ )
@@ -620,7 +620,7 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       while ( *++pEnd != wxT(']') ) {
@@ -664,7 +664,7 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       while ( *++pEnd != wxT('\0') && bCont ) {
@@ -693,7 +693,7 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       while ( *pEnd && *pEnd != wxT('=') /* && !wxIsspace(*pEnd)*/ ) {
@@ -718,7 +718,7 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       while ( wxIsspace(*pEnd) )
@@ -763,7 +763,7 @@ void wxFileConfig::Parse(const wxTextBuffer& buffer, bool bLocal)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( wxIsspace(*pEnd) )
@@ -818,7 +818,7 @@ wxFileConfig::DoSetPath(const wxString& strPath, bool createMissingComponents)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < aParts.GetCount(); n++ ) {
@@ -841,7 +841,7 @@ wxFileConfig::DoSetPath(const wxString& strPath, bool createMissingComponents)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < aParts.GetCount(); n++ ) {
@@ -910,7 +910,7 @@ size_t wxFileConfig::GetNumberOfEntries(bool bRecursive) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t nGroup = 0; nGroup < nSubgroups; nGroup++ ) {
@@ -936,7 +936,7 @@ size_t wxFileConfig::GetNumberOfGroups(bool bRecursive) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t nGroup = 0; nGroup < nSubgroups; nGroup++ ) {
@@ -1155,7 +1155,7 @@ bool wxFileConfig::Flush(bool /* bCurrentOnly */)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for ( wxFileConfigLineList *p = m_linesHead; p != NULL; p = p->Next() )
@@ -1195,7 +1195,7 @@ bool wxFileConfig::Save(wxOutputStream& os, const wxMBConv& conv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxFileConfigLineList *p = m_linesHead; p != NULL; p = p->Next() )
@@ -1510,7 +1510,7 @@ wxFileConfigGroup::~wxFileConfigGroup()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for ( n = 0; n < nCount; n++ )
@@ -1523,7 +1523,7 @@ wxFileConfigGroup::~wxFileConfigGroup()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for ( n = 0; n < nCount; n++ )
@@ -1694,7 +1694,7 @@ void wxFileConfigGroup::UpdateGroupAndSubgroupsLines()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < nCount; n++ )
@@ -1750,7 +1750,7 @@ wxFileConfigGroup::FindEntry(const wxString& name) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while ( lo < hi ) {
@@ -1788,7 +1788,7 @@ wxFileConfigGroup::FindSubgroup(const wxString& name) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while ( lo < hi ) {
@@ -1888,7 +1888,7 @@ bool wxFileConfigGroup::DeleteSubgroup(wxFileConfigGroup *pGroup)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t nEntry = 0; nEntry < nCount; nEntry++ )
@@ -1915,7 +1915,7 @@ bool wxFileConfigGroup::DeleteSubgroup(wxFileConfigGroup *pGroup)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t nGroup = 0; nGroup < nCount; nGroup++ )
@@ -1955,7 +1955,7 @@ bool wxFileConfigGroup::DeleteSubgroup(wxFileConfigGroup *pGroup)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( wxFileConfigLineList *pl = pLine->Prev();
@@ -1968,7 +1968,7 @@ bool wxFileConfigGroup::DeleteSubgroup(wxFileConfigGroup *pGroup)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( size_t n = 0; n < nSubgroups; n++ )
@@ -2029,7 +2029,7 @@ bool wxFileConfigGroup::DeleteEntry(const wxString& name)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for ( size_t n = 0; n < nEntries; n++ ) {
@@ -2200,7 +2200,7 @@ static wxString FilterInValue(const wxString& str)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( const wxString::const_iterator end = str.end(); i != end; ++i )
@@ -2275,7 +2275,7 @@ static wxString FilterOutValue(const wxString& str)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for ( size_t n = 0; n < str.Len(); n++ ) {
@@ -2329,7 +2329,7 @@ static wxString FilterInEntryName(const wxString& str)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for ( const wxChar *pc = str.c_str(); *pc != '\0'; pc++ ) {
@@ -2356,7 +2356,7 @@ static wxString FilterOutEntryName(const wxString& str)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for ( const wxChar *pc = str.c_str(); *pc != wxT('\0'); pc++ ) {

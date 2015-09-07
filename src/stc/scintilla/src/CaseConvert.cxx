@@ -426,7 +426,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (mixedPos < lenMixed) {
@@ -443,7 +443,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (int b=1; b<widthCharBytes; b++) {
@@ -464,7 +464,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (*caseConverted) {
@@ -479,7 +479,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (size_t i=0; i<lenMixedChar; i++) {
@@ -501,7 +501,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (CharacterToConversion::iterator it = characterToConversion.begin(); it != characterToConversion.end(); ++it) {
@@ -563,7 +563,7 @@ void SetupConversions(enum CaseConversion conversion) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ELEMENTS(symmetricCaseConversionRanges);) {
@@ -576,7 +576,7 @@ void SetupConversions(enum CaseConversion conversion) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int j=0; j<length*pitch; j+=pitch) {
@@ -589,7 +589,7 @@ void SetupConversions(enum CaseConversion conversion) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ELEMENTS(symmetricCaseConversions);) {
@@ -604,7 +604,7 @@ void SetupConversions(enum CaseConversion conversion) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (*sComplex) {
@@ -620,7 +620,7 @@ void SetupConversions(enum CaseConversion conversion) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (*sComplex && *sComplex != '|') {
@@ -635,7 +635,7 @@ void SetupConversions(enum CaseConversion conversion) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (*sComplex && *sComplex != '|') {
@@ -650,7 +650,7 @@ void SetupConversions(enum CaseConversion conversion) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (*sComplex && *sComplex != '|') {
@@ -665,7 +665,7 @@ void SetupConversions(enum CaseConversion conversion) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (*sComplex && *sComplex != '|') {

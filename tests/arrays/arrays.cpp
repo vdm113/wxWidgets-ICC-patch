@@ -258,7 +258,7 @@ void ArraysTestCase::wxStringArrayTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (wxArrayString::iterator it = a1.begin(), en = a1.end(); it != en; ++it)
@@ -522,7 +522,7 @@ void ArraysTestCase::wxStringArraySplitJoinTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < WXSIZEOF(separators); i++)
@@ -547,7 +547,7 @@ void ArraysTestCase::wxStringArraySplitJoinTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < WXSIZEOF(separators); i++)
@@ -720,7 +720,7 @@ void ArraysTestCase::TestSTL()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < COUNT; ++i )
@@ -734,7 +734,7 @@ void ArraysTestCase::TestSTL()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( it = list1.begin(), en = list1.end(), i = 0;
@@ -750,7 +750,7 @@ void ArraysTestCase::TestSTL()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( rit = list1.rbegin(), ren = list1.rend(), i = COUNT;
@@ -779,7 +779,7 @@ void ArraysTestCase::TestSTL()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( it = list1.begin(), en = list1.end(), i = 1;

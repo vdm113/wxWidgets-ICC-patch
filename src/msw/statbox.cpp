@@ -311,7 +311,7 @@ WXHRGN wxStaticBox::MSWGetRegionWithoutChildren()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( child = ::GetWindow(GetHwndOf(GetParent()), GW_CHILD);
@@ -375,7 +375,7 @@ WXHRGN wxStaticBox::MSWGetRegionWithoutChildren()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( child = ::GetWindow(GetHwnd(), GW_CHILD);

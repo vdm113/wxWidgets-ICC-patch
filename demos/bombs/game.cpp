@@ -74,7 +74,7 @@ bool BombsGame::Init(int aWidth, int aHeight, bool easyCorner)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(x=0; x<m_width; x++)
@@ -84,7 +84,7 @@ bool BombsGame::Init(int aWidth, int aHeight, bool easyCorner)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for(y=0; y<m_height; y++)
@@ -110,7 +110,7 @@ bool BombsGame::Init(int aWidth, int aHeight, bool easyCorner)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(x=0; x<m_width; x++)
@@ -119,7 +119,7 @@ bool BombsGame::Init(int aWidth, int aHeight, bool easyCorner)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for(y=0; y<m_height; y++)
@@ -132,7 +132,7 @@ bool BombsGame::Init(int aWidth, int aHeight, bool easyCorner)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for(xx=x-1; xx<=x+1; xx++)
@@ -142,7 +142,7 @@ bool BombsGame::Init(int aWidth, int aHeight, bool easyCorner)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         for(yy=y-1; yy<=y+1; yy++)

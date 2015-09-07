@@ -108,7 +108,7 @@ bool wxChoice::Create(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < n; i++)
@@ -170,7 +170,7 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter& items
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( unsigned int i = 0; i < count; ++i )
@@ -350,7 +350,7 @@ wxSize wxChoice::DoGetBestSize() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < nItems; i++)

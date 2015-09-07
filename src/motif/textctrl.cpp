@@ -283,7 +283,7 @@ int wxTextCtrl::GetNumberOfLines() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (!finished)
@@ -323,7 +323,7 @@ long wxTextCtrl::XYToPosition(long x, long y) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i=0; i<y; i++) r+=(GetLineLength(i)+1);
@@ -368,7 +368,7 @@ wxString wxTextCtrl::GetLineText(long lineNo) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; currentLine != lineNo && s[i]; i++ )
@@ -381,7 +381,7 @@ wxString wxTextCtrl::GetLineText(long lineNo) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (j = 0; s[i] && s[i] != '\n'; i++, j++ )
@@ -614,7 +614,7 @@ static void MergeChangesIntoString(wxString& value,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < cbs->startPos; ++i)
@@ -627,7 +627,7 @@ static void MergeChangesIntoString(wxString& value,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (*insert)
@@ -639,7 +639,7 @@ static void MergeChangesIntoString(wxString& value,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (p = passwd + cbs->endPos; *p; )
@@ -686,7 +686,7 @@ wxTextWindowModifyProc (Widget WXUNUSED(w), XtPointer clientData, XmTextVerifyCa
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < cbs->text->length; ++i)

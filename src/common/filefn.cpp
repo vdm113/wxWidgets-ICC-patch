@@ -191,7 +191,7 @@ void wxPathList::Add(const wxArrayString &arr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t j=0; j < arr.GetCount(); j++)
@@ -259,7 +259,7 @@ wxString wxPathList::FindValidPath (const wxString& file) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i=0; i<GetCount(); i++)
@@ -356,7 +356,7 @@ static void wxDoStripExtension(T *buffer)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (i > 0)
@@ -398,7 +398,7 @@ static CharType *wxDoRealPath (CharType *path)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (; *p; p++)
@@ -413,7 +413,7 @@ static CharType *wxDoRealPath (CharType *path)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (q = p - 1; q >= path && *q != SEP; q--)
@@ -549,7 +549,7 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (wxStrchr(trimchars, *nm) != NULL)
@@ -561,7 +561,7 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (q-- && wxStrchr(trimchars, *s) != NULL)
@@ -581,7 +581,7 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((*d++ = *s) != 0) {
@@ -610,7 +610,7 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ((*d++ = *s) != 0)
@@ -626,7 +626,7 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ((d = start - 1); (*d++ = *value++) != 0;)
@@ -665,7 +665,7 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (s = nm; *s && *s != SEP; s++)
@@ -699,7 +699,7 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (wxT('\0') != (*d++ = *s++))
@@ -714,7 +714,7 @@ static CharType *wxDoExpandPath(CharType *buf, const wxString& name)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((*d++ = *s++) != 0)
@@ -834,7 +834,7 @@ wxPathOnly (wxChar *path)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (i > -1)
@@ -891,7 +891,7 @@ wxString wxPathOnly (const wxString& path)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (i > -1)
@@ -1021,7 +1021,7 @@ static void wxDoDos2UnixFilename(T *s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*s)
@@ -1055,7 +1055,7 @@ wxDoUnix2DosFilename(T *WXUNUSED(s) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*s)
@@ -1092,7 +1092,7 @@ wxConcatFiles (const wxString& file1, const wxString& file2, const wxString& fil
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( int i=0; i<2; i++)
@@ -1103,7 +1103,7 @@ wxConcatFiles (const wxString& file1, const wxString& file2, const wxString& fil
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do{
@@ -1153,7 +1153,7 @@ wxDoCopyFile(wxFile& fileIn,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )
@@ -1555,7 +1555,7 @@ wxChar *wxDoGetCwd(wxChar *buf, int sz)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (wxChar *ch = buf; *ch; ch++)
@@ -1696,7 +1696,7 @@ bool wxFindFileInPath(wxString *pStr, const wxString& szPath, const wxString& sz
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( tkn.HasMoreTokens() )
@@ -1760,7 +1760,7 @@ int WXDLLIMPEXP_BASE wxParseCommonDialogsFilter(const wxString& filterStr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while( pos != wxNOT_FOUND )
@@ -1807,7 +1807,7 @@ int WXDLLIMPEXP_BASE wxParseCommonDialogsFilter(const wxString& filterStr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( size_t i = 0 ; i < descriptions.GetCount() ; i++ )
@@ -1834,7 +1834,7 @@ int WXDLLIMPEXP_BASE wxParseCommonDialogsFilter(const wxString& filterStr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( size_t k=i;k<i+2;k++ )
@@ -1869,7 +1869,7 @@ int WXDLLIMPEXP_BASE wxParseCommonDialogsFilter(const wxString& filterStr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( size_t j = 0 ; j < descriptions.GetCount() ; j++ )
@@ -2040,7 +2040,7 @@ bool wxIsWild( const wxString& pattern )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator p = pattern.begin(); p != pattern.end(); ++p )
@@ -2096,7 +2096,7 @@ bool wxMatchWild( const wxString& pat, const wxString& text, bool dot_special )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;)

@@ -63,7 +63,7 @@ void ScoreFile::GetPlayerList( wxArrayString &list )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (m_config->GetNextGroup(player, index))
@@ -86,7 +86,7 @@ long ScoreFile::CalcCheck(const wxString& name, int p1, int p2, int p3)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(i = 0; i < max; ++i )

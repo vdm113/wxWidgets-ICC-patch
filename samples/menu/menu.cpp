@@ -972,7 +972,7 @@ void MyFrame::OnDeleteSubMenu(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int n = menu->GetMenuItemCount() - 1; n >=0 ; --n )
@@ -1165,7 +1165,7 @@ void MyFrame::OnFindMenuItem(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (menuindex = 0; (menuindex < count) && (index == wxNOT_FOUND); ++menuindex)
@@ -1200,7 +1200,7 @@ void MyFrame::ShowContextMenu(const wxPoint& pos)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < WXSIZEOF(choices); n++ )

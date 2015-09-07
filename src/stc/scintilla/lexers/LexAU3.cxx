@@ -128,7 +128,7 @@ static int GetSendKey(const char *szLine, char *szKey)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ( ( (cTemp = szLine[nPos]) != '\0'))
@@ -197,7 +197,7 @@ static bool IsContinuationLine(unsigned int szLine, Accessor &styler)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (nsPos < nePos)
@@ -243,7 +243,7 @@ static void ColouriseAU3Doc(unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while ((lineCurrent > 0 && IsContinuationLine(lineCurrent,styler)) ||
@@ -271,7 +271,7 @@ static void ColouriseAU3Doc(unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (; sc.More(); sc.Forward()) {
@@ -541,7 +541,7 @@ static void ColouriseAU3Doc(unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					while (!(nState == 2) && ((cTemp = s[nPos]) != '\0'))
@@ -717,7 +717,7 @@ static int GetStyleFirstWord(unsigned int szLine, Accessor &styler)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (isspacechar(styler.SafeGetCharAt(nsPos)) && nsPos < nePos)
@@ -756,7 +756,7 @@ static void FoldAU3Doc(unsigned int startPos, int length, int, WordList *[], Acc
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((lineCurrent > 0 && IsContinuationLine(lineCurrent,styler)) ||
@@ -790,7 +790,7 @@ static void FoldAU3Doc(unsigned int startPos, int length, int, WordList *[], Acc
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i = startPos; i < endPos; i++) {

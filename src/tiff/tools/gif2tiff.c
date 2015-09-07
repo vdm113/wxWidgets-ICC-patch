@@ -77,7 +77,7 @@ makegamtab(float gam)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(i=0; i<256; i++) 
@@ -113,7 +113,7 @@ usage(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; stuff[i] != NULL; i++)
@@ -169,7 +169,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((c = getopt(argc, argv, "c:r:")) != -1)
@@ -244,7 +244,7 @@ convert(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((ch = getc(infile)) != ';' && ch != EOF) {
@@ -357,7 +357,7 @@ readextension(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((count = getc(infile)))
@@ -392,7 +392,7 @@ readraster(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (code = 0; code < clear; code++) {
@@ -405,7 +405,7 @@ readraster(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (count = getc(infile); count > 0; count = getc(infile)) {
@@ -415,7 +415,7 @@ readraster(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (ch=buf; count-- > 0; ch++) {
@@ -426,7 +426,7 @@ readraster(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (bits >= codesize) {
@@ -497,7 +497,7 @@ process(register int code, unsigned char** fill)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (code > clear) {
@@ -520,7 +520,7 @@ process(register int code, unsigned char** fill)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do {
@@ -545,7 +545,7 @@ initcolors(unsigned char colormap[COLSIZE][3], int ncolors)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < ncolors; i++) {
@@ -616,7 +616,7 @@ VDM_MACRO_PRAGMA_IVDEP \
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (row=0; row<height; row += rowsperstrip) {

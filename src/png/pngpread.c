@@ -49,7 +49,7 @@ png_process_data(png_structrp png_ptr, png_inforp info_ptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    while (png_ptr->buffer_size)
@@ -689,7 +689,7 @@ png_push_save_buffer(png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          for (i = 0, sp = png_ptr->save_buffer_ptr, dp = png_ptr->save_buffer;
@@ -873,7 +873,7 @@ png_process_IDAT_data(png_structrp png_ptr, png_bytep buffer,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    while (png_ptr->zstream.avail_in > 0 &&
@@ -1028,7 +1028,7 @@ png_push_process_row(png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < 8 && png_ptr->pass == 0; i++)
@@ -1044,7 +1044,7 @@ png_push_process_row(png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < 4 && png_ptr->pass == 2; i++)
@@ -1061,7 +1061,7 @@ png_push_process_row(png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < 2 && png_ptr->pass == 4; i++)
@@ -1088,7 +1088,7 @@ png_push_process_row(png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < 8 && png_ptr->pass == 1; i++)
@@ -1104,7 +1104,7 @@ png_push_process_row(png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < 4 && png_ptr->pass == 2; i++)
@@ -1126,7 +1126,7 @@ png_push_process_row(png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < 4 && png_ptr->pass == 2; i++)
@@ -1140,7 +1140,7 @@ png_push_process_row(png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < 4 && png_ptr->pass == 2; i++)
@@ -1156,7 +1156,7 @@ png_push_process_row(png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < 2 && png_ptr->pass == 4; i++)
@@ -1178,7 +1178,7 @@ png_push_process_row(png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < 4 && png_ptr->pass == 3; i++)
@@ -1194,7 +1194,7 @@ png_push_process_row(png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < 2 && png_ptr->pass == 4; i++)
@@ -1216,7 +1216,7 @@ png_push_process_row(png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < 2 && png_ptr->pass == 4; i++)
@@ -1230,7 +1230,7 @@ png_push_process_row(png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < 2 && png_ptr->pass == 4; i++)
@@ -1257,7 +1257,7 @@ png_push_process_row(png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < 2 && png_ptr->pass == 5; i++)
@@ -1336,7 +1336,7 @@ png_read_push_finish_row(png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       do

@@ -57,7 +57,7 @@ bool wxClipboardEvent::SupportsFormat( const wxDataFormat &format ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (wxVector<wxDataFormat>::size_type n = 0; n < m_formats.size(); n++)

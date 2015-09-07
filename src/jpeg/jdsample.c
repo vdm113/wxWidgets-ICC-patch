@@ -113,7 +113,7 @@ sep_upsample (j_decompress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -224,7 +224,7 @@ int_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (outrow < cinfo->max_v_samp_factor) {
@@ -237,7 +237,7 @@ int_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (outptr < outend) {
@@ -247,7 +247,7 @@ int_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (h = h_expand; h > 0; h--) {
@@ -285,7 +285,7 @@ h2v1_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (inrow = 0; inrow < cinfo->max_v_samp_factor; inrow++) {
@@ -297,7 +297,7 @@ h2v1_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (outptr < outend) {
@@ -330,7 +330,7 @@ h2v2_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (outrow < cinfo->max_v_samp_factor) {
@@ -342,7 +342,7 @@ h2v2_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (outptr < outend) {
@@ -388,7 +388,7 @@ h2v1_fancy_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (inrow = 0; inrow < cinfo->max_v_samp_factor; inrow++) {
@@ -404,7 +404,7 @@ h2v1_fancy_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (colctr = compptr->downsampled_width - 2; colctr > 0; colctr--) {
@@ -450,7 +450,7 @@ h2v2_fancy_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (outrow < cinfo->max_v_samp_factor) {
@@ -459,7 +459,7 @@ h2v2_fancy_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (v = 0; v < 2; v++) {
@@ -483,7 +483,7 @@ h2v2_fancy_upsample (j_decompress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (colctr = compptr->downsampled_width - 2; colctr > 0; colctr--) {
@@ -541,7 +541,7 @@ jinit_upsampler (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;

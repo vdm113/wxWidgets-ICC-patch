@@ -122,7 +122,7 @@ void wxXmlNode::DoFree()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c = m_children; c; c = c2)
@@ -137,7 +137,7 @@ void wxXmlNode::DoFree()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (p = m_attrs; p; p = p2)
@@ -162,7 +162,7 @@ void wxXmlNode::DoCopy(const wxXmlNode& node)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (n)
@@ -178,7 +178,7 @@ void wxXmlNode::DoCopy(const wxXmlNode& node)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (p)
@@ -197,7 +197,7 @@ bool wxXmlNode::HasAttribute(const wxString& attrName) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (attr)
@@ -220,7 +220,7 @@ bool wxXmlNode::GetAttribute(const wxString& attrName, wxString *value) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (attr)
@@ -257,7 +257,7 @@ void wxXmlNode::AddChild(wxXmlNode *child)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (ch->m_next) ch = ch->m_next;
@@ -295,7 +295,7 @@ bool wxXmlNode::InsertChild(wxXmlNode *child, wxXmlNode *followingNode)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( ch && ch->m_next != followingNode )
@@ -360,7 +360,7 @@ bool wxXmlNode::RemoveChild(wxXmlNode *child)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (ch->m_next)
@@ -410,7 +410,7 @@ void wxXmlNode::AddProperty(wxXmlAttribute *attr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (p->GetNext()) p = p->GetNext();
@@ -442,7 +442,7 @@ bool wxXmlNode::DeleteProperty(const wxString& name)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (p->GetNext())
@@ -470,7 +470,7 @@ wxString wxXmlNode::GetNodeContent() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (n)
@@ -493,7 +493,7 @@ int wxXmlNode::GetDepth(wxXmlNode *grandparent) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -650,7 +650,7 @@ wxXmlNode *wxXmlDocument::GetRoot() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (node != NULL && node->GetType() != wxXML_ELEMENT_NODE)
@@ -671,7 +671,7 @@ wxXmlNode *wxXmlDocument::DetachRoot()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (node != NULL && node->GetType() != wxXML_ELEMENT_NODE)
@@ -712,7 +712,7 @@ void wxXmlDocument::SetRoot(wxXmlNode *root)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (node != NULL && node->GetType() != wxXML_ELEMENT_NODE)
@@ -783,7 +783,7 @@ bool wxIsWhiteOnly(const wxString& buf)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator i = buf.begin(); i != buf.end(); ++i )
@@ -841,7 +841,7 @@ static void StartElementHnd(void *userData, const char *name, const char **atts)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*a)
@@ -1004,7 +1004,7 @@ static int UnknownEncodingHnd(void * WXUNUSED(encodingHandlerData),
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 255; i++)
@@ -1069,7 +1069,7 @@ bool wxXmlDocument::Load(wxInputStream& stream, const wxString& encoding, int fl
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -1182,7 +1182,7 @@ bool OutputEscapedString(wxOutputStream& stream,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator i = str.begin(); i != str.end(); ++i )
@@ -1281,7 +1281,7 @@ bool OutputNode(wxOutputStream& stream,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( wxXmlAttribute *attr = node->GetAttributes();
@@ -1308,7 +1308,7 @@ bool OutputNode(wxOutputStream& stream,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( wxXmlNode *n = node->GetChildren();
@@ -1416,7 +1416,7 @@ bool wxXmlDocument::Save(wxOutputStream& stream, int indentstep) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while( rc && node )

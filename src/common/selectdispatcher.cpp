@@ -82,7 +82,7 @@ wxSelectSets::wxSelectSets()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < Max; n++ )
@@ -98,7 +98,7 @@ bool wxSelectSets::HasFD(int fd) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < Max; n++ )
@@ -119,7 +119,7 @@ bool wxSelectSets::SetFD(int fd, int flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < Max; n++ )
@@ -149,7 +149,7 @@ bool wxSelectSets::Handle(int fd, wxFDIOHandler& handler) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < Max; n++ )
@@ -219,7 +219,7 @@ bool wxSelectDispatcher::UnregisterFD(int fd)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( wxFDIOHandlerMap::const_iterator it = m_handlers.begin();
@@ -247,7 +247,7 @@ int wxSelectDispatcher::ProcessSets(const wxSelectSets& sets)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int fd = 0; fd <= m_maxFD; fd++ )

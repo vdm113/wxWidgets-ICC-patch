@@ -69,7 +69,7 @@ strtoull(const char *nptr, char **endptr, int base)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do {
@@ -105,7 +105,7 @@ strtoull(const char *nptr, char **endptr, int base)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for ( ; ; c = *s++) {

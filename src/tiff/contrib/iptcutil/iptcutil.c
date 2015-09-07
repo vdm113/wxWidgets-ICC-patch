@@ -109,7 +109,7 @@ void formatString(FILE *ofile, const char *s, int len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (; len > 0; --len, ++s) {
@@ -180,7 +180,7 @@ int convertHTMLcodes(char *s, int len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (s[o] != ';')
@@ -206,7 +206,7 @@ int convertHTMLcodes(char *s, int len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (i=0; i < codes; i++)
@@ -258,7 +258,7 @@ int formatIPTC(FILE *ifile, FILE *ofile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (c != EOF)
@@ -286,7 +286,7 @@ int formatIPTC(FILE *ifile, FILE *ofile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i=0; i< tagcount; i++)
@@ -313,7 +313,7 @@ int formatIPTC(FILE *ifile, FILE *ofile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i=0; i<4; i++)
@@ -350,7 +350,7 @@ int formatIPTC(FILE *ifile, FILE *ofile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (tagindx=0; tagindx<taglen; tagindx++)
@@ -398,7 +398,7 @@ char *super_fgets(char *b, int *blen, FILE *file)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (q=b; ; q++)
@@ -472,7 +472,7 @@ int main(int argc, char *argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i=1; i<argc; i++)
@@ -561,7 +561,7 @@ int main(int argc, char *argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       while((line = super_fgets(line,&inputlen,ifile))!=NULL)
@@ -576,7 +576,7 @@ int main(int argc, char *argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while(tokenizer(0, token, inputlen, line, "", "=", "\"", 0,
@@ -599,7 +599,7 @@ int main(int argc, char *argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
               while(tokenizer(0, newstr, inputlen, token, "", "#", "", 0,
@@ -633,7 +633,7 @@ int main(int argc, char *argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while(tokenizer(0, newstr, inputlen, token, "", "&", "", 0,
@@ -669,7 +669,7 @@ int main(int argc, char *argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while (len--)
@@ -896,7 +896,7 @@ int sindex(char ch,char *string)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for(cp=string;*cp;++cp)
@@ -956,7 +956,7 @@ int tokenizer(unsigned inflag,char *token,int tokmax,char *line,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for(_p_tokpos=0;(c=line[*next]);++(*next))	/* main loop */

@@ -177,7 +177,7 @@ wxClassInfo::~wxClassInfo()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (info)
@@ -207,7 +207,7 @@ wxClassInfo *wxClassInfo::FindClass(const wxString& className)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxClassInfo *info = sm_first; info ; info = info->m_next )
@@ -316,7 +316,7 @@ wxObject *wxCreateDynamicObject(const wxString& name)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxClassInfo *info = wxClassInfo::sm_first;

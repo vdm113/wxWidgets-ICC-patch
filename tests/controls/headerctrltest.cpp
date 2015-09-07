@@ -126,7 +126,7 @@ void HeaderCtrlTestCase::Reorder()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < COL_COUNT; n++ )
@@ -138,7 +138,7 @@ void HeaderCtrlTestCase::Reorder()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < COL_COUNT; n++ )

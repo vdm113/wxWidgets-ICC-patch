@@ -75,7 +75,7 @@ static void ColouriseFlagShipDoc(unsigned int startPos, int length, int initStyl
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
@@ -339,7 +339,7 @@ static void FoldFlagShipDoc(unsigned int startPos, int length, int,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i = startPos; i < endPos; i++) {

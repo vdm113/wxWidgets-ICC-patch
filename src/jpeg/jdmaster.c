@@ -141,7 +141,7 @@ jpeg_calc_output_dimensions (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -152,7 +152,7 @@ jpeg_calc_output_dimensions (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (ssize < DCTSIZE &&
@@ -173,7 +173,7 @@ jpeg_calc_output_dimensions (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -296,7 +296,7 @@ prepare_range_limit_table (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i <= MAXJSAMPLE; i++)
@@ -308,7 +308,7 @@ prepare_range_limit_table (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = CENTERJSAMPLE; i < 2*(MAXJSAMPLE+1); i++)

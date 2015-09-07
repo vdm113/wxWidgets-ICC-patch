@@ -100,7 +100,7 @@ namespace {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (start_pos > 0 && !IsEntryStart(styler.SafeGetCharAt(start_pos - 1),
@@ -128,7 +128,7 @@ namespace {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (; going; sc.Forward()) {
@@ -191,7 +191,7 @@ namespace {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					while (sc.More() && !(IsAlphaNumeric(sc.ch) || sc.ch == '"' || sc.ch == '{'))
@@ -216,7 +216,7 @@ namespace {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 							while (sc.More() && (sc.ch == ch && (ch != '"' || skipped < 1))) {
@@ -237,7 +237,7 @@ namespace {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 						while (sc.More() && (skipped > 0 || (!ch && !(sc.ch == ',' || sc.ch == closing_brace)))) {
@@ -266,7 +266,7 @@ namespace {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					while (sc.More() && !(sc.ch == ',' || sc.ch == closing_brace))
@@ -294,7 +294,7 @@ namespace {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for (int i = styler.GetLine(start); i <= styler.GetLine(end); ++i)

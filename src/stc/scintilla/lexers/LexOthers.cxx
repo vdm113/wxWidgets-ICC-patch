@@ -102,7 +102,7 @@ static void ColouriseBatchLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((offset < lengthLine) && (isspacechar(lineBuffer[offset]))) {
@@ -145,7 +145,7 @@ static void ColouriseBatchLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((offset < lengthLine) && (isspacechar(lineBuffer[offset]))) {
@@ -158,7 +158,7 @@ static void ColouriseBatchLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (offset < lengthLine) {
@@ -173,7 +173,7 @@ static void ColouriseBatchLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (; offset < lengthLine && wbl < 80 &&
@@ -234,7 +234,7 @@ static void ColouriseBatchLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while ((cmdLoc < lengthLine) &&
@@ -247,7 +247,7 @@ static void ColouriseBatchLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while ((cmdLoc < lengthLine) &&
@@ -260,7 +260,7 @@ static void ColouriseBatchLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while ((cmdLoc < lengthLine) &&
@@ -280,7 +280,7 @@ static void ColouriseBatchLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while ((cmdLoc < lengthLine) &&
@@ -305,7 +305,7 @@ static void ColouriseBatchLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (unsigned int keywordLength = 2; keywordLength < wbl && keywordLength < 7 && !sKeywordFound; keywordLength++) {
@@ -316,7 +316,7 @@ static void ColouriseBatchLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (; wbo < keywordLength; wbo++) {
@@ -349,7 +349,7 @@ static void ColouriseBatchLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					while ((wbo < wbl) &&
@@ -377,7 +377,7 @@ static void ColouriseBatchLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 						while ((cmdLoc < lengthLine) &&
@@ -392,7 +392,7 @@ static void ColouriseBatchLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 							while ((cmdLoc < lengthLine) &&
@@ -405,7 +405,7 @@ static void ColouriseBatchLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 							while ((cmdLoc < lengthLine) &&
@@ -431,7 +431,7 @@ static void ColouriseBatchLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					while ((wbo < wbl) &&
@@ -458,7 +458,7 @@ static void ColouriseBatchLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while ((wbo < wbl) &&
@@ -528,7 +528,7 @@ static void ColouriseBatchLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while ((wbo < wbl) &&
@@ -562,7 +562,7 @@ static void ColouriseBatchLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while ((cmdLoc < lengthLine) &&
@@ -583,7 +583,7 @@ static void ColouriseBatchLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while ((cmdLoc < lengthLine) &&
@@ -614,7 +614,7 @@ static void ColouriseBatchLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while ((wbo < wbl) &&
@@ -635,7 +635,7 @@ static void ColouriseBatchLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while ((offset < lengthLine) && (isspacechar(lineBuffer[offset]))) {
@@ -664,7 +664,7 @@ static void ColouriseBatchDoc(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < startPos + length; i++) {
@@ -753,7 +753,7 @@ static void ColouriseDiffDoc(unsigned int startPos, int length, int, WordList *[
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < startPos + length; i++) {
@@ -788,7 +788,7 @@ static void FoldDiffDoc(unsigned int startPos, int length, int, WordList *[], Ac
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do {
@@ -833,7 +833,7 @@ static void ColourisePropsLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while ((i < lengthLine) && isspacechar(lineBuffer[i]))	// Skip initial spaces
@@ -860,7 +860,7 @@ static void ColourisePropsLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while ((i < lengthLine) && !isassignchar(lineBuffer[i]))
@@ -896,7 +896,7 @@ static void ColourisePropsDoc(unsigned int startPos, int length, int, WordList *
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < startPos + length; i++) {
@@ -933,7 +933,7 @@ static void FoldPropsDoc(unsigned int startPos, int length, int, WordList *[], A
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
@@ -1019,7 +1019,7 @@ static void ColouriseMakeLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((i < lengthLine) && isspacechar(lineBuffer[i])) {
@@ -1041,7 +1041,7 @@ static void ColouriseMakeLine(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (i < lengthLine) {
@@ -1107,7 +1107,7 @@ static void ColouriseMakeDoc(unsigned int startPos, int length, int, WordList *[
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < startPos + length; i++) {
@@ -1228,7 +1228,7 @@ static int RecogniseErrorListLine(const char *lineBuffer, unsigned int lengthLin
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (unsigned int i = 0; i < lengthLine; i++) {
@@ -1300,7 +1300,7 @@ static int RecogniseErrorListLine(const char *lineBuffer, unsigned int lengthLin
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for (j = i + numstep; j < lengthLine && IsAlphabetic(lineBuffer[j]) && chPos < sizeof(word) - 1; j++)
@@ -1385,7 +1385,7 @@ static void ColouriseErrorListDoc(unsigned int startPos, int length, int, WordLi
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < startPos + length; i++) {

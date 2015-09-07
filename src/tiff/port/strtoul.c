@@ -70,7 +70,7 @@ strtoul(const char *nptr, char **endptr, int base)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do {
@@ -100,7 +100,7 @@ strtoul(const char *nptr, char **endptr, int base)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (acc = 0, any = 0;; c = (unsigned char) *s++) {

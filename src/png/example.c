@@ -561,7 +561,7 @@ void read_png(FILE *fp, unsigned int sig_read)  /* File is already open */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (row = 0; row < height; row++)
@@ -572,7 +572,7 @@ void read_png(FILE *fp, unsigned int sig_read)  /* File is already open */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (row = 0; row < height; row++)
@@ -591,7 +591,7 @@ void read_png(FILE *fp, unsigned int sig_read)  /* File is already open */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (pass = 0; pass < number_passes; pass++)
@@ -602,7 +602,7 @@ void read_png(FILE *fp, unsigned int sig_read)  /* File is already open */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (y = 0; y < height; y++)
@@ -616,7 +616,7 @@ void read_png(FILE *fp, unsigned int sig_read)  /* File is already open */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (y = 0; y < height; y += number_of_rows)
@@ -1045,7 +1045,7 @@ void write_png(char *file_name /* , ... other image information ... */)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (k = 0; k < height; k++)
@@ -1068,7 +1068,7 @@ void write_png(char *file_name /* , ... other image information ... */)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (pass = 0; pass < number_passes; pass++)
@@ -1082,7 +1082,7 @@ void write_png(char *file_name /* , ... other image information ... */)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (y = 0; y < height; y++)

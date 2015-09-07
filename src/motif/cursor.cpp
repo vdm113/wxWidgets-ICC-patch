@@ -93,7 +93,7 @@ wxCursorRefData::~wxCursorRefData()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -128,7 +128,7 @@ wxCursor::wxCursor(const wxImage & image)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i=0; i<imagebitcount; i++)
@@ -142,7 +142,7 @@ wxCursor::wxCursor(const wxImage & image)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (j=0; j<8; j++)
@@ -168,7 +168,7 @@ wxCursor::wxCursor(const wxImage & image)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i=0; i<imagebitcount; i++)
@@ -182,7 +182,7 @@ wxCursor::wxCursor(const wxImage & image)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (j=0; j<8; j++)
@@ -200,7 +200,7 @@ wxCursor::wxCursor(const wxImage & image)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i=0; i<imagebitcount; i++)
@@ -384,7 +384,7 @@ WXCursor wxCursor::GetXCursor(WXDisplay* display) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -545,7 +545,7 @@ wxXSetBusyCursor (wxWindow * win, const wxCursor * cursor)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst (); node;
@@ -567,7 +567,7 @@ void wxBeginBusyCursor(const wxCursor *cursor)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for(wxWindowList::compatibility_iterator node = wxTopLevelWindows.GetFirst (); node;
@@ -593,7 +593,7 @@ void wxEndBusyCursor()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for(wxWindowList::compatibility_iterator node = wxTopLevelWindows.GetFirst (); node;

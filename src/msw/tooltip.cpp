@@ -488,7 +488,7 @@ void wxToolTip::SetWindow(wxWindow *win)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )
@@ -591,7 +591,7 @@ bool wxToolTip::AdjustMaxWidth()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( tokenizer.HasMoreTokens() )
@@ -655,7 +655,7 @@ void wxToolTip::DoForAllWindows(void (wxToolTip::*func)(WXHWND))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxToolTipOtherWindows::const_iterator it = m_others->begin();

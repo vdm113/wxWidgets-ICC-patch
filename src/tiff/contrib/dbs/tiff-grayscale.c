@@ -91,7 +91,7 @@ int main(int argc, char **argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 1; i < cmsize; i++)
@@ -125,7 +125,7 @@ int main(int argc, char **argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < HEIGHT; i++) {
@@ -134,7 +134,7 @@ int main(int argc, char **argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (j = 0, k = 0; j < WIDTH;) {

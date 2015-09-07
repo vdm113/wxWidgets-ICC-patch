@@ -279,7 +279,7 @@ void RESearch::Clear() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i = 0; i < MAXTAG; i++) {
@@ -295,7 +295,7 @@ void RESearch::GrabMatches(CharacterIndexer &ci) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = 0; i < MAXTAG; i++) {
@@ -307,7 +307,7 @@ void RESearch::GrabMatches(CharacterIndexer &ci) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (unsigned int j = 0; j < len; j++)
@@ -424,7 +424,7 @@ int RESearch::GetBackslashExpression(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (c = '0'; c <= '9'; c++) {
@@ -437,7 +437,7 @@ int RESearch::GetBackslashExpression(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (c = 0; c < MAXCHR; c++) {
@@ -460,7 +460,7 @@ int RESearch::GetBackslashExpression(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (c = 0; c < MAXCHR; c++) {
@@ -475,7 +475,7 @@ int RESearch::GetBackslashExpression(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (c = 0; c < MAXCHR; c++) {
@@ -490,7 +490,7 @@ int RESearch::GetBackslashExpression(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (c = 0; c < MAXCHR; c++) {
@@ -532,7 +532,7 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i=0; i<length; i++, p++) {
@@ -591,7 +591,7 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (*p && *p != ']') {
@@ -636,7 +636,7 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 								while (c1 <= c2) {
@@ -681,7 +681,7 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (n = 0; n < BITBLK; bittab[n++] = 0)
@@ -716,7 +716,7 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (sp = mp; lp < sp; lp++)
@@ -731,7 +731,7 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (--mp > lp)
@@ -807,7 +807,7 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 						for (n = 0; n < BITBLK; bittab[n++] = 0)
@@ -851,7 +851,7 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for (n = 0; n < BITBLK; bittab[n++] = 0)
@@ -920,7 +920,7 @@ int RESearch::Execute(CharacterIndexer &ci, int lp, int endp) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while ((lp < endp) && (static_cast<unsigned char>(ci.CharAt(lp)) != c))
@@ -933,7 +933,7 @@ int RESearch::Execute(CharacterIndexer &ci, int lp, int endp) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (lp < endp) {
@@ -1008,7 +1008,7 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((op = *ap++) != END)
@@ -1061,7 +1061,7 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (bp < ep)
@@ -1081,7 +1081,7 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					while (lp < endp)
@@ -1099,7 +1099,7 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					while ((lp < endp) && (c == ci.CharAt(lp)))
@@ -1114,7 +1114,7 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while ((lp < endp) && isinset(ap+1,ci.CharAt(lp)))
@@ -1135,7 +1135,7 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (llp >= are) {

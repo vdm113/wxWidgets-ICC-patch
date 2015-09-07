@@ -128,7 +128,7 @@ void XsMDICanvas::add (XsMDIWindow *win)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (int loop = 0; loop < _num; loop++)
@@ -168,7 +168,7 @@ void XsMDICanvas::remove (XsMDIWindow *win)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (i = 0; i < _num; i++)
@@ -183,7 +183,7 @@ void XsMDICanvas::remove (XsMDIWindow *win)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          for (j = i; j < _num - 1; j++)
@@ -224,7 +224,7 @@ void XsMDICanvas::show ( )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (int loop = 0; loop < _num; loop++)

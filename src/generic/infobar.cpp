@@ -300,7 +300,7 @@ size_t wxInfoBarGeneric::GetButtonCount() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxSizerItemList::compatibility_iterator node = items.GetLast();
@@ -342,7 +342,7 @@ wxWindowID wxInfoBarGeneric::GetButtonId(size_t idx) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxSizerItemList::compatibility_iterator node = items.GetLast();
@@ -392,7 +392,7 @@ bool wxInfoBarGeneric::HasButtonId(wxWindowID btnid) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxSizerItemList::compatibility_iterator node = items.GetLast();
@@ -428,7 +428,7 @@ void wxInfoBarGeneric::RemoveButton(wxWindowID btnid)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxSizerItemList::compatibility_iterator node = items.GetLast();

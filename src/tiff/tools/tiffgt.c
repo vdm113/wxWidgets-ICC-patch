@@ -100,7 +100,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ((c = getopt(argc, argv, "d:o:p:eflmsvw?")) != -1)
@@ -409,7 +409,7 @@ raster_special(int key, int x, int y)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         while (!TIFFLastDirectory(tif))
@@ -453,7 +453,7 @@ usage(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; stuff[i] != NULL; i++)

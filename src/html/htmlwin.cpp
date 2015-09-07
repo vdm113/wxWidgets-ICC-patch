@@ -112,7 +112,7 @@ void wxHtmlWinAutoScrollTimer::Notify()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( parentTop->GetParent() )
@@ -482,7 +482,7 @@ bool wxHtmlWindow::DoSetPage(const wxString& source)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (nodeL || nodeG)
@@ -626,7 +626,7 @@ bool wxHtmlWindow::LoadPage(const wxString& location)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (node)
@@ -678,7 +678,7 @@ bool wxHtmlWindow::LoadPage(const wxString& location)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int i = 0; i < c; i++)
@@ -729,7 +729,7 @@ bool wxHtmlWindow::ScrollToAnchor(const wxString& anchor)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( c && c->IsFormattingCell() )
@@ -744,7 +744,7 @@ bool wxHtmlWindow::ScrollToAnchor(const wxString& anchor)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (y = 0; c != NULL; c = c->GetParent()) y += c->GetPosY();
@@ -898,7 +898,7 @@ void wxHtmlWindow::ReadCustomization(wxConfigBase *cfg, wxString path)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < 7; i++)
@@ -933,7 +933,7 @@ void wxHtmlWindow::WriteCustomization(wxConfigBase *cfg, wxString path)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < 7; i++)
@@ -1031,7 +1031,7 @@ void wxHtmlWindow::AddProcessor(wxHtmlProcessor *processor)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (node = m_Processors->GetFirst(); node; node = node->GetNext())
@@ -1058,7 +1058,7 @@ void wxHtmlWindow::AddProcessor(wxHtmlProcessor *processor)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (node = m_GlobalProcessors->GetFirst(); node; node = node->GetNext())
@@ -1107,7 +1107,7 @@ wxString wxHtmlWindow::DoSelectionToText(wxHtmlSelection *sel)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( i )
@@ -1215,7 +1215,7 @@ void wxHtmlWindow::DoEraseBackground(wxDC& dc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxCoord x = 0; x < sz.x; x += sizeBmp.x )
@@ -1225,7 +1225,7 @@ void wxHtmlWindow::DoEraseBackground(wxDC& dc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( wxCoord y = 0; y < sz.y; y += sizeBmp.y )
@@ -1754,7 +1754,7 @@ void wxHtmlWindow::SelectLine(const wxPoint& pos)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( c = cell->GetNext(); c; c = c->GetNext())
@@ -1774,7 +1774,7 @@ void wxHtmlWindow::SelectLine(const wxPoint& pos)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( c = cell->GetParent()->GetFirstChild();

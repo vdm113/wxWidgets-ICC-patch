@@ -299,7 +299,7 @@ void MyApp::DoStreamDemo2(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ch = 0; ch < 10; ch++)
@@ -312,7 +312,7 @@ void MyApp::DoStreamDemo2(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ch2 = 0; ch2 < 10; ch2++)
@@ -332,7 +332,7 @@ void MyApp::DoStreamDemo2(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ch = 0; ch < 10; ch++)
@@ -348,7 +348,7 @@ void MyApp::DoStreamDemo2(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ch2 = 0; ch2 < 10; ch2++)
@@ -366,7 +366,7 @@ void MyApp::DoStreamDemo2(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < 2000; i++)
@@ -383,7 +383,7 @@ void MyApp::DoStreamDemo2(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ch2 = 0; ch2 < 10; ch2++)
@@ -396,7 +396,7 @@ void MyApp::DoStreamDemo2(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int j = 0; j < 2000; j++)
@@ -426,7 +426,7 @@ void MyApp::DoStreamDemo3(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ch = 0; ch < 10; ch++)
@@ -442,7 +442,7 @@ void MyApp::DoStreamDemo3(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ch2 = 0; ch2 < 11; ch2++)
@@ -499,7 +499,7 @@ void MyApp::DoStreamDemo3(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ch2 = 0; ch2 < 11; ch2++)
@@ -556,7 +556,7 @@ void MyApp::DoStreamDemo3(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ch2 = 0; ch2 < 11; ch2++)
@@ -620,7 +620,7 @@ void MyApp::DoStreamDemo4(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < 2000; i++)
@@ -767,7 +767,7 @@ void MyApp::DoStreamDemo5(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ch = 0; ch < 10; ch++)
@@ -850,7 +850,7 @@ void MyApp::DoStreamDemo6(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ch = 0; ch < 10; ch++)
@@ -937,7 +937,7 @@ void MyApp::DoStreamDemo7(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ch = 0; ch < 10; ch++)
@@ -1173,7 +1173,7 @@ void MyApp::DoVariantDemo(wxCommandEvent& WXUNUSED(event) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = (size_t) 0; i < n; i++)

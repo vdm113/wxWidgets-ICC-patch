@@ -299,7 +299,7 @@ td_lfind(const void *key, const void *base, size_t *nmemb, size_t size,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (element = (char *)base; element < end; element += size)
@@ -332,7 +332,7 @@ _TIFFSetupFields(TIFF* tif, const TIFFFieldArray* fieldarray)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < tif->tif_nfields; i++) {
@@ -413,7 +413,7 @@ _TIFFMergeFields(TIFF* tif, const TIFFField info[], uint32 n)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < n; i++) {
@@ -445,7 +445,7 @@ _TIFFPrintFieldInfo(TIFF* tif, FILE* fd)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < tif->tif_nfields; i++) {
@@ -960,7 +960,7 @@ TIFFMergeFieldInfo(TIFF* tif, const TIFFFieldInfo info[], uint32 n)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < n; i++) {

@@ -454,7 +454,7 @@ bool wxSingleChoiceDialog::Create( wxWindow *parent,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < n; i++)
@@ -573,7 +573,7 @@ void wxMultiChoiceDialog::SetSelections(const wxArrayInt& selections)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < count; ++n )
@@ -589,7 +589,7 @@ void wxMultiChoiceDialog::SetSelections(const wxArrayInt& selections)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < count; n++ )
@@ -609,7 +609,7 @@ void wxMultiChoiceDialog::SetSelections(const wxArrayInt& selections)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; ++n )
@@ -624,7 +624,7 @@ void wxMultiChoiceDialog::SetSelections(const wxArrayInt& selections)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
@@ -647,7 +647,7 @@ bool wxMultiChoiceDialog::TransferDataFromWindow()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )
@@ -665,7 +665,7 @@ bool wxMultiChoiceDialog::TransferDataFromWindow()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )

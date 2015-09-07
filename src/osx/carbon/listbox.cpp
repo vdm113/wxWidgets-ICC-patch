@@ -98,7 +98,7 @@ int wxMacDataBrowserListControl::DoListHitTest(const wxPoint& inpoint) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( low <= high )
@@ -126,7 +126,7 @@ int wxMacDataBrowserListControl::DoListHitTest(const wxPoint& inpoint) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( low <= high )
@@ -498,7 +498,7 @@ wxMacDataBrowserColumn* wxMacDataBrowserListControl::GetColumnFromProperty( Data
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < m_columns.size() ; ++ i )
@@ -589,7 +589,7 @@ int wxMacDataBrowserListControl::ListGetSelections( wxArrayInt& aSelections ) co
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < count; ++i)

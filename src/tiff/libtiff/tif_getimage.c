@@ -630,7 +630,7 @@ gtTileContig(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (row = 0; row < h; row += nrow)
@@ -642,7 +642,7 @@ gtTileContig(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (col = 0; col < w; col += tw) 
@@ -685,7 +685,7 @@ gtTileContig(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    for (line = 0; line < h; line++) {
@@ -697,7 +697,7 @@ gtTileContig(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		    while ( left < right ) {
@@ -787,7 +787,7 @@ gtTileSeparate(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (row = 0; row < h; row += nrow)
@@ -799,7 +799,7 @@ gtTileSeparate(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (col = 0; col < w; col += tw)
@@ -865,7 +865,7 @@ gtTileSeparate(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (line = 0; line < h; line++) {
@@ -877,7 +877,7 @@ gtTileSeparate(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while ( left < right ) {
@@ -939,7 +939,7 @@ gtStripContig(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (row = 0; row < h; row += nrow)
@@ -972,7 +972,7 @@ gtStripContig(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (line = 0; line < h; line++) {
@@ -984,7 +984,7 @@ gtStripContig(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while ( left < right ) {
@@ -1072,7 +1072,7 @@ gtStripSeparate(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (row = 0; row < h; row += nrow)
@@ -1128,7 +1128,7 @@ gtStripSeparate(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (line = 0; line < h; line++) {
@@ -1140,7 +1140,7 @@ gtStripSeparate(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while ( left < right ) {
@@ -1254,7 +1254,7 @@ DECLAREContigPutFunc(put8bitcmaptile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (h-- > 0) {
@@ -1263,7 +1263,7 @@ DECLAREContigPutFunc(put8bitcmaptile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (x = w; x-- > 0;)
@@ -1290,7 +1290,7 @@ DECLAREContigPutFunc(put4bitcmaptile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (h-- > 0) {
@@ -1315,7 +1315,7 @@ DECLAREContigPutFunc(put2bitcmaptile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (h-- > 0) {
@@ -1340,7 +1340,7 @@ DECLAREContigPutFunc(put1bitcmaptile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (h-- > 0) {
@@ -1365,7 +1365,7 @@ DECLAREContigPutFunc(putgreytile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (h-- > 0) {
@@ -1374,7 +1374,7 @@ DECLAREContigPutFunc(putgreytile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (x = w; x-- > 0;)
@@ -1401,7 +1401,7 @@ DECLAREContigPutFunc(putagreytile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (h-- > 0) {
@@ -1410,7 +1410,7 @@ DECLAREContigPutFunc(putagreytile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (x = w; x-- > 0;)
@@ -1437,7 +1437,7 @@ DECLAREContigPutFunc(put16bitbwtile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (h-- > 0) {
@@ -1448,7 +1448,7 @@ DECLAREContigPutFunc(put16bitbwtile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (x = w; x-- > 0;)
@@ -1478,7 +1478,7 @@ DECLAREContigPutFunc(put1bitbwtile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (h-- > 0) {
@@ -1503,7 +1503,7 @@ DECLAREContigPutFunc(put2bitbwtile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (h-- > 0) {
@@ -1528,7 +1528,7 @@ DECLAREContigPutFunc(put4bitbwtile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (h-- > 0) {
@@ -1553,7 +1553,7 @@ DECLAREContigPutFunc(putRGBcontig8bittile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (h-- > 0) {
@@ -1580,7 +1580,7 @@ DECLAREContigPutFunc(putRGBAAcontig8bittile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (h-- > 0) {
@@ -1606,7 +1606,7 @@ DECLAREContigPutFunc(putRGBUAcontig8bittile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (h-- > 0) {
@@ -1617,7 +1617,7 @@ DECLAREContigPutFunc(putRGBUAcontig8bittile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (x = w; x-- > 0;) {
@@ -1648,7 +1648,7 @@ DECLAREContigPutFunc(putRGBcontig16bittile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (h-- > 0) {
@@ -1657,7 +1657,7 @@ DECLAREContigPutFunc(putRGBcontig16bittile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (x = w; x-- > 0;) {
@@ -1686,7 +1686,7 @@ DECLAREContigPutFunc(putRGBAAcontig16bittile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (h-- > 0) {
@@ -1695,7 +1695,7 @@ DECLAREContigPutFunc(putRGBAAcontig16bittile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (x = w; x-- > 0;) {
@@ -1725,7 +1725,7 @@ DECLAREContigPutFunc(putRGBUAcontig16bittile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (h-- > 0) {
@@ -1736,7 +1736,7 @@ DECLAREContigPutFunc(putRGBUAcontig16bittile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (x = w; x-- > 0;) {
@@ -1770,7 +1770,7 @@ DECLAREContigPutFunc(putRGBcontig8bitCMYKtile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (h-- > 0) {
@@ -1804,7 +1804,7 @@ DECLAREContigPutFunc(putRGBcontig8bitCMYKMaptile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (h-- > 0) {
@@ -1813,7 +1813,7 @@ DECLAREContigPutFunc(putRGBcontig8bitCMYKMaptile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (x = w; x-- > 0;) {
@@ -1850,7 +1850,7 @@ DECLARESepPutFunc(putRGBseparate8bittile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (h-- > 0) {
@@ -1871,7 +1871,7 @@ DECLARESepPutFunc(putRGBAAseparate8bittile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (h-- > 0) {
@@ -1892,7 +1892,7 @@ DECLARESepPutFunc(putCMYKseparate8bittile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (h-- > 0) {
@@ -1902,7 +1902,7 @@ DECLARESepPutFunc(putCMYKseparate8bittile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (x = w; x-- > 0;) {
@@ -1928,7 +1928,7 @@ DECLARESepPutFunc(putRGBUAseparate8bittile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (h-- > 0) {
@@ -1939,7 +1939,7 @@ DECLARESepPutFunc(putRGBUAseparate8bittile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (x = w; x-- > 0;) {
@@ -1969,7 +1969,7 @@ DECLARESepPutFunc(putRGBseparate16bittile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (h-- > 0) {
@@ -1978,7 +1978,7 @@ DECLARESepPutFunc(putRGBseparate16bittile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (x = 0; x < w; x++)
@@ -2005,7 +2005,7 @@ DECLARESepPutFunc(putRGBAAseparate16bittile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (h-- > 0) {
@@ -2014,7 +2014,7 @@ DECLARESepPutFunc(putRGBAAseparate16bittile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (x = 0; x < w; x++)
@@ -2042,7 +2042,7 @@ DECLARESepPutFunc(putRGBUAseparate16bittile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (h-- > 0) {
@@ -2053,7 +2053,7 @@ DECLARESepPutFunc(putRGBUAseparate16bittile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (x = w; x-- > 0;) {
@@ -2083,7 +2083,7 @@ DECLAREContigPutFunc(putcontig8bitCIELab)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (h-- > 0) {
@@ -2092,7 +2092,7 @@ DECLAREContigPutFunc(putcontig8bitCIELab)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (x = w; x-- > 0;) {
@@ -2155,7 +2155,7 @@ static void putcontig8bitYCbCrGenericTile(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( yy = 0; yy < h; yy++ )
@@ -2172,7 +2172,7 @@ static void putcontig8bitYCbCrGenericTile(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for( xx = 0; xx < w; xx++ )
@@ -2185,7 +2185,7 @@ static void putcontig8bitYCbCrGenericTile(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (; h >= 4; h -= 4) {
@@ -2195,7 +2195,7 @@ static void putcontig8bitYCbCrGenericTile(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do {
@@ -2247,7 +2247,7 @@ DECLAREContigPutFunc(putcontig8bitYCbCr44tile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (; h >= 4; h -= 4) {
@@ -2257,7 +2257,7 @@ DECLAREContigPutFunc(putcontig8bitYCbCr44tile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             do {
@@ -2293,7 +2293,7 @@ DECLAREContigPutFunc(putcontig8bitYCbCr44tile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (h > 0) {
@@ -2302,7 +2302,7 @@ DECLAREContigPutFunc(putcontig8bitYCbCr44tile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (x = w; x > 0;) {
@@ -2373,7 +2373,7 @@ DECLAREContigPutFunc(putcontig8bitYCbCr42tile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (; h >= 2; h -= 2) {
@@ -2383,7 +2383,7 @@ DECLAREContigPutFunc(putcontig8bitYCbCr42tile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             do {
@@ -2411,7 +2411,7 @@ DECLAREContigPutFunc(putcontig8bitYCbCr42tile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (h > 0) {
@@ -2420,7 +2420,7 @@ DECLAREContigPutFunc(putcontig8bitYCbCr42tile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (x = w; x > 0;) {
@@ -2479,7 +2479,7 @@ DECLAREContigPutFunc(putcontig8bitYCbCr41tile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do {
@@ -2489,7 +2489,7 @@ DECLAREContigPutFunc(putcontig8bitYCbCr41tile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do {
@@ -2542,7 +2542,7 @@ DECLAREContigPutFunc(putcontig8bitYCbCr22tile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (h>=2) {
@@ -2552,7 +2552,7 @@ DECLAREContigPutFunc(putcontig8bitYCbCr22tile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (x>=2) {
@@ -2588,7 +2588,7 @@ DECLAREContigPutFunc(putcontig8bitYCbCr22tile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (x>=2) {
@@ -2621,7 +2621,7 @@ DECLAREContigPutFunc(putcontig8bitYCbCr21tile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do {
@@ -2631,7 +2631,7 @@ DECLAREContigPutFunc(putcontig8bitYCbCr21tile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		do {
@@ -2676,7 +2676,7 @@ DECLAREContigPutFunc(putcontig8bitYCbCr12tile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (h>=2) {
@@ -2686,7 +2686,7 @@ DECLAREContigPutFunc(putcontig8bitYCbCr12tile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		do {
@@ -2710,7 +2710,7 @@ DECLAREContigPutFunc(putcontig8bitYCbCr12tile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		do {
@@ -2735,7 +2735,7 @@ DECLAREContigPutFunc(putcontig8bitYCbCr11tile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do {
@@ -2745,7 +2745,7 @@ DECLAREContigPutFunc(putcontig8bitYCbCr11tile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		do {
@@ -2774,7 +2774,7 @@ DECLARESepPutFunc(putseparate8bitYCbCr11tile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (h-- > 0) {
@@ -2784,7 +2784,7 @@ DECLARESepPutFunc(putseparate8bitYCbCr11tile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		do {
@@ -2891,7 +2891,7 @@ makebwmap(TIFFRGBAImage* img)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 256; i++) {
@@ -2957,7 +2957,7 @@ setupMap(TIFFRGBAImage* img)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (x = 0; x <= range; x++)
@@ -2968,7 +2968,7 @@ setupMap(TIFFRGBAImage* img)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (x = 0; x <= range; x++)
@@ -3002,7 +3002,7 @@ checkcmap(TIFFRGBAImage* img)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (n-- > 0)
@@ -3024,7 +3024,7 @@ cvtcmap(TIFFRGBAImage* img)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = (1L<<img->bitspersample)-1; i >= 0; i--) {
@@ -3066,7 +3066,7 @@ makecmap(TIFFRGBAImage* img)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 256; i++) {
@@ -3384,7 +3384,7 @@ BuildMapUaToAa(TIFFRGBAImage* img)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (na=0; na<256; na++)
@@ -3394,7 +3394,7 @@ BuildMapUaToAa(TIFFRGBAImage* img)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (nv=0; nv<256; nv++)
@@ -3422,7 +3422,7 @@ BuildMapBitdepth16To8(TIFFRGBAImage* img)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (n=0; n<65536; n++)
@@ -3577,7 +3577,7 @@ TIFFReadRGBATile(TIFF* tif, uint32 col, uint32 row, uint32 * raster)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( i_row = 0; i_row < read_ysize; i_row++ ) {
@@ -3593,7 +3593,7 @@ TIFFReadRGBATile(TIFF* tif, uint32 col, uint32 row, uint32 * raster)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( i_row = read_ysize; i_row < tile_ysize; i_row++ ) {

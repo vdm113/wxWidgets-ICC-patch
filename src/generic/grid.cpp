@@ -660,7 +660,7 @@ void wxGridCellAttrData::UpdateAttrRows( size_t pos, int numRows )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -702,7 +702,7 @@ void wxGridCellAttrData::UpdateAttrCols( size_t pos, int numCols )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -744,7 +744,7 @@ int wxGridCellAttrData::FindIndex(int row, int col) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -771,7 +771,7 @@ wxGridRowOrColAttrData::~wxGridRowOrColAttrData()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -839,7 +839,7 @@ void wxGridRowOrColAttrData::UpdateAttrRowsOrCols( size_t pos, int numRowsOrCols
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -1201,7 +1201,7 @@ wxString wxGridTableBase::GetColLabelValue( int col )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 1; ; n++ )
@@ -1219,7 +1219,7 @@ wxString wxGridTableBase::GetColLabelValue( int col )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < n; i++ )
@@ -1375,7 +1375,7 @@ void wxGridStringTable::Clear()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( row = 0; row < numRows; row++ )
@@ -1385,7 +1385,7 @@ void wxGridStringTable::Clear()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( col = 0; col < numCols; col++ )
@@ -1504,7 +1504,7 @@ bool wxGridStringTable::InsertCols( size_t pos, size_t numCols )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t i = pos; i < pos + numCols; i++ )
@@ -1516,7 +1516,7 @@ bool wxGridStringTable::InsertCols( size_t pos, size_t numCols )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t row = 0; row < m_data.size(); row++ )
@@ -1526,7 +1526,7 @@ bool wxGridStringTable::InsertCols( size_t pos, size_t numCols )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t col = pos; col < pos + numCols; col++ )
@@ -1557,7 +1557,7 @@ bool wxGridStringTable::AppendCols( size_t numCols )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t row = 0; row < m_data.size(); row++ )
@@ -1626,7 +1626,7 @@ bool wxGridStringTable::DeleteCols( size_t pos, size_t numCols )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( row = 0; row < curNumRows; row++ )
@@ -1643,7 +1643,7 @@ bool wxGridStringTable::DeleteCols( size_t pos, size_t numCols )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( row = 0; row < curNumRows; row++ )
@@ -1707,7 +1707,7 @@ void wxGridStringTable::SetRowLabelValue( int row, const wxString& value )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( i = n; i <= row; i++ )
@@ -1731,7 +1731,7 @@ void wxGridStringTable::SetColLabelValue( int col, const wxString& value )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( i = n; i <= col; i++ )
@@ -2089,7 +2089,7 @@ void wxGrid::GetRenderSizes( const wxGridCellCoords& topLeft,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( col = 0; col <= bottomRight.GetCol(); col++ )
@@ -2105,7 +2105,7 @@ void wxGrid::GetRenderSizes( const wxGridCellCoords& topLeft,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( row = topLeft.GetRow(); row <= bottomRight.GetRow(); row++ )
@@ -2124,7 +2124,7 @@ void wxGrid::GetRenderSizes( const wxGridCellCoords& topLeft,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( row = 0; row <= bottomRight.GetRow(); row++ )
@@ -2685,7 +2685,7 @@ void wxGrid::InitRowHeights()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < m_numRows; i++ )
@@ -2710,7 +2710,7 @@ void wxGrid::InitColWidths()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < m_numCols; i++ )
@@ -2902,7 +2902,7 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( i = pos; i < m_numRows; i++ )
@@ -2955,7 +2955,7 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( i = oldNumRows; i < m_numRows; i++ )
@@ -2999,7 +2999,7 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( i = 0; i < m_numRows; i++ )
@@ -3064,7 +3064,7 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( i = 0; i < m_numCols - numCols; i++ )
@@ -3081,7 +3081,7 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( i = pos + 1; i < (int)pos + numCols; i++ )
@@ -3105,7 +3105,7 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( colPos = pos; colPos < m_numCols; colPos++ )
@@ -3155,7 +3155,7 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( i = oldNumCols; i < m_numCols; i++ )
@@ -3179,7 +3179,7 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( colPos = oldNumCols; colPos < m_numCols; colPos++ )
@@ -3234,7 +3234,7 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( colPos = 0; colPos < m_numCols; colPos++ )
@@ -3256,7 +3256,7 @@ bool wxGrid::Redimension( wxGridTableMessage& msg )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( colPos = 0; colPos < m_numCols; colPos++ )
@@ -3328,7 +3328,7 @@ wxArrayInt wxGrid::CalcRowLabelsExposed( const wxRegion& reg ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( iter )
@@ -3362,7 +3362,7 @@ wxArrayInt wxGrid::CalcRowLabelsExposed( const wxRegion& reg ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( row = internalYToRow(top); row < m_numRows; row++ )
@@ -3395,7 +3395,7 @@ wxArrayInt wxGrid::CalcColLabelsExposed( const wxRegion& reg ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( iter )
@@ -3430,7 +3430,7 @@ wxArrayInt wxGrid::CalcColLabelsExposed( const wxRegion& reg ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( colPos = GetColPos( internalXToCol(left) ); colPos < m_numCols; colPos++ )
@@ -3464,7 +3464,7 @@ wxGridCellCoordsArray wxGrid::CalcCellsExposed( const wxRegion& reg ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxRegionIterator iter(reg); iter; ++iter )
@@ -3502,7 +3502,7 @@ wxGridCellCoordsArray wxGrid::CalcCellsExposed( const wxRegion& reg ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int row = internalYToRow(top); row < m_numRows; row++ )
@@ -3524,7 +3524,7 @@ wxGridCellCoordsArray wxGrid::CalcCellsExposed( const wxRegion& reg ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( int pos = XToPos(left); pos <= XToPos(right); pos++ )
@@ -3541,7 +3541,7 @@ wxGridCellCoordsArray wxGrid::CalcCellsExposed( const wxRegion& reg ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( size_t n = 0; n < count; n++ )
@@ -4720,7 +4720,7 @@ bool wxGrid::DoEndDragResizeLine(const wxGridOperations& oper)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( ; line < lineEnd; line++ )
@@ -4794,7 +4794,7 @@ void wxGrid::RefreshAfterColPosChange()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int colPos = 0; colPos < m_numCols; colPos++ )
@@ -4843,7 +4843,7 @@ void wxGrid::SetColPos(int idx, int pos)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int i = 0; i < m_numCols; i++ )
@@ -5654,7 +5654,7 @@ wxGrid::UpdateBlockBeingSelected(int topRow, int leftCol,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < 4; i++ )
@@ -5703,7 +5703,7 @@ bool wxGrid::SetModelValues()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( row = 0; row < m_numRows; row++ )
@@ -5713,7 +5713,7 @@ bool wxGrid::SetModelValues()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( col = 0; col < m_numCols; col++ )
@@ -5746,7 +5746,7 @@ void wxGrid::DrawGridCellArea( wxDC& dc, const wxGridCellCoordsArray& cells )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = numCells - 1; i >= 0; i-- )
@@ -5765,7 +5765,7 @@ void wxGrid::DrawGridCellArea( wxDC& dc, const wxGridCellCoordsArray& cells )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( int j = 0; j < numCells; j++ )
@@ -5785,7 +5785,7 @@ void wxGrid::DrawGridCellArea( wxDC& dc, const wxGridCellCoordsArray& cells )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (int j = 0; j < count; j++)
@@ -5813,7 +5813,7 @@ void wxGrid::DrawGridCellArea( wxDC& dc, const wxGridCellCoordsArray& cells )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( int l = 0; l < cell_rows; l++ )
@@ -5825,7 +5825,7 @@ void wxGrid::DrawGridCellArea( wxDC& dc, const wxGridCellCoordsArray& cells )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (int k = 0; k < int(redrawCells.GetCount()); k++)
@@ -5843,7 +5843,7 @@ void wxGrid::DrawGridCellArea( wxDC& dc, const wxGridCellCoordsArray& cells )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (int j = col - 1; j >= left; j--)
@@ -5860,7 +5860,7 @@ void wxGrid::DrawGridCellArea( wxDC& dc, const wxGridCellCoordsArray& cells )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                             for (int k = 0; k < numCells; k++)
@@ -5880,7 +5880,7 @@ void wxGrid::DrawGridCellArea( wxDC& dc, const wxGridCellCoordsArray& cells )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                                 for (int k = 0; k < count; k++)
@@ -5911,7 +5911,7 @@ void wxGrid::DrawGridCellArea( wxDC& dc, const wxGridCellCoordsArray& cells )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = numCells - 1; i >= 0; i-- )
@@ -6096,7 +6096,7 @@ void wxGrid::DrawHighlight(wxDC& dc, const wxGridCellCoordsArray& cells)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -6159,7 +6159,7 @@ wxGrid::DrawRangeGridLines(wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int row = topLeft.GetRow(); row <= bottomRight.GetRow(); row++ )
@@ -6169,7 +6169,7 @@ wxGrid::DrawRangeGridLines(wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int col = topLeft.GetCol(); col <= bottomRight.GetCol(); col++ )
@@ -6261,7 +6261,7 @@ void wxGrid::DrawAllGridLines( wxDC& dc, const wxRegion & WXUNUSED(reg) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int j = topRow; j <= bottomRow; j++ )
@@ -6271,7 +6271,7 @@ void wxGrid::DrawAllGridLines( wxDC& dc, const wxRegion & WXUNUSED(reg) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int colPos = leftCol; colPos <= rightCol; colPos++ )
@@ -6316,7 +6316,7 @@ wxGrid::DoDrawGridLines(wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = topRow; i < bottomRow; i++ )
@@ -6339,7 +6339,7 @@ wxGrid::DoDrawGridLines(wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int colPos = leftCol; colPos < rightCol; colPos++ )
@@ -6374,7 +6374,7 @@ void wxGrid::DrawRowLabels( wxDC& dc, const wxArrayInt& rows)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < numLabels; i++ )
@@ -6451,7 +6451,7 @@ void wxGrid::DrawColLabels( wxDC& dc,const wxArrayInt& cols )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < numLabels; i++ )
@@ -6604,7 +6604,7 @@ void wxGrid::DrawTextRectangle(wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t l = 0; l < nLines; l++ )
@@ -6675,7 +6675,7 @@ void wxGrid::StringToLines( const wxString& value, wxArrayString& lines ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( startPos < (int)tVal.length() )
@@ -6717,7 +6717,7 @@ void wxGrid::GetTextBoxSize( const wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < lines.GetCount(); i++ )
@@ -6963,7 +6963,7 @@ void wxGrid::ShowCellEditControl()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (int i = col + cell_cols; i < m_numCols; i++)
@@ -7151,7 +7151,7 @@ int wxGrid::PosToLinePos(int coord,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( minPos < maxPos )
@@ -7230,7 +7230,7 @@ int wxGrid::PosToEdgeOfLine(int pos, const wxGridOperations& oper) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             do
@@ -7242,7 +7242,7 @@ int wxGrid::PosToEdgeOfLine(int pos, const wxGridOperations& oper) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( line >= 0 && oper.GetLineSize(this, line) == 0 );
@@ -7289,7 +7289,7 @@ wxRect wxGrid::CellToRect( int row, int col ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i=col; i < col + cell_cols; i++)
@@ -7299,7 +7299,7 @@ wxRect wxGrid::CellToRect( int row, int col ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i=row; i < row + cell_rows; i++)
@@ -7384,7 +7384,7 @@ void wxGrid::MakeCellVisible( int row, int col )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( i = row - 1; i >= 0; i-- )
@@ -7546,7 +7546,7 @@ wxGrid::AdvanceToNextNonEmpty(wxGridCellCoords& coords,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( !diroper.IsAtBoundary(coords) )
@@ -7590,7 +7590,7 @@ wxGrid::DoMoveCursorByBlock(bool expandSelection,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( !diroper.IsAtBoundary(coords) )
@@ -8525,7 +8525,7 @@ void wxGrid::SetCellSize( int row, int col, int num_rows, int num_cols )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (j=row; j < row + cell_rows; j++)
@@ -8535,7 +8535,7 @@ void wxGrid::SetCellSize( int row, int col, int num_rows, int num_cols )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (i=col; i < col + cell_cols; i++)
@@ -8560,7 +8560,7 @@ void wxGrid::SetCellSize( int row, int col, int num_rows, int num_cols )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (j=row; j < row + num_rows; j++)
@@ -8570,7 +8570,7 @@ void wxGrid::SetCellSize( int row, int col, int num_rows, int num_cols )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (i=col; i < col + num_cols; i++)
@@ -8825,7 +8825,7 @@ void wxGrid::DoSetRowSize( int row, int height )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = row; i < m_numRows; i++ )
@@ -8924,7 +8924,7 @@ void wxGrid::DoSetColSize( int col, int width )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int colPos = GetColPos(col); colPos < m_numCols; colPos++ )
@@ -9051,7 +9051,7 @@ wxGrid::AutoSizeColOrRow(int colOrRow, bool setAsMin, wxGridDirection direction)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int rowOrCol = 0; rowOrCol < max; rowOrCol++ )
@@ -9237,7 +9237,7 @@ wxCoord wxGrid::CalcColOrRowLabelAreaMinSize(wxGridDirection direction)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int rowOrCol = 0; rowOrCol < numRowsOrCols; rowOrCol++ )
@@ -9286,7 +9286,7 @@ int wxGrid::SetOrCalcColumnSizes(bool calcOnly, bool setAsMin)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int col = 0; col < m_numCols; col++ )
@@ -9313,7 +9313,7 @@ int wxGrid::SetOrCalcRowSizes(bool calcOnly, bool setAsMin)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int row = 0; row < m_numRows; row++ )
@@ -9504,7 +9504,7 @@ void wxGrid::DeselectLine(int line, const wxGridOperations& oper)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int i = 0; i < nOther; i++ )
@@ -9716,7 +9716,7 @@ wxRect wxGrid::BlockToDeviceRect( const wxGridCellCoords& topLeft,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int j = visibleTopRow; j <= visibleBottomRow; j++ )
@@ -9726,7 +9726,7 @@ wxRect wxGrid::BlockToDeviceRect( const wxGridCellCoords& topLeft,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int i = visibleLeftCol; i <= visibleRightCol; i++ )
@@ -9778,7 +9778,7 @@ void wxGrid::DoSetSizes(const wxGridSizesInfo& sizeInfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < numLines; i++ )
@@ -9808,7 +9808,7 @@ wxGridSizesInfo::wxGridSizesInfo(int defSize, const wxArrayInt& allSizes)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < allSizes.size(); i++ )
@@ -9921,7 +9921,7 @@ wxGridTypeRegistry::~wxGridTypeRegistry()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )
@@ -9955,7 +9955,7 @@ int wxGridTypeRegistry::FindRegisteredDataType(const wxString& typeName)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )

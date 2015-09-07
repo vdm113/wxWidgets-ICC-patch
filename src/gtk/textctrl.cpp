@@ -277,7 +277,7 @@ static void wxGtkTextApplyTagsFromAttr(GtkWidget *text,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < tabs.GetCount(); i++)
@@ -300,7 +300,7 @@ static void wxGtkTextApplyTagsFromAttr(GtkWidget *text,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (size_t i = 0; i < tabs.GetCount(); i++)
@@ -435,7 +435,7 @@ au_check_word( GtkTextIter *s, GtkTextIter *e )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( n = 0; n < WXSIZEOF(URIPrefixes); ++n )
@@ -479,7 +479,7 @@ au_check_range(GtkTextIter *s,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(!gtk_text_iter_equal(&range_start, range_end))
@@ -696,7 +696,7 @@ wxTextCtrl::~wxTextCtrl()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (IsFrozen())
@@ -2047,7 +2047,7 @@ void wxTextCtrl::DoFreeze()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (GSList* item = m_anonymousMarkList; item; item = item->next)

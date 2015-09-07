@@ -117,7 +117,7 @@ local void make_crc_table()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (n = 0; n < (int)(sizeof(p)/sizeof(unsigned char)); n++)
@@ -129,7 +129,7 @@ local void make_crc_table()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (n = 0; n < 256; n++) {
@@ -139,7 +139,7 @@ local void make_crc_table()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (k = 0; k < 8; k++)
@@ -155,7 +155,7 @@ local void make_crc_table()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (n = 0; n < 256; n++) {
@@ -166,7 +166,7 @@ local void make_crc_table()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (k = 1; k < 4; k++) {
@@ -186,7 +186,7 @@ local void make_crc_table()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (crc_table_empty)
@@ -212,7 +212,7 @@ local void make_crc_table()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (k = 1; k < 8; k++) {
@@ -239,7 +239,7 @@ local void write_table(out, table)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (n = 0; n < 256; n++)
@@ -302,7 +302,7 @@ unsigned long ZEXPORT crc32(crc, buf, len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (len >= 8) {
@@ -339,7 +339,7 @@ local unsigned long crc32_little(crc, buf, len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (len && ((ptrdiff_t)buf & 3)) {
@@ -353,7 +353,7 @@ local unsigned long crc32_little(crc, buf, len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (len >= 32) {
@@ -365,7 +365,7 @@ local unsigned long crc32_little(crc, buf, len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (len >= 4) {
@@ -403,7 +403,7 @@ local unsigned long crc32_big(crc, buf, len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (len && ((ptrdiff_t)buf & 3)) {
@@ -418,7 +418,7 @@ local unsigned long crc32_big(crc, buf, len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (len >= 32) {
@@ -430,7 +430,7 @@ local unsigned long crc32_big(crc, buf, len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (len >= 4) {
@@ -464,7 +464,7 @@ local unsigned long gf2_matrix_times(mat, vec)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (vec) {
@@ -488,7 +488,7 @@ local void gf2_matrix_square(square, mat)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (n = 0; n < GF2_DIM; n++)
@@ -518,7 +518,7 @@ local uLong crc32_combine_(crc1, crc2, len2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (n = 1; n < GF2_DIM; n++) {
@@ -539,7 +539,7 @@ local uLong crc32_combine_(crc1, crc2, len2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do {

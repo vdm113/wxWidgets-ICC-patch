@@ -132,7 +132,7 @@ bool wxCheckForInterrupt( wxWindow* pWnd )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while(::WinPeekMsg(hab, &vMsg, hwndFilter, 0, 0, PM_REMOVE))
@@ -334,7 +334,7 @@ wxString WXDLLEXPORT wxGetWindowClass( WXHWND hWnd )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )
@@ -813,7 +813,7 @@ wxBitmap wxDisableBitmap(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < rBmp.GetHeight(); i++)
@@ -828,7 +828,7 @@ wxBitmap wxDisableBitmap(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (j = 0; j < rBmp.GetWidth(); j++)
@@ -895,7 +895,7 @@ wxBitmap wxDisableBitmap(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (j = 0; j < nPadding; j++)

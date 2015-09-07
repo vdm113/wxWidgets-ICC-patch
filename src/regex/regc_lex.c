@@ -146,7 +146,7 @@ struct vars *v;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (; !ATEOS() && iscalpha(*v->now); v->now++)
@@ -569,7 +569,7 @@ struct vars *v;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (!ATEOS() && *v->now != CHR(')'))
@@ -854,7 +854,7 @@ int maxlen;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (len = 0; len < maxlen && !ATEOS(); len++) {
@@ -1021,7 +1021,7 @@ struct vars *v;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (;;) {
@@ -1030,7 +1030,7 @@ struct vars *v;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (!ATEOS() && iscspace(*v->now))
@@ -1043,7 +1043,7 @@ struct vars *v;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (!ATEOS() && *v->now != CHR('\n'))

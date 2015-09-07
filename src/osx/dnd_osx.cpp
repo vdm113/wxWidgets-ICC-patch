@@ -89,7 +89,7 @@ bool wxDropTarget::CurrentDragHasSupportedFormat()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (size_t i = 0; !supported && i < formatcount; i++)
@@ -137,7 +137,7 @@ bool wxDropTarget::GetData()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (size_t i = 0; !transferred && i < formatcount; i++)

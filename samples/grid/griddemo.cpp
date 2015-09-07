@@ -965,7 +965,7 @@ void GridFrame::DeleteSelectedRows( wxCommandEvent& WXUNUSED(ev) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int n = 0; n < grid->GetNumberRows(); )
@@ -988,7 +988,7 @@ void GridFrame::AutoSizeRow(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0, count = sels.size(); n < count; n++ )
@@ -1006,7 +1006,7 @@ void GridFrame::AutoSizeCol(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0, count = sels.size(); n < count; n++ )
@@ -1024,7 +1024,7 @@ void GridFrame::AutoSizeRowLabel(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0, count = sels.size(); n < count; n++ )
@@ -1042,7 +1042,7 @@ void GridFrame::AutoSizeColLabel(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0, count = sels.size(); n < count; n++ )
@@ -1078,7 +1078,7 @@ void GridFrame::DeleteSelectedCols( wxCommandEvent& WXUNUSED(ev) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int n = 0; n < grid->GetNumberCols(); )
@@ -1676,7 +1676,7 @@ void BugsGridTable::SetValue( int row, int col, const wxString& value )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( n = 0; n < WXSIZEOF(severities); n++ )
@@ -2103,7 +2103,7 @@ private:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int pos = 0; pos < TabularGridTable::COL_MAX; pos++ )
@@ -2334,7 +2334,7 @@ void GridFrame::OnGridRender( wxCommandEvent& event )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = topLeft.GetCol(); i <= bottomRight.GetCol(); i++ )
@@ -2349,7 +2349,7 @@ void GridFrame::OnGridRender( wxCommandEvent& event )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = topLeft.GetRow(); i <= bottomRight.GetRow(); i++ )

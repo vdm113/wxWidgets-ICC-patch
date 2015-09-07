@@ -197,7 +197,7 @@ Status XGetWindowAttributes(Display* display, Window w,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (parent)
@@ -306,7 +306,7 @@ int XParseColor(Display* display, Colormap cmap,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;)
@@ -446,7 +446,7 @@ int XTranslateCoordinates(Display* display, Window srcWindow, Window destWindow,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (w != GR_ROOT_WINDOW_ID)
@@ -466,7 +466,7 @@ int XTranslateCoordinates(Display* display, Window srcWindow, Window destWindow,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (w != GR_ROOT_WINDOW_ID)

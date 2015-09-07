@@ -165,7 +165,7 @@ static void DoTestRoundTrip(const T *values, size_t numValues)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < numValues; n++ )
@@ -184,7 +184,7 @@ static void DoTestRoundTrip(const T *values, size_t numValues)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < numValues; n++ )
@@ -307,7 +307,7 @@ void TextStreamTestCase::TestInput(const wxMBConv& conv,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( wxChar c = textIn.GetChar() )

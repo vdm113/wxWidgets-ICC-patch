@@ -77,7 +77,7 @@ jpeg_CreateCompress (j_compress_ptr cinfo, int version, size_t structsize)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < NUM_QUANT_TBLS; i++)
@@ -88,7 +88,7 @@ jpeg_CreateCompress (j_compress_ptr cinfo, int version, size_t structsize)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < NUM_HUFF_TBLS; i++) {
@@ -152,7 +152,7 @@ jpeg_suppress_tables (j_compress_ptr cinfo, wxjpeg_boolean suppress)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < NUM_QUANT_TBLS; i++) {
@@ -165,7 +165,7 @@ jpeg_suppress_tables (j_compress_ptr cinfo, wxjpeg_boolean suppress)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < NUM_HUFF_TBLS; i++) {
@@ -203,7 +203,7 @@ jpeg_finish_compress (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (! cinfo->master->is_last_pass) {
@@ -213,7 +213,7 @@ jpeg_finish_compress (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (iMCU_row = 0; iMCU_row < cinfo->total_iMCU_rows; iMCU_row++) {
@@ -264,7 +264,7 @@ jpeg_write_marker (j_compress_ptr cinfo, int marker,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (datalen--) {

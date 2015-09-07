@@ -1408,7 +1408,7 @@ wxWin32Renderer::wxWin32Renderer(const wxColourScheme *scheme)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < Arrow_Max; n++ )
@@ -1467,7 +1467,7 @@ wxWin32Renderer::wxWin32Renderer(const wxColourScheme *scheme)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < ARROW_LENGTH; i++ )
@@ -2312,7 +2312,7 @@ void wxWin32Renderer::DrawSliderTicks(wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < range; n += step )
@@ -2542,7 +2542,7 @@ wxMenuGeometryInfo *wxWin32Renderer::GetMenuGeometry(wxWindow *win,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxMenuItemList::compatibility_iterator node = menu.GetMenuItems().GetFirst();
@@ -2659,7 +2659,7 @@ void wxWin32Renderer::DrawStatusField(wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < NUM_STATUSBAR_GRIP_BANDS; n++, ofs += WIDTH_STATUSBAR_GRIP_BAND )
@@ -2676,7 +2676,7 @@ void wxWin32Renderer::DrawStatusField(wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < NUM_STATUSBAR_GRIP_BANDS; n++, ofs += WIDTH_STATUSBAR_GRIP_BAND )

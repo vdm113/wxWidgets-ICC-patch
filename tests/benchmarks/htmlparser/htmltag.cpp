@@ -76,7 +76,7 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (pos < lng)
@@ -95,7 +95,7 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( i = 0;
@@ -115,7 +115,7 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (pos < lng && src[pos] != wxT('>')) pos++;
@@ -129,7 +129,7 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (i = tg; i >= 0; i--)
@@ -158,7 +158,7 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     while (pos < lng)
@@ -169,7 +169,7 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         while (pos + 1 < lng &&
@@ -185,7 +185,7 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         while (pos < lng && match_pos < tag_len && src[pos] != '>' && src[pos] != '<') {
@@ -237,7 +237,7 @@ wx28HtmlTagsCache::wx28HtmlTagsCache(const wxString& source)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < m_CacheSize; i++)
@@ -258,7 +258,7 @@ void wx28HtmlTagsCache::QueryTag(int at, int* end1, int* end2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do
@@ -280,7 +280,7 @@ void wx28HtmlTagsCache::QueryTag(int at, int* end1, int* end2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (m_Cache[m_CachePos].Key != at);
@@ -334,7 +334,7 @@ wx28HtmlTag::wx28HtmlTag(wx28HtmlTag *parent,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((i < end_pos) &&
@@ -372,7 +372,7 @@ wx28HtmlTag::wx28HtmlTag(wx28HtmlTag *parent,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (i < end_pos)
@@ -475,7 +475,7 @@ wx28HtmlTag::~wx28HtmlTag()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (t1)
@@ -539,7 +539,7 @@ wxString wx28HtmlTag::GetAllParams() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < cnt; i++)
@@ -566,7 +566,7 @@ wx28HtmlTag *wx28HtmlTag::GetFirstSibling() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (cur->m_Prev)
@@ -587,7 +587,7 @@ wx28HtmlTag *wx28HtmlTag::GetLastSibling() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (cur->m_Next)
@@ -607,7 +607,7 @@ wx28HtmlTag *wx28HtmlTag::GetNextTag() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (cur->m_Parent && !cur->m_Next)

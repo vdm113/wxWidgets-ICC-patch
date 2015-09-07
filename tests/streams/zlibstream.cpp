@@ -163,7 +163,7 @@ zlibStream::zlibStream()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < DATABUFFER_SIZE; i++)
@@ -380,7 +380,7 @@ void zlibStream::doTestStreamData(int input_flag, int output_flag, int compress_
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (fail_pos = 0; !zstream_in.Eof(); fail_pos++)
@@ -457,7 +457,7 @@ void zlibStream::doDecompress_ExternalData(const unsigned char *data, const char
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; !zstream_in.Eof(); i++)
@@ -492,7 +492,7 @@ void zlibStream::doDecompress_ExternalData(const unsigned char *data, const char
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (!zstream_in.Eof())
@@ -577,7 +577,7 @@ void zlibStream::genExtTestData(wxTextOutputStream &out, const char *buf, int fl
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < size; i++)

@@ -134,7 +134,7 @@ bool wxMediaCtrl::Create(wxWindow* parent, wxWindowID id,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while((classInfo = NextBackend(&it)) != NULL)
@@ -204,7 +204,7 @@ bool wxMediaCtrl::Create(wxWindow* parent, wxWindowID id,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while((classInfo = NextBackend(&it)) != NULL)
@@ -273,7 +273,7 @@ const wxClassInfo* wxMediaCtrl::NextBackend(wxClassInfo::const_iterator* it)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxClassInfo::const_iterator end = wxClassInfo::end_classinfo();

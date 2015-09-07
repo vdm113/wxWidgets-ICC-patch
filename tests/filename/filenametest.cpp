@@ -205,7 +205,7 @@ void FileNameTestCase::TestConstruction()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(filenames); n++ )
@@ -227,7 +227,7 @@ void FileNameTestCase::TestConstruction()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( *p == '\\' )
@@ -239,7 +239,7 @@ void FileNameTestCase::TestConstruction()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( char chPrev = '\0'; *p; p++ )
@@ -321,7 +321,7 @@ void FileNameTestCase::TestSplit()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(filenames); n++ )
@@ -442,7 +442,7 @@ void FileNameTestCase::TestNormalize()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < WXSIZEOF(tests); i++ )
@@ -546,7 +546,7 @@ void FileNameTestCase::TestReplace()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < WXSIZEOF(tests); i++ )
@@ -618,7 +618,7 @@ void FileNameTestCase::TestGetHumanReadable()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < WXSIZEOF(testData); n++ )
@@ -722,7 +722,7 @@ void FileNameTestCase::TestCreateTempFileName()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(testData); n++ )
@@ -947,7 +947,7 @@ void FileNameTestCase::TestSymlinks()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < 2; ++n, deref = !deref )

@@ -69,7 +69,7 @@ static DataBrowserItemID* CreateDataBrowserItemIDArray(size_t& noOfEntries, wxDa
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (size_t i=0; i<noOfItems; ++i)
@@ -583,7 +583,7 @@ OSStatus wxMacDataBrowserTableViewControl::GetFreePropertyID(DataBrowserProperty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (*propertyID=kMinPropertyID; *propertyID<std::numeric_limits<DataBrowserPropertyID>::max(); ++(*propertyID))
@@ -677,7 +677,7 @@ OSStatus wxMacDataBrowserTableViewControl::GetFreeItemID(DataBrowserItemID* id) 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (*id=noOfItems; *id<std::numeric_limits<DataBrowserItemID>::max(); ++(*id))
@@ -689,7 +689,7 @@ OSStatus wxMacDataBrowserTableViewControl::GetFreeItemID(DataBrowserItemID* id) 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (*id=0; *id<noOfItems; ++(*id))
@@ -773,7 +773,7 @@ size_t wxMacDataBrowserTableViewControl::GetSelectedItemIDs(wxArrayDataBrowserIt
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (size_t i=0; i<noOfItems; ++i)
@@ -893,7 +893,7 @@ bool wxMacDataViewDataBrowserListViewControl::ClearColumns()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (UInt32 i=0; i<noOfColumns; ++i)
@@ -1199,7 +1199,7 @@ int wxMacDataViewDataBrowserListViewControl::GetSelections(wxDataViewItemArray& 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (size_t i=0; i<noOfSelectedItems; ++i)
@@ -1669,7 +1669,7 @@ void wxMacDataViewDataBrowserListViewControl::DataBrowserItemNotificationProc(Da
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
           for (size_t i=0; i<dataViewCtrlPtr->GetColumnCount(); ++i)
@@ -1896,7 +1896,7 @@ Boolean wxMacDataViewDataBrowserListViewControl::DataBrowserAcceptDragProc(DragR
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (UInt16 indexDraggedItem=1; indexDraggedItem<=noOfDraggedItems; ++indexDraggedItem)
@@ -1995,7 +1995,7 @@ Boolean wxMacDataViewDataBrowserListViewControl::DataBrowserAddDragItemProc(Drag
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (size_t i=0; i<noOfFormats; ++i)
@@ -2088,7 +2088,7 @@ Boolean wxMacDataViewDataBrowserListViewControl::DataBrowserReceiveDragProc(Drag
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (UInt16 indexDraggedItem=1; indexDraggedItem<=noOfDraggedItems; ++indexDraggedItem)
@@ -2159,7 +2159,7 @@ wxDataFormat wxMacDataViewDataBrowserListViewControl::GetDnDDataFormat(wxDataObj
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((indexFormat < noOfFormats) && compatible)
@@ -2218,7 +2218,7 @@ wxDataObjectComposite* wxMacDataViewDataBrowserListViewControl::GetDnDDataObject
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (UInt16 indexFlavor=1; indexFlavor<=noOfFlavors; ++indexFlavor)
@@ -2314,7 +2314,7 @@ wxDataViewColumn* wxMacDataViewDataBrowserListViewControl::GetColumnPtr(DataBrow
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i=0; i<noOfColumns; ++i)

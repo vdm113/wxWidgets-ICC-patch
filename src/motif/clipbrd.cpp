@@ -214,7 +214,7 @@ void wxClipboard::Clear()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -229,7 +229,7 @@ void wxClipboard::Clear()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( wxDataIdToDataObjectList::compatibility_iterator node2 = m_idToObject.GetFirst();
@@ -277,7 +277,7 @@ void wxClipboardCallback( Widget xwidget, long* data_id,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( wxDataIdToDataObjectList::compatibility_iterator node2 =
@@ -308,7 +308,7 @@ void wxClipboardCallback( Widget xwidget, long* data_id,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while( XmClipboardCopyByName( xdisplay, xwindow, *data_id,
@@ -337,7 +337,7 @@ bool wxClipboard::AddData( wxDataObject *data )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while( ( retval = XmClipboardStartCopy( xdisplay, xwindow, label(),
@@ -357,7 +357,7 @@ bool wxClipboard::AddData( wxDataObject *data )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( size_t i = 0; i < count; ++i )
@@ -371,7 +371,7 @@ bool wxClipboard::AddData( wxDataObject *data )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while( ( retval = XmClipboardCopy( xdisplay, xwindow, itemId,
@@ -387,7 +387,7 @@ bool wxClipboard::AddData( wxDataObject *data )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while( XmClipboardEndCopy( xdisplay, xwindow, itemId )
@@ -417,7 +417,7 @@ bool wxClipboard::IsSupported(const wxDataFormat& format)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while( ( retval = XmClipboardLock( xdisplay, xwindow ) )
@@ -436,7 +436,7 @@ bool wxClipboard::IsSupported(const wxDataFormat& format)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for( int i = 0; i < count; ++i )
@@ -474,7 +474,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while( XmClipboardEndRetrieve( m_display, m_window )
@@ -504,7 +504,7 @@ bool wxClipboard::GetData( wxDataObject& data )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while( ( retval = XmClipboardStartRetrieve( xdisplay, xwindow,
@@ -532,7 +532,7 @@ bool wxClipboard::GetData( wxDataObject& data )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for( int i = 0; i < count; ++i )
@@ -558,7 +558,7 @@ bool wxClipboard::GetData( wxDataObject& data )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for( size_t i = 0; i < dfcount; ++i )
@@ -584,7 +584,7 @@ bool wxClipboard::GetData( wxDataObject& data )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while( ( retval = XmClipboardInquireLength( xdisplay, xwindow,
@@ -601,7 +601,7 @@ bool wxClipboard::GetData( wxDataObject& data )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while( ( retval = XmClipboardRetrieve( xdisplay, xwindow,

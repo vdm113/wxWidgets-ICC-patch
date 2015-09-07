@@ -178,7 +178,7 @@ void XrcTestCase::ObjectReferences()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < 2; ++n )
@@ -209,7 +209,7 @@ void XrcTestCase::IDRanges()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < 2; ++n )

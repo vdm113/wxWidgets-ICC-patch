@@ -64,7 +64,7 @@ start(void *data, const char *el, const char **attr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < Depth; i++)
@@ -77,7 +77,7 @@ start(void *data, const char *el, const char **attr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; attr[i]; i += 2) {
@@ -110,7 +110,7 @@ main(int argc, char *argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {

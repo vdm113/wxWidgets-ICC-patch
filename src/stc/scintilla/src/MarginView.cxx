@@ -180,7 +180,7 @@ void MarginView::RefreshPixMaps(Surface *surfaceWindow, WindowID wid, const View
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int y = 0; y < patternSize; y++) {
@@ -189,7 +189,7 @@ void MarginView::RefreshPixMaps(Surface *surfaceWindow, WindowID wid, const View
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (int x = y % 2; x < patternSize; x += 2) {
@@ -222,7 +222,7 @@ void MarginView::PaintMargin(Surface *surface, int topLine, PRectangle rc, PRect
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int margin = 0; margin <= SC_MAX_MARGIN; margin++) {
@@ -275,7 +275,7 @@ void MarginView::PaintMargin(Surface *surface, int topLine, PRectangle rc, PRect
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					while ((lineBack > 0) && (levelPrev & SC_FOLDLEVELWHITEFLAG)) {
@@ -304,7 +304,7 @@ void MarginView::PaintMargin(Surface *surface, int topLine, PRectangle rc, PRect
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while ((visibleLine < model.cs.LinesDisplayed()) && yposScreen < rc.bottom) {
@@ -481,7 +481,7 @@ void MarginView::PaintMargin(Surface *surface, int topLine, PRectangle rc, PRect
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for (int markBit = 0; (markBit < 32) && marks; markBit++) {

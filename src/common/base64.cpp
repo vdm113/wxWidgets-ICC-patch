@@ -44,7 +44,7 @@ wxBase64Encode(char *dst, size_t dstLen, const void *src_, size_t srcLen)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ; srcLen >= 3; srcLen -= 3, src += 3 )
@@ -141,7 +141,7 @@ wxBase64Decode(void *dst_, size_t dstLen,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( p = src; srcLen; p++, srcLen-- )

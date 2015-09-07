@@ -74,7 +74,7 @@ int wxGUIEventLoop::DoRun()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( !m_shouldExit )
@@ -401,7 +401,7 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (Pending())   // avoid false positives from our idle source
@@ -417,7 +417,7 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i=0; i<m_arrGdkEvents.GetCount(); i++)

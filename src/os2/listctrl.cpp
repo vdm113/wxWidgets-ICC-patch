@@ -226,7 +226,7 @@ PFIELDINFO FindOS2ListFieldByColNum (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < vCnrInfo.cFields; i++)
@@ -294,7 +294,7 @@ PMYRECORD FindOS2ListRecordByID (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < vCnrInfo.cRecords; i++)
@@ -350,7 +350,7 @@ void BumpRecordIds (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(pRecord)
@@ -1001,7 +1001,7 @@ void wxListCtrl::FreeAllInternalData ()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < n; i++)
@@ -1756,7 +1756,7 @@ int wxListCtrl::GetSelectedItemCount () const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (pRecord)
@@ -2011,7 +2011,7 @@ bool wxListCtrl::DeleteAllColumns ()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (m_nColCount > 0)
@@ -2182,7 +2182,7 @@ long wxListCtrl::FindItem (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (lIdx < lCount)
@@ -2245,7 +2245,7 @@ long wxListCtrl::FindItem (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = lStart + 1; i < vCnrInfo.cRecords; i++)
@@ -2617,7 +2617,7 @@ void wxListCtrl::OnPaint ( wxPaintEvent& rEvent )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = lTop; i < lTop + GetCountPerPage() + 1; i++)
@@ -2673,7 +2673,7 @@ void wxListCtrl::OnPaint ( wxPaintEvent& rEvent )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (nCol = 0; nCol < GetColumnCount(); nCol++)

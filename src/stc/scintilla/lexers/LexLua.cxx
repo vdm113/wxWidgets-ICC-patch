@@ -48,7 +48,7 @@ static int LongDelimCheck(StyleContext &sc) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (sc.GetRelative(sep) == '=' && sep < 0xFF)
@@ -115,7 +115,7 @@ static void ColouriseLuaDoc(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
@@ -163,7 +163,7 @@ static void ColouriseLuaDoc(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (IsASpaceOrTab(sc.GetRelative(ln)))	// skip over spaces/tabs
@@ -177,7 +177,7 @@ static void ColouriseLuaDoc(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					while (setWord.Contains(c = sc.GetRelative(ln))) {	// get potential label
@@ -192,7 +192,7 @@ static void ColouriseLuaDoc(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 						while (IsASpaceOrTab(sc.GetRelative(ln)))	// skip over spaces/tabs
@@ -239,7 +239,7 @@ static void ColouriseLuaDoc(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 						while (IsASpaceOrTab(sc.ch) && !sc.atLineEnd)
@@ -252,7 +252,7 @@ static void ColouriseLuaDoc(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 							while (setWord.Contains(sc.ch))
@@ -428,7 +428,7 @@ static void FoldLuaDoc(unsigned int startPos, int length, int /* initStyle */, W
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
@@ -445,7 +445,7 @@ static void FoldLuaDoc(unsigned int startPos, int length, int /* initStyle */, W
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (unsigned int j = 0; j < 8; j++) {

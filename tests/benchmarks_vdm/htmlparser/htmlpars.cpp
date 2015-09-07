@@ -101,7 +101,7 @@ wx28HtmlParser::~wx28HtmlParser()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (RestoreState()) {}
@@ -121,7 +121,7 @@ wx28HtmlParser::~wx28HtmlParser()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for( it = tmp.begin(), en = tmp.end(); it != en; ++it )
@@ -202,7 +202,7 @@ void wx28HtmlParser::CreateDOMSubTree(wx28HtmlTag *cur,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (i < end_pos)
@@ -235,7 +235,7 @@ void wx28HtmlParser::CreateDOMSubTree(wx28HtmlTag *cur,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while (i < end_pos)
@@ -307,7 +307,7 @@ void wx28HtmlParser::CreateDOMSubTree(wx28HtmlTag *cur,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while (i < end_pos && m_Source.GetChar(i) != wxT('>')) i++;
@@ -337,7 +337,7 @@ void wx28HtmlParser::DestroyDOMTree()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (t1)
@@ -376,7 +376,7 @@ void wx28HtmlParser::DoParsing(int begin_pos, int end_pos)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (begin_pos < end_pos)
@@ -391,7 +391,7 @@ void wx28HtmlParser::DoParsing(int begin_pos, int end_pos)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (m_CurTag && m_CurTag->GetBeginPos() < begin_pos)
@@ -406,7 +406,7 @@ void wx28HtmlParser::DoParsing(int begin_pos, int end_pos)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (m_CurTextPiece < piecesCnt &&
@@ -475,7 +475,7 @@ void wx28HtmlParser::AddTagHandler(wx28HtmlTagHandler *handler)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (tokenizer.HasMoreTokens())
@@ -509,7 +509,7 @@ void wx28HtmlParser::PushTagHandler(wx28HtmlTagHandler *handler, const wxString&
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (tokenizer.HasMoreTokens())
@@ -657,7 +657,7 @@ wxString wx28HtmlEntitiesParser::Parse(const wxString& input)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c = in_str, last = in_str; *c != wxT('\0'); c++)
@@ -686,7 +686,7 @@ wxString wx28HtmlEntitiesParser::Parse(const wxString& input)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (; (*c >= wxT('a') && *c <= wxT('z')) ||
@@ -1030,7 +1030,7 @@ wxChar wx28HtmlEntitiesParser::GetEntityChar(const wxString& entity)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (substitutions[substitutions_cnt].code != 0)
@@ -1050,7 +1050,7 @@ wxChar wx28HtmlEntitiesParser::GetEntityChar(const wxString& entity)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < substitutions_cnt; i++)

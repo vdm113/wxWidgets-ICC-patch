@@ -60,7 +60,7 @@ write_strips(TIFF *tif, const tdata_t array, const tsize_t size)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (offset = 0, strip = 0;
@@ -109,7 +109,7 @@ read_strips(TIFF *tif, const tdata_t array, const tsize_t size)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (offset = 0, strip = 0;
@@ -305,7 +305,7 @@ write_scanlines(TIFF *tif, const tdata_t array, const tsize_t size)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (offset = 0, row = 0; row < length; offset+=scanlinesize, row++) {

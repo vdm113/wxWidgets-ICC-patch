@@ -502,7 +502,7 @@ void wxWindow::Refresh(bool eraseBackground, const wxRect *rect)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::iterator i = children.begin(); i != children.end(); ++i )
@@ -1110,7 +1110,7 @@ void wxWindow::ScrollWindow(int dx, int dy, const wxRect *rect)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
@@ -1344,7 +1344,7 @@ void wxWindow::OnKeyDown(wxKeyEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxWindow *win = this; win; win = win->GetParent() )
@@ -1414,7 +1414,7 @@ wxMenuBar *wxWindow::GetParentFrameMenuBar() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( const wxWindow *win = this; win; win = win->GetParent() )

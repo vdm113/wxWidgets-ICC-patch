@@ -539,7 +539,7 @@ private:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for ( Cache::Element *c = cacheBegin; c != cacheEnd; c++ )
@@ -630,7 +630,7 @@ private:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for ( size_t n = cache->pos; n < pos; n++ )
@@ -4195,7 +4195,7 @@ template<bool (T)(const wxUniChar& c)>
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxString::const_iterator i = val.begin();

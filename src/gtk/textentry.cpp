@@ -367,7 +367,7 @@ bool wxTextEntry::DoAutoCompleteStrings(const wxArrayString& choices)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxArrayString::const_iterator i = choices.begin();

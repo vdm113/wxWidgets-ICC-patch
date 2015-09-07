@@ -600,7 +600,7 @@ void MyFrame::OnDumpSelected(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -816,7 +816,7 @@ void MyFrame::OnAddManyItems(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < 1000; n++ )
@@ -1019,7 +1019,7 @@ void MyTreeCtrl::CreateImageList(int size)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < WXSIZEOF(icons); i++ )
@@ -1069,7 +1069,7 @@ void MyTreeCtrl::CreateStateImageList(bool del)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < WXSIZEOF(icons); i++ )
@@ -1092,7 +1092,7 @@ void MyTreeCtrl::CreateStateImageList(bool del)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < WXSIZEOF(icons); i++ )
@@ -1140,7 +1140,7 @@ void MyTreeCtrl::CreateButtonsImageList(int size)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for ( size_t i = 0; i < WXSIZEOF(icons); i++ )
@@ -1192,7 +1192,7 @@ void MyTreeCtrl::AddItemsRecursively(const wxTreeItemId& idParent,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < numChildren; n++ )
@@ -1274,7 +1274,7 @@ wxTreeItemId MyTreeCtrl::GetLastTreeITem() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )
@@ -1338,7 +1338,7 @@ void MyTreeCtrl::DoToggleState(const wxTreeItemId& item)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do {

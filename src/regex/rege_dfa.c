@@ -87,7 +87,7 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (cp < realstop) {
@@ -110,7 +110,7 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (cp < realstop) {
@@ -148,7 +148,7 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (ss = d->ssets, i = d->nssused; i > 0; ss++, i--)
@@ -212,7 +212,7 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (cp < realmax) {
@@ -237,7 +237,7 @@ int *hitstopp;			/* record whether hit v->stop, if non-NULL */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (cp < realmax) {
@@ -300,7 +300,7 @@ struct dfa *d;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (ss = d->ssets, i = d->nssused; i > 0; ss++, i--)
@@ -434,7 +434,7 @@ int n;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < n; i++)
@@ -465,7 +465,7 @@ chr *start;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < d->wordsper; i++)
@@ -482,7 +482,7 @@ chr *start;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < d->nssused; i++)
@@ -531,7 +531,7 @@ chr *start;			/* where the attempt got started */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < d->wordsper; i++)
@@ -544,7 +544,7 @@ chr *start;			/* where the attempt got started */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < d->nstates; i++)
@@ -554,7 +554,7 @@ chr *start;			/* where the attempt got started */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (ca = cnfa->states[i]+1; ca->co != COLORLESS; ca++)
@@ -574,7 +574,7 @@ chr *start;			/* where the attempt got started */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (dolacons) {		/* transitive closure */
@@ -584,7 +584,7 @@ chr *start;			/* where the attempt got started */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < d->nstates; i++)
@@ -594,7 +594,7 @@ chr *start;			/* where the attempt got started */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (ca = cnfa->states[i]+1; ca->co != COLORLESS;
@@ -625,7 +625,7 @@ chr *start;			/* where the attempt got started */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (p = d->ssets, i = d->nssused; i > 0; p++, i--)
@@ -641,7 +641,7 @@ chr *start;			/* where the attempt got started */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < d->wordsper; i++)
@@ -725,7 +725,7 @@ chr *start;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((p = ap.ss) != NULL) {
@@ -743,7 +743,7 @@ chr *start;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < d->ncolors; i++) {
@@ -761,7 +761,7 @@ chr *start;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (ap = p->ins; ap.ss != NULL &&
@@ -822,7 +822,7 @@ chr *start;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < d->ncolors; i++) {
@@ -842,7 +842,7 @@ chr *start;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (ss = d->search, end = &d->ssets[d->nssets]; ss < end; ss++)
@@ -857,7 +857,7 @@ chr *start;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (ss = d->ssets, end = d->search; ss < end; ss++)

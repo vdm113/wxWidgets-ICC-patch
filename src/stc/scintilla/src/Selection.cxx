@@ -212,7 +212,7 @@ SelectionSegment Selection::Limits() const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (size_t i=1; i<ranges.size(); i++) {
@@ -282,7 +282,7 @@ bool Selection::Empty() const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ranges.size(); i++) {
@@ -299,7 +299,7 @@ SelectionPosition Selection::Last() const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ranges.size(); i++) {
@@ -318,7 +318,7 @@ int Selection::Length() const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ranges.size(); i++) {
@@ -333,7 +333,7 @@ void Selection::MovePositions(bool insertion, int startChange, int length) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ranges.size(); i++) {
@@ -350,7 +350,7 @@ void Selection::TrimSelection(SelectionRange range) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ranges.size();) {
@@ -361,7 +361,7 @@ void Selection::TrimSelection(SelectionRange range) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (size_t j=i; j<ranges.size()-1; j++) {
@@ -429,7 +429,7 @@ int Selection::CharacterInSelection(int posCharacter) const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ranges.size(); i++) {
@@ -445,7 +445,7 @@ int Selection::InSelectionForEOL(int pos) const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ranges.size(); i++) {
@@ -462,7 +462,7 @@ int Selection::VirtualSpaceFor(int pos) const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ranges.size(); i++) {
@@ -490,7 +490,7 @@ void Selection::RemoveDuplicates() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ranges.size()-1; i++) {
@@ -501,7 +501,7 @@ void Selection::RemoveDuplicates() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (j<ranges.size()) {

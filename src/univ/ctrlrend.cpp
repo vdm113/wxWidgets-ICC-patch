@@ -182,7 +182,7 @@ void wxControlRenderer::DrawBitmap(wxDC &dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( ; x < rect.width; x += width )
@@ -192,7 +192,7 @@ void wxControlRenderer::DrawBitmap(wxDC &dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( y = 0; y < rect.height; y += height )
@@ -287,7 +287,7 @@ void wxControlRenderer::DrawScrollbar(const wxScrollBar *scrollbar,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int nBar = 0; nBar < 2; nBar++ )
@@ -320,7 +320,7 @@ void wxControlRenderer::DrawScrollbar(const wxScrollBar *scrollbar,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int nArrow = 0; nArrow < 2; nArrow++ )
@@ -437,7 +437,7 @@ void wxControlRenderer::DoDrawItems(const wxListBox *lbox,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = itemFirst; n < itemLast; n++ )
@@ -579,7 +579,7 @@ void wxControlRenderer::DrawProgressBar(const wxGauge *gauge)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int n = 0; n < steps; n++ )

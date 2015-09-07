@@ -110,7 +110,7 @@ ThunderDecode(TIFF* tif, uint8* op, tmsize_t maxpixels)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (cc > 0 && npixels < maxpixels) {
@@ -135,7 +135,7 @@ ThunderDecode(TIFF* tif, uint8* op, tmsize_t maxpixels)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (; n > 0; n -= 2)
@@ -205,7 +205,7 @@ ThunderDecodeRow(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (occ > 0) {

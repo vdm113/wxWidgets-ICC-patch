@@ -188,7 +188,7 @@ wxEpollDispatcher::DoPoll(epoll_event *events, int numEvents, int timeout) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )
@@ -238,7 +238,7 @@ int wxEpollDispatcher::Dispatch(int timeout)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( epoll_event *p = events; p < events + rc; p++ )

@@ -353,7 +353,7 @@ void Edit::OnUseCharset (wxCommandEvent &event) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (Nr = 0; Nr < wxSTC_STYLE_LASTPREDEFINED; Nr++) {
@@ -519,7 +519,7 @@ wxString Edit::DeterminePrefs (const wxString &filename) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (languageNr = 0; languageNr < g_LanguagePrefsSize; languageNr++) {
@@ -531,7 +531,7 @@ wxString Edit::DeterminePrefs (const wxString &filename) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (!filepattern.empty()) {
@@ -562,7 +562,7 @@ bool Edit::InitializePrefs (const wxString &name) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (languageNr = 0; languageNr < g_LanguagePrefsSize; languageNr++) {
@@ -597,7 +597,7 @@ bool Edit::InitializePrefs (const wxString &name) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (Nr = 0; Nr < wxSTC_STYLE_LASTPREDEFINED; Nr++) {
@@ -617,7 +617,7 @@ bool Edit::InitializePrefs (const wxString &name) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (Nr = 0; Nr < STYLE_TYPES_COUNT; Nr++) {
@@ -976,7 +976,7 @@ void EditPrint::GetPageInfo (int *minPage, int *maxPage, int *selPageFrom, int *
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (HasPage (*maxPage)) {

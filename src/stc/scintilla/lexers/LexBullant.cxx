@@ -40,7 +40,7 @@ static int classifyWordBullant(unsigned int start, unsigned int end, WordList &k
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = 0; i < end - start + 1 && i < 30; i++) {
@@ -100,7 +100,7 @@ static void ColouriseBullantDoc(unsigned int startPos, int length, int initStyle
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < lengthDoc; i++) {

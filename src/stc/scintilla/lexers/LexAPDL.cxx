@@ -73,7 +73,7 @@ static void ColouriseAPDLDoc(unsigned int startPos, int length, int initStyle, W
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
@@ -219,7 +219,7 @@ static void FoldAPDLDoc(unsigned int startPos, int length, int,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = startPos; i < endPos; i++) {

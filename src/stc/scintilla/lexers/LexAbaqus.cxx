@@ -72,7 +72,7 @@ static void ColouriseABAQUSDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
@@ -360,7 +360,7 @@ static int LineType(int line, Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( i < eol_pos ) {
@@ -413,7 +413,7 @@ static int LineType(int line, Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( (i < eol_pos) && (wlen < 255) ) {
@@ -487,7 +487,7 @@ WordList *[], Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( prvKeyLine > 0 ) {
@@ -513,7 +513,7 @@ WordList *[], Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int line = startLine; line <= endLine; line++ ) {
@@ -570,7 +570,7 @@ WordList *[], Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( int ll = beginData; ll < beginComment; ll++ )
@@ -594,7 +594,7 @@ WordList *[], Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( int lll = beginComment; lll < line; lll++ )
@@ -621,7 +621,7 @@ WordList *[], Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int line = endLine + 1; line <= docLines; line++ ) {
@@ -656,7 +656,7 @@ WordList *[], Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int ll = beginData; ll < beginComment; ll++ )
@@ -674,7 +674,7 @@ WordList *[], Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for ( int m = beginComment; m <= endLine; m++ )

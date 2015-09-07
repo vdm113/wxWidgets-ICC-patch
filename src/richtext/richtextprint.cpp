@@ -90,7 +90,7 @@ void wxRichTextPrintout::OnPreparePrinting()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (node)
@@ -106,7 +106,7 @@ void wxRichTextPrintout::OnPreparePrinting()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while (node2)
@@ -152,7 +152,7 @@ void wxRichTextPrintout::OnPreparePrinting()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         while (contentLeft >= 0)
@@ -713,7 +713,7 @@ void wxRichTextHeaderFooterData::Copy(const wxRichTextHeaderFooterData& data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 12; i++)
@@ -789,7 +789,7 @@ void wxRichTextHeaderFooterData::Clear()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 12; i++)

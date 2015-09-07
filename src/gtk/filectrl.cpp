@@ -62,7 +62,7 @@ void wxGtkFileChooser::GetFilenames( wxArrayString& files ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < files.GetCount(); ++n )
@@ -84,7 +84,7 @@ void wxGtkFileChooser::GetPaths( wxArrayString& paths ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( gpathsi )
@@ -178,7 +178,7 @@ void wxGtkFileChooser::SetWildcard( const wxString& wildCard )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( ifilters )
@@ -196,7 +196,7 @@ void wxGtkFileChooser::SetWildcard( const wxString& wildCard )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( size_t n = 0; n < wildFilters.GetCount(); ++n )
@@ -213,7 +213,7 @@ void wxGtkFileChooser::SetWildcard( const wxString& wildCard )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while ( exttok.HasMoreTokens() )

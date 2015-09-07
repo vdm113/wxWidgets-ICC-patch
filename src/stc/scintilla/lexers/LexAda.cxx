@@ -99,7 +99,7 @@ static void ColouriseContext(StyleContext& sc, char chEnd, int stateEOL) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (!sc.atLineEnd && !sc.Match(chEnd)) {
@@ -123,7 +123,7 @@ static void ColouriseComment(StyleContext& sc, bool& /*apostropheStartsAttribute
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (!sc.atLineEnd) {
@@ -153,7 +153,7 @@ static void ColouriseLabel(StyleContext& sc, WordList& keywords, bool& apostroph
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (!sc.atLineEnd && !IsSeparatorOrDelimiterCharacter(sc.ch)) {
@@ -191,7 +191,7 @@ static void ColouriseNumber(StyleContext& sc, bool& apostropheStartsAttribute) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (!IsSeparatorOrDelimiterCharacter(sc.ch) || (sc.ch == '.' && sc.chNext != '.')) {
@@ -210,7 +210,7 @@ static void ColouriseNumber(StyleContext& sc, bool& apostropheStartsAttribute) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (!IsSeparatorOrDelimiterCharacter(sc.ch)) {
@@ -252,7 +252,7 @@ static void ColouriseWord(StyleContext& sc, WordList& keywords, bool& apostrophe
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (!sc.atLineEnd && !IsSeparatorOrDelimiterCharacter(sc.ch)) {
@@ -296,7 +296,7 @@ static void ColouriseDocument(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (sc.More()) {
@@ -399,7 +399,7 @@ static bool IsValidIdentifier(const std::string& identifier) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t i = 0; i < length; i++) {
@@ -438,7 +438,7 @@ static bool IsValidNumber(const std::string& number) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (; i < length; i++) {
@@ -473,7 +473,7 @@ static bool IsValidNumber(const std::string& number) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (; i < length; i++) {
@@ -509,7 +509,7 @@ static bool IsValidNumber(const std::string& number) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (; i < length; i++) {
@@ -587,7 +587,7 @@ static bool IsValidNumber(const std::string& number) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (; i < length; i++) {

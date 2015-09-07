@@ -188,7 +188,7 @@ void wxHtmlHelpWindow::UpdateMergedIndex()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < len; i++)
@@ -439,7 +439,7 @@ bool wxHtmlHelpWindow::Create(wxWindow* parent, wxWindowID id,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (unsigned i = 0; i < m_BookmarksNames.GetCount(); i++)
@@ -809,7 +809,7 @@ void wxHtmlHelpWindow::DisplayIndexItem(const wxHtmlHelpMergedIndexItem *it)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < len; i++)
@@ -823,7 +823,7 @@ void wxHtmlHelpWindow::DisplayIndexItem(const wxHtmlHelpMergedIndexItem *it)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (size_t j = 0; j < clen; j++)
@@ -907,7 +907,7 @@ bool wxHtmlHelpWindow::KeywordSearch(const wxString& keyword,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (status.IsActive())
@@ -1017,7 +1017,7 @@ void wxHtmlHelpWindow::CreateContents()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < cnt; i++)
@@ -1097,7 +1097,7 @@ void wxHtmlHelpWindow::CreateIndex()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < cnt; i++)
@@ -1122,7 +1122,7 @@ void wxHtmlHelpWindow::CreateSearch()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < cnt; i++)
@@ -1184,7 +1184,7 @@ void wxHtmlHelpWindow::ReadCustomization(wxConfigBase *cfg, const wxString& path
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < cnt; i++)
@@ -1244,7 +1244,7 @@ void wxHtmlHelpWindow::WriteCustomization(wxConfigBase *cfg, const wxString& pat
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < cnt; i++)
@@ -1427,7 +1427,7 @@ void wxHtmlHelpWindow::OptionsDialog()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < m_NormalFonts->GetCount(); i++)
@@ -1437,7 +1437,7 @@ void wxHtmlHelpWindow::OptionsDialog()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < m_FixedFonts->GetCount(); i++)
@@ -1539,7 +1539,7 @@ void wxHtmlHelpWindow::OnToolbar(wxCommandEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     while (ind >= 0 && it->level != level)
@@ -1574,7 +1574,7 @@ void wxHtmlHelpWindow::OnToolbar(wxCommandEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     while (contents[idx].GetFullPath() == page) idx++;
@@ -1751,7 +1751,7 @@ void wxHtmlHelpWindow::DoIndexFind()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (unsigned i = 0; i < cnt; i++)
@@ -1781,7 +1781,7 @@ void wxHtmlHelpWindow::DoIndexFind()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while (parent)
@@ -1807,7 +1807,7 @@ void wxHtmlHelpWindow::DoIndexFind()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while (i < cnt && index[i].items[0]->level > level)
@@ -1847,7 +1847,7 @@ void wxHtmlHelpWindow::DoIndexAll()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned i = 0; i < cnt; i++)

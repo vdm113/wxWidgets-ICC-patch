@@ -60,7 +60,7 @@ wxThread::ExitCode MyJoinableThread::Entry()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 1; n < m_n; n++ )
@@ -114,7 +114,7 @@ wxThread::ExitCode MyDetachedThread::Entry()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < m_n; n++ )
@@ -283,7 +283,7 @@ void MiscThreadTestCase::TestDetached()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < nThreads; n++ )
@@ -299,7 +299,7 @@ void MiscThreadTestCase::TestDetached()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < nThreads; n++ )
@@ -323,7 +323,7 @@ void MiscThreadTestCase::TestSemaphore()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < 3*SEM_LIMIT; i++ )
@@ -337,7 +337,7 @@ void MiscThreadTestCase::TestSemaphore()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < threads.GetCount(); n++ )
@@ -366,7 +366,7 @@ void MiscThreadTestCase::TestThreadSuspend()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < 3; n++ )
@@ -452,7 +452,7 @@ void MiscThreadTestCase::TestThreadConditions()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < WXSIZEOF(threads); n++ )
@@ -465,7 +465,7 @@ void MiscThreadTestCase::TestThreadConditions()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < WXSIZEOF(threads); n++ )
@@ -481,7 +481,7 @@ void MiscThreadTestCase::TestThreadConditions()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( nRunning < WXSIZEOF(threads) )

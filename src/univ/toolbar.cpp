@@ -248,7 +248,7 @@ wxToolBarToolBase *wxToolBar::FindToolForPosition(wxCoord x, wxCoord y) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
@@ -449,7 +449,7 @@ bool wxToolBar::Realize()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
@@ -505,7 +505,7 @@ void wxToolBar::DoLayout()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
@@ -675,7 +675,7 @@ void wxToolBar::DoDraw(wxControlRenderer *renderer)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();

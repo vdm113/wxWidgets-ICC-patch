@@ -124,7 +124,7 @@ bool TestExec(const wxVector<wxFileName>& programs, long timeout)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i=0; i<programs.size(); i++)
@@ -156,7 +156,7 @@ bool TestExec(const wxVector<wxFileName>& programs, long timeout)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i=0; i<data.size(); i++)
@@ -239,7 +239,7 @@ int main(int argc, char **argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (unsigned int i=0; i<parser.GetParamCount(); i++)

@@ -984,7 +984,7 @@ void wxRichTextSizePage::OnRichtextParaUpClick( wxCommandEvent& WXUNUSED(event) 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (iter)
@@ -1041,7 +1041,7 @@ void wxRichTextSizePage::OnRichtextParaDownClick( wxCommandEvent& WXUNUSED(event
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (iter)

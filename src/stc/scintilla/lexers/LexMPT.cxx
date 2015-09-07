@@ -50,7 +50,7 @@ static int GetLotLineState(std::string &line) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < line.length(); ++i) {
@@ -112,7 +112,7 @@ static void ColourizeLotDoc(unsigned int startPos, int length, int, WordList *[]
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = startPos; i < startPos + length; ++i) {
@@ -163,7 +163,7 @@ static void FoldLotDoc(unsigned int startPos, int length, int, WordList *[], Acc
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {

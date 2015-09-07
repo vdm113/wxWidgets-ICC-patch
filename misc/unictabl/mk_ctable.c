@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 256; i++) { table[i].c = i, table[i].u = 0; /* unknown */}
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (!feof(stdin))
@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 128; i < 256; i++)

@@ -255,7 +255,7 @@ bool wxDataObject::IsSupportedFormat( const wxDataFormat& rFormat, Direction vDi
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (size_t n = 0; n < nFormatCount; n++)
@@ -285,7 +285,7 @@ void wxDataObject::AddToPasteboard( void * pb, wxIntPtr itemID )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < GetFormatCount(); i++)
@@ -308,7 +308,7 @@ void wxDataObject::AddToPasteboard( void * pb, wxIntPtr itemID )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (j = 0; j < GetFormatCount(); j++)
@@ -341,7 +341,7 @@ void wxDataObject::AddToPasteboard( void * pb, wxIntPtr itemID )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     while (fname != NULL)
@@ -397,7 +397,7 @@ bool wxDataObject::IsFormatInPasteboard( void * pb, const wxDataFormat &dataForm
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for( UInt32 itemIndex = 1; itemIndex <= itemCount && hasData == false ; itemIndex++ )
@@ -421,7 +421,7 @@ bool wxDataObject::IsFormatInPasteboard( void * pb, const wxDataFormat &dataForm
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for( CFIndex flavorIndex = 0; flavorIndex < flavorCount && hasData == false ; flavorIndex++ )
@@ -468,7 +468,7 @@ bool wxDataObject::GetFromPasteboard( void * pb )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; !transferred && i < formatcount; i++)
@@ -481,7 +481,7 @@ bool wxDataObject::GetFromPasteboard( void * pb )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for( UInt32 itemIndex = 1; itemIndex <= itemCount && transferred == false ; itemIndex++ )
@@ -505,7 +505,7 @@ bool wxDataObject::GetFromPasteboard( void * pb )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for( CFIndex flavorIndex = 0; !transferred && flavorIndex < flavorCount ; flavorIndex++ )
@@ -633,7 +633,7 @@ bool wxDataObject::HasDataInPasteboard( void * pb )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; !hasData && i < formatcount; i++)
@@ -646,7 +646,7 @@ bool wxDataObject::HasDataInPasteboard( void * pb )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for( UInt32 itemIndex = 1; itemIndex <= itemCount && hasData == false ; itemIndex++ )
@@ -670,7 +670,7 @@ bool wxDataObject::HasDataInPasteboard( void * pb )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for( CFIndex flavorIndex = 0; !hasData && flavorIndex < flavorCount ; flavorIndex++ )
@@ -708,7 +708,7 @@ void wxDataObject::AddSupportedTypes( void* cfarray)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < nFormats; i++)
@@ -774,7 +774,7 @@ void wxFileDataObject::GetFileNames( wxCharBuffer &buf ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < m_filenames.GetCount(); i++)

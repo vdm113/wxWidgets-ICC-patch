@@ -116,7 +116,7 @@ TIFFDefaultTransferFunction(TIFFDirectory* td)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 1; i < n; i++) {
@@ -170,7 +170,7 @@ TIFFDefaultRefBlackWhite(TIFFDirectory* td)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < 3; i++) {

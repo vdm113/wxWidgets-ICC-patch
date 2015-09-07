@@ -666,7 +666,7 @@ static Window GetDecorationWindow(XmComboBoxWidget w)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do {
@@ -824,7 +824,7 @@ static int WidgetToScreen(Widget w)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < NumScreens; ++i )
@@ -1317,7 +1317,7 @@ static int UpdateColors(XmComboBoxWidget w, int flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i=0; i<size; i++ )
@@ -1539,7 +1539,7 @@ static Boolean SetValues(XmComboBoxWidget current, XmComboBoxWidget req,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
      for ( i = 0; i < *NumArgs; i++ ) {
@@ -1551,7 +1551,7 @@ static Boolean SetValues(XmComboBoxWidget current, XmComboBoxWidget req,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for ( j = 0; j < MirrorSize; j++ ) {
@@ -1579,7 +1579,7 @@ static Boolean SetValues(XmComboBoxWidget current, XmComboBoxWidget req,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		    for ( k = 0; k < TransformationSize; k++ )
@@ -1600,7 +1600,7 @@ static Boolean SetValues(XmComboBoxWidget current, XmComboBoxWidget req,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		    for ( k = 0; k < *NumArgs; k++ )
@@ -1661,7 +1661,7 @@ static void GetValuesAlmost(XmComboBoxWidget w, ArgList args,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < *NumArgs; i++ ) {
@@ -1673,7 +1673,7 @@ static void GetValuesAlmost(XmComboBoxWidget w, ArgList args,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for ( j = 0; j < MirrorSize; j++ ) {
@@ -1696,7 +1696,7 @@ static void GetValuesAlmost(XmComboBoxWidget w, ArgList args,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		    for ( k = 0; k < TransformationSize; k++ )
@@ -2247,7 +2247,7 @@ static void EditVerifyCallback(Widget w, XtPointer pClientData,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     	    while ( i != Start || Ignore ) {
@@ -2308,7 +2308,7 @@ static void EditChangedCallback(Widget w, XtPointer pClientDate,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < ItemCount; i++ )
@@ -2570,7 +2570,7 @@ static Boolean FetchXmStringTableResource(Widget w,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ( *p )
@@ -2584,7 +2584,7 @@ static Boolean FetchXmStringTableResource(Widget w,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for ( Entry = 0; Entry < Entries; ++Entry ) {
@@ -2594,7 +2594,7 @@ static Boolean FetchXmStringTableResource(Widget w,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while ( (*p != 0) && (*p != ',') ) ++p;
@@ -2735,7 +2735,7 @@ static void InitMirrorResources(XmComboBoxWidget w)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i=0; i < size; i++ ) {
@@ -2916,7 +2916,7 @@ static void Initialize(Widget request, XmComboBoxWidget newW,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ( !XtIsSubclass(w, shellWidgetClass) )
@@ -3306,7 +3306,7 @@ static int FindSortedItemPos(XmComboBoxWidget w, XmString item)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do {
@@ -3445,7 +3445,7 @@ void    XmComboBoxDeleteItems(Widget w, XmString *items, int item_count)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < item_count; i++ )
@@ -3471,7 +3471,7 @@ void    XmComboBoxDeleteItemsPos(Widget w, int item_count, int pos)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < item_count; i++ )

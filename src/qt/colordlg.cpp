@@ -42,7 +42,7 @@ bool wxColourDialog::Create(wxWindow *parent, wxColourData *data )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i=0; i<wxColourData::NUM_CUSTOM; i++)
@@ -61,7 +61,7 @@ wxColourData &wxColourDialog::GetColourData()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i=0; i<wxColourData::NUM_CUSTOM; i++)

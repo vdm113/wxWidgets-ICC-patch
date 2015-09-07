@@ -253,7 +253,7 @@ void GUIFrame::AddPanel_2()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(long index = 0; index < 5; index++) {

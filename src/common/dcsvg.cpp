@@ -156,7 +156,7 @@ wxSVGBitmapEmbedHandler::ProcessBitmap(const wxBitmap& bmp,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < data.size(); i += WRAP )
@@ -195,7 +195,7 @@ wxSVGBitmapFileHandler::ProcessBitmap(const wxBitmap& bmp,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -207,7 +207,7 @@ wxSVGBitmapFileHandler::ProcessBitmap(const wxBitmap& bmp,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (wxFile::Exists(sPNG));
@@ -351,7 +351,7 @@ void wxSVGFileDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoffset
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 1; i < n; i++ )
@@ -526,7 +526,7 @@ void wxSVGFileDCImpl::DoDrawPolygon(int n, const wxPoint points[],
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < n;  i++)
@@ -708,7 +708,7 @@ void wxSVGFileDCImpl::DestroyClippingRegion()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < m_clipUniqueId; i++ )

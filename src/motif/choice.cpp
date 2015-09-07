@@ -102,7 +102,7 @@ bool wxChoice::Create(wxWindow *parent, wxWindowID id,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < n; i++)
@@ -211,7 +211,7 @@ int wxChoice::DoInsertItems(const wxArrayStringsAdapter& items,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( unsigned int i = 0; i < numItems; ++i, ++pos )
@@ -283,7 +283,7 @@ void wxChoice::DoClear()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < m_stringArray.GetCount(); i++)
@@ -321,7 +321,7 @@ int wxChoice::GetSelection() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (size_t i=0; i<m_stringArray.GetCount(); i++)
@@ -412,7 +412,7 @@ void wxChoice::DoSetSize(int x, int y, int width, int height, int sizeFlags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < m_stringArray.GetCount(); i++)
@@ -431,7 +431,7 @@ void wxChoice::DoSetSize(int x, int y, int width, int height, int sizeFlags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < m_stringArray.GetCount(); i++)
@@ -505,7 +505,7 @@ void wxChoice::ChangeFont(bool keepOriginalSize)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for( unsigned int i = 0; i < m_stringArray.GetCount(); ++i )
@@ -532,7 +532,7 @@ void wxChoice::ChangeBackgroundColour()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < m_stringArray.GetCount(); i++)
@@ -550,7 +550,7 @@ void wxChoice::ChangeForegroundColour()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < m_stringArray.GetCount(); i++)
@@ -579,7 +579,7 @@ wxSize wxChoice::GetItemsSize() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i=0; i<m_stringArray.GetCount(); i++)

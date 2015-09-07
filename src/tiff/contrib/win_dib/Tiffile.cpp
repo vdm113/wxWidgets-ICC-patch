@@ -261,7 +261,7 @@ HANDLE TIFFRGBA2DIB(TIFFDibImage* dib, uint32* raster)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int i = 0 ; i < sizeWords ; ++i )
@@ -354,7 +354,7 @@ DECLAREContigPutFunc(putContig1bitTile)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (h-- > 0) {
@@ -449,7 +449,7 @@ getStripContig1Bit(TIFFRGBAImage* img, uint32* raster, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (row = 0; row < h; row += nrow)

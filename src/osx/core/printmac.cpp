@@ -78,7 +78,7 @@ static PMResolution *GetSupportedResolutions(PMPrinter printer, UInt32 *count)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (UInt32 i = 0; i < *count; i++)
@@ -142,7 +142,7 @@ void wxOSXPrintData::TransferPrinterNameFrom( const wxPrintData &data )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (index = 0; index < count; index++)
@@ -208,7 +208,7 @@ void wxOSXPrintData::TransferPaperInfoFrom( const wxPrintData &data )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( CFIndex i = 0 ; i < top ; ++ i )
@@ -436,7 +436,7 @@ void wxOSXPrintData::TransferResolutionTo( wxPrintData &data )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < resCount; i++)
@@ -709,7 +709,7 @@ bool wxMacPrinter::Print(wxWindow *parent, wxPrintout *printout, bool prompt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (pn = m_printDialogData.GetFromPage();

@@ -359,7 +359,7 @@ void DXFRenderer::Clear()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (DXFLayerList::compatibility_iterator node = m_layers.GetFirst(); node; node = node->GetNext())
@@ -375,7 +375,7 @@ void DXFRenderer::Clear()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (DXFEntityList::compatibility_iterator node = m_entities.GetFirst(); node; node = node->GetNext())
@@ -394,7 +394,7 @@ int DXFRenderer::GetLayerColour(const wxString& layer) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (DXFLayerList::compatibility_iterator node = m_layers.GetFirst(); node; node = node->GetNext())
@@ -423,7 +423,7 @@ bool DXFRenderer::ParseHeader(wxInputStream& stream)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (stream.CanRead())
@@ -447,7 +447,7 @@ bool DXFRenderer::ParseTables(wxInputStream& stream)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (stream.CanRead())
@@ -515,7 +515,7 @@ bool DXFRenderer::ParseEntities(wxInputStream& stream)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (stream.CanRead())
@@ -616,7 +616,7 @@ bool DXFRenderer::Load(wxInputStream& stream)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (stream.CanRead())
@@ -667,7 +667,7 @@ void DXFRenderer::NormalizeEntities()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (DXFEntityList::compatibility_iterator node = m_entities.GetFirst(); node; node = node->GetNext())
@@ -682,7 +682,7 @@ void DXFRenderer::NormalizeEntities()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int i = 0; i < 2; ++i)
@@ -703,7 +703,7 @@ void DXFRenderer::NormalizeEntities()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int i = 0; i < 4; ++i)
@@ -726,7 +726,7 @@ void DXFRenderer::NormalizeEntities()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (DXFEntityList::compatibility_iterator node2 = m_entities.GetFirst(); node2; node2 = node2->GetNext())
@@ -741,7 +741,7 @@ void DXFRenderer::NormalizeEntities()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int i = 0; i < 2; ++i)
@@ -759,7 +759,7 @@ void DXFRenderer::NormalizeEntities()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int i = 0; i < 4; ++i)
@@ -783,7 +783,7 @@ void DXFRenderer::Render() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (DXFEntityList::compatibility_iterator node = m_entities.GetFirst(); node; node = node->GetNext())

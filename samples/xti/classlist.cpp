@@ -189,7 +189,7 @@ int ClassListDialog::AddClassesWithParent(const wxClassInfo *parent, const wxTre
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (ci)
@@ -240,7 +240,7 @@ void ClassListDialog::InitControls()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (ci)
@@ -257,7 +257,7 @@ void ClassListDialog::InitControls()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i<arr.GetCount(); i++)
@@ -274,7 +274,7 @@ void ClassListDialog::InitControls()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i<arr.GetCount(); i++)
@@ -498,7 +498,7 @@ int DumpProperties(const wxClassInfo *info, wxString& infostr, bool recursive)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (prop = info->GetFirstProperty(), pcount = 0;
@@ -522,7 +522,7 @@ int DumpProperties(const wxClassInfo *info, wxString& infostr, bool recursive)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i=0; parent[i] != NULL; i++)
@@ -549,7 +549,7 @@ int DumpHandlers(const wxClassInfo *info, wxString& infostr, bool recursive)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (h = info->GetFirstHandler(), hcount = 0;
@@ -573,7 +573,7 @@ int DumpHandlers(const wxClassInfo *info, wxString& infostr, bool recursive)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i=0; parent[i] != NULL; i++)

@@ -105,7 +105,7 @@ static inline bool IsAllSpacesOrTabs(const char *s, unsigned int len) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = 0; i < len; i++) {
@@ -227,7 +227,7 @@ void Editor::SetRepresentations() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t j=0; j < ELEMENTS(reps); j++) {
@@ -249,7 +249,7 @@ void Editor::SetRepresentations() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (size_t j=0; j < ELEMENTS(repsC1); j++) {
@@ -267,7 +267,7 @@ void Editor::SetRepresentations() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int k=0x80; k < 0x100; k++) {
@@ -610,7 +610,7 @@ void Editor::SetRectangularRange() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int line=lineAnchorRect; line != lineCaret+increment; line += increment) {
@@ -651,7 +651,7 @@ void Editor::InvalidateSelection(SelectionRange newMain, bool invalidateWholeSel
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (size_t r=0; r<sel.Count(); r++) {
@@ -761,7 +761,7 @@ bool Editor::RangeContainsProtected(int start, int end) const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int pos = start; pos < end; pos++) {
@@ -778,7 +778,7 @@ bool Editor::SelectionContainsProtected() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t r=0; r<sel.Count(); r++) {
@@ -809,7 +809,7 @@ SelectionPosition Editor::MovePositionOutsideChar(SelectionPosition pos, int mov
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while ((pos.Position() < pdoc->Length()) &&
@@ -823,7 +823,7 @@ SelectionPosition Editor::MovePositionOutsideChar(SelectionPosition pos, int mov
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while ((pos.Position() > 0) &&
@@ -1453,7 +1453,7 @@ void Editor::InvalidateCaret() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (size_t r=0; r<sel.Count(); r++) {
@@ -1508,7 +1508,7 @@ bool Editor::WrapLines(enum wrapScope ws) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (int lineDoc = 0; lineDoc < pdoc->LinesTotal(); lineDoc++) {
@@ -1542,7 +1542,7 @@ bool Editor::WrapLines(enum wrapScope ws) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while ((lineToWrapEnd < cs.LinesInDoc()) && (lines>0)) {
@@ -1580,7 +1580,7 @@ bool Editor::WrapLines(enum wrapScope ws) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (lineToWrap < lineToWrapEnd) {
@@ -1619,7 +1619,7 @@ void Editor::LinesJoin() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int pos = targetStart; pos < targetEnd; pos++) {
@@ -1663,7 +1663,7 @@ void Editor::LinesSplit(int pixelWidth) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int line = lineStart; line <= lineEnd; line++) {
@@ -1678,7 +1678,7 @@ void Editor::LinesSplit(int pixelWidth) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (int subLine = 1; subLine < ll->lines; subLine++) {
@@ -1948,7 +1948,7 @@ void Editor::AddCharUTF(const char *s, unsigned int len, bool treatAsDBCS) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (size_t r = 0; r < sel.Count(); r++) {
@@ -1963,7 +1963,7 @@ void Editor::AddCharUTF(const char *s, unsigned int len, bool treatAsDBCS) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (std::vector<SelectionRange *>::reverse_iterator rit = selPtrs.rbegin();
@@ -2067,7 +2067,7 @@ void Editor::InsertPaste(const char *text, int len) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (size_t r=0; r<sel.Count(); r++) {
@@ -2133,7 +2133,7 @@ void Editor::ClearSelection(bool retainMultipleSelections) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t r=0; r<sel.Count(); r++) {
@@ -2180,7 +2180,7 @@ void Editor::ClearDocumentStyle() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (deco) {
@@ -2230,7 +2230,7 @@ void Editor::PasteRectangular(SelectionPosition pos, const char *ptr, int len) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((len > 0) && IsEOLChar(ptr[len-1]))
@@ -2240,7 +2240,7 @@ void Editor::PasteRectangular(SelectionPosition pos, const char *ptr, int len) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i = 0; i < len; i++) {
@@ -2261,7 +2261,7 @@ void Editor::PasteRectangular(SelectionPosition pos, const char *ptr, int len) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (XFromPosition(sel.MainCaret()) < xInsert) {
@@ -2299,7 +2299,7 @@ void Editor::Clear() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (size_t r=0; r<sel.Count(); r++) {
@@ -2363,7 +2363,7 @@ void Editor::DelCharBack(bool allowLineStartDeletion) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (size_t r=0; r<sel.Count(); r++) {
@@ -2554,7 +2554,7 @@ bool Editor::NotifyMarginClick(Point pt, int modifiers) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int margin = 0; margin <= SC_MAX_MARGIN; margin++) {
@@ -2735,7 +2735,7 @@ void Editor::NotifyModified(Document *, DocModification mh, void *) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (int i=0; i < mh.length; i++) {
@@ -3033,7 +3033,7 @@ void Editor::ChangeCaseOfSelection(int caseMapping) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t r=0; r<sel.Count(); r++) {
@@ -3053,7 +3053,7 @@ void Editor::ChangeCaseOfSelection(int caseMapping) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (sMapped[firstDifference] == sText[firstDifference])
@@ -3065,7 +3065,7 @@ void Editor::ChangeCaseOfSelection(int caseMapping) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (sMapped[lastDifferenceMapped] == sText[lastDifferenceText]) {
@@ -3135,7 +3135,7 @@ void Editor::Duplicate(bool forLine) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t r=0; r<sel.Count(); r++) {
@@ -3200,7 +3200,7 @@ void Editor::NewLine() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (*eol) {
@@ -3262,7 +3262,7 @@ void Editor::CursorUpOrDown(int direction, Selection::selTypes selt) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while ((posNew.Position() > 0) && (pt.y == ptNew.y)) {
@@ -3279,7 +3279,7 @@ void Editor::CursorUpOrDown(int direction, Selection::selTypes selt) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while ((posNew.Position() > caretToUse.Position()) && (ptNew.y > newY)) {
@@ -3299,7 +3299,7 @@ void Editor::ParaUpOrDown(int direction, Selection::selTypes selt) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do {
@@ -3847,7 +3847,7 @@ void Editor::Indent(bool forwards) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t r=0; r<sel.Count(); r++) {
@@ -3898,7 +3898,7 @@ void Editor::Indent(bool forwards) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					while (pdoc->GetColumn(newPos) > newColumn)
@@ -4048,7 +4048,7 @@ std::string Editor::CaseMapString(const std::string &s, int caseMapping) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<ret.size(); i++) {
@@ -4121,7 +4121,7 @@ std::string Editor::RangeText(int start, int end) const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int i = 0; i < len; i++) {
@@ -4157,7 +4157,7 @@ void Editor::CopySelectionRange(SelectionText *ss, bool allowLineCopy) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (size_t r=0; r<rangesInOrder.size(); r++) {
@@ -4259,7 +4259,7 @@ void Editor::DropAt(SelectionPosition position, const char *value, size_t length
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (size_t r=0; r<sel.Count(); r++) {
@@ -4316,7 +4316,7 @@ bool Editor::PositionInSelection(int pos) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t r=0; r<sel.Count(); r++) {
@@ -4334,7 +4334,7 @@ bool Editor::PointInSelection(Point pt) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t r=0; r<sel.Count(); r++) {
@@ -4379,7 +4379,7 @@ Window::Cursor Editor::GetMarginCursor(Point pt) const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int margin = 0; margin <= SC_MAX_MARGIN; margin++) {
@@ -4693,7 +4693,7 @@ void Editor::SetHoverIndicatorPosition(int position) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (Decoration *deco = pdoc->decorations.root; deco; deco = deco->next) {
@@ -5210,7 +5210,7 @@ void Editor::SetAnnotationHeights(int start, int end) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int line=start; line<end && line<pdoc->LinesTotal(); line++) {
@@ -5283,7 +5283,7 @@ void Editor::SetAnnotationVisible(int visible) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (int line=0; line<pdoc->LinesTotal(); line++) {
@@ -5308,7 +5308,7 @@ int Editor::ExpandLine(int line) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (line <= lineMaxSubord) {
@@ -5387,7 +5387,7 @@ void Editor::FoldExpand(int line, int action, int level) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (line <= lineMaxSubord) {
@@ -5407,7 +5407,7 @@ int Editor::ContractedFoldNext(int lineStart) const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int line = lineStart; line<pdoc->LinesTotal();) {
@@ -5440,7 +5440,7 @@ void Editor::EnsureLineVisible(int lineDoc, bool enforcePolicy) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while ((lookLine > 0) && (lookLineLevel & SC_FOLDLEVELWHITEFLAG)) {
@@ -5496,7 +5496,7 @@ void Editor::FoldAll(int action) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int lineSeek = 0; lineSeek < maxLine; lineSeek++) {
@@ -5513,7 +5513,7 @@ void Editor::FoldAll(int action) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int line = 0; line < maxLine; line++) {
@@ -5528,7 +5528,7 @@ void Editor::FoldAll(int action) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int line = 0; line < maxLine; line++) {
@@ -5589,7 +5589,7 @@ void Editor::NeedShown(int pos, int len) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int line = lineStart; line <= lineEnd; line++) {
@@ -5669,7 +5669,7 @@ void Editor::AddStyledText(char *buffer, int appendLength) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < textLength; i++) {
@@ -5681,7 +5681,7 @@ void Editor::AddStyledText(char *buffer, int appendLength) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < textLength; i++) {
@@ -5837,7 +5837,7 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (; iChar < wParam - 1; iChar++)
@@ -5939,7 +5939,7 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (int iChar = lineStart; iChar < lineEnd; iChar++) {
@@ -5986,7 +5986,7 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for (; iChar < selectedText.LengthWithTerminator(); iChar++)
@@ -6404,7 +6404,7 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (long iChar = tr->chrg.cpMin; iChar < tr->chrg.cpMax; iChar++) {
@@ -6482,7 +6482,7 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (unsigned int iChar = lineStart; iChar < lineEnd && iPlace < wParam - 1; iChar++) {
@@ -6930,7 +6930,7 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (int iLine = static_cast<int>(wParam); iLine >= 0; iLine--) {
@@ -7706,7 +7706,7 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (size_t r=0; r<sel.Count(); r++) {

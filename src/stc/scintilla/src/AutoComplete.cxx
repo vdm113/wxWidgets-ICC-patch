@@ -121,7 +121,7 @@ struct Sorter {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (list[i]) {
@@ -131,7 +131,7 @@ struct Sorter {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (list[i] != ac->GetTypesep() && list[i] != ac->GetSeparator() && list[i])
@@ -143,7 +143,7 @@ struct Sorter {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (list[i] != ac->GetSeparator() && list[i])
@@ -185,7 +185,7 @@ void AutoComplete::SetList(const char *list) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int i = 0; i < lb->Length(); ++i)
@@ -200,7 +200,7 @@ void AutoComplete::SetList(const char *list) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i = 0; i < (int)IndexSort.indices.size() / 2; ++i)
@@ -219,7 +219,7 @@ void AutoComplete::SetList(const char *list) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t i = 0; i < sortMatrix.size(); ++i) {
@@ -246,7 +246,7 @@ void AutoComplete::SetList(const char *list) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i = 0; i < (int)sortMatrix.size(); ++i)
@@ -300,7 +300,7 @@ void AutoComplete::Select(const char *word) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((start <= end) && (location == -1)) { // Binary searching loop
@@ -319,7 +319,7 @@ void AutoComplete::Select(const char *word) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (pivot > start) {
@@ -341,7 +341,7 @@ void AutoComplete::Select(const char *word) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (; pivot <= end; pivot++) {
@@ -374,7 +374,7 @@ void AutoComplete::Select(const char *word) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (int i = location + 1; i <= end; ++i) {

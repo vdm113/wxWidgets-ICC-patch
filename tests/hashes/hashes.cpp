@@ -135,7 +135,7 @@ void HashesTestCase::wxHashTableTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < COUNT; ++i )
@@ -150,7 +150,7 @@ void HashesTestCase::wxHashTableTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (it)
@@ -166,7 +166,7 @@ void HashesTestCase::wxHashTableTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( i = 99; i >= 0; --i )
@@ -177,7 +177,7 @@ void HashesTestCase::wxHashTableTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < COUNT; ++i )
@@ -188,7 +188,7 @@ void HashesTestCase::wxHashTableTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( i = 99; i >= 0; --i )
@@ -199,7 +199,7 @@ void HashesTestCase::wxHashTableTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < COUNT/2; ++i )
@@ -210,7 +210,7 @@ void HashesTestCase::wxHashTableTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( i = COUNT/2; i < COUNT; ++i )
@@ -221,7 +221,7 @@ void HashesTestCase::wxHashTableTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < COUNT/2; ++i )
@@ -232,7 +232,7 @@ void HashesTestCase::wxHashTableTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < COUNT/2; ++i )
@@ -243,7 +243,7 @@ void HashesTestCase::wxHashTableTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < COUNT/2; ++i )
@@ -336,7 +336,7 @@ void HashesTestCase::wxUntypedHashTableDeleteContents()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < WXSIZEOF(hashTestData); n++ )
@@ -382,7 +382,7 @@ void HashesTestCase::wxTypedHashTableTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < WXSIZEOF(hashTestData); n++ )
@@ -398,7 +398,7 @@ void HashesTestCase::wxTypedHashTableTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < WXSIZEOF(hashTestData); n++ )
@@ -517,7 +517,7 @@ HashMapTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( i = 0; i < count; ++i )
@@ -534,7 +534,7 @@ HashMapTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( i = 0; i < count; ++i )
@@ -550,7 +550,7 @@ HashMapTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( i = 0, it = sh.begin(); it != sh.end(); ++it, ++i )
@@ -570,7 +570,7 @@ HashMapTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( i = 0, it = sh.begin(); it != sh.end(); ++it, ++i )
@@ -585,7 +585,7 @@ HashMapTest()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( i = 0; i < count; ++i )

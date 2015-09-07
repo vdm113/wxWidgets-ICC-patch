@@ -64,7 +64,7 @@ static const wxChar* ReadLine(const wxChar *line, wxChar *buf, size_t bufsize)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*readptr != 0 && *readptr != wxT('\r') && *readptr != wxT('\n') &&
@@ -76,7 +76,7 @@ static const wxChar* ReadLine(const wxChar *line, wxChar *buf, size_t bufsize)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*readptr == wxT('\r') || *readptr == wxT('\n'))
@@ -118,7 +118,7 @@ wxHtmlHelpIndexCompareFunc(wxHtmlHelpDataItem **a, wxHtmlHelpDataItem **b)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (ia2->level > ib2->level)
@@ -130,7 +130,7 @@ wxHtmlHelpIndexCompareFunc(wxHtmlHelpDataItem **a, wxHtmlHelpDataItem **b)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (ib2->level > ia2->level)
@@ -299,7 +299,7 @@ wxString wxHtmlHelpDataItem::GetIndentedName() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 1; i < level; i++)
@@ -427,7 +427,7 @@ bool wxHtmlHelpData::LoadCachedBook(wxHtmlBookRecord *book, wxInputStream *f)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = st; i < newsize; i++)
@@ -450,7 +450,7 @@ bool wxHtmlHelpData::LoadCachedBook(wxHtmlBookRecord *book, wxInputStream *f)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = st; i < newsize; i++)
@@ -485,7 +485,7 @@ bool wxHtmlHelpData::SaveCachedBook(wxHtmlBookRecord *book, wxOutputStream *f)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (cnt = 0, i = 0; i < len; i++)
@@ -498,7 +498,7 @@ bool wxHtmlHelpData::SaveCachedBook(wxHtmlBookRecord *book, wxOutputStream *f)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < len; i++)
@@ -518,7 +518,7 @@ bool wxHtmlHelpData::SaveCachedBook(wxHtmlBookRecord *book, wxOutputStream *f)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (cnt = 0, i = 0; i < len; i++)
@@ -531,7 +531,7 @@ bool wxHtmlHelpData::SaveCachedBook(wxHtmlBookRecord *book, wxOutputStream *f)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < len; i++)
@@ -555,7 +555,7 @@ bool wxHtmlHelpData::SaveCachedBook(wxHtmlBookRecord *book, wxOutputStream *f)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int j = i-1; j >= 0; j--)
@@ -633,7 +633,7 @@ bool wxHtmlHelpData::AddBookParam(const wxFSFile& bookfile,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < booksCnt; i++)
@@ -717,7 +717,7 @@ bool wxHtmlHelpData::AddBookParam(const wxFSFile& bookfile,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = IndexOld; i < IndexCnt; i++)
@@ -729,7 +729,7 @@ bool wxHtmlHelpData::AddBookParam(const wxFSFile& bookfile,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = ContentsOld; i < ContentsCnt; i++)
@@ -774,7 +774,7 @@ bool wxHtmlHelpData::AddBook(const wxString& book)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (!s.empty())
@@ -816,7 +816,7 @@ bool wxHtmlHelpData::AddBook(const wxString& book)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -828,7 +828,7 @@ bool wxHtmlHelpData::AddBook(const wxString& book)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (wxChar *ch = linebuf; *ch != wxT('\0') && *ch != wxT('='); ch++)
@@ -870,7 +870,7 @@ wxString wxHtmlHelpData::FindPageByName(const wxString& x)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (it = x.begin(); it != x.end(); ++it)
@@ -895,7 +895,7 @@ wxString wxHtmlHelpData::FindPageByName(const wxString& x)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (i = 0; i < cnt; i++)
@@ -917,7 +917,7 @@ wxString wxHtmlHelpData::FindPageByName(const wxString& x)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < cnt; i++)
@@ -933,7 +933,7 @@ wxString wxHtmlHelpData::FindPageByName(const wxString& x)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < cnt; i++)
@@ -950,7 +950,7 @@ wxString wxHtmlHelpData::FindPageByName(const wxString& x)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < cnt; i++)
@@ -965,7 +965,7 @@ wxString wxHtmlHelpData::FindPageByName(const wxString& x)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < cnt; i++)
@@ -985,7 +985,7 @@ wxString wxHtmlHelpData::FindPageById(int id)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < cnt; i++)
@@ -1020,7 +1020,7 @@ wxHtmlSearchStatus::wxHtmlSearchStatus(wxHtmlHelpData* data, const wxString& key
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < cnt; i++)
@@ -1072,7 +1072,7 @@ bool wxHtmlSearchStatus::Search()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (p1 = thepage.c_str(), p2 = m_LastPage.c_str();
@@ -1139,7 +1139,7 @@ static inline wxString CompressSpaces(const wxString & str)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( const wxChar * pstr = str.c_str(); *pstr; ++pstr )
@@ -1183,7 +1183,7 @@ bool wxHtmlSearchEngine::Scan(const wxFSFile& file)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (const wxChar * pBufStr = bufStr.c_str(); *pBufStr; ++pBufStr)

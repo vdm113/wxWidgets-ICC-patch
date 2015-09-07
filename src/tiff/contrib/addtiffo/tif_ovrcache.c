@@ -183,7 +183,7 @@ static void TIFFWriteOvrRow( TIFFOvrCache * psCache )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for( iTileX = 0; iTileX < psCache->nBlocksPerRow; iTileX++ )
@@ -199,7 +199,7 @@ static void TIFFWriteOvrRow( TIFFOvrCache * psCache )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for( iSample = 0; iSample < psCache->nSamples; iSample++ )
@@ -354,7 +354,7 @@ void TIFFDestroyOvrCache( TIFFOvrCache * psCache )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while( psCache->nBlockOffset < psCache->nBlocksPerColumn )

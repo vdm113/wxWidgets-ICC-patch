@@ -148,7 +148,7 @@ void LineLayout::SetLineStart(int line, int start) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int i = 0; i < newMaxLines; i++) {
@@ -208,7 +208,7 @@ int LineLayout::FindBefore(XYPOSITION x, int lower, int upper) const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do {
@@ -231,7 +231,7 @@ int LineLayout::FindPositionFromX(XYPOSITION x, Range range, bool charPosition) 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (pos < range.end) {
@@ -261,7 +261,7 @@ Point LineLayout::PointFromPosition(int posInLine, int lineHeight) const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int subLine = 0; subLine < lines; subLine++) {
@@ -320,7 +320,7 @@ void LineLayoutCache::AllocateForLevel(int linesOnScreen, int linesInDoc) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (size_t i = lengthForLevel; i < cache.size(); i++) {
@@ -340,7 +340,7 @@ void LineLayoutCache::Deallocate() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t i = 0; i < cache.size(); i++)
@@ -355,7 +355,7 @@ void LineLayoutCache::Invalidate(LineLayout::validLevel validity_) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (size_t i = 0; i < cache.size(); i++) {
@@ -446,7 +446,7 @@ static inline int KeyFromString(const char *charBytes, size_t len) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t i=0; i<len && charBytes[i]; i++) {
@@ -535,7 +535,7 @@ BreakFinder::BreakFinder(const LineLayout *ll_, const Selection *psel, Range lin
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((nextBreak > lineRange.start) && (ll->styles[nextBreak] == ll->styles[nextBreak - 1])) {
@@ -551,7 +551,7 @@ BreakFinder::BreakFinder(const LineLayout *ll_, const Selection *psel, Range lin
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (size_t r=0; r<psel->Count(); r++) {
@@ -570,7 +570,7 @@ BreakFinder::BreakFinder(const LineLayout *ll_, const Selection *psel, Range lin
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (Decoration *deco = pdoc->decorations.root; deco; deco = deco->next) {
@@ -581,7 +581,7 @@ BreakFinder::BreakFinder(const LineLayout *ll_, const Selection *psel, Range lin
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (startPos < (posLineStart + lineRange.end)) {
@@ -607,7 +607,7 @@ TextSegment BreakFinder::Next() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (nextBreak < lineRange.end) {
@@ -625,7 +625,7 @@ TextSegment BreakFinder::Next() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while ((nextBreak >= saeNext) && (saeNext < lineRange.end)) {
@@ -691,7 +691,7 @@ void PositionCacheEntry::Set(unsigned int styleNumber_, const char *s_,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (unsigned int i=0; i<len; i++) {
@@ -722,7 +722,7 @@ bool PositionCacheEntry::Retrieve(unsigned int styleNumber_, const char *s_,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (unsigned int i=0; i<len; i++) {
@@ -741,7 +741,7 @@ unsigned int PositionCacheEntry::Hash(unsigned int styleNumber_, const char *s, 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i=0; i<len_; i++) {
@@ -782,7 +782,7 @@ void PositionCache::Clear() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (size_t i=0; i<pces.size(); i++) {
@@ -831,7 +831,7 @@ void PositionCache::MeasureWidths(Surface *surface, const ViewStyle &vstyle, uns
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (startSegment < len) {
@@ -843,7 +843,7 @@ void PositionCache::MeasureWidths(Surface *surface, const ViewStyle &vstyle, uns
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (unsigned int inSeg = 0; inSeg < lenSegment; inSeg++) {
@@ -867,7 +867,7 @@ void PositionCache::MeasureWidths(Surface *surface, const ViewStyle &vstyle, uns
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (size_t i=0; i<pces.size(); i++) {

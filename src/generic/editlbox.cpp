@@ -212,7 +212,7 @@ void wxEditableListBox::SetStrings(const wxArrayString& strings)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < strings.GetCount(); i++)
@@ -231,7 +231,7 @@ void wxEditableListBox::GetStrings(wxArrayString& strings) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < m_listCtrl->GetItemCount()-1; i++)

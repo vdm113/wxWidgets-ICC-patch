@@ -183,7 +183,7 @@ private:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (typename ValueArray::size_type idx=0; idx!=Size; ++idx) {

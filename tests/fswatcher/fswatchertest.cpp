@@ -185,7 +185,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i = 0 ; i < length; ++i)
@@ -790,7 +790,7 @@ void FileSystemWatcherTestCase::TestTrees()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( unsigned d = 0; d < subdirs; ++d )
@@ -805,7 +805,7 @@ void FileSystemWatcherTestCase::TestTrees()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( unsigned f = 0; f < files; ++f )

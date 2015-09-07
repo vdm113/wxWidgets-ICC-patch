@@ -67,7 +67,7 @@ bool wxGUIEventLoop::IsChildOfCriticalWindow(wxWindowMSW *win)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( win )
@@ -96,7 +96,7 @@ bool wxGUIEventLoop::PreProcessMessage(WXMSG *msg)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( hwnd && (::GetWindowLong(hwnd, GWL_STYLE) & WS_CHILD ))
@@ -159,7 +159,7 @@ bool wxGUIEventLoop::PreProcessMessage(WXMSG *msg)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wnd = wndThis; wnd; wnd = wnd->GetParent() )
@@ -180,7 +180,7 @@ bool wxGUIEventLoop::PreProcessMessage(WXMSG *msg)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wnd = wndThis; wnd; wnd = wnd->GetParent() )
@@ -258,7 +258,7 @@ bool wxGUIEventLoop::Dispatch()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (node)
@@ -318,7 +318,7 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( PeekMessage(&msg, (HWND)0, 0, 0, PM_NOREMOVE) &&
@@ -479,7 +479,7 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i=0; i<m_arrMSG.GetCount(); i++)

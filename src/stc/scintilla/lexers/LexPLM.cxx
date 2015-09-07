@@ -44,7 +44,7 @@ static void GetRange(unsigned int start,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((i < end - start + 1) && (i < len-1)) {
@@ -71,7 +71,7 @@ static void ColourisePlmDoc(unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
@@ -173,7 +173,7 @@ static void FoldPlmDoc(unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {

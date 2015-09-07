@@ -212,7 +212,7 @@ STDMETHODIMP wxIDropTarget::DragEnter(IDataObject *pIDataSource,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( penumFmt->Next(1, &fmt, NULL) == S_OK )
@@ -585,7 +585,7 @@ wxDataFormat wxDropTarget::MSWGetSupportedFormat(IDataObject *pIDataSource) cons
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < nFormats; n++ ) {

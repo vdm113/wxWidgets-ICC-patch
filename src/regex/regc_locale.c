@@ -717,7 +717,7 @@ element(v, startp, endp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (cn=cnames; cn->name!=NULL; cn++) {
@@ -778,7 +778,7 @@ range(v, a, b, cases)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (c=a; c<=b; c++) {
@@ -912,7 +912,7 @@ cclass(v, startp, endp, cases)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (namePtr=classNames,i=0 ; *namePtr!=NULL ; namePtr++,i++) {
@@ -940,7 +940,7 @@ cclass(v, startp, endp, cases)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_ALPHA_CHAR ; i++) {
@@ -951,7 +951,7 @@ cclass(v, startp, endp, cases)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_ALPHA_RANGE ; i++) {
@@ -963,7 +963,7 @@ cclass(v, startp, endp, cases)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_DIGIT_RANGE ; i++) {
@@ -980,7 +980,7 @@ cclass(v, startp, endp, cases)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_ALPHA_RANGE ; i++) {
@@ -992,7 +992,7 @@ cclass(v, startp, endp, cases)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_ALPHA_CHAR ; i++) {
@@ -1024,7 +1024,7 @@ cclass(v, startp, endp, cases)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_DIGIT_RANGE ; i++) {
@@ -1041,7 +1041,7 @@ cclass(v, startp, endp, cases)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_PUNCT_RANGE ; i++) {
@@ -1053,7 +1053,7 @@ cclass(v, startp, endp, cases)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_PUNCT_CHAR ; i++) {
@@ -1086,7 +1086,7 @@ cclass(v, startp, endp, cases)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_SPACE_RANGE ; i++) {
@@ -1098,7 +1098,7 @@ cclass(v, startp, endp, cases)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_SPACE_CHAR ; i++) {
@@ -1114,7 +1114,7 @@ cclass(v, startp, endp, cases)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_LOWER_RANGE ; i++) {
@@ -1126,7 +1126,7 @@ cclass(v, startp, endp, cases)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_LOWER_CHAR ; i++) {
@@ -1142,7 +1142,7 @@ cclass(v, startp, endp, cases)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_UPPER_RANGE ; i++) {
@@ -1154,7 +1154,7 @@ cclass(v, startp, endp, cases)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_UPPER_CHAR ; i++) {
@@ -1170,7 +1170,7 @@ cclass(v, startp, endp, cases)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_GRAPH_RANGE ; i++) {
@@ -1182,7 +1182,7 @@ cclass(v, startp, endp, cases)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    for (i=0 ; i<NUM_GRAPH_CHAR ; i++) {
@@ -1227,7 +1227,7 @@ int cases;                      /* case-independent? */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (cc = cclasses; cc->name != NULL; cc++)
@@ -1255,7 +1255,7 @@ int cases;                      /* case-independent? */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (p = cc->chars; *p != '\0'; p++)
@@ -1269,7 +1269,7 @@ int cases;                      /* case-independent? */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < 256; i++)
@@ -1289,7 +1289,7 @@ int cases;                      /* case-independent? */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < count; i++)
@@ -1368,7 +1368,7 @@ casecmp(x, y, len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (; len > 0; len--, x++, y++) {

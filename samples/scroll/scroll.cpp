@@ -1015,7 +1015,7 @@ void MyScrolledWindowDumb::OnDraw(wxDC& dc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t line = 0; line < m_nLines; line++ )
@@ -1052,7 +1052,7 @@ void MyScrolledWindowSmart::OnDraw(wxDC& dc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t line = lineFrom; line <= lineTo; line++ )
@@ -1271,7 +1271,7 @@ void MyAutoScrollingWindow::OnDraw(wxDC& dc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (wxRegionIterator upd(GetUpdateRegion()); upd; ++upd) {
@@ -1283,7 +1283,7 @@ void MyAutoScrollingWindow::OnDraw(wxDC& dc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int chY = updRectInGChars.y
@@ -1295,7 +1295,7 @@ void MyAutoScrollingWindow::OnDraw(wxDC& dc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int chX = updRectInGChars.x

@@ -212,7 +212,7 @@ void ExecTestCase::TestExecute()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (useNoeventsFlag = 0; useNoeventsFlag <=1 ; ++useNoeventsFlag )

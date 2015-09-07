@@ -93,7 +93,7 @@ void wxRibbonDrawParallelGradientLines(wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int step = 0; step < numsteps; ++step)
@@ -114,7 +114,7 @@ void wxRibbonDrawParallelGradientLines(wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for(int n = 0; n < nlines; ++n)

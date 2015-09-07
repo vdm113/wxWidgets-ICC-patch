@@ -132,7 +132,7 @@ wxRegion::wxRegion( size_t n, const wxPoint *points,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 1; i < n; i++)
@@ -167,7 +167,7 @@ wxRegion::wxRegion( size_t n, const wxPoint *points,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 1; i < n; i++)
@@ -186,7 +186,7 @@ wxRegion::wxRegion( size_t n, const wxPoint *points,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0 ; i < n ; i++ )
@@ -516,7 +516,7 @@ void wxRegionIterator::CreateRects( const wxRegion& region )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < m_numRects; i++)
@@ -546,7 +546,7 @@ void wxRegionIterator::CreateRects( const wxRegion& region )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < m_numRects; ++i)

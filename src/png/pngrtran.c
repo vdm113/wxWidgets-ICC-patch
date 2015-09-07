@@ -440,7 +440,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (i = 0; i < num_palette; i++)
@@ -467,7 +467,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          for (i = 0; i < num_palette; i++)
@@ -485,7 +485,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          for (i = num_palette - 1; i >= maximum_colors; i--)
@@ -499,7 +499,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (j = 0; j < i; j++)
@@ -533,7 +533,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < maximum_colors; i++)
@@ -545,7 +545,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   do
@@ -555,7 +555,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   while ((int)png_ptr->quantize_sort[j] >= maximum_colors);
@@ -576,7 +576,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < maximum_colors; i++)
@@ -591,7 +591,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   do
@@ -601,7 +601,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   while ((int)png_ptr->quantize_sort[j] >= maximum_colors);
@@ -621,7 +621,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < num_palette; i++)
@@ -638,7 +638,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   for (k = 1, min_k = 0; k < maximum_colors; k++)
@@ -691,7 +691,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          for (i = 0; i < num_palette; i++)
@@ -720,7 +720,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          while (num_new_palette > maximum_colors)
@@ -730,7 +730,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < num_new_palette - 1; i++)
@@ -742,7 +742,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (j = i + 1; j < num_new_palette; j++)
@@ -776,7 +776,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i <= max_d; i++)
@@ -790,7 +790,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   for (p = hash[i]; p; p = p->next)
@@ -825,7 +825,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                            for (k = 0; k < num_palette; k++)
@@ -867,7 +867,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < 769; i++)
@@ -880,7 +880,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   while (p)
@@ -932,7 +932,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (i = 0; i < num_palette; i++)
@@ -947,7 +947,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          for (ir = 0; ir < num_red; ir++)
@@ -962,7 +962,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (ig = 0; ig < num_green; ig++)
@@ -978,7 +978,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (ib = 0; ib < num_blue; ib++)
@@ -1329,7 +1329,7 @@ png_init_palette_transformations(png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (i=0; i<png_ptr->num_trans; ++i)
@@ -1390,7 +1390,7 @@ png_init_palette_transformations(png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
               for (i=0; i<istop; i++)
@@ -1891,7 +1891,7 @@ png_init_read_transformations(png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < num_palette; i++)
@@ -2046,7 +2046,7 @@ png_init_read_transformations(png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          for (i = 0; i < num_palette; i++)
@@ -2084,7 +2084,7 @@ png_init_read_transformations(png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (i = 0; i < istop; i++)
@@ -2686,7 +2686,7 @@ png_do_unpack(png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
@@ -2718,7 +2718,7 @@ png_do_unpack(png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
@@ -2749,7 +2749,7 @@ png_do_unpack(png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
@@ -2828,7 +2828,7 @@ png_do_unshift(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          for (c = have_shift = 0; c < channels; ++c)
@@ -2866,7 +2866,7 @@ png_do_unshift(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (bp < bp_end)
@@ -2893,7 +2893,7 @@ png_do_unshift(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (bp < bp_end)
@@ -2916,7 +2916,7 @@ png_do_unshift(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (bp < bp_end)
@@ -2942,7 +2942,7 @@ png_do_unshift(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (bp < bp_end)
@@ -2981,7 +2981,7 @@ png_do_scale_16_to_8(png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       while (sp < ep)
@@ -3050,7 +3050,7 @@ png_do_chop(png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       while (sp < ep)
@@ -3089,7 +3089,7 @@ png_do_read_swap_alpha(png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
@@ -3116,7 +3116,7 @@ png_do_read_swap_alpha(png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
@@ -3151,7 +3151,7 @@ png_do_read_swap_alpha(png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
@@ -3176,7 +3176,7 @@ png_do_read_swap_alpha(png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
@@ -3217,7 +3217,7 @@ png_do_read_invert_alpha(png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          for (i = 0; i < row_width; i++)
@@ -3248,7 +3248,7 @@ png_do_read_invert_alpha(png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          for (i = 0; i < row_width; i++)
@@ -3285,7 +3285,7 @@ png_do_read_invert_alpha(png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          for (i = 0; i < row_width; i++)
@@ -3308,7 +3308,7 @@ png_do_read_invert_alpha(png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          for (i = 0; i < row_width; i++)
@@ -3359,7 +3359,7 @@ png_do_read_filler(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 1; i < row_width; i++)
@@ -3383,7 +3383,7 @@ png_do_read_filler(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
@@ -3410,7 +3410,7 @@ png_do_read_filler(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 1; i < row_width; i++)
@@ -3437,7 +3437,7 @@ png_do_read_filler(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
@@ -3468,7 +3468,7 @@ png_do_read_filler(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 1; i < row_width; i++)
@@ -3494,7 +3494,7 @@ png_do_read_filler(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
@@ -3523,7 +3523,7 @@ png_do_read_filler(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 1; i < row_width; i++)
@@ -3554,7 +3554,7 @@ png_do_read_filler(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
@@ -3604,7 +3604,7 @@ png_do_gray_to_rgb(png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
@@ -3625,7 +3625,7 @@ png_do_gray_to_rgb(png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
@@ -3652,7 +3652,7 @@ png_do_gray_to_rgb(png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
@@ -3674,7 +3674,7 @@ png_do_gray_to_rgb(png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
@@ -3789,7 +3789,7 @@ png_do_rgb_to_gray(png_structrp png_ptr, png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
@@ -3836,7 +3836,7 @@ png_do_rgb_to_gray(png_structrp png_ptr, png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
@@ -3877,7 +3877,7 @@ png_do_rgb_to_gray(png_structrp png_ptr, png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
@@ -3936,7 +3936,7 @@ png_do_rgb_to_gray(png_structrp png_ptr, png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
@@ -4032,7 +4032,7 @@ png_build_grayscale_palette(int bit_depth, png_colorp palette)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (i = 0, v = 0; i < num_palette; i++, v += color_inc)
@@ -4089,7 +4089,7 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   for (i = 0; i < row_width; i++)
@@ -4126,7 +4126,7 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                      for (i = 0; i < row_width; i++)
@@ -4170,7 +4170,7 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                      for (i = 0; i < row_width; i++)
@@ -4208,7 +4208,7 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                      for (i = 0; i < row_width; i++)
@@ -4252,7 +4252,7 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                      for (i = 0; i < row_width; i++)
@@ -4289,7 +4289,7 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                      for (i = 0; i < row_width; i++, sp++)
@@ -4310,7 +4310,7 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                      for (i = 0; i < row_width; i++, sp++)
@@ -4333,7 +4333,7 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                      for (i = 0; i < row_width; i++, sp += 2)
@@ -4368,7 +4368,7 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                      for (i = 0; i < row_width; i++, sp += 2)
@@ -4408,7 +4408,7 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   for (i = 0; i < row_width; i++, sp += 3)
@@ -4439,7 +4439,7 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   for (i = 0; i < row_width; i++, sp += 3)
@@ -4466,7 +4466,7 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   for (i = 0; i < row_width; i++, sp += 6)
@@ -4521,7 +4521,7 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   for (i = 0; i < row_width; i++, sp += 6)
@@ -4568,7 +4568,7 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   for (i = 0; i < row_width; i++, sp += 2)
@@ -4605,7 +4605,7 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   for (i = 0; i < row_width; i++, sp += 2)
@@ -4632,7 +4632,7 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   for (i = 0; i < row_width; i++, sp += 4)
@@ -4681,7 +4681,7 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   for (i = 0; i < row_width; i++, sp += 4)
@@ -4725,7 +4725,7 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   for (i = 0; i < row_width; i++, sp += 4)
@@ -4777,7 +4777,7 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   for (i = 0; i < row_width; i++, sp += 4)
@@ -4816,7 +4816,7 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   for (i = 0; i < row_width; i++, sp += 8)
@@ -4897,7 +4897,7 @@ png_do_compose(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   for (i = 0; i < row_width; i++, sp += 8)
@@ -4988,7 +4988,7 @@ png_do_gamma(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < row_width; i++)
@@ -5010,7 +5010,7 @@ png_do_gamma(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < row_width; i++)
@@ -5046,7 +5046,7 @@ png_do_gamma(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < row_width; i++)
@@ -5072,7 +5072,7 @@ png_do_gamma(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < row_width; i++)
@@ -5106,7 +5106,7 @@ png_do_gamma(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < row_width; i++)
@@ -5124,7 +5124,7 @@ png_do_gamma(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < row_width; i++)
@@ -5148,7 +5148,7 @@ png_do_gamma(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < row_width; i += 4)
@@ -5175,7 +5175,7 @@ png_do_gamma(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < row_width; i += 2)
@@ -5197,7 +5197,7 @@ png_do_gamma(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < row_width; i++)
@@ -5215,7 +5215,7 @@ png_do_gamma(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < row_width; i++)
@@ -5267,7 +5267,7 @@ png_do_encode_alpha(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (; row_width > 0; --row_width, row += step)
@@ -5295,7 +5295,7 @@ png_do_encode_alpha(png_row_infop row_info, png_bytep row, png_structrp png_ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (; row_width > 0; --row_width, row += step)
@@ -5350,7 +5350,7 @@ png_do_expand_palette(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < row_width; i++)
@@ -5385,7 +5385,7 @@ png_do_expand_palette(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < row_width; i++)
@@ -5416,7 +5416,7 @@ png_do_expand_palette(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < row_width; i++)
@@ -5458,7 +5458,7 @@ png_do_expand_palette(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < row_width; i++)
@@ -5491,7 +5491,7 @@ png_do_expand_palette(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < row_width; i++)
@@ -5547,7 +5547,7 @@ png_do_expand(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   for (i = 0; i < row_width; i++)
@@ -5583,7 +5583,7 @@ png_do_expand(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   for (i = 0; i < row_width; i++)
@@ -5616,7 +5616,7 @@ png_do_expand(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   for (i = 0; i < row_width; i++)
@@ -5659,7 +5659,7 @@ png_do_expand(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < row_width; i++)
@@ -5685,7 +5685,7 @@ png_do_expand(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                for (i = 0; i < row_width; i++)
@@ -5728,7 +5728,7 @@ png_do_expand(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
@@ -5759,7 +5759,7 @@ png_do_expand(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < row_width; i++)
@@ -5824,7 +5824,7 @@ png_do_expand_16(png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       while (dp > sp)
@@ -5860,7 +5860,7 @@ png_do_quantize(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          for (i = 0; i < row_width; i++)
@@ -5905,7 +5905,7 @@ png_do_quantize(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          for (i = 0; i < row_width; i++)
@@ -5943,7 +5943,7 @@ png_do_quantize(png_row_infop row_info, png_bytep row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          for (i = 0; i < row_width; i++, sp++)
@@ -5988,7 +5988,7 @@ png_do_read_intrapixel(png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          for (i = 0, rp = row; i < row_width; i++, rp += bytes_per_pixel)
@@ -6016,7 +6016,7 @@ png_do_read_intrapixel(png_row_infop row_info, png_bytep row)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          for (i = 0, rp = row; i < row_width; i++, rp += bytes_per_pixel)

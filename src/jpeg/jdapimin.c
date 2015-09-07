@@ -75,7 +75,7 @@ jpeg_CreateDecompress (j_decompress_ptr cinfo, int version, size_t structsize)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < NUM_QUANT_TBLS; i++)
@@ -86,7 +86,7 @@ jpeg_CreateDecompress (j_decompress_ptr cinfo, int version, size_t structsize)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < NUM_HUFF_TBLS; i++) {
@@ -413,7 +413,7 @@ jpeg_finish_decompress (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (! cinfo->inputctl->eoi_reached) {

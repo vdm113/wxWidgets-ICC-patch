@@ -535,7 +535,7 @@ wxString wxTextCtrl::GetLineText( long lineNo ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; currentLine != lineNo && text[i]; i++ )
@@ -548,7 +548,7 @@ wxString wxTextCtrl::GetLineText( long lineNo ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (j = 0; text[i] && text[i] != '\n'; i++, j++ )
@@ -595,7 +595,7 @@ bool wxTextCtrl::PositionToXY(long pos, long *x, long *y ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( const wxChar *p = text.c_str(); p < stop; p++ )
@@ -636,7 +636,7 @@ long wxTextCtrl::XYToPosition(long x, long y ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( int i=0; i<y; i++ ) pos += GetLineLength(i) + 1; // one for '\n'
@@ -666,7 +666,7 @@ int wxTextCtrl::GetNumberOfLines() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int i = 0; i < len; i++ )
@@ -1037,7 +1037,7 @@ void wxTextCtrl::OnChar( wxKeyEvent &key_event )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (top_frame->GetParent() && !(top_frame->IsTopLevel()))

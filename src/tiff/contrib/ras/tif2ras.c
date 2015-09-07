@@ -120,7 +120,7 @@ main(argc, argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (--argc) {
@@ -212,7 +212,7 @@ main(argc, argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    for (i = 0; i < numcolors; i++)
@@ -230,7 +230,7 @@ main(argc, argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    for (i = 0; i < numcolors; i++)
@@ -261,7 +261,7 @@ main(argc, argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    for (i = 0; i < numcolors; i++) {
@@ -293,7 +293,7 @@ main(argc, argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (row = 0; row < height; row++) {
@@ -309,7 +309,7 @@ main(argc, argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (col = 0; col < width; col++) {
@@ -324,7 +324,7 @@ main(argc, argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (col = 0; col < width; col++) {
@@ -342,7 +342,7 @@ main(argc, argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (col = 0; col < ((width + 7) / 8); col++)
@@ -354,7 +354,7 @@ main(argc, argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (col = 0; col < ((width + 3) / 4); col++) {
@@ -370,7 +370,7 @@ main(argc, argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (col = 0; col < width / 2; col++) {
@@ -384,7 +384,7 @@ main(argc, argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (col = 0; col < width; col++)

@@ -41,7 +41,7 @@ static void getRange(unsigned int start,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((i < end - start + 1) && (i < len-1)) {
@@ -66,7 +66,7 @@ static void getRangeLowered(unsigned int start,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((i < end - start + 1) && (i < len-1)) {

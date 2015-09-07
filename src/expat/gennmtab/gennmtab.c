@@ -372,7 +372,7 @@ setTab(char *tab, struct range *ranges, size_t nRanges)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < nRanges; i++) {
@@ -382,7 +382,7 @@ setTab(char *tab, struct range *ranges, size_t nRanges)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (j = ranges[i].start; j <= ranges[i].end; j++)
@@ -411,7 +411,7 @@ printTabs(char *tab)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < 512; i++) {
@@ -421,7 +421,7 @@ printTabs(char *tab)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (j = 1; j < 256; j++)
@@ -438,7 +438,7 @@ printTabs(char *tab)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (j = 0; j < 8; j++) {
@@ -448,7 +448,7 @@ printTabs(char *tab)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (k = 0; k < 32; k++) {
@@ -469,7 +469,7 @@ printTabs(char *tab)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < 512; i++) {

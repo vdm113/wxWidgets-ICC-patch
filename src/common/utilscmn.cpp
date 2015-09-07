@@ -519,7 +519,7 @@ wxString wxGetCurrentDir()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -617,7 +617,7 @@ bool wxGetEnvMap(wxEnvVariableHashMap *map)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( *env )
@@ -668,7 +668,7 @@ static bool ReadAll(wxInputStream *is, wxArrayString& output)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )
@@ -883,7 +883,7 @@ void wxQsort(void* pbase, size_t total_elems,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       while (STACK_NOT_EMPTY)
@@ -918,7 +918,7 @@ void wxQsort(void* pbase, size_t total_elems,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
           do
@@ -928,7 +928,7 @@ void wxQsort(void* pbase, size_t total_elems,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
               while ((*cmp) ((void *) left_ptr, (void *) mid, user_data) < 0)
@@ -939,7 +939,7 @@ void wxQsort(void* pbase, size_t total_elems,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
               while ((*cmp) ((void *) mid, (void *) right_ptr, user_data) < 0)
@@ -967,7 +967,7 @@ void wxQsort(void* pbase, size_t total_elems,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
           while (left_ptr <= right_ptr);
@@ -1027,7 +1027,7 @@ void wxQsort(void* pbase, size_t total_elems,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (run_ptr = tmp_ptr + size; run_ptr <= thresh; run_ptr += size)
@@ -1045,7 +1045,7 @@ void wxQsort(void* pbase, size_t total_elems,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((run_ptr += size) <= end_ptr)
@@ -1056,7 +1056,7 @@ void wxQsort(void* pbase, size_t total_elems,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ((*cmp) ((void *) run_ptr, (void *) tmp_ptr, user_data) < 0)
@@ -1073,7 +1073,7 @@ void wxQsort(void* pbase, size_t total_elems,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (--trav >= run_ptr)
@@ -1086,7 +1086,7 @@ void wxQsort(void* pbase, size_t total_elems,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (hi = lo = trav; (lo -= size) >= tmp_ptr; hi = lo)
@@ -1123,7 +1123,7 @@ unsigned int wxGCD(unsigned int u, unsigned int v)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (shift = 0; ((u | v) & 1) == 0; ++shift)
@@ -1137,7 +1137,7 @@ unsigned int wxGCD(unsigned int u, unsigned int v)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((u & 1) == 0)
@@ -1149,7 +1149,7 @@ unsigned int wxGCD(unsigned int u, unsigned int v)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -1161,7 +1161,7 @@ unsigned int wxGCD(unsigned int u, unsigned int v)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ((v & 1) == 0)
@@ -1368,7 +1368,7 @@ wxString wxStripMenuCodes(const wxString& in, int flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator it = in.begin(); it != in.end(); ++it )
@@ -1483,7 +1483,7 @@ wxWindow* wxFindWindowAtPoint(wxWindow* win, const wxPoint& pt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -1520,7 +1520,7 @@ wxWindow* wxGenericFindWindowAtPoint(const wxPoint& pt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -1699,7 +1699,7 @@ void wxEnableTopLevelWindows(bool enable)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( node = wxTopLevelWindows.GetFirst(); node; node = node->GetNext() )
@@ -1737,7 +1737,7 @@ void wxWindowDisabler::DoDisable(wxWindow *winToSkip)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( node = wxTopLevelWindows.GetFirst(); node; node = node->GetNext() )
@@ -1774,7 +1774,7 @@ wxWindowDisabler::~wxWindowDisabler()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( node = wxTopLevelWindows.GetFirst(); node; node = node->GetNext() )

@@ -173,7 +173,7 @@ static int HaskellIndentAmount(Accessor &styler, const int line) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    while ((  ch == ' ' || ch == '\t'
@@ -362,7 +362,7 @@ class LexerHaskell : public ILexer {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (sc.ch == '#') {
@@ -384,7 +384,7 @@ class LexerHaskell : public ILexer {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          while (currentPos < eol_pos) {
@@ -535,7 +535,7 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    while (sc.More()) {
@@ -605,7 +605,7 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          while ((sc.ch == ' ' || sc.ch == '\t') && sc.More())
@@ -621,7 +621,7 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (!sc.atLineEnd && sc.More()) {
@@ -648,7 +648,7 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          while (!sc.atLineEnd && sc.More()) {
@@ -704,7 +704,7 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          while (IsAnHaskellOperatorChar(sc.ch))
@@ -783,7 +783,7 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
          while (sc.More()) {
@@ -804,7 +804,7 @@ void SCI_METHOD LexerHaskell::Lex(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                   while (IsAnHaskellOperatorChar(sc.ch))
@@ -1083,7 +1083,7 @@ void SCI_METHOD LexerHaskell::Fold(unsigned int startPos, int length, int // ini
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    while (lineCurrent > 0) {
@@ -1117,7 +1117,7 @@ void SCI_METHOD LexerHaskell::Fold(unsigned int startPos, int length, int // ini
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    while (lineCurrent <= docLines && lineCurrent <= maxLines) {
@@ -1145,7 +1145,7 @@ void SCI_METHOD LexerHaskell::Fold(unsigned int startPos, int length, int // ini
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       while (lineNext < docLines && (indentNext & SC_FOLDLEVELWHITEFLAG)) {
@@ -1184,7 +1184,7 @@ void SCI_METHOD LexerHaskell::Fold(unsigned int startPos, int length, int // ini
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       while (--skipLine > lineCurrent) {

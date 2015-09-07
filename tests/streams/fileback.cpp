@@ -85,7 +85,7 @@ backStream::backStream()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned i = 0; i < TESTSIZE; i++)
@@ -204,7 +204,7 @@ void backStream::Seek(wxInputStream& in)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (wxFileOffset i = TESTSIZE - 1; i >= 0; i--) {

@@ -571,7 +571,7 @@ OJPEGVSetField(TIFF* tif, uint32 tag, va_list ap)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (n=0; n<ma; n++)
@@ -594,7 +594,7 @@ OJPEGVSetField(TIFF* tif, uint32 tag, va_list ap)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (n=0; n<ma; n++)
@@ -617,7 +617,7 @@ OJPEGVSetField(TIFF* tif, uint32 tag, va_list ap)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (n=0; n<ma; n++)
@@ -657,7 +657,7 @@ OJPEGPrintDir(TIFF* tif, FILE* fd, long flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (m=0; m<sp->qtable_offset_count; m++)
@@ -672,7 +672,7 @@ OJPEGPrintDir(TIFF* tif, FILE* fd, long flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (m=0; m<sp->dctable_offset_count; m++)
@@ -687,7 +687,7 @@ OJPEGPrintDir(TIFF* tif, FILE* fd, long flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (m=0; m<sp->actable_offset_count; m++)
@@ -768,7 +768,7 @@ OJPEGPreDecode(TIFF* tif, uint16 s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (sp->write_curstrile<m)          
@@ -811,7 +811,7 @@ OJPEGPreDecodeSkipRaw(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (m>=sp->subsampling_convert_clines)
@@ -849,7 +849,7 @@ OJPEGPreDecodeSkipScanlines(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (m=0; m<sp->lines_per_strile; m++)
@@ -905,7 +905,7 @@ OJPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do
@@ -924,7 +924,7 @@ OJPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (q=0; q<sp->subsampling_convert_clinelenout; q++)
@@ -935,7 +935,7 @@ OJPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (sy=0; sy<sp->subsampling_ver; sy++)
@@ -945,7 +945,7 @@ OJPEGDecodeRaw(TIFF* tif, uint8* buf, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (sx=0; sx<sp->subsampling_hor; sx++)
@@ -985,7 +985,7 @@ OJPEGDecodeScanlines(TIFF* tif, uint8* buf, tmsize_t cc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do
@@ -1228,7 +1228,7 @@ OJPEGReadSecondarySos(TIFF* tif, uint16 s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while(sp->sos_end[sp->plane_sample_offset].log==0)
@@ -1245,7 +1245,7 @@ OJPEGReadSecondarySos(TIFF* tif, uint16 s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while(sp->plane_sample_offset<s)
@@ -1255,7 +1255,7 @@ OJPEGReadSecondarySos(TIFF* tif, uint16 s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		do
@@ -1269,7 +1269,7 @@ OJPEGReadSecondarySos(TIFF* tif, uint16 s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				do
@@ -1367,7 +1367,7 @@ OJPEGWriteHeaderInfo(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (n=0; n<sp->subsampling_convert_ylines; n++)
@@ -1377,7 +1377,7 @@ OJPEGWriteHeaderInfo(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (n=0; n<sp->subsampling_convert_clines; n++)
@@ -1387,7 +1387,7 @@ OJPEGWriteHeaderInfo(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (n=0; n<sp->subsampling_convert_clines; n++)
@@ -1455,7 +1455,7 @@ OJPEGReadHeaderInfoSec(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do
@@ -1470,7 +1470,7 @@ OJPEGReadHeaderInfoSec(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		do
@@ -1556,7 +1556,7 @@ OJPEGReadHeaderInfoSec(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (o=0; o<sp->samples_per_pixel; o++)
@@ -1567,7 +1567,7 @@ OJPEGReadHeaderInfoSec(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (o=1; o<sp->samples_per_pixel; o++)
@@ -1584,7 +1584,7 @@ OJPEGReadHeaderInfoSec(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (o=1; o<sp->samples_per_pixel; o++)
@@ -1641,7 +1641,7 @@ OJPEGReadHeaderInfoSecStreamDqt(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		do
@@ -1852,7 +1852,7 @@ OJPEGReadHeaderInfoSecStreamSof(TIFF* tif, uint8 marker_id)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (q=0; q<n; q++)
@@ -1952,7 +1952,7 @@ OJPEGReadHeaderInfoSecStreamSos(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (o=0; o<sp->samples_per_pixel_per_plane; o++)
@@ -1992,7 +1992,7 @@ OJPEGReadHeaderInfoSecTablesQTable(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (m=0; m<sp->samples_per_pixel; m++)
@@ -2004,7 +2004,7 @@ OJPEGReadHeaderInfoSecTablesQTable(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (n=0; n<m-1; n++)
@@ -2064,7 +2064,7 @@ OJPEGReadHeaderInfoSecTablesDcTable(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (m=0; m<sp->samples_per_pixel; m++)
@@ -2076,7 +2076,7 @@ OJPEGReadHeaderInfoSecTablesDcTable(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (n=0; n<m-1; n++)
@@ -2097,7 +2097,7 @@ OJPEGReadHeaderInfoSecTablesDcTable(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (n=0; n<16; n++)
@@ -2120,7 +2120,7 @@ OJPEGReadHeaderInfoSecTablesDcTable(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (n=0; n<16; n++)
@@ -2160,7 +2160,7 @@ OJPEGReadHeaderInfoSecTablesAcTable(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (m=0; m<sp->samples_per_pixel; m++)
@@ -2172,7 +2172,7 @@ OJPEGReadHeaderInfoSecTablesAcTable(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (n=0; n<m-1; n++)
@@ -2193,7 +2193,7 @@ OJPEGReadHeaderInfoSecTablesAcTable(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (n=0; n<16; n++)
@@ -2216,7 +2216,7 @@ OJPEGReadHeaderInfoSecTablesAcTable(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (n=0; n<16; n++)
@@ -2245,7 +2245,7 @@ OJPEGReadBufferFill(OJPEGState* sp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do
@@ -2390,7 +2390,7 @@ OJPEGReadBlock(OJPEGState* sp, uint16 len, void* mem)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do
@@ -2453,7 +2453,7 @@ OJPEGWriteStream(TIFF* tif, void** mem, uint32* len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do
@@ -2618,7 +2618,7 @@ OJPEGWriteStreamSof(TIFF* tif, void** mem, uint32* len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (m=0; m<sp->samples_per_pixel_per_plane; m++)
@@ -2654,7 +2654,7 @@ OJPEGWriteStreamSos(TIFF* tif, void** mem, uint32* len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (m=0; m<sp->samples_per_pixel_per_plane; m++)

@@ -267,7 +267,7 @@ wxPrintPaperType *wxPrintPaperDatabase::FindPaperType(wxPaperSize id)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (iterator it = m_map->begin(), en = m_map->end(); it != en; ++it)
@@ -289,7 +289,7 @@ wxPrintPaperType *wxPrintPaperDatabase::FindPaperTypeByPlatformId(int id)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (iterator it = m_map->begin(), en = m_map->end(); it != en; ++it)
@@ -313,7 +313,7 @@ wxPrintPaperType *wxPrintPaperDatabase::FindPaperType(const wxSize& sz)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < GetCount(); i++ )

@@ -931,7 +931,7 @@ wxString wxTextCtrl::GetRange(long from, long to) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for ( ; *p; p++ )
@@ -1021,7 +1021,7 @@ wxRichEditStreamIn(DWORD_PTR dwCookie, BYTE *buf, LONG cb, LONG *pcb)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( cb && *wpc )
@@ -1058,7 +1058,7 @@ wxRichEditStreamOut(DWORD_PTR dwCookie, BYTE *buf, LONG cb, LONG *pcb)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( cb )
@@ -2840,7 +2840,7 @@ bool wxTextCtrl::MSWSetParaFormat(const wxTextAttr& style, long start, long end)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < (size_t) pf.cTabCount; i++)
@@ -3095,7 +3095,7 @@ bool wxTextCtrl::GetStyle(long position, wxTextAttr& style)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < (size_t) pf.cTabCount; i++)
@@ -3131,7 +3131,7 @@ void wxRichEditModule::OnExit()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < WXSIZEOF(ms_hRichEdit); i++ )

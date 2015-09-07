@@ -134,7 +134,7 @@ local gzFile gz_open(path, fd, mode)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*mode) {
@@ -646,7 +646,7 @@ unsigned ZLIB_INTERNAL gz_intmax()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do {

@@ -63,7 +63,7 @@ void PropSetSimple::Set(const char *keyVal) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (IsASpaceCharacter(*keyVal))
@@ -74,7 +74,7 @@ void PropSetSimple::Set(const char *keyVal) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (*endVal && (*endVal != '\n'))
@@ -95,7 +95,7 @@ void PropSetSimple::SetMultiple(const char *s) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (eol) {
@@ -140,7 +140,7 @@ static int ExpandAllInPlace(const PropSetSimple &props, std::string &withVars, i
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((varStart != std::string::npos) && (maxExpands > 0)) {
@@ -157,7 +157,7 @@ static int ExpandAllInPlace(const PropSetSimple &props, std::string &withVars, i
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while ((innerVarStart != std::string::npos) && (innerVarStart > varStart) && (innerVarStart < varEnd)) {

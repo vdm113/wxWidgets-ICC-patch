@@ -120,7 +120,7 @@ void LabelTestCase::GetLabel()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int s = 0; s < WXSIZEOF(testLabelArray); s++ )
@@ -199,7 +199,7 @@ void LabelTestCase::GetLabelText()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int s = 0; s < WXSIZEOF(testLabelArray); s++ )

@@ -119,7 +119,7 @@ wxUniCharRef& wxUniCharRef::operator=(const wxUniChar& c)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < lenNew; ++i, ++pos )
@@ -150,7 +150,7 @@ wxUniCharRef& wxUniCharRef::operator=(const wxUniChar& c)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( it = m_str.m_iterators.ptr; it; it = it->m_next, ++iterNum )
@@ -167,7 +167,7 @@ wxUniCharRef& wxUniCharRef::operator=(const wxUniChar& c)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( wxStringIteratorNode *it2 = it; it2; it2 = it2->m_next )
@@ -201,7 +201,7 @@ wxUniCharRef& wxUniCharRef::operator=(const wxUniChar& c)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( i = 0, it = m_str.m_iterators.ptr; it; it = it->m_next, ++i )

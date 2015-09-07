@@ -123,7 +123,7 @@ static int str16len(const char *s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (s[0] && s[1]) {
@@ -578,7 +578,7 @@ wxWindow *wxWindowBase::DoFindFocus()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = wxTopLevelWindows.GetFirst();
@@ -920,7 +920,7 @@ void wxWindow::ScrollWindow(int dx, int dy, const wxRect *rect)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (cnode)
@@ -1019,7 +1019,7 @@ void wxWindow::ScrollWindow(int dx, int dy, const wxRect *rect)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -1052,7 +1052,7 @@ void wxWindow::ScrollWindow(int dx, int dy, const wxRect *rect)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -1187,7 +1187,7 @@ bool wxWindow::DoPopupMenu(wxMenu *menu, int x, int y)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (menu->GetId() == 1)
@@ -1698,7 +1698,7 @@ void wxWindow::OnSysColourChanged(wxSysColourChangedEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( node )
@@ -1734,7 +1734,7 @@ bool wxWindow::ProcessAccelerator(wxKeyEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < count; i++)
@@ -1753,7 +1753,7 @@ bool wxWindow::ProcessAccelerator(wxKeyEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( parent && !parent->IsTopLevel() )
@@ -2084,7 +2084,7 @@ static void wxCanvasInputEvent(Widget drawingArea,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while (parent && !parent->IsTopLevel())
@@ -2521,7 +2521,7 @@ int wxComputeColours (Display *display, const wxColour * back, const wxColour * 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < 5; i++)

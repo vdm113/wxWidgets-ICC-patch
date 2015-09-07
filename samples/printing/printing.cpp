@@ -114,7 +114,7 @@ bool MyApp::OnInit(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < image.GetWidth(); i++)
@@ -123,7 +123,7 @@ bool MyApp::OnInit(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
        for (j = 0; j < image.GetHeight(); j++)
@@ -731,7 +731,7 @@ void MyPrintout::DrawPageTwo()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < 7; i++)

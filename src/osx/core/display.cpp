@@ -118,7 +118,7 @@ static CGDisplayErr wxOSXGetDisplayList(CGDisplayCount maxDisplays,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( CGDisplayCount i = 0; i < onlineCount; ++i )
@@ -177,7 +177,7 @@ int wxDisplayFactoryMacOSX::GetFromPoint(const wxPoint& p)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (nWhich = 0; nWhich < (int) theCount; ++nWhich)
@@ -263,7 +263,7 @@ wxArrayVideoModes wxDisplayImplMacOSX::GetModes(const wxVideoMode& mode) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (CFIndex i = 0; i < CFArrayGetCount(theArray); ++i)

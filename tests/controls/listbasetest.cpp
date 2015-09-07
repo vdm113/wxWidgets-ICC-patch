@@ -67,7 +67,7 @@ void ListBaseTestCase::ColumnsOrder()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < NUM_COLS; n++ )
@@ -88,7 +88,7 @@ void ListBaseTestCase::ColumnsOrder()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < NUM_COLS; n++ )
@@ -100,7 +100,7 @@ void ListBaseTestCase::ColumnsOrder()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < NUM_COLS; n++ )
@@ -400,7 +400,7 @@ void ListBaseTestCase::Visible()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( int i = 0; i < count + 10; i++ )

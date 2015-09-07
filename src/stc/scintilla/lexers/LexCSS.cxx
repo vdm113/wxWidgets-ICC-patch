@@ -76,7 +76,7 @@ inline int NestingLevelLookBehind(unsigned int startPos, Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = 0; i < startPos; i++) {
@@ -148,7 +148,7 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
@@ -162,7 +162,7 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (; i > 0; i--) {
@@ -175,7 +175,7 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 							while (--i) {
@@ -212,7 +212,7 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (i && styler[i-1] == '\\')
@@ -232,7 +232,7 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (--i) {
@@ -445,7 +445,7 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (unsigned int i = sc.currentPos; i < endPos; i++) {
@@ -485,7 +485,7 @@ static void ColouriseCssDoc(unsigned int startPos, int length, int initStyle, Wo
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (*s2 && !IsAWordChar(*s2))
@@ -590,7 +590,7 @@ static void FoldCSSDoc(unsigned int startPos, int length, int, WordList *[], Acc
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {

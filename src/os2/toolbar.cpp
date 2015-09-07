@@ -461,7 +461,7 @@ bool wxToolBar::Realize()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node )
@@ -525,7 +525,7 @@ bool wxToolBar::Realize()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -644,7 +644,7 @@ void wxToolBar::OnPaint (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
@@ -1006,7 +1006,7 @@ wxToolBarToolBase* wxToolBar::FindToolForPosition(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)

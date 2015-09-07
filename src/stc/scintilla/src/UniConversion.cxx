@@ -37,7 +37,7 @@ unsigned int UTF8Length(const wchar_t *uptr, unsigned int tlen) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = 0; i < tlen && uptr[i];) {
@@ -65,7 +65,7 @@ void UTF8FromUTF16(const wchar_t *uptr, unsigned int tlen, char *putf, unsigned 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = 0; i < tlen && uptr[i];) {
@@ -115,7 +115,7 @@ size_t UTF16Length(const char *s, size_t len) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t i = 0; i<len;) {
@@ -145,7 +145,7 @@ size_t UTF16FromUTF8(const char *s, size_t len, wchar_t *tbuf, size_t tlen) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((i<len) && (ui<tlen)) {
@@ -189,7 +189,7 @@ unsigned int UTF32FromUTF8(const char *s, unsigned int len, unsigned int *tbuf, 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((i<len) && (ui<tlen)) {
@@ -259,7 +259,7 @@ void UTF8BytesOfLeadInitialise() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int i=0; i<256; i++) {

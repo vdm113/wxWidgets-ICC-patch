@@ -53,7 +53,7 @@ DecorationList::~DecorationList() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (deco) {
@@ -71,7 +71,7 @@ Decoration *DecorationList::DecorationFromIndicator(int indicator) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (Decoration *deco=root; deco; deco = deco->next) {
@@ -95,7 +95,7 @@ Decoration *DecorationList::Create(int indicator, int length) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (deco && (deco->indicator < indicator)) {
@@ -125,7 +125,7 @@ void DecorationList::Delete(int indicator) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (deco->next && !decoToDelete) {
@@ -176,7 +176,7 @@ void DecorationList::InsertSpace(int position, int insertLength) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (Decoration *deco=root; deco; deco = deco->next) {
@@ -195,7 +195,7 @@ void DecorationList::DeleteRange(int position, int deleteLength) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (deco=root; deco; deco = deco->next) {
@@ -211,7 +211,7 @@ void DecorationList::DeleteAnyEmpty() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (deco) {
@@ -231,7 +231,7 @@ int DecorationList::AllOnFor(int position) const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (Decoration *deco=root; deco; deco = deco->next) {

@@ -77,7 +77,7 @@ static inline unsigned IsOperator( StyleContext & sc, WordList & op ) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for( i = 0; i < op.Length(); i++ ) {
@@ -92,7 +92,7 @@ static inline unsigned IsOperator( StyleContext & sc, WordList & op ) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for( i = 0; i < op.Length(); i++ ) {
@@ -124,7 +124,7 @@ static inline bool checkStatement(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for( i = 0; i < len; i++ ) {
@@ -153,7 +153,7 @@ static inline bool checkEndSemicolon(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for( i = 0; i < len; i++ ) {
@@ -166,7 +166,7 @@ static inline bool checkEndSemicolon(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while( isspace( styler.SafeGetCharAt( curPos + i ) ) ) {
@@ -201,7 +201,7 @@ static inline bool checkKeyIdentOper(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while( isspace( styler.SafeGetCharAt( newPos ) ) ) {
@@ -221,7 +221,7 @@ static inline bool checkKeyIdentOper(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while( isalpha( ch ) || isdigit( ch ) || ch == '_' ) {
@@ -234,7 +234,7 @@ static inline bool checkKeyIdentOper(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while( isspace( styler.SafeGetCharAt( newPos ) ) ) {
@@ -267,7 +267,7 @@ static void FoldModulaDoc( unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while( curPos < endPos ) {
@@ -341,7 +341,7 @@ static void FoldModulaDoc( unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while( cln > 0 ) {
@@ -354,7 +354,7 @@ static void FoldModulaDoc( unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 						while( ( ch = styler.SafeGetCharAt( pos ) ) != '\n' ) {
@@ -385,7 +385,7 @@ static void FoldModulaDoc( unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while( styler.StyleAt( curPos + 1 ) == SCE_MODULA_KEYWORD )
@@ -425,7 +425,7 @@ static inline bool skipWhiteSpaces( StyleContext & sc ) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while( isspace( sc.ch ) ) {
@@ -464,7 +464,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while( sc.More() ) 	{
@@ -489,7 +489,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for( i = 0; i < BUFLEN - 1; i++ ) {
@@ -521,7 +521,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for( i = 0; i < BUFLEN - 1; i++ ) {
@@ -595,7 +595,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for( i = 0; i < BUFLEN - 1; i++ ) {
@@ -626,7 +626,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for( i = 1; i < BUFLEN - 1; i++ ) {
@@ -652,7 +652,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 							for( i = 0; i < BUFLEN - 1; i++ ) {
@@ -667,7 +667,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 							for( i = 0; i < imax; i++ ) {
@@ -684,7 +684,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 						for( i = 0; i < kl; i++ ) {
@@ -703,7 +703,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 						for( i = 0; i < kl; i++ ) {
@@ -724,7 +724,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 							for( i = 0;; i++ ) {
@@ -754,7 +754,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 									for( i = 0;; i++ ) {
@@ -804,7 +804,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for( i = 0; i < kl; i++ ) {
@@ -820,7 +820,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for( i = 0; i < kl; i++ ) {
@@ -847,7 +847,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 						for( i = 1; i < BUFLEN - 1; i++ ) {
@@ -892,7 +892,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 						for( i = 1; i < BUFLEN - 1; i++ ) {
@@ -942,7 +942,7 @@ static void ColouriseModulaDoc(	unsigned int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for( i = 2; i < BUFLEN - 1; i++ ) {

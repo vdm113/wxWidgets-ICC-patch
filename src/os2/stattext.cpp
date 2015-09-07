@@ -133,7 +133,7 @@ wxSize wxStaticText::DoGetBestSize() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (const wxChar *pc = sText; ; pc++)

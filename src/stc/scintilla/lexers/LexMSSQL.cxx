@@ -66,7 +66,7 @@ static char classifyWordSQL(unsigned int start,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = 0; i < end - start + 1 && i < 128; i++) {
@@ -139,7 +139,7 @@ static void ColouriseMSSQLDoc(unsigned int startPos, int length,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
@@ -318,7 +318,7 @@ static void FoldMSSQLDoc(unsigned int startPos, int length, int, WordList *[], A
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
@@ -342,7 +342,7 @@ static void FoldMSSQLDoc(unsigned int startPos, int length, int, WordList *[], A
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (unsigned int j = 0; j < 5; j++) {

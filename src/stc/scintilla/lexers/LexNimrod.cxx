@@ -49,7 +49,7 @@ static int tillEndOfTripleQuote(Accessor &styler, int pos, int max) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -75,7 +75,7 @@ static int scanString(Accessor &styler, int pos, int max, bool rawMode) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -97,7 +97,7 @@ static int scanChar(Accessor &styler, int pos, int max) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -123,7 +123,7 @@ static int scanIdent(Accessor &styler, int pos, WordList &keywords) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -157,7 +157,7 @@ static int scanNumber(Accessor &styler, int pos) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;) {
@@ -174,7 +174,7 @@ static int scanNumber(Accessor &styler, int pos) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;) {
@@ -190,7 +190,7 @@ static int scanNumber(Accessor &styler, int pos) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;) {
@@ -207,7 +207,7 @@ static int scanNumber(Accessor &styler, int pos) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;) {
@@ -223,7 +223,7 @@ static int scanNumber(Accessor &styler, int pos) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (;;) {
@@ -241,7 +241,7 @@ static int scanNumber(Accessor &styler, int pos) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (;;) {
@@ -259,7 +259,7 @@ static int scanNumber(Accessor &styler, int pos) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;) {
@@ -301,7 +301,7 @@ static void ColouriseNimrodDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (pos < max) {
@@ -315,7 +315,7 @@ static void ColouriseNimrodDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (pos < max && !isNewLine(styler.SafeGetCharAt(pos, LF))) pos++;
@@ -360,7 +360,7 @@ static void ColouriseNimrodDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
           while (pos < max) {
@@ -393,7 +393,7 @@ static bool IsCommentLine(int line, Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i = pos; i < eol_pos; i++) {
@@ -433,7 +433,7 @@ static void FoldNimrodDoc(unsigned int startPos, int length,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (lineCurrent > 0) {
@@ -465,7 +465,7 @@ static void FoldNimrodDoc(unsigned int startPos, int length,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((lineCurrent <= docLines) && ((lineCurrent <= maxLines) ||
@@ -520,7 +520,7 @@ static void FoldNimrodDoc(unsigned int startPos, int length,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (!quote &&
@@ -549,7 +549,7 @@ static void FoldNimrodDoc(unsigned int startPos, int length,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (--skipLine > lineCurrent) {

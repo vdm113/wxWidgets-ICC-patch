@@ -157,7 +157,7 @@ void SafeArrayConvertTestCase::VariantListReturnSafeArray()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( long i = 0; i < count; i++ )
@@ -213,7 +213,7 @@ void SafeArrayConvertTestCase::StringsReturnSafeArray()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( long i = 0; i < count; i++ )

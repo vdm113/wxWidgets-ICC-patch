@@ -89,7 +89,7 @@ TIFFSwabArrayOfShort(register uint16* wp, tmsize_t n)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
@@ -113,7 +113,7 @@ TIFFSwabArrayOfTriples(register uint8* tp, tmsize_t n)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
@@ -137,7 +137,7 @@ TIFFSwabArrayOfLong(register uint32* lp, tmsize_t n)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
@@ -162,7 +162,7 @@ TIFFSwabArrayOfLong8(register uint64* lp, tmsize_t n)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
@@ -201,7 +201,7 @@ TIFFSwabArrayOfFloat(register float* fp, tmsize_t n)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
@@ -240,7 +240,7 @@ TIFFSwabArrayOfDouble(double* dp, tmsize_t n)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (n-- > 0) {
@@ -346,7 +346,7 @@ TIFFReverseBits(uint8* cp, tmsize_t n)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; n > 8; n -= 8) {
@@ -365,7 +365,7 @@ TIFFReverseBits(uint8* cp, tmsize_t n)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (n-- > 0)

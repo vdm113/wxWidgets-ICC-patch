@@ -621,7 +621,7 @@ bool wxTabView::RemoveTab(int id)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (layerNode)
@@ -633,7 +633,7 @@ bool wxTabView::RemoveTab(int id)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (tabNode)
@@ -688,7 +688,7 @@ int wxTabView::GetTotalTabHeight()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (layerNode)
@@ -700,7 +700,7 @@ int wxTabView::GetTotalTabHeight()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (tabNode)
@@ -726,7 +726,7 @@ void wxTabView::ClearTabs(bool deleteTabs)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (layerNode)
@@ -738,7 +738,7 @@ void wxTabView::ClearTabs(bool deleteTabs)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (tabNode)
@@ -772,7 +772,7 @@ void wxTabView::LayoutTabs(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (layerNode)
@@ -784,7 +784,7 @@ void wxTabView::LayoutTabs(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (tabNode)
@@ -812,7 +812,7 @@ void wxTabView::LayoutTabs(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (node)
@@ -895,7 +895,7 @@ void wxTabView::Draw(wxDC& dc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -907,7 +907,7 @@ void wxTabView::Draw(wxDC& dc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (node2)
@@ -985,7 +985,7 @@ bool wxTabView::OnEvent(wxMouseEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (node)
@@ -997,7 +997,7 @@ bool wxTabView::OnEvent(wxMouseEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node2)
@@ -1185,7 +1185,7 @@ wxTabControl *wxTabView::FindTabControlForId(int id) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (node1)
@@ -1197,7 +1197,7 @@ wxTabControl *wxTabView::FindTabControlForId(int id) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node2)
@@ -1234,7 +1234,7 @@ wxList::compatibility_iterator wxTabView::FindTabNodeAndColumn(wxTabControl *con
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (node1)
@@ -1247,7 +1247,7 @@ wxList::compatibility_iterator wxTabView::FindTabNodeAndColumn(wxTabControl *con
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node2)

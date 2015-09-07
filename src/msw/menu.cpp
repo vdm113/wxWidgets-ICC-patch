@@ -116,7 +116,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( Ranges::const_iterator it = m_ranges.begin();
@@ -153,7 +153,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( Ranges::iterator it = m_ranges.begin();
@@ -212,7 +212,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( Ranges::iterator it = m_ranges.begin();
@@ -378,7 +378,7 @@ wxMenu::wxMenu(WXHMENU hMenu)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < numExistingItems; n++ )
@@ -425,7 +425,7 @@ int wxMenu::FindAccel(int id) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < count; n++ )
@@ -448,7 +448,7 @@ void wxMenu::UpdateAccel(wxMenuItem *item)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( node )
@@ -752,7 +752,7 @@ bool wxMenu::DoInsertOrAppend(wxMenuItem *pItem, size_t pos)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while (node)
@@ -849,7 +849,7 @@ wxMenuItem *wxMenu::DoRemove(wxMenuItem *item)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( pos = 0; node; pos++ )
@@ -917,7 +917,7 @@ size_t wxMenu::CopyAccels(wxAcceleratorEntry *accels) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -955,7 +955,7 @@ void wxMenu::CalculateMaxAccelWidth()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -1094,7 +1094,7 @@ wxMenu* wxMenu::MSWGetMenu(WXHMENU hMenu)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0 ; n < GetMenuItemCount(); ++n )
@@ -1152,7 +1152,7 @@ wxMenuBar::wxMenuBar(size_t count, wxMenu *menus[], const wxString titles[], lon
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )
@@ -1251,7 +1251,7 @@ WXHMENU wxMenuBar::Create()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned i = 0; i < GetMenuCount(); i++ )
@@ -1287,7 +1287,7 @@ WXHMENU wxMenuBar::Create()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxMenuList::iterator it = m_menus.begin();
@@ -1325,7 +1325,7 @@ int wxMenuBar::MSWPositionForWxMenu(wxMenu *menu, int wxpos)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(i=wxpos; i<totalMSWItems; i++)
@@ -1338,7 +1338,7 @@ int wxMenuBar::MSWPositionForWxMenu(wxMenu *menu, int wxpos)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(i=0; i<wxpos; i++)
@@ -1555,7 +1555,7 @@ bool wxMenuBar::Insert(size_t pos, wxMenu *menu, const wxString& title)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( size_t n = 0; n < pos; n++ )
@@ -1704,7 +1704,7 @@ void wxMenuBar::RebuildAccelTable()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0, it = m_menus.begin(); i < count; i++, it++ )
@@ -1722,7 +1722,7 @@ void wxMenuBar::RebuildAccelTable()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( i = 0, it = m_menus.begin(); i < count; i++, it++ )
@@ -1801,7 +1801,7 @@ int wxMenuBar::MSWGetTopMenuPos(WXHMENU hMenu) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0 ; n < GetMenuCount(); ++n )
@@ -1827,7 +1827,7 @@ wxMenu* wxMenuBar::MSWGetMenu(WXHMENU hMenu) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0 ; n < GetMenuCount(); ++n )

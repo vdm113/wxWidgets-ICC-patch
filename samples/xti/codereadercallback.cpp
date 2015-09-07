@@ -135,7 +135,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int i = 0; i < ci->GetCreateParamCount(); ++i )
@@ -218,7 +218,7 @@ void wxObjectCodeReaderCallback::CreateObject(int objectID,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < paramCount; i++)
@@ -263,7 +263,7 @@ void wxObjectCodeReaderCallback::ConstructObject(int objectID,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < paramCount; i++)

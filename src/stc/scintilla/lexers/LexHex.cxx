@@ -237,7 +237,7 @@ static bool ForwardWithinLine(StyleContext &sc, int nb)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i = 0; i < nb; i++) {
@@ -275,7 +275,7 @@ static int CountByteCount(unsigned int startPos, int uncountedDigits, Accessor &
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (!IsNewline(styler.SafeGetCharAt(pos, '\n'))) {
@@ -309,7 +309,7 @@ static int CalcChecksum(unsigned int startPos, int cnt, bool twosCompl, Accessor
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int pos = startPos; pos < startPos + cnt; pos += 2) {
@@ -341,7 +341,7 @@ static unsigned int GetSrecRecStartPosition(unsigned int pos, Accessor &styler)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (styler.SafeGetCharAt(pos) != 'S') {
@@ -495,7 +495,7 @@ static unsigned int GetIHexRecStartPosition(unsigned int pos, Accessor &styler)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (styler.SafeGetCharAt(pos) != ':') {
@@ -642,7 +642,7 @@ static int CountTEHexDigitCount(unsigned int recStartPos, Accessor &styler)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (!IsNewline(styler.SafeGetCharAt(pos, '\n'))) {
@@ -691,7 +691,7 @@ static int CalcTEHexChecksum(unsigned int recStartPos, Accessor &styler)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; pos <= recStartPos + length; ++pos) {
@@ -719,7 +719,7 @@ static void ColouriseSrecDoc(unsigned int startPos, int length, int initStyle, W
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (sc.More()) {
@@ -797,7 +797,7 @@ static void ColouriseSrecDoc(unsigned int startPos, int length, int initStyle, W
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for (int i = 0; i < dataFieldSize * 2; i++) {
@@ -859,7 +859,7 @@ static void ColouriseIHexDoc(unsigned int startPos, int length, int initStyle, W
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (sc.More()) {
@@ -932,7 +932,7 @@ static void ColouriseIHexDoc(unsigned int startPos, int length, int initStyle, W
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for (int i = 0; i < dataFieldSize * 2; i++) {
@@ -1004,7 +1004,7 @@ static void FoldIHexDoc(unsigned int startPos, int length, int, WordList *[], Ac
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
@@ -1047,7 +1047,7 @@ static void ColouriseTEHexDoc(unsigned int startPos, int length, int initStyle, 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (sc.More()) {
@@ -1128,7 +1128,7 @@ static void ColouriseTEHexDoc(unsigned int startPos, int length, int initStyle, 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (int i = 0; i < digitCount; i++) {

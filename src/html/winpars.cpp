@@ -72,7 +72,7 @@ wxHtmlWinParser::wxHtmlWinParser(wxHtmlWindowInterface *wndIface)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < 2; i++)
@@ -81,7 +81,7 @@ wxHtmlWinParser::wxHtmlWinParser(wxHtmlWindowInterface *wndIface)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (j = 0; j < 2; j++)
@@ -90,7 +90,7 @@ wxHtmlWinParser::wxHtmlWinParser(wxHtmlWindowInterface *wndIface)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (k = 0; k < 2; k++)
@@ -99,7 +99,7 @@ wxHtmlWinParser::wxHtmlWinParser(wxHtmlWindowInterface *wndIface)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (l = 0; l < 2; l++)
@@ -108,7 +108,7 @@ wxHtmlWinParser::wxHtmlWinParser(wxHtmlWindowInterface *wndIface)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         for (m = 0; m < 7; m++)
@@ -130,7 +130,7 @@ wxHtmlWinParser::wxHtmlWinParser(wxHtmlWindowInterface *wndIface)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -150,7 +150,7 @@ wxHtmlWinParser::~wxHtmlWinParser()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 2; i++)
@@ -159,7 +159,7 @@ wxHtmlWinParser::~wxHtmlWinParser()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (j = 0; j < 2; j++)
@@ -168,7 +168,7 @@ wxHtmlWinParser::~wxHtmlWinParser()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (k = 0; k < 2; k++)
@@ -177,7 +177,7 @@ wxHtmlWinParser::~wxHtmlWinParser()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (l = 0; l < 2; l++)
@@ -186,7 +186,7 @@ wxHtmlWinParser::~wxHtmlWinParser()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (m = 0; m < 7; m++)
@@ -256,7 +256,7 @@ void wxHtmlWinParser::SetFonts(const wxString& normal_face,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 7; i++)
@@ -274,7 +274,7 @@ void wxHtmlWinParser::SetFonts(const wxString& normal_face,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 2; i++)
@@ -283,7 +283,7 @@ void wxHtmlWinParser::SetFonts(const wxString& normal_face,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (j = 0; j < 2; j++)
@@ -292,7 +292,7 @@ void wxHtmlWinParser::SetFonts(const wxString& normal_face,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (k = 0; k < 2; k++)
@@ -301,7 +301,7 @@ void wxHtmlWinParser::SetFonts(const wxString& normal_face,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (l = 0; l < 2; l++)
@@ -310,7 +310,7 @@ void wxHtmlWinParser::SetFonts(const wxString& normal_face,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (m = 0; m < 7; m++) {
@@ -423,7 +423,7 @@ wxObject* wxHtmlWinParser::GetProduct()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (top->GetParent()) top = top->GetParent();
@@ -445,7 +445,7 @@ wxFSFile *wxHtmlWinParser::OpenURL(wxHtmlURLType type,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;)
@@ -536,7 +536,7 @@ void wxHtmlWinParser::AddText(const wxString& txt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( (i < end) &&
@@ -552,7 +552,7 @@ void wxHtmlWinParser::AddText(const wxString& txt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (i < end)
@@ -567,7 +567,7 @@ void wxHtmlWinParser::AddText(const wxString& txt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while ( (i < end) &&
@@ -626,7 +626,7 @@ void wxHtmlWinParser::FlushWordBuf(wxChar *buf, int& len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < len; i++ )
@@ -670,7 +670,7 @@ void wxHtmlWinParser::AddPreBlock(const wxString& text)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxString::const_iterator i = copyFrom; i != end; ++i, ++pos )
@@ -768,7 +768,7 @@ void wxHtmlWinParser::SetFontPointSize(int pt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int n = 0; n < 6; n++ )

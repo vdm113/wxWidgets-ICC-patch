@@ -90,7 +90,7 @@ bool wxFileDropTarget::OnDropFiles( long x, long y, size_t nFiles, const char * 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < nFiles; i++)
@@ -110,7 +110,7 @@ bool wxFileDropTarget::OnDrop(long x, long y, const void *data, size_t size )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < size; i++)
@@ -126,7 +126,7 @@ bool wxFileDropTarget::OnDrop(long x, long y, const void *data, size_t size )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for ( i = 0; i < number; i++)

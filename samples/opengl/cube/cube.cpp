@@ -69,7 +69,7 @@ static void CheckGLError()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )
@@ -180,7 +180,7 @@ TestGLContext::TestGLContext(wxGLCanvas *canvas)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned i = 0; i < WXSIZEOF(m_textures); i++ )
@@ -359,7 +359,7 @@ TestGLCanvas::TestGLCanvas(wxWindow *parent, int *attribList)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( attribList[i] != 0 )

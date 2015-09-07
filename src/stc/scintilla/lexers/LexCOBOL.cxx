@@ -70,7 +70,7 @@ static int CountBits(int nBits)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i = 0; i < 32; ++i)
@@ -92,7 +92,7 @@ static void getRange(unsigned int start,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((i < end - start + 1) && (i < len-1)) {
@@ -128,7 +128,7 @@ static int classifyWordCOBOL(unsigned int start, unsigned int end, /*WordList &k
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (*p) {
@@ -208,7 +208,7 @@ static void ColouriseCOBOLDoc(unsigned int startPos, int length, int initStyle, 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i = startPos; i < lengthDoc; i++) {
@@ -368,7 +368,7 @@ static void FoldCOBOLDoc(unsigned int startPos, int length, int, WordList *[],
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i = startPos; i < endPos; i++) {

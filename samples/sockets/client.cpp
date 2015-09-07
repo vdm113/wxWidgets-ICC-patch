@@ -503,7 +503,7 @@ void MyFrame::OnTest3(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (size_t i = 0; i < len * 1024; i ++)

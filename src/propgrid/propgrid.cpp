@@ -246,7 +246,7 @@ wxPGGlobalVarsClass::~wxPGGlobalVarsClass()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < m_arrValidators.size(); i++ )
@@ -264,7 +264,7 @@ wxPGGlobalVarsClass::~wxPGGlobalVarsClass()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( vt_it = m_mapEditorClasses.begin(); vt_it != m_mapEditorClasses.end(); ++vt_it )
@@ -546,7 +546,7 @@ wxPropertyGrid::~wxPropertyGrid()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i=0; i<m_liveEvents.size(); i++ )
@@ -608,7 +608,7 @@ wxPropertyGrid::~wxPropertyGrid()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( !m_deletedEditorObjects.empty() )
@@ -644,7 +644,7 @@ wxPropertyGrid::~wxPropertyGrid()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i=0; i<m_commonValues.size(); i++ )
@@ -931,7 +931,7 @@ bool wxPropertyGrid::AddToSelectionFromInputEvent( wxPGProperty* prop,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned int i=1; i<selection.size(); i++ )
@@ -969,7 +969,7 @@ bool wxPropertyGrid::AddToSelectionFromInputEvent( wxPGProperty* prop,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( it = GetIterator(wxPG_ITERATE_VISIBLE, startFrom);
@@ -1016,7 +1016,7 @@ void wxPropertyGrid::DoSetSelection( const wxArrayPGProperty& newSelection,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 1; i < newSelection.size(); i++ )
@@ -1047,7 +1047,7 @@ void wxPropertyGrid::MakeColumnEditable( unsigned int column,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int i = cols.size() - 1; i > 0; i-- )
@@ -1295,7 +1295,7 @@ wxSize wxPropertyGrid::DoGetBestSize() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < m_pState->GetColumnCount(); i++ )
@@ -1843,7 +1843,7 @@ wxString& wxPropertyGrid::ExpandEscapeSequences( wxString& dst_str, wxString& sr
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ; i != src_str.end(); ++i )
@@ -1908,7 +1908,7 @@ wxString& wxPropertyGrid::CreateEscapeSequences( wxString& dst_str, wxString& sr
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = src_str.begin(); i != src_str.end(); ++i )
@@ -2306,7 +2306,7 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ; !it.AtEnd(); it.Next() )
@@ -2336,7 +2336,7 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int arrInd=1;
@@ -2402,7 +2402,7 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned int si = 0; si < colCount; si++ )
@@ -2548,7 +2548,7 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( ci = 0; ci < colCount; ci++ )
@@ -2564,7 +2564,7 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do
@@ -2687,7 +2687,7 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( ci > 0 );
@@ -2798,7 +2798,7 @@ void wxPropertyGrid::DrawItemAndValueRelated( wxPGProperty* p )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( parent &&
@@ -3207,7 +3207,7 @@ bool wxPropertyGrid::PerformValidation( wxPGProperty* p, wxVariant& pendingValue
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( pwc &&
@@ -3444,7 +3444,7 @@ bool wxPropertyGrid::DoOnValidationFailure( wxPGProperty* property, wxVariant& W
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned int i=0; i<colCount; i++ )
@@ -3577,7 +3577,7 @@ bool wxPropertyGrid::DoPropertyChanged( wxPGProperty* p, unsigned int selFlags )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( !topPaintedProperty->IsCategory() &&
@@ -3614,7 +3614,7 @@ bool wxPropertyGrid::DoPropertyChanged( wxPGProperty* p, unsigned int selFlags )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( prevPwc != topPaintedProperty )
@@ -3663,7 +3663,7 @@ bool wxPropertyGrid::DoPropertyChanged( wxPGProperty* p, unsigned int selFlags )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( pwc != changedProperty )
@@ -4197,7 +4197,7 @@ void wxPropertyGrid::DeletePendingObjects()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( !m_deletedEditorObjects.empty() )
@@ -4383,7 +4383,7 @@ bool wxPropertyGrid::DoSelectProperty( wxPGProperty* p, unsigned int flags )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned int i=0; i<prevSelection.size(); i++ )
@@ -4764,7 +4764,7 @@ bool wxPropertyGrid::DoHideProperty( wxPGProperty* p, bool hide, int flags )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i=0; i<selection.size(); i++ )
@@ -4965,7 +4965,7 @@ void wxPropertyGrid::SetFocusOnCanvas()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( parent )
@@ -5456,7 +5456,7 @@ bool wxPropertyGrid::HandleMouseMove( int x, unsigned int y,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( int i=(selection.size()-1); i>=0; i-- )
@@ -5848,7 +5848,7 @@ void wxPropertyGrid::ClearActionTriggers( int action )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -5860,7 +5860,7 @@ void wxPropertyGrid::ClearActionTriggers( int action )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( it = m_actionTriggers.begin();
@@ -5880,7 +5880,7 @@ void wxPropertyGrid::ClearActionTriggers( int action )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( didSomething );
@@ -5897,7 +5897,7 @@ int wxPGFindInVector( CONTAINER vector, const T& item )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i=0; i<vector.size(); i++ )
@@ -6208,7 +6208,7 @@ void wxPropertyGrid::OnIdle( wxIdleEvent& WXUNUSED(event) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( cntAfter > 0 )
@@ -6230,7 +6230,7 @@ void wxPropertyGrid::OnIdle( wxIdleEvent& WXUNUSED(event) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( cntAfter > 0 )
@@ -6283,7 +6283,7 @@ void wxPropertyGrid::HandleFocusChange( wxWindow* newFocused )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( parent )
@@ -6492,7 +6492,7 @@ bool wxPGStringTokenizer::HasMoreTokens()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( i != str.end() )
@@ -6694,7 +6694,7 @@ wxPropertyGridEvent::~wxPropertyGridEvent()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int i = liveEvents.size()-1; i >= 0; i-- )
@@ -6755,7 +6755,7 @@ wxPropertyGridPopulator::~wxPropertyGridPopulator()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( it = m_dictIdChoices.begin(); it != m_dictIdChoices.end(); ++it )
@@ -6865,7 +6865,7 @@ wxPGChoices wxPropertyGridPopulator::ParseChoices( const wxString& choicesString
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( it = choicesString.begin(); it != choicesString.end(); ++it )

@@ -203,7 +203,7 @@ bool wxRadioBox::Create(wxWindow *parent,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < n; i++ )
@@ -310,7 +310,7 @@ wxRadioBox::~wxRadioBox()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t item = 0; item < m_radioButtons->GetCount(); item++ )
@@ -365,7 +365,7 @@ bool wxRadioBox::MSWCommand(WXUINT cmd, WXWORD id_)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned int i = 0; i < count; i++ )
@@ -489,7 +489,7 @@ bool wxRadioBox::CanBeFocused() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t item = 0; item < m_radioButtons->GetCount(); item++ )
@@ -585,7 +585,7 @@ bool wxRadioBox::Reparent(wxWindowBase *newParent)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t item = 0; item < m_radioButtons->GetCount(); item++ )
@@ -616,7 +616,7 @@ wxSize wxRadioBox::GetMaxButtonSize() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0 ; i < count; i++ )
@@ -750,7 +750,7 @@ wxRadioBox::PositionAllButtons(int x, int y, int width, int WXUNUSED(height))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < count; i++)
@@ -834,7 +834,7 @@ int wxRadioBox::GetItemFromPoint(const wxPoint& pt) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < count; i++ )
@@ -869,7 +869,7 @@ WXHRGN wxRadioBox::MSWGetRegionWithoutChildren()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < count; ++i )
@@ -995,7 +995,7 @@ wxRadioBtnWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for ( wxWindow* subjectOfHelp = radiobox;

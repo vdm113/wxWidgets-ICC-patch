@@ -412,7 +412,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int i = 0; i < m_argc; i++ )
@@ -430,7 +430,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( wargv[argc] )
@@ -443,7 +443,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int i = 0; i < m_argc; i++ )
@@ -460,7 +460,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int i = 0; i < m_argc; i++ )
@@ -585,7 +585,7 @@ int BlockUntilChildExit(wxExecuteData& execData)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( execData.pid )
@@ -748,7 +748,7 @@ long wxExecute(char **argv, int flags, wxProcess *process,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int fd = 0; fd < (int)FD_SETSIZE; ++fd )
@@ -789,7 +789,7 @@ long wxExecute(char **argv, int flags, wxProcess *process,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( it = oldenv.begin(); it != oldenv.end(); ++it )
@@ -804,7 +804,7 @@ long wxExecute(char **argv, int flags, wxProcess *process,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( it = env->env.begin(); it != env->env.end(); ++it )
@@ -820,7 +820,7 @@ long wxExecute(char **argv, int flags, wxProcess *process,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( char **a = argv; *a; a++ )
@@ -1018,7 +1018,7 @@ wxGetCommandOutput(const wxString &cmd, wxMBConv& conv = wxConvISO8859_1)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( !feof(f) )
@@ -1378,7 +1378,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxEnvVars::const_iterator i = gs_envVars.begin();
@@ -1623,7 +1623,7 @@ bool CheckForChildExit(int pid, int* exitcodeOut)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )
@@ -1693,7 +1693,7 @@ void wxExecuteData::OnSomeChildExited(int WXUNUSED(sig))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ChildProcessesData::const_iterator it = allChildProcesses.begin();

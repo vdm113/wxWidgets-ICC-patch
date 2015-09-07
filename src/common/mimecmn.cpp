@@ -131,7 +131,7 @@ void wxFileTypeInfo::DoVarArgInit(const wxString& mimeType,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )
@@ -185,7 +185,7 @@ wxFileTypeInfo::wxFileTypeInfo(const wxArrayString& sArray)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 4; i < count; i++ )
@@ -224,7 +224,7 @@ wxString wxFileType::ExpandCommand(const wxString& command,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( const wxChar *pc = command.c_str(); *pc != wxT('\0'); pc++ ) {
@@ -674,7 +674,7 @@ wxMimeTypesManager::GetFileTypeFromExtension(const wxString& ext)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ ) {
@@ -706,7 +706,7 @@ wxMimeTypesManager::GetFileTypeFromMimeType(const wxString& mimeType)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ ) {
@@ -730,7 +730,7 @@ void wxMimeTypesManager::AddFallbacks(const wxFileTypeInfo *filetypes)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( const wxFileTypeInfo *ft = filetypes; ft && ft->IsValid(); ft++ ) {
@@ -750,7 +750,7 @@ size_t wxMimeTypesManager::EnumAllFileTypes(wxArrayString& mimetypes)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ ) {

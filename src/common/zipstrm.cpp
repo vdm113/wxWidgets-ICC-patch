@@ -549,7 +549,7 @@ size_t wxRawInputStream::OnSysRead(void *buffer, size_t size)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (count < size && IsOk())
@@ -559,7 +559,7 @@ size_t wxRawInputStream::OnSysRead(void *buffer, size_t size)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (m_parent_i_stream->IsOk() && m_tee->GetCount() == 0)
@@ -868,7 +868,7 @@ wxString wxZipEntry::GetName(wxPathFormat format /*=wxPATH_NATIVE*/) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (size_t i = 0; i < name.length(); i++)
@@ -921,7 +921,7 @@ wxString wxZipEntry::GetInternalName(const wxString& name,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (!internal.empty() && *internal.begin() == '/')
@@ -931,7 +931,7 @@ wxString wxZipEntry::GetInternalName(const wxString& name,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (!internal.empty() && internal.compare(0, 2, wxT("./")) == 0)
@@ -1748,7 +1748,7 @@ bool wxZipInputStream::FindEndRecord()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (pos > minpos) {
@@ -1768,7 +1768,7 @@ bool wxZipInputStream::FindEndRecord()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (p-- > buf.data()) {
@@ -1852,7 +1852,7 @@ wxStreamError wxZipInputStream::ReadLocal(bool readEndRec /*=false*/)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (m_signature == CENTRAL_MAGIC) {
@@ -2073,7 +2073,7 @@ bool wxZipInputStream::CloseEntry()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (IsOk())
@@ -2331,7 +2331,7 @@ wxOutputStream *wxZipOutputStream::OpenCompressor(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int i = 0; bufs[i].m_data; ++i)
@@ -2511,7 +2511,7 @@ bool wxZipOutputStream::Close()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (it = m_entries.begin(); it != m_entries.end(); ++it) {

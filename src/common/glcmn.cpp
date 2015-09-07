@@ -140,7 +140,7 @@ bool wxGLCanvasBase::IsExtensionInList(const char *list, const char *extension)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( const char *p = list; *p; p++ )

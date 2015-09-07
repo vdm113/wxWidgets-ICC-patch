@@ -168,7 +168,7 @@ void ZLIB_INTERNAL zmemcpy(dest, source, len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do {
@@ -188,7 +188,7 @@ int ZLIB_INTERNAL zmemcmp(s1, s2, len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (j = 0; j < len; j++) {
@@ -207,7 +207,7 @@ void ZLIB_INTERNAL zmemzero(dest, len)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do {
@@ -286,7 +286,7 @@ void ZLIB_INTERNAL zcfree (voidpf opaque, voidpf ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (n = 0; n < next_ptr; n++) {
@@ -298,7 +298,7 @@ void ZLIB_INTERNAL zcfree (voidpf opaque, voidpf ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (++n < next_ptr) {

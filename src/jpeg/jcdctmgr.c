@@ -73,7 +73,7 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -103,7 +103,7 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (i = 0; i < DCTSIZE2; i++) {
@@ -145,7 +145,7 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < DCTSIZE2; i++) {
@@ -187,7 +187,7 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (row = 0; row < DCTSIZE; row++) {
@@ -196,7 +196,7 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	  for (col = 0; col < DCTSIZE; col++) {
@@ -246,7 +246,7 @@ forward_DCT (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (bi = 0; bi < num_blocks; bi++, start_col += DCTSIZE) {
@@ -261,7 +261,7 @@ forward_DCT (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (elemr = 0; elemr < DCTSIZE; elemr++) {
@@ -282,7 +282,7 @@ forward_DCT (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	  for (elemc = DCTSIZE; elemc > 0; elemc--) {
@@ -306,7 +306,7 @@ forward_DCT (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (i = 0; i < DCTSIZE2; i++) {
@@ -368,7 +368,7 @@ forward_DCT_float (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (bi = 0; bi < num_blocks; bi++, start_col += DCTSIZE) {
@@ -383,7 +383,7 @@ forward_DCT_float (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (elemr = 0; elemr < DCTSIZE; elemr++) {
@@ -404,7 +404,7 @@ forward_DCT_float (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	  for (elemc = DCTSIZE; elemc > 0; elemc--) {
@@ -429,7 +429,7 @@ forward_DCT_float (j_compress_ptr cinfo, jpeg_component_info * compptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (i = 0; i < DCTSIZE2; i++) {
@@ -496,7 +496,7 @@ jinit_forward_dct (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < NUM_QUANT_TBLS; i++) {

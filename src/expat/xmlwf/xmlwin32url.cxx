@@ -176,7 +176,7 @@ Callback::OnDataAvailable(DWORD grfBSCF,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	  while ((*p1++ = (unsigned char)*p2++) != 0)
@@ -198,7 +198,7 @@ Callback::OnDataAvailable(DWORD grfBSCF,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (totalRead_ < dwSize) {
@@ -298,7 +298,7 @@ openStream(XML_Parser parser,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (int i = 0;; i++) {
@@ -416,7 +416,7 @@ processURL(XML_Parser parser, IMoniker *baseMoniker,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (!qi.stop && GetMessage (&msg, NULL, 0, 0)) {

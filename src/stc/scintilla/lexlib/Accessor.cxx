@@ -60,7 +60,7 @@ int Accessor::IndentAmount(int line, int *flags, PFNIsCommentLeader pfnIsComment
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((ch == ' ' || ch == '\t') && (pos < end)) {

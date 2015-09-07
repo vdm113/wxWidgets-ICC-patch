@@ -71,7 +71,7 @@ DocumentOstream& DrawingDocument::SaveObject(DocumentOstream& ostream)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < count; n++ )
@@ -111,7 +111,7 @@ DocumentIstream& DrawingDocument::LoadObject(DocumentIstream& istream)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < count; n++ )
@@ -172,7 +172,7 @@ DocumentOstream& DoodleSegment::SaveObject(DocumentOstream& ostream)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < count; n++ )
@@ -204,7 +204,7 @@ DocumentIstream& DoodleSegment::LoadObject(DocumentIstream& istream)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < count; n++ )

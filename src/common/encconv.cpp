@@ -67,7 +67,7 @@ static const wxUint16* GetEncTable(wxFontEncoding enc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for( unsigned char c = 255 ; c >= 128 ; --c )
@@ -87,7 +87,7 @@ static const wxUint16* GetEncTable(wxFontEncoding enc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; encodings_list[i].table != NULL; i++)
@@ -121,7 +121,7 @@ static CharsetItem* BuildReverseTable(const wxUint16 *tbl)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < 128; i++)
@@ -166,7 +166,7 @@ bool wxEncodingConverter::Init(wxFontEncoding input_enc, wxFontEncoding output_e
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < 128; i++)  m_Table[i] = (wchar_t)i; // 7bit ASCII
@@ -175,7 +175,7 @@ bool wxEncodingConverter::Init(wxFontEncoding input_enc, wxFontEncoding output_e
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 128; i < 65536; i++)  m_Table[i] = (wchar_t)0;
@@ -187,7 +187,7 @@ bool wxEncodingConverter::Init(wxFontEncoding input_enc, wxFontEncoding output_e
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < encoding_unicode_fallback_count; i++)
@@ -199,7 +199,7 @@ bool wxEncodingConverter::Init(wxFontEncoding input_enc, wxFontEncoding output_e
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < 128; i++)
@@ -221,7 +221,7 @@ bool wxEncodingConverter::Init(wxFontEncoding input_enc, wxFontEncoding output_e
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < 128; i++)  m_Table[i] = (wchar_t)i; // 7bit ASCII
@@ -233,7 +233,7 @@ bool wxEncodingConverter::Init(wxFontEncoding input_enc, wxFontEncoding output_e
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < 128; i++)  m_Table[128 + i] = (wchar_t)in_tbl[i];
@@ -250,7 +250,7 @@ bool wxEncodingConverter::Init(wxFontEncoding input_enc, wxFontEncoding output_e
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < 128; i++)
@@ -312,7 +312,7 @@ bool wxEncodingConverter::Convert(const char* input, char* output) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = input, o = output; *i != 0;)
@@ -338,7 +338,7 @@ bool wxEncodingConverter::Convert(const char* input, wchar_t* output) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = input, o = output; *i != 0;)
@@ -357,7 +357,7 @@ bool wxEncodingConverter::Convert(const char* input, wchar_t* output) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = input, o = output; *i != 0;)
@@ -384,7 +384,7 @@ bool wxEncodingConverter::Convert(const wchar_t* input, char* output) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = input, o = output; *i != 0;)
@@ -403,7 +403,7 @@ bool wxEncodingConverter::Convert(const wchar_t* input, char* output) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = input, o = output; *i != 0;)
@@ -431,7 +431,7 @@ bool wxEncodingConverter::Convert(const wchar_t* input, wchar_t* output) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = input, o = output; *i != 0;)
@@ -450,7 +450,7 @@ bool wxEncodingConverter::Convert(const wchar_t* input, wchar_t* output) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = input, o = output; *i != 0;)
@@ -478,7 +478,7 @@ wxString wxEncodingConverter::Convert(const wxString& input) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = input.c_str(); *i != 0; i++)
@@ -491,7 +491,7 @@ wxString wxEncodingConverter::Convert(const wxString& input) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = input.c_str(); *i != 0; i++)
@@ -591,7 +591,7 @@ static bool FindEncoding(const wxFontEncodingArray& arr, wxFontEncoding f)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (wxFontEncodingArray::const_iterator it = arr.begin(), en = arr.end();
@@ -636,7 +636,7 @@ wxFontEncodingArray wxEncodingConverter::GetPlatformEquivalents(wxFontEncoding e
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (EquivalentEncodings[clas][0][0] != STOP)
@@ -646,7 +646,7 @@ wxFontEncodingArray wxEncodingConverter::GetPlatformEquivalents(wxFontEncoding e
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < NUM_OF_PLATFORMS; i++)
@@ -655,7 +655,7 @@ wxFontEncodingArray wxEncodingConverter::GetPlatformEquivalents(wxFontEncoding e
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (e = 0; EquivalentEncodings[clas][i][e] != STOP; e++)
@@ -666,7 +666,7 @@ wxFontEncodingArray wxEncodingConverter::GetPlatformEquivalents(wxFontEncoding e
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (f = EquivalentEncodings[clas][platform]; *f != STOP; f++)
@@ -676,7 +676,7 @@ wxFontEncodingArray wxEncodingConverter::GetPlatformEquivalents(wxFontEncoding e
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (f = EquivalentEncodings[clas][platform]; *f != STOP; f++)
@@ -705,7 +705,7 @@ wxFontEncodingArray wxEncodingConverter::GetAllEquivalents(wxFontEncoding enc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (EquivalentEncodings[clas][0][0] != STOP)
@@ -715,7 +715,7 @@ wxFontEncodingArray wxEncodingConverter::GetAllEquivalents(wxFontEncoding enc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < NUM_OF_PLATFORMS; i++)
@@ -724,7 +724,7 @@ wxFontEncodingArray wxEncodingConverter::GetAllEquivalents(wxFontEncoding enc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (e = 0; EquivalentEncodings[clas][i][e] != STOP; e++)
@@ -735,7 +735,7 @@ wxFontEncodingArray wxEncodingConverter::GetAllEquivalents(wxFontEncoding enc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (j = 0; j < NUM_OF_PLATFORMS; j++)
@@ -744,7 +744,7 @@ wxFontEncodingArray wxEncodingConverter::GetAllEquivalents(wxFontEncoding enc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         for (f = EquivalentEncodings[clas][j]; *f != STOP; f++)

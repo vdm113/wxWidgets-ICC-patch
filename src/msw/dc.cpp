@@ -937,7 +937,7 @@ void wxMSWDCImpl::DoDrawPolygon(int n,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < n; i++)
@@ -964,7 +964,7 @@ void wxMSWDCImpl::DoDrawPolygon(int n,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < n; i++)
@@ -998,7 +998,7 @@ wxMSWDCImpl::DoDrawPolyPolygon(int n,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = cnt = 0; i < n; i++)
@@ -1013,7 +1013,7 @@ wxMSWDCImpl::DoDrawPolyPolygon(int n,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < cnt; i++)
@@ -1039,7 +1039,7 @@ wxMSWDCImpl::DoDrawPolyPolygon(int n,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < cnt; i++)
@@ -1069,7 +1069,7 @@ void wxMSWDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoffset, wx
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < n; i++)
@@ -1090,7 +1090,7 @@ void wxMSWDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoffset, wx
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < n; i++)
@@ -1239,7 +1239,7 @@ void wxMSWDCImpl::DoDrawSpline(const wxPointList *points)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((node = node->GetNext()) != NULL)
@@ -1249,7 +1249,7 @@ void wxMSWDCImpl::DoDrawSpline(const wxPointList *points)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((node = node->GetNext()))
@@ -1598,7 +1598,7 @@ void wxMSWDCImpl::DoDrawRotatedText(const wxString& text,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t lineNum = 0; lineNum < lines.size(); lineNum++ )
@@ -2622,7 +2622,7 @@ wxDCCacheEntry* wxMSWDCImpl::FindBitmapInCache(WXHDC dc, int w, int h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -2666,7 +2666,7 @@ wxDCCacheEntry* wxMSWDCImpl::FindDCInCache(wxDCCacheEntry* notThis, WXHDC dc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -2789,7 +2789,7 @@ static bool AlphaBlt(wxMSWDCImpl* dcDst,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( int y = 0; y < data.GetHeight(); y++ )
@@ -2801,7 +2801,7 @@ static bool AlphaBlt(wxMSWDCImpl* dcDst,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for ( int x = 0; x < data.GetWidth(); x++ )

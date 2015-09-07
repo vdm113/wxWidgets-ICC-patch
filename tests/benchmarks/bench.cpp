@@ -224,7 +224,7 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( Bench::Function *func = Bench::Function::GetFirst();
@@ -239,7 +239,7 @@ bool BenchApp::OnCmdLineParsed(wxCmdLineParser& parser)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -265,7 +265,7 @@ int BenchApp::OnRun()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( Bench::Function *func = Bench::Function::GetFirst();
@@ -296,7 +296,7 @@ int BenchApp::OnRun()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( long a = 0; ok && a < m_avgCount; a++ )
@@ -307,7 +307,7 @@ int BenchApp::OnRun()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( long n = 0; n < m_numRuns && ok; n++ )
@@ -371,7 +371,7 @@ void BenchApp::ListBenchmarks()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( Bench::Function *func = Bench::Function::GetFirst();

@@ -128,7 +128,7 @@ static void wxCleanUpGCPool()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < GC_POOL_SIZE; i++)
@@ -145,7 +145,7 @@ static GC wxGetPoolGC( Window window, wxPoolGCType type )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < GC_POOL_SIZE; i++)
@@ -176,7 +176,7 @@ static void wxFreePoolGC( GC gc )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < GC_POOL_SIZE; i++)
@@ -508,7 +508,7 @@ void wxWindowDCImpl::DoDrawArc( wxCoord x1, wxCoord y1, wxCoord x2, wxCoord y2, 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (alpha2 <= 0) alpha2 += 360*64;
@@ -517,7 +517,7 @@ void wxWindowDCImpl::DoDrawArc( wxCoord x1, wxCoord y1, wxCoord x2, wxCoord y2, 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (alpha1 > 360*64) alpha1 -= 360*64;
@@ -696,7 +696,7 @@ void wxWindowDCImpl::DoDrawLines( int n, const wxPoint points[], wxCoord xoffset
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < n; i++)
@@ -726,7 +726,7 @@ void wxWindowDCImpl::DoDrawPolygon( int n, const wxPoint points[],
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < n; i++)
@@ -1304,7 +1304,7 @@ void wxWindowDCImpl::DoDrawBitmap( const wxBitmap &bitmap,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( wxRegionIterator iter(m_currentClippingRegion);

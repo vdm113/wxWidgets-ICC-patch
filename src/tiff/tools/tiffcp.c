@@ -186,7 +186,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((c = getopt(argc, argv, ",:b:c:f:l:o:z:p:r:w:aistBLMC8x")) != -1)
@@ -296,7 +296,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; optind < argc-1 ; optind++) {
@@ -318,7 +318,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (;;) {
@@ -357,7 +357,7 @@ processZIPOptions(char* cp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		do {
@@ -383,7 +383,7 @@ processG3Options(char* cp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		do {
@@ -416,7 +416,7 @@ processCompressOptions(char* opt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while( cp )
@@ -526,7 +526,7 @@ usage(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; stuff[i] != NULL; i++)
@@ -835,7 +835,7 @@ tiffcp(TIFF* in, TIFF* out)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (ninks > 1) {
@@ -873,7 +873,7 @@ tiffcp(TIFF* in, TIFF* out)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (p = tags; p < &tags[NTAGS]; p++)
@@ -919,7 +919,7 @@ DECLAREcpFunc(cpContig2ContigByRow)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (row = 0; row < imagelength; row++) {
@@ -999,7 +999,7 @@ DECLAREcpFunc(cpBiasedContig2Contig)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (row = 0; row < imagelength; row++) {
@@ -1075,7 +1075,7 @@ DECLAREcpFunc(cpDecodedStrips)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (s = 0; s < ns; s++) {
@@ -1130,7 +1130,7 @@ DECLAREcpFunc(cpSeparate2SeparateByRow)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (s = 0; s < spp; s++) {
@@ -1139,7 +1139,7 @@ DECLAREcpFunc(cpSeparate2SeparateByRow)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (row = 0; row < imagelength; row++) {
@@ -1190,7 +1190,7 @@ DECLAREcpFunc(cpContig2SeparateByRow)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (s = 0; s < spp; s++) {
@@ -1199,7 +1199,7 @@ DECLAREcpFunc(cpContig2SeparateByRow)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (row = 0; row < imagelength; row++) {
@@ -1217,7 +1217,7 @@ DECLAREcpFunc(cpContig2SeparateByRow)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (n = imagewidth; n-- > 0;) {
@@ -1266,7 +1266,7 @@ DECLAREcpFunc(cpSeparate2ContigByRow)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (row = 0; row < imagelength; row++) {
@@ -1276,7 +1276,7 @@ DECLAREcpFunc(cpSeparate2ContigByRow)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (s = 0; s < spp; s++) {
@@ -1294,7 +1294,7 @@ DECLAREcpFunc(cpSeparate2ContigByRow)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (n = imagewidth; n-- > 0;) {
@@ -1327,7 +1327,7 @@ cpStripToTile(uint8* out, uint8* in,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (rows-- > 0) {
@@ -1337,7 +1337,7 @@ cpStripToTile(uint8* out, uint8* in,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (j-- > 0)
@@ -1357,7 +1357,7 @@ cpContigBufToSeparateBuf(uint8* out, uint8* in,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (rows-- > 0) {
@@ -1367,7 +1367,7 @@ cpContigBufToSeparateBuf(uint8* out, uint8* in,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (j-- > 0)
@@ -1379,7 +1379,7 @@ cpContigBufToSeparateBuf(uint8* out, uint8* in,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while( n-- ) {
@@ -1402,7 +1402,7 @@ cpSeparateBufToContigBuf(uint8* out, uint8* in,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (rows-- > 0) {
@@ -1412,7 +1412,7 @@ cpSeparateBufToContigBuf(uint8* out, uint8* in,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (j-- > 0) {
@@ -1423,7 +1423,7 @@ cpSeparateBufToContigBuf(uint8* out, uint8* in,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while( n-- ) {
@@ -1481,7 +1481,7 @@ DECLAREreadFunc(readContigStripsIntoBuffer)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (row = 0; row < imagelength; row++) {
@@ -1520,7 +1520,7 @@ DECLAREreadFunc(readSeparateStripsIntoBuffer)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (row = 0; row < imagelength; row++) {
@@ -1530,7 +1530,7 @@ DECLAREreadFunc(readSeparateStripsIntoBuffer)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (s = 0; s < spp; s++) {
@@ -1551,7 +1551,7 @@ DECLAREreadFunc(readSeparateStripsIntoBuffer)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while (n-- > 0)
@@ -1591,7 +1591,7 @@ DECLAREreadFunc(readContigTilesIntoBuffer)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (row = 0; row < imagelength; row += tl) {
@@ -1604,7 +1604,7 @@ DECLAREreadFunc(readContigTilesIntoBuffer)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (col = 0; col < imagewidth; col += tw) {
@@ -1664,7 +1664,7 @@ DECLAREreadFunc(readSeparateTilesIntoBuffer)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (row = 0; row < imagelength; row += tl) {
@@ -1677,7 +1677,7 @@ DECLAREreadFunc(readSeparateTilesIntoBuffer)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (col = 0; col < imagewidth; col += tw) {
@@ -1688,7 +1688,7 @@ DECLAREreadFunc(readSeparateTilesIntoBuffer)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (s = 0; s < spp; s++) {
@@ -1745,7 +1745,7 @@ DECLAREwriteFunc(writeBufferToContigStrips)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (row = 0; row < imagelength; row += rowsperstrip) {
@@ -1781,7 +1781,7 @@ DECLAREwriteFunc(writeBufferToSeparateStrips)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (s = 0; s < spp; s++) {
@@ -1791,7 +1791,7 @@ DECLAREwriteFunc(writeBufferToSeparateStrips)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (row = 0; row < imagelength; row += rowsperstrip) {
@@ -1840,7 +1840,7 @@ DECLAREwriteFunc(writeBufferToContigTiles)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (row = 0; row < imagelength; row += tilelength) {
@@ -1853,7 +1853,7 @@ DECLAREwriteFunc(writeBufferToContigTiles)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (col = 0; col < imagewidth; col += tw) {
@@ -1913,7 +1913,7 @@ DECLAREwriteFunc(writeBufferToSeparateTiles)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (row = 0; row < imagelength; row += tl) {
@@ -1926,7 +1926,7 @@ DECLAREwriteFunc(writeBufferToSeparateTiles)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (col = 0; col < imagewidth; col += tw) {
@@ -1936,7 +1936,7 @@ DECLAREwriteFunc(writeBufferToSeparateTiles)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (s = 0; s < spp; s++) {

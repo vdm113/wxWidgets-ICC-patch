@@ -78,7 +78,7 @@ static void ColouriseComment(StyleContext& sc, bool&) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (!sc.atLineEnd) {
@@ -103,7 +103,7 @@ static void ColouriseNumber(StyleContext& sc, bool& apostropheStartsAttribute) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (!IsSeparatorOrDelimiterCharacter(sc.ch) || (sc.ch == '.' && sc.chNext != '.')) {
@@ -120,7 +120,7 @@ static void ColouriseNumber(StyleContext& sc, bool& apostropheStartsAttribute) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (!IsSeparatorOrDelimiterCharacter(sc.ch)) {
@@ -145,7 +145,7 @@ static void ColouriseWord(StyleContext& sc, WordList& keywords, WordList& keywor
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (!sc.atLineEnd && !IsSeparatorOrDelimiterCharacter(sc.ch)) {
@@ -193,7 +193,7 @@ static void ColouriseDocument(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (sc.More()) {

@@ -443,7 +443,7 @@ private:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int x = 0; x < 25; ++x)
@@ -452,7 +452,7 @@ private:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int y = 0; y < 14; ++y)
@@ -1022,7 +1022,7 @@ MyFrame::MyFrame(wxWindow* parent,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0, count = all_panes.GetCount(); i < count; ++i)
@@ -1107,7 +1107,7 @@ void MyFrame::OnToolbarResizing(wxCommandEvent& WXUNUSED(evt))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < count; ++i)
@@ -1227,7 +1227,7 @@ void MyFrame::OnNotebookFlag(wxCommandEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0, count = all_panes.GetCount(); i < count; ++i)
@@ -1282,7 +1282,7 @@ void MyFrame::OnUpdateUI(wxUpdateUIEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (size_t i = 0; i < count; ++i)
@@ -1575,7 +1575,7 @@ void MyFrame::OnTabAlignment(wxCommandEvent &evt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0, count = all_panes.GetCount(); i < count; ++i)
@@ -1663,7 +1663,7 @@ wxTreeCtrl* MyFrame::CreateTreeCtrl()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0, count = items.Count(); i < count; ++i)

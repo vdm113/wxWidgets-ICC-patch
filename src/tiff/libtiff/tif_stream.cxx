@@ -250,7 +250,7 @@ _tiffosSeekProc(thandle_t fd, uint64 off, int whence)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for( uint64 i = 0; i < num_fill; i++ )

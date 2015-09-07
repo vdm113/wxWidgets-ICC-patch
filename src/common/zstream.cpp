@@ -221,7 +221,7 @@ size_t wxZlibInputStream::OnSysRead(void *buffer, size_t size)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (err == Z_OK && m_inflate->avail_out > 0) {
@@ -389,7 +389,7 @@ void wxZlibOutputStream::DoFlush(bool final)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (err == Z_OK || err == Z_STREAM_END) {
@@ -433,7 +433,7 @@ size_t wxZlibOutputStream::OnSysWrite(const void *buffer, size_t size)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (err == Z_OK && m_deflate->avail_in > 0) {

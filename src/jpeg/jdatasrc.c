@@ -148,7 +148,7 @@ skip_input_data (j_decompress_ptr cinfo, long num_bytes)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (num_bytes > (long) src->pub.bytes_in_buffer) {

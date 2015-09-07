@@ -258,7 +258,7 @@ void wxFileDialog::GetPaths(wxArrayString& paths) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -604,7 +604,7 @@ int wxFileDialog::ShowModal()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < len; i++ )
@@ -624,7 +624,7 @@ int wxFileDialog::ShowModal()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while ( i < len - 1 )
@@ -666,7 +666,7 @@ int wxFileDialog::ShowModal()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < items ; i++)
@@ -683,7 +683,7 @@ int wxFileDialog::ShowModal()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < filterBuffer.length(); i++ ) {
@@ -717,7 +717,7 @@ int wxFileDialog::ShowModal()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for( int j = 0; j < maxFilter; j++ )           // get extension
@@ -772,7 +772,7 @@ int wxFileDialog::ShowModal()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (fileNameBuffer[i] != wxT('\0'))
@@ -791,7 +791,7 @@ int wxFileDialog::ShowModal()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (toke.HasMoreTokens())
@@ -823,7 +823,7 @@ int wxFileDialog::ShowModal()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for( int j = 0; j < maxFilter; j++ )           // get extension

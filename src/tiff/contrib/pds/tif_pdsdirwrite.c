@@ -183,7 +183,7 @@ TIFFWritePrivateDataSubDirectory(TIFF* tif,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (b = 0; b <= pdir_fields_last; b++)
@@ -248,7 +248,7 @@ TIFFWritePrivateDataSubDirectory(TIFF* tif,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (fip = field_info; fip->field_tag; fip++) {
@@ -289,7 +289,7 @@ TIFFWritePrivateDataSubDirectory(TIFF* tif,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (dir = (TIFFDirEntry*) data; dircount; dir++, dircount--) {
@@ -559,7 +559,7 @@ TIFFWritePerSampleShorts(TIFF* tif, ttag_t tag, TIFFDirEntry* dir)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < samples; i++)
@@ -592,7 +592,7 @@ TIFFWritePerSampleAnys(TIFF* tif,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < samples; i++)
@@ -638,7 +638,7 @@ TIFFWriteShortTable(TIFF* tif,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < n; i++)
@@ -728,7 +728,7 @@ TIFFWriteRationalArray(TIFF* tif,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < n; i++) {
@@ -752,7 +752,7 @@ TIFFWriteRationalArray(TIFF* tif,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (fv < 1L<<(31-3) && den < 1L<<(31-3))
@@ -819,7 +819,7 @@ TIFFWriteAnyArray(TIFF* tif,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		  for (i = 0; i < n; i++)
@@ -838,7 +838,7 @@ TIFFWriteAnyArray(TIFF* tif,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		  for (i = 0; i < n; i++)
@@ -857,7 +857,7 @@ TIFFWriteAnyArray(TIFF* tif,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		  for (i = 0; i < n; i++)
@@ -873,7 +873,7 @@ TIFFWriteAnyArray(TIFF* tif,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		  for (i = 0; i < n; i++)
@@ -889,7 +889,7 @@ TIFFWriteAnyArray(TIFF* tif,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		  for (i = 0; i < n; i++)
@@ -905,7 +905,7 @@ TIFFWriteAnyArray(TIFF* tif,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		  for (i = 0; i < n; i++)
@@ -921,7 +921,7 @@ TIFFWriteAnyArray(TIFF* tif,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		  for (i = 0; i < n; i++)
@@ -1070,7 +1070,7 @@ TIFFLinkDirectory(TIFF* tif)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do {

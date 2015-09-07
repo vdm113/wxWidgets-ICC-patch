@@ -100,7 +100,7 @@ build_ycc_rgb_table (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0, x = -CENTERJSAMPLE; i <= MAXJSAMPLE; i++, x++) {
@@ -156,7 +156,7 @@ ycc_rgb_convert (j_decompress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (--num_rows >= 0) {
@@ -170,7 +170,7 @@ ycc_rgb_convert (j_decompress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (col = 0; col < num_cols; col++) {
@@ -213,7 +213,7 @@ null_convert (j_decompress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (--num_rows >= 0) {
@@ -222,7 +222,7 @@ null_convert (j_decompress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ci = 0; ci < num_components; ci++) {
@@ -233,7 +233,7 @@ null_convert (j_decompress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (count = num_cols; count > 0; count--) {
@@ -283,7 +283,7 @@ gray_rgb_convert (j_decompress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (--num_rows >= 0) {
@@ -294,7 +294,7 @@ gray_rgb_convert (j_decompress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (col = 0; col < num_cols; col++) {
@@ -337,7 +337,7 @@ ycck_cmyk_convert (j_decompress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (--num_rows >= 0) {
@@ -352,7 +352,7 @@ ycck_cmyk_convert (j_decompress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (col = 0; col < num_cols; col++) {
@@ -442,7 +442,7 @@ jinit_color_deconverter (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (ci = 1; ci < cinfo->num_components; ci++)

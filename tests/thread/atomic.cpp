@@ -114,7 +114,7 @@ void AtomicTestCase::TestNoThread()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxInt32 i = 0; i < ITERATIONS_NUM; ++i )
@@ -150,7 +150,7 @@ void AtomicTestCase::TestWithThreads(int count, ETestType testType)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < count; ++i )
@@ -181,7 +181,7 @@ void AtomicTestCase::TestWithThreads(int count, ETestType testType)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < count; ++i )
@@ -195,7 +195,7 @@ void AtomicTestCase::TestWithThreads(int count, ETestType testType)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < count; ++i )
@@ -218,7 +218,7 @@ void *AtomicTestCase::MyThread::Entry()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxInt32 i = 0; i < ITERATIONS_NUM; ++i )

@@ -324,7 +324,7 @@ wxSize wxNotebook::CalcSizeFromPage(const wxSize& sizePage) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < pageCount; n++ )
@@ -363,7 +363,7 @@ void wxNotebook::SetPadding( const wxSize &padding )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = GetPageCount(); i--;)
@@ -391,7 +391,7 @@ bool wxNotebook::DeleteAllPages()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = GetPageCount(); i--;)
@@ -548,7 +548,7 @@ int wxNotebook::HitTest(const wxPoint& pt, long *flags) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ; i < count; i++ )
@@ -634,7 +634,7 @@ void wxNotebook::DoApplyWidgetStyle(GtkRcStyle *style)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = GetPageCount(); i--;)

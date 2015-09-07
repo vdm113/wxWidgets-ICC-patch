@@ -128,7 +128,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((c = getopt(argc, argv, "m:o:h")) != -1) {
@@ -156,7 +156,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; optind < argc; optind++) {
@@ -251,7 +251,7 @@ dump(int fd, uint64 diroff)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; diroff != 0; i++) {
@@ -382,7 +382,7 @@ ReadDirectory(int fd, unsigned int ix, uint64 off)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (dp = (uint8*)dirmem, n = dircount; n > 0; n--) {
@@ -657,7 +657,7 @@ PrintTag(FILE* fd, uint16 tag)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (tp = tagnames; tp < &tagnames[NTAGS]; tp++)
@@ -711,7 +711,7 @@ PrintASCII(FILE* fd, uint32 cc, const unsigned char* cp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; cc > 0; cc--, cp++) {
@@ -726,7 +726,7 @@ PrintASCII(FILE* fd, uint32 cc, const unsigned char* cp)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (tp = "\tt\bb\rr\nn\vv"; *tp; tp++)
@@ -753,7 +753,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (count-- > 0)
@@ -765,7 +765,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (count-- > 0)
@@ -777,7 +777,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (count-- > 0)
@@ -793,7 +793,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (count-- > 0)
@@ -807,7 +807,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (count-- > 0)
@@ -821,7 +821,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (count-- > 0) {
@@ -837,7 +837,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (count-- > 0)
@@ -851,7 +851,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (count-- > 0) {
@@ -871,7 +871,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (count-- > 0)
@@ -889,7 +889,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (count-- > 0) {
@@ -912,7 +912,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (count-- > 0) {
@@ -934,7 +934,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (count-- > 0)
@@ -948,7 +948,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (count-- > 0)
@@ -962,7 +962,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (count-- > 0) {
@@ -978,7 +978,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (count-- > 0) {

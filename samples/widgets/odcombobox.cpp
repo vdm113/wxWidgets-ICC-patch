@@ -522,7 +522,7 @@ void ODComboboxWidgetsPage::CreateCombo()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned int n = 0; n < count; n++ )
@@ -546,7 +546,7 @@ void ODComboboxWidgetsPage::CreateCombo()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int n = 0; n < count; n++ )
@@ -662,7 +662,7 @@ void ODComboboxWidgetsPage::OnButtonAddMany(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int n = 0; n < 1000; n++ )

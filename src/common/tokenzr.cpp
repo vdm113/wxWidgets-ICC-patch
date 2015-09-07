@@ -62,7 +62,7 @@ find_first_of(const wxChar *delims, size_t len,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator i = from; i != end; ++i )
@@ -86,7 +86,7 @@ find_first_not_of(const wxChar *delims, size_t len,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString::const_iterator i = from; i != end; ++i )
@@ -141,7 +141,7 @@ void wxStringTokenizer::SetString(const wxString& str,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( p = delims.begin(); p != delims.end(); ++p )
@@ -278,7 +278,7 @@ size_t wxStringTokenizer::CountTokens() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( tkz.HasMoreTokens() )
@@ -303,7 +303,7 @@ wxString wxStringTokenizer::GetNextToken()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -353,7 +353,7 @@ wxString wxStringTokenizer::GetNextToken()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( !AllowEmpty() && token.empty() );
@@ -376,7 +376,7 @@ wxArrayString wxStringTokenize(const wxString& str,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( tk.HasMoreTokens() )

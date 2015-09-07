@@ -108,7 +108,7 @@ void wxFileHistoryBase::AddFileToHistory(const wxString& file)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < numFiles; i++ )
@@ -134,7 +134,7 @@ void wxFileHistoryBase::AddFileToHistory(const wxString& file)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxList::compatibility_iterator node = m_fileMenus.GetFirst();
@@ -161,7 +161,7 @@ void wxFileHistoryBase::AddFileToHistory(const wxString& file)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < numFiles; i++ )
@@ -185,7 +185,7 @@ void wxFileHistoryBase::AddFileToHistory(const wxString& file)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxList::compatibility_iterator node = m_fileMenus.GetFirst();
@@ -214,7 +214,7 @@ void wxFileHistoryBase::RemoveFileFromHistory(size_t i)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxList::compatibility_iterator node = m_fileMenus.GetFirst();
@@ -229,7 +229,7 @@ void wxFileHistoryBase::RemoveFileFromHistory(size_t i)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t j = i; j < numFiles; j++ )
@@ -285,7 +285,7 @@ void wxFileHistoryBase::Load(const wxConfigBase& config)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((m_fileHistory.GetCount() < m_fileMaxFiles) &&
@@ -308,7 +308,7 @@ void wxFileHistoryBase::Save(wxConfigBase& config)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < m_fileMaxFiles; i++)
@@ -333,7 +333,7 @@ void wxFileHistoryBase::AddFilesToMenu()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxList::compatibility_iterator node = m_fileMenus.GetFirst();
@@ -357,7 +357,7 @@ void wxFileHistoryBase::AddFilesToMenu(wxMenu* menu)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < m_fileHistory.GetCount(); i++ )
@@ -377,7 +377,7 @@ void wxFileHistoryBase::RemoveExistingHistory()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxList::compatibility_iterator node = m_fileMenus.GetFirst();
@@ -393,7 +393,7 @@ void wxFileHistoryBase::RemoveExistingHistory()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n <= count; n++ )

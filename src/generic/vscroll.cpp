@@ -298,7 +298,7 @@ wxCoord wxVarScrollHelperBase::GetUnitsSize(size_t unitMin, size_t unitMax) cons
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t unit = unitMin; unit < unitMax; ++unit )
@@ -322,7 +322,7 @@ size_t wxVarScrollHelperBase::FindFirstVisibleFromLast(size_t unitLast, bool ful
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )
@@ -419,7 +419,7 @@ void wxVarScrollHelperBase::UpdateScrollbar()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unit = m_unitFirst; unit < m_unitMax; ++unit )
@@ -541,7 +541,7 @@ void wxVarScrollHelperBase::RefreshUnit(size_t unit)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = GetVisibleBegin(); n < unit; ++n )
@@ -576,7 +576,7 @@ void wxVarScrollHelperBase::RefreshUnits(size_t from, size_t to)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t nBefore = GetVisibleBegin();
@@ -591,7 +591,7 @@ void wxVarScrollHelperBase::RefreshUnits(size_t from, size_t to)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t nBetween = from; nBetween <= to; nBetween++ )
@@ -643,7 +643,7 @@ int wxVarScrollHelperBase::VirtualHitTest(wxCoord coord) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t unit = GetVisibleBegin(); unit < unitMax; ++unit )
@@ -754,7 +754,7 @@ bool wxVarScrollHelperBase::DoScrollPages(int pages)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( pages )
@@ -800,7 +800,7 @@ void wxVarScrollHelperBase::HandleOnSize(wxSizeEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unit = m_unitFirst; unit < m_unitMax; ++unit )
@@ -819,7 +819,7 @@ void wxVarScrollHelperBase::HandleOnSize(wxSizeEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( idealUnitFirst = m_unitFirst;
@@ -949,7 +949,7 @@ void wxVarHVScrollHelper::RefreshRowColumn(size_t row, size_t column)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = GetVisibleRowsBegin(); n < row; n++ )
@@ -962,7 +962,7 @@ void wxVarHVScrollHelper::RefreshRowColumn(size_t row, size_t column)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = GetVisibleColumnsBegin(); n < column; n++ )
@@ -1018,7 +1018,7 @@ void wxVarHVScrollHelper::RefreshRowsColumns(size_t fromRow, size_t toRow,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( nBefore = GetVisibleRowsBegin();
@@ -1033,7 +1033,7 @@ void wxVarHVScrollHelper::RefreshRowsColumns(size_t fromRow, size_t toRow,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( nBetween = fromRow; nBetween <= toRow; nBetween++ )
@@ -1046,7 +1046,7 @@ void wxVarHVScrollHelper::RefreshRowsColumns(size_t fromRow, size_t toRow,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( nBefore = GetVisibleColumnsBegin();
@@ -1061,7 +1061,7 @@ void wxVarHVScrollHelper::RefreshRowsColumns(size_t fromRow, size_t toRow,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( nBetween = fromColumn; nBetween <= toColumn; nBetween++ )

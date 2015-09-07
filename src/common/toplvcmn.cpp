@@ -85,7 +85,7 @@ wxTopLevelWindowBase::~wxTopLevelWindowBase()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxObjectList::iterator i = wxPendingDelete.begin();
@@ -144,7 +144,7 @@ bool wxTopLevelWindowBase::Destroy()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::const_iterator i = wxTopLevelWindows.begin(),
@@ -190,7 +190,7 @@ bool wxTopLevelWindowBase::IsLastBeforeExit() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = wxTopLevelWindows.begin(); i != end; ++i )
@@ -209,7 +209,7 @@ bool wxTopLevelWindowBase::IsLastBeforeExit() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = wxTopLevelWindows.begin(); i != end; ++i )
@@ -441,7 +441,7 @@ void wxTopLevelWindowBase::DoLayout()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();

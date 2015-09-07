@@ -121,7 +121,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((c = getopt(argc, argv, "c:r:H:w:l:b:d:LMp:si:o:h")) != -1) {
@@ -303,7 +303,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (row = 0; row < length; row++) {
@@ -314,7 +314,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (band = 0; band < nbands; band++) {
@@ -335,7 +335,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (col = 0; col < width; col++)
@@ -441,7 +441,7 @@ guessSize(int fd, TIFFDataType dtype, off_t hdr_size, uint32 nbands,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (w = (uint32) sqrt(imagesize / longt);
@@ -502,7 +502,7 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         for (i = 0; i < n_elem; i++) {
@@ -519,7 +519,7 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         for (i = 0; i < n_elem; i++) {
@@ -536,7 +536,7 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         for (i = 0; i < n_elem; i++) {
@@ -553,7 +553,7 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         for (i = 0; i < n_elem; i++) {
@@ -570,7 +570,7 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         for (i = 0; i < n_elem; i++) {
@@ -587,7 +587,7 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         for (i = 0; i < n_elem; i++) {
@@ -604,7 +604,7 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         for (i = 0; i < n_elem; i++) {
@@ -621,7 +621,7 @@ correlation(void *buf1, void *buf2, uint32 n_elem, TIFFDataType dtype)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         for (i = 0; i < n_elem; i++) {
@@ -659,7 +659,7 @@ processCompressOptions(char* opt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while( cp )
@@ -761,7 +761,7 @@ usage(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; stuff[i] != NULL; i++)

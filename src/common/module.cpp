@@ -63,7 +63,7 @@ void wxModule::RegisterModules()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (wxClassInfo::const_iterator it  = wxClassInfo::begin_classinfo(),
@@ -107,7 +107,7 @@ bool wxModule::DoInitializeModule(wxModule *module,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < dependencies.size(); ++i )
@@ -121,7 +121,7 @@ bool wxModule::DoInitializeModule(wxModule *module,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( node = initializedModules.GetFirst(); node; node = node->GetNext() )
@@ -142,7 +142,7 @@ bool wxModule::DoInitializeModule(wxModule *module,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( node = m_modules.GetFirst(); node; node = node->GetNext() )
@@ -195,7 +195,7 @@ bool wxModule::InitializeModules()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxModuleList::compatibility_iterator node = m_modules.GetFirst();
@@ -235,7 +235,7 @@ void wxModule::DoCleanUpModules(const wxModuleList& modules)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxModuleList::compatibility_iterator node = modules.GetLast();
@@ -266,7 +266,7 @@ bool wxModule::ResolveNamedDependencies()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < m_namedDependencies.size(); ++i )

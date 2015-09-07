@@ -626,7 +626,7 @@ wxLogLevel wxLog::GetComponentLevel(wxString component)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( !component.empty() )
@@ -708,7 +708,7 @@ void wxLog::ClearTraceMasks()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxArrayString::const_iterator it = masks.begin(),
@@ -781,7 +781,7 @@ void wxLog::FlushThreadMessages()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxLogRecords::const_iterator it = bufferedLogRecords.begin();
@@ -1065,7 +1065,7 @@ static void wxLogWrap(FILE *f, const char *pszPrefix, const char *psz)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( *psz != '\0' ) {
@@ -1074,7 +1074,7 @@ static void wxLogWrap(FILE *f, const char *pszPrefix, const char *psz)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( n = nStart; (n < nMax) && (*psz != '\0'); n++ )
@@ -1088,7 +1088,7 @@ static void wxLogWrap(FILE *f, const char *pszPrefix, const char *psz)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( n = 0; n < nStart; n++ )
@@ -1100,7 +1100,7 @@ static void wxLogWrap(FILE *f, const char *pszPrefix, const char *psz)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( isspace(*psz) )

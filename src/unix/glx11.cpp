@@ -285,7 +285,7 @@ void wxGLCanvasX11::InitGLXContextAttribs(const int *wxattrs, int *wxctxattrs)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int arg = 0; wxattrs[arg] != 0; )
@@ -377,7 +377,7 @@ wxGLCanvasX11::ConvertWXAttrsToGL(const int *wxattrs, int *glattrs, size_t n)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int arg = 0; wxattrs[arg] != 0; )

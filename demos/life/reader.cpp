@@ -69,7 +69,7 @@ LifeReader::LifeReader(wxInputStream& is)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (buff_is.IsOk() && line.StartsWith(wxT("#D"), &rest))
@@ -92,7 +92,7 @@ LifeReader::LifeReader(wxInputStream& is)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (buff_is.IsOk())

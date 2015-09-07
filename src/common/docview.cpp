@@ -175,7 +175,7 @@ bool wxDocument::Close()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( DocsList::const_iterator end = m_childDocuments.end(); it != end; ++it )
@@ -194,7 +194,7 @@ bool wxDocument::Close()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( !m_childDocuments.empty() )
@@ -240,7 +240,7 @@ bool wxDocument::DeleteAllViews()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxList::iterator i = m_documentViews.begin(); i != end; ++i )
@@ -267,7 +267,7 @@ bool wxDocument::DeleteAllViews()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( ;; )
@@ -377,7 +377,7 @@ bool wxDocument::SaveAs()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (node)
@@ -649,7 +649,7 @@ void wxDocument::UpdateAllViews(wxView *sender, wxObject *hint)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -669,7 +669,7 @@ void wxDocument::NotifyClosing()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -697,7 +697,7 @@ void wxDocument::OnChangeFilename(bool notifyViews)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (node)
@@ -988,7 +988,7 @@ bool wxDocTemplate::FileMatchesTemplate(const wxString& path)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (parser.HasMoreTokens())
@@ -1111,7 +1111,7 @@ bool wxDocManager::CloseDocuments(bool force)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -1143,7 +1143,7 @@ bool wxDocManager::Clear(bool force)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -1519,7 +1519,7 @@ wxDocTemplateVector GetVisibleTemplates(const wxList& allTemplates)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxList::const_iterator i = allTemplates.begin(),
@@ -1557,7 +1557,7 @@ wxDocument* wxDocManager::FindDocumentByPath(const wxString& path) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxList::const_iterator i = m_docs.begin(); i != m_docs.end(); ++i )
@@ -1846,7 +1846,7 @@ wxDocTemplate *wxDocManager::FindTemplateForPath(const wxString& path)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < m_templates.GetCount(); i++)
@@ -1879,7 +1879,7 @@ wxDocTemplate *wxDocManager::SelectDocumentPath(wxDocTemplate **templates,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < noTemplates; i++)
@@ -1969,7 +1969,7 @@ wxDocTemplate *wxDocManager::SelectDocumentType(wxDocTemplate **templates,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < noTemplates; i++)
@@ -1983,7 +1983,7 @@ wxDocTemplate *wxDocManager::SelectDocumentType(wxDocTemplate **templates,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (j = 0; j < n; j++)
@@ -2017,7 +2017,7 @@ wxDocTemplate *wxDocManager::SelectDocumentType(wxDocTemplate **templates,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < n; i++)
@@ -2027,7 +2027,7 @@ wxDocTemplate *wxDocManager::SelectDocumentType(wxDocTemplate **templates,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (j = 0; j < noTemplates; j++)
@@ -2079,7 +2079,7 @@ wxDocTemplate *wxDocManager::SelectViewType(wxDocTemplate **templates,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < noTemplates; i++)
@@ -2094,7 +2094,7 @@ wxDocTemplate *wxDocManager::SelectViewType(wxDocTemplate **templates,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (j = 0; j < n; j++)
@@ -2125,7 +2125,7 @@ wxDocTemplate *wxDocManager::SelectViewType(wxDocTemplate **templates,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < n; i++)
@@ -2135,7 +2135,7 @@ wxDocTemplate *wxDocManager::SelectViewType(wxDocTemplate **templates,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (j = 0; j < noTemplates; j++)
@@ -2191,7 +2191,7 @@ wxDocTemplate* wxDocManager::FindTemplate(const wxClassInfo* classinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for ( wxList::compatibility_iterator node = m_templates.GetFirst();
@@ -2435,7 +2435,7 @@ bool wxTransferFileToStream(const wxString& filename, wxSTD ostream& stream)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -2453,7 +2453,7 @@ bool wxTransferFileToStream(const wxString& filename, wxSTD ostream& stream)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( !file.Eof() );
@@ -2477,7 +2477,7 @@ bool wxTransferStreamToFile(wxSTD istream& stream, const wxString& filename)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -2494,7 +2494,7 @@ bool wxTransferStreamToFile(wxSTD istream& stream, const wxString& filename)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( !stream.eof() );
@@ -2522,7 +2522,7 @@ bool wxTransferFileToStream(const wxString& filename, wxOutputStream& stream)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -2540,7 +2540,7 @@ bool wxTransferFileToStream(const wxString& filename, wxOutputStream& stream)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( !file.Eof() );
@@ -2564,7 +2564,7 @@ bool wxTransferStreamToFile(wxInputStream& stream, const wxString& filename)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )

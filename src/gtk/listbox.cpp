@@ -629,7 +629,7 @@ int wxListBox::FindString( const wxString &item, bool bCase ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(unsigned int i = 0; i < nCount; ++i)
@@ -699,7 +699,7 @@ int wxListBox::GetSelections( wxArrayInt& aSelections ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do
@@ -889,7 +889,7 @@ wxSize wxListBox::DoGetBestSize() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned int i = 0; i < count; i++ )

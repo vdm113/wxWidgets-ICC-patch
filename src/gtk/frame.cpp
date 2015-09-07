@@ -130,7 +130,7 @@ static void wxAddAccelerators(wxList& accelEntries, wxMenu* menu)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < menu->GetMenuItems().GetCount(); i++)
@@ -164,7 +164,7 @@ static wxAcceleratorTable wxCreateAcceleratorTableForMenuBar(wxMenuBar* menuBar)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < menuBar->GetMenuCount(); i++)
@@ -184,7 +184,7 @@ static wxAcceleratorTable wxCreateAcceleratorTableForMenuBar(wxMenuBar* menuBar)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < accelEntries.GetCount(); i++)
@@ -241,7 +241,7 @@ bool wxFrame::ShowFullScreen(bool show, long style)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < 3; i++)

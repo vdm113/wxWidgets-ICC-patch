@@ -94,7 +94,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((c = getopt(argc, argv, "w:h:c:")) != -1) {
@@ -137,7 +137,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do {
@@ -302,7 +302,7 @@ cpTags(TIFF* in, TIFF* out)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (p = tags; p < &tags[NTAGS]; p++)
@@ -326,7 +326,7 @@ cpStrips(TIFF* in, TIFF* out)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (s = 0; s < ns; s++) {
@@ -368,7 +368,7 @@ cpTiles(TIFF* in, TIFF* out)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (t = 0; t < nt; t++) {
@@ -428,7 +428,7 @@ setupBitsTables()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 256; i++) {
@@ -462,7 +462,7 @@ expFill(float pct[], uint32 p, uint32 n)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 1; i < c; i++)
@@ -472,7 +472,7 @@ expFill(float pct[], uint32 p, uint32 n)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (; i < n; i++)
@@ -498,7 +498,7 @@ setupCmap()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 1; i < 256; i++)
@@ -512,7 +512,7 @@ setupCmap()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < 256; i++)
@@ -524,7 +524,7 @@ setupCmap()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < 256; i++)
@@ -565,7 +565,7 @@ setupStepTables(uint32 sw)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (x = 0; x < tnw; x++) {
@@ -576,7 +576,7 @@ setupStepTables(uint32 sw)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    while (err >= limit) {
@@ -609,7 +609,7 @@ setrow(uint8* row, uint32 nrows, const uint8* rows[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (x = 0; x < tnw; x++) {
@@ -624,7 +624,7 @@ setrow(uint8* row, uint32 nrows, const uint8* rows[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (y = 0; y < nrows; y++) {
@@ -637,7 +637,7 @@ setrow(uint8* row, uint32 nrows, const uint8* rows[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (i = fw; i > 8; i--)
@@ -680,7 +680,7 @@ setImage1(const uint8* br, uint32 rw, uint32 rh)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (dy = 0; dy < tnh; dy++) {
@@ -694,7 +694,7 @@ setImage1(const uint8* br, uint32 rw, uint32 rh)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (err >= limit) {
@@ -749,7 +749,7 @@ generateThumbnail(TIFF* in, TIFF* out)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (s = 0; s < ns; s++) {
@@ -809,7 +809,7 @@ usage(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; stuff[i] != NULL; i++)

@@ -316,7 +316,7 @@ unsigned int MyMusicTreeModel::GetChildren( const wxDataViewItem &parent,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int pos = 0; pos < count; pos++)
@@ -360,7 +360,7 @@ MyListModel::MyListModel() :
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 1; i < NUMBER_REAL_ITEMS; i++)
@@ -400,7 +400,7 @@ void MyListModel::DeleteItems( const wxDataViewItemArray &items )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < items.GetCount(); i++)
@@ -427,7 +427,7 @@ void MyListModel::DeleteItems( const wxDataViewItemArray &items )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < rows.GetCount(); i++)

@@ -87,7 +87,7 @@ void wxRadioButton::OnCheck()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( nodeStart )
@@ -108,7 +108,7 @@ void wxRadioButton::OnCheck()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( nodeStart )

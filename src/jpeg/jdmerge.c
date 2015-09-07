@@ -114,7 +114,7 @@ build_ycc_rgb_table (j_decompress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0, x = -CENTERJSAMPLE; i <= MAXJSAMPLE; i++, x++) {
@@ -268,7 +268,7 @@ h2v1_merged_upsample (j_decompress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (col = cinfo->output_width >> 1; col > 0; col--) {
@@ -339,7 +339,7 @@ h2v2_merged_upsample (j_decompress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (col = cinfo->output_width >> 1; col > 0; col--) {

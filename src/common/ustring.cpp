@@ -43,7 +43,7 @@ wxUString &wxUString::assignFromAscii( const char *str )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (i = 0; i < len; i++)
@@ -65,7 +65,7 @@ wxUString &wxUString::assignFromAscii( const char *str, size_type n )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    while (len < n && *s)
@@ -83,7 +83,7 @@ wxUString &wxUString::assignFromAscii( const char *str, size_type n )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
    for (i = 0; i < len; i++)
@@ -147,7 +147,7 @@ wxUString &wxUString::assignFromUTF8( const char *str )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*p)
@@ -169,7 +169,7 @@ wxUString &wxUString::assignFromUTF8( const char *str )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*p)
@@ -219,7 +219,7 @@ wxUString &wxUString::assignFromUTF8( const char *str )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( ; len; --len )
@@ -254,7 +254,7 @@ wxUString &wxUString::assignFromUTF8( const char *str, size_type n )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*p)
@@ -280,7 +280,7 @@ wxUString &wxUString::assignFromUTF8( const char *str, size_type n )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*p)
@@ -337,7 +337,7 @@ wxUString &wxUString::assignFromUTF8( const char *str, size_type n )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( ; len; --len )
@@ -374,7 +374,7 @@ wxUString &wxUString::assignFromUTF16( const wxChar16* str, size_type n )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*p)
@@ -412,7 +412,7 @@ wxUString &wxUString::assignFromUTF16( const wxChar16* str, size_type n )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*p)
@@ -453,7 +453,7 @@ wxUString &wxUString::assignFromUTF16( const wxChar16* str )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*p)
@@ -485,7 +485,7 @@ wxUString &wxUString::assignFromUTF16( const wxChar16* str )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*p)
@@ -536,7 +536,7 @@ wxScopedCharBuffer wxUString::utf8_str() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*ptr)
@@ -576,7 +576,7 @@ wxScopedCharBuffer wxUString::utf8_str() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*ptr)
@@ -629,7 +629,7 @@ wxScopedU16CharBuffer wxUString::utf16_str() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*ptr)
@@ -655,7 +655,7 @@ wxScopedU16CharBuffer wxUString::utf16_str() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*ptr)

@@ -75,7 +75,7 @@ wxString wxFileSystemHandler::GetMimeTypeFromExt(const wxString& location)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = l-1; i >= 0; i--)
@@ -178,7 +178,7 @@ wxString wxFileSystemHandler::GetProtocol(const wxString& location)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = l-1; (i >= 0) && ((location[i] != wxT('#')) || (!fnd)); i--) {
@@ -190,7 +190,7 @@ wxString wxFileSystemHandler::GetProtocol(const wxString& location)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (++i; (i < l) && (location[i] != wxT(':')); i++) s << location[i];
@@ -209,7 +209,7 @@ wxString wxFileSystemHandler::GetLeftLocation(const wxString& location)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = location.length()-1; i >= 0; i--) {
@@ -230,7 +230,7 @@ wxString wxFileSystemHandler::GetRightLocation(const wxString& location)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = l-1;
@@ -255,7 +255,7 @@ wxString wxFileSystemHandler::GetAnchor(const wxString& location)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = l-1; i >= 0; i--) {
@@ -375,7 +375,7 @@ static wxString MakeCorrectPath(const wxString& path)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < cnt; i++)
@@ -393,7 +393,7 @@ static wxString MakeCorrectPath(const wxString& path)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 2; i < cnt && (p.GetChar(i) == wxT('/') || p.GetChar(i) == wxT('.')); i++) r << p.GetChar(i);
@@ -404,7 +404,7 @@ static wxString MakeCorrectPath(const wxString& path)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (; i < cnt; i++)
@@ -417,7 +417,7 @@ static wxString MakeCorrectPath(const wxString& path)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (j = r.length() - 2; j >= 0 && r.GetChar(j) != wxT('/') && r.GetChar(j) != wxT(':'); j--) {}
@@ -428,7 +428,7 @@ static wxString MakeCorrectPath(const wxString& path)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (j = j - 1; j >= 0 && r.GetChar(j) != wxT('/') && r.GetChar(j) != wxT(':'); j--) {}
@@ -442,7 +442,7 @@ static wxString MakeCorrectPath(const wxString& path)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (; i < cnt; i++) r << p.GetChar(i);
@@ -470,7 +470,7 @@ void wxFileSystem::ChangePathTo(const wxString& location, bool is_dir)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = m_Path.length()-1; i >= 0; i--)
@@ -500,7 +500,7 @@ void wxFileSystem::ChangePathTo(const wxString& location, bool is_dir)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < (int) m_Path.length(); i++)
@@ -560,7 +560,7 @@ wxFSFile* wxFileSystem::OpenFile(const wxString& location, int flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < ln; i++)
@@ -584,7 +584,7 @@ wxFSFile* wxFileSystem::OpenFile(const wxString& location, int flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (node)
@@ -608,7 +608,7 @@ wxFSFile* wxFileSystem::OpenFile(const wxString& location, int flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (node)
@@ -648,7 +648,7 @@ wxString wxFileSystem::FindFirst(const wxString& spec, int flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = spec2.length()-1; i >= 0; i--)
@@ -660,7 +660,7 @@ wxString wxFileSystem::FindFirst(const wxString& spec, int flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -680,7 +680,7 @@ wxString wxFileSystem::FindFirst(const wxString& spec, int flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -726,7 +726,7 @@ bool wxFileSystem::FindFileInPath(wxString *pStr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( tokenizer.HasMoreTokens() )
@@ -776,7 +776,7 @@ bool wxFileSystem::HasHandlerForPath(const wxString &location)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxList::compatibility_iterator node = m_Handlers.GetFirst();
@@ -850,7 +850,7 @@ static wxString EscapeFileNameCharsInURL(const char *in)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( const unsigned char *p = (const unsigned char*)in; *p; ++p )

@@ -64,7 +64,7 @@ void CopyPixelsAndSwapRGB(unsigned w, unsigned h,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned y = 0; y < h; y++, src += src_advance, dst += dst_advance )
@@ -74,7 +74,7 @@ void CopyPixelsAndSwapRGB(unsigned w, unsigned h,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned x = 0; x < w; x++, src += SrcPixSize, dst += DstPixSize )
@@ -140,7 +140,7 @@ void CopySurfaceToImage(const wxIDirectFBSurfacePtr& surface, wxImage& image)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned y = 0; y < height; y++, src += advance )
@@ -149,7 +149,7 @@ void CopySurfaceToImage(const wxIDirectFBSurfacePtr& surface, wxImage& image)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( unsigned x = 0; x < width; x++, src += 4 )
@@ -209,7 +209,7 @@ void CopyImageToSurface(const wxImage& image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned y = 0; y < height; y++, dest += advance )
@@ -218,7 +218,7 @@ void CopyImageToSurface(const wxImage& image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( unsigned x = 0; x < width; x++, dest += 4 )
@@ -339,7 +339,7 @@ CopyBits(int width,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( src < srcEnd )
@@ -351,7 +351,7 @@ CopyBits(int width,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int bit = 0; bit < BITS_PER_BYTE; bit++ )

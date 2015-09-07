@@ -120,7 +120,7 @@ wxArchiveFSCacheDataImpl::~wxArchiveFSCacheDataImpl()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (entry)
@@ -167,7 +167,7 @@ wxArchiveEntry *wxArchiveFSCacheDataImpl::Get(const wxString& name)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((entry = m_archive->GetNextEntry()) != NULL)
@@ -509,7 +509,7 @@ wxString wxArchiveFSHandler::DoFind()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (match == wxEmptyString)
@@ -532,7 +532,7 @@ wxString wxArchiveFSHandler::DoFind()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (!dir.empty())

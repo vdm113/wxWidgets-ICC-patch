@@ -126,7 +126,7 @@ StdStreamTestCase::StdStreamTestCase()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < TEST_SIZE; ++i)
@@ -189,7 +189,7 @@ void StdStreamTestCase::InputBuffer_pubseekpos()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 9; i >= 0; --i)
@@ -246,7 +246,7 @@ void StdStreamTestCase::InputBuffer_snextc()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 1; i < TEST_SIZE; ++i)
@@ -273,7 +273,7 @@ void StdStreamTestCase::InputBuffer_sbumpc()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < TEST_SIZE; ++i)
@@ -298,7 +298,7 @@ void StdStreamTestCase::InputBuffer_sgetc()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < TEST_SIZE; ++i) {
@@ -426,7 +426,7 @@ void StdStreamTestCase::OutputBuffer_pubseekpos()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 9; i >= 0; --i)
@@ -471,7 +471,7 @@ void StdStreamTestCase::OutputBuffer_sputc()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < TEST_SIZE; ++i)

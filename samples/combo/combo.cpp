@@ -427,7 +427,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( child.IsOk() )
@@ -799,7 +799,7 @@ MyFrame::MyFrame(const wxString& title)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i=0; i<100; i++ )
@@ -834,7 +834,7 @@ MyFrame::MyFrame(const wxString& title)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i=0; i<4; i++ )
@@ -848,7 +848,7 @@ MyFrame::MyFrame(const wxString& title)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( n=0; n<25; n++ )

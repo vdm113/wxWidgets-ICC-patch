@@ -170,7 +170,7 @@ static void InternalLexOrFold(int foldOrLex, unsigned int startPos, int length,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; words[nWL]; nWL++) ;	// count # of WordList PTRs needed
@@ -181,7 +181,7 @@ static void InternalLexOrFold(int foldOrLex, unsigned int startPos, int length,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; i < nWL; i++) {
@@ -201,7 +201,7 @@ static void InternalLexOrFold(int foldOrLex, unsigned int startPos, int length,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = nWL - 1; i >= 0; i--)
@@ -241,7 +241,7 @@ void ColouriseCamlDoc(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (sc.More()) {
@@ -304,7 +304,7 @@ void ColouriseCamlDoc(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for (int i = -n; i < 0; i++)
@@ -445,7 +445,7 @@ void ColouriseCamlDoc(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (; p >= 0 && styler.StyleAt(p) == SCE_CAML_WHITE; p--) ;

@@ -565,7 +565,7 @@ void WidgetsFrame::InitBook()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( cat = 0; cat < MAX_PAGES; cat++ )
@@ -585,7 +585,7 @@ void WidgetsFrame::InitBook()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( WidgetsPageInfo *info = WidgetsPage::ms_widgetPages;
@@ -642,7 +642,7 @@ void WidgetsFrame::InitBook()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( cat = 0; cat < MAX_PAGES; cat++ )
@@ -663,7 +663,7 @@ void WidgetsFrame::InitBook()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )
@@ -788,7 +788,7 @@ void WidgetsFrame::OnPageChanged(WidgetsBookCtrlEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < book->GetPageCount(); ++i )
@@ -1045,7 +1045,7 @@ void WidgetsFrame::OnAutoCompleteFixed(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( char idxc = 'a'; idxc < 'z'; ++idxc )
@@ -1153,7 +1153,7 @@ void WidgetsFrame::OnAutoCompleteCustom(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( int i = 0; i < 10; i++ )
@@ -1162,7 +1162,7 @@ void WidgetsFrame::OnAutoCompleteCustom(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for ( int j = 0; j < 10; j++ )
@@ -1180,7 +1180,7 @@ void WidgetsFrame::OnAutoCompleteCustom(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( int i = 0; i < 10; i++ )
@@ -1204,7 +1204,7 @@ void WidgetsFrame::OnAutoCompleteCustom(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( char c = 'a'; c <= 'z'; c++ )
@@ -1213,7 +1213,7 @@ void WidgetsFrame::OnAutoCompleteCustom(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for ( char d = 'a'; d <= 'z'; d++ )
@@ -1230,7 +1230,7 @@ void WidgetsFrame::OnAutoCompleteCustom(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( char c = 'a'; c <= 'z'; c++ )
@@ -1305,7 +1305,7 @@ WidgetsPageInfo::WidgetsPageInfo(Constructor ctor, const wxChar *label, int cate
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             do
@@ -1335,7 +1335,7 @@ WidgetsPageInfo::WidgetsPageInfo(Constructor ctor, const wxChar *label, int cate
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( node_next );
@@ -1388,7 +1388,7 @@ void WidgetsPage::SetUpWidget()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( Widgets::const_iterator it = widgets.begin();

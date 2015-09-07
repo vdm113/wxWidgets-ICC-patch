@@ -165,7 +165,7 @@ bool wxIFFDecoder::ConvertToImage(wxImage *image) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < colors; i++)
@@ -199,7 +199,7 @@ bool wxIFFDecoder::ConvertToImage(wxImage *image) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < colors; i++)
@@ -223,7 +223,7 @@ bool wxIFFDecoder::ConvertToImage(wxImage *image) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < (long)(GetWidth() * GetHeight()); i++, src += 3, dst += 3)
@@ -294,7 +294,7 @@ static void decomprle(const byte *sptr, byte *dptr, long slen, long dlen)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((slen > 0) && (dlen > 0)) {
@@ -311,7 +311,7 @@ static void decomprle(const byte *sptr, byte *dptr, long slen, long dlen)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (codeByte > 0) {
@@ -333,7 +333,7 @@ static void decomprle(const byte *sptr, byte *dptr, long slen, long dlen)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (codeByte > 0) {
@@ -448,7 +448,7 @@ int wxIFFDecoder::ReadIFF()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (dataptr + 8 <= dataend) {
@@ -494,7 +494,7 @@ int wxIFFDecoder::ReadIFF()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i=0; i < colors; i++) {
@@ -598,7 +598,7 @@ int wxIFFDecoder::ReadIFF()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < m_image->colors; i++) {
@@ -611,7 +611,7 @@ int wxIFFDecoder::ReadIFF()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (; i < colors; i++) {
@@ -629,7 +629,7 @@ int wxIFFDecoder::ReadIFF()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int i=0; i < colors; i++) {
@@ -663,7 +663,7 @@ int wxIFFDecoder::ReadIFF()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i=0; i < height; i++) {
@@ -680,7 +680,7 @@ int wxIFFDecoder::ReadIFF()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int j=0; j < bmhd_width; j++) {
@@ -692,7 +692,7 @@ int wxIFFDecoder::ReadIFF()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int k=0; k < bmhd_bitplanes; k++) {
@@ -767,7 +767,7 @@ int wxIFFDecoder::ReadIFF()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int i=0; i<32; i++) {
@@ -789,7 +789,7 @@ int wxIFFDecoder::ReadIFF()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i=0; i < height; i++) {
@@ -800,7 +800,7 @@ int wxIFFDecoder::ReadIFF()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int j=0; j < bmhd_width; j++) {
@@ -813,7 +813,7 @@ int wxIFFDecoder::ReadIFF()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int k=0; k < bmhd_bitplanes; k++) {

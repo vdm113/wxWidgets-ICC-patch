@@ -345,7 +345,7 @@ utf8_toUtf8(const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (fromLim = *fromP + (toLim - *toP); fromLim > *fromP; fromLim--)
@@ -357,7 +357,7 @@ utf8_toUtf8(const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (to = *toP, from = *fromP; from != fromLim; from++, to++)
@@ -378,7 +378,7 @@ utf8_toUtf16(const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (from != fromLim && to != toLim) {
@@ -472,7 +472,7 @@ latin1_toUtf8(const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -505,7 +505,7 @@ latin1_toUtf16(const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (*fromP != fromLim && *toP != toLim)
@@ -546,7 +546,7 @@ ascii_toUtf8(const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (*fromP != fromLim && *toP != toLim)
@@ -990,7 +990,7 @@ streqci(const char *s1, const char *s2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -1067,7 +1067,7 @@ parsePseudoAttribute(const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   do {
@@ -1083,7 +1083,7 @@ parsePseudoAttribute(const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -1103,7 +1103,7 @@ parsePseudoAttribute(const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       do {
@@ -1128,7 +1128,7 @@ parsePseudoAttribute(const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (isSpace(c)) {
@@ -1147,7 +1147,7 @@ parsePseudoAttribute(const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;; ptr += enc->minBytesPerChar) {
@@ -1277,7 +1277,7 @@ doParseXmlDecl(const ENCODING *(*encodingFinder)(const ENCODING *,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (isSpace(toAscii(enc, ptr, end)))
@@ -1419,7 +1419,7 @@ unknown_toUtf8(const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (;;) {
@@ -1448,7 +1448,7 @@ unknown_toUtf8(const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do {
@@ -1468,7 +1468,7 @@ unknown_toUtf16(const ENCODING *enc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (*fromP != fromLim && *toP != toLim) {
@@ -1498,7 +1498,7 @@ XmlInitUnknownEncoding(void *mem,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < (int)sizeof(struct normal_encoding); i++)
@@ -1508,7 +1508,7 @@ XmlInitUnknownEncoding(void *mem,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < 128; i++)
@@ -1521,7 +1521,7 @@ XmlInitUnknownEncoding(void *mem,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < 256; i++) {
@@ -1644,7 +1644,7 @@ getEncodingIndex(const char *name)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < (int)(sizeof(encodingNames)/sizeof(encodingNames[0])); i++)

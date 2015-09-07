@@ -94,7 +94,7 @@ int wxQtEventLoopBase::DoRun()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( !m_shouldExit )
@@ -142,7 +142,7 @@ void wxQtEventLoopBase::DoYieldFor(long eventsToProcess)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (wxTheApp && wxTheApp->Pending())

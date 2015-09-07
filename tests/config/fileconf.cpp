@@ -199,7 +199,7 @@ FileConfigTestCase::CheckGroupEntries(const wxFileConfig& fc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( bool cont = fc.GetFirstEntry(name, cookie);
@@ -234,7 +234,7 @@ FileConfigTestCase::CheckGroupSubgroups(const wxFileConfig& fc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( bool cont = fc.GetFirstGroup(name, cookie);

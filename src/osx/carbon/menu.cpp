@@ -172,7 +172,7 @@ public :
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( MenuItemIndex i = 1 ; i <= CountMenuItems(m_parentMenuRef) ; ++i )
@@ -336,7 +336,7 @@ void wxRemoveMacMenuAssociation(wxMenu *menu)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( it = wxWinMacMenuList.begin(); it != wxWinMacMenuList.end(); ++it )
@@ -422,7 +422,7 @@ void wxInsertMenuItemsInMenu(wxMenu* menu, MenuRef wm, MenuItemIndex insertAfter
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (node = menu->GetMenuItems().GetFirst(); node; node = node->GetNext())

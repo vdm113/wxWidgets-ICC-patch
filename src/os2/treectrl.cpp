@@ -113,7 +113,7 @@ void BumpTreeRecordIds (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(pRecord)
@@ -153,7 +153,7 @@ PMYRECORD FindOS2TreeRecordByID (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < vCnrInfo.cRecords; i++)
@@ -360,7 +360,7 @@ bool wxTreeTraversal::Traverse (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (vChild.IsOk())
@@ -487,7 +487,7 @@ wxTreeCtrl::~wxTreeCtrl ()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (wxNode* pNode = m_vAttrs.Next(); pNode; pNode = m_vAttrs.Next())
@@ -1353,7 +1353,7 @@ wxTreeItemId wxTreeCtrl::GetFirstVisibleItem () const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(pRecord)
@@ -1393,7 +1393,7 @@ wxTreeItemId wxTreeCtrl::GetNextVisible (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(pRecord)
@@ -1433,7 +1433,7 @@ wxTreeItemId wxTreeCtrl::GetPrevVisible (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(pRecord)
@@ -1708,7 +1708,7 @@ void wxTreeCtrl::DeleteChildren (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (vChild.IsOk())
@@ -1731,7 +1731,7 @@ void wxTreeCtrl::DeleteChildren (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t n = 0; n < nCount; n++)
@@ -1866,7 +1866,7 @@ void wxTreeCtrl::UnselectAll ()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (size_t n = 0; n < nCount; n++)

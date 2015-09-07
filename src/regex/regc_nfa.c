@@ -111,7 +111,7 @@ struct nfa *nfa;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((s = nfa->states) != NULL) {
@@ -123,7 +123,7 @@ struct nfa *nfa;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((s = nfa->free) != NULL) {
@@ -215,7 +215,7 @@ struct state *s;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((a = s->ins) != NULL)
@@ -225,7 +225,7 @@ struct state *s;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((a = s->outs) != NULL)
@@ -282,7 +282,7 @@ struct state *s;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (ab = s->oas.next; ab != NULL; ab = abnext) {
@@ -318,7 +318,7 @@ struct state *to;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (a = from->outs; a != NULL; a = a->outchain)
@@ -390,7 +390,7 @@ struct state *s;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < ABSIZE; i++) {
@@ -438,7 +438,7 @@ struct arc *victim;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (; a != NULL && a->outchain != victim; a = a->outchain)
@@ -460,7 +460,7 @@ struct arc *victim;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (; a != NULL && a->inchain != victim; a = a->inchain)
@@ -498,7 +498,7 @@ pcolor co;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (a = s->outs; a != NULL; a = a->outchain)
@@ -545,7 +545,7 @@ struct state *new;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((a = old->ins) != NULL) {
@@ -575,7 +575,7 @@ struct state *new;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (a = old->ins; a != NULL; a = a->inchain)
@@ -601,7 +601,7 @@ struct state *new;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((a = old->outs) != NULL) {
@@ -629,7 +629,7 @@ struct state *new;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (a = old->outs; a != NULL; a = a->outchain)
@@ -658,7 +658,7 @@ int type;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (a = old->outs; a != NULL; a = a->outchain)
@@ -715,7 +715,7 @@ struct state *s;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((a = s->outs) != NULL) {
@@ -791,7 +791,7 @@ struct state *stmp;		/* s's duplicate, or NULL */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (a = s->outs; a != NULL && !NISERR(); a = a->outchain) {
@@ -821,7 +821,7 @@ struct state *s;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (a = s->outs; a != NULL; a = a->outchain)
@@ -904,7 +904,7 @@ FILE *f;			/* for debug output; NULL none */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do {
@@ -914,7 +914,7 @@ FILE *f;			/* for debug output; NULL none */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (s = nfa->states; s != NULL && !NISERR(); s = nexts) {
@@ -924,7 +924,7 @@ FILE *f;			/* for debug output; NULL none */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (a = s->outs; a != NULL && !NISERR(); a = nexta) {
@@ -946,7 +946,7 @@ FILE *f;			/* for debug output; NULL none */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (a = nfa->pre->outs; a != NULL; a = nexta) {
@@ -1008,7 +1008,7 @@ struct arc *con;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (a = from->ins; a != NULL; a = nexta) {
@@ -1062,7 +1062,7 @@ FILE *f;			/* for debug output; NULL none */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do {
@@ -1072,7 +1072,7 @@ FILE *f;			/* for debug output; NULL none */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (s = nfa->states; s != NULL && !NISERR(); s = nexts) {
@@ -1082,7 +1082,7 @@ FILE *f;			/* for debug output; NULL none */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (a = s->ins; a != NULL && !NISERR(); a = nexta) {
@@ -1104,7 +1104,7 @@ FILE *f;			/* for debug output; NULL none */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (a = nfa->post->ins; a != NULL; a = nexta) {
@@ -1165,7 +1165,7 @@ struct arc *con;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (a = to->outs; a != NULL; a = nexta) {
@@ -1284,7 +1284,7 @@ FILE *f;			/* for debug output; NULL none */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	do {
@@ -1294,7 +1294,7 @@ FILE *f;			/* for debug output; NULL none */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (s = nfa->states; s != NULL && !NISERR(); s = nexts) {
@@ -1304,7 +1304,7 @@ FILE *f;			/* for debug output; NULL none */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (a = s->outs; a != NULL && !NISERR(); a = nexta) {
@@ -1393,7 +1393,7 @@ struct nfa *nfa;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (s = nfa->states; s != NULL; s = nexts) {
@@ -1413,7 +1413,7 @@ struct nfa *nfa;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (s = nfa->states; s != NULL; s = s->next)
@@ -1444,7 +1444,7 @@ struct state *mark;		/* the value to mark with */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (a = s->outs; a != NULL; a = a->outchain)
@@ -1474,7 +1474,7 @@ struct state *mark;		/* the value to mark with */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (a = s->ins; a != NULL; a = a->inchain)
@@ -1499,7 +1499,7 @@ struct nfa *nfa;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (a = nfa->pre->outs; a != NULL; a = a->outchain)
@@ -1508,7 +1508,7 @@ struct nfa *nfa;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (aa = a->to->outs; aa != NULL; aa = aa->outchain)
@@ -1542,7 +1542,7 @@ struct cnfa *cnfa;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (s = nfa->states; s != NULL; s = s->next) {
@@ -1577,7 +1577,7 @@ struct cnfa *cnfa;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (s = nfa->states; s != NULL; s = s->next) {
@@ -1591,7 +1591,7 @@ struct cnfa *cnfa;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (a = s->outs; a != NULL; a = a->outchain)
@@ -1626,7 +1626,7 @@ struct cnfa *cnfa;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (a = nfa->pre->outs; a != NULL; a = a->outchain)
@@ -1657,7 +1657,7 @@ struct carc *last;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (p = first; p <= last; p++)
@@ -1666,7 +1666,7 @@ struct carc *last;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (q = p; q <= last; q++)
@@ -1720,7 +1720,7 @@ FILE *f;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (s = nfa->states; s != NULL; s = s->next)
@@ -1761,7 +1761,7 @@ FILE *f;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (a = s->ins; a != NULL; a = a->inchain) {
@@ -1855,7 +1855,7 @@ FILE *f;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (ab = &a->from->oas; ab != NULL; ab = ab->next) {
@@ -1864,7 +1864,7 @@ FILE *f;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (aa = &ab->a[0]; aa < &ab->a[ABSIZE]; aa++)
@@ -1886,7 +1886,7 @@ FILE *f;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (aa = a->to->ins; aa != NULL; aa = aa->inchain)
@@ -1930,7 +1930,7 @@ FILE *f;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (st = 0; st < cnfa->nstates; st++)
@@ -1965,7 +1965,7 @@ FILE *f;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 1; ca[i].co != COLORLESS; i++) {

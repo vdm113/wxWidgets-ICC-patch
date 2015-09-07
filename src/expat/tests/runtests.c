@@ -343,7 +343,7 @@ START_TEST(test_illegal_utf8)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 128; i <= 255; ++i) {
@@ -652,7 +652,7 @@ is_whitespace_normalized(const XML_Char *s, int is_cdata)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*s) {
@@ -714,7 +714,7 @@ check_attr_contains_normalized_whitespace(void *userData,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; atts[i] != NULL; i += 2) {
@@ -782,7 +782,7 @@ UnknownEncodingHandler(void *data,const XML_Char *encoding,XML_Encoding *info)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < 256; ++i)
@@ -1186,7 +1186,7 @@ overwrite_start_checker(void *userData, const XML_Char *name,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*atts != NULL) {
@@ -1548,7 +1548,7 @@ main(int argc, char *argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 1; i < argc; ++i) {

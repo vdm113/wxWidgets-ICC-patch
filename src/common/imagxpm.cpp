@@ -128,7 +128,7 @@ MakeValidCIdent(wxString* str)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString::iterator it = str->begin(); it != str->end(); ++it )
@@ -177,7 +177,7 @@ bool wxXPMHandler::SaveFile(wxImage * image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( k = MaxCixels; cols > k; k *= MaxCixels)
@@ -224,7 +224,7 @@ bool wxXPMHandler::SaveFile(wxImage * image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (wxImageHistogram::iterator entry = histogram.begin();
@@ -239,7 +239,7 @@ bool wxXPMHandler::SaveFile(wxImage * image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (j = 0; j < chars_per_pixel; j++)
@@ -273,7 +273,7 @@ bool wxXPMHandler::SaveFile(wxImage * image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (j = 0; j < image->GetHeight(); j++)
@@ -285,7 +285,7 @@ bool wxXPMHandler::SaveFile(wxImage * image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < image->GetWidth(); i++, data += 3)

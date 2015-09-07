@@ -219,7 +219,7 @@ wxSize wxListCtrlBase::DoGetBestClientSize() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int col = 0; col < columns; col++ )

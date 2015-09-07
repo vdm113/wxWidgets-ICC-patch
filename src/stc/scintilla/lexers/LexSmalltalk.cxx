@@ -115,7 +115,7 @@ static inline void skipComment(StyleContext& sc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (sc.More() && sc.ch != '\"')
@@ -129,7 +129,7 @@ static inline void skipString(StyleContext& sc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (sc.More()) {
@@ -162,7 +162,7 @@ static void handleHash(StyleContext& sc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (isAlphaNumeric(sc.chNext) || sc.chNext == ':')
@@ -174,7 +174,7 @@ static void handleHash(StyleContext& sc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (isBinSel(sc.chNext))
@@ -204,7 +204,7 @@ static inline void skipInt(StyleContext& sc, int radix)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (isDigitOfRadix(sc.chNext, radix))
@@ -225,7 +225,7 @@ static void handleNumeric(StyleContext& sc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (isDecDigit(sc.chNext)) {
@@ -259,7 +259,7 @@ static void handleNumeric(StyleContext& sc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (isDecDigit(sc.chNext))
@@ -282,7 +282,7 @@ static inline void handleBinSel(StyleContext& sc)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (isBinSel(sc.chNext))
@@ -305,7 +305,7 @@ static void handleLetter(StyleContext& sc, WordList* specialSelectorList)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (isAlphaNumeric(sc.chNext)) {
@@ -366,7 +366,7 @@ static void colorizeSmalltalkDoc(unsigned int startPos, int length, int initStyl
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (; sc.More(); sc.Forward()) {

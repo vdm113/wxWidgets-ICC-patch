@@ -54,7 +54,7 @@ void FontNames::Clear() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (std::vector<char *>::const_iterator it=names.begin(); it != names.end(); ++it) {
@@ -72,7 +72,7 @@ const char *FontNames::Save(const char *name) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (std::vector<char *>::const_iterator it=names.begin(); it != names.end(); ++it) {
@@ -121,7 +121,7 @@ ViewStyle::ViewStyle(const ViewStyle &source) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int sty=0; sty<source.styles.size(); sty++) {
@@ -135,7 +135,7 @@ ViewStyle::ViewStyle(const ViewStyle &source) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int mrk=0; mrk<=MARKER_MAX; mrk++) {
@@ -149,7 +149,7 @@ ViewStyle::ViewStyle(const ViewStyle &source) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int ind=0; ind<=INDIC_MAX; ind++) {
@@ -199,7 +199,7 @@ ViewStyle::ViewStyle(const ViewStyle &source) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int margin=0; margin <= SC_MAX_MARGIN; margin++) {
@@ -245,7 +245,7 @@ ViewStyle::~ViewStyle() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (FontMap::iterator it = fonts.begin(); it != fonts.end(); ++it) {
@@ -335,7 +335,7 @@ void ViewStyle::Init(size_t stylesSize_) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int margin=0; margin <= SC_MAX_MARGIN; margin++) {
@@ -379,7 +379,7 @@ void ViewStyle::Refresh(Surface &surface, int tabInChars) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (FontMap::iterator it = fonts.begin(); it != fonts.end(); ++it) {
@@ -395,7 +395,7 @@ void ViewStyle::Refresh(Surface &surface, int tabInChars) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i=0; i<styles.size(); i++) {
@@ -408,7 +408,7 @@ void ViewStyle::Refresh(Surface &surface, int tabInChars) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int j=0; j<styles.size(); j++) {
@@ -420,7 +420,7 @@ void ViewStyle::Refresh(Surface &surface, int tabInChars) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (FontMap::iterator it = fonts.begin(); it != fonts.end(); ++it) {
@@ -432,7 +432,7 @@ void ViewStyle::Refresh(Surface &surface, int tabInChars) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int k=0; k<styles.size(); k++) {
@@ -446,7 +446,7 @@ void ViewStyle::Refresh(Surface &surface, int tabInChars) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int ind = 0; ind <= INDIC_MAX; ind++) {
@@ -474,7 +474,7 @@ void ViewStyle::Refresh(Surface &surface, int tabInChars) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int l=0; l<styles.size(); l++) {
@@ -502,7 +502,7 @@ void ViewStyle::Refresh(Surface &surface, int tabInChars) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int margin=0; margin <= SC_MAX_MARGIN; margin++) {
@@ -526,7 +526,7 @@ int ViewStyle::AllocateExtendedStyles(int numberStyles) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (size_t i=startRange; i<nextExtendedStyle; i++) {
@@ -556,7 +556,7 @@ void ViewStyle::ClearStyles() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i=0; i<styles.size(); i++) {
@@ -594,7 +594,7 @@ void ViewStyle::CalcLargestMarkerHeight() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int m = 0; m <= MARKER_MAX; ++m) {
@@ -629,7 +629,7 @@ ColourOptional ViewStyle::Background(int marksOfLine, bool caretActive, bool lin
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int markBit = 0; (markBit < 32) && marks; markBit++) {
@@ -648,7 +648,7 @@ ColourOptional ViewStyle::Background(int marksOfLine, bool caretActive, bool lin
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (int markBit = 0; (markBit < 32) && marksMasked; markBit++) {
@@ -733,7 +733,7 @@ void ViewStyle::AllocStyles(size_t sizeNew) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (; i<sizeNew; i++) {
@@ -770,7 +770,7 @@ void ViewStyle::FindMaxAscentDescent() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (FontMap::const_iterator it = fonts.begin(); it != fonts.end(); ++it) {

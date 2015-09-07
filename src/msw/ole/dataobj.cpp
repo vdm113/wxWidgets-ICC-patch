@@ -274,7 +274,7 @@ wxIDataObject::GetSystemData(wxDataFormat format, STGMEDIUM *pmedium) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( SystemData::const_iterator it = m_systemData.begin();
@@ -300,7 +300,7 @@ wxIDataObject::HasSystemData(wxDataFormat format) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( SystemData::const_iterator it = m_systemData.begin();
@@ -330,7 +330,7 @@ wxIDataObject::SaveSystemData(FORMATETC *pformatetc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( SystemData::iterator it = m_systemData.begin();
@@ -447,7 +447,7 @@ wxIEnumFORMATETC::wxIEnumFORMATETC(const wxDataFormat *formats, ULONG nCount)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ULONG n = 0; n < nCount; n++ ) {
@@ -470,7 +470,7 @@ STDMETHODIMP wxIEnumFORMATETC::Next(ULONG      celt,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (m_nCurrent < m_nCount && numFetched < celt) {
@@ -527,7 +527,7 @@ STDMETHODIMP wxIEnumFORMATETC::Clone(IEnumFORMATETC **ppenum)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ULONG n = 0; n < m_nCount; n++ ) {
@@ -564,7 +564,7 @@ wxIDataObject::~wxIDataObject()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( SystemData::iterator it = m_systemData.begin();
@@ -965,7 +965,7 @@ STDMETHODIMP wxIDataObject::EnumFormatEtc(DWORD dwDir,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t j = 0; j < sysFormatCount; j++ )
@@ -1363,7 +1363,7 @@ bool wxFileDataObject::SetData(size_t WXUNUSED(size),
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < nFiles; n++ ) {
@@ -1414,7 +1414,7 @@ size_t wxFileDataObject::GetDataSize() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )
@@ -1460,7 +1460,7 @@ bool wxFileDataObject::GetDataHere(void *WXUNUSED_IN_WINCE(pData)) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < count; i++ )

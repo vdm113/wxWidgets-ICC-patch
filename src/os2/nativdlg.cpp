@@ -102,7 +102,7 @@ bool wxWindow::LoadNativeDialog (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((hWndNext = ::WinGetNextWindow(hEnum)) != NULLHANDLE)
@@ -170,7 +170,7 @@ wxWindow* wxWindow::GetWindowChild1 (
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)

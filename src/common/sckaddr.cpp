@@ -229,7 +229,7 @@ hostent *deepCopyHostent(hostent *h,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(*(p++) != 0)
@@ -241,7 +241,7 @@ hostent *deepCopyHostent(hostent *h,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (p = h->h_addr_list, q = h_addr_list; *p != 0; p++, q++)
@@ -271,7 +271,7 @@ hostent *deepCopyHostent(hostent *h,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(*(p++) != 0)
@@ -283,7 +283,7 @@ hostent *deepCopyHostent(hostent *h,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (p = h->h_aliases, q = h_aliases; *p != 0; p++, q++)
@@ -416,7 +416,7 @@ servent *deepCopyServent(servent *s,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(*(p++) != 0)
@@ -428,7 +428,7 @@ servent *deepCopyServent(servent *s,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (p = s->s_aliases, q = s_aliases; *p != 0; p++, q++){
@@ -967,7 +967,7 @@ bool wxIPV6address::Hostname(unsigned char addr[16])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < 8; ++i )
@@ -1019,7 +1019,7 @@ wxString wxIPV6address::IPAddress() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < 8; ++i )
@@ -1050,7 +1050,7 @@ wxString wxIPV6address::IPAddress() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( i = prefix_zero_count; i < 8; ++i )

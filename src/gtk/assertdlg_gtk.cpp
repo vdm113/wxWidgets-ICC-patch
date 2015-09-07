@@ -418,7 +418,7 @@ gchar *gtk_assert_dialog_get_backtrace (GtkAssertDialog *dlg)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do

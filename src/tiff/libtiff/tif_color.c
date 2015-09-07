@@ -149,7 +149,7 @@ TIFFCIELabToRGBInit(TIFFCIELabToRGB* cielab,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for(i = 0; i <= cielab->range; i++) {
@@ -166,7 +166,7 @@ TIFFCIELabToRGBInit(TIFFCIELabToRGB* cielab,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for(i = 0; i <= cielab->range; i++) {
@@ -183,7 +183,7 @@ TIFFCIELabToRGBInit(TIFFCIELabToRGB* cielab,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for(i = 0; i <= cielab->range; i++) {
@@ -264,7 +264,7 @@ TIFFYCbCrToRGBInit(TIFFYCbCrToRGB* ycbcr, float *luma, float *refBlackWhite)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 256; i++)
@@ -298,7 +298,7 @@ TIFFYCbCrToRGBInit(TIFFYCbCrToRGB* ycbcr, float *luma, float *refBlackWhite)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (i = 0, x = -128; i < 256; i++, x++) {

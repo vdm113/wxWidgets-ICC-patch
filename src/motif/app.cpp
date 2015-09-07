@@ -188,7 +188,7 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < argc; i++ )
@@ -220,7 +220,7 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( i = 0; i < argcX11; i++ )
@@ -230,7 +230,7 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( strcmp(wxConvLibc.cWX2MB(argv_[i]), argvX11[i]) != 0 )
@@ -253,7 +253,7 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i = 0; i < argcX11; i++ )
@@ -318,7 +318,7 @@ void wxApp::CleanUp()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( wxPerDisplayDataMap::iterator it  = m_perDisplayData->begin(),

@@ -56,7 +56,7 @@ void PopulateMenu(wxMenu* menu, const wxString& name,  size_t& itemcount)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int n=1; n<6; ++n, ++itemcount)
@@ -76,7 +76,7 @@ void RecursivelyCountMenuItems(const wxMenu* menu, size_t& count)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t n=0; n < menu->GetMenuItemCount(); ++n)
@@ -231,7 +231,7 @@ void MenuTestCase::FindInMenubar()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t n=0; n < bar->GetMenuCount(); ++n)
@@ -278,7 +278,7 @@ void MenuTestCase::FindInMenu()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (n=0; n < menuHelp->GetMenuItemCount(); ++n)
@@ -295,7 +295,7 @@ void MenuTestCase::FindInMenu()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (n=0; n < menuHelp->GetMenuItemCount(); ++n)
@@ -314,7 +314,7 @@ void MenuTestCase::FindInMenu()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (n=0; n < menuHelp->GetMenuItemCount(); ++n)
@@ -354,7 +354,7 @@ void MenuTestCase::Count()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t n=0; n < bar->GetMenuCount(); ++n)

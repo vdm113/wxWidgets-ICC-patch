@@ -231,7 +231,7 @@ bool IfaceCheckApp::Compare()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i<interfaces.GetCount(); i++)
@@ -314,7 +314,7 @@ int IfaceCheckApp::CompareClasses(const wxClass* iface, const wxClass* api)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i<iface->GetMethodCount(); i++)
@@ -362,7 +362,7 @@ int IfaceCheckApp::CompareClasses(const wxClass* iface, const wxClass* api)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (unsigned int k=0; k<overloads.GetCount(); k++)
@@ -389,7 +389,7 @@ int IfaceCheckApp::CompareClasses(const wxClass* iface, const wxClass* api)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (unsigned int k=0; k<overloads.GetCount(); k++)
@@ -439,7 +439,7 @@ int IfaceCheckApp::CompareClasses(const wxClass* iface, const wxClass* api)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (unsigned int j=0; j<overloads.GetCount(); j++)
@@ -532,7 +532,7 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do
@@ -547,7 +547,7 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (start > 0 && !founddecl &&
@@ -568,7 +568,7 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int k=start; k<=end; k++)
@@ -604,7 +604,7 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (j=0; j<doxygenargs.GetCount(); j++)
@@ -634,7 +634,7 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i=0; i<toinsert.GetCount(); i++)
@@ -662,7 +662,7 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i=0; i<toinsert.GetCount(); i++)
@@ -692,7 +692,7 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i=0; i < cToUpdate.GetCount(); i++)
@@ -702,7 +702,7 @@ bool IfaceCheckApp::FixMethod(const wxString& header, const wxMethod* iface, con
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (j=0; j < cToUpdate[i]->GetMethodCount(); j++)
@@ -733,7 +733,7 @@ bool IfaceCheckApp::ParsePreprocessorOutput(const wxString& filename)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i < tf.GetLineCount(); i++)
@@ -798,7 +798,7 @@ void IfaceCheckApp::PrintStatistics(long secs)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i=0; i<arr.GetCount(); i++) {

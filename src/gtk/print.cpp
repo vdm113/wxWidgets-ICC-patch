@@ -208,7 +208,7 @@ static GtkPaperSize* wxGetGtkPaperSize(wxPaperSize paperId, const wxSize& size)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (GList* p = list; p; p = p->next)
@@ -493,7 +493,7 @@ bool wxGtkPrintNativeData::TransferTo( wxPrintData &data )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (size_t i = 1; i < WXSIZEOF(gs_paperList); i++)
@@ -1072,7 +1072,7 @@ void wxGtkPrinter::BeginPrint(wxPrintout *printout, GtkPrintOperation *operation
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (i=0; i<num_ranges; i++)
@@ -1531,7 +1531,7 @@ void wxGtkPrinterDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoff
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i =0; i<n ; i++ )
@@ -1544,7 +1544,7 @@ void wxGtkPrinterDCImpl::DoDrawLines(int n, const wxPoint points[], wxCoord xoff
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 1; i < n; i++)
@@ -1575,7 +1575,7 @@ void wxGtkPrinterDCImpl::DoDrawPolygon(int n, const wxPoint points[],
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 1; i < n; i++)
@@ -1730,7 +1730,7 @@ void wxGtkPrinterDCImpl::DoDrawSpline(const wxPointList *points)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -1990,7 +1990,7 @@ void wxGtkPrinterDCImpl::SetPen( const wxPen& pen )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < num; ++i)

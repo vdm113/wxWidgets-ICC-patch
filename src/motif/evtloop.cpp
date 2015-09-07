@@ -120,7 +120,7 @@ int wxGUIEventLoop::DoRun()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( ;; )
@@ -154,7 +154,7 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (wxTheApp && wxTheApp->Pending())
@@ -262,7 +262,7 @@ void ProcessXEvent(XEvent* event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while( XCheckTypedWindowEvent (disp, win, ResizeRequest, &report));
@@ -295,7 +295,7 @@ bool CheckForAccelerator(XEvent* event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (widget && ((win = wxGetWindowFromTable(widget))!=NULL))
@@ -315,7 +315,7 @@ bool CheckForAccelerator(XEvent* event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (win)
@@ -345,7 +345,7 @@ bool CheckForKeyDown(XEvent* event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (widget && ((win = wxGetWindowFromTable(widget))!=NULL))
@@ -379,7 +379,7 @@ bool CheckForKeyUp(XEvent* event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (widget && ((win = wxGetWindowFromTable(widget))!=NULL))
@@ -410,7 +410,7 @@ bool wxDoEventLoopIteration( wxGUIEventLoop& evtLoop )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(;;)
@@ -493,7 +493,7 @@ static void wxInputCallback( XtPointer, int* fd, XtInputId* )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(;;)

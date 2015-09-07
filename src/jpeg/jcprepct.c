@@ -122,7 +122,7 @@ expand_bottom_edge (JSAMPARRAY image_data, JDIMENSION num_cols,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (row = input_rows; row < output_rows; row++) {
@@ -158,7 +158,7 @@ pre_process_data (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (*in_row_ctr < in_rows_avail &&
@@ -182,7 +182,7 @@ pre_process_data (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (ci = 0; ci < cinfo->num_components; ci++) {
@@ -209,7 +209,7 @@ pre_process_data (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -249,7 +249,7 @@ pre_process_context (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (*out_row_group_ctr < out_row_groups_avail) {
@@ -269,7 +269,7 @@ pre_process_context (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (ci = 0; ci < cinfo->num_components; ci++) {
@@ -279,7 +279,7 @@ pre_process_context (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	  for (row = 1; row <= cinfo->max_v_samp_factor; row++) {
@@ -303,7 +303,7 @@ pre_process_context (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (ci = 0; ci < cinfo->num_components; ci++) {
@@ -358,7 +358,7 @@ create_context_buffer (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
@@ -381,7 +381,7 @@ create_context_buffer (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < rgroup_height; i++) {
@@ -436,7 +436,7 @@ jinit_c_prep_controller (j_compress_ptr cinfo, wxjpeg_boolean need_full_buffer)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;

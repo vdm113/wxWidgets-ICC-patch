@@ -147,7 +147,7 @@ static int CheckTeXInterface(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (unsigned int i = 0; i < startPos + length; i++) {
@@ -224,7 +224,7 @@ static void ColouriseTeXDoc(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; going; sc.Forward()) {
@@ -339,7 +339,7 @@ static int ParseTeXCommand(unsigned int pos, Accessor &styler, char *command)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
      while(isWordChar(ch) && !isNumber(ch) && ch!='_' && ch!='.' && length<100){
@@ -406,7 +406,7 @@ static bool IsTeXCommentLine(int line, Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (startpos<eol_pos){
@@ -437,7 +437,7 @@ static void FoldTexDoc(unsigned int startPos, int length, int, WordList *[], Acc
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i=startPos; i < endPos; i++) {

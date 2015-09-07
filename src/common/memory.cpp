@@ -280,7 +280,7 @@ int wxMemStruct::CheckAllPrevious ()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (wxMemStruct * st = this->m_prev; st != 0; st = st->m_prev) {
@@ -579,7 +579,7 @@ void wxDebugContext::TraverseList (PmSFV func, wxMemStruct *from)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (st = from; st != 0; st = st->m_next)
@@ -644,7 +644,7 @@ static wxDebugStatsStruct *FindStatsStruct(wxDebugStatsStruct *st, wxChar *name)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (st)
@@ -698,7 +698,7 @@ bool wxDebugContext::PrintStatistics(bool detailed)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (st = from; st != 0; st = st->m_next)
@@ -743,7 +743,7 @@ bool wxDebugContext::PrintStatistics(bool detailed)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (list)
@@ -789,7 +789,7 @@ bool wxDebugContext::PrintClasses(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (wxClassInfo::const_iterator node = wxClassInfo::begin_classinfo(),
@@ -850,7 +850,7 @@ int wxDebugContext::Check(bool checkAll)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (wxMemStruct * st = from; st != 0; st = st->m_next)
@@ -881,7 +881,7 @@ int wxDebugContext::CountObjectsLeft(bool sinceCheckpoint)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (wxMemStruct * st = from; st != 0; st = st->m_next)

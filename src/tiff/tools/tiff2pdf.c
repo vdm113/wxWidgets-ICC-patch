@@ -613,7 +613,7 @@ int main(int argc, char** argv){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (argv &&
@@ -870,7 +870,7 @@ void tiff2pdf_usage(){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i=0;lines[i]!=NULL;i++){
@@ -931,7 +931,7 @@ int tiff2pdf_match_paper_size(float* width, float* length, char* papersize){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for(i=0;i<len;i++){
@@ -942,7 +942,7 @@ int tiff2pdf_match_paper_size(float* width, float* length, char* papersize){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for(i=0;sizes[i]!=NULL; i++){
@@ -1002,7 +1002,7 @@ void t2p_free(T2P* t2p)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for(i=0;i<t2p->tiff_pagecount;i++){
@@ -1110,7 +1110,7 @@ void t2p_read_tiff_init(T2P* t2p, TIFF* input){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for(i=0;i<directorycount;i++){
@@ -1173,7 +1173,7 @@ void t2p_read_tiff_init(T2P* t2p, TIFF* input){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for(i=0;i<t2p->tiff_pagecount;i++){
@@ -1522,7 +1522,7 @@ void t2p_read_tiff_data(T2P* t2p, TIFF* input){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for(i=0;i<t2p->pdf_palettesize;i++){
@@ -1599,7 +1599,7 @@ void t2p_read_tiff_data(T2P* t2p, TIFF* input){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for(i=0;i<t2p->pdf_palettesize;i++){
@@ -1917,7 +1917,7 @@ void t2p_read_tiff_size(T2P* t2p, TIFF* input){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for(i=0;i<stripcount;i++){
@@ -1987,7 +1987,7 @@ void t2p_read_tiff_size(T2P* t2p, TIFF* input){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for(i=0;i<stripcount;i++){
@@ -2305,7 +2305,7 @@ tsize_t t2p_readwrite_pdf_image(T2P* t2p, TIFF* input, TIFF* output){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for(i=0;i<stripcount;i++){
@@ -2349,7 +2349,7 @@ tsize_t t2p_readwrite_pdf_image(T2P* t2p, TIFF* input, TIFF* output){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for(i=0;i<stripcount;i++){
@@ -2405,7 +2405,7 @@ tsize_t t2p_readwrite_pdf_image(T2P* t2p, TIFF* input, TIFF* output){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for(i=0;i<stripcount;i++){
@@ -2427,7 +2427,7 @@ tsize_t t2p_readwrite_pdf_image(T2P* t2p, TIFF* input, TIFF* output){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for(i=0;i<stripcount;i++){
@@ -2477,7 +2477,7 @@ tsize_t t2p_readwrite_pdf_image(T2P* t2p, TIFF* input, TIFF* output){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for(i=0;i<stripcount;i++){
@@ -2530,7 +2530,7 @@ tsize_t t2p_readwrite_pdf_image(T2P* t2p, TIFF* input, TIFF* output){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for(i=0;i<stripcount;i++){
@@ -2540,7 +2540,7 @@ tsize_t t2p_readwrite_pdf_image(T2P* t2p, TIFF* input, TIFF* output){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for(j=0;j<t2p->tiff_samplesperpixel;j++){
@@ -2588,7 +2588,7 @@ tsize_t t2p_readwrite_pdf_image(T2P* t2p, TIFF* input, TIFF* output){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for(i=0;i<stripcount;i++){
@@ -3034,7 +3034,7 @@ tsize_t t2p_readwrite_pdf_image_tile(T2P* t2p, TIFF* input, TIFF* output, ttile_
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for(i=0;i<t2p->tiff_samplesperpixel;i++){
@@ -3396,7 +3396,7 @@ int t2p_process_ojpeg_tables(T2P* t2p, TIFF* input){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for(i=0;i<t2p->tiff_samplesperpixel;i++){
@@ -3414,7 +3414,7 @@ int t2p_process_ojpeg_tables(T2P* t2p, TIFF* input){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for(dest=0;dest<t2p->tiff_samplesperpixel;dest++){
@@ -3433,7 +3433,7 @@ int t2p_process_ojpeg_tables(T2P* t2p, TIFF* input){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for(dest=0;dest<table_count;dest++){
@@ -3451,7 +3451,7 @@ int t2p_process_ojpeg_tables(T2P* t2p, TIFF* input){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for(i=0;i<16;i++){
@@ -3471,7 +3471,7 @@ int t2p_process_ojpeg_tables(T2P* t2p, TIFF* input){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for(dest=0;dest<table_count;dest++){
@@ -3490,7 +3490,7 @@ int t2p_process_ojpeg_tables(T2P* t2p, TIFF* input){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for(i=0;i<16;i++){
@@ -3527,7 +3527,7 @@ int t2p_process_ojpeg_tables(T2P* t2p, TIFF* input){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for(i=0;i<t2p->tiff_samplesperpixel;i++){
@@ -3577,7 +3577,7 @@ int t2p_process_jpeg_strip(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while(i<(*striplength)){
@@ -3600,7 +3600,7 @@ int t2p_process_jpeg_strip(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for(j=0;j<buffer[*bufferoffset+9];j++){
@@ -3684,7 +3684,7 @@ void t2p_tile_collapse_left(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for(i=0;i<tilelength;i++){
@@ -3735,7 +3735,7 @@ tsize_t t2p_sample_planar_separate_to_contig(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for(i=0;i<stride;i++){
@@ -3744,7 +3744,7 @@ tsize_t t2p_sample_planar_separate_to_contig(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for(j=0;j<t2p->tiff_samplesperpixel;j++){
@@ -3771,7 +3771,7 @@ tsize_t t2p_sample_realize_palette(T2P* t2p, unsigned char* buffer){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for(i=sample_count;i>0;i--){
@@ -3782,7 +3782,7 @@ tsize_t t2p_sample_realize_palette(T2P* t2p, unsigned char* buffer){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for(j=0;j<component_count;j++){
@@ -3808,7 +3808,7 @@ tsize_t t2p_sample_abgr_to_rgb(tdata_t data, uint32 samplecount)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for(i=0;i<samplecount;i++){
@@ -3836,7 +3836,7 @@ t2p_sample_rgbaa_to_rgb(tdata_t data, uint32 samplecount)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for(i = 0; i < samplecount; i++)
@@ -3862,7 +3862,7 @@ t2p_sample_rgba_to_rgb(tdata_t data, uint32 samplecount)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < samplecount; i++) {
@@ -3890,7 +3890,7 @@ tsize_t t2p_sample_lab_signed_to_unsigned(tdata_t buffer, uint32 samplecount){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for(i=0;i<samplecount;i++){
@@ -3980,7 +3980,7 @@ tsize_t t2p_write_pdf_name(unsigned char* name, TIFF* output){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i=0;i<namelen;i++){
@@ -4082,7 +4082,7 @@ tsize_t t2p_write_pdf_string(char* pdfstr, TIFF* output)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i=0; i<len; i++) {
@@ -4429,7 +4429,7 @@ tsize_t t2p_write_pdf_pages(T2P* t2p, TIFF* output)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i=0;i<t2p->tiff_pagecount;i++){
@@ -4496,7 +4496,7 @@ tsize_t t2p_write_pdf_page(uint32 object, T2P* t2p, TIFF* output){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for(i=0;i<t2p->tiff_tiles[t2p->pdf_page].tiles_tilecount;i++){
@@ -4659,7 +4659,7 @@ void t2p_compose_pdf_page(T2P* t2p){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for(i2=0;i2<tilecounty-1;i2++){
@@ -4668,7 +4668,7 @@ void t2p_compose_pdf_page(T2P* t2p){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for(i=0;i<tilecountx-1;i++){
@@ -4710,7 +4710,7 @@ void t2p_compose_pdf_page(T2P* t2p){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for(i=0;i<tilecountx-1;i++){
@@ -4747,7 +4747,7 @@ void t2p_compose_pdf_page(T2P* t2p){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for(i=0;i<(t2p->tiff_tiles[t2p->pdf_page]).tiles_tilecount;i++){
@@ -4760,7 +4760,7 @@ void t2p_compose_pdf_page(T2P* t2p){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for(i=0;i<(t2p->tiff_tiles[t2p->pdf_page]).tiles_tilecount;i++){
@@ -4953,7 +4953,7 @@ tsize_t t2p_write_pdf_page_content_stream(T2P* t2p, TIFF* output){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for(i=0;i<t2p->tiff_tiles[t2p->pdf_page].tiles_tilecount; i++){
@@ -5387,7 +5387,7 @@ tsize_t t2p_write_pdf_xobject_decode(T2P* t2p, TIFF* output){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i=0;i<t2p->tiff_samplesperpixel;i++){
@@ -5529,7 +5529,7 @@ tsize_t t2p_write_pdf_xreftable(T2P* t2p, TIFF* output){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i=0;i<t2p->pdf_xrefcount;i++){
@@ -5558,7 +5558,7 @@ tsize_t t2p_write_pdf_trailer(T2P* t2p, TIFF* output)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < sizeof(t2p->pdf_fileid) - 8; i += 8)
@@ -5674,7 +5674,7 @@ tsize_t t2p_write_pdf(T2P* t2p, TIFF* input, TIFF* output){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for(t2p->pdf_page=0;t2p->pdf_page<t2p->tiff_pagecount;t2p->pdf_page++){
@@ -5709,7 +5709,7 @@ tsize_t t2p_write_pdf(T2P* t2p, TIFF* input, TIFF* output){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for(i=0; i < t2p->tiff_transferfunctioncount; i++){
@@ -5760,7 +5760,7 @@ tsize_t t2p_write_pdf(T2P* t2p, TIFF* input, TIFF* output){
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for(i2=0;i2<t2p->tiff_tiles[t2p->pdf_page].tiles_tilecount;i2++){

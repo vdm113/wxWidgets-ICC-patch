@@ -425,7 +425,7 @@ void MyFrame::PopulateToolbar(wxToolBarBase* toolBar)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t n = Tool_new; n < WXSIZEOF(toolBarBitmaps); n++ )

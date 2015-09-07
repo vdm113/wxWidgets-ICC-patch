@@ -63,7 +63,7 @@ main(int argc, char** argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (R = 0; R < 256; R++) {
@@ -72,7 +72,7 @@ main(int argc, char** argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (G = 0; G < 256; G++)
@@ -81,7 +81,7 @@ main(int argc, char** argv)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    for (B = 0; B < 256; B++)
@@ -125,7 +125,7 @@ setupLuma(float c)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 256; i++)

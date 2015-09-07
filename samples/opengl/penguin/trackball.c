@@ -109,7 +109,7 @@ vcopy(const float *v1, float *v2)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0 ; i < 3 ; i++)
@@ -313,7 +313,7 @@ normalize_quat(float q[4])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 4; i++) q[i] /= mag;

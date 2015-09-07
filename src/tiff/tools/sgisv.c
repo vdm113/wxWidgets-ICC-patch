@@ -72,7 +72,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((c = getopt(argc, argv, "c:p:r:")) != -1)
@@ -166,7 +166,7 @@ usage(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; stuff[i] != NULL; i++)
@@ -188,7 +188,7 @@ svRGBSeparate(TIFF* tif, uint32* ss, int xsize, int ysize)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (y = 0; y <= ysize; y += rowsperstrip) {
@@ -205,7 +205,7 @@ svRGBSeparate(TIFF* tif, uint32* ss, int xsize, int ysize)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		do {
@@ -214,7 +214,7 @@ svRGBSeparate(TIFF* tif, uint32* ss, int xsize, int ysize)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (x = 0; x <= xsize; x++) {
@@ -251,7 +251,7 @@ svRGBContig(TIFF* tif, uint32* ss, int xsize, int ysize)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (y = 0; y <= ysize; y += rowsperstrip) {
@@ -266,7 +266,7 @@ svRGBContig(TIFF* tif, uint32* ss, int xsize, int ysize)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		do {
@@ -275,7 +275,7 @@ svRGBContig(TIFF* tif, uint32* ss, int xsize, int ysize)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (x = 0; x <= xsize; x++) {
@@ -313,7 +313,7 @@ svGrey(TIFF* tif, uint32* ss, int xsize, int ysize)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (y = 0; y <= ysize; y++) {
@@ -322,7 +322,7 @@ svGrey(TIFF* tif, uint32* ss, int xsize, int ysize)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (x = 0; x <= xsize; x++) {

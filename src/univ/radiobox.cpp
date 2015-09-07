@@ -212,7 +212,7 @@ wxRadioBox::~wxRadioBox()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int n = 0; n < count; n++ )
@@ -239,7 +239,7 @@ void wxRadioBox::Append(int count, const wxString *choices)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int n = 0; n < count; n++ )
@@ -366,7 +366,7 @@ bool wxRadioBox::Enable(bool enable)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int n = 0; n < count; n++ )
@@ -389,7 +389,7 @@ bool wxRadioBox::Show(bool show)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int n = 0; n < count; n++ )
@@ -422,7 +422,7 @@ void wxRadioBox::DoSetToolTip(wxToolTip *tooltip)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int n = 0; n < count; n++ )
@@ -450,7 +450,7 @@ wxSize wxRadioBox::GetMaxButtonSize() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int n = 0; n < count; n++ )
@@ -505,7 +505,7 @@ void wxRadioBox::DoMoveWindow(int x0, int y0, int width, int height)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int n = 0; n < count; n++ )

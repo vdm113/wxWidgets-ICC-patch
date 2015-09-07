@@ -143,7 +143,7 @@ int wxGUIEventLoop::DoRun()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( m_impl->m_keepGoing )
@@ -155,7 +155,7 @@ int wxGUIEventLoop::DoRun()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( ! Pending() )
@@ -278,7 +278,7 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < 2; i++)
@@ -293,7 +293,7 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (wxTheApp && wxTheApp->Pending())

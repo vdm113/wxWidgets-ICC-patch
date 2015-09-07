@@ -49,7 +49,7 @@ wxString ConcatenateDataViewItemValues(wxDataViewCtrl const* dataViewCtrlPtr, wx
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (size_t i=0; i<dataViewCtrlPtr->GetColumnCount(); i++)
@@ -174,7 +174,7 @@ bool wxOSXDataViewModelNotifier::ItemsChanged(wxDataViewItemArray const& items)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (size_t indexItem=0; indexItem<noOfItems; ++indexItem)
@@ -280,7 +280,7 @@ void wxOSXDataViewModelNotifier::AdjustRowHeight(wxDataViewItem const& item)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (col = 0; col < num; col++)
@@ -317,7 +317,7 @@ void wxOSXDataViewModelNotifier::AdjustRowHeights(wxDataViewItemArray const& ite
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (size_t itemIndex=0; itemIndex<noOfItems; ++itemIndex)
@@ -331,7 +331,7 @@ void wxOSXDataViewModelNotifier::AdjustRowHeights(wxDataViewItemArray const& ite
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (col = 0; col < num; col++)
@@ -364,7 +364,7 @@ void wxOSXDataViewModelNotifier::AdjustAutosizedColumns()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for ( unsigned col = 0; col < count; col++ )
@@ -672,7 +672,7 @@ void wxDataViewCtrl::SetSelections(wxDataViewItemArray const& sel)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < noOfSelections; i++)
@@ -693,7 +693,7 @@ void wxDataViewCtrl::SetSelections(wxDataViewItemArray const& sel)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i=0; i<noOfSelections; ++i)
@@ -784,7 +784,7 @@ void wxDataViewCtrl::OnSize(wxSizeEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (unsigned int i=0; i<noOfColumns; ++i)
@@ -844,7 +844,7 @@ void wxDataViewCtrl::OnMouse(wxMouseEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
        for (col = 0; col < col_count; col++)

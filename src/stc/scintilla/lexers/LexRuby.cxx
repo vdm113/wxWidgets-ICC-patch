@@ -84,7 +84,7 @@ static bool followsDot(unsigned int pos, Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (; pos >= 1; --pos) {
@@ -130,7 +130,7 @@ static int ClassifyWordRb(unsigned int start, unsigned int end, WordList &keywor
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = start, j = 0; j < lim; i++, j++) {
@@ -183,7 +183,7 @@ static bool isMatch(Accessor &styler, int lengthDoc, int pos, const char *val) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (*val) {
@@ -212,7 +212,7 @@ static bool lookingAtHereDocDelim(Accessor   	&styler,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (--pos > 0) {
@@ -268,7 +268,7 @@ static bool currLineContainsHereDelims(int &startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (pos = startPos - 1; pos > 0; pos--) {
@@ -403,7 +403,7 @@ static int skipWhitespace(int startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = startPos; i < endPos; i++) {
@@ -455,7 +455,7 @@ static bool sureThisIsHeredoc(int iPrev,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;) {
@@ -493,7 +493,7 @@ static bool haveTargetMatch(int currPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = targetStartPos, j = currPos;
@@ -550,7 +550,7 @@ static bool sureThisIsNotHeredoc(int lt2StartPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (firstWordPosn += 1; firstWordPosn <= lt2StartPos; firstWordPosn += 1) {
@@ -560,7 +560,7 @@ static bool sureThisIsNotHeredoc(int lt2StartPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (; firstWordPosn <= lt2StartPos; firstWordPosn += 1) {
@@ -643,7 +643,7 @@ static bool sureThisIsNotHeredoc(int lt2StartPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (; j < lengthDoc; j++) {
@@ -687,7 +687,7 @@ static bool sureThisIsNotHeredoc(int lt2StartPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int line_num = lineStart + 1; line_num <= last_line; line_num++) {
@@ -733,7 +733,7 @@ static void synchronizeDocStart(unsigned int &startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (lineStart = styler.GetLine(pos); lineStart > 0; lineStart--) {
@@ -862,7 +862,7 @@ static void ColouriseRbDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < INNER_STRINGS_MAX_COUNT; i++) {
@@ -874,7 +874,7 @@ static void ColouriseRbDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = startPos; i < lengthDoc; i++) {
@@ -1468,7 +1468,7 @@ static void ColouriseRbDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     while (isSafeAlpha(chNext)) {
@@ -1510,7 +1510,7 @@ static void ColouriseRbDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     while (++i < lengthDoc) {
@@ -1602,7 +1602,7 @@ static void getPrevWord(int pos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = pos - 1; i > 0; i--) {
@@ -1619,7 +1619,7 @@ static void getPrevWord(int pos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (; i <= pos; i++) {
@@ -1667,7 +1667,7 @@ static bool keywordIsModifier(const char *word,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (lineStartPosn > 0) {
@@ -1695,7 +1695,7 @@ static bool keywordIsModifier(const char *word,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (--pos >= lineStartPosn) {
@@ -1789,7 +1789,7 @@ static bool keywordDoStartsLoop(int pos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (--pos >= lineStartPosn) {
@@ -1812,7 +1812,7 @@ static bool keywordDoStartsLoop(int pos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (start_word = pos;
@@ -1852,7 +1852,7 @@ static bool IsCommentLine(int line, Accessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = pos; i < eol_pos; i++) {
@@ -1942,7 +1942,7 @@ static void FoldRbDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i = startPos; i < endPos; i++) {

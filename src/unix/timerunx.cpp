@@ -66,7 +66,7 @@ wxTimerScheduler::~wxTimerScheduler()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxTimerList::iterator node = m_timers.begin();
@@ -91,7 +91,7 @@ void wxTimerScheduler::DoAddTimer(wxTimerSchedule *s)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( node = m_timers.begin(); node != m_timers.end(); ++node )
@@ -119,7 +119,7 @@ void wxTimerScheduler::RemoveTimer(wxUnixTimerImpl *timer)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxTimerList::iterator node = m_timers.begin();
@@ -168,7 +168,7 @@ bool wxTimerScheduler::NotifyExpired()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxTimerList::iterator next,
@@ -224,7 +224,7 @@ bool wxTimerScheduler::NotifyExpired()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( TimerImpls::const_iterator i = toNotify.begin(),

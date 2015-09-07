@@ -85,7 +85,7 @@ struct colormap *cm;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (t = &cm->tree[0], j = NBYTS-1; j > 0; t = nextt, j--) {
@@ -95,7 +95,7 @@ struct colormap *cm;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (i = BYTTAB-1; i >= 0; i--)
@@ -108,7 +108,7 @@ struct colormap *cm;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = BYTTAB-1; i >= 0; i--)
@@ -135,7 +135,7 @@ struct colormap *cm;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 1; i <= cm->max; i++)		/* skip WHITE */
@@ -169,7 +169,7 @@ int level;			/* level number (top == 0) of this block */
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = BYTTAB-1; i >= 0; i--) {
@@ -220,7 +220,7 @@ pcolor co;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (level = 0, shift = BYTBITS * (NBYTS - 1); shift > 0;
@@ -359,7 +359,7 @@ pcolor co;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (cm->max > WHITE && UNUSEDCOLOR(&cm->cd[cm->max]))
@@ -370,7 +370,7 @@ pcolor co;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while ((size_t)cm->free > cm->max)
@@ -384,7 +384,7 @@ pcolor co;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (nco > 0)
@@ -502,7 +502,7 @@ struct state *rp;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; from <= to && i > 0; i--, from++)
@@ -516,7 +516,7 @@ struct state *rp;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; to - from >= BYTTAB; from += BYTTAB)
@@ -528,7 +528,7 @@ struct state *rp;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; from <= to; from++)
@@ -571,7 +571,7 @@ struct state *rp;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (level = 0, shift = BYTBITS * (NBYTS - 1); shift > 0;
@@ -611,7 +611,7 @@ struct state *rp;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (i = 0; i < BYTTAB; i++)
@@ -633,7 +633,7 @@ struct state *rp;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (i < BYTTAB) {
@@ -646,7 +646,7 @@ struct state *rp;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		do {
@@ -679,7 +679,7 @@ struct colormap *cm;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (cd = cm->cd, co = 0; cd < end; cd++, co++) {
@@ -700,7 +700,7 @@ struct colormap *cm;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while ((a = cd->arcs) != NULL) {
@@ -725,7 +725,7 @@ struct colormap *cm;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (a = cd->arcs; a != NULL; a = a->colorchain) {
@@ -772,7 +772,7 @@ struct arc *a;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (; aa != NULL && aa->colorchain != a; aa = aa->colorchain)
@@ -823,7 +823,7 @@ struct state *to;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (cd = cm->cd, co = 0; cd < end && !CISERR(); cd++, co++)
@@ -857,7 +857,7 @@ struct state *to;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (cd = cm->cd, co = 0; cd < end && !CISERR(); cd++, co++)
@@ -897,7 +897,7 @@ FILE *f;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (cd = cm->cd + 1, co = 1; cd < end; cd++, co++)	/* skip 0 */
@@ -915,7 +915,7 @@ FILE *f;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (c = CHR_MIN; c < CHR_MAX; c++)
@@ -949,7 +949,7 @@ FILE *f;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = BYTTAB-1; i >= 0; i--) {

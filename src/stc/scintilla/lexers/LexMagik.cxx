@@ -114,7 +114,7 @@ static void ColouriseMagikDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
@@ -129,7 +129,7 @@ static void ColouriseMagikDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for(; sc.More() && !(sc.atLineEnd); sc.Forward());
@@ -148,7 +148,7 @@ static void ColouriseMagikDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for(; sc.More() && sc.ch != '"'; sc.Forward());
@@ -172,7 +172,7 @@ static void ColouriseMagikDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	            for(
@@ -225,7 +225,7 @@ static void ColouriseMagikDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	            for(sc.Forward(); sc.More(); sc.Forward()) {
@@ -237,7 +237,7 @@ static void ColouriseMagikDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	                    for(sc.Forward();
@@ -261,7 +261,7 @@ static void ColouriseMagikDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	            for(sc.Forward(); sc.More(); sc.Forward()) {
@@ -287,7 +287,7 @@ static void ColouriseMagikDoc(unsigned int startPos, int length, int initStyle,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	            for(
@@ -448,7 +448,7 @@ static void FoldMagikDoc(unsigned int startPos, int length, int,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(
@@ -481,7 +481,7 @@ static void FoldMagikDoc(unsigned int startPos, int length, int,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for(

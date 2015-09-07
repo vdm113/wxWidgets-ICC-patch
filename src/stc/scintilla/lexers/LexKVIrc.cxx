@@ -78,7 +78,7 @@ static void ColouriseKVIrcDoc(unsigned int startPos, int length,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( ; sc.More(); next ? sc.Forward() : (void)0 )
@@ -339,7 +339,7 @@ static void ColouriseKVIrcDoc(unsigned int startPos, int length,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for( i = 0; i < wordLen; ++i )
@@ -416,7 +416,7 @@ static void FoldKVIrcDoc(unsigned int startPos, int length, int /*initStyle - un
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i = safeStartPos; i < startPos + length; ++i)

@@ -387,7 +387,7 @@ void wxColourDatabase::Initialize()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < WXSIZEOF(wxColourTable); n++ )
@@ -469,7 +469,7 @@ wxString wxColourDatabase::FindName(const wxColour& colour) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( iterator it = m_map->begin(), en = m_map->end(); it != en; ++it )
@@ -504,7 +504,7 @@ void wxStockGDI::DeleteAll()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned i = 0; i < ITEMCOUNT; i++)
@@ -749,7 +749,7 @@ wxGDIObjListBase::~wxGDIObjListBase()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (wxList::compatibility_iterator node = list.GetFirst(); node; node = node->GetNext())
@@ -765,7 +765,7 @@ wxPen *wxPenList::FindOrCreatePen (const wxColour& colour, int width, wxPenStyle
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxList::compatibility_iterator node = list.GetFirst();
@@ -797,7 +797,7 @@ wxBrush *wxBrushList::FindOrCreateBrush (const wxColour& colour, wxBrushStyle st
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxList::compatibility_iterator node = list.GetFirst();
@@ -846,7 +846,7 @@ wxFont *wxFontList::FindOrCreateFont(int pointSize,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (node = list.GetFirst(); node; node = node->GetNext())
@@ -936,7 +936,7 @@ wxResourceCache::~wxResourceCache ()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node) {

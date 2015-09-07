@@ -100,7 +100,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for(; n > 0; --n)
@@ -162,7 +162,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for(btn_i = 0; btn_i < btn_count; ++btn_i)
@@ -196,7 +196,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for(btn_i = 0; btn_i < btn_count; ++btn_i)
@@ -238,7 +238,7 @@ wxRibbonButtonBar::~wxRibbonButtonBar()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(i = 0; i < count; ++i)
@@ -254,7 +254,7 @@ wxRibbonButtonBar::~wxRibbonButtonBar()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(i = 0; i < count; ++i)
@@ -552,7 +552,7 @@ void wxRibbonButtonBar::ClearButtons()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(i = 0; i < count; ++i)
@@ -573,7 +573,7 @@ bool wxRibbonButtonBar::DeleteButton(int button_id)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(i = 0; i < count; ++i)
@@ -605,7 +605,7 @@ void wxRibbonButtonBar::EnableButton(int button_id, bool enable)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(i = 0; i < count; ++i)
@@ -643,7 +643,7 @@ void wxRibbonButtonBar::ToggleButton(int button_id, bool checked)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(i = 0; i < count; ++i)
@@ -689,7 +689,7 @@ void wxRibbonButtonBar::SetArtProvider(wxRibbonArtProvider* art)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(btn_i = 0; btn_i < btn_count; ++btn_i)
@@ -720,7 +720,7 @@ wxSize wxRibbonButtonBar::DoGetNextSmallerSize(wxOrientation direction,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(i = 0; i < nlayouts; ++i)
@@ -769,7 +769,7 @@ wxSize wxRibbonButtonBar::DoGetNextLargerSize(wxOrientation direction,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(i > 0)
@@ -824,7 +824,7 @@ void wxRibbonButtonBar::UpdateWindowUI(long flags)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t btn_i = 0; btn_i < btn_count; ++btn_i )
@@ -872,7 +872,7 @@ void wxRibbonButtonBar::OnPaint(wxPaintEvent& WXUNUSED(evt))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(btn_i = 0; btn_i < btn_count; ++btn_i)
@@ -905,7 +905,7 @@ void wxRibbonButtonBar::OnSize(wxSizeEvent& evt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(layout_i = 0; layout_i < layout_count; ++layout_i)
@@ -986,7 +986,7 @@ void wxRibbonButtonBar::MakeLayouts()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for(i = 0; i < count; ++i)
@@ -1008,7 +1008,7 @@ void wxRibbonButtonBar::MakeLayouts()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for(btn_i = 0; btn_i < btn_count; ++btn_i)
@@ -1035,7 +1035,7 @@ void wxRibbonButtonBar::MakeLayouts()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while(TryCollapseLayout(m_layouts.Last(), iLast, &iLast) && iLast > 0)
@@ -1060,7 +1060,7 @@ bool wxRibbonButtonBar::TryCollapseLayout(wxRibbonButtonBarLayout* original,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(btn_i = first_btn + 1; btn_i > 0; /* decrement is inside loop */)
@@ -1123,7 +1123,7 @@ bool wxRibbonButtonBar::TryCollapseLayout(wxRibbonButtonBarLayout* original,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(; btn_i <= first_btn; ++btn_i)
@@ -1141,7 +1141,7 @@ bool wxRibbonButtonBar::TryCollapseLayout(wxRibbonButtonBarLayout* original,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(; btn_i < btn_count; ++btn_i)
@@ -1185,7 +1185,7 @@ void wxRibbonButtonBar::OnMouseMove(wxMouseEvent& evt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(btn_i = 0; btn_i < btn_count; ++btn_i)
@@ -1291,7 +1291,7 @@ void wxRibbonButtonBar::OnMouseDown(wxMouseEvent& evt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(btn_i = 0; btn_i < btn_count; ++btn_i)
@@ -1341,7 +1341,7 @@ void wxRibbonButtonBar::OnMouseUp(wxMouseEvent& evt)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             do
@@ -1431,7 +1431,7 @@ wxRibbonButtonBarButtonBase *wxRibbonButtonBar::GetItemById(int button_id) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < count; ++i )

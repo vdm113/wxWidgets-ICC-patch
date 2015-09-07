@@ -256,7 +256,7 @@ void wxMessageDialog::ReplaceStaticWithEdit()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxString::reverse_iterator i = text.rbegin(); i != text.rend(); ++i )
@@ -316,7 +316,7 @@ void wxMessageDialog::ReplaceStaticWithEdit()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned n = 0; n < WXSIZEOF(ms_buttons); n++ )
@@ -359,7 +359,7 @@ void wxMessageDialog::AdjustButtonLabels()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < WXSIZEOF(ms_buttons); n++ )
@@ -444,7 +444,7 @@ void wxMessageDialog::AdjustButtonLabels()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( n = 0; n < WXSIZEOF(ms_buttons); n++ )
@@ -482,7 +482,7 @@ int wxMessageDialog::ShowMessageBox()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( wxTheApp->Pending() )

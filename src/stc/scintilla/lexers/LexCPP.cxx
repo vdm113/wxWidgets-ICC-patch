@@ -69,7 +69,7 @@ bool FollowsPostfixOperator(StyleContext &sc, LexAccessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (--pos > 0) {
@@ -91,7 +91,7 @@ bool followsReturnKeyword(StyleContext &sc, LexAccessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (--pos > lineStartPos) {
@@ -107,7 +107,7 @@ bool followsReturnKeyword(StyleContext &sc, LexAccessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (*s
@@ -129,7 +129,7 @@ bool OnlySpaceOrTab(const std::string &s) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (std::string::const_iterator it = s.begin(); it != s.end(); ++it) {
@@ -146,7 +146,7 @@ std::vector<std::string> StringSplit(const std::string &text, int separator) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (std::string::const_iterator it = text.begin(); it != text.end(); ++it) {
@@ -177,7 +177,7 @@ BracketPair FindBracketPair(std::vector<std::string> &tokens) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (itTok != tokens.end()) {
@@ -209,7 +209,7 @@ void highlightTaskMarker(StyleContext &sc, LexAccessor &styler,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (i < lengthMarker) {
@@ -274,7 +274,7 @@ std::string GetRestOfLine(LexAccessor &styler, int start, bool allowSpace) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (((start+i) < endLine) && (ch != '\r')) {

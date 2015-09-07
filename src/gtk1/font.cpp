@@ -313,7 +313,7 @@ void wxFontRefData::ClearGdkFonts()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxScaledFontList::iterator i = m_scaled_xfonts.begin();

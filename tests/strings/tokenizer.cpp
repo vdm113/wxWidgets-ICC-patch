@@ -150,7 +150,7 @@ void TokenizerTestCase::GetCount()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(gs_testData); n++ )
@@ -166,7 +166,7 @@ void TokenizerTestCase::GetCount()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( tkz.HasMoreTokens() )
@@ -197,7 +197,7 @@ DoTestGetPosition(const wxChar *s, const wxChar *delims, int pos, ...)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )
@@ -242,7 +242,7 @@ DoTestGetString(const wxChar *s, const wxChar *delims, int pos, ...)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )
@@ -294,7 +294,7 @@ void TokenizerTestCase::StrtokCompat()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < WXSIZEOF(gs_testData); n++ )
@@ -318,7 +318,7 @@ void TokenizerTestCase::StrtokCompat()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( tkz.HasMoreTokens() )
@@ -338,7 +338,7 @@ void TokenizerTestCase::CopyObj()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( tkzSrc.HasMoreTokens() )
@@ -368,7 +368,7 @@ void TokenizerTestCase::AssignObj()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( tkzSrc.HasMoreTokens() )

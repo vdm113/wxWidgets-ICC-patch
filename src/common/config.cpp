@@ -347,7 +347,7 @@ void wxConfigPathChanger::UpdateIfDeleted()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( !m_pContainer->HasGroup(m_strOldPath) )
@@ -378,7 +378,7 @@ wxString wxConfigBase::RemoveTrailingSeparator(const wxString& key)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( path.length() > 1 )
@@ -426,7 +426,7 @@ wxString wxExpandEnvVars(const wxString& str)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for ( size_t n = 0; n < str.length(); n++ ) {
@@ -469,7 +469,7 @@ wxString wxExpandEnvVars(const wxString& str)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
           while ( m < str.length() && (wxIsalnum(str[m]) || str[m] == wxT('_')) )
@@ -557,7 +557,7 @@ void wxSplitPath(wxArrayString& aParts, const wxString& path)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for ( ;; ) {

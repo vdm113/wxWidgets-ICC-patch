@@ -108,7 +108,7 @@ void CallTip::DrawChunk(Surface *surface, int &x, const char *s,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i=0; i<len; i++) {
@@ -127,7 +127,7 @@ void CallTip::DrawChunk(Surface *surface, int &x, const char *s,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int seg = 0; seg<maxEnd; seg++) {
@@ -210,7 +210,7 @@ int CallTip::PaintContents(Surface *surfaceWindow, bool draw) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (moreChunks) {
@@ -315,7 +315,7 @@ PRectangle CallTip::CallTipStart(int pos, Point pt, int textHeight, const char *
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((newline = strchr(look, '\n')) != NULL) {

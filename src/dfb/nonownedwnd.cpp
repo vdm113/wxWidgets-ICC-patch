@@ -317,7 +317,7 @@ void wxNonOwnedWindow::HandleQueuedPaintRequests()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( m_toPaint->GetNext(request) )

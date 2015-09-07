@@ -142,7 +142,7 @@ jcopy_sample_rows (JSAMPARRAY input_array, int source_row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (row = num_rows; row > 0; row--) {
@@ -156,7 +156,7 @@ jcopy_sample_rows (JSAMPARRAY input_array, int source_row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (count = num_cols; count > 0; count--)
@@ -184,7 +184,7 @@ jcopy_block_row (JBLOCKROW input_row, JBLOCKROW output_row,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (count = (long) num_blocks * DCTSIZE2; count > 0; count--) {
@@ -210,7 +210,7 @@ jzero_far (void FAR * target, size_t bytestozero)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (count = bytestozero; count > 0; count--) {

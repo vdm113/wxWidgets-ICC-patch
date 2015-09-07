@@ -120,7 +120,7 @@ void LogTraceLargeArray(const wxString& prefix, const wxArrayString& arr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxArrayString::const_iterator i = arr.begin(); i != arr.end(); ++i )
@@ -179,7 +179,7 @@ wxString GetPreferredUILanguage(const wxArrayString& available)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( unsigned i = 0; i < numLangs; i++ )
@@ -195,7 +195,7 @@ wxString GetPreferredUILanguage(const wxArrayString& available)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( wxArrayString::const_iterator j = preferred.begin();
@@ -237,7 +237,7 @@ void LogTraceArray(const char *prefix, CFArrayRef arr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned i = 1 ; i < count; i++ )
@@ -259,7 +259,7 @@ wxString GetPreferredUILanguage(const wxArrayString& available)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxArrayString::const_iterator i = available.begin();
@@ -393,7 +393,7 @@ bool wxPluralFormsScanner::nextToken()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (isspace((unsigned char) *m_s))
@@ -412,7 +412,7 @@ bool wxPluralFormsScanner::nextToken()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (isdigit((unsigned char) *m_s))
@@ -430,7 +430,7 @@ bool wxPluralFormsScanner::nextToken()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (isalnum((unsigned char) *m_s))
@@ -1318,7 +1318,7 @@ bool wxMsgCatalogFile::FillHash(wxStringToStringHashMap& hash,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t32 i = 0; i < m_numStrings; i++)
@@ -1349,7 +1349,7 @@ bool wxMsgCatalogFile::FillHash(wxStringToStringHashMap& hash,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (offset < length)
@@ -1523,7 +1523,7 @@ wxTranslations::~wxTranslations()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( m_pMsgCat != NULL )
@@ -1765,7 +1765,7 @@ const wxString *wxTranslations::GetTranslatedString(const wxString& origString,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( pMsgCat = m_pMsgCat; pMsgCat != NULL; pMsgCat = pMsgCat->m_pNext )
@@ -1820,7 +1820,7 @@ wxString wxTranslations::GetHeaderValue(const wxString& header,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( pMsgCat = m_pMsgCat; pMsgCat != NULL; pMsgCat = pMsgCat->m_pNext )
@@ -1961,7 +1961,7 @@ wxString GetFullSearchPath(const wxString& lang)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxArrayString::const_iterator i = prefixes.begin();
@@ -2033,7 +2033,7 @@ wxArrayString wxFileTranslationsLoader::GetAvailableTranslations(const wxString&
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxArrayString::const_iterator i = prefixes.begin();
@@ -2052,7 +2052,7 @@ wxArrayString wxFileTranslationsLoader::GetAvailableTranslations(const wxString&
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( bool ok = dir.GetFirst(&lang, "", wxDIR_DIRS);

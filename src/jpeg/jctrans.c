@@ -98,7 +98,7 @@ jpeg_copy_critical_parameters (j_decompress_ptr srcinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (tblno = 0; tblno < NUM_QUANT_TBLS; tblno++) {
@@ -124,7 +124,7 @@ jpeg_copy_critical_parameters (j_decompress_ptr srcinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ci = 0, incomp = srcinfo->comp_info, outcomp = dstinfo->comp_info;
@@ -149,7 +149,7 @@ jpeg_copy_critical_parameters (j_decompress_ptr srcinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (coefi = 0; coefi < DCTSIZE2; coefi++) {
@@ -325,7 +325,7 @@ compress_output (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
@@ -342,7 +342,7 @@ compress_output (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (yoffset = coef->MCU_vert_offset; yoffset < coef->MCU_rows_per_iMCU_row;
@@ -352,7 +352,7 @@ compress_output (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (MCU_col_num = coef->mcu_ctr; MCU_col_num < cinfo->MCUs_per_row;
@@ -364,7 +364,7 @@ compress_output (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
@@ -377,7 +377,7 @@ compress_output (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (yindex = 0; yindex < compptr->MCU_height; yindex++) {
@@ -390,7 +390,7 @@ compress_output (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	    for (xindex = 0; xindex < blockcnt; xindex++)
@@ -410,7 +410,7 @@ compress_output (j_compress_ptr cinfo, JSAMPIMAGE input_buf)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	  for (; xindex < compptr->MCU_width; xindex++) {
@@ -474,7 +474,7 @@ transencode_coef_controller (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < C_MAX_BLOCKS_IN_MCU; i++) {

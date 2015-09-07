@@ -200,7 +200,7 @@ wxMenuBar::wxMenuBar(size_t n, wxMenu *menus[], const wxArrayString& titles, lon
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < n; i++ )
@@ -216,7 +216,7 @@ wxMenuBar::wxMenuBar(size_t n, wxMenu *menus[], const wxString titles[], long WX
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < n; i++ )
@@ -325,7 +325,7 @@ int wxMenuBar::FindMenuItem(const wxString& menuString, const wxString& itemStri
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < menuCount; i++)
@@ -347,7 +347,7 @@ wxMenuItem *wxMenuBar::FindItem(int id, wxMenu ** itemMenu) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < menuCount; i++)
@@ -387,7 +387,7 @@ bool wxMenuBar::CreateMenuBar(wxFrame* parent)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < menuCount; i++)
@@ -441,7 +441,7 @@ bool wxMenuBar::DestroyMenuBar()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < menuCount; i++)
@@ -474,7 +474,7 @@ void wxMenu::DestroyWidgetAndDetach()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( node )
@@ -571,7 +571,7 @@ WXWidget wxMenu::CreateMenu (wxMenuBar * menuBar,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
@@ -598,7 +598,7 @@ void wxMenu::DestroyMenu (bool full)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
@@ -641,7 +641,7 @@ WXWidget wxMenu::FindMenuItem (int id, wxMenuItem ** it) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
@@ -686,7 +686,7 @@ void wxMenu::SetBackgroundColour(const wxColour& col)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
@@ -719,7 +719,7 @@ void wxMenu::SetForegroundColour(const wxColour& col)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
@@ -761,7 +761,7 @@ void wxMenu::ChangeFont(bool keepOriginalSize)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxMenuItemList::compatibility_iterator node = GetMenuItems().GetFirst();
@@ -804,7 +804,7 @@ bool wxMenuBar::SetBackgroundColour(const wxColour& col)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < menuCount; i++)
@@ -828,7 +828,7 @@ bool wxMenuBar::SetForegroundColour(const wxColour& col)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < menuCount; i++)
@@ -853,7 +853,7 @@ bool wxMenuBar::SetFont(const wxFont& font)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < menuCount; i++)

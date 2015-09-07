@@ -114,7 +114,7 @@ static void wxPushOrPopEventHandlers(wxContextHelp* help, wxWindow* win, bool pu
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -205,7 +205,7 @@ bool wxContextHelp::EventLoop()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( m_inHelp )

@@ -140,7 +140,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while ((c = getopt(argc, argv, "c:C:r:f")) != -1)
@@ -206,7 +206,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 1; i < num_colors-1; ++i) {
@@ -238,7 +238,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (freeboxes != NULL) {
@@ -257,7 +257,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0, ptr = usedboxes; ptr != NULL; ++i, ptr = ptr->next) {
@@ -328,7 +328,7 @@ main(int argc, char* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < MAX_CMAP_SIZE; ++i) {
@@ -393,7 +393,7 @@ usage(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; stuff[i] != NULL; i++)
@@ -424,7 +424,7 @@ get_histogram(TIFF* in, Colorbox* box)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	  for (i = B_LEN*B_LEN*B_LEN; i-- > 0;)
@@ -435,7 +435,7 @@ get_histogram(TIFF* in, Colorbox* box)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < imagelength; i++) {
@@ -447,7 +447,7 @@ get_histogram(TIFF* in, Colorbox* box)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (j = imagewidth; j-- > 0;) {
@@ -485,7 +485,7 @@ largest_box(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (p = usedboxes; p != NULL; p = p->next)
@@ -528,7 +528,7 @@ splitbox(Colorbox* ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	        for (ir = ptr->rmin; ir <= ptr->rmax; ++ir) {
@@ -538,7 +538,7 @@ splitbox(Colorbox* ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (ig = ptr->gmin; ig <= ptr->gmax; ++ig) {
@@ -548,7 +548,7 @@ splitbox(Colorbox* ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (ib = ptr->bmin; ib <= ptr->bmax; ++ib)
@@ -566,7 +566,7 @@ splitbox(Colorbox* ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	        for (ig = ptr->gmin; ig <= ptr->gmax; ++ig) {
@@ -576,7 +576,7 @@ splitbox(Colorbox* ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (ir = ptr->rmin; ir <= ptr->rmax; ++ir) {
@@ -586,7 +586,7 @@ splitbox(Colorbox* ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (ib = ptr->bmin; ib <= ptr->bmax; ++ib)
@@ -604,7 +604,7 @@ splitbox(Colorbox* ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	        for (ib = ptr->bmin; ib <= ptr->bmax; ++ib) {
@@ -614,7 +614,7 @@ splitbox(Colorbox* ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (ir = ptr->rmin; ir <= ptr->rmax; ++ir) {
@@ -624,7 +624,7 @@ splitbox(Colorbox* ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (ig = ptr->gmin; ig <= ptr->gmax; ++ig) {
@@ -647,7 +647,7 @@ splitbox(Colorbox* ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = first; i <= last && (sum += *histp++) < sum2; ++i)
@@ -671,7 +671,7 @@ splitbox(Colorbox* ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (sum1 = 0, j = first; j < i; j++)
@@ -681,7 +681,7 @@ splitbox(Colorbox* ptr)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (sum2 = 0, j = i; j <= last; j++)
@@ -725,7 +725,7 @@ shrinkbox(Colorbox* box)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (ir = box->rmin; ir <= box->rmax; ++ir)
@@ -734,7 +734,7 @@ shrinkbox(Colorbox* box)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (ig = box->gmin; ig <= box->gmax; ++ig) {
@@ -744,7 +744,7 @@ shrinkbox(Colorbox* box)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			        for (ib = box->bmin; ib <= box->bmax; ++ib)
@@ -760,7 +760,7 @@ shrinkbox(Colorbox* box)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (ir = box->rmax; ir >= box->rmin; --ir)
@@ -769,7 +769,7 @@ shrinkbox(Colorbox* box)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (ig = box->gmin; ig <= box->gmax; ++ig) {
@@ -780,7 +780,7 @@ shrinkbox(Colorbox* box)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for (; ib <= box->bmax; ++ib)
@@ -797,7 +797,7 @@ have_rmax:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (ig = box->gmin; ig <= box->gmax; ++ig)
@@ -806,7 +806,7 @@ have_rmax:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (ir = box->rmin; ir <= box->rmax; ++ir) {
@@ -816,7 +816,7 @@ have_rmax:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			        for (ib = box->bmin; ib <= box->bmax; ++ib)
@@ -832,7 +832,7 @@ have_rmax:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (ig = box->gmax; ig >= box->gmin; --ig)
@@ -841,7 +841,7 @@ have_rmax:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (ir = box->rmin; ir <= box->rmax; ++ir) {
@@ -852,7 +852,7 @@ have_rmax:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for (; ib <= box->bmax; ++ib)
@@ -869,7 +869,7 @@ have_gmax:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (ib = box->bmin; ib <= box->bmax; ++ib)
@@ -878,7 +878,7 @@ have_gmax:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (ir = box->rmin; ir <= box->rmax; ++ir) {
@@ -888,7 +888,7 @@ have_gmax:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			        for (ig = box->gmin; ig <= box->gmax; ++ig) {
@@ -906,7 +906,7 @@ have_gmax:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (ib = box->bmax; ib >= box->bmin; --ib)
@@ -915,7 +915,7 @@ have_gmax:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (ir = box->rmin; ir <= box->rmax; ++ir) {
@@ -926,7 +926,7 @@ have_gmax:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for (; ig <= box->gmax; ++ig) {
@@ -967,7 +967,7 @@ create_colorcell(int red, int green, int blue)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < num_colors; ++i) {
@@ -1002,7 +1002,7 @@ create_colorcell(int red, int green, int blue)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < num_colors; ++i) {
@@ -1035,7 +1035,7 @@ create_colorcell(int red, int green, int blue)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (n = ptr->num_ents - 1; n > 0; n = next_n) {
@@ -1045,7 +1045,7 @@ create_colorcell(int red, int green, int blue)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (i = 0; i < n; ++i)
@@ -1075,7 +1075,7 @@ map_colortable(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (ir = 0; ir < B_LEN; ++ir)
@@ -1084,7 +1084,7 @@ map_colortable(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (ig = 0; ig < B_LEN; ++ig)
@@ -1093,7 +1093,7 @@ map_colortable(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			for (ib = 0; ib < B_LEN; ++ib, histp++) {
@@ -1116,7 +1116,7 @@ map_colortable(void)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (i = 0; i < cell->num_ents &&
@@ -1156,7 +1156,7 @@ quant(TIFF* in, TIFF* out)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 0; i < imagelength; i++) {
@@ -1169,7 +1169,7 @@ quant(TIFF* in, TIFF* out)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (j = 0; j < imagewidth; j++) {
@@ -1231,7 +1231,7 @@ quant_fsdither(TIFF* in, TIFF* out)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (i = 1; i <= imagelength; ++i) {
@@ -1247,7 +1247,7 @@ quant_fsdither(TIFF* in, TIFF* out)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (j = 0; j < imagewidth; ++j) {
@@ -1277,7 +1277,7 @@ quant_fsdither(TIFF* in, TIFF* out)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (ci = 0; ci < cell->num_ents && dist > cell->entries[ci][1]; ++ci) {

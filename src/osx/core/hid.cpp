@@ -125,7 +125,7 @@ bool wxHIDDevice::Create (int nClass, int nType, int nDev)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( (pObject = IOIteratorNext(pIterator)) != 0)
@@ -298,7 +298,7 @@ size_t wxHIDDevice::GetCount (int nClass, int nType)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( (pObject = IOIteratorNext(pIterator)) != 0)
@@ -509,7 +509,7 @@ void wxHIDKeyboard::DoBuildCookies(CFArrayRef Array)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < CFArrayGetCount(Array); ++i)
@@ -689,7 +689,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for(size_t i = 0; i < sm_keyboards.GetCount(); ++i)

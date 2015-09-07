@@ -50,7 +50,7 @@ static wxImage ConvertImage( QImage qtImage )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int y = 0; y < qtImage.height(); y++)
@@ -62,7 +62,7 @@ static wxImage ConvertImage( QImage qtImage )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int x = 0; x < qtImage.width(); x++)
@@ -111,7 +111,7 @@ static QImage ConvertImage( const wxImage &image )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int y = 0; y < image.GetHeight(); y++)
@@ -121,7 +121,7 @@ static QImage ConvertImage( const wxImage &image )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int x = 0; x < image.GetWidth(); x++)

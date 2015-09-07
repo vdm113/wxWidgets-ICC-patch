@@ -261,7 +261,7 @@ gtk_listbox_button_press_callback( GtkWidget *widget,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < (int)listbox->GetCount(); i++)
@@ -462,7 +462,7 @@ gtk_listbox_realized_callback( GtkWidget *WXUNUSED(widget), wxListBox *win )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (child = win->m_list->children; child != NULL; child = child->next)
@@ -621,7 +621,7 @@ int wxListBox::DoInsertItems(const wxArrayStringsAdapter& items,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int n = 0; n < numItems; ++n, ++pos )
@@ -873,7 +873,7 @@ int wxListBox::FindString( const wxString &item, bool bCase ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (child)
@@ -905,7 +905,7 @@ int wxListBox::GetSelection() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (child)
@@ -929,7 +929,7 @@ int wxListBox::GetSelections( wxArrayInt& aSelections ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (child = m_list->children; child != NULL; child = child->next)
@@ -950,7 +950,7 @@ int wxListBox::GetSelections( wxArrayInt& aSelections ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (child = m_list->children; child != NULL; child = child->next, i++)
@@ -1045,7 +1045,7 @@ int wxListBox::GtkGetIndex( GtkWidget *item ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (child)
@@ -1067,7 +1067,7 @@ void wxListBox::ApplyToolTip( GtkTooltips *tips, const wxChar *tip )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (child)
@@ -1109,7 +1109,7 @@ void wxListBox::DoApplyWidgetStyle(GtkRcStyle *style)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (child)
@@ -1144,7 +1144,7 @@ void wxListBox::OnInternalIdle()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (child)
@@ -1186,7 +1186,7 @@ wxSize wxListBox::DoGetBestSize() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(unsigned int i = 0; i < GetCount(); i++) {

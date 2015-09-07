@@ -290,7 +290,7 @@ gtTileContig(TIFFImageIter* img, void *udata, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (row = 0; row < h; row += th) {
@@ -300,7 +300,7 @@ gtTileContig(TIFFImageIter* img, void *udata, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (col = 0; col < w; col += tw) {
@@ -367,7 +367,7 @@ gtTileSeparate(TIFFImageIter* img, void *udata, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (row = 0; row < h; row += th) {
@@ -377,7 +377,7 @@ gtTileSeparate(TIFFImageIter* img, void *udata, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (col = 0; col < w; col += tw) {
@@ -439,7 +439,7 @@ gtStripContig(TIFFImageIter* img, void *udata, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (row = 0; row < h; row += rowsperstrip) {
@@ -495,7 +495,7 @@ gtStripSeparate(TIFFImageIter* img, void *udata, uint32 w, uint32 h)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (row = 0; row < h; row += rowsperstrip) {

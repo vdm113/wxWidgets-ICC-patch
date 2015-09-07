@@ -108,7 +108,7 @@ rgb_ycc_start (j_compress_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i <= MAXJSAMPLE; i++) {
@@ -161,7 +161,7 @@ rgb_ycc_convert (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (--num_rows >= 0) {
@@ -175,7 +175,7 @@ rgb_ycc_convert (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (col = 0; col < num_cols; col++) {
@@ -233,7 +233,7 @@ rgb_gray_convert (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (--num_rows >= 0) {
@@ -245,7 +245,7 @@ rgb_gray_convert (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (col = 0; col < num_cols; col++) {
@@ -288,7 +288,7 @@ cmyk_ycck_convert (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (--num_rows >= 0) {
@@ -303,7 +303,7 @@ cmyk_ycck_convert (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (col = 0; col < num_cols; col++) {
@@ -357,7 +357,7 @@ grayscale_convert (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (--num_rows >= 0) {
@@ -369,7 +369,7 @@ grayscale_convert (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (col = 0; col < num_cols; col++) {
@@ -403,7 +403,7 @@ null_convert (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (--num_rows >= 0) {
@@ -413,7 +413,7 @@ null_convert (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (ci = 0; ci < nc; ci++) {
@@ -424,7 +424,7 @@ null_convert (j_compress_ptr cinfo,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       for (col = 0; col < num_cols; col++) {

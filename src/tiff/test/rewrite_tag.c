@@ -104,7 +104,7 @@ int test_packbits()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < length; i++ )
@@ -210,7 +210,7 @@ int rewrite_test( const char *filename, int length, int bigtiff,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < length; i++ )
@@ -249,7 +249,7 @@ int rewrite_test( const char *filename, int length, int bigtiff,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( i = 0; i < length; i++ )
@@ -270,7 +270,7 @@ int rewrite_test( const char *filename, int length, int bigtiff,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( i = 0; i < length; i++ )
@@ -306,7 +306,7 @@ int rewrite_test( const char *filename, int length, int bigtiff,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( i = 0; i < length; i++ )
@@ -337,7 +337,7 @@ int rewrite_test( const char *filename, int length, int bigtiff,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( i = 0; i < length; i++ )

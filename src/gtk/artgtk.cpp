@@ -180,7 +180,7 @@ GtkIconSize FindClosestIconSize(const wxSize& size)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < NUM_SIZES; i++)
@@ -198,7 +198,7 @@ GtkIconSize FindClosestIconSize(const wxSize& size)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < NUM_SIZES; i++)
@@ -294,7 +294,7 @@ wxIconBundle DoCreateIconBundle(const char *stockid,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( const SizeType *i = sizes_from; i != sizes_to; ++i )
@@ -390,7 +390,7 @@ wxGTK2ArtProvider::CreateIconBundle(const wxArtID& id,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( *last )

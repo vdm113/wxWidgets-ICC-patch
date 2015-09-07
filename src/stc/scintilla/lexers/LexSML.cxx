@@ -66,7 +66,7 @@ void ColouriseSMLDoc(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (sc.More()) {
@@ -114,7 +114,7 @@ void ColouriseSMLDoc(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for (int i = -n; i < 0; i++)

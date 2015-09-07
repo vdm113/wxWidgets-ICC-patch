@@ -760,7 +760,7 @@ wxTaskBarButtonImpl::~wxTaskBarButtonImpl()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxThumbBarButtons::iterator iter = m_thumbBarButtons.begin();
@@ -903,7 +903,7 @@ wxThumbBarButton* wxTaskBarButtonImpl::RemoveThumbBarButton(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxThumbBarButtons::iterator iter = m_thumbBarButtons.begin();
@@ -929,7 +929,7 @@ wxThumbBarButton* wxTaskBarButtonImpl::RemoveThumbBarButton(int id)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxThumbBarButtons::iterator iter = m_thumbBarButtons.begin();
@@ -958,7 +958,7 @@ bool wxTaskBarButtonImpl::InitOrUpdateThumbBarButtons()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < MAX_BUTTON_COUNT; ++i )
@@ -974,7 +974,7 @@ bool wxTaskBarButtonImpl::InitOrUpdateThumbBarButtons()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < m_thumbBarButtons.size(); ++i )
@@ -1160,7 +1160,7 @@ wxTaskBarJumpListCategory::~wxTaskBarJumpListCategory()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxTaskBarJumpListItems::iterator it = m_items.begin();
@@ -1199,7 +1199,7 @@ wxTaskBarJumpListCategory::Remove(wxTaskBarJumpListItem *item)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (wxTaskBarJumpListItems::iterator it = m_items.begin();
@@ -1373,7 +1373,7 @@ wxTaskBarJumpListImpl::~wxTaskBarJumpListImpl()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxTaskBarJumpListCategories::iterator it = m_customCategories.begin();
@@ -1467,7 +1467,7 @@ wxTaskBarJumpListImpl::RemoveCustomCategory(const wxString& title)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxTaskBarJumpListCategories::iterator it = m_customCategories.begin();
@@ -1526,7 +1526,7 @@ void wxTaskBarJumpListImpl::AddTasksToDestinationList()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxTaskBarJumpListItems::const_iterator it = tasks.begin();
@@ -1549,7 +1549,7 @@ void wxTaskBarJumpListImpl::AddCustomCategoriesToDestionationList()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxTaskBarJumpListCategories::iterator it = m_customCategories.begin();
@@ -1566,7 +1566,7 @@ void wxTaskBarJumpListImpl::AddCustomCategoriesToDestionationList()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxTaskBarJumpListItems::const_iterator iter = tasks.begin();
@@ -1625,7 +1625,7 @@ void wxTaskBarJumpListImpl::LoadKnownCategory(const wxString& title)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (UINT i = 0; i < count; ++i)

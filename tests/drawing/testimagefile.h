@@ -37,7 +37,7 @@ bool AreFilesContentsEqual(const wxString &filename, const wxString &refFilename
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (remainingLength != 0)

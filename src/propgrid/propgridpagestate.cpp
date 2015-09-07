@@ -272,7 +272,7 @@ void wxPropertyGridPageState::InitNonCatMode()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( ; !it.AtEnd(); it.Next() )
@@ -312,7 +312,7 @@ void wxPropertyGridPageState::DoClear()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (unsigned int i = 0; i < m_regularArray.GetChildCount(); i++)
@@ -330,7 +330,7 @@ void wxPropertyGridPageState::DoClear()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (unsigned int i = 0; i < m_regularArray.GetChildCount(); i++)
@@ -377,7 +377,7 @@ void wxPropertyGridPageState::CalculateFontAndBitmapStuff( int WXUNUSED(vspacing
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < m_regularArray.GetChildCount();i++ )
@@ -468,7 +468,7 @@ wxPGProperty* wxPropertyGridPageState::GetLastItem( int flags )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( pwc->GetChildCount() &&
@@ -484,7 +484,7 @@ wxPGProperty* wxPropertyGridPageState::GetLastItem( int flags )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( ; !it.AtEnd(); it.Prev() )
@@ -504,7 +504,7 @@ wxPropertyCategory* wxPropertyGridPageState::GetPropertyCategory( const wxPGProp
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     do
@@ -543,7 +543,7 @@ wxPGProperty* wxPropertyGridPageState::BaseGetPropertyByLabel
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i=0; i<parent->GetChildCount(); i++ )
@@ -800,7 +800,7 @@ void wxPropertyGridPageState::DoSortChildren( wxPGProperty* p,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned int i=0; i<p->GetChildCount(); i++ )
@@ -878,7 +878,7 @@ int wxPropertyGridPageState::GetColumnFitWidth(wxClientDC& dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i <pwc->GetChildCount(); i++ )
@@ -944,7 +944,7 @@ int wxPropertyGridPageState::DoGetSplitterPosition( int splitterColumn ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i <= splitterColumn; i++ )
@@ -970,7 +970,7 @@ void wxPropertyGridPageState::PropagateColSizeDec( int column,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(decrease > 0 && col >= 0 && col < (int)m_colWidths.size())
@@ -994,7 +994,7 @@ void wxPropertyGridPageState::PropagateColSizeDec( int column,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(decrease > 0 && col >= 0 && col < (int)m_colWidths.size())
@@ -1095,7 +1095,7 @@ wxSize wxPropertyGridPageState::DoFitColumns( bool WXUNUSED(allowGridResize) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int col=0; col < GetColumnCount(); col++ )
@@ -1161,7 +1161,7 @@ void wxPropertyGridPageState::CheckColumnWidths( int widthChange )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i=0; i<m_colWidths.size(); i++ )
@@ -1185,7 +1185,7 @@ void wxPropertyGridPageState::CheckColumnWidths( int widthChange )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i=0; i<m_colWidths.size(); i++ )
@@ -1244,7 +1244,7 @@ void wxPropertyGridPageState::CheckColumnWidths( int widthChange )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i=0; i<m_colWidths.size(); i++ )
@@ -1325,7 +1325,7 @@ void wxPropertyGridPageState::ResetColumnSizes( int setSplitterFlags )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i=0; i<m_colWidths.size(); i++ )
@@ -1339,7 +1339,7 @@ void wxPropertyGridPageState::ResetColumnSizes( int setSplitterFlags )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( i=0; i<(m_colWidths.size() - 1); i++ )
@@ -1380,7 +1380,7 @@ void wxPropertyGridPageState::DoSetColumnProportion( unsigned int column,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( m_columnProportions.size() <= column )
@@ -1401,7 +1401,7 @@ int wxPropertyGridPageState::HitTestH( int x, int* pSplitterHit, int* pSplitterH
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( x > cx )
@@ -1547,7 +1547,7 @@ void wxPropertyGridPageState::DoRemoveFromSelection( wxPGProperty* prop )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i=0; i<m_selection.size(); i++ )
@@ -1665,7 +1665,7 @@ wxVariant wxPropertyGridPageState::DoGetPropertyValues( const wxString& listname
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( unsigned int i = 0; i < pwc->GetChildCount(); i++ )
@@ -1695,7 +1695,7 @@ wxVariant wxPropertyGridPageState::DoGetPropertyValues( const wxString& listname
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( ; !it.AtEnd(); it.Next() )
@@ -1746,7 +1746,7 @@ void wxPropertyGridPageState::DoSetPropertyValues( const wxVariantList& list, wx
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( node = list.begin(); node != list.end(); ++node )
@@ -1817,7 +1817,7 @@ void wxPropertyGridPageState::DoSetPropertyValues( const wxVariantList& list, wx
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( node = list.begin(); node != list.end(); ++node )
@@ -1856,7 +1856,7 @@ void wxPropertyGridPageState::DoSetPropertyValues( const wxVariantList& list, wx
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                                 for ( node2 = list2.begin(); node2 != list2.end(); ++node2 )
@@ -2073,7 +2073,7 @@ wxPGProperty* wxPropertyGridPageState::DoInsert( wxPGProperty* parent, int index
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( wxPGProperty *p = property->GetParent();
@@ -2101,7 +2101,7 @@ void wxPropertyGridPageState::DoRemoveChildrenFromSelection(wxPGProperty* p,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( unsigned int i = 0; i < p->GetChildCount(); i++ )
@@ -2134,7 +2134,7 @@ void wxPropertyGridPageState::DoMarkChildrenAsDeleted(wxPGProperty* p,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for( unsigned int i = 0; i < p->GetChildCount(); i++ )
@@ -2171,7 +2171,7 @@ void wxPropertyGridPageState::DoInvalidateChildrenNames(wxPGProperty* p,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for( unsigned int i = 0; i < p->GetChildCount(); i++ )
@@ -2198,7 +2198,7 @@ bool wxPropertyGridPageState::IsChildCategory(wxPGProperty* p,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for( unsigned int i = 0; i < p->GetChildCount(); i++ )
@@ -2343,7 +2343,7 @@ void wxPropertyGridPageState::DoDelete( wxPGProperty* item, bool doDelete )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned int i = 0; i < m_regularArray.GetChildCount(); i++ )

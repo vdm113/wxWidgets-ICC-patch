@@ -104,7 +104,7 @@ bool wxRadioButton::Create(wxWindow *parent, wxWindowID id,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (node)
@@ -201,7 +201,7 @@ wxRadioButton* wxRadioButton::AddInCycle(wxRadioButton *cycle)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( current->m_cycle != cycle )
@@ -225,7 +225,7 @@ wxRadioButton* wxRadioButton::ClearSelections()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (cycle != this)
@@ -251,7 +251,7 @@ void wxRadioButton::RemoveFromCycle()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while( curr )

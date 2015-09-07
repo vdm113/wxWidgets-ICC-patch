@@ -35,7 +35,7 @@ static const char *NextField(const char *s) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (*s && *s == ' ') {
@@ -46,7 +46,7 @@ static const char *NextField(const char *s) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (*s && *s != ' ') {
@@ -57,7 +57,7 @@ static const char *NextField(const char *s) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (*s && *s == ' ') {
@@ -74,7 +74,7 @@ static size_t MeasureLength(const char *s) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (s[i] && (s[i] != '\"'))
@@ -147,7 +147,7 @@ void XPM::Init(const char *const *linesForm) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int c=0; c<nColours; c++) {
@@ -168,7 +168,7 @@ void XPM::Init(const char *const *linesForm) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int y=0; y<height; y++) {
@@ -179,7 +179,7 @@ void XPM::Init(const char *const *linesForm) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (size_t x = 0; x<len; x++)
@@ -199,7 +199,7 @@ void XPM::Draw(Surface *surface, PRectangle &rc) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int y=0; y<height; y++) {
@@ -210,7 +210,7 @@ void XPM::Draw(Surface *surface, PRectangle &rc) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int x=0; x<width; x++) {
@@ -251,7 +251,7 @@ std::vector<const char *> XPM::LinesFormFromTextForm(const char *textForm) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; countQuotes < (2*strings) && textForm[j] != '\0'; j++) {
@@ -302,7 +302,7 @@ RGBAImage::RGBAImage(const XPM &xpm) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int y=0; y<height; y++) {
@@ -311,7 +311,7 @@ RGBAImage::RGBAImage(const XPM &xpm) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (int x=0; x<width; x++) {
@@ -357,7 +357,7 @@ void RGBAImageSet::Clear() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (ImageMap::iterator it=images.begin(); it != images.end(); ++it) {
@@ -399,7 +399,7 @@ int RGBAImageSet::GetHeight() const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (ImageMap::const_iterator it=images.begin(); it != images.end(); ++it) {
@@ -419,7 +419,7 @@ int RGBAImageSet::GetWidth() const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		for (ImageMap::const_iterator it=images.begin(); it != images.end(); ++it) {

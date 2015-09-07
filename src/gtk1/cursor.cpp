@@ -187,7 +187,7 @@ wxCursor::wxCursor( const wxImage & image )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i=0; i<imagebitcount; i++)
@@ -201,7 +201,7 @@ wxCursor::wxCursor( const wxImage & image )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (j=0; j<8; j++)
@@ -228,7 +228,7 @@ wxCursor::wxCursor( const wxImage & image )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i=0; i<imagebitcount; i++)
@@ -242,7 +242,7 @@ wxCursor::wxCursor( const wxImage & image )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (j=0; j<8; j++)
@@ -262,7 +262,7 @@ wxCursor::wxCursor( const wxImage & image )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i=0; i<imagebitcount; i++)
@@ -289,7 +289,7 @@ wxCursor::wxCursor( const wxImage & image )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxImageHistogram::iterator entry = histogram.begin();

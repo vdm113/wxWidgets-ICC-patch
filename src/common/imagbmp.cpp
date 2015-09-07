@@ -325,7 +325,7 @@ bool wxBMPHandler::SaveDib(wxImage *image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (i = 0; i < palette_size; i++)
@@ -353,7 +353,7 @@ bool wxBMPHandler::SaveDib(wxImage *image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int i = 0; i < palette_size; i++ )
@@ -401,7 +401,7 @@ bool wxBMPHandler::SaveDib(wxImage *image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (y = image->GetHeight() -1; y >= 0; y--)
@@ -413,7 +413,7 @@ bool wxBMPHandler::SaveDib(wxImage *image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( x = 0; x < width; x++ )
@@ -435,7 +435,7 @@ bool wxBMPHandler::SaveDib(wxImage *image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (x = 0; x < width; x++)
@@ -458,7 +458,7 @@ bool wxBMPHandler::SaveDib(wxImage *image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (x = 0; x < width; x++)
@@ -476,7 +476,7 @@ bool wxBMPHandler::SaveDib(wxImage *image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (x = 0; x < width; x++)
@@ -491,7 +491,7 @@ bool wxBMPHandler::SaveDib(wxImage *image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (x = 0; x < width; x+=2)
@@ -522,7 +522,7 @@ bool wxBMPHandler::SaveDib(wxImage *image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (x = 0; x < width; x+=8)
@@ -552,7 +552,7 @@ bool wxBMPHandler::SaveDib(wxImage *image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (x = 0; x < width; x+=8)
@@ -683,7 +683,7 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int j = 0; j < ncolors; j++)
@@ -732,7 +732,7 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (bit = bpp-1; bit>=0; bit--)
@@ -750,7 +750,7 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (bit = 0; bit < bpp; bit++)
@@ -817,7 +817,7 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < width * height; i++)
@@ -844,7 +844,7 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int row = 0; row < height; row++ )
@@ -857,7 +857,7 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int column = 0; column < width ; )
@@ -876,7 +876,7 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (int bit = 0; bit < 8 && column < width; bit++)
@@ -935,7 +935,7 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                                 for (int k = 0; k < absolute; k++)
@@ -975,7 +975,7 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                             for ( int l = 0; l < first && column < width; l++ )
@@ -996,7 +996,7 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         for (int nibble = 0; nibble < 2 && column < width; nibble++)
@@ -1056,7 +1056,7 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                                 for (int k = 0; k < absolute; k++)
@@ -1085,7 +1085,7 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                             for ( int l = 0; l < first && column < width; l++ )
@@ -1167,7 +1167,7 @@ bool wxBMPHandler::DoLoadDib(wxImage * image, int width, int height,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( (linepos < linesize) && (comp != 1) && (comp != 2) )
@@ -1515,7 +1515,7 @@ bool wxICOHandler::SaveFile(wxImage *image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int img = 0; img < images; img++)
@@ -1540,7 +1540,7 @@ bool wxICOHandler::SaveFile(wxImage *image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (i = 0; i < mask.GetWidth(); i++)
@@ -1550,7 +1550,7 @@ bool wxICOHandler::SaveFile(wxImage *image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (j = 0; j < mask.GetHeight(); j++)
@@ -1573,7 +1573,7 @@ bool wxICOHandler::SaveFile(wxImage *image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (i = 0; i < mask.GetWidth(); i++)
@@ -1582,7 +1582,7 @@ bool wxICOHandler::SaveFile(wxImage *image,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (j = 0; j < mask.GetHeight(); j++)
@@ -1823,7 +1823,7 @@ bool wxICOHandler::DoLoadFile(wxImage *image, wxInputStream& stream,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (unsigned int i = 0; i < nIcons; i++ )

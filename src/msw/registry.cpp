@@ -189,7 +189,7 @@ wxRegKey::StdKey wxRegKey::ExtractKeyName(wxString& strKey)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for ( ui = 0; ui < nStdKeys; ui++ ) {
@@ -220,7 +220,7 @@ wxRegKey::StdKey wxRegKey::GetStdKeyFromHkey(WXHKEY hkey)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for ( size_t ui = 0; ui < nStdKeys; ui++ ) {
@@ -689,7 +689,7 @@ bool wxRegKey::Copy(wxRegKey& keyDst)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( ok && bCont ) {
@@ -714,7 +714,7 @@ bool wxRegKey::Copy(wxRegKey& keyDst)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( ok && bCont ) {
@@ -775,7 +775,7 @@ bool wxRegKey::DeleteSelf()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while ( bCont ) {
@@ -790,7 +790,7 @@ bool wxRegKey::DeleteSelf()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for ( size_t nKey = 0; nKey < nKeyCount; nKey++ ) {
@@ -1339,7 +1339,7 @@ FormatAsHex(const void *data,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < size; n++ )
@@ -1386,7 +1386,7 @@ wxString wxRegKey::FormatValue(const wxString& name) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( wxString::const_iterator p = value.begin();
@@ -1523,7 +1523,7 @@ bool wxRegKey::DoExport(wxOutputStream& ostr) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( cont )
@@ -1545,7 +1545,7 @@ bool wxRegKey::DoExport(wxOutputStream& ostr) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( cont )

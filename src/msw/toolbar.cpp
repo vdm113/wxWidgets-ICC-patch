@@ -440,7 +440,7 @@ void wxToolBar::Recreate()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = m_children.GetFirst();
@@ -643,7 +643,7 @@ void wxToolBar::CreateDisabledImageList()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( wxToolBarToolsList::compatibility_iterator
@@ -707,7 +707,7 @@ bool wxToolBar::Realize()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t pos = 0; pos < m_nButtons; pos++ )
@@ -782,7 +782,7 @@ bool wxToolBar::Realize()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
@@ -843,7 +843,7 @@ bool wxToolBar::Realize()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                             for ( int y = 0; y < h; y++ )
@@ -853,7 +853,7 @@ bool wxToolBar::Realize()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                                 for ( int xx = 0; xx < w; xx++ )
@@ -986,7 +986,7 @@ bool wxToolBar::Realize()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
@@ -1092,7 +1092,7 @@ bool wxToolBar::Realize()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                             while ( nodePrev )
@@ -1167,7 +1167,7 @@ bool wxToolBar::Realize()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( node = m_tools.GetFirst(); node; node = node->GetNext(), toolIndex++ )
@@ -1277,7 +1277,7 @@ bool wxToolBar::Realize()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( node = m_tools.GetFirst(); node; node = node->GetNext(), toolIndex++ )
@@ -1310,7 +1310,7 @@ void wxToolBar::UpdateStretchableSpacersSize()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
@@ -1357,7 +1357,7 @@ void wxToolBar::UpdateStretchableSpacersSize()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
@@ -1612,7 +1612,7 @@ void wxToolBar::SetRows(int nRows)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
@@ -1852,7 +1852,7 @@ bool wxToolBar::HandleSize(WXWPARAM WXUNUSED(wParam), WXLPARAM lParam)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( node = m_tools.GetFirst(); node; node = node->GetNext() )
@@ -1958,7 +1958,7 @@ bool wxToolBar::HandlePaint(WXWPARAM wParam, WXLPARAM lParam)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxToolBarToolsList::compatibility_iterator node = m_tools.GetFirst();
@@ -2191,7 +2191,7 @@ WXHBITMAP wxToolBar::MapBitmap(WXHBITMAP bitmap, int width, int height)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < width; i++ )
@@ -2201,7 +2201,7 @@ WXHBITMAP wxToolBar::MapBitmap(WXHBITMAP bitmap, int width, int height)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int j = 0; j < height; j++ )
@@ -2213,7 +2213,7 @@ WXHBITMAP wxToolBar::MapBitmap(WXHBITMAP bitmap, int width, int height)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( size_t k = 0; k < wxSTD_COL_MAX; k++ )

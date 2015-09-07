@@ -600,7 +600,7 @@ void wxListLineData::InitItems( int num )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 0; i < num; i++)
@@ -821,7 +821,7 @@ void wxListLineData::DrawInReportMode( wxDC *dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxListItemDataList::compatibility_iterator node = m_items.GetFirst();
@@ -917,7 +917,7 @@ void wxListLineData::DrawTextFormatted(wxDC *dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (len > 1)
@@ -936,7 +936,7 @@ void wxListLineData::DrawTextFormatted(wxDC *dc,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (ellipsis.length() > 0 && w + base_w > width)
@@ -1092,7 +1092,7 @@ void wxListHeaderWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i = 0; i < numColumns && x < w; i++ )
@@ -1316,7 +1316,7 @@ void wxListHeaderWindow::OnMouse( wxMouseEvent &event )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (col = 0; col < countCol; col++)
@@ -1367,7 +1367,7 @@ void wxListHeaderWindow::OnMouse( wxMouseEvent &event )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (int i=0; i < m_owner->GetColumnCount(); i++)
@@ -1724,7 +1724,7 @@ void wxListMainWindow::SetReportView(bool inReportView)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -1745,7 +1745,7 @@ void wxListMainWindow::CacheLineData(size_t line)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t col = 0; col < countCol; col++ )
@@ -1952,7 +1952,7 @@ void wxListMainWindow::HighlightLines( size_t lineFrom,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( size_t n = 0; n < count; n++ )
@@ -1968,7 +1968,7 @@ void wxListMainWindow::HighlightLines( size_t lineFrom,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t line = lineFrom; line <= lineTo; line++ )
@@ -2062,7 +2062,7 @@ void wxListMainWindow::RefreshLines( size_t lineFrom, size_t lineTo )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t line = lineFrom; line <= lineTo; line++ )
@@ -2128,7 +2128,7 @@ void wxListMainWindow::RefreshSelected()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t line = from; line <= to; line++ )
@@ -2189,7 +2189,7 @@ void wxListMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t line = visibleFrom; line <= visibleTo; line++ )
@@ -2223,7 +2223,7 @@ void wxListMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( ; i <= visibleTo; i++ )
@@ -2261,7 +2261,7 @@ void wxListMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int col = 0; col < GetColumnCount(); col++)
@@ -2283,7 +2283,7 @@ void wxListMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < count; i++ )
@@ -2556,7 +2556,7 @@ void wxListMainWindow::OnMouse( wxMouseEvent &event )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( current = 0; current < count; current++ )
@@ -3434,7 +3434,7 @@ void wxListMainWindow::SetColumnWidth( int col, int width )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( int i = 0; i < col && margin > 0; ++i )
@@ -3462,7 +3462,7 @@ int wxListMainWindow::GetHeaderWidth() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t col = 0; col < count; col++ )
@@ -3558,7 +3558,7 @@ void wxListMainWindow::SetItemStateAll(long state, long stateMask)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for( long i = 0; i <  count; i++ )
@@ -3576,7 +3576,7 @@ void wxListMainWindow::SetItemStateAll(long state, long stateMask)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( (i = GetNextItem(i, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != -1 )
@@ -3770,7 +3770,7 @@ int wxListMainWindow::GetSelectedItemCount() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t line = 0; line < count; line++ )
@@ -3800,7 +3800,7 @@ wxRect wxListMainWindow::GetViewRect() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int i = 0; i < count; i++ )
@@ -3862,7 +3862,7 @@ wxListMainWindow::GetSubItemRect(long item, long subItem, wxRect& rect) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (int i = 0; i < subItem; i++)
@@ -3964,7 +3964,7 @@ void wxListMainWindow::RecalculatePositions(bool noRefresh)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( i = 0; i < count; i++ )
@@ -3997,7 +3997,7 @@ void wxListMainWindow::RecalculatePositions(bool noRefresh)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for ( i = 0; i < count; i++ )
@@ -4031,7 +4031,7 @@ void wxListMainWindow::RecalculatePositions(bool noRefresh)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for (int tries = 0; tries < 2; tries++)
@@ -4060,7 +4060,7 @@ void wxListMainWindow::RecalculatePositions(bool noRefresh)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for (size_t i = 0; i < count; i++)
@@ -4096,7 +4096,7 @@ void wxListMainWindow::RecalculatePositions(bool noRefresh)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                             for (size_t j = firstRowLine; j <= i; j++)
@@ -4196,7 +4196,7 @@ long wxListMainWindow::GetNextItem( long item,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t line = (size_t)ret; line < count; line++ )
@@ -4249,7 +4249,7 @@ void wxListMainWindow::DeleteItem( long lindex )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < m_columns.GetCount(); i++)
@@ -4304,7 +4304,7 @@ void wxListMainWindow::DeleteColumn( int col )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < m_lines.GetCount(); i++ )
@@ -4351,7 +4351,7 @@ void wxListMainWindow::DoDeleteAllItems()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < m_aColWidths.GetCount(); i++ )
@@ -4433,7 +4433,7 @@ long wxListMainWindow::FindItem(long start, const wxString& str, bool partial )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = (size_t)pos; i < count; i++ )
@@ -4467,7 +4467,7 @@ long wxListMainWindow::FindItem(long start, wxUIntPtr data)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = (size_t)pos; i < count; i++)
@@ -4524,7 +4524,7 @@ long wxListMainWindow::HitTest( int x, int y, int &flags ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t current = 0; current < count; current++ )
@@ -4643,7 +4643,7 @@ long wxListMainWindow::InsertColumn( long col, const wxListItem &item )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( size_t i = 0; i < m_lines.GetCount(); i++ )
@@ -4820,7 +4820,7 @@ wxListMainWindow::PrefixFindItem(size_t idParent,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( ( itemid < (size_t)GetItemCount() ) &&
@@ -4841,7 +4841,7 @@ wxListMainWindow::PrefixFindItem(size_t idParent,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( ( itemid < (size_t)GetItemCount() ) && itemid != idParent &&
@@ -5414,7 +5414,7 @@ bool wxGenericListCtrl::DeleteAllColumns()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -5723,7 +5723,7 @@ wxSize wxGenericListCtrl::DoGetBestClientSize() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int n = 0; n < GetItemCount(); n++ )

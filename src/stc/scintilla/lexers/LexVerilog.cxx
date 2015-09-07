@@ -331,7 +331,7 @@ int SCI_METHOD LexerVerilog::WordListSet(int n, const char *wl) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (int nDefinition = 0; nDefinition < ppDefinitions.Length(); nDefinition++) {
@@ -376,7 +376,7 @@ static inline bool AllUpperCase(const char *a) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (*a) {
@@ -405,7 +405,7 @@ static std::string GetRestOfLine(LexAccessor &styler, int start, bool allowSpace
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (((start+i) < endLine) && (ch != '\r')) {
@@ -473,7 +473,7 @@ void SCI_METHOD LexerVerilog::Lex(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (std::vector<PPDefinition>::iterator itDef = ppDefineHistory.begin(); itDef != ppDefineHistory.end(); ++itDef) {
@@ -492,7 +492,7 @@ void SCI_METHOD LexerVerilog::Lex(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
@@ -672,7 +672,7 @@ void SCI_METHOD LexerVerilog::Lex(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				do {
@@ -734,7 +734,7 @@ void SCI_METHOD LexerVerilog::Lex(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 								while ((startName < restOfLine.length()) && IsSpaceOrTab(restOfLine[startName]))
@@ -745,7 +745,7 @@ void SCI_METHOD LexerVerilog::Lex(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 								while ((endName < restOfLine.length()) && setWord.Contains(static_cast<unsigned char>(restOfLine[endName])))
@@ -759,7 +759,7 @@ void SCI_METHOD LexerVerilog::Lex(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 									while ((endArgs < restOfLine.length()) && (restOfLine[endArgs] != ')'))
@@ -771,7 +771,7 @@ void SCI_METHOD LexerVerilog::Lex(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 									while ((startValue < restOfLine.length()) && IsSpaceOrTab(restOfLine[startValue]))
@@ -790,7 +790,7 @@ void SCI_METHOD LexerVerilog::Lex(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 									while ((startValue < restOfLine.length()) && IsSpaceOrTab(restOfLine[startValue]))
@@ -810,7 +810,7 @@ void SCI_METHOD LexerVerilog::Lex(unsigned int startPos, int length, int initSty
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 								for(itDef = preprocessorDefinitions.begin(); itDef != preprocessorDefinitions.end(); ++itDef) {
@@ -866,7 +866,7 @@ static bool IsCommentLine(int line, LexAccessor &styler) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i = pos; i < eolPos; i++) {
@@ -933,7 +933,7 @@ void SCI_METHOD LexerVerilog::Fold(unsigned int startPos, int length, int initSt
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
@@ -978,7 +978,7 @@ void SCI_METHOD LexerVerilog::Fold(unsigned int startPos, int length, int initSt
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				while ((j < endPos) && IsASpaceOrTab(styler.SafeGetCharAt(j))) {
@@ -1151,7 +1151,7 @@ std::vector<std::string> LexerVerilog::Tokenize(const std::string &expr) const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (*cp) {
@@ -1163,7 +1163,7 @@ std::vector<std::string> LexerVerilog::Tokenize(const std::string &expr) const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (setWord.Contains(static_cast<unsigned char>(*cp))) {
@@ -1176,7 +1176,7 @@ std::vector<std::string> LexerVerilog::Tokenize(const std::string &expr) const {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (IsSpaceOrTab(*cp)) {

@@ -179,7 +179,7 @@ void wxRichTextObjectPropertiesDialog::OnRichtextParaUpClick( wxCommandEvent& WX
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (iter)
@@ -221,7 +221,7 @@ void wxRichTextObjectPropertiesDialog::OnRichtextDownClick( wxCommandEvent& WXUN
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (iter)

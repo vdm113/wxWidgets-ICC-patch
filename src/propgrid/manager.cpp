@@ -254,7 +254,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (size_t i = 0; i < m_columns.size(); i++ )
@@ -286,7 +286,7 @@ public:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned int i=0; i<colCount; i++ )
@@ -314,7 +314,7 @@ private:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( m_columns.size() < count )
@@ -340,7 +340,7 @@ private:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned int i = 0; i < colCount; i++ )
@@ -389,7 +389,7 @@ private:
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( int i=0; i<col; i++ )
@@ -664,7 +664,7 @@ wxPropertyGridManager::~wxPropertyGridManager()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < m_arrPages.size(); i++ )
@@ -715,7 +715,7 @@ bool wxPropertyGridManager::SetFont( const wxFont& font )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i = 0; i < m_arrPages.size(); i++ )
@@ -879,7 +879,7 @@ int wxPropertyGridManager::GetPageByName( const wxString& name ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < GetPageCount(); i++ )
@@ -901,7 +901,7 @@ int wxPropertyGridManager::GetPageByState( const wxPropertyGridPageState* pState
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < GetPageCount(); i++ )
@@ -948,7 +948,7 @@ void wxPropertyGridManager::Clear()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int i=(int)GetPageCount()-1; i>=0; i-- )
@@ -1159,7 +1159,7 @@ bool wxPropertyGridManager::IsAnyModified() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < GetPageCount(); i++ )
@@ -1214,7 +1214,7 @@ bool wxPropertyGridManager::IsPropertySelected( wxPGPropArg id ) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( unsigned int i=0; i<GetPageCount(); i++ )
@@ -1801,7 +1801,7 @@ wxPGProperty* wxPropertyGridManager::DoGetPropertyByName( const wxString& name )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < GetPageCount(); i++ )
@@ -1874,7 +1874,7 @@ void wxPropertyGridManager::OnToolbarClick( wxCommandEvent &event )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < GetPageCount(); i++ )
@@ -1992,7 +1992,7 @@ void wxPropertyGridManager::SetSplitterLeft( bool subProps, bool allPages )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t i = 0; i < GetPageCount(); i++ )
@@ -2106,7 +2106,7 @@ void wxPropertyGridManager::OnResize( wxSizeEvent& WXUNUSED(event) )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( unsigned int i=0; i<GetPageCount(); i++ )
@@ -2262,7 +2262,7 @@ void wxPropertyGridManager::SetSplitterPosition( int pos, int splitterColumn )
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t i = 0; i < GetPageCount(); i++ )

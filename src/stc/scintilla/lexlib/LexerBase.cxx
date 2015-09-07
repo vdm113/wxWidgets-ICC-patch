@@ -42,7 +42,7 @@ LexerBase::LexerBase() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int wl = 0; wl < numWordLists; wl++)
@@ -56,7 +56,7 @@ LexerBase::~LexerBase() {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int wl = 0; wl < numWordLists; wl++) {

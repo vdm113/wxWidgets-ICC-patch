@@ -108,7 +108,7 @@ void wxRibbonPanel::SetArtProvider(wxRibbonArtProvider* art)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
@@ -295,7 +295,7 @@ void wxRibbonPanel::DoSetSize(int x, int y, int width, int height, int sizeFlags
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for (wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
@@ -684,7 +684,7 @@ bool wxRibbonPanel::Realize()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
@@ -870,7 +870,7 @@ bool wxRibbonPanel::ShowExpanded()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(!GetChildren().IsEmpty())
@@ -929,7 +929,7 @@ static bool IsAncestorOf(wxWindow *ancestor, wxWindow *window)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(window != NULL)
@@ -1014,7 +1014,7 @@ bool wxRibbonPanel::HideExpanded()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(!GetChildren().IsEmpty())
@@ -1097,7 +1097,7 @@ wxRect wxRibbonPanel::GetExpandedPosition(wxRect panel,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(display_i = 0; display_i < display_n; ++display_i)

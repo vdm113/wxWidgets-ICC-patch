@@ -38,7 +38,7 @@ wxFilterClassFactory::Find(const wxString& protocol, wxStreamProtocolType type)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (const wxFilterClassFactory *f = GetFirst(); f; f = f->GetNext())

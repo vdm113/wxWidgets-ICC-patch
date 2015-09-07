@@ -210,7 +210,7 @@ print_mem_stats (j_common_ptr cinfo, int pool_id)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (lhdr_ptr = mem->large_list[pool_id]; lhdr_ptr != NULL;
@@ -224,7 +224,7 @@ print_mem_stats (j_common_ptr cinfo, int pool_id)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (shdr_ptr = mem->small_list[pool_id]; shdr_ptr != NULL;
@@ -306,7 +306,7 @@ alloc_small (j_common_ptr cinfo, int pool_id, size_t sizeofobject)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (hdr_ptr != NULL) {
@@ -333,7 +333,7 @@ alloc_small (j_common_ptr cinfo, int pool_id, size_t sizeofobject)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;) {
@@ -465,7 +465,7 @@ alloc_sarray (j_common_ptr cinfo, int pool_id,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (currow < numrows) {
@@ -478,7 +478,7 @@ alloc_sarray (j_common_ptr cinfo, int pool_id,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = rowsperchunk; i > 0; i--) {
@@ -529,7 +529,7 @@ alloc_barray (j_common_ptr cinfo, int pool_id,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (currow < numrows) {
@@ -542,7 +542,7 @@ alloc_barray (j_common_ptr cinfo, int pool_id,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = rowsperchunk; i > 0; i--) {
@@ -673,7 +673,7 @@ realize_virt_arrays (j_common_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (sptr = mem->virt_sarray_list; sptr != NULL; sptr = sptr->next) {
@@ -689,7 +689,7 @@ realize_virt_arrays (j_common_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (bptr = mem->virt_barray_list; bptr != NULL; bptr = bptr->next) {
@@ -730,7 +730,7 @@ realize_virt_arrays (j_common_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (sptr = mem->virt_sarray_list; sptr != NULL; sptr = sptr->next) {
@@ -762,7 +762,7 @@ realize_virt_arrays (j_common_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (bptr = mem->virt_barray_list; bptr != NULL; bptr = bptr->next) {
@@ -805,7 +805,7 @@ do_sarray_io (j_common_ptr cinfo, jvirt_sarray_ptr ptr, wxjpeg_boolean writing)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < (long) ptr->rows_in_mem; i += ptr->rowsperchunk) {
@@ -846,7 +846,7 @@ do_barray_io (j_common_ptr cinfo, jvirt_barray_ptr ptr, wxjpeg_boolean writing)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (i = 0; i < (long) ptr->rows_in_mem; i += ptr->rowsperchunk) {
@@ -946,7 +946,7 @@ access_virt_sarray (j_common_ptr cinfo, jvirt_sarray_ptr ptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       while (undef_row < end_row) {
@@ -1039,7 +1039,7 @@ access_virt_barray (j_common_ptr cinfo, jvirt_barray_ptr ptr,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
       while (undef_row < end_row) {
@@ -1089,7 +1089,7 @@ free_pool (j_common_ptr cinfo, int pool_id)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (sptr = mem->virt_sarray_list; sptr != NULL; sptr = sptr->next) {
@@ -1104,7 +1104,7 @@ free_pool (j_common_ptr cinfo, int pool_id)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (bptr = mem->virt_barray_list; bptr != NULL; bptr = bptr->next) {
@@ -1125,7 +1125,7 @@ free_pool (j_common_ptr cinfo, int pool_id)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (lhdr_ptr != NULL) {
@@ -1147,7 +1147,7 @@ free_pool (j_common_ptr cinfo, int pool_id)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (shdr_ptr != NULL) {
@@ -1181,7 +1181,7 @@ self_destruct (j_common_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (pool = JPOOL_NUMPOOLS-1; pool >= JPOOL_PERMANENT; pool--) {
@@ -1264,7 +1264,7 @@ jinit_memory_mgr (j_common_ptr cinfo)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   for (pool = JPOOL_NUMPOOLS-1; pool >= JPOOL_PERMANENT; pool--) {

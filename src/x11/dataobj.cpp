@@ -178,7 +178,7 @@ bool wxDataObject::IsSupportedFormat(const wxDataFormat& format, Direction dir) 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( n = 0; n < nFormatCount; n++ )
@@ -207,7 +207,7 @@ bool wxFileDataObject::GetDataHere(void *buf) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < m_filenames.GetCount(); i++)
@@ -230,7 +230,7 @@ size_t wxFileDataObject::GetDataSize() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (size_t i = 0; i < m_filenames.GetCount(); i++)
@@ -254,7 +254,7 @@ bool wxFileDataObject::SetData(size_t WXUNUSED(size), const void *buf)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(;;)
@@ -280,7 +280,7 @@ bool wxFileDataObject::SetData(size_t WXUNUSED(size), const void *buf)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( const char *p = (const char *)buf; ; p++ )

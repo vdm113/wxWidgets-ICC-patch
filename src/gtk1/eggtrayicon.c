@@ -407,7 +407,7 @@ egg_tray_icon_send_message (EggTrayIcon *icon,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
   while (len > 0)

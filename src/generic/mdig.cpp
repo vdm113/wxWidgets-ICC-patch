@@ -144,7 +144,7 @@ bool wxGenericMDIParentFrame::CloseAll()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( book->GetPageCount() )
@@ -585,7 +585,7 @@ int wxGenericMDIClientWindow::FindChild(wxGenericMDIChildFrame *child) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t pos = 0; pos < count; pos++ )

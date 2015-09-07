@@ -288,7 +288,7 @@ wxLogGui::DoShowMultipleLogMessages(const wxArrayString& messages,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = nMsgCount; n > 0; n-- ) {
@@ -589,7 +589,7 @@ void wxLogFrame::OnSave(wxCommandEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( int nLine = 0; bOk && nLine < nLines; nLine++ ) {
@@ -732,7 +732,7 @@ wxLogDialog::wxLogDialog(wxWindow *parent,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -875,7 +875,7 @@ void wxLogDialog::CreateDetailsControls(wxWindow *parent)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t icon = 0; icon < WXSIZEOF(icons); icon++ )
@@ -904,7 +904,7 @@ void wxLogDialog::CreateDetailsControls(wxWindow *parent)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )
@@ -1006,7 +1006,7 @@ wxString wxLogDialog::GetLogMessages() const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = 0; n < count; n++ )

@@ -141,7 +141,7 @@ bool wxAutomationObject::Invoke(const wxString& member, int action,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < noArgs; i++)
@@ -165,7 +165,7 @@ bool wxAutomationObject::Invoke(const wxString& member, int action,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < namedArgCount; i++)
@@ -213,7 +213,7 @@ bool wxAutomationObject::Invoke(const wxString& member, int action,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (i = 0; i < noArgs; i++)

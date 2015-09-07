@@ -201,7 +201,7 @@ bool wxVListBox::SelectRange(size_t from, size_t to)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for ( size_t n = 0; n < count; n++ )
@@ -272,7 +272,7 @@ bool wxVListBox::DoSetCurrent(int current)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while ( (size_t)m_current + 1 == GetVisibleRowsEnd() &&
@@ -345,7 +345,7 @@ int wxVListBox::GetNextSelected(unsigned long& cookie) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( cookie < GetItemCount() )
@@ -365,7 +365,7 @@ void wxVListBox::RefreshSelected()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t n = GetVisibleBegin(), end = GetVisibleEnd(); n < end; n++ )
@@ -392,7 +392,7 @@ wxRect wxVListBox::GetItemRect(size_t n) const
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ( line <= n )
@@ -514,7 +514,7 @@ void wxVListBox::OnPaint(wxPaintEvent& WXUNUSED(event))
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( size_t line = GetVisibleBegin(); line < lineMax; line++ )

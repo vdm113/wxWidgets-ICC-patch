@@ -309,7 +309,7 @@ wxWindow *wxFindFocusedChild(wxWindowGTK *win)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = win->GetChildren().GetFirst();
@@ -596,7 +596,7 @@ static void gtk_window_draw_callback( GtkWidget *widget,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (parent && !parent->IsTopLevel())
@@ -629,7 +629,7 @@ static void gtk_window_draw_callback( GtkWidget *widget,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (children)
@@ -1140,7 +1140,7 @@ static gint gtk_window_key_press_callback( GtkWidget *widget,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (parent && !parent->IsTopLevel())
@@ -1151,7 +1151,7 @@ static gint gtk_window_key_press_callback( GtkWidget *widget,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for( const wxChar* pstr = string; *pstr; pstr++ )
@@ -1189,7 +1189,7 @@ static gint gtk_window_key_press_callback( GtkWidget *widget,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (ancestor)
@@ -1243,7 +1243,7 @@ static gint gtk_window_key_press_callback( GtkWidget *widget,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (parent && !parent->IsTopLevel())
@@ -1305,7 +1305,7 @@ static gint gtk_window_key_press_callback( GtkWidget *widget,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( winForCancel )
@@ -1473,7 +1473,7 @@ wxWindowGTK *FindWindowForMouseEvent(wxWindowGTK *win, wxCoord& x, wxCoord& y)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (node)
@@ -3606,7 +3606,7 @@ void wxWindowGTK::GtkUpdate()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
@@ -3647,7 +3647,7 @@ void wxWindowGTK::GtkSendPaintEvents()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (upd)
@@ -3695,7 +3695,7 @@ void wxWindowGTK::GtkSendPaintEvents()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (upd)
@@ -3729,7 +3729,7 @@ void wxWindowGTK::GtkSendPaintEvents()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (children)
@@ -3755,7 +3755,7 @@ void wxWindowGTK::GtkSendPaintEvents()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (upd)

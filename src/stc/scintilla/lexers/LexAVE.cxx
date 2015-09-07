@@ -93,7 +93,7 @@ static void ColouriseAveDoc(
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; sc.More(); sc.Forward()) {
@@ -191,7 +191,7 @@ static void FoldAveDoc(unsigned int startPos, int length, int /* initStyle */, W
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < lengthDoc; i++) {
@@ -207,7 +207,7 @@ static void FoldAveDoc(unsigned int startPos, int length, int /* initStyle */, W
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 				for (unsigned int j = 0; j < 6; j++) {

@@ -274,7 +274,7 @@ Client::OnRun()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (i = 0; i < m_stressWorkers; i++) {
@@ -290,7 +290,7 @@ Client::OnRun()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (i = 0; i < m_stressWorkers; i++) {
@@ -306,7 +306,7 @@ Client::OnRun()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     for (i = 0; i < m_stressWorkers; i++) {
@@ -337,7 +337,7 @@ Client::OnExit()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(EList::compatibility_iterator it = m_eventWorkers.GetFirst(); it ; it->GetNext()) {
@@ -391,7 +391,7 @@ Client::StartWorker(workMode pMode) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int i = 2; i < (msgsize); i++) {
@@ -498,7 +498,7 @@ Client::OnWorkerEvent(WorkerEvent& pEvent) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for(TList::compatibility_iterator it = m_threadWorkers.GetFirst(); it ; it = it->GetNext()) {
@@ -512,7 +512,7 @@ Client::OnWorkerEvent(WorkerEvent& pEvent) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for(EList::compatibility_iterator it2 = m_eventWorkers.GetFirst(); it2 ; it2 = it2->GetNext())
@@ -544,7 +544,7 @@ Client::RemoveEventWorker(EventWorker* p_worker) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(EList::compatibility_iterator it = m_eventWorkers.GetFirst(); it ; it = it->GetNext()) {
@@ -620,7 +620,7 @@ EventWorker::OnSocketEvent(wxSocketEvent& pEvent) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             do {
@@ -664,7 +664,7 @@ EventWorker::OnSocketEvent(wxSocketEvent& pEvent) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             do {
@@ -774,7 +774,7 @@ wxThread::ExitCode ThreadWorker::Entry()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do {
@@ -797,7 +797,7 @@ wxThread::ExitCode ThreadWorker::Entry()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             do {

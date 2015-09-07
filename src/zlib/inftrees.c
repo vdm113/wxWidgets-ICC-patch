@@ -118,7 +118,7 @@ unsigned short FAR *work;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (len = 0; len <= MAXBITS; len++)
@@ -128,7 +128,7 @@ unsigned short FAR *work;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (sym = 0; sym < codes; sym++)
@@ -141,7 +141,7 @@ unsigned short FAR *work;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (max = MAXBITS; max >= 1; max--)
@@ -161,7 +161,7 @@ unsigned short FAR *work;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (min = 1; min < max; min++)
@@ -175,7 +175,7 @@ unsigned short FAR *work;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (len = 1; len <= MAXBITS; len++) {
@@ -193,7 +193,7 @@ unsigned short FAR *work;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (len = 1; len < MAXBITS; len++)
@@ -205,7 +205,7 @@ unsigned short FAR *work;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (sym = 0; sym < codes; sym++)
@@ -283,7 +283,7 @@ unsigned short FAR *work;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;) {
@@ -311,7 +311,7 @@ unsigned short FAR *work;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         do {
@@ -326,7 +326,7 @@ unsigned short FAR *work;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (huff & incr)
@@ -362,7 +362,7 @@ unsigned short FAR *work;
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while (curr + drop < max) {

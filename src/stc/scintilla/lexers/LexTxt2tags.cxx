@@ -61,7 +61,7 @@ static bool FollowToLineEnd(const int ch, const int state, const unsigned int en
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (sc.GetRelative(++i) == ch)
@@ -72,7 +72,7 @@ static bool FollowToLineEnd(const int ch, const int state, const unsigned int en
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (IsASpaceOrTab(sc.GetRelative(i)) && sc.currentPos + i < endPos)
@@ -95,7 +95,7 @@ static bool HasPrevLineContent(StyleContext &sc) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while ((--i + sc.currentPos) && !IsNewline(sc.GetRelative(i)))
@@ -105,7 +105,7 @@ static bool HasPrevLineContent(StyleContext &sc) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (--i + sc.currentPos) {
@@ -126,7 +126,7 @@ static bool IsValidHrule(const unsigned int endPos, StyleContext &sc) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (;;) {
@@ -168,7 +168,7 @@ static void ColorizeTxt2tagsDoc(unsigned int startPos, int length, int initStyle
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (sc.More()) {
@@ -251,7 +251,7 @@ static void ColorizeTxt2tagsDoc(unsigned int startPos, int length, int initStyle
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while (!IsNewline(sc.GetRelative(i)) && sc.currentPos + i < endPos)
@@ -446,7 +446,7 @@ static void ColorizeTxt2tagsDoc(unsigned int startPos, int length, int initStyle
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while (IsADigit(sc.GetRelative(++digitCount)))
@@ -485,7 +485,7 @@ static void ColorizeTxt2tagsDoc(unsigned int startPos, int length, int initStyle
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while (i < len && (sc.GetRelative(++i) != ']' || sc.GetRelative(i - 1) == '\\'))
@@ -498,7 +498,7 @@ static void ColorizeTxt2tagsDoc(unsigned int startPos, int length, int initStyle
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         while (i < len && (sc.GetRelative(++i) != '(' || sc.GetRelative(i - 1) == '\\'))
@@ -513,7 +513,7 @@ static void ColorizeTxt2tagsDoc(unsigned int startPos, int length, int initStyle
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                         while (i < len && (sc.GetRelative(++i) != ']' || sc.GetRelative(i - 1) == '\\'))

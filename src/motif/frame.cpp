@@ -550,7 +550,7 @@ void wxFrame::OnActivate(wxActivateEvent& event)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(wxWindowList::compatibility_iterator node = GetChildren().GetFirst(); node;

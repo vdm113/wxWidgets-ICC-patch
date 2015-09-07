@@ -151,7 +151,7 @@ bool wxEventLoopImpl::PreProcessMessage(QMSG *pMsg)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (hWnd && !pWndThis)
@@ -192,7 +192,7 @@ bool wxEventLoopImpl::PreProcessMessage(QMSG *pMsg)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
            for(pWnd = pWndThis; pWnd; pWnd = pWnd->GetParent() )
@@ -295,7 +295,7 @@ int wxGUIEventLoop::Run()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for ( ;; )
@@ -316,7 +316,7 @@ int wxGUIEventLoop::Run()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while ( !Pending() && m_impl->SendIdleMessage() )
@@ -420,7 +420,7 @@ bool wxGUIEventLoop::Dispatch()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for ( size_t n = 0; n < count; n++ )
@@ -461,7 +461,7 @@ void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while (::WinPeekMsg(vHab, &vMsg, (HWND)NULL, 0, 0, PM_NOREMOVE) && vMsg.msg != WM_QUIT)

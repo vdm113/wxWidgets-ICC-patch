@@ -336,7 +336,7 @@ void SCI_METHOD LexerBasic::Lex(unsigned int startPos, int length, int initStyle
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (; ; sc.Forward()) {
@@ -360,7 +360,7 @@ void SCI_METHOD LexerBasic::Lex(unsigned int startPos, int length, int initStyle
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 					for (int i = 0; i < 4; i++) {
@@ -519,7 +519,7 @@ void SCI_METHOD LexerBasic::Fold(unsigned int startPos, int length, int /* initS
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int i = startPos; i < endPos; i++) {

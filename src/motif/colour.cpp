@@ -165,7 +165,7 @@ WXPixel wxGetBestMatchingPixel(Display *display, XColor *desiredColor, Colormap 
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (int pixelcount = 0; pixelcount < numPixVals; pixelcount++)

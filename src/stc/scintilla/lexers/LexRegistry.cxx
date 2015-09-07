@@ -81,7 +81,7 @@ class LexerRegistry : public ILexer {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (i < 10) {
@@ -103,7 +103,7 @@ class LexerRegistry : public ILexer {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (i < 100) {
@@ -130,7 +130,7 @@ class LexerRegistry : public ILexer {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (!atEOL) {
@@ -160,7 +160,7 @@ class LexerRegistry : public ILexer {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (!atEOL) {
@@ -186,7 +186,7 @@ class LexerRegistry : public ILexer {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (portion < 5) {
@@ -196,7 +196,7 @@ class LexerRegistry : public ILexer {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 			while (i < count) {
@@ -280,7 +280,7 @@ void SCI_METHOD LexerRegistry::Lex(unsigned startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	while (context.More()) {
@@ -434,7 +434,7 @@ void SCI_METHOD LexerRegistry::Fold(unsigned startPos,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (unsigned i = startPos; i < endPos; i++) {

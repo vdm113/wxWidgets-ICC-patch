@@ -309,7 +309,7 @@ bool wxSoundBackendSDL::Play(wxSoundData *data, unsigned flags,
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while (m_playing && m_data == data)

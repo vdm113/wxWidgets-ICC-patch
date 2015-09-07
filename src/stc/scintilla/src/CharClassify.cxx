@@ -34,7 +34,7 @@ void CharClassify::SetDefaultCharClasses(bool includeWordClass) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int ch = 0; ch < 256; ch++) {
@@ -57,7 +57,7 @@ void CharClassify::SetCharClasses(const unsigned char *chars, cc newCharClass) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 		while (*chars) {
@@ -76,7 +76,7 @@ int CharClassify::GetCharsOfClass(cc characterClass, unsigned char *buffer) {
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
 	for (int ch = maxChar - 1; ch >= 0; --ch) {

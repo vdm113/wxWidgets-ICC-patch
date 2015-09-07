@@ -502,7 +502,7 @@ void AppFrame::CreateMenu ()
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for (Nr = 0; Nr < g_LanguagePrefsSize; Nr++) {
