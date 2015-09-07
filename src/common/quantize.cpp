@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -322,6 +322,7 @@ prescan_quantize (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -332,6 +333,7 @@ prescan_quantize (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -389,6 +391,7 @@ find_biggest_color_pop (boxptr boxlist, int numboxes)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -417,6 +420,7 @@ find_biggest_volume (boxptr boxlist, int numboxes)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -453,6 +457,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -462,6 +467,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -472,6 +478,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -488,6 +495,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -497,6 +505,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -507,6 +516,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -523,6 +533,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -532,6 +543,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -542,6 +554,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -558,6 +571,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -567,6 +581,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -577,6 +592,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -593,6 +609,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -602,6 +619,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -612,6 +630,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -628,6 +647,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -637,6 +657,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -647,6 +668,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -678,6 +700,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -687,6 +710,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -697,6 +721,7 @@ update_box (j_decompress_ptr cinfo, boxptr boxp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -723,6 +748,7 @@ median_cut (j_decompress_ptr cinfo, boxptr boxlist, int numboxes,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -819,6 +845,7 @@ compute_color (j_decompress_ptr cinfo, boxptr boxp, int icolor)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -828,6 +855,7 @@ compute_color (j_decompress_ptr cinfo, boxptr boxp, int icolor)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -838,6 +866,7 @@ compute_color (j_decompress_ptr cinfo, boxptr boxp, int icolor)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -885,6 +914,7 @@ select_colors (j_decompress_ptr cinfo, int desired_colors)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1019,6 +1049,7 @@ find_nearby_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1106,6 +1137,7 @@ find_nearby_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1146,6 +1178,7 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1167,6 +1200,7 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1192,6 +1226,7 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1203,6 +1238,7 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1214,6 +1250,7 @@ find_best_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1287,6 +1324,7 @@ fill_inverse_cmap (j_decompress_ptr cinfo, int c0, int c1, int c2)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1296,6 +1334,7 @@ fill_inverse_cmap (j_decompress_ptr cinfo, int c0, int c1, int c2)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1306,6 +1345,7 @@ fill_inverse_cmap (j_decompress_ptr cinfo, int c0, int c1, int c2)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1340,6 +1380,7 @@ pass2_no_dither (j_decompress_ptr cinfo,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1351,6 +1392,7 @@ pass2_no_dither (j_decompress_ptr cinfo,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1402,6 +1444,7 @@ pass2_fs_dither (j_decompress_ptr cinfo,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1434,6 +1477,7 @@ pass2_fs_dither (j_decompress_ptr cinfo,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1566,6 +1610,7 @@ init_error_limit (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1578,6 +1623,7 @@ init_error_limit (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1590,6 +1636,7 @@ init_error_limit (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1666,6 +1713,7 @@ start_pass_2_quant (j_decompress_ptr cinfo, bool is_pre_scan)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1717,6 +1765,7 @@ jinit_2pass_quantizer (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1782,6 +1831,7 @@ prepare_range_limit_table (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1794,6 +1844,7 @@ prepare_range_limit_table (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1842,6 +1893,7 @@ void wxQuantize::DoQuantize(unsigned w, unsigned h, unsigned char **in_rows, uns
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1856,6 +1908,7 @@ void wxQuantize::DoQuantize(unsigned w, unsigned h, unsigned char **in_rows, uns
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1911,6 +1964,7 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1927,6 +1981,7 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1952,6 +2007,7 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1976,6 +2032,7 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2010,6 +2067,7 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2028,6 +2086,7 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2044,6 +2103,7 @@ bool wxQuantize::Quantize(const wxImage& src, wxImage& dest,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

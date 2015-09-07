@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -73,6 +73,7 @@ static wxString wxReplaceUnderscore( const wxString& title )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -115,6 +116,7 @@ static wxString wxConvertFromGTKToWXLabel(const wxString& gtkLabel)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -234,6 +236,7 @@ void wxMenuBar::Init(size_t n, wxMenu *menus[], const wxString titles[], long st
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -278,6 +281,7 @@ static void DetachFromFrame( wxMenu *menu, wxWindow *win )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -293,6 +297,7 @@ static void DetachFromFrame( wxMenu *menu, wxWindow *win )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -313,6 +318,7 @@ static void AttachToFrame( wxMenu *menu, wxWindow *win )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -330,6 +336,7 @@ static void AttachToFrame( wxMenu *menu, wxWindow *win )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -352,6 +359,7 @@ void wxMenuBar::Attach( wxFrame *win )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -369,6 +377,7 @@ void wxMenuBar::Attach( wxFrame *win )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -388,6 +397,7 @@ void wxMenuBar::Detach()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -403,6 +413,7 @@ void wxMenuBar::Detach()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -539,6 +550,7 @@ static int FindMenuItemRecursive( const wxMenu *menu, const wxString &menuString
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -562,6 +574,7 @@ int wxMenuBar::FindMenuItem( const wxString &menuString, const wxString &itemStr
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -588,6 +601,7 @@ static wxMenuItem* FindMenuItemByIdRecursive(const wxMenu* menu, int id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -613,6 +627,7 @@ wxMenuItem* wxMenuBar::FindItem( int id, wxMenu **menuForItem ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -949,6 +964,7 @@ void wxMenuItem::DoSetText( const wxString& str )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1286,6 +1302,7 @@ int wxMenu::FindMenuIdByMenuItem( GtkWidget *menuItem ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1655,6 +1672,7 @@ bool wxWindowGTK::DoPopupMenu( wxMenu *menu, int x, int y )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

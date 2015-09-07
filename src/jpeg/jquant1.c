@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -211,6 +211,7 @@ select_ncolors (j_decompress_ptr cinfo, int Ncolors[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -222,6 +223,7 @@ select_ncolors (j_decompress_ptr cinfo, int Ncolors[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -241,6 +243,7 @@ select_ncolors (j_decompress_ptr cinfo, int Ncolors[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -259,6 +262,7 @@ select_ncolors (j_decompress_ptr cinfo, int Ncolors[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -269,6 +273,7 @@ select_ncolors (j_decompress_ptr cinfo, int Ncolors[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -353,6 +358,7 @@ create_colormap (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -365,6 +371,7 @@ create_colormap (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -377,6 +384,7 @@ create_colormap (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -387,6 +395,7 @@ create_colormap (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -442,6 +451,7 @@ create_colorindex (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -464,6 +474,7 @@ create_colorindex (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -473,6 +484,7 @@ create_colorindex (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -488,6 +500,7 @@ create_colorindex (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -525,6 +538,7 @@ make_odither_array (j_decompress_ptr cinfo, int ncolors)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -534,6 +548,7 @@ make_odither_array (j_decompress_ptr cinfo, int ncolors)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -568,6 +583,7 @@ create_odither_tables (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -579,6 +595,7 @@ create_odither_tables (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -618,6 +635,7 @@ color_quantize (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -629,6 +647,7 @@ color_quantize (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -639,6 +658,7 @@ color_quantize (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -671,6 +691,7 @@ color_quantize3 (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -682,6 +703,7 @@ color_quantize3 (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -717,6 +739,7 @@ quantize_ord_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -730,6 +753,7 @@ quantize_ord_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -745,6 +769,7 @@ quantize_ord_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -794,6 +819,7 @@ quantize3_ord_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -811,6 +837,7 @@ quantize3_ord_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -862,6 +889,7 @@ quantize_fs_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -874,6 +902,7 @@ quantize_fs_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -905,6 +934,7 @@ quantize_fs_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -979,6 +1009,7 @@ alloc_fs_workspace (j_decompress_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1041,6 +1072,7 @@ start_pass_1_quant (j_decompress_ptr cinfo, wxjpeg_boolean is_pre_scan)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

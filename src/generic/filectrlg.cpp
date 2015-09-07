@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -506,6 +506,7 @@ long wxFileListCtrl::Add( wxFileData *fd, wxListItem &item )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -536,6 +537,7 @@ void wxFileListCtrl::UpdateItem(const wxListItem &item)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -570,6 +572,7 @@ void wxFileListCtrl::UpdateFiles()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -641,6 +644,7 @@ void wxFileListCtrl::UpdateFiles()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -663,6 +667,7 @@ void wxFileListCtrl::UpdateFiles()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -675,6 +680,7 @@ void wxFileListCtrl::UpdateFiles()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -719,6 +725,7 @@ void wxFileListCtrl::MakeDir()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -839,6 +846,7 @@ void wxFileListCtrl::FreeAllItemsData()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1195,6 +1203,7 @@ wxGenericFileCtrl::DoGetFilenames(wxArrayString& filenames, bool fullPath) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1247,6 +1256,7 @@ bool wxGenericFileCtrl::SetFilename( const wxString& name )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1322,6 +1332,7 @@ void wxGenericFileCtrl::SetWildcard( const wxString& wildCard )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1375,6 +1386,7 @@ void wxGenericFileCtrl::OnTextChange( wxCommandEvent &WXUNUSED( event ) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

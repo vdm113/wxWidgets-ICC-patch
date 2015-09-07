@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -211,6 +211,7 @@ SelectionSegment Selection::Limits() const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -281,6 +282,7 @@ bool Selection::Empty() const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -298,6 +300,7 @@ SelectionPosition Selection::Last() const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -317,6 +320,7 @@ int Selection::Length() const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -332,6 +336,7 @@ void Selection::MovePositions(bool insertion, int startChange, int length) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -349,6 +354,7 @@ void Selection::TrimSelection(SelectionRange range) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -360,6 +366,7 @@ void Selection::TrimSelection(SelectionRange range) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -428,6 +435,7 @@ int Selection::CharacterInSelection(int posCharacter) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -444,6 +452,7 @@ int Selection::InSelectionForEOL(int pos) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -461,6 +470,7 @@ int Selection::VirtualSpaceFor(int pos) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -489,6 +499,7 @@ void Selection::RemoveDuplicates() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -500,6 +511,7 @@ void Selection::RemoveDuplicates() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

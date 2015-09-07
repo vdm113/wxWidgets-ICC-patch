@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -99,6 +99,7 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -161,6 +162,7 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -195,6 +197,7 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -237,6 +240,7 @@ wxRibbonButtonBar::~wxRibbonButtonBar()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -253,6 +257,7 @@ wxRibbonButtonBar::~wxRibbonButtonBar()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -551,6 +556,7 @@ void wxRibbonButtonBar::ClearButtons()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -572,6 +578,7 @@ bool wxRibbonButtonBar::DeleteButton(int button_id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -604,6 +611,7 @@ void wxRibbonButtonBar::EnableButton(int button_id, bool enable)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -642,6 +650,7 @@ void wxRibbonButtonBar::ToggleButton(int button_id, bool checked)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -688,6 +697,7 @@ void wxRibbonButtonBar::SetArtProvider(wxRibbonArtProvider* art)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -719,6 +729,7 @@ wxSize wxRibbonButtonBar::DoGetNextSmallerSize(wxOrientation direction,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -768,6 +779,7 @@ wxSize wxRibbonButtonBar::DoGetNextLargerSize(wxOrientation direction,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -823,6 +835,7 @@ void wxRibbonButtonBar::UpdateWindowUI(long flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -871,6 +884,7 @@ void wxRibbonButtonBar::OnPaint(wxPaintEvent& WXUNUSED(evt))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -904,6 +918,7 @@ void wxRibbonButtonBar::OnSize(wxSizeEvent& evt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -985,6 +1000,7 @@ void wxRibbonButtonBar::MakeLayouts()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1007,6 +1023,7 @@ void wxRibbonButtonBar::MakeLayouts()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1034,6 +1051,7 @@ void wxRibbonButtonBar::MakeLayouts()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1059,6 +1077,7 @@ bool wxRibbonButtonBar::TryCollapseLayout(wxRibbonButtonBarLayout* original,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1122,6 +1141,7 @@ bool wxRibbonButtonBar::TryCollapseLayout(wxRibbonButtonBarLayout* original,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1140,6 +1160,7 @@ bool wxRibbonButtonBar::TryCollapseLayout(wxRibbonButtonBarLayout* original,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1184,6 +1205,7 @@ void wxRibbonButtonBar::OnMouseMove(wxMouseEvent& evt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1290,6 +1312,7 @@ void wxRibbonButtonBar::OnMouseDown(wxMouseEvent& evt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1340,6 +1363,7 @@ void wxRibbonButtonBar::OnMouseUp(wxMouseEvent& evt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1430,6 +1454,7 @@ wxRibbonButtonBarButtonBase *wxRibbonButtonBar::GetItemById(int button_id) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

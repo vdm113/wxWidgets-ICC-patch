@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -205,6 +205,7 @@ GetFileNameFromNode(const wxXmlNode *node, const wxXmlResourceDataRecords& files
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -233,6 +234,7 @@ GetFileNameFromNode(const wxXmlNode *node, const wxXmlResourceDataRecords& files
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -293,6 +295,7 @@ wxXmlResource::~wxXmlResource()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -371,6 +374,7 @@ bool wxXmlResource::LoadAllFiles(const wxString& dirname)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -409,6 +413,7 @@ bool wxXmlResource::Load(const wxString& filemask_)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -456,6 +461,7 @@ bool wxXmlResource::Unload(const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -513,6 +519,7 @@ void wxXmlResource::ClearHandlers()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -648,6 +655,7 @@ static void ProcessPlatformProperty(wxXmlNode *node)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -665,6 +673,7 @@ static void ProcessPlatformProperty(wxXmlNode *node)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -710,6 +719,7 @@ static void PreprocessForIdRanges(wxXmlNode *rootnode)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -727,6 +737,7 @@ static void PreprocessForIdRanges(wxXmlNode *rootnode)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -751,6 +762,7 @@ bool wxXmlResource::UpdateResources()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -896,6 +908,7 @@ wxXmlNode *wxXmlResource::DoFindResource(wxXmlNode *parent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -934,6 +947,7 @@ wxXmlNode *wxXmlResource::DoFindResource(wxXmlNode *parent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -999,6 +1013,7 @@ wxXmlResource::GetResourceNodeAndLocation(const wxString& name,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1033,6 +1048,7 @@ static void MergeNodesOver(wxXmlNode& dest, wxXmlNode& overwriteWith,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1045,6 +1061,7 @@ static void MergeNodesOver(wxXmlNode& dest, wxXmlNode& overwriteWith,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1068,6 +1085,7 @@ static void MergeNodesOver(wxXmlNode& dest, wxXmlNode& overwriteWith,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1081,6 +1099,7 @@ static void MergeNodesOver(wxXmlNode& dest, wxXmlNode& overwriteWith,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1188,6 +1207,7 @@ wxXmlResource::DoCreateResFromNode(wxXmlNode& node,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1388,6 +1408,7 @@ void wxIdRange::Finalise(const wxXmlNode* node)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1436,6 +1457,7 @@ wxIdRangeManager::~wxIdRangeManager()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1528,6 +1550,7 @@ int wxIdRangeManager::Find(const wxString& rangename) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1547,6 +1570,7 @@ void wxIdRangeManager::FinaliseRanges(const wxXmlNode* node) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1637,6 +1661,7 @@ wxObject *wxXmlResourceHandlerImpl::CreateResource(wxXmlNode *node, wxObject *pa
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1700,6 +1725,7 @@ int wxXmlResourceHandlerImpl::GetStyle(const wxString& param, int defaults)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1745,6 +1771,7 @@ wxString wxXmlResourceHandlerImpl::GetText(const wxString& param, bool translate
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2176,6 +2203,7 @@ wxImageList *wxXmlResourceHandlerImpl::GetImageList(const wxString& param)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2218,6 +2246,7 @@ wxXmlNode *wxXmlResourceHandlerImpl::GetParamNode(const wxString& param)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2263,6 +2292,7 @@ wxString wxXmlResourceHandlerImpl::GetNodeContent(const wxXmlNode *node)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2580,6 +2610,7 @@ wxFont wxXmlResourceHandlerImpl::GetFont(const wxString& param, wxWindow* parent
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2763,6 +2794,7 @@ void wxXmlResourceHandlerImpl::CreateChildren(wxObject *parent, bool this_hnd_on
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2788,6 +2820,7 @@ void wxXmlResourceHandlerImpl::CreateChildrenPrivately(wxObject *parent, wxXmlNo
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2886,6 +2919,7 @@ static inline unsigned XRCIdHash(const char *str_id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2907,6 +2941,7 @@ static void XRCID_Assign(const wxString& str_id, int value)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2939,6 +2974,7 @@ static int XRCID_Lookup(const char *str_id, int value_if_not_found = wxID_NONE)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3154,6 +3190,7 @@ wxString wxXmlResource::FindXRCIDById(int numId)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3164,6 +3201,7 @@ wxString wxXmlResource::FindXRCIDById(int numId)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3195,6 +3233,7 @@ static void CleanXRCID_Records()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3244,6 +3283,7 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

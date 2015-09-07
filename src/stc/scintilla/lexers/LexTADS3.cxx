@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -172,6 +172,7 @@ static void ColouriseTADSHTMLString(StyleContext &sc, int &lineState) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -221,6 +222,7 @@ static void ColouriseTADS3HTMLTagStart(StyleContext &sc) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -263,6 +265,7 @@ static void ColouriseTADS3HTMLTag(StyleContext &sc, int &lineState) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -314,6 +317,7 @@ static void ColouriseTADS3Keyword(StyleContext &sc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -329,6 +333,7 @@ static void ColouriseTADS3Keyword(StyleContext &sc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -380,6 +385,7 @@ static void ColouriseTADS3MsgParam(StyleContext &sc, int &lineState) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -426,6 +432,7 @@ static void ColouriseTADS3LibDirective(StyleContext &sc, int &lineState) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -483,6 +490,7 @@ static void ColouriseTADS3String(StyleContext &sc, int &lineState) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -524,6 +532,7 @@ static void ColouriseTADS3Comment(StyleContext &sc, int endState) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -547,6 +556,7 @@ static void ColouriseToEndOfLine(StyleContext &sc, int initState, int endState) 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -583,6 +593,7 @@ static void ColouriseTADS3Number(StyleContext &sc) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -626,6 +637,7 @@ static void ColouriseTADS3Doc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -818,6 +830,7 @@ static char peekAhead(unsigned int startPos, unsigned int endPos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -864,6 +877,7 @@ static void FoldTADS3Doc(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

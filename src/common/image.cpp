@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -371,6 +371,7 @@ wxImage wxImage::ShrinkBy( int xFactor , int yFactor ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -381,6 +382,7 @@ wxImage wxImage::ShrinkBy( int xFactor , int yFactor ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -397,6 +399,7 @@ wxImage wxImage::ShrinkBy( int xFactor , int yFactor ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -408,6 +411,7 @@ wxImage wxImage::ShrinkBy( int xFactor , int yFactor ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -570,6 +574,7 @@ wxImage wxImage::ResampleNearest(int width, int height) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -584,6 +589,7 @@ wxImage wxImage::ResampleNearest(int width, int height) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -631,6 +637,7 @@ void ResampleBoxPrecalc(wxVector<BoxPrecalc>& boxes, int oldDim)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -685,6 +692,7 @@ wxImage wxImage::ResampleBox(int width, int height) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -698,6 +706,7 @@ wxImage wxImage::ResampleBox(int width, int height) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -715,6 +724,7 @@ wxImage wxImage::ResampleBox(int width, int height) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -725,6 +735,7 @@ wxImage wxImage::ResampleBox(int width, int height) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -778,6 +789,7 @@ void ResampleBilinearPrecalc(wxVector<BilinearPrecalc>& precalcs, int oldDim)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -837,6 +849,7 @@ wxImage wxImage::ResampleBilinear(int width, int height) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -855,6 +868,7 @@ wxImage wxImage::ResampleBilinear(int width, int height) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -935,6 +949,7 @@ void ResampleBicubicPrecalc(wxVector<BicubicPrecalc> &aWeight, int oldDim)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -951,6 +966,7 @@ void ResampleBicubicPrecalc(wxVector<BicubicPrecalc> &aWeight, int oldDim)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1025,6 +1041,7 @@ wxImage wxImage::ResampleBicubic(int width, int height) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1038,6 +1055,7 @@ wxImage wxImage::ResampleBicubic(int width, int height) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1055,6 +1073,7 @@ wxImage wxImage::ResampleBicubic(int width, int height) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1069,6 +1088,7 @@ wxImage wxImage::ResampleBicubic(int width, int height) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1134,6 +1154,7 @@ wxImage wxImage::BlurHorizontal(int blurRadius) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1156,6 +1177,7 @@ wxImage wxImage::BlurHorizontal(int blurRadius) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1191,6 +1213,7 @@ wxImage wxImage::BlurHorizontal(int blurRadius) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1261,6 +1284,7 @@ wxImage wxImage::BlurVertical(int blurRadius) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1283,6 +1307,7 @@ wxImage wxImage::BlurVertical(int blurRadius) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1318,6 +1343,7 @@ wxImage wxImage::BlurVertical(int blurRadius) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1414,6 +1440,7 @@ wxImage wxImage::Rotate90( bool clockwise ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1426,6 +1453,7 @@ wxImage wxImage::Rotate90( bool clockwise ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1439,6 +1467,7 @@ wxImage wxImage::Rotate90( bool clockwise ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1472,6 +1501,7 @@ wxImage wxImage::Rotate90( bool clockwise ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1484,6 +1514,7 @@ wxImage wxImage::Rotate90( bool clockwise ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1496,6 +1527,7 @@ wxImage wxImage::Rotate90( bool clockwise ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1552,6 +1584,7 @@ wxImage wxImage::Rotate180() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1562,6 +1595,7 @@ wxImage wxImage::Rotate180() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1583,6 +1617,7 @@ wxImage wxImage::Rotate180() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1593,6 +1628,7 @@ wxImage wxImage::Rotate180() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1627,6 +1663,7 @@ wxImage wxImage::Mirror( bool horizontally ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1639,6 +1676,7 @@ wxImage wxImage::Mirror( bool horizontally ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1665,6 +1703,7 @@ wxImage wxImage::Mirror( bool horizontally ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1675,6 +1714,7 @@ wxImage wxImage::Mirror( bool horizontally ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1692,6 +1732,7 @@ wxImage wxImage::Mirror( bool horizontally ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1716,6 +1757,7 @@ wxImage wxImage::Mirror( bool horizontally ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1773,6 +1815,7 @@ wxImage wxImage::GetSubImage( const wxRect &rect ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1893,6 +1936,7 @@ void wxImage::Paste( const wxImage &image, int x, int y )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1921,6 +1965,7 @@ void wxImage::Paste( const wxImage &image, int x, int y )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1949,6 +1994,7 @@ void wxImage::Paste( const wxImage &image, int x, int y )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1959,6 +2005,7 @@ void wxImage::Paste( const wxImage &image, int x, int y )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1994,6 +2041,7 @@ void wxImage::Replace( unsigned char r1, unsigned char g1, unsigned char b1,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2003,6 +2051,7 @@ void wxImage::Replace( unsigned char r1, unsigned char g1, unsigned char b1,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2052,6 +2101,7 @@ wxImage wxImage::ConvertToGreyscale(double weight_r, double weight_g, double wei
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2100,6 +2150,7 @@ wxImage wxImage::ConvertToMono( unsigned char r, unsigned char g, unsigned char 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2141,6 +2192,7 @@ wxImage wxImage::ConvertToDisabled(unsigned char brightness) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2246,6 +2298,7 @@ void wxImage::SetRGB( const wxRect& rect_, unsigned char r, unsigned char g, uns
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2257,6 +2310,7 @@ void wxImage::SetRGB( const wxRect& rect_, unsigned char r, unsigned char g, uns
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2406,6 +2460,7 @@ wxImage::ConvertColourToAlpha(unsigned char r, unsigned char g, unsigned char b)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2416,6 +2471,7 @@ wxImage::ConvertColourToAlpha(unsigned char r, unsigned char g, unsigned char b)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2479,6 +2535,7 @@ void wxImage::InitAlpha()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2646,6 +2703,7 @@ bool wxImage::SetMaskFromImage(const wxImage& mask,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2656,6 +2714,7 @@ bool wxImage::SetMaskFromImage(const wxImage& mask,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2717,6 +2776,7 @@ bool wxImage::ConvertAlphaToMask(unsigned char mr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2727,6 +2787,7 @@ bool wxImage::ConvertAlphaToMask(unsigned char mr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3061,6 +3122,7 @@ bool wxImage::CanRead( wxInputStream &stream )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3087,6 +3149,7 @@ int wxImage::GetImageCount( wxInputStream &stream, wxBitmapType type )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3163,6 +3226,7 @@ bool wxImage::DoLoad(wxImageHandler& handler, wxInputStream& stream, int index)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3218,6 +3282,7 @@ bool wxImage::LoadFile( wxInputStream& stream, wxBitmapType type, int index )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3377,6 +3442,7 @@ wxImageHandler *wxImage::FindHandler( const wxString& name )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3398,6 +3464,7 @@ wxImageHandler *wxImage::FindHandler( const wxString& extension, wxBitmapType bi
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3424,6 +3491,7 @@ wxImageHandler *wxImage::FindHandler(wxBitmapType bitmapType )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3444,6 +3512,7 @@ wxImageHandler *wxImage::FindHandlerMime( const wxString& mimetype )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3471,6 +3540,7 @@ void wxImage::CleanUpHandlers()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3496,6 +3566,7 @@ wxString wxImage::GetImageExtWildcard()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3508,6 +3579,7 @@ wxString wxImage::GetImageExtWildcard()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3673,6 +3745,7 @@ void wxImage::RotateHue(double angle)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3820,6 +3893,7 @@ wxImageHistogram::FindFirstUnusedColour(unsigned char *r,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3897,6 +3971,7 @@ unsigned long wxImage::CountColours( unsigned long stopafter ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3933,6 +4008,7 @@ unsigned long wxImage::ComputeHistogram( wxImageHistogram &h ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4001,6 +4077,7 @@ wxImage wxImage::Rotate(double angle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4018,6 +4095,7 @@ wxImage wxImage::Rotate(double angle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4092,6 +4170,7 @@ wxImage wxImage::Rotate(double angle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4102,6 +4181,7 @@ wxImage wxImage::Rotate(double angle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4255,6 +4335,7 @@ wxImage wxImage::Rotate(double angle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4265,6 +4346,7 @@ wxImage wxImage::Rotate(double angle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

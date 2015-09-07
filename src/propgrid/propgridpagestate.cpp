@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -271,6 +271,7 @@ void wxPropertyGridPageState::InitNonCatMode()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -311,6 +312,7 @@ void wxPropertyGridPageState::DoClear()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -329,6 +331,7 @@ void wxPropertyGridPageState::DoClear()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -376,6 +379,7 @@ void wxPropertyGridPageState::CalculateFontAndBitmapStuff( int WXUNUSED(vspacing
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -467,6 +471,7 @@ wxPGProperty* wxPropertyGridPageState::GetLastItem( int flags )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -483,6 +488,7 @@ wxPGProperty* wxPropertyGridPageState::GetLastItem( int flags )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -503,6 +509,7 @@ wxPropertyCategory* wxPropertyGridPageState::GetPropertyCategory( const wxPGProp
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -542,6 +549,7 @@ wxPGProperty* wxPropertyGridPageState::BaseGetPropertyByLabel
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -799,6 +807,7 @@ void wxPropertyGridPageState::DoSortChildren( wxPGProperty* p,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -877,6 +886,7 @@ int wxPropertyGridPageState::GetColumnFitWidth(wxClientDC& dc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -943,6 +953,7 @@ int wxPropertyGridPageState::DoGetSplitterPosition( int splitterColumn ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -969,6 +980,7 @@ void wxPropertyGridPageState::PropagateColSizeDec( int column,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -993,6 +1005,7 @@ void wxPropertyGridPageState::PropagateColSizeDec( int column,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1094,6 +1107,7 @@ wxSize wxPropertyGridPageState::DoFitColumns( bool WXUNUSED(allowGridResize) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1160,6 +1174,7 @@ void wxPropertyGridPageState::CheckColumnWidths( int widthChange )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1184,6 +1199,7 @@ void wxPropertyGridPageState::CheckColumnWidths( int widthChange )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1243,6 +1259,7 @@ void wxPropertyGridPageState::CheckColumnWidths( int widthChange )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1324,6 +1341,7 @@ void wxPropertyGridPageState::ResetColumnSizes( int setSplitterFlags )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1338,6 +1356,7 @@ void wxPropertyGridPageState::ResetColumnSizes( int setSplitterFlags )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1379,6 +1398,7 @@ void wxPropertyGridPageState::DoSetColumnProportion( unsigned int column,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1400,6 +1420,7 @@ int wxPropertyGridPageState::HitTestH( int x, int* pSplitterHit, int* pSplitterH
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1546,6 +1567,7 @@ void wxPropertyGridPageState::DoRemoveFromSelection( wxPGProperty* prop )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1664,6 +1686,7 @@ wxVariant wxPropertyGridPageState::DoGetPropertyValues( const wxString& listname
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1694,6 +1717,7 @@ wxVariant wxPropertyGridPageState::DoGetPropertyValues( const wxString& listname
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1745,6 +1769,7 @@ void wxPropertyGridPageState::DoSetPropertyValues( const wxVariantList& list, wx
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1816,6 +1841,7 @@ void wxPropertyGridPageState::DoSetPropertyValues( const wxVariantList& list, wx
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1855,6 +1881,7 @@ void wxPropertyGridPageState::DoSetPropertyValues( const wxVariantList& list, wx
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2072,6 +2099,7 @@ wxPGProperty* wxPropertyGridPageState::DoInsert( wxPGProperty* parent, int index
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2100,6 +2128,7 @@ void wxPropertyGridPageState::DoRemoveChildrenFromSelection(wxPGProperty* p,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2133,6 +2162,7 @@ void wxPropertyGridPageState::DoMarkChildrenAsDeleted(wxPGProperty* p,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2170,6 +2200,7 @@ void wxPropertyGridPageState::DoInvalidateChildrenNames(wxPGProperty* p,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2197,6 +2228,7 @@ bool wxPropertyGridPageState::IsChildCategory(wxPGProperty* p,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2342,6 +2374,7 @@ void wxPropertyGridPageState::DoDelete( wxPGProperty* item, bool doDelete )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

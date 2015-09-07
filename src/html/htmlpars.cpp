@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -103,6 +103,7 @@ wxHtmlParser::~wxHtmlParser()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -188,6 +189,7 @@ void wxHtmlParser::CreateDOMSubTree(wxHtmlTag *cur,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -254,6 +256,7 @@ void wxHtmlParser::CreateDOMSubTree(wxHtmlTag *cur,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -278,6 +281,7 @@ void wxHtmlParser::DestroyDOMTree()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -315,6 +319,7 @@ void wxHtmlParser::DoParsing(const wxString::const_iterator& begin_pos_,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -325,6 +330,7 @@ void wxHtmlParser::DoParsing(const wxString::const_iterator& begin_pos_,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -335,6 +341,7 @@ void wxHtmlParser::DoParsing(const wxString::const_iterator& begin_pos_,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -404,6 +411,7 @@ void wxHtmlParser::AddTagHandler(wxHtmlTagHandler *handler)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -427,6 +435,7 @@ void wxHtmlParser::PushTagHandler(wxHtmlTagHandler *handler, const wxString& tag
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -560,6 +569,7 @@ wxString wxHtmlEntitiesParser::Parse(const wxString& input) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -584,6 +594,7 @@ wxString wxHtmlEntitiesParser::Parse(const wxString& input) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -944,6 +955,7 @@ wxChar wxHtmlEntitiesParser::GetEntityChar(const wxString& entity) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -960,6 +972,7 @@ wxChar wxHtmlEntitiesParser::GetEntityChar(const wxString& entity) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1099,6 +1112,7 @@ wxHtmlParser::SkipCommentTag(wxString::const_iterator& start,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

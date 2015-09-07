@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -703,6 +703,7 @@ void wxSizer::SetContainingWindow(wxWindow *win)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -730,6 +731,7 @@ bool wxSizer::Remove( wxSizer *sizer )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -776,6 +778,7 @@ bool wxSizer::Detach( wxSizer *sizer )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -806,6 +809,7 @@ bool wxSizer::Detach( wxWindow *window )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -856,6 +860,7 @@ bool wxSizer::Replace( wxWindow *oldwin, wxWindow *newwin, bool recursive )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -892,6 +897,7 @@ bool wxSizer::Replace( wxSizer *oldsz, wxSizer *newsz, bool recursive )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -945,6 +951,7 @@ void wxSizer::Clear( bool delete_windows )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -973,6 +980,7 @@ void wxSizer::DeleteWindows()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1152,6 +1160,7 @@ bool wxSizer::DoSetItemMinSize( wxWindow *window, int width, int height )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1175,6 +1184,7 @@ bool wxSizer::DoSetItemMinSize( wxWindow *window, int width, int height )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1206,6 +1216,7 @@ bool wxSizer::DoSetItemMinSize( wxSizer *sizer, int width, int height )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1229,6 +1240,7 @@ bool wxSizer::DoSetItemMinSize( wxSizer *sizer, int width, int height )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1280,6 +1292,7 @@ wxSizerItem* wxSizer::GetItem( wxWindow *window, bool recursive )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1314,6 +1327,7 @@ wxSizerItem* wxSizer::GetItem( wxSizer *sizer, bool recursive )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1358,6 +1372,7 @@ wxSizerItem* wxSizer::GetItemById( int id, bool recursive )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1429,6 +1444,7 @@ void wxSizer::ShowItems( bool show )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1447,6 +1463,7 @@ bool wxSizer::AreAnyItemsShown() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1468,6 +1485,7 @@ bool wxSizer::IsShown( wxWindow *window ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1495,6 +1513,7 @@ bool wxSizer::IsShown( wxSizer *sizer ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1641,6 +1660,7 @@ void wxGridSizer::RecalcSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1652,6 +1672,7 @@ void wxGridSizer::RecalcSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1688,6 +1709,7 @@ wxSize wxGridSizer::CalcMin()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1711,6 +1733,7 @@ wxSize wxGridSizer::CalcMin()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1732,6 +1755,7 @@ wxSize wxGridSizer::CalcMin()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1851,6 +1875,7 @@ void wxFlexGridSizer::RecalcSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1864,6 +1889,7 @@ void wxFlexGridSizer::RecalcSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1889,6 +1915,7 @@ void wxFlexGridSizer::RecalcSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1928,6 +1955,7 @@ static int SumArraySizes(const wxArrayInt& sizes, int gap)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1962,6 +1990,7 @@ void wxFlexGridSizer::FindWidthsAndHeights(int nrows, int ncols)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2015,6 +2044,7 @@ wxSize wxFlexGridSizer::CalcMin()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2058,6 +2088,7 @@ void wxFlexGridSizer::AdjustForFlexDirection()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2073,6 +2104,7 @@ void wxFlexGridSizer::AdjustForFlexDirection()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2117,6 +2149,7 @@ DoAdjustForGrowables(int delta,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2149,6 +2182,7 @@ DoAdjustForGrowables(int delta,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2197,6 +2231,7 @@ void wxFlexGridSizer::AdjustForGrowables(const wxSize& sz)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2216,6 +2251,7 @@ void wxFlexGridSizer::AdjustForGrowables(const wxSize& sz)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2252,6 +2288,7 @@ void wxFlexGridSizer::AdjustForGrowables(const wxSize& sz)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2341,6 +2378,7 @@ DoRemoveFromArrays(size_t idx, wxArrayInt& items, wxArrayInt& proportions)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2508,6 +2546,7 @@ void wxBoxSizer::RecalcSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2560,6 +2599,7 @@ void wxBoxSizer::RecalcSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2585,6 +2625,7 @@ void wxBoxSizer::RecalcSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2621,6 +2662,7 @@ void wxBoxSizer::RecalcSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2701,6 +2743,7 @@ void wxBoxSizer::RecalcSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2768,6 +2811,7 @@ void wxBoxSizer::RecalcSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2801,6 +2845,7 @@ void wxBoxSizer::RecalcSizes()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2882,6 +2927,7 @@ wxSize wxBoxSizer::CalcMin()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2971,6 +3017,7 @@ wxStaticBoxSizer::~wxStaticBoxSizer()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

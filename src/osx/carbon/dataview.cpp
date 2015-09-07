@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -68,6 +68,7 @@ static DataBrowserItemID* CreateDataBrowserItemIDArray(size_t& noOfEntries, wxDa
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -582,6 +583,7 @@ OSStatus wxMacDataBrowserTableViewControl::GetFreePropertyID(DataBrowserProperty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -676,6 +678,7 @@ OSStatus wxMacDataBrowserTableViewControl::GetFreeItemID(DataBrowserItemID* id) 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -688,6 +691,7 @@ OSStatus wxMacDataBrowserTableViewControl::GetFreeItemID(DataBrowserItemID* id) 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -772,6 +776,7 @@ size_t wxMacDataBrowserTableViewControl::GetSelectedItemIDs(wxArrayDataBrowserIt
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -892,6 +897,7 @@ bool wxMacDataViewDataBrowserListViewControl::ClearColumns()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1198,6 +1204,7 @@ int wxMacDataViewDataBrowserListViewControl::GetSelections(wxDataViewItemArray& 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1668,6 +1675,7 @@ void wxMacDataViewDataBrowserListViewControl::DataBrowserItemNotificationProc(Da
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1895,6 +1903,7 @@ Boolean wxMacDataViewDataBrowserListViewControl::DataBrowserAcceptDragProc(DragR
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1994,6 +2003,7 @@ Boolean wxMacDataViewDataBrowserListViewControl::DataBrowserAddDragItemProc(Drag
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2087,6 +2097,7 @@ Boolean wxMacDataViewDataBrowserListViewControl::DataBrowserReceiveDragProc(Drag
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2158,6 +2169,7 @@ wxDataFormat wxMacDataViewDataBrowserListViewControl::GetDnDDataFormat(wxDataObj
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2217,6 +2229,7 @@ wxDataObjectComposite* wxMacDataViewDataBrowserListViewControl::GetDnDDataObject
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2313,6 +2326,7 @@ wxDataViewColumn* wxMacDataViewDataBrowserListViewControl::GetColumnPtr(DataBrow
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -330,6 +330,7 @@ int SCI_METHOD LexerVerilog::WordListSet(int n, const char *wl) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -375,6 +376,7 @@ static inline bool AllUpperCase(const char *a) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -404,6 +406,7 @@ static std::string GetRestOfLine(LexAccessor &styler, int start, bool allowSpace
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -472,6 +475,7 @@ void SCI_METHOD LexerVerilog::Lex(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -491,6 +495,7 @@ void SCI_METHOD LexerVerilog::Lex(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -671,6 +676,7 @@ void SCI_METHOD LexerVerilog::Lex(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -733,6 +739,7 @@ void SCI_METHOD LexerVerilog::Lex(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -744,6 +751,7 @@ void SCI_METHOD LexerVerilog::Lex(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -758,6 +766,7 @@ void SCI_METHOD LexerVerilog::Lex(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -770,6 +779,7 @@ void SCI_METHOD LexerVerilog::Lex(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -789,6 +799,7 @@ void SCI_METHOD LexerVerilog::Lex(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -809,6 +820,7 @@ void SCI_METHOD LexerVerilog::Lex(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -865,6 +877,7 @@ static bool IsCommentLine(int line, LexAccessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -932,6 +945,7 @@ void SCI_METHOD LexerVerilog::Fold(unsigned int startPos, int length, int initSt
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -977,6 +991,7 @@ void SCI_METHOD LexerVerilog::Fold(unsigned int startPos, int length, int initSt
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1150,6 +1165,7 @@ std::vector<std::string> LexerVerilog::Tokenize(const std::string &expr) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1162,6 +1178,7 @@ std::vector<std::string> LexerVerilog::Tokenize(const std::string &expr) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1175,6 +1192,7 @@ std::vector<std::string> LexerVerilog::Tokenize(const std::string &expr) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

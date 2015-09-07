@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -48,6 +48,7 @@ wxString ConcatenateDataViewItemValues(wxDataViewCtrl const* dataViewCtrlPtr, wx
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -173,6 +174,7 @@ bool wxOSXDataViewModelNotifier::ItemsChanged(wxDataViewItemArray const& items)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -279,6 +281,7 @@ void wxOSXDataViewModelNotifier::AdjustRowHeight(wxDataViewItem const& item)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -316,6 +319,7 @@ void wxOSXDataViewModelNotifier::AdjustRowHeights(wxDataViewItemArray const& ite
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -330,6 +334,7 @@ void wxOSXDataViewModelNotifier::AdjustRowHeights(wxDataViewItemArray const& ite
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -363,6 +368,7 @@ void wxOSXDataViewModelNotifier::AdjustAutosizedColumns()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -671,6 +677,7 @@ void wxDataViewCtrl::SetSelections(wxDataViewItemArray const& sel)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -692,6 +699,7 @@ void wxDataViewCtrl::SetSelections(wxDataViewItemArray const& sel)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -783,6 +791,7 @@ void wxDataViewCtrl::OnSize(wxSizeEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -843,6 +852,7 @@ void wxDataViewCtrl::OnMouse(wxMouseEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -133,6 +133,7 @@ wxRibbonToolBar::~wxRibbonToolBar()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -145,6 +146,7 @@ wxRibbonToolBar::~wxRibbonToolBar()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -295,6 +297,7 @@ wxRibbonToolBarToolBase* wxRibbonToolBar::InsertTool(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -324,6 +327,7 @@ wxRibbonToolBarToolBase* wxRibbonToolBar::InsertSeparator(size_t pos)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -345,6 +349,7 @@ wxRibbonToolBarToolBase* wxRibbonToolBar::InsertSeparator(size_t pos)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -381,6 +386,7 @@ void wxRibbonToolBar::ClearTools()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -393,6 +399,7 @@ void wxRibbonToolBar::ClearTools()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -415,6 +422,7 @@ bool wxRibbonToolBar::DeleteTool(int tool_id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -427,6 +435,7 @@ bool wxRibbonToolBar::DeleteTool(int tool_id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -453,6 +462,7 @@ bool wxRibbonToolBar::DeleteToolByPos(size_t pos)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -479,6 +489,7 @@ bool wxRibbonToolBar::DeleteToolByPos(size_t pos)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -502,6 +513,7 @@ wxRibbonToolBarToolBase* wxRibbonToolBar::FindById(int tool_id)const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -514,6 +526,7 @@ wxRibbonToolBarToolBase* wxRibbonToolBar::FindById(int tool_id)const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -538,6 +551,7 @@ wxRibbonToolBarToolBase* wxRibbonToolBar::GetToolByPos(size_t pos)const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -565,6 +579,7 @@ size_t wxRibbonToolBar::GetToolCount() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -624,6 +639,7 @@ int wxRibbonToolBar::GetToolPos(int tool_id)const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -636,6 +652,7 @@ int wxRibbonToolBar::GetToolPos(int tool_id)const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -773,6 +790,7 @@ wxSize wxRibbonToolBar::DoGetNextSmallerSize(wxOrientation direction,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -827,6 +845,7 @@ wxSize wxRibbonToolBar::DoGetNextLargerSize(wxOrientation direction,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -888,6 +907,7 @@ void wxRibbonToolBar::SetRows(int nMin, int nMax)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -911,6 +931,7 @@ bool wxRibbonToolBar::Realize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -925,6 +946,7 @@ bool wxRibbonToolBar::Realize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -961,6 +983,7 @@ bool wxRibbonToolBar::Realize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -996,6 +1019,7 @@ bool wxRibbonToolBar::Realize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1006,6 +1030,7 @@ bool wxRibbonToolBar::Realize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1016,6 +1041,7 @@ bool wxRibbonToolBar::Realize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1028,6 +1054,7 @@ bool wxRibbonToolBar::Realize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1046,6 +1073,7 @@ bool wxRibbonToolBar::Realize()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1122,6 +1150,7 @@ void wxRibbonToolBar::OnSize(wxSizeEvent& evt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1147,6 +1176,7 @@ void wxRibbonToolBar::OnSize(wxSizeEvent& evt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1159,6 +1189,7 @@ void wxRibbonToolBar::OnSize(wxSizeEvent& evt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1171,6 +1202,7 @@ void wxRibbonToolBar::OnSize(wxSizeEvent& evt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1192,6 +1224,7 @@ void wxRibbonToolBar::OnSize(wxSizeEvent& evt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1205,6 +1238,7 @@ void wxRibbonToolBar::OnSize(wxSizeEvent& evt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1219,6 +1253,7 @@ void wxRibbonToolBar::OnSize(wxSizeEvent& evt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1255,6 +1290,7 @@ wxSize wxRibbonToolBar::GetBestSizeForParentSize(const wxSize& parentSize) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1296,6 +1332,7 @@ void wxRibbonToolBar::OnPaint(wxPaintEvent& WXUNUSED(evt))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1312,6 +1349,7 @@ void wxRibbonToolBar::OnPaint(wxPaintEvent& WXUNUSED(evt))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1342,6 +1380,7 @@ void wxRibbonToolBar::OnMouseMove(wxMouseEvent& evt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1358,6 +1397,7 @@ void wxRibbonToolBar::OnMouseMove(wxMouseEvent& evt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1516,6 +1556,7 @@ void wxRibbonToolBar::UpdateWindowUI(long flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1528,6 +1569,7 @@ void wxRibbonToolBar::UpdateWindowUI(long flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1563,6 +1605,7 @@ bool wxRibbonToolBarEvent::PopupMenu(wxMenu* menu)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1575,6 +1618,7 @@ bool wxRibbonToolBarEvent::PopupMenu(wxMenu* menu)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

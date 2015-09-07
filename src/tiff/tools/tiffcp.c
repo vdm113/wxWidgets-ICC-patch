@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -185,6 +185,7 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -295,6 +296,7 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -317,6 +319,7 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -356,6 +359,7 @@ processZIPOptions(char* cp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -382,6 +386,7 @@ processG3Options(char* cp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -415,6 +420,7 @@ processCompressOptions(char* opt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -525,6 +531,7 @@ usage(void)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -834,6 +841,7 @@ tiffcp(TIFF* in, TIFF* out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -872,6 +880,7 @@ tiffcp(TIFF* in, TIFF* out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -918,6 +927,7 @@ DECLAREcpFunc(cpContig2ContigByRow)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -998,6 +1008,7 @@ DECLAREcpFunc(cpBiasedContig2Contig)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1074,6 +1085,7 @@ DECLAREcpFunc(cpDecodedStrips)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1129,6 +1141,7 @@ DECLAREcpFunc(cpSeparate2SeparateByRow)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1138,6 +1151,7 @@ DECLAREcpFunc(cpSeparate2SeparateByRow)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1189,6 +1203,7 @@ DECLAREcpFunc(cpContig2SeparateByRow)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1198,6 +1213,7 @@ DECLAREcpFunc(cpContig2SeparateByRow)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1216,6 +1232,7 @@ DECLAREcpFunc(cpContig2SeparateByRow)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1265,6 +1282,7 @@ DECLAREcpFunc(cpSeparate2ContigByRow)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1275,6 +1293,7 @@ DECLAREcpFunc(cpSeparate2ContigByRow)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1293,6 +1312,7 @@ DECLAREcpFunc(cpSeparate2ContigByRow)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1326,6 +1346,7 @@ cpStripToTile(uint8* out, uint8* in,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1336,6 +1357,7 @@ cpStripToTile(uint8* out, uint8* in,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1356,6 +1378,7 @@ cpContigBufToSeparateBuf(uint8* out, uint8* in,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1366,6 +1389,7 @@ cpContigBufToSeparateBuf(uint8* out, uint8* in,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1378,6 +1402,7 @@ cpContigBufToSeparateBuf(uint8* out, uint8* in,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1401,6 +1426,7 @@ cpSeparateBufToContigBuf(uint8* out, uint8* in,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1411,6 +1437,7 @@ cpSeparateBufToContigBuf(uint8* out, uint8* in,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1422,6 +1449,7 @@ cpSeparateBufToContigBuf(uint8* out, uint8* in,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1480,6 +1508,7 @@ DECLAREreadFunc(readContigStripsIntoBuffer)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1519,6 +1548,7 @@ DECLAREreadFunc(readSeparateStripsIntoBuffer)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1529,6 +1559,7 @@ DECLAREreadFunc(readSeparateStripsIntoBuffer)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1550,6 +1581,7 @@ DECLAREreadFunc(readSeparateStripsIntoBuffer)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1590,6 +1622,7 @@ DECLAREreadFunc(readContigTilesIntoBuffer)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1603,6 +1636,7 @@ DECLAREreadFunc(readContigTilesIntoBuffer)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1663,6 +1697,7 @@ DECLAREreadFunc(readSeparateTilesIntoBuffer)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1676,6 +1711,7 @@ DECLAREreadFunc(readSeparateTilesIntoBuffer)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1687,6 +1723,7 @@ DECLAREreadFunc(readSeparateTilesIntoBuffer)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1744,6 +1781,7 @@ DECLAREwriteFunc(writeBufferToContigStrips)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1780,6 +1818,7 @@ DECLAREwriteFunc(writeBufferToSeparateStrips)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1790,6 +1829,7 @@ DECLAREwriteFunc(writeBufferToSeparateStrips)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1839,6 +1879,7 @@ DECLAREwriteFunc(writeBufferToContigTiles)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1852,6 +1893,7 @@ DECLAREwriteFunc(writeBufferToContigTiles)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1912,6 +1954,7 @@ DECLAREwriteFunc(writeBufferToSeparateTiles)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1925,6 +1968,7 @@ DECLAREwriteFunc(writeBufferToSeparateTiles)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1935,6 +1979,7 @@ DECLAREwriteFunc(writeBufferToSeparateTiles)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

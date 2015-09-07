@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -225,6 +225,7 @@ void DoReadLL(T *buffer, size_t size, wxInputStream *input, bool be_order)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -236,6 +237,7 @@ void DoReadLL(T *buffer, size_t size, wxInputStream *input, bool be_order)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -255,6 +257,7 @@ void DoReadLL(T *buffer, size_t size, wxInputStream *input, bool be_order)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -266,6 +269,7 @@ void DoReadLL(T *buffer, size_t size, wxInputStream *input, bool be_order)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -291,6 +295,7 @@ static void DoWriteLL(const T *buffer, size_t size, wxOutputStream *output, bool
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -302,6 +307,7 @@ static void DoWriteLL(const T *buffer, size_t size, wxOutputStream *output, bool
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -322,6 +328,7 @@ static void DoWriteLL(const T *buffer, size_t size, wxOutputStream *output, bool
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -333,6 +340,7 @@ static void DoWriteLL(const T *buffer, size_t size, wxOutputStream *output, bool
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -371,6 +379,7 @@ void DoReadI64(T *buffer, size_t size, wxInputStream *input, bool be_order)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -387,6 +396,7 @@ void DoReadI64(T *buffer, size_t size, wxInputStream *input, bool be_order)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -410,6 +420,7 @@ void DoWriteI64(const T *buffer, size_t size, wxOutputStream *output, bool be_or
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -427,6 +438,7 @@ void DoWriteI64(const T *buffer, size_t size, wxOutputStream *output, bool be_or
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -504,6 +516,7 @@ void wxDataInputStream::Read32(wxUint32 *buffer, size_t size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -520,6 +533,7 @@ void wxDataInputStream::Read32(wxUint32 *buffer, size_t size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -542,6 +556,7 @@ void wxDataInputStream::Read16(wxUint16 *buffer, size_t size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -558,6 +573,7 @@ void wxDataInputStream::Read16(wxUint16 *buffer, size_t size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -581,6 +597,7 @@ void wxDataInputStream::ReadDouble(double *buffer, size_t size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -597,6 +614,7 @@ void wxDataInputStream::ReadFloat(float *buffer, size_t size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -861,6 +879,7 @@ void wxDataOutputStream::Write32(const wxUint32 *buffer, size_t size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -878,6 +897,7 @@ void wxDataOutputStream::Write32(const wxUint32 *buffer, size_t size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -899,6 +919,7 @@ void wxDataOutputStream::Write16(const wxUint16 *buffer, size_t size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -916,6 +937,7 @@ void wxDataOutputStream::Write16(const wxUint16 *buffer, size_t size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -940,6 +962,7 @@ void wxDataOutputStream::WriteDouble(const double *buffer, size_t size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -956,6 +979,7 @@ void wxDataOutputStream::WriteFloat(const float *buffer, size_t size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

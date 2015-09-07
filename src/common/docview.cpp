@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -174,6 +174,7 @@ bool wxDocument::Close()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -193,6 +194,7 @@ bool wxDocument::Close()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -239,6 +241,7 @@ bool wxDocument::DeleteAllViews()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -266,6 +269,7 @@ bool wxDocument::DeleteAllViews()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -376,6 +380,7 @@ bool wxDocument::SaveAs()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -648,6 +653,7 @@ void wxDocument::UpdateAllViews(wxView *sender, wxObject *hint)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -668,6 +674,7 @@ void wxDocument::NotifyClosing()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -696,6 +703,7 @@ void wxDocument::OnChangeFilename(bool notifyViews)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -987,6 +995,7 @@ bool wxDocTemplate::FileMatchesTemplate(const wxString& path)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1110,6 +1119,7 @@ bool wxDocManager::CloseDocuments(bool force)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1142,6 +1152,7 @@ bool wxDocManager::Clear(bool force)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1518,6 +1529,7 @@ wxDocTemplateVector GetVisibleTemplates(const wxList& allTemplates)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1556,6 +1568,7 @@ wxDocument* wxDocManager::FindDocumentByPath(const wxString& path) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1845,6 +1858,7 @@ wxDocTemplate *wxDocManager::FindTemplateForPath(const wxString& path)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1878,6 +1892,7 @@ wxDocTemplate *wxDocManager::SelectDocumentPath(wxDocTemplate **templates,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1968,6 +1983,7 @@ wxDocTemplate *wxDocManager::SelectDocumentType(wxDocTemplate **templates,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1982,6 +1998,7 @@ wxDocTemplate *wxDocManager::SelectDocumentType(wxDocTemplate **templates,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2016,6 +2033,7 @@ wxDocTemplate *wxDocManager::SelectDocumentType(wxDocTemplate **templates,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2026,6 +2044,7 @@ wxDocTemplate *wxDocManager::SelectDocumentType(wxDocTemplate **templates,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2078,6 +2097,7 @@ wxDocTemplate *wxDocManager::SelectViewType(wxDocTemplate **templates,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2093,6 +2113,7 @@ wxDocTemplate *wxDocManager::SelectViewType(wxDocTemplate **templates,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2124,6 +2145,7 @@ wxDocTemplate *wxDocManager::SelectViewType(wxDocTemplate **templates,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2134,6 +2156,7 @@ wxDocTemplate *wxDocManager::SelectViewType(wxDocTemplate **templates,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2190,6 +2213,7 @@ wxDocTemplate* wxDocManager::FindTemplate(const wxClassInfo* classinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2434,6 +2458,7 @@ bool wxTransferFileToStream(const wxString& filename, wxSTD ostream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2452,6 +2477,7 @@ bool wxTransferFileToStream(const wxString& filename, wxSTD ostream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2476,6 +2502,7 @@ bool wxTransferStreamToFile(wxSTD istream& stream, const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2493,6 +2520,7 @@ bool wxTransferStreamToFile(wxSTD istream& stream, const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2521,6 +2549,7 @@ bool wxTransferFileToStream(const wxString& filename, wxOutputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2539,6 +2568,7 @@ bool wxTransferFileToStream(const wxString& filename, wxOutputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2563,6 +2593,7 @@ bool wxTransferStreamToFile(wxInputStream& stream, const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

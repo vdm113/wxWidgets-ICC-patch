@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -240,6 +240,7 @@ wxWindowMac::~wxWindowMac()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -266,6 +267,7 @@ wxWindowMac::~wxWindowMac()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -599,6 +601,7 @@ static bool wxIsWindowOrParentDisabled(wxWindow* w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1764,6 +1767,7 @@ void wxWindowMac::ScrollWindow(int dx, int dy, const wxRect *rect)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1915,6 +1919,7 @@ wxNonOwnedWindow* wxWindowMac::MacGetTopLevelWindow() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2022,6 +2027,7 @@ void wxWindowMac::MacUpdateClippedRects() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2179,6 +2185,7 @@ void wxWindowMac::MacPaintChildrenBorders()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2256,6 +2263,7 @@ bool wxWindowMac::MacHasScrollBarCorner() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2422,6 +2430,7 @@ void wxWindowMac::MacSuperChangedPosition()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2445,6 +2454,7 @@ void wxWindowMac::MacTopLevelWindowChangedPosition()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2716,6 +2726,7 @@ wxHotKeyHandler(EventHandlerCallRef WXUNUSED(nextHandler),
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2753,6 +2764,7 @@ bool wxWindowMac::RegisterHotKey(int hotkeyId, int modifiers, int keycode)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2820,6 +2832,7 @@ bool wxWindowMac::UnregisterHotKey(int hotkeyId)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2860,6 +2873,7 @@ bool wxWindowMac::OSXHandleKeyEvent( wxKeyEvent& event )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2950,6 +2964,7 @@ void wxWidgetImpl::RemoveAssociations(wxWidgetImpl* impl)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2962,6 +2977,7 @@ void wxWidgetImpl::RemoveAssociations(wxWidgetImpl* impl)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

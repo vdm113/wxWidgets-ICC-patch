@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -425,6 +425,7 @@ size_t wxStreamBuffer::Read(void *buffer, size_t size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -476,6 +477,7 @@ size_t wxStreamBuffer::Read(wxStreamBuffer *dbuf)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -493,6 +495,7 @@ size_t wxStreamBuffer::Read(wxStreamBuffer *dbuf)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -531,6 +534,7 @@ size_t wxStreamBuffer::Write(const void *buffer, size_t size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -595,6 +599,7 @@ size_t wxStreamBuffer::Write(wxStreamBuffer *sbuf)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -624,6 +629,7 @@ size_t wxStreamBuffer::Write(wxStreamBuffer *sbuf)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -908,6 +914,7 @@ wxInputStream& wxInputStream::Read(void *buf, size_t size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -964,6 +971,7 @@ wxInputStream& wxInputStream::Read(wxOutputStream& stream_out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -995,6 +1003,7 @@ bool wxInputStream::ReadAll(void *buffer_, size_t size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1064,6 +1073,7 @@ wxFileOffset wxInputStream::SeekI(wxFileOffset pos, wxSeekMode mode)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1170,6 +1180,7 @@ bool wxOutputStream::WriteAll(const void *buffer_, size_t size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1365,6 +1376,7 @@ wxString::size_type wxFilterClassFactoryBase::FindExtension(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1388,6 +1400,7 @@ bool wxFilterClassFactoryBase::CanHandle(const wxString& protocol,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1417,6 +1430,7 @@ void wxFilterClassFactory::Remove()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

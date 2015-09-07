@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -234,6 +234,7 @@ png_image_size(png_structrp png_ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -290,6 +291,7 @@ optimize_cmf(png_bytep data, png_alloc_size_t data_size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -303,6 +305,7 @@ optimize_cmf(png_bytep data, png_alloc_size_t data_size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -415,6 +418,7 @@ png_deflate_claim(png_structrp png_ptr, png_uint_32 owner,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -490,6 +494,7 @@ png_free_buffer_list(png_structrp png_ptr, png_compression_bufferp *listp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -505,6 +510,7 @@ png_free_buffer_list(png_structrp png_ptr, png_compression_bufferp *listp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -586,6 +592,7 @@ png_text_compress(png_structrp png_ptr, png_uint_32 chunk_name,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -656,6 +663,7 @@ png_text_compress(png_structrp png_ptr, png_uint_32 chunk_name,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -718,6 +726,7 @@ png_write_compressed_data_out(png_structrp png_ptr, compression_state *comp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -777,6 +786,7 @@ png_check_keyword(png_structrp png_ptr, png_const_charp key, png_bytep new_key)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1050,6 +1060,7 @@ png_write_PLTE(png_structrp png_ptr, png_const_colorp palette,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1072,6 +1083,7 @@ png_write_PLTE(png_structrp png_ptr, png_const_colorp palette,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1148,6 +1160,7 @@ png_compress_IDAT(png_structrp png_ptr, png_const_bytep input,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1393,6 +1406,7 @@ png_write_sPLT(png_structrp png_ptr, png_const_sPLT_tp spalette)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1425,6 +1439,7 @@ png_write_sPLT(png_structrp png_ptr, png_const_sPLT_tp spalette)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1695,6 +1710,7 @@ png_write_hIST(png_structrp png_ptr, png_const_uint_16p hist, int num_hist)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1965,6 +1981,7 @@ png_write_pCAL(png_structrp png_ptr, png_charp purpose, png_int_32 X0,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1991,6 +2008,7 @@ png_write_pCAL(png_structrp png_ptr, png_charp purpose, png_int_32 X0,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2239,6 +2257,7 @@ png_write_finish_row(png_structrp png_ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2330,6 +2349,7 @@ png_do_write_interlace(png_row_infop row_info, png_bytep row, int pass)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2376,6 +2396,7 @@ png_do_write_interlace(png_row_infop row_info, png_bytep row, int pass)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2420,6 +2441,7 @@ png_do_write_interlace(png_row_infop row_info, png_bytep row, int pass)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2466,6 +2488,7 @@ png_do_write_interlace(png_row_infop row_info, png_bytep row, int pass)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2581,6 +2604,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2604,6 +2628,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2651,6 +2676,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2665,6 +2691,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2701,6 +2728,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2735,6 +2763,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2751,6 +2780,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2778,6 +2808,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2825,6 +2856,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2859,6 +2891,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2893,6 +2926,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2920,6 +2954,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2967,6 +3002,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2981,6 +3017,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3012,6 +3049,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3046,6 +3084,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3062,6 +3101,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3089,6 +3129,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3136,6 +3177,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3150,6 +3192,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3201,6 +3244,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3235,6 +3279,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3251,6 +3296,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3312,6 +3358,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3363,6 +3410,7 @@ png_write_find_filter(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

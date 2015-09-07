@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -89,6 +89,7 @@ void wxType::SetTypeFromString(const wxString& t)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -186,6 +187,7 @@ void wxArgumentType::SetDefaultValue(const wxString& defval, const wxString& def
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -327,6 +329,7 @@ bool wxMethod::IsOk() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -348,6 +351,7 @@ bool wxMethod::IsOk() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -394,6 +398,7 @@ bool wxMethod::MatchesExceptForAttributes(const wxMethod& m) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -414,6 +419,7 @@ bool wxMethod::ActsAsDefaultCtor() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -465,6 +471,7 @@ wxString wxMethod::GetAsString(bool bWithArgumentNames, bool bCleanDefaultValues
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -529,6 +536,7 @@ void wxMethod::Dump(wxTextOutputStream& stream) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -591,6 +599,7 @@ void wxClass::Dump(wxTextOutputStream& out) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -612,6 +621,7 @@ bool wxClass::CheckConsistency() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -621,6 +631,7 @@ bool wxClass::CheckConsistency() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -646,6 +657,7 @@ const wxMethod* wxClass::FindMethod(const wxMethod& m) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -669,6 +681,7 @@ const wxMethod* wxClass::RecursiveUpwardFindMethod(const wxMethod& m,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -704,6 +717,7 @@ wxMethodPtrArray wxClass::FindMethodsNamed(const wxString& name) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -729,6 +743,7 @@ wxMethodPtrArray wxClass::RecursiveUpwardFindMethodsNamed(const wxString& name,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -781,6 +796,7 @@ void wxXmlInterface::Dump(const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -793,6 +809,7 @@ void wxXmlInterface::Dump(const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -809,6 +826,7 @@ bool wxXmlInterface::CheckConsistency() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -822,6 +840,7 @@ bool wxXmlInterface::CheckConsistency() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -847,6 +866,7 @@ wxClassPtrArray wxXmlInterface::FindClassesDefinedIn(const wxString& headerfile)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -949,6 +969,7 @@ bool getMemberIDs(wxClassMemberIdHashMap* map, wxClass* p, const wxString& str)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1039,6 +1060,7 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1079,6 +1101,7 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1170,6 +1193,7 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1241,6 +1265,7 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1257,6 +1282,7 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1325,6 +1351,7 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1353,6 +1380,7 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1363,6 +1391,7 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1394,6 +1423,7 @@ bool wxXmlGccInterface::Parse(const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1499,6 +1529,7 @@ bool wxXmlGccInterface::ParseMethod(const wxXmlNode *p,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1588,6 +1619,7 @@ static wxString GetTextFromChildren(const wxXmlNode *n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1616,6 +1648,7 @@ static bool HasTextNodeContaining(const wxXmlNode *parent, const wxString& name)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1656,6 +1689,7 @@ static const wxXmlNode* FindNodeNamed(const wxXmlNode* parent, const wxString& n
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1689,6 +1723,7 @@ int GetAvailabilityFor(const wxXmlNode *node)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1744,6 +1779,7 @@ bool wxXmlDoxygenInterface::Parse(const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1799,6 +1835,7 @@ bool wxXmlDoxygenInterface::ParseCompoundDefinition(const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1817,6 +1854,7 @@ bool wxXmlDoxygenInterface::ParseCompoundDefinition(const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1836,6 +1874,7 @@ bool wxXmlDoxygenInterface::ParseCompoundDefinition(const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1942,6 +1981,7 @@ bool wxXmlDoxygenInterface::ParseMethod(const wxXmlNode* p, wxMethod& m, wxStrin
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1960,6 +2000,7 @@ bool wxXmlDoxygenInterface::ParseMethod(const wxXmlNode* p, wxMethod& m, wxStrin
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

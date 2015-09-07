@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -759,6 +759,7 @@ wxTaskBarButtonImpl::~wxTaskBarButtonImpl()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -902,6 +903,7 @@ wxThumbBarButton* wxTaskBarButtonImpl::RemoveThumbBarButton(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -928,6 +930,7 @@ wxThumbBarButton* wxTaskBarButtonImpl::RemoveThumbBarButton(int id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -957,6 +960,7 @@ bool wxTaskBarButtonImpl::InitOrUpdateThumbBarButtons()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -973,6 +977,7 @@ bool wxTaskBarButtonImpl::InitOrUpdateThumbBarButtons()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1159,6 +1164,7 @@ wxTaskBarJumpListCategory::~wxTaskBarJumpListCategory()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1198,6 +1204,7 @@ wxTaskBarJumpListCategory::Remove(wxTaskBarJumpListItem *item)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1372,6 +1379,7 @@ wxTaskBarJumpListImpl::~wxTaskBarJumpListImpl()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1466,6 +1474,7 @@ wxTaskBarJumpListImpl::RemoveCustomCategory(const wxString& title)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1525,6 +1534,7 @@ void wxTaskBarJumpListImpl::AddTasksToDestinationList()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1548,6 +1558,7 @@ void wxTaskBarJumpListImpl::AddCustomCategoriesToDestionationList()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1565,6 +1576,7 @@ void wxTaskBarJumpListImpl::AddCustomCategoriesToDestionationList()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1624,6 +1636,7 @@ void wxTaskBarJumpListImpl::LoadKnownCategory(const wxString& title)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -102,6 +102,7 @@ void FlipTGA(unsigned char* imageData, int width, int height, short pixelSize)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -112,6 +113,7 @@ void FlipTGA(unsigned char* imageData, int width, int height, short pixelSize)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -139,6 +141,7 @@ int DecodeRLE(unsigned char* imageData, unsigned long imageSize,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -176,6 +179,7 @@ int DecodeRLE(unsigned char* imageData, unsigned long imageSize,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -311,6 +315,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -368,6 +373,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -392,6 +398,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -445,6 +452,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -476,6 +484,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -497,6 +506,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -545,6 +555,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -566,6 +577,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -620,6 +632,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -644,6 +657,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -699,6 +713,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -730,6 +745,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -751,6 +767,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -801,6 +818,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -822,6 +840,7 @@ int ReadTGA(wxImage* image, wxInputStream& stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -898,6 +917,7 @@ int SaveTGA(const wxImage& image, wxOutputStream *stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -909,6 +929,7 @@ int SaveTGA(const wxImage& image, wxOutputStream *stream)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

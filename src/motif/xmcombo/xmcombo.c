@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -665,6 +665,7 @@ static Window GetDecorationWindow(XmComboBoxWidget w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -823,6 +824,7 @@ static int WidgetToScreen(Widget w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1316,6 +1318,7 @@ static int UpdateColors(XmComboBoxWidget w, int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1538,6 +1541,7 @@ static Boolean SetValues(XmComboBoxWidget current, XmComboBoxWidget req,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1550,6 +1554,7 @@ static Boolean SetValues(XmComboBoxWidget current, XmComboBoxWidget req,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1578,6 +1583,7 @@ static Boolean SetValues(XmComboBoxWidget current, XmComboBoxWidget req,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1599,6 +1605,7 @@ static Boolean SetValues(XmComboBoxWidget current, XmComboBoxWidget req,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1660,6 +1667,7 @@ static void GetValuesAlmost(XmComboBoxWidget w, ArgList args,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1672,6 +1680,7 @@ static void GetValuesAlmost(XmComboBoxWidget w, ArgList args,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1695,6 +1704,7 @@ static void GetValuesAlmost(XmComboBoxWidget w, ArgList args,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2246,6 +2256,7 @@ static void EditVerifyCallback(Widget w, XtPointer pClientData,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2307,6 +2318,7 @@ static void EditChangedCallback(Widget w, XtPointer pClientDate,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2569,6 +2581,7 @@ static Boolean FetchXmStringTableResource(Widget w,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2583,6 +2596,7 @@ static Boolean FetchXmStringTableResource(Widget w,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2593,6 +2607,7 @@ static Boolean FetchXmStringTableResource(Widget w,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2734,6 +2749,7 @@ static void InitMirrorResources(XmComboBoxWidget w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2915,6 +2931,7 @@ static void Initialize(Widget request, XmComboBoxWidget newW,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3305,6 +3322,7 @@ static int FindSortedItemPos(XmComboBoxWidget w, XmString item)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3444,6 +3462,7 @@ void    XmComboBoxDeleteItems(Widget w, XmString *items, int item_count)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3470,6 +3489,7 @@ void    XmComboBoxDeleteItemsPos(Widget w, int item_count, int pos)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

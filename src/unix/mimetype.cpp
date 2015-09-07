@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -80,6 +80,7 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -107,6 +108,7 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -227,6 +229,7 @@ void wxMimeTypesManagerImpl::LoadXDGApp(const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -259,6 +262,7 @@ void wxMimeTypesManagerImpl::LoadXDGAppsFilesFromDir(const wxString& dirname)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -276,6 +280,7 @@ void wxMimeTypesManagerImpl::LoadXDGAppsFilesFromDir(const wxString& dirname)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -306,6 +311,7 @@ void wxMimeTypesManagerImpl::LoadXDGGlobs(const wxString& filename)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -335,6 +341,7 @@ wxString wxFileTypeImpl::GetExpandedCommand(const wxString & verb, const wxFileT
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -356,6 +363,7 @@ bool wxFileTypeImpl::GetIcon(wxIconLocation *iconLoc) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -385,6 +393,7 @@ bool wxFileTypeImpl::GetMimeTypes(wxArrayString& mimeTypes) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -409,6 +418,7 @@ size_t wxFileTypeImpl::GetAllCommands(wxArrayString *verbs,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -422,6 +432,7 @@ size_t wxFileTypeImpl::GetAllCommands(wxArrayString *verbs,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -469,6 +480,7 @@ bool wxFileTypeImpl::GetExtensions(wxArrayString& extensions)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -532,6 +544,7 @@ wxFileTypeImpl::SetCommand(const wxString& cmd,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -579,6 +592,7 @@ bool wxFileTypeImpl::SetDefaultIcon(const wxString& strIcon, int WXUNUSED(index)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -682,6 +696,7 @@ void wxMimeTypesManagerImpl::Initialize(int mailcapStyles,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -699,6 +714,7 @@ void wxMimeTypesManagerImpl::Initialize(int mailcapStyles,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -721,6 +737,7 @@ void wxMimeTypesManagerImpl::Initialize(int mailcapStyles,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -747,6 +764,7 @@ void wxMimeTypesManagerImpl::Initialize(int mailcapStyles,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -765,6 +783,7 @@ void wxMimeTypesManagerImpl::Initialize(int mailcapStyles,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -830,6 +849,7 @@ wxFileType * wxMimeTypesManagerImpl::Associate(const wxFileTypeInfo& ftInfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -846,6 +866,7 @@ wxFileType * wxMimeTypesManagerImpl::Associate(const wxFileTypeInfo& ftInfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -962,6 +983,7 @@ int wxMimeTypesManagerImpl::AddToMimeData(const wxString& strType,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -992,6 +1014,7 @@ int wxMimeTypesManagerImpl::AddToMimeData(const wxString& strType,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1029,6 +1052,7 @@ wxFileType * wxMimeTypesManagerImpl::GetFileTypeFromExtension(const wxString& ex
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1041,6 +1065,7 @@ wxFileType * wxMimeTypesManagerImpl::GetFileTypeFromExtension(const wxString& ex
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1112,6 +1137,7 @@ wxFileType * wxMimeTypesManagerImpl::GetFileTypeFromMimeType(const wxString& mim
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1151,6 +1177,7 @@ wxString wxMimeTypesManagerImpl::GetCommand(const wxString & verb, size_t nIndex
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1176,6 +1203,7 @@ void wxMimeTypesManagerImpl::AddFallback(const wxFileTypeInfo& filetype)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1210,6 +1238,7 @@ void wxMimeTypesManagerImpl::AddMimeTypeInfo(const wxString& strMimeType,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1234,6 +1263,7 @@ size_t wxMimeTypesManagerImpl::EnumAllFileTypes(wxArrayString& mimetypes)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1268,6 +1298,7 @@ bool wxMimeTypesManagerImpl::Unassociate(wxFileType *ft)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

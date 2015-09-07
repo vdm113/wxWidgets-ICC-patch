@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -234,6 +234,7 @@ wxPoint wxHtmlCell::GetAbsPos(wxHtmlCell *rootCell) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -254,6 +255,7 @@ wxHtmlCell *wxHtmlCell::GetRootCell() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -270,6 +272,7 @@ unsigned wxHtmlCell::GetDepth() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -291,6 +294,7 @@ bool wxHtmlCell::IsBefore(wxHtmlCell *cell) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -302,6 +306,7 @@ bool wxHtmlCell::IsBefore(wxHtmlCell *cell) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -316,6 +321,7 @@ bool wxHtmlCell::IsBefore(wxHtmlCell *cell) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -328,6 +334,7 @@ bool wxHtmlCell::IsBefore(wxHtmlCell *cell) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -422,6 +429,7 @@ void wxHtmlWordCell::Split(const wxDC& dc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -440,6 +448,7 @@ void wxHtmlWordCell::Split(const wxDC& dc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -464,6 +473,7 @@ void wxHtmlWordCell::Split(const wxDC& dc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -483,6 +493,7 @@ void wxHtmlWordCell::Split(const wxDC& dc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -624,6 +635,7 @@ void wxHtmlWordCell::Draw(wxDC& dc, int x, int y,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -711,6 +723,7 @@ wxString wxHtmlWordWithTabsCell::GetPartAsText(int begin, int end) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -736,6 +749,7 @@ wxString wxHtmlWordWithTabsCell::GetPartAsText(int begin, int end) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -786,6 +800,7 @@ wxHtmlContainerCell::~wxHtmlContainerCell()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -852,6 +867,7 @@ wxHtmlContainerCell::AdjustPagebreak(int *pagebreak,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -918,6 +934,7 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -943,6 +960,7 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -988,6 +1006,7 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1029,6 +1048,7 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1066,6 +1086,7 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1087,6 +1108,7 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1110,6 +1132,7 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1142,6 +1165,7 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1176,6 +1200,7 @@ void wxHtmlContainerCell::Layout(int w)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1315,6 +1340,7 @@ void wxHtmlContainerCell::Draw(wxDC& dc, int x, int y, int view_y1, int view_y2,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1354,6 +1380,7 @@ void wxHtmlContainerCell::DrawInvisible(wxDC& dc, int x, int y,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1450,6 +1477,7 @@ const wxHtmlCell* wxHtmlContainerCell::Find(int condition, const void* param) co
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1473,6 +1501,7 @@ wxHtmlCell *wxHtmlContainerCell::FindCellByPos(wxCoord x, wxCoord y,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1496,6 +1525,7 @@ wxHtmlCell *wxHtmlContainerCell::FindCellByPos(wxCoord x, wxCoord y,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1520,6 +1550,7 @@ wxHtmlCell *wxHtmlContainerCell::FindCellByPos(wxCoord x, wxCoord y,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1565,6 +1596,7 @@ wxHtmlCell *wxHtmlContainerCell::GetFirstTerminal() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1594,6 +1626,7 @@ wxHtmlCell *wxHtmlContainerCell::GetLastTerminal() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1617,6 +1650,7 @@ static bool IsEmptyContainer(wxHtmlContainerCell *cell)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1646,6 +1680,7 @@ void wxHtmlContainerCell::RemoveExtraSpacing(bool top, bool bottom)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1680,6 +1715,7 @@ void wxHtmlContainerCell::RemoveExtraSpacing(bool top, bool bottom)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1691,6 +1727,7 @@ void wxHtmlContainerCell::RemoveExtraSpacing(bool top, bool bottom)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1833,6 +1870,7 @@ void wxHtmlWidgetCell::Draw(wxDC& WXUNUSED(dc),
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1868,6 +1906,7 @@ void wxHtmlWidgetCell::DrawInvisible(wxDC& WXUNUSED(dc),
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1911,6 +1950,7 @@ const wxHtmlCell* wxHtmlTerminalCellsInterator::operator++()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1933,6 +1973,7 @@ const wxHtmlCell* wxHtmlTerminalCellsInterator::operator++()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1949,6 +1990,7 @@ const wxHtmlCell* wxHtmlTerminalCellsInterator::operator++()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

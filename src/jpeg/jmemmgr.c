@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -209,6 +209,7 @@ print_mem_stats (j_common_ptr cinfo, int pool_id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -223,6 +224,7 @@ print_mem_stats (j_common_ptr cinfo, int pool_id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -305,6 +307,7 @@ alloc_small (j_common_ptr cinfo, int pool_id, size_t sizeofobject)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -332,6 +335,7 @@ alloc_small (j_common_ptr cinfo, int pool_id, size_t sizeofobject)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -464,6 +468,7 @@ alloc_sarray (j_common_ptr cinfo, int pool_id,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -477,6 +482,7 @@ alloc_sarray (j_common_ptr cinfo, int pool_id,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -528,6 +534,7 @@ alloc_barray (j_common_ptr cinfo, int pool_id,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -541,6 +548,7 @@ alloc_barray (j_common_ptr cinfo, int pool_id,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -672,6 +680,7 @@ realize_virt_arrays (j_common_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -688,6 +697,7 @@ realize_virt_arrays (j_common_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -729,6 +739,7 @@ realize_virt_arrays (j_common_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -761,6 +772,7 @@ realize_virt_arrays (j_common_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -804,6 +816,7 @@ do_sarray_io (j_common_ptr cinfo, jvirt_sarray_ptr ptr, wxjpeg_boolean writing)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -845,6 +858,7 @@ do_barray_io (j_common_ptr cinfo, jvirt_barray_ptr ptr, wxjpeg_boolean writing)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -945,6 +959,7 @@ access_virt_sarray (j_common_ptr cinfo, jvirt_sarray_ptr ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1038,6 +1053,7 @@ access_virt_barray (j_common_ptr cinfo, jvirt_barray_ptr ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1088,6 +1104,7 @@ free_pool (j_common_ptr cinfo, int pool_id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1103,6 +1120,7 @@ free_pool (j_common_ptr cinfo, int pool_id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1124,6 +1142,7 @@ free_pool (j_common_ptr cinfo, int pool_id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1146,6 +1165,7 @@ free_pool (j_common_ptr cinfo, int pool_id)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1180,6 +1200,7 @@ self_destruct (j_common_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1263,6 +1284,7 @@ jinit_memory_mgr (j_common_ptr cinfo)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -88,6 +88,7 @@ static bool isPerlKeyword(unsigned int start, unsigned int end, WordList &keywor
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -135,6 +136,7 @@ static int disambiguateBareword(LexAccessor &styler, unsigned int bk, unsigned i
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -160,6 +162,7 @@ static void skipWhitespaceComment(LexAccessor &styler, unsigned int &p) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -179,6 +182,7 @@ static int styleBeforeBracePair(LexAccessor &styler, unsigned int bk) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -214,6 +218,7 @@ static int styleCheckIdentifier(LexAccessor &styler, unsigned int bk) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -225,6 +230,7 @@ static int styleCheckIdentifier(LexAccessor &styler, unsigned int bk) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -252,6 +258,7 @@ static int podLineScan(LexAccessor &styler, unsigned int &pos, unsigned int endP
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -289,6 +296,7 @@ static bool styleCheckSubPrototype(LexAccessor &styler, unsigned int bk) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -327,6 +335,7 @@ static bool IsCommentLine(int line, LexAccessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -500,6 +509,7 @@ int LexerPerl::InputSymbolScan(StyleContext &sc) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -524,6 +534,7 @@ void LexerPerl::InterpolateSegment(StyleContext &sc, int maxSeg, bool isPattern)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -542,6 +553,7 @@ void LexerPerl::InterpolateSegment(StyleContext &sc, int maxSeg, bool isPattern)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -561,6 +573,7 @@ void LexerPerl::InterpolateSegment(StyleContext &sc, int maxSeg, bool isPattern)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -593,6 +606,7 @@ void LexerPerl::InterpolateSegment(StyleContext &sc, int maxSeg, bool isPattern)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -740,6 +754,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -772,6 +787,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -796,6 +812,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -816,6 +833,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -852,6 +870,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -988,6 +1007,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1035,6 +1055,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1080,6 +1101,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1092,6 +1114,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1102,6 +1125,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1148,6 +1172,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1190,6 +1215,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1234,6 +1260,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1298,6 +1325,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1347,6 +1375,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1374,6 +1403,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1396,6 +1426,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1410,6 +1441,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1422,6 +1454,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1549,6 +1582,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1696,6 +1730,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1806,6 +1841,7 @@ void SCI_METHOD LexerPerl::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1887,6 +1923,7 @@ void SCI_METHOD LexerPerl::Fold(unsigned int startPos, int length, int /* initSt
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

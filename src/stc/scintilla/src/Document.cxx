@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -139,6 +139,7 @@ Document::~Document() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -150,6 +151,7 @@ Document::~Document() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -171,6 +173,7 @@ void Document::Init() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -220,6 +223,7 @@ void Document::InsertLine(int line) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -235,6 +239,7 @@ void Document::RemoveLine(int line) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -277,6 +282,7 @@ void Document::TentativeUndo() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -360,6 +366,7 @@ void Document::AddMarkSet(int line, int valueSet) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -391,6 +398,7 @@ void Document::DeleteAllMarks(int markerNum) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -451,6 +459,7 @@ void SCI_METHOD Document::SetErrorStatus(int status) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -485,6 +494,7 @@ int Document::VCHomePosition(int position) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -534,6 +544,7 @@ int Document::GetLastChild(int lineParent, int level, int lastLine) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -564,6 +575,7 @@ int Document::GetFoldParent(int line) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -593,6 +605,7 @@ void Document::GetHighlightDelimiters(HighlightDelimiter &highlightDelimiter, in
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -619,6 +632,7 @@ void Document::GetHighlightDelimiters(HighlightDelimiter &highlightDelimiter, in
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -642,6 +656,7 @@ void Document::GetHighlightDelimiters(HighlightDelimiter &highlightDelimiter, in
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -663,6 +678,7 @@ void Document::GetHighlightDelimiters(HighlightDelimiter &highlightDelimiter, in
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -722,6 +738,7 @@ bool Document::InGoodUTF8(int pos, int &start, int &end) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -745,6 +762,7 @@ bool Document::InGoodUTF8(int pos, int &start, int &end) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -809,6 +827,7 @@ int Document::MovePositionOutsideChar(int pos, int moveDir, bool checkLineEnd) c
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -821,6 +840,7 @@ int Document::MovePositionOutsideChar(int pos, int moveDir, bool checkLineEnd) c
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -870,6 +890,7 @@ int Document::NextPosition(int pos, int moveDir) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -921,6 +942,7 @@ int Document::NextPosition(int pos, int moveDir) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -961,6 +983,7 @@ int SCI_METHOD Document::GetRelativePosition(int positionStart, int characterOff
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -988,6 +1011,7 @@ int Document::GetRelativePositionUTF16(int positionStart, int characterOffset) c
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1025,6 +1049,7 @@ int SCI_METHOD Document::GetCharacterAndWidth(int position, int *pWidth) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1114,6 +1139,7 @@ int Document::SafeSegment(const char *text, int length, int lengthSegment) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1299,6 +1325,7 @@ int Document::Undo() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1387,6 +1414,7 @@ int Document::Redo() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1470,6 +1498,7 @@ static std::string CreateIndentation(int indent, int tabSize, bool insertSpaces)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1483,6 +1512,7 @@ static std::string CreateIndentation(int indent, int tabSize, bool insertSpaces)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1503,6 +1533,7 @@ int SCI_METHOD Document::GetLineIndentation(int line) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1546,6 +1577,7 @@ int Document::GetLineIndentPosition(int line) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1564,6 +1596,7 @@ int Document::GetColumn(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1597,6 +1630,7 @@ int Document::CountCharacters(int startPos, int endPos) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1619,6 +1653,7 @@ int Document::CountUTF16(int startPos, int endPos) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1641,6 +1676,7 @@ int Document::FindColumn(int line, int column) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1671,6 +1707,7 @@ void Document::Indent(bool forwards, int lineBottom, int lineTop) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1695,6 +1732,7 @@ std::string Document::TransformLineEnds(const char *s, size_t len, int eolModeWa
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1726,6 +1764,7 @@ void Document::ConvertLineEnds(int eolModeSet) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1772,6 +1811,7 @@ bool Document::IsWhiteLine(int line) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1792,6 +1832,7 @@ int Document::ParaUp(int pos) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1803,6 +1844,7 @@ int Document::ParaUp(int pos) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1820,6 +1862,7 @@ int Document::ParaDown(int pos) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1831,6 +1874,7 @@ int Document::ParaDown(int pos) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1863,6 +1907,7 @@ int Document::ExtendWordSelect(int pos, int delta, bool onlyWordCharacters) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1876,6 +1921,7 @@ int Document::ExtendWordSelect(int pos, int delta, bool onlyWordCharacters) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1899,6 +1945,7 @@ int Document::NextWordStart(int pos, int delta) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1911,6 +1958,7 @@ int Document::NextWordStart(int pos, int delta) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1925,6 +1973,7 @@ int Document::NextWordStart(int pos, int delta) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1935,6 +1984,7 @@ int Document::NextWordStart(int pos, int delta) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1961,6 +2011,7 @@ int Document::NextWordEnd(int pos, int delta) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1973,6 +2024,7 @@ int Document::NextWordEnd(int pos, int delta) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1986,6 +2038,7 @@ int Document::NextWordEnd(int pos, int delta) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1999,6 +2052,7 @@ int Document::NextWordEnd(int pos, int delta) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2072,6 +2126,7 @@ Document::CharacterExtracted Document::ExtractCharacter(int position) const {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2127,6 +2182,7 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2138,6 +2194,7 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2163,6 +2220,7 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2176,6 +2234,7 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2190,6 +2249,7 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2237,6 +2297,7 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2249,6 +2310,7 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2288,6 +2350,7 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2298,6 +2361,7 @@ long Document::FindText(int minPos, int maxPos, const char *search,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2376,6 +2440,7 @@ bool SCI_METHOD Document::SetStyles(int length, const char *styles) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2413,6 +2478,7 @@ void Document::EnsureStyledTo(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2431,6 +2497,7 @@ void Document::LexerChanged() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2490,6 +2557,7 @@ void Document::MarginClearAll() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2539,6 +2607,7 @@ void Document::AnnotationClearAll() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2586,6 +2655,7 @@ void Document::NotifyModifyAttempt() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2600,6 +2670,7 @@ void Document::NotifySavePoint(bool atSavePoint) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2619,6 +2690,7 @@ void Document::NotifyModified(DocModification mh) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2641,6 +2713,7 @@ int Document::WordPartLeft(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2657,6 +2730,7 @@ int Document::WordPartLeft(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2670,6 +2744,7 @@ int Document::WordPartLeft(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2683,6 +2758,7 @@ int Document::WordPartLeft(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2696,6 +2772,7 @@ int Document::WordPartLeft(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2709,6 +2786,7 @@ int Document::WordPartLeft(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2722,6 +2800,7 @@ int Document::WordPartLeft(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2746,6 +2825,7 @@ int Document::WordPartRight(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2759,6 +2839,7 @@ int Document::WordPartRight(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2770,6 +2851,7 @@ int Document::WordPartRight(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2783,6 +2865,7 @@ int Document::WordPartRight(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2794,6 +2877,7 @@ int Document::WordPartRight(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2808,6 +2892,7 @@ int Document::WordPartRight(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2819,6 +2904,7 @@ int Document::WordPartRight(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2830,6 +2916,7 @@ int Document::WordPartRight(int pos) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2853,6 +2940,7 @@ int Document::ExtendStyleRange(int pos, int delta, bool singleLine) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2865,6 +2953,7 @@ int Document::ExtendStyleRange(int pos, int delta, bool singleLine) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2914,6 +3003,7 @@ int Document::BraceMatch(int position, int /*maxReStyle*/) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3287,6 +3377,7 @@ bool MatchOnLines(const Document *doc, const Regex &regexp, const RESearchRange 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3304,6 +3395,7 @@ bool MatchOnLines(const Document *doc, const Regex &regexp, const RESearchRange 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3331,6 +3423,7 @@ bool MatchOnLines(const Document *doc, const Regex &regexp, const RESearchRange 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3344,6 +3437,7 @@ bool MatchOnLines(const Document *doc, const Regex &regexp, const RESearchRange 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3452,6 +3546,7 @@ long BuiltinRegex::FindText(Document *doc, int minPos, int maxPos, const char *s
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3498,6 +3593,7 @@ long BuiltinRegex::FindText(Document *doc, int minPos, int maxPos, const char *s
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3529,6 +3625,7 @@ const char *BuiltinRegex::SubstituteByPosition(Document *doc, const char *text, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

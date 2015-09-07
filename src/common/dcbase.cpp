@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -594,6 +594,7 @@ void wxDCImpl::DrawLines(const wxPointList *list, wxCoord xoffset, wxCoord yoffs
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -622,6 +623,7 @@ void wxDCImpl::DrawPolygon(const wxPointList *list,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -658,6 +660,7 @@ wxDCImpl::DoDrawPolyPolygon(int n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -672,6 +675,7 @@ wxDCImpl::DoDrawPolyPolygon(int n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -682,6 +686,7 @@ wxDCImpl::DoDrawPolyPolygon(int n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -701,6 +706,7 @@ wxDCImpl::DoDrawPolyPolygon(int n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -730,6 +736,7 @@ void wxDCImpl::DrawSpline(int n, const wxPoint points[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -772,6 +779,7 @@ void wx_quadratic_spline(double a1, double b1, double a2, double b2, double a3, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -856,6 +864,7 @@ static void wx_spline_draw_point_array(wxDC *dc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -903,6 +912,7 @@ void wxDCImpl::DoDrawSpline( const wxPointList *points )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -970,6 +980,7 @@ void wxDCImpl::DoGradientFillLinear(const wxRect& rect,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1015,6 +1026,7 @@ void wxDCImpl::DoGradientFillLinear(const wxRect& rect,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1094,6 +1106,7 @@ void wxDCImpl::DoGradientFillConcentric(const wxRect& rect,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1104,6 +1117,7 @@ void wxDCImpl::DoGradientFillConcentric(const wxRect& rect,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1265,6 +1279,7 @@ void wxDC::DrawLabel(const wxString& text,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1484,6 +1499,7 @@ void wxDCImpl::DoDrawEllipticArcRot( wxCoord x, wxCoord y,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1528,6 +1544,7 @@ void wxDCImpl::Rotate( wxPointList* points, double angle, wxPoint center )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1589,6 +1606,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1598,6 +1616,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1607,6 +1626,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1616,6 +1636,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1662,6 +1683,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1675,6 +1697,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1718,6 +1741,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1729,6 +1753,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1779,6 +1804,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1790,6 +1816,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1809,6 +1836,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1822,6 +1850,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1835,6 +1864,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1848,6 +1878,7 @@ void wxDCImpl::CalculateEllipticPoints( wxPointList* points,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -199,6 +199,7 @@ wxMenuBar::wxMenuBar(size_t n, wxMenu *menus[], const wxArrayString& titles, lon
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -215,6 +216,7 @@ wxMenuBar::wxMenuBar(size_t n, wxMenu *menus[], const wxString titles[], long WX
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -324,6 +326,7 @@ int wxMenuBar::FindMenuItem(const wxString& menuString, const wxString& itemStri
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -346,6 +349,7 @@ wxMenuItem *wxMenuBar::FindItem(int id, wxMenu ** itemMenu) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -386,6 +390,7 @@ bool wxMenuBar::CreateMenuBar(wxFrame* parent)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -440,6 +445,7 @@ bool wxMenuBar::DestroyMenuBar()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -473,6 +479,7 @@ void wxMenu::DestroyWidgetAndDetach()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -570,6 +577,7 @@ WXWidget wxMenu::CreateMenu (wxMenuBar * menuBar,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -597,6 +605,7 @@ void wxMenu::DestroyMenu (bool full)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -640,6 +649,7 @@ WXWidget wxMenu::FindMenuItem (int id, wxMenuItem ** it) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -685,6 +695,7 @@ void wxMenu::SetBackgroundColour(const wxColour& col)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -718,6 +729,7 @@ void wxMenu::SetForegroundColour(const wxColour& col)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -760,6 +772,7 @@ void wxMenu::ChangeFont(bool keepOriginalSize)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -803,6 +816,7 @@ bool wxMenuBar::SetBackgroundColour(const wxColour& col)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -827,6 +841,7 @@ bool wxMenuBar::SetForegroundColour(const wxColour& col)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -852,6 +867,7 @@ bool wxMenuBar::SetFont(const wxFont& font)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

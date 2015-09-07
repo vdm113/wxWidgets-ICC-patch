@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -43,6 +43,7 @@ write_unknown_chunks(png_structrp png_ptr, png_const_inforp info_ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -238,6 +239,7 @@ png_write_info(png_structrp png_ptr, png_const_inforp info_ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -300,6 +302,7 @@ png_write_info(png_structrp png_ptr, png_const_inforp info_ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -314,6 +317,7 @@ png_write_info(png_structrp png_ptr, png_const_inforp info_ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -417,6 +421,7 @@ png_write_end(png_structrp png_ptr, png_inforp info_ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -621,6 +626,7 @@ png_write_rows(png_structrp png_ptr, png_bytepp row,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -659,6 +665,7 @@ png_write_image(png_structrp png_ptr, png_bytepp image)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -670,6 +677,7 @@ png_write_image(png_structrp png_ptr, png_bytepp image)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1188,6 +1196,7 @@ png_init_filter_heuristics(png_structrp png_ptr, int heuristic_method,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1207,6 +1216,7 @@ png_init_filter_heuristics(png_structrp png_ptr, int heuristic_method,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1237,6 +1247,7 @@ png_init_filter_heuristics(png_structrp png_ptr, int heuristic_method,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1288,6 +1299,7 @@ png_set_filter_heuristics(png_structrp png_ptr, int heuristic_method,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1321,6 +1333,7 @@ png_set_filter_heuristics(png_structrp png_ptr, int heuristic_method,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1359,6 +1372,7 @@ png_set_filter_heuristics_fixed(png_structrp png_ptr, int heuristic_method,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1392,6 +1406,7 @@ png_set_filter_heuristics_fixed(png_structrp png_ptr, int heuristic_method,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1792,6 +1807,7 @@ png_write_image_16bit(png_voidp argument)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1805,6 +1821,7 @@ png_write_image_16bit(png_voidp argument)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1830,6 +1847,7 @@ png_write_image_16bit(png_voidp argument)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1864,6 +1882,7 @@ png_write_image_16bit(png_voidp argument)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1973,6 +1992,7 @@ png_write_image_8bit(png_voidp argument)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1986,6 +2006,7 @@ png_write_image_8bit(png_voidp argument)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2008,6 +2029,7 @@ png_write_image_8bit(png_voidp argument)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2018,6 +2040,7 @@ png_write_image_8bit(png_voidp argument)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2046,6 +2069,7 @@ png_write_image_8bit(png_voidp argument)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2059,6 +2083,7 @@ png_write_image_8bit(png_voidp argument)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2115,6 +2140,7 @@ png_image_set_PLTE(png_image_write_control *display)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2421,6 +2447,7 @@ png_image_write_main(png_voidp argument)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

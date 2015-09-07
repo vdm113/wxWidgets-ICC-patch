@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -49,6 +49,7 @@ struct latexFoldSave {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -60,6 +61,7 @@ struct latexFoldSave {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -99,6 +101,7 @@ private:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -140,6 +143,7 @@ static bool latexIsTagValid(int &i, int l, Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -150,6 +154,7 @@ static bool latexIsTagValid(int &i, int l, Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -177,6 +182,7 @@ static bool latexNextNotBlankIs(int i, Accessor &styler, char needle) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -204,6 +210,7 @@ static bool latexLastWordIs(int start, Accessor &styler, const char *needle) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -227,6 +234,7 @@ static bool latexLastWordIsMathEnv(int pos, Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -241,6 +249,7 @@ static bool latexLastWordIsMathEnv(int pos, Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -254,6 +263,7 @@ static bool latexLastWordIsMathEnv(int pos, Accessor &styler) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -291,6 +301,7 @@ void SCI_METHOD LexerLaTeX::Lex(unsigned int startPos, int length, int initStyle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -564,6 +575,7 @@ static int latexFoldSaveToInt(const latexFoldSave &save) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -587,6 +599,7 @@ void SCI_METHOD LexerLaTeX::Fold(unsigned int startPos, int length, int, IDocume
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -599,6 +612,7 @@ void SCI_METHOD LexerLaTeX::Fold(unsigned int startPos, int length, int, IDocume
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -611,6 +625,7 @@ void SCI_METHOD LexerLaTeX::Fold(unsigned int startPos, int length, int, IDocume
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -630,6 +645,7 @@ void SCI_METHOD LexerLaTeX::Fold(unsigned int startPos, int length, int, IDocume
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -644,6 +660,7 @@ void SCI_METHOD LexerLaTeX::Fold(unsigned int startPos, int length, int, IDocume
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -656,6 +673,7 @@ void SCI_METHOD LexerLaTeX::Fold(unsigned int startPos, int length, int, IDocume
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

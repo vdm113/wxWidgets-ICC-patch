@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -202,6 +202,7 @@ static void ScanWhitespace(Accessor& styler, int& pos, int max) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -219,6 +220,7 @@ static void GrabString(char* s, Accessor& styler, int start, int len) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -234,6 +236,7 @@ static void ScanIdentifier(Accessor& styler, int& pos, WordList *keywords) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -254,6 +257,7 @@ static void ScanIdentifier(Accessor& styler, int& pos, WordList *keywords) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -278,6 +282,7 @@ static bool ScanDigits(Accessor& styler, int& pos, int base) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -423,6 +428,7 @@ static bool ScanNumericEscape(Accessor &styler, int& pos, int num_digits, bool s
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -457,6 +463,7 @@ static void ScanCharacterLiteralOrLifetime(Accessor &styler, int& pos, bool asci
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -548,6 +555,7 @@ static void ResumeBlockComment(Accessor &styler, int& pos, int max, CommentState
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -614,6 +622,7 @@ static void ResumeLineComment(Accessor &styler, int& pos, int max, CommentState 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -648,6 +657,7 @@ static void ResumeString(Accessor &styler, int& pos, int max, bool ascii_only) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -694,6 +704,7 @@ static void ResumeRawString(Accessor &styler, int& pos, int max, int num_hashes,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -710,6 +721,7 @@ static void ResumeRawString(Accessor &styler, int& pos, int max, int num_hashes,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -740,6 +752,7 @@ static void ScanRawString(Accessor &styler, int& pos, int max, bool ascii_only) 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -783,6 +796,7 @@ void SCI_METHOD LexerRust::Lex(unsigned int startPos, int length, int initStyle,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -862,6 +876,7 @@ void SCI_METHOD LexerRust::Fold(unsigned int startPos, int length, int initStyle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

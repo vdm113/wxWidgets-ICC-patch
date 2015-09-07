@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -83,6 +83,7 @@ static bool NotAllNULs(const char *p, size_t n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -214,6 +215,7 @@ wxMBConv::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -250,6 +252,7 @@ wxMBConv::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -293,6 +296,7 @@ wxMBConv::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -357,6 +361,7 @@ wxMBConv::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -713,6 +718,7 @@ size_t wxMBConvUTF7::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -901,6 +907,7 @@ size_t wxMBConvUTF7::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -964,6 +971,7 @@ size_t wxMBConvUTF7::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -974,6 +982,7 @@ size_t wxMBConvUTF7::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -987,6 +996,7 @@ size_t wxMBConvUTF7::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1078,6 +1088,7 @@ wxMBConvStrictUTF8::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1158,6 +1169,7 @@ wxMBConvStrictUTF8::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1206,6 +1218,7 @@ wxMBConvStrictUTF8::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1336,6 +1349,7 @@ size_t wxMBConvUTF8::ToWChar(wchar_t *buf, size_t n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1350,6 +1364,7 @@ size_t wxMBConvUTF8::ToWChar(wchar_t *buf, size_t n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1389,6 +1404,7 @@ size_t wxMBConvUTF8::ToWChar(wchar_t *buf, size_t n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1461,6 +1477,7 @@ size_t wxMBConvUTF8::ToWChar(wchar_t *buf, size_t n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1489,6 +1506,7 @@ size_t wxMBConvUTF8::ToWChar(wchar_t *buf, size_t n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1549,6 +1567,7 @@ size_t wxMBConvUTF8::FromWChar(char *buf, size_t n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1601,6 +1620,7 @@ size_t wxMBConvUTF8::FromWChar(char *buf, size_t n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1626,6 +1646,7 @@ size_t wxMBConvUTF8::FromWChar(char *buf, size_t n,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1673,6 +1694,7 @@ size_t wxMBConvUTF16Base::GetLength(const char *src, size_t srcLen)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1765,6 +1787,7 @@ wxMBConvUTF16swap::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1797,6 +1820,7 @@ wxMBConvUTF16swap::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1831,6 +1855,7 @@ wxMBConvUTF16straight::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1869,6 +1894,7 @@ wxMBConvUTF16straight::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1917,6 +1943,7 @@ wxMBConvUTF16swap::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1975,6 +2002,7 @@ wxMBConvUTF16swap::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2034,6 +2062,7 @@ size_t wxMBConvUTF32Base::GetLength(const char *src, size_t srcLen)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2075,6 +2104,7 @@ wxMBConvUTF32straight::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2129,6 +2159,7 @@ wxMBConvUTF32straight::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2169,6 +2200,7 @@ wxMBConvUTF32swap::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2223,6 +2255,7 @@ wxMBConvUTF32swap::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2315,6 +2348,7 @@ wxMBConvUTF32swap::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2347,6 +2381,7 @@ wxMBConvUTF32swap::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2504,6 +2539,7 @@ wxMBConv_iconv::wxMBConv_iconv(const char *name)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2638,6 +2674,7 @@ wxMBConv_iconv::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2692,6 +2729,7 @@ wxMBConv_iconv::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2710,6 +2748,7 @@ wxMBConv_iconv::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2729,6 +2768,7 @@ wxMBConv_iconv::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2773,6 +2813,7 @@ size_t wxMBConv_iconv::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2800,6 +2841,7 @@ size_t wxMBConv_iconv::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2817,6 +2859,7 @@ size_t wxMBConv_iconv::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3413,6 +3456,7 @@ wxMBConv *wxCSConv::DoCreate() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3562,6 +3606,7 @@ size_t wxCSConv::ToWChar(wchar_t *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3592,6 +3637,7 @@ size_t wxCSConv::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3611,6 +3657,7 @@ size_t wxCSConv::FromWChar(char *dst, size_t dstLen,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

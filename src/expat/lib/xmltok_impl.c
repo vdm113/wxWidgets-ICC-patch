@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -112,6 +112,7 @@ PREFIX(scanComment)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -168,6 +169,7 @@ PREFIX(scanDecl)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -262,6 +264,7 @@ PREFIX(scanPi)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -279,6 +282,7 @@ PREFIX(scanPi)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -336,6 +340,7 @@ PREFIX(scanCdataSection)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -401,6 +406,7 @@ PREFIX(cdataSectionTok)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -452,6 +458,7 @@ PREFIX(scanEndTag)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -464,6 +471,7 @@ PREFIX(scanEndTag)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -518,6 +526,7 @@ PREFIX(scanHexCharRef)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -559,6 +568,7 @@ PREFIX(scanCharRef)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -599,6 +609,7 @@ PREFIX(scanRef)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -630,6 +641,7 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -660,6 +672,7 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -694,6 +707,7 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -721,6 +735,7 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -773,6 +788,7 @@ PREFIX(scanAtts)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -857,6 +873,7 @@ PREFIX(scanLt)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -889,6 +906,7 @@ PREFIX(scanLt)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -989,6 +1007,7 @@ PREFIX(contentTok)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1060,6 +1079,7 @@ PREFIX(scanPercent)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1094,6 +1114,7 @@ PREFIX(scanPoundName)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1122,6 +1143,7 @@ PREFIX(scanLit)(int open, const ENCODING *enc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1208,6 +1230,7 @@ PREFIX(prologTok)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1338,6 +1361,7 @@ PREFIX(prologTok)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1412,6 +1436,7 @@ PREFIX(attributeValueTok)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1478,6 +1503,7 @@ PREFIX(entityValueTok)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1547,6 +1573,7 @@ PREFIX(ignoreSectionTok)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1602,6 +1629,7 @@ PREFIX(isPublicId)(const ENCODING *enc, const char *ptr, const char *end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1673,6 +1701,7 @@ PREFIX(getAtts)(const ENCODING *enc, const char *ptr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1772,6 +1801,7 @@ PREFIX(charRefNumber)(const ENCODING *enc, const char *ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1806,6 +1836,7 @@ PREFIX(charRefNumber)(const ENCODING *enc, const char *ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1882,6 +1913,7 @@ PREFIX(sameName)(const ENCODING *enc, const char *ptr1, const char *ptr2)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1955,6 +1987,7 @@ PREFIX(nameMatchesAscii)(const ENCODING *enc, const char *ptr1,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1976,6 +2009,7 @@ PREFIX(nameLength)(const ENCODING *enc, const char *ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2010,6 +2044,7 @@ PREFIX(skipS)(const ENCODING *enc, const char *ptr)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2037,6 +2072,7 @@ PREFIX(updatePosition)(const ENCODING *enc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

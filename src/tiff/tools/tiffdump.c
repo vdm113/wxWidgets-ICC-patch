@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -127,6 +127,7 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -155,6 +156,7 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -250,6 +252,7 @@ dump(int fd, uint64 diroff)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -381,6 +384,7 @@ ReadDirectory(int fd, unsigned int ix, uint64 off)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -656,6 +660,7 @@ PrintTag(FILE* fd, uint16 tag)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -710,6 +715,7 @@ PrintASCII(FILE* fd, uint32 cc, const unsigned char* cp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -725,6 +731,7 @@ PrintASCII(FILE* fd, uint32 cc, const unsigned char* cp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -752,6 +759,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -764,6 +772,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -776,6 +785,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -792,6 +802,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -806,6 +817,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -820,6 +832,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -836,6 +849,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -850,6 +864,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -870,6 +885,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -888,6 +904,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -911,6 +928,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -933,6 +951,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -947,6 +966,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -961,6 +981,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -977,6 +998,7 @@ PrintData(FILE* fd, uint16 type, uint32 count, unsigned char* data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

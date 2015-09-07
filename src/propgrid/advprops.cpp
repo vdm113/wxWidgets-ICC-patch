@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -107,6 +107,7 @@ bool operator == (const wxArrayInt& array1, const wxArrayInt& array2)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1071,6 +1072,7 @@ int wxSystemColourProperty::ColToInd( const wxColour& colour ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1267,6 +1269,7 @@ bool wxSystemColourProperty::QueryColourFromUser( wxVariant& variant ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1659,6 +1662,7 @@ wxColourProperty::wxColourProperty( const wxString& label,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1899,6 +1903,7 @@ const wxString& wxPGGetDefaultImageWildcard()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2086,6 +2091,7 @@ void wxMultiChoiceProperty::GenerateValueAsString( wxVariant& value,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2114,6 +2120,7 @@ wxArrayInt wxMultiChoiceProperty::GetValueAsIndices() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2127,6 +2134,7 @@ wxArrayInt wxMultiChoiceProperty::GetValueAsIndices() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2194,6 +2202,7 @@ bool wxMultiChoiceProperty::OnEvent( wxPropertyGrid* propgrid,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2206,6 +2215,7 @@ bool wxMultiChoiceProperty::OnEvent( wxPropertyGrid* propgrid,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2219,6 +2229,7 @@ bool wxMultiChoiceProperty::OnEvent( wxPropertyGrid* propgrid,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2376,6 +2387,7 @@ wxString wxDateProperty::DetermineDefaultDateFormat( bool showCentury )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

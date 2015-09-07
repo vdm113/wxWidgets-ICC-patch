@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -110,6 +110,7 @@ bool wxDataViewModelNotifier::ItemsAdded( const wxDataViewItem &parent, const wx
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -128,6 +129,7 @@ bool wxDataViewModelNotifier::ItemsDeleted( const wxDataViewItem &parent, const 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -146,6 +148,7 @@ bool wxDataViewModelNotifier::ItemsChanged( const wxDataViewItemArray &items )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -174,6 +177,7 @@ bool wxDataViewModel::ItemAdded( const wxDataViewItem &parent, const wxDataViewI
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -197,6 +201,7 @@ bool wxDataViewModel::ItemDeleted( const wxDataViewItem &parent, const wxDataVie
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -220,6 +225,7 @@ bool wxDataViewModel::ItemChanged( const wxDataViewItem &item )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -243,6 +249,7 @@ bool wxDataViewModel::ItemsAdded( const wxDataViewItem &parent, const wxDataView
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -266,6 +273,7 @@ bool wxDataViewModel::ItemsDeleted( const wxDataViewItem &parent, const wxDataVi
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -289,6 +297,7 @@ bool wxDataViewModel::ItemsChanged( const wxDataViewItemArray &items )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -312,6 +321,7 @@ bool wxDataViewModel::ValueChanged( const wxDataViewItem &item, unsigned int col
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -335,6 +345,7 @@ bool wxDataViewModel::Cleared()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -358,6 +369,7 @@ bool wxDataViewModel::BeforeReset()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -381,6 +393,7 @@ bool wxDataViewModel::AfterReset()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -402,6 +415,7 @@ void wxDataViewModel::Resort()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -524,6 +538,7 @@ wxDataViewIndexListModel::wxDataViewIndexListModel( unsigned int initial_size )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -548,6 +563,7 @@ void wxDataViewIndexListModel::Reset( unsigned int new_size )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -614,6 +630,7 @@ void wxDataViewIndexListModel::RowsDeleted( const wxArrayInt &rows )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -630,6 +647,7 @@ void wxDataViewIndexListModel::RowsDeleted( const wxArrayInt &rows )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -736,6 +754,7 @@ void wxDataViewVirtualListModel::RowsDeleted( const wxArrayInt &rows )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1313,6 +1332,7 @@ void wxDataViewCtrlBase::ExpandAncestors( const wxDataViewItem & item )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1328,6 +1348,7 @@ void wxDataViewCtrlBase::ExpandAncestors( const wxDataViewItem & item )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1866,6 +1887,7 @@ wxSize wxDataViewChoiceRenderer::GetSize() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2012,6 +2034,7 @@ wxDataViewListStore::~wxDataViewListStore()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2097,6 +2120,7 @@ void wxDataViewListStore::DeleteAllItems()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2618,6 +2642,7 @@ unsigned int wxDataViewTreeStore::GetChildren( const wxDataViewItem &item, wxDat
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2831,6 +2856,7 @@ void wxDataViewTreeCtrl::DeleteChildren( const wxDataViewItem& item )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

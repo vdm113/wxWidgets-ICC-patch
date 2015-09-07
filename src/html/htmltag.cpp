@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -95,6 +95,7 @@ wxHtmlTagsCache::wxHtmlTagsCache(const wxString& source)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -119,6 +120,7 @@ wxHtmlTagsCache::wxHtmlTagsCache(const wxString& source)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -136,6 +138,7 @@ wxHtmlTagsCache::wxHtmlTagsCache(const wxString& source)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -168,6 +171,7 @@ wxHtmlTagsCache::wxHtmlTagsCache(const wxString& source)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -200,6 +204,7 @@ wxHtmlTagsCache::wxHtmlTagsCache(const wxString& source)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -211,6 +216,7 @@ wxHtmlTagsCache::wxHtmlTagsCache(const wxString& source)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -227,6 +233,7 @@ wxHtmlTagsCache::wxHtmlTagsCache(const wxString& source)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -284,6 +291,7 @@ wxHtmlTagsCache::wxHtmlTagsCache(const wxString& source)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -321,6 +329,7 @@ void wxHtmlTagsCache::QueryTag(const wxString::const_iterator& at,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -348,6 +357,7 @@ void wxHtmlTagsCache::QueryTag(const wxString::const_iterator& at,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -420,6 +430,7 @@ wxHtmlTag::wxHtmlTag(wxHtmlTag *parent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -458,6 +469,7 @@ wxHtmlTag::wxHtmlTag(wxHtmlTag *parent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -576,6 +588,7 @@ wxHtmlTag::wxHtmlTag(wxHtmlTag *parent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -599,6 +612,7 @@ wxHtmlTag::~wxHtmlTag()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -762,6 +776,7 @@ wxString wxHtmlTag::GetAllParams() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -789,6 +804,7 @@ wxHtmlTag *wxHtmlTag::GetFirstSibling() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -810,6 +826,7 @@ wxHtmlTag *wxHtmlTag::GetLastSibling() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -830,6 +847,7 @@ wxHtmlTag *wxHtmlTag::GetNextTag() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

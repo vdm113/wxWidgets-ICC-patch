@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -74,6 +74,7 @@ wxString wxFileSystemHandler::GetMimeTypeFromExt(const wxString& location)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -177,6 +178,7 @@ wxString wxFileSystemHandler::GetProtocol(const wxString& location)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -189,6 +191,7 @@ wxString wxFileSystemHandler::GetProtocol(const wxString& location)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -208,6 +211,7 @@ wxString wxFileSystemHandler::GetLeftLocation(const wxString& location)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -229,6 +233,7 @@ wxString wxFileSystemHandler::GetRightLocation(const wxString& location)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -254,6 +259,7 @@ wxString wxFileSystemHandler::GetAnchor(const wxString& location)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -374,6 +380,7 @@ static wxString MakeCorrectPath(const wxString& path)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -392,6 +399,7 @@ static wxString MakeCorrectPath(const wxString& path)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -403,6 +411,7 @@ static wxString MakeCorrectPath(const wxString& path)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -416,6 +425,7 @@ static wxString MakeCorrectPath(const wxString& path)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -427,6 +437,7 @@ static wxString MakeCorrectPath(const wxString& path)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -441,6 +452,7 @@ static wxString MakeCorrectPath(const wxString& path)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -469,6 +481,7 @@ void wxFileSystem::ChangePathTo(const wxString& location, bool is_dir)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -499,6 +512,7 @@ void wxFileSystem::ChangePathTo(const wxString& location, bool is_dir)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -559,6 +573,7 @@ wxFSFile* wxFileSystem::OpenFile(const wxString& location, int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -583,6 +598,7 @@ wxFSFile* wxFileSystem::OpenFile(const wxString& location, int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -607,6 +623,7 @@ wxFSFile* wxFileSystem::OpenFile(const wxString& location, int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -647,6 +664,7 @@ wxString wxFileSystem::FindFirst(const wxString& spec, int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -659,6 +677,7 @@ wxString wxFileSystem::FindFirst(const wxString& spec, int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -679,6 +698,7 @@ wxString wxFileSystem::FindFirst(const wxString& spec, int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -725,6 +745,7 @@ bool wxFileSystem::FindFileInPath(wxString *pStr,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -775,6 +796,7 @@ bool wxFileSystem::HasHandlerForPath(const wxString &location)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -849,6 +871,7 @@ static wxString EscapeFileNameCharsInURL(const char *in)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

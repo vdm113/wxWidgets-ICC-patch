@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -82,6 +82,7 @@ bool ValidStyledText(const ViewStyle &vs, size_t styleOffset, const StyledText &
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -105,6 +106,7 @@ static int WidthStyledText(Surface *surface, const ViewStyle &vs, int styleOffse
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -116,6 +118,7 @@ static int WidthStyledText(Surface *surface, const ViewStyle &vs, int styleOffse
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -137,6 +140,7 @@ int WidestLineWidth(Surface *surface, const ViewStyle &vs, int styleOffset, cons
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -184,6 +188,7 @@ void DrawStyledText(Surface *surface, const ViewStyle &vs, int styleOffset, PRec
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -195,6 +200,7 @@ void DrawStyledText(Surface *surface, const ViewStyle &vs, int styleOffset, PRec
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -313,6 +319,7 @@ void EditView::LinesAddedOrRemoved(int lineOfPos, int linesAdded) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -325,6 +332,7 @@ void EditView::LinesAddedOrRemoved(int lineOfPos, int linesAdded) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -408,6 +416,7 @@ void EditView::RefreshPixMaps(Surface *surfaceWindow, WindowID wid, const ViewSt
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -462,6 +471,7 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -515,6 +525,7 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -529,6 +540,7 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -556,6 +568,7 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -584,6 +597,7 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -606,6 +620,7 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -650,6 +665,7 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -676,6 +692,7 @@ void EditView::LayoutLine(const EditModel &model, int line, Surface *surface, co
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -824,6 +841,7 @@ int EditView::DisplayFromPosition(Surface *surface, const EditModel &model, int 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -850,6 +868,7 @@ int EditView::StartEndDisplayLine(Surface *surface, const EditModel &model, int 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -965,6 +984,7 @@ void EditView::DrawEOL(Surface *surface, const EditModel &model, const ViewStyle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1003,6 +1023,7 @@ void EditView::DrawEOL(Surface *surface, const EditModel &model, const ViewStyle
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1139,6 +1160,7 @@ static void DrawIndicators(Surface *surface, const EditModel &model, const ViewS
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1153,6 +1175,7 @@ static void DrawIndicators(Surface *surface, const EditModel &model, const ViewS
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1231,6 +1254,7 @@ void EditView::DrawAnnotation(Surface *surface, const EditModel &model, const Vi
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1283,6 +1307,7 @@ static void DrawBlockCaret(Surface *surface, const EditModel &model, const ViewS
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1308,6 +1333,7 @@ static void DrawBlockCaret(Surface *surface, const EditModel &model, const ViewS
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1360,6 +1386,7 @@ void EditView::DrawCarets(Surface *surface, const EditModel &model, const ViewSt
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1486,6 +1513,7 @@ void EditView::DrawBackground(Surface *surface, const EditModel &model, const Vi
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1532,6 +1560,7 @@ void EditView::DrawBackground(Surface *surface, const EditModel &model, const Vi
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1580,6 +1609,7 @@ static void DrawMarkUnderline(Surface *surface, const EditModel &model, const Vi
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1611,6 +1641,7 @@ static void DrawTranslucentSelection(Surface *surface, const EditModel &model, c
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1651,6 +1682,7 @@ static void DrawTranslucentLineState(Surface *surface, const EditModel &model, c
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1672,6 +1704,7 @@ static void DrawTranslucentLineState(Surface *surface, const EditModel &model, c
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1708,6 +1741,7 @@ void EditView::DrawForeground(Surface *surface, const EditModel &model, const Vi
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1739,6 +1773,7 @@ void EditView::DrawForeground(Surface *surface, const EditModel &model, const Vi
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1784,6 +1819,7 @@ void EditView::DrawForeground(Surface *surface, const EditModel &model, const Vi
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1846,6 +1882,7 @@ void EditView::DrawForeground(Surface *surface, const EditModel &model, const Vi
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1879,6 +1916,7 @@ void EditView::DrawForeground(Surface *surface, const EditModel &model, const Vi
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1934,6 +1972,7 @@ void EditView::DrawIndentGuidesOverEmpty(Surface *surface, const EditModel &mode
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1965,6 +2004,7 @@ void EditView::DrawIndentGuidesOverEmpty(Surface *surface, const EditModel &mode
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1983,6 +2023,7 @@ void EditView::DrawIndentGuidesOverEmpty(Surface *surface, const EditModel &mode
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2146,6 +2187,7 @@ void EditView::PaintText(Surface *surfaceWindow, const EditModel &model, PRectan
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2160,6 +2202,7 @@ void EditView::PaintText(Surface *surfaceWindow, const EditModel &model, PRectan
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2174,6 +2217,7 @@ void EditView::PaintText(Surface *surfaceWindow, const EditModel &model, PRectan
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2311,6 +2355,7 @@ long EditView::FormatRange(bool draw, Sci_RangeToFormat *pfr, Surface *surface, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2345,6 +2390,7 @@ long EditView::FormatRange(bool draw, Sci_RangeToFormat *pfr, Surface *surface, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2413,6 +2459,7 @@ long EditView::FormatRange(bool draw, Sci_RangeToFormat *pfr, Surface *surface, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2447,6 +2494,7 @@ long EditView::FormatRange(bool draw, Sci_RangeToFormat *pfr, Surface *surface, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2486,6 +2534,7 @@ long EditView::FormatRange(bool draw, Sci_RangeToFormat *pfr, Surface *surface, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

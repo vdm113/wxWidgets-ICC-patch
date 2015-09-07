@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -113,6 +113,7 @@ bool GetNumericToken(size_t len,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -138,6 +139,7 @@ GetAlphaToken(wxString::const_iterator& p,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -178,6 +180,7 @@ GetMonthFromName(wxString::const_iterator& p,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -265,6 +268,7 @@ GetWeekDayFromName(wxString::const_iterator& p,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -378,6 +382,7 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -468,6 +473,7 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -513,6 +519,7 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -602,6 +609,7 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -655,6 +663,7 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -806,6 +815,7 @@ wxString wxDateTime::Format(const wxString& formatp, const TimeZone& tz) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1139,6 +1149,7 @@ wxDateTime::ParseFormat(const wxString& date,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1155,6 +1166,7 @@ wxDateTime::ParseFormat(const wxString& date,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1187,6 +1199,7 @@ wxDateTime::ParseFormat(const wxString& date,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1800,6 +1813,7 @@ wxDateTime::ParseDateTime(const wxString& date, wxString::const_iterator *end)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1823,6 +1837,7 @@ wxDateTime::ParseDateTime(const wxString& date, wxString::const_iterator *end)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1883,6 +1898,7 @@ wxDateTime::ParseDate(const wxString& date, wxString::const_iterator *end)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1907,6 +1923,7 @@ wxDateTime::ParseDate(const wxString& date, wxString::const_iterator *end)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1963,6 +1980,7 @@ wxDateTime::ParseDate(const wxString& date, wxString::const_iterator *end)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2136,6 +2154,7 @@ wxDateTime::ParseDate(const wxString& date, wxString::const_iterator *end)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2296,6 +2315,7 @@ wxDateTime::ParseTime(const wxString& time, wxString::const_iterator *end)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2334,6 +2354,7 @@ wxDateTime::ParseTime(const wxString& time, wxString::const_iterator *end)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2460,6 +2481,7 @@ wxString wxTimeSpan::Format(const wxString& format) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

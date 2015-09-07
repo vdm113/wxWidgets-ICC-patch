@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -49,6 +49,7 @@ wxArrayString::wxArrayString(size_t sz, const char** a)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -66,6 +67,7 @@ wxArrayString::wxArrayString(size_t sz, const wchar_t** a)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -83,6 +85,7 @@ wxArrayString::wxArrayString(size_t sz, const wxString* a)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -140,6 +143,7 @@ void wxArrayString::Copy(const wxArrayString& src)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -191,6 +195,7 @@ wxString *wxArrayString::Grow(size_t nIncrement)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -245,6 +250,7 @@ void wxArrayString::Alloc(size_t nSize)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -271,6 +277,7 @@ void wxArrayString::Shrink()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -299,6 +306,7 @@ int wxArrayString::Index(const wxString& str, bool bCase, bool bFromEnd) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -326,6 +334,7 @@ int wxArrayString::Index(const wxString& str, bool bCase, bool bFromEnd) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -338,6 +347,7 @@ int wxArrayString::Index(const wxString& str, bool bCase, bool bFromEnd) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -350,6 +360,7 @@ int wxArrayString::Index(const wxString& str, bool bCase, bool bFromEnd) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -377,6 +388,7 @@ size_t wxArrayString::Add(const wxString& str, size_t nInsert)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -411,6 +423,7 @@ size_t wxArrayString::Add(const wxString& str, size_t nInsert)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -439,6 +452,7 @@ void wxArrayString::Insert(const wxString& str, size_t nIndex, size_t nInsert)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -450,6 +464,7 @@ void wxArrayString::Insert(const wxString& str, size_t nIndex, size_t nInsert)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -477,6 +492,7 @@ wxArrayString::insert(iterator it, const_iterator first, const_iterator last)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -511,6 +527,7 @@ void wxArrayString::SetCount(size_t count)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -530,6 +547,7 @@ void wxArrayString::RemoveAt(size_t nIndex, size_t nRemove)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -621,6 +639,7 @@ bool wxArrayString::operator==(const wxArrayString& a) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -662,6 +681,7 @@ wxString wxJoin(const wxArrayString& arr, const wxChar sep, const wxChar escape)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -679,6 +699,7 @@ wxString wxJoin(const wxArrayString& arr, const wxChar sep, const wxChar escape)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -692,6 +713,7 @@ wxString wxJoin(const wxArrayString& arr, const wxChar sep, const wxChar escape)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -729,6 +751,7 @@ wxArrayString wxSplit(const wxString& str, const wxChar sep, const wxChar escape
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -826,6 +826,7 @@ static int readContigTilesIntoBuffer (TIFF* in, uint8* buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -837,6 +838,7 @@ static int readContigTilesIntoBuffer (TIFF* in, uint8* buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -876,6 +878,7 @@ static int readContigTilesIntoBuffer (TIFF* in, uint8* buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -898,6 +901,7 @@ static int readContigTilesIntoBuffer (TIFF* in, uint8* buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1011,6 +1015,7 @@ static int  readSeparateTilesIntoBuffer (TIFF* in, uint8 *obuf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1027,6 +1032,7 @@ static int  readSeparateTilesIntoBuffer (TIFF* in, uint8 *obuf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1044,6 +1050,7 @@ static int  readSeparateTilesIntoBuffer (TIFF* in, uint8 *obuf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1055,6 +1062,7 @@ static int  readSeparateTilesIntoBuffer (TIFF* in, uint8 *obuf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1065,6 +1073,7 @@ static int  readSeparateTilesIntoBuffer (TIFF* in, uint8 *obuf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1084,6 +1093,7 @@ static int  readSeparateTilesIntoBuffer (TIFF* in, uint8 *obuf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1177,6 +1187,7 @@ static int  readSeparateTilesIntoBuffer (TIFF* in, uint8 *obuf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1202,6 +1213,7 @@ static int writeBufferToContigStrips(TIFF* out, uint8* buf, uint32 imagelength)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1260,6 +1272,7 @@ writeBufferToSeparateStrips (TIFF* out, uint8* buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1270,6 +1283,7 @@ writeBufferToSeparateStrips (TIFF* out, uint8* buf,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1349,6 +1363,7 @@ static int writeBufferToContigTiles (TIFF* out, uint8* buf, uint32 imagelength,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1360,6 +1375,7 @@ static int writeBufferToContigTiles (TIFF* out, uint8* buf, uint32 imagelength,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1426,6 +1442,7 @@ static int writeBufferToSeparateTiles (TIFF* out, uint8* buf, uint32 imagelength
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1437,6 +1454,7 @@ static int writeBufferToSeparateTiles (TIFF* out, uint8* buf, uint32 imagelength
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1456,6 +1474,7 @@ static int writeBufferToSeparateTiles (TIFF* out, uint8* buf, uint32 imagelength
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1499,6 +1518,7 @@ processG3Options(char* cp)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1539,6 +1559,7 @@ processCompressOptions(char* opt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1595,6 +1616,7 @@ usage(void)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1733,6 +1755,7 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1839,6 +1862,7 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1894,6 +1918,7 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1909,6 +1934,7 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1977,6 +2003,7 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2064,6 +2091,7 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2083,6 +2111,7 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2100,6 +2129,7 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2130,6 +2160,7 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2173,6 +2204,7 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2191,6 +2223,7 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2282,6 +2315,7 @@ void  process_command_opts (int argc, char *argv[], char *mp, char *mode, uint32
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2441,6 +2475,7 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2499,6 +2534,7 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2679,6 +2715,7 @@ main(int argc, char* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2725,6 +2762,7 @@ static int dump_data (FILE *dumpfile, int format, char *dump_tag, unsigned char 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2735,6 +2773,7 @@ static int dump_data (FILE *dumpfile, int format, char *dump_tag, unsigned char 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2780,6 +2819,7 @@ static int dump_byte (FILE *dumpfile, int format, char *dump_tag, unsigned char 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2823,6 +2863,7 @@ static int dump_short (FILE *dumpfile, int format, char *dump_tag, uint16 data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2868,6 +2909,7 @@ static int dump_long (FILE *dumpfile, int format, char *dump_tag, uint32 data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2912,6 +2954,7 @@ static int dump_wide (FILE *dumpfile, int format, char *dump_tag, uint64 data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2967,6 +3010,7 @@ static int dump_buffer (FILE* dumpfile, int format, uint32 rows, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2983,6 +3027,7 @@ static int dump_buffer (FILE* dumpfile, int format, uint32 rows, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3046,6 +3091,7 @@ extractContigSamplesBytes (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3056,6 +3102,7 @@ extractContigSamplesBytes (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3078,6 +3125,7 @@ extractContigSamplesBytes (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3129,6 +3177,7 @@ extractContigSamples8bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3140,6 +3189,7 @@ extractContigSamples8bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3178,6 +3228,7 @@ extractContigSamples8bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3231,6 +3282,7 @@ extractContigSamples16bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3242,6 +3294,7 @@ extractContigSamples16bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3290,6 +3343,7 @@ extractContigSamples16bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3343,6 +3397,7 @@ extractContigSamples24bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3355,6 +3410,7 @@ extractContigSamples24bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3405,6 +3461,7 @@ extractContigSamples24bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3463,6 +3520,7 @@ extractContigSamples32bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3475,6 +3533,7 @@ extractContigSamples32bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3536,6 +3595,7 @@ extractContigSamples32bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3590,6 +3650,7 @@ extractContigSamplesShifted8bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3601,6 +3662,7 @@ extractContigSamplesShifted8bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3641,6 +3703,7 @@ extractContigSamplesShifted8bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3694,6 +3757,7 @@ extractContigSamplesShifted16bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3705,6 +3769,7 @@ extractContigSamplesShifted16bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3754,6 +3819,7 @@ extractContigSamplesShifted16bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3808,6 +3874,7 @@ extractContigSamplesShifted24bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3820,6 +3887,7 @@ extractContigSamplesShifted24bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3874,6 +3942,7 @@ extractContigSamplesShifted24bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3933,6 +4002,7 @@ extractContigSamplesShifted32bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3945,6 +4015,7 @@ extractContigSamplesShifted32bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4008,6 +4079,7 @@ extractContigSamplesShifted32bits (uint8 *in, uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4057,6 +4129,7 @@ extractContigSamplesToBuffer(uint8 *out, uint8 *in, uint32 rows, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4142,6 +4215,7 @@ extractContigSamplesToTileBuffer(uint8 *out, uint8 *in, uint32 rows, uint32 cols
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4206,6 +4280,7 @@ static int readContigStripsIntoBuffer (TIFF* in, uint8* buf)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4257,6 +4332,7 @@ combineSeparateSamplesBytes (unsigned char *srcbuffs[], unsigned char *out,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4269,6 +4345,7 @@ combineSeparateSamplesBytes (unsigned char *srcbuffs[], unsigned char *out,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4285,6 +4362,7 @@ combineSeparateSamplesBytes (unsigned char *srcbuffs[], unsigned char *out,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4296,6 +4374,7 @@ combineSeparateSamplesBytes (unsigned char *srcbuffs[], unsigned char *out,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4307,6 +4386,7 @@ combineSeparateSamplesBytes (unsigned char *srcbuffs[], unsigned char *out,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4360,6 +4440,7 @@ combineSeparateSamples8bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4374,6 +4455,7 @@ combineSeparateSamples8bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4391,6 +4473,7 @@ combineSeparateSamples8bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4484,6 +4567,7 @@ combineSeparateSamples16bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4498,6 +4582,7 @@ combineSeparateSamples16bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4514,6 +4599,7 @@ combineSeparateSamples16bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4618,6 +4704,7 @@ combineSeparateSamples24bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4632,6 +4719,7 @@ combineSeparateSamples24bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4648,6 +4736,7 @@ combineSeparateSamples24bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4703,6 +4792,7 @@ combineSeparateSamples24bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4776,6 +4866,7 @@ combineSeparateSamples32bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4790,6 +4881,7 @@ combineSeparateSamples32bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4806,6 +4898,7 @@ combineSeparateSamples32bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4868,6 +4961,7 @@ combineSeparateSamples32bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4932,6 +5026,7 @@ combineSeparateTileSamplesBytes (unsigned char *srcbuffs[], unsigned char *out,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4944,6 +5039,7 @@ combineSeparateTileSamplesBytes (unsigned char *srcbuffs[], unsigned char *out,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4964,6 +5060,7 @@ combineSeparateTileSamplesBytes (unsigned char *srcbuffs[], unsigned char *out,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4975,6 +5072,7 @@ combineSeparateTileSamplesBytes (unsigned char *srcbuffs[], unsigned char *out,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4986,6 +5084,7 @@ combineSeparateTileSamplesBytes (unsigned char *srcbuffs[], unsigned char *out,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5037,6 +5136,7 @@ combineSeparateTileSamples8bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5051,6 +5151,7 @@ combineSeparateTileSamples8bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5068,6 +5169,7 @@ combineSeparateTileSamples8bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5161,6 +5263,7 @@ combineSeparateTileSamples16bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5175,6 +5278,7 @@ combineSeparateTileSamples16bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5191,6 +5295,7 @@ combineSeparateTileSamples16bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5294,6 +5399,7 @@ combineSeparateTileSamples24bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5308,6 +5414,7 @@ combineSeparateTileSamples24bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5324,6 +5431,7 @@ combineSeparateTileSamples24bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5379,6 +5487,7 @@ combineSeparateTileSamples24bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5452,6 +5561,7 @@ combineSeparateTileSamples32bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5466,6 +5576,7 @@ combineSeparateTileSamples32bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5482,6 +5593,7 @@ combineSeparateTileSamples32bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5545,6 +5657,7 @@ combineSeparateTileSamples32bits (uint8 *in[], uint8 *out, uint32 cols,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5646,6 +5759,7 @@ static int readSeparateStripsIntoBuffer (TIFF *in, uint8 *obuf, uint32 length,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5662,6 +5776,7 @@ static int readSeparateStripsIntoBuffer (TIFF *in, uint8 *obuf, uint32 length,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5678,6 +5793,7 @@ static int readSeparateStripsIntoBuffer (TIFF *in, uint8 *obuf, uint32 length,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5688,6 +5804,7 @@ static int readSeparateStripsIntoBuffer (TIFF *in, uint8 *obuf, uint32 length,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5787,6 +5904,7 @@ static int readSeparateStripsIntoBuffer (TIFF *in, uint8 *obuf, uint32 length,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5811,6 +5929,7 @@ get_page_geometry (char *name, struct pagedef *page)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5822,6 +5941,7 @@ get_page_geometry (char *name, struct pagedef *page)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5865,6 +5985,7 @@ initPageSetup (struct pagedef *page, struct pageseg *pagelist,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5884,6 +6005,7 @@ initPageSetup (struct pagedef *page, struct pageseg *pagelist,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5926,6 +6048,7 @@ initCropMasks (struct crop_mask *cps)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5945,6 +6068,7 @@ initCropMasks (struct crop_mask *cps)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -6041,6 +6165,7 @@ computeInputPixelOffsets(struct crop_mask *crop, struct image_data *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -6361,6 +6486,7 @@ getCropOffsets(struct image_data *image, struct crop_mask *crop, struct dump_opt
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -6713,6 +6839,7 @@ computeOutputPixelOffsets (struct crop_mask *crop, struct image_data *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -6727,6 +6854,7 @@ computeOutputPixelOffsets (struct crop_mask *crop, struct image_data *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -7111,6 +7239,7 @@ loadImage(TIFF* in, struct image_data *image, struct dump_opts *dump, unsigned c
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -7220,6 +7349,7 @@ extractCompositeRegions(struct image_data *image,  struct crop_mask *crop,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -7262,6 +7392,7 @@ extractCompositeRegions(struct image_data *image,  struct crop_mask *crop,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -7351,6 +7482,7 @@ extractCompositeRegions(struct image_data *image,  struct crop_mask *crop,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -7502,6 +7634,7 @@ extractSeparateRegion(struct image_data *image,  struct crop_mask *crop,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -7648,6 +7781,7 @@ extractImageSection(struct image_data *image, struct pageseg *section,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -7673,6 +7807,7 @@ extractImageSection(struct image_data *image, struct pageseg *section,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -7689,6 +7824,7 @@ extractImageSection(struct image_data *image, struct pageseg *section,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -7704,6 +7840,7 @@ extractImageSection(struct image_data *image, struct pageseg *section,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -7731,6 +7868,7 @@ extractImageSection(struct image_data *image, struct pageseg *section,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -7756,6 +7894,7 @@ extractImageSection(struct image_data *image, struct pageseg *section,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -7780,6 +7919,7 @@ extractImageSection(struct image_data *image, struct pageseg *section,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -7797,6 +7937,7 @@ extractImageSection(struct image_data *image, struct pageseg *section,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -7848,6 +7989,7 @@ extractImageSection(struct image_data *image, struct pageseg *section,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -7905,6 +8047,7 @@ writeSelections(TIFF *in, TIFF **out, struct crop_mask *crop,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -7947,6 +8090,7 @@ writeSelections(TIFF *in, TIFF **out, struct crop_mask *crop,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -7972,6 +8116,7 @@ writeSelections(TIFF *in, TIFF **out, struct crop_mask *crop,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -8024,6 +8169,7 @@ writeImageSections(TIFF *in, TIFF *out, struct image_data *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -8283,6 +8429,7 @@ writeSingleSection(TIFF *in, TIFF *out, struct image_data *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -8313,6 +8460,7 @@ writeSingleSection(TIFF *in, TIFF *out, struct image_data *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -8516,6 +8664,7 @@ processCropSelections(struct image_data *image, struct crop_mask *crop,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -8986,6 +9135,7 @@ writeCroppedImage(TIFF *in, TIFF *out, struct image_data *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9013,6 +9163,7 @@ writeCroppedImage(TIFF *in, TIFF *out, struct image_data *image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9085,6 +9236,7 @@ rotateContigSamples8bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9096,6 +9248,7 @@ rotateContigSamples8bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9177,6 +9330,7 @@ rotateContigSamples16bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9188,6 +9342,7 @@ rotateContigSamples16bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9277,6 +9432,7 @@ rotateContigSamples24bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9288,6 +9444,7 @@ rotateContigSamples24bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9347,6 +9504,7 @@ rotateContigSamples24bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9401,6 +9559,7 @@ rotateContigSamples32bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9412,6 +9571,7 @@ rotateContigSamples32bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9480,6 +9640,7 @@ rotateContigSamples32bits(uint16 rotation, uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9561,6 +9722,7 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9572,6 +9734,7 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9585,6 +9748,7 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9600,6 +9764,7 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9657,6 +9822,7 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9671,6 +9837,7 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9681,6 +9848,7 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9697,6 +9865,7 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9766,6 +9935,7 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9780,6 +9950,7 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9790,6 +9961,7 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9806,6 +9978,7 @@ rotateImage(uint16 rotation, struct image_data *image, uint32 *img_width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9902,6 +10075,7 @@ reverseSamples8bits (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9914,6 +10088,7 @@ reverseSamples8bits (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9984,6 +10159,7 @@ reverseSamples16bits (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -9996,6 +10172,7 @@ reverseSamples16bits (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -10075,6 +10252,7 @@ reverseSamples24bits (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -10087,6 +10265,7 @@ reverseSamples24bits (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -10137,6 +10316,7 @@ reverseSamples24bits (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -10193,6 +10373,7 @@ reverseSamples32bits (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -10205,6 +10386,7 @@ reverseSamples32bits (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -10264,6 +10446,7 @@ reverseSamples32bits (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -10313,6 +10496,7 @@ reverseSamplesBytes (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -10323,6 +10507,7 @@ reverseSamplesBytes (uint16 spp, uint16 bps, uint32 width,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -10372,6 +10557,7 @@ mirrorImage(uint16 spp, uint16 bps, uint16 mirror, uint32 width, uint32 length, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -10395,6 +10581,7 @@ mirrorImage(uint16 spp, uint16 bps, uint16 mirror, uint32 width, uint32 length, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -10428,6 +10615,7 @@ mirrorImage(uint16 spp, uint16 bps, uint16 mirror, uint32 width, uint32 length, 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -10516,6 +10704,7 @@ invertImage(uint16 photometric, uint16 spp, uint16 bps, uint32 width, uint32 len
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -10525,6 +10714,7 @@ invertImage(uint16 photometric, uint16 spp, uint16 bps, uint32 width, uint32 len
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -10540,6 +10730,7 @@ invertImage(uint16 photometric, uint16 spp, uint16 bps, uint32 width, uint32 len
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -10549,6 +10740,7 @@ invertImage(uint16 photometric, uint16 spp, uint16 bps, uint32 width, uint32 len
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -10564,6 +10756,7 @@ invertImage(uint16 photometric, uint16 spp, uint16 bps, uint32 width, uint32 len
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -10579,6 +10772,7 @@ invertImage(uint16 photometric, uint16 spp, uint16 bps, uint32 width, uint32 len
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -10596,6 +10790,7 @@ invertImage(uint16 photometric, uint16 spp, uint16 bps, uint32 width, uint32 len
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -10615,6 +10810,7 @@ invertImage(uint16 photometric, uint16 spp, uint16 bps, uint32 width, uint32 len
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

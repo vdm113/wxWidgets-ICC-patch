@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -645,6 +645,7 @@ void wxAuiDefaultToolBarArt::DrawGripper(wxDC& dc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -749,6 +750,7 @@ int wxAuiDefaultToolBarArt::ShowDropDown(wxWindow* wnd,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1178,6 +1180,7 @@ wxAuiToolBarItem* wxAuiToolBar::FindTool(int tool_id) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1199,6 +1202,7 @@ wxAuiToolBarItem* wxAuiToolBar::FindToolByPosition(wxCoord x, wxCoord y) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1231,6 +1235,7 @@ wxAuiToolBarItem* wxAuiToolBar::FindToolByPositionWithPacking(wxCoord x, wxCoord
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1482,6 +1487,7 @@ void wxAuiToolBar::SetHoverItem(wxAuiToolBarItem* pitem)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1515,6 +1521,7 @@ void wxAuiToolBar::SetPressedItem(wxAuiToolBarItem* pitem)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1594,6 +1601,7 @@ void wxAuiToolBar::ToggleTool(int tool_id, bool state)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1608,6 +1616,7 @@ void wxAuiToolBar::ToggleTool(int tool_id, bool state)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1831,6 +1840,7 @@ int wxAuiToolBar::GetToolIndex(int tool_id) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1986,6 +1996,7 @@ bool wxAuiToolBar::RealizeHelper(wxClientDC& dc, bool horizontal)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2160,6 +2171,7 @@ bool wxAuiToolBar::RealizeHelper(wxClientDC& dc, bool horizontal)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2178,6 +2190,7 @@ bool wxAuiToolBar::RealizeHelper(wxClientDC& dc, bool horizontal)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2275,6 +2288,7 @@ void wxAuiToolBar::DoIdleUpdate()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2362,6 +2376,7 @@ void wxAuiToolBar::OnSize(wxSizeEvent& WXUNUSED(evt))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2384,6 +2399,7 @@ void wxAuiToolBar::OnSize(wxSizeEvent& WXUNUSED(evt))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2554,6 +2570,7 @@ void wxAuiToolBar::OnPaint(wxPaintEvent& WXUNUSED(evt))
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2674,6 +2691,7 @@ void wxAuiToolBar::OnLeftDown(wxMouseEvent& evt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2687,6 +2705,7 @@ void wxAuiToolBar::OnLeftDown(wxMouseEvent& evt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2703,6 +2722,7 @@ void wxAuiToolBar::OnLeftDown(wxMouseEvent& evt)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -66,6 +66,7 @@ static const wxUint16* GetEncTable(wxFontEncoding enc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -86,6 +87,7 @@ static const wxUint16* GetEncTable(wxFontEncoding enc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -120,6 +122,7 @@ static CharsetItem* BuildReverseTable(const wxUint16 *tbl)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -165,6 +168,7 @@ bool wxEncodingConverter::Init(wxFontEncoding input_enc, wxFontEncoding output_e
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -174,6 +178,7 @@ bool wxEncodingConverter::Init(wxFontEncoding input_enc, wxFontEncoding output_e
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -186,6 +191,7 @@ bool wxEncodingConverter::Init(wxFontEncoding input_enc, wxFontEncoding output_e
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -198,6 +204,7 @@ bool wxEncodingConverter::Init(wxFontEncoding input_enc, wxFontEncoding output_e
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -220,6 +227,7 @@ bool wxEncodingConverter::Init(wxFontEncoding input_enc, wxFontEncoding output_e
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -232,6 +240,7 @@ bool wxEncodingConverter::Init(wxFontEncoding input_enc, wxFontEncoding output_e
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -249,6 +258,7 @@ bool wxEncodingConverter::Init(wxFontEncoding input_enc, wxFontEncoding output_e
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -311,6 +321,7 @@ bool wxEncodingConverter::Convert(const char* input, char* output) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -337,6 +348,7 @@ bool wxEncodingConverter::Convert(const char* input, wchar_t* output) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -356,6 +368,7 @@ bool wxEncodingConverter::Convert(const char* input, wchar_t* output) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -383,6 +396,7 @@ bool wxEncodingConverter::Convert(const wchar_t* input, char* output) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -402,6 +416,7 @@ bool wxEncodingConverter::Convert(const wchar_t* input, char* output) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -430,6 +445,7 @@ bool wxEncodingConverter::Convert(const wchar_t* input, wchar_t* output) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -449,6 +465,7 @@ bool wxEncodingConverter::Convert(const wchar_t* input, wchar_t* output) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -477,6 +494,7 @@ wxString wxEncodingConverter::Convert(const wxString& input) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -490,6 +508,7 @@ wxString wxEncodingConverter::Convert(const wxString& input) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -590,6 +609,7 @@ static bool FindEncoding(const wxFontEncodingArray& arr, wxFontEncoding f)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -635,6 +655,7 @@ wxFontEncodingArray wxEncodingConverter::GetPlatformEquivalents(wxFontEncoding e
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -645,6 +666,7 @@ wxFontEncodingArray wxEncodingConverter::GetPlatformEquivalents(wxFontEncoding e
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -654,6 +676,7 @@ wxFontEncodingArray wxEncodingConverter::GetPlatformEquivalents(wxFontEncoding e
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -665,6 +688,7 @@ wxFontEncodingArray wxEncodingConverter::GetPlatformEquivalents(wxFontEncoding e
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -675,6 +699,7 @@ wxFontEncodingArray wxEncodingConverter::GetPlatformEquivalents(wxFontEncoding e
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -704,6 +729,7 @@ wxFontEncodingArray wxEncodingConverter::GetAllEquivalents(wxFontEncoding enc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -714,6 +740,7 @@ wxFontEncodingArray wxEncodingConverter::GetAllEquivalents(wxFontEncoding enc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -723,6 +750,7 @@ wxFontEncodingArray wxEncodingConverter::GetAllEquivalents(wxFontEncoding enc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -734,6 +762,7 @@ wxFontEncodingArray wxEncodingConverter::GetAllEquivalents(wxFontEncoding enc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -743,6 +772,7 @@ wxFontEncodingArray wxEncodingConverter::GetAllEquivalents(wxFontEncoding enc)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

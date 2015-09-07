@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -1175,6 +1175,7 @@ void FormMain::PopulateWithStandardItems ()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2212,6 +2213,7 @@ void GenerateUniquePropertyLabel( wxPropertyGridManager* pg, wxString& baselabel
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2349,6 +2351,7 @@ void FormMain::OnDelPropRClick( wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2416,6 +2419,7 @@ void FormMain::OnIterate1Click( wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2441,6 +2445,7 @@ void FormMain::OnIterate2Click( wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2468,6 +2473,7 @@ void FormMain::OnIterate3Click( wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2494,6 +2500,7 @@ void FormMain::OnIterate4Click( wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2711,6 +2718,7 @@ void FormMain::OnTestReplaceClick( wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2962,6 +2970,7 @@ void FormMain::OnSelectStyle( wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3002,6 +3011,7 @@ void FormMain::OnSelectStyle( wxCommandEvent& WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3111,6 +3121,7 @@ void FormMain::OnMisc ( wxCommandEvent& event )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3288,6 +3299,7 @@ void GetColumnWidths(wxClientDC &dc, wxPropertyGrid *grid, wxPGProperty *root, i
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3304,6 +3316,7 @@ void GetColumnWidths(wxClientDC &dc, wxPropertyGrid *grid, wxPGProperty *root, i
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

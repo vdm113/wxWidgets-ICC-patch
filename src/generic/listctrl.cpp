@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -599,6 +599,7 @@ void wxListLineData::InitItems( int num )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -820,6 +821,7 @@ void wxListLineData::DrawInReportMode( wxDC *dc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -916,6 +918,7 @@ void wxListLineData::DrawTextFormatted(wxDC *dc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -935,6 +938,7 @@ void wxListLineData::DrawTextFormatted(wxDC *dc,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1091,6 +1095,7 @@ void wxListHeaderWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1315,6 +1320,7 @@ void wxListHeaderWindow::OnMouse( wxMouseEvent &event )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1366,6 +1372,7 @@ void wxListHeaderWindow::OnMouse( wxMouseEvent &event )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1723,6 +1730,7 @@ void wxListMainWindow::SetReportView(bool inReportView)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1744,6 +1752,7 @@ void wxListMainWindow::CacheLineData(size_t line)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1951,6 +1960,7 @@ void wxListMainWindow::HighlightLines( size_t lineFrom,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1967,6 +1977,7 @@ void wxListMainWindow::HighlightLines( size_t lineFrom,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2061,6 +2072,7 @@ void wxListMainWindow::RefreshLines( size_t lineFrom, size_t lineTo )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2127,6 +2139,7 @@ void wxListMainWindow::RefreshSelected()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2188,6 +2201,7 @@ void wxListMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2222,6 +2236,7 @@ void wxListMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2260,6 +2275,7 @@ void wxListMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2282,6 +2298,7 @@ void wxListMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2555,6 +2572,7 @@ void wxListMainWindow::OnMouse( wxMouseEvent &event )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3433,6 +3451,7 @@ void wxListMainWindow::SetColumnWidth( int col, int width )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3461,6 +3480,7 @@ int wxListMainWindow::GetHeaderWidth() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3557,6 +3577,7 @@ void wxListMainWindow::SetItemStateAll(long state, long stateMask)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3575,6 +3596,7 @@ void wxListMainWindow::SetItemStateAll(long state, long stateMask)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3769,6 +3791,7 @@ int wxListMainWindow::GetSelectedItemCount() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3799,6 +3822,7 @@ wxRect wxListMainWindow::GetViewRect() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3861,6 +3885,7 @@ wxListMainWindow::GetSubItemRect(long item, long subItem, wxRect& rect) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3963,6 +3988,7 @@ void wxListMainWindow::RecalculatePositions(bool noRefresh)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3996,6 +4022,7 @@ void wxListMainWindow::RecalculatePositions(bool noRefresh)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4030,6 +4057,7 @@ void wxListMainWindow::RecalculatePositions(bool noRefresh)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4059,6 +4087,7 @@ void wxListMainWindow::RecalculatePositions(bool noRefresh)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4095,6 +4124,7 @@ void wxListMainWindow::RecalculatePositions(bool noRefresh)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4195,6 +4225,7 @@ long wxListMainWindow::GetNextItem( long item,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4248,6 +4279,7 @@ void wxListMainWindow::DeleteItem( long lindex )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4303,6 +4335,7 @@ void wxListMainWindow::DeleteColumn( int col )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4350,6 +4383,7 @@ void wxListMainWindow::DoDeleteAllItems()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4432,6 +4466,7 @@ long wxListMainWindow::FindItem(long start, const wxString& str, bool partial )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4466,6 +4501,7 @@ long wxListMainWindow::FindItem(long start, wxUIntPtr data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4523,6 +4559,7 @@ long wxListMainWindow::HitTest( int x, int y, int &flags ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4642,6 +4679,7 @@ long wxListMainWindow::InsertColumn( long col, const wxListItem &item )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4819,6 +4857,7 @@ wxListMainWindow::PrefixFindItem(size_t idParent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4840,6 +4879,7 @@ wxListMainWindow::PrefixFindItem(size_t idParent,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5413,6 +5453,7 @@ bool wxGenericListCtrl::DeleteAllColumns()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5722,6 +5763,7 @@ wxSize wxGenericListCtrl::DoGetBestClientSize() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

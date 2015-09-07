@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -411,6 +411,7 @@ public:
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -853,6 +854,7 @@ wxString wxTextCtrl::DoGetValue() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1071,6 +1073,7 @@ void wxTextCtrl::Replace(wxTextPos from, wxTextPos to, const wxString& text)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1128,6 +1131,7 @@ void wxTextCtrl::Replace(wxTextPos from, wxTextPos to, const wxString& text)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1162,6 +1166,7 @@ void wxTextCtrl::Replace(wxTextPos from, wxTextPos to, const wxString& text)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1190,6 +1195,7 @@ void wxTextCtrl::Replace(wxTextPos from, wxTextPos to, const wxString& text)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1215,6 +1221,7 @@ void wxTextCtrl::Replace(wxTextPos from, wxTextPos to, const wxString& text)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1253,6 +1260,7 @@ void wxTextCtrl::Replace(wxTextPos from, wxTextPos to, const wxString& text)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1267,6 +1275,7 @@ void wxTextCtrl::Replace(wxTextPos from, wxTextPos to, const wxString& text)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1472,6 +1481,7 @@ wxTextPos wxTextCtrl::GetLastPosition() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1546,6 +1556,7 @@ wxString wxTextCtrl::GetSelectionText() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1835,6 +1846,7 @@ wxTextPos wxTextCtrl::XYToPosition(wxTextCoord x, wxTextCoord y) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1880,6 +1892,7 @@ bool wxTextCtrl::PositionToXY(wxTextPos pos,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2226,6 +2239,7 @@ wxTextPos wxTextCtrl::GetWordStart() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2238,6 +2252,7 @@ wxTextPos wxTextCtrl::GetWordStart() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2283,6 +2298,7 @@ wxTextPos wxTextCtrl::GetWordEnd() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2295,6 +2311,7 @@ wxTextPos wxTextCtrl::GetWordEnd() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2307,6 +2324,7 @@ wxTextPos wxTextCtrl::GetWordEnd() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2778,6 +2796,7 @@ wxTextCoord wxTextCtrl::GetRowInLine(wxTextCoord line,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2817,6 +2836,7 @@ void wxTextCtrl::LayoutLine(wxTextCoord line, wxWrappedLineData& lineData) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2841,6 +2861,7 @@ void wxTextCtrl::LayoutLine(wxTextCoord line, wxWrappedLineData& lineData) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2877,6 +2898,7 @@ void wxTextCtrl::LayoutLines(wxTextCoord lineLast) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2961,6 +2983,7 @@ size_t wxTextCtrl::GetPartOfWrappedLine(const wxChar* text,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3024,6 +3047,7 @@ size_t wxTextCtrl::GetPartOfWrappedLine(const wxChar* text,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3139,6 +3163,7 @@ wxTextCtrlHitTestResult wxTextCtrl::HitTestLine(const wxString& line,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3333,6 +3358,7 @@ wxTextCtrlHitTestResult wxTextCtrl::HitTest2(wxCoord y0,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3479,6 +3505,7 @@ bool wxTextCtrl::GetLineAndRow(wxTextCoord row,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3803,6 +3830,7 @@ wxCoord wxTextCtrl::GetMaxWidth() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4022,6 +4050,7 @@ void wxTextCtrl::RefreshTextRange(wxTextPos start, wxTextPos end)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4118,6 +4147,7 @@ void wxTextCtrl::RefreshPixelRange(wxTextCoord line,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4136,6 +4166,7 @@ void wxTextCtrl::RefreshPixelRange(wxTextCoord line,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4325,6 +4356,7 @@ void wxTextCtrl::DoDrawTextInRect(wxDC& dc, const wxRect& rectUpdate)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4461,6 +4493,7 @@ void wxTextCtrl::DoDrawLineWrapMarks(wxDC& dc, const wxRect& rectUpdate)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4525,6 +4558,7 @@ void wxTextCtrl::DoDraw(wxControlRenderer *renderer)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4876,6 +4910,7 @@ bool wxTextCtrl::PerformAction(const wxControlAction& actionOrig,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4909,6 +4944,7 @@ bool wxTextCtrl::PerformAction(const wxControlAction& actionOrig,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

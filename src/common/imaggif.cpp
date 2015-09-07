@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -264,6 +264,7 @@ bool wxGIFHandler::DoSaveFile(const wxImage& image, wxOutputStream *stream,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -275,6 +276,7 @@ bool wxGIFHandler::DoSaveFile(const wxImage& image, wxOutputStream *stream,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -315,6 +317,7 @@ bool wxGIFHandler::SaveAnimation(const wxImageArray& images,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -338,6 +341,7 @@ bool wxGIFHandler::SaveAnimation(const wxImageArray& images,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -374,6 +378,7 @@ bool wxGIFHandler::CompressOutput(wxOutputStream *stream, int code)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -403,6 +408,7 @@ bool wxGIFHandler::CompressOutput(wxOutputStream *stream, int code)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -463,6 +469,7 @@ bool wxGIFHandler::CompressLine(wxOutputStream *stream,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -557,6 +564,7 @@ void wxGIFHandler::ClearHashTable()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -576,6 +584,7 @@ void wxGIFHandler::InsertHashTable(unsigned long key, int code)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -597,6 +606,7 @@ int wxGIFHandler::ExistsHashTable(unsigned long key)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -630,6 +640,7 @@ int wxGIFHandler_BitSize(int n)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -660,6 +671,7 @@ bool wxGIFHandler_GetPalette(const wxImage& image,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -701,6 +713,7 @@ int wxGIFHandler_PaletteFind(const wxRGB& clr, const wxRGB *array, int count)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -791,6 +804,7 @@ bool wxGIFHandler_WritePalette(wxOutputStream *stream,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -862,6 +876,7 @@ bool wxGIFHandler_WriteComment(wxOutputStream *stream, const wxString& comment)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

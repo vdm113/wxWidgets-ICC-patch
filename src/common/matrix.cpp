@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -72,6 +72,7 @@ void wxTransformMatrix::operator = (const wxTransformMatrix& mat)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -82,6 +83,7 @@ void wxTransformMatrix::operator = (const wxTransformMatrix& mat)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -104,6 +106,7 @@ bool wxTransformMatrix::operator == (const wxTransformMatrix& mat) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -114,6 +117,7 @@ bool wxTransformMatrix::operator == (const wxTransformMatrix& mat) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -179,6 +183,7 @@ bool wxTransformMatrix::Invert(void)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -189,6 +194,7 @@ bool wxTransformMatrix::Invert(void)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -224,6 +230,7 @@ bool wxTransformMatrix::Scale(double scale)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -234,6 +241,7 @@ bool wxTransformMatrix::Scale(double scale)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -356,6 +364,7 @@ bool wxTransformMatrix::Translate(double dx, double dy)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -366,6 +375,7 @@ bool wxTransformMatrix::Translate(double dx, double dy)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -506,6 +516,7 @@ wxTransformMatrix& wxTransformMatrix::operator*=(const double& t)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -515,6 +526,7 @@ wxTransformMatrix& wxTransformMatrix::operator*=(const double& t)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -531,6 +543,7 @@ wxTransformMatrix& wxTransformMatrix::operator/=(const double& t)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -540,6 +553,7 @@ wxTransformMatrix& wxTransformMatrix::operator/=(const double& t)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -556,6 +570,7 @@ wxTransformMatrix& wxTransformMatrix::operator+=(const wxTransformMatrix& mat)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -565,6 +580,7 @@ wxTransformMatrix& wxTransformMatrix::operator+=(const wxTransformMatrix& mat)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -581,6 +597,7 @@ wxTransformMatrix& wxTransformMatrix::operator-=(const wxTransformMatrix& mat)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -590,6 +607,7 @@ wxTransformMatrix& wxTransformMatrix::operator-=(const wxTransformMatrix& mat)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -617,6 +635,7 @@ wxTransformMatrix& wxTransformMatrix::operator*=(const wxTransformMatrix& mat)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -627,6 +646,7 @@ wxTransformMatrix& wxTransformMatrix::operator*=(const wxTransformMatrix& mat)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -638,6 +658,7 @@ wxTransformMatrix& wxTransformMatrix::operator*=(const wxTransformMatrix& mat)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -706,6 +727,7 @@ wxTransformMatrix  wxTransformMatrix::operator-() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -715,6 +737,7 @@ wxTransformMatrix  wxTransformMatrix::operator-() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

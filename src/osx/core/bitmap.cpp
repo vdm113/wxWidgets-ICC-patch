@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -559,6 +559,7 @@ IconRef wxBitmapRefData::GetIconRef()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -574,6 +575,7 @@ IconRef wxBitmapRefData::GetIconRef()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -651,6 +653,7 @@ IconRef wxBitmapRefData::GetIconRef()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -667,6 +670,7 @@ IconRef wxBitmapRefData::GetIconRef()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -764,6 +768,7 @@ CGImageRef wxBitmapRefData::CreateCGImage() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -776,6 +781,7 @@ CGImageRef wxBitmapRefData::CreateCGImage() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -814,6 +820,7 @@ CGImageRef wxBitmapRefData::CreateCGImage() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -825,6 +832,7 @@ CGImageRef wxBitmapRefData::CreateCGImage() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -980,6 +988,7 @@ bool wxBitmap::CopyFromIcon(const wxIcon& icon)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -990,6 +999,7 @@ bool wxBitmap::CopyFromIcon(const wxIcon& icon)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1052,6 +1062,7 @@ wxBitmap::wxBitmap(const char bits[], int the_width, int the_height, int no_bits
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1065,6 +1076,7 @@ wxBitmap::wxBitmap(const char bits[], int the_width, int the_height, int no_bits
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1254,6 +1266,7 @@ wxBitmap wxBitmap::GetSubBitmap(const wxRect &rect) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1289,6 +1302,7 @@ wxBitmap wxBitmap::GetSubBitmap(const wxRect &rect) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1457,6 +1471,7 @@ wxBitmap::wxBitmap(const wxImage& image, int depth, double scale)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1468,6 +1483,7 @@ wxBitmap::wxBitmap(const wxImage& image, int depth, double scale)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1558,6 +1574,7 @@ wxImage wxBitmap::ConvertToImage() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1572,6 +1589,7 @@ wxImage wxBitmap::ConvertToImage() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1877,6 +1895,7 @@ bool wxMask::Create(const wxBitmap& bitmap)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1890,6 +1909,7 @@ bool wxMask::Create(const wxBitmap& bitmap)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1936,6 +1956,7 @@ bool wxMask::Create(const wxBitmap& bitmap, const wxColour& colour)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1950,6 +1971,7 @@ bool wxMask::Create(const wxBitmap& bitmap, const wxColour& colour)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1984,6 +2006,7 @@ wxBitmap wxMask::GetBitmap() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1995,6 +2018,7 @@ wxBitmap wxMask::GetBitmap() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

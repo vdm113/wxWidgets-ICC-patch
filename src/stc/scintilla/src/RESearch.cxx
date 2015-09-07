@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -278,6 +278,7 @@ void RESearch::Clear() {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -294,6 +295,7 @@ void RESearch::GrabMatches(CharacterIndexer &ci) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -306,6 +308,7 @@ void RESearch::GrabMatches(CharacterIndexer &ci) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -423,6 +426,7 @@ int RESearch::GetBackslashExpression(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -436,6 +440,7 @@ int RESearch::GetBackslashExpression(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -459,6 +464,7 @@ int RESearch::GetBackslashExpression(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -474,6 +480,7 @@ int RESearch::GetBackslashExpression(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -489,6 +496,7 @@ int RESearch::GetBackslashExpression(
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -531,6 +539,7 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -590,6 +599,7 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -635,6 +645,7 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -680,6 +691,7 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -715,6 +727,7 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -730,6 +743,7 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -806,6 +820,7 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -850,6 +865,7 @@ const char *RESearch::Compile(const char *pattern, int length, bool caseSensitiv
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -919,6 +935,7 @@ int RESearch::Execute(CharacterIndexer &ci, int lp, int endp) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -932,6 +949,7 @@ int RESearch::Execute(CharacterIndexer &ci, int lp, int endp) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1007,6 +1025,7 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1060,6 +1079,7 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1080,6 +1100,7 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1098,6 +1119,7 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1113,6 +1135,7 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1134,6 +1157,7 @@ int RESearch::PMatch(CharacterIndexer &ci, int lp, int endp, char *ap) {
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

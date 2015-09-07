@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -73,6 +73,7 @@ TestEntry::TestEntry(const wxDateTime& dt, int len, const char *data)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -147,6 +148,7 @@ size_t TestOutputStream::OnSysWrite(const void *buffer, size_t size)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -397,6 +399,7 @@ void TempDir::RemoveDir(wxString& path)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -408,6 +411,7 @@ void TempDir::RemoveDir(wxString& path)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -494,6 +498,7 @@ ArchiveTestCase<ClassFactoryT>::~ArchiveTestCase()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -593,6 +598,7 @@ TestEntry& ArchiveTestCase<ClassFactoryT>::Add(const char *name,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -620,6 +626,7 @@ void ArchiveTestCase<ClassFactoryT>::CreateArchive(wxOutputStream& out)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -700,6 +707,7 @@ void ArchiveTestCase<ClassFactoryT>::CreateArchive(wxOutputStream& out,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -721,6 +729,7 @@ void ArchiveTestCase<ClassFactoryT>::CreateArchive(wxOutputStream& out,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -789,6 +798,7 @@ void ArchiveTestCase<ClassFactoryT>::ModifyArchive(wxInputStream& in,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -874,6 +884,7 @@ void ArchiveTestCase<ClassFactoryT>::ExtractArchive(wxInputStream& in)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -953,6 +964,7 @@ void ArchiveTestCase<ClassFactoryT>::ExtractArchive(wxInputStream& in)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1031,6 +1043,7 @@ void ArchiveTestCase<ClassFactoryT>::VerifyDir(wxString& path,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1087,6 +1100,7 @@ void ArchiveTestCase<ClassFactoryT>::VerifyDir(wxString& path,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1114,6 +1128,7 @@ void ArchiveTestCase<ClassFactoryT>::TestIterator(wxInputStream& in)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1126,6 +1141,7 @@ void ArchiveTestCase<ClassFactoryT>::TestIterator(wxInputStream& in)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1159,6 +1175,7 @@ void ArchiveTestCase<ClassFactoryT>::TestPairIterator(wxInputStream& in)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1171,6 +1188,7 @@ void ArchiveTestCase<ClassFactoryT>::TestPairIterator(wxInputStream& in)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1203,6 +1221,7 @@ void ArchiveTestCase<ClassFactoryT>::TestSmartIterator(wxInputStream& in)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1217,6 +1236,7 @@ void ArchiveTestCase<ClassFactoryT>::TestSmartIterator(wxInputStream& in)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1250,6 +1270,7 @@ void ArchiveTestCase<ClassFactoryT>::TestSmartPairIterator(wxInputStream& in)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1264,6 +1285,7 @@ void ArchiveTestCase<ClassFactoryT>::TestSmartPairIterator(wxInputStream& in)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1296,6 +1318,7 @@ void ArchiveTestCase<ClassFactoryT>::ReadSimultaneous(TestInputStream& in)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1331,6 +1354,7 @@ void ArchiveTestCase<ClassFactoryT>::ReadSimultaneous(TestInputStream& in)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1410,6 +1434,7 @@ void CorruptionTestCase::runTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1427,6 +1452,7 @@ void CorruptionTestCase::runTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1444,6 +1470,7 @@ void CorruptionTestCase::runTest()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1473,6 +1500,7 @@ void CorruptionTestCase::ExtractArchive(wxInputStream& in)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1484,6 +1512,7 @@ void CorruptionTestCase::ExtractArchive(wxInputStream& in)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1551,6 +1580,7 @@ ArchiveTestSuite *ArchiveTestSuite::makeSuite()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1560,6 +1590,7 @@ ArchiveTestSuite *ArchiveTestSuite::makeSuite()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1569,6 +1600,7 @@ ArchiveTestSuite *ArchiveTestSuite::makeSuite()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1578,6 +1610,7 @@ ArchiveTestSuite *ArchiveTestSuite::makeSuite()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1605,6 +1638,7 @@ ArchiveTestSuite *ArchiveTestSuite::makeSuite()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

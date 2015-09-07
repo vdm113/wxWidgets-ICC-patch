@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -282,6 +282,7 @@ png_do_invert(png_row_infop row_info, png_bytep row)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -304,6 +305,7 @@ png_do_invert(png_row_infop row_info, png_bytep row)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -327,6 +329,7 @@ png_do_invert(png_row_infop row_info, png_bytep row)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -360,6 +363,7 @@ png_do_swap(png_row_infop row_info, png_bytep row)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -510,6 +514,7 @@ png_do_packswap(png_row_infop row_info, png_bytep row)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -560,6 +565,7 @@ png_do_strip_channel(png_row_infop row_info, png_bytep row, int at_start)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -581,6 +587,7 @@ png_do_strip_channel(png_row_infop row_info, png_bytep row, int at_start)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -616,6 +623,7 @@ png_do_strip_channel(png_row_infop row_info, png_bytep row, int at_start)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -637,6 +645,7 @@ png_do_strip_channel(png_row_infop row_info, png_bytep row, int at_start)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -691,6 +700,7 @@ png_do_bgr(png_row_infop row_info, png_bytep row)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -712,6 +722,7 @@ png_do_bgr(png_row_infop row_info, png_bytep row)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -737,6 +748,7 @@ png_do_bgr(png_row_infop row_info, png_bytep row)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -761,6 +773,7 @@ png_do_bgr(png_row_infop row_info, png_bytep row)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -810,6 +823,7 @@ png_do_check_palette_indexes(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -830,6 +844,7 @@ png_do_check_palette_indexes(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -868,6 +883,7 @@ png_do_check_palette_indexes(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -896,6 +912,7 @@ png_do_check_palette_indexes(png_structrp png_ptr, png_row_infop row_info)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

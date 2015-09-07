@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -72,6 +72,7 @@ static void GetTextSegment(Accessor &styler, unsigned int start, unsigned int en
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -89,6 +90,7 @@ static const char *GetNextWord(Accessor &styler, unsigned int start, char *s, si
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -128,6 +130,7 @@ static script_type segIsScriptingIndicator(Accessor &styler, unsigned int start,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -303,6 +306,7 @@ static int classifyTagHTML(unsigned int start, unsigned int end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -343,6 +347,7 @@ static int classifyTagHTML(unsigned int start, unsigned int end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -375,6 +380,7 @@ static void classifyWordHTJS(unsigned int start, unsigned int end,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -423,6 +429,7 @@ static void classifyWordHTPy(unsigned int start, unsigned int end, WordList &key
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -469,6 +476,7 @@ static bool isWordHSGML(unsigned int start, unsigned int end, WordList &keywords
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -487,6 +495,7 @@ static bool isWordCdata(unsigned int start, unsigned int end, Accessor &styler) 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -610,6 +619,7 @@ static int FindPhpStringDelimiter(char *phpStringDelimiter, const int phpStringD
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -636,6 +646,7 @@ static int FindPhpStringDelimiter(char *phpStringDelimiter, const int phpStringD
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -692,6 +703,7 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -709,6 +721,7 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -814,6 +827,7 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -835,6 +849,7 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -880,6 +895,7 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -910,6 +926,7 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1026,6 +1043,7 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1458,6 +1476,7 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1876,6 +1895,7 @@ static void ColouriseHyperTextDoc(unsigned int startPos, int length, int initSty
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

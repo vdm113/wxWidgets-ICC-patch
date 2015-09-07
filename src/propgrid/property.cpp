@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -554,6 +554,7 @@ void wxPGProperty::InitAfterAdded( wxPropertyGridPageState* pageState,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -685,6 +686,7 @@ void wxPGProperty::InitAfterAdded( wxPropertyGridPageState* pageState,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -713,6 +715,7 @@ void wxPGProperty::OnDetached(wxPropertyGridPageState* WXUNUSED(state),
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -766,6 +769,7 @@ bool wxPGProperty::IsSomeParent( wxPGProperty* candidate ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -999,6 +1003,7 @@ void wxPGProperty::DoGenerateComposedValue( wxString& text,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1208,6 +1213,7 @@ bool wxPGProperty::StringToValue( wxVariant& v, const wxString& text, int argFla
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1302,6 +1308,7 @@ bool wxPGProperty::StringToValue( wxVariant& v, const wxString& text, int argFla
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1517,6 +1524,7 @@ void wxPGProperty::SetValue( wxVariant value, wxVariant* pList, int flags )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1592,6 +1600,7 @@ void wxPGProperty::SetValue( wxVariant value, wxVariant* pList, int flags )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1641,6 +1650,7 @@ void wxPGProperty::SetFlagRecursively( wxPGPropertyFlags flag, bool set )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1728,6 +1738,7 @@ void wxPGProperty::DoEnable( bool enable )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1788,6 +1799,7 @@ void wxPGProperty::AdaptiveSetCell( unsigned int firstCol,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1813,6 +1825,7 @@ void wxPGProperty::AdaptiveSetCell( unsigned int firstCol,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1841,6 +1854,7 @@ void wxPGProperty::ClearCells(FlagType ignoreWithFlags, bool recursively)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1888,6 +1902,7 @@ void wxPGProperty::SetBackgroundColour( const wxColour& colour,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1932,6 +1947,7 @@ void wxPGProperty::SetTextColour( const wxColour& colour,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1974,6 +1990,7 @@ void wxPGProperty::SetDefaultColours(int flags)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2021,6 +2038,7 @@ void wxPGProperty::SetAttributes( const wxPGAttributeStorage& attributes )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2086,6 +2104,7 @@ wxVariant wxPGProperty::GetAttributesAsList() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2117,6 +2136,7 @@ wxString wxPGProperty::GetFlagsAsString( FlagType flagsMask ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2145,6 +2165,7 @@ void wxPGProperty::SetFlagsFromString( const wxString& str )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2339,6 +2360,7 @@ bool wxPGProperty::DoHide( bool hide, int flags )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2356,6 +2378,7 @@ bool wxPGProperty::HasVisibleChildren() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2448,6 +2471,7 @@ wxPGProperty* wxPGProperty::GetMainParent() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2484,6 +2508,7 @@ bool wxPGProperty::IsVisible() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2520,6 +2545,7 @@ int wxPGProperty::GetY2( int lh ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2637,6 +2663,7 @@ void wxPGProperty::RemoveChild( wxPGProperty* p )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2696,6 +2723,7 @@ void wxPGProperty::AdaptListToValue( wxVariant& list, wxVariant* value ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2735,6 +2763,7 @@ void wxPGProperty::FixIndicesOfChildren( unsigned int starthere )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2751,6 +2780,7 @@ wxPGProperty* wxPGProperty::GetPropertyByName( const wxString& name ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2791,6 +2821,7 @@ wxPGProperty* wxPGProperty::GetPropertyByNameWH( const wxString& name, unsigned 
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2836,6 +2867,7 @@ int wxPGProperty::GetChildrenHeight( int lh, int iMax_ ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2878,6 +2910,7 @@ wxPGProperty* wxPGProperty::GetItemAtY( unsigned int y,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2939,6 +2972,7 @@ void wxPGProperty::Empty()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2980,6 +3014,7 @@ void wxPGProperty::DeleteChildren()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2997,6 +3032,7 @@ bool wxPGProperty::IsChildSelected( bool recursive ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3039,6 +3075,7 @@ bool wxPGProperty::AreAllChildrenSpecified( wxVariant* pendingList ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3057,6 +3094,7 @@ bool wxPGProperty::AreAllChildrenSpecified( wxVariant* pendingList ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3138,6 +3176,7 @@ void wxPGProperty::SubPropsChanged( int oldSelInd )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3318,6 +3357,7 @@ wxPGChoiceEntry& wxPGChoices::AddAsSorted( const wxString& label, int value )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3344,6 +3384,7 @@ void wxPGChoices::Add( const wxChar* const* labels, const ValArrItem* values )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3371,6 +3412,7 @@ void wxPGChoices::Add( const wxArrayString& arr, const wxArrayInt& arrint )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3415,6 +3457,7 @@ int wxPGChoices::Index( const wxString& str ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3439,6 +3482,7 @@ int wxPGChoices::Index( int val ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3464,6 +3508,7 @@ wxArrayString wxPGChoices::GetLabels() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3486,6 +3531,7 @@ wxArrayInt wxPGChoices::GetValuesForStrings( const wxArrayString& strings ) cons
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3516,6 +3562,7 @@ wxArrayInt wxPGChoices::GetIndicesForStrings( const wxArrayString& strings,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3596,6 +3643,7 @@ wxPGAttributeStorage::~wxPGAttributeStorage()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

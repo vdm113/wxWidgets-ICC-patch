@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -967,6 +967,7 @@ void wxRichTextCtrl::OnMoveMouse(wxMouseEvent& event)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2406,6 +2407,7 @@ bool wxRichTextCtrl::ExtendCellSelection(wxRichTextTable* table, int noRowSteps,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2416,6 +2418,7 @@ bool wxRichTextCtrl::ExtendCellSelection(wxRichTextTable* table, int noRowSteps,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2450,6 +2453,7 @@ bool wxRichTextCtrl::ExtendCellSelection(wxRichTextTable* table, int noRowSteps,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2479,6 +2483,7 @@ bool wxRichTextCtrl::ExtendCellSelection(wxRichTextTable* table, int noRowSteps,
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2737,6 +2742,7 @@ long wxRichTextCtrl::FindNextWordPosition(int direction) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2761,6 +2767,7 @@ long wxRichTextCtrl::FindNextWordPosition(int direction) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2796,6 +2803,7 @@ long wxRichTextCtrl::FindNextWordPosition(int direction) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -2818,6 +2826,7 @@ long wxRichTextCtrl::FindNextWordPosition(int direction) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3224,6 +3233,7 @@ bool wxRichTextCtrl::SelectWord(long position)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3244,6 +3254,7 @@ bool wxRichTextCtrl::SelectWord(long position)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3526,6 +3537,7 @@ wxRichTextTable* wxRichTextCtrl::WriteTable(int rows, int cols, const wxRichText
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -3536,6 +3548,7 @@ wxRichTextTable* wxRichTextCtrl::WriteTable(int rows, int cols, const wxRichText
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4885,6 +4898,7 @@ wxRichTextRange wxRichTextCtrl::FindRangeForList(long pos, bool& isNumberedList)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -4909,6 +4923,7 @@ wxRichTextRange wxRichTextCtrl::FindRangeForList(long pos, bool& isNumberedList)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5034,6 +5049,7 @@ bool wxRichTextCtrl::RefreshForSelectionChange(const wxRichTextSelection& oldSel
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5341,6 +5357,7 @@ bool wxRichTextCtrl::ProcessDelayedImageLoading(const wxRect& screenRect, wxRich
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5358,6 +5375,7 @@ bool wxRichTextCtrl::ProcessDelayedImageLoading(const wxRect& screenRect, wxRich
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5619,6 +5637,7 @@ int wxRichTextContextMenuPropertiesInfo::AddMenuItems(wxMenu* menu, int startCmd
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5641,6 +5660,7 @@ int wxRichTextContextMenuPropertiesInfo::AddMenuItems(wxMenu* menu, int startCmd
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5662,6 +5682,7 @@ int wxRichTextContextMenuPropertiesInfo::AddMenuItems(wxMenu* menu, int startCmd
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5687,6 +5708,7 @@ int wxRichTextContextMenuPropertiesInfo::AddMenuItems(wxMenu* menu, int startCmd
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -5707,6 +5729,7 @@ int wxRichTextContextMenuPropertiesInfo::AddMenuItems(wxMenu* menu, int startCmd
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif

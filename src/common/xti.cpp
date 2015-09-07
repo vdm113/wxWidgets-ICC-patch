@@ -1,6 +1,6 @@
 /* token_VDM_prologue */
 #if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
-#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll) __pragma(prefetch)
 #   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
 #elif !defined(VDM_MACRO_PRAGMA_IVDEP)
 #   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
@@ -59,6 +59,7 @@ wxEnumData::wxEnumData( wxEnumMemberData* data )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -74,6 +75,7 @@ bool wxEnumData::HasEnumMemberValue(const wxChar *name, int *value) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -97,6 +99,7 @@ int wxEnumData::GetEnumMemberValue(const wxChar *name) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -118,6 +121,7 @@ const wxChar *wxEnumData::GetEnumMemberName(int value) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -444,6 +448,7 @@ void wxSetStringToArray( const wxString &s, wxArrayString &array )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -470,6 +475,7 @@ void wxPropertyInfo::Insert(wxPropertyInfo* &iter)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -494,6 +500,7 @@ void wxPropertyInfo::Remove()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -528,6 +535,7 @@ void wxHandlerInfo::Insert(wxHandlerInfo* &iter)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -552,6 +560,7 @@ void wxHandlerInfo::Remove()
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -612,6 +621,7 @@ bool wxClassInfo::IsKindOf(const wxClassInfo *info) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -643,6 +653,7 @@ wxPropertyInfo *wxClassInfo::FindPropertyInfoInThisClass (const wxChar *Property
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -668,6 +679,7 @@ const wxPropertyInfo *wxClassInfo::FindPropertyInfo (const wxChar *PropertyName)
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -689,6 +701,7 @@ wxHandlerInfo *wxClassInfo::FindHandlerInfoInThisClass (const wxChar *PropertyNa
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -715,6 +728,7 @@ const wxHandlerInfo *wxClassInfo::FindHandlerInfo (const wxChar *PropertyName) c
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -739,6 +753,7 @@ wxObjectStreamingCallback wxClassInfo::GetStreamingCallback() const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -813,6 +828,7 @@ void wxClassInfo::GetProperties( wxPropertyInfoMap &infomap ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -830,6 +846,7 @@ void wxClassInfo::GetProperties( wxPropertyInfoMap &infomap ) const
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1023,6 +1040,7 @@ void wxDynamicClassInfo::RemoveProperty( const wxChar *propertyName )
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
@@ -1049,6 +1067,7 @@ void wxDynamicClassInfo::RenameProperty( const wxChar *oldPropertyName, const wx
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
+#   pragma prefetch
 #   if 0
 #       pragma simd noassert
 #   endif
