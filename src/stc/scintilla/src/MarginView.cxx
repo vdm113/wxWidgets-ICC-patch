@@ -1,3 +1,12 @@
+/* token_VDM_prologue */
+#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)
+#   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
+#elif !defined(VDM_MACRO_PRAGMA_IVDEP)
+#   define VDM_MACRO_PRAGMA_IVDEP /* NOP */
+#   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */
+#endif
+
 // Scintilla source code edit control
 /** @file MarginView.cxx
  ** Defines the appearance of the editor margin.
@@ -166,7 +175,23 @@ void MarginView::RefreshPixMaps(Surface *surfaceWindow, WindowID wid, const View
 
 		pixmapSelPattern->FillRectangle(rcPattern, colourFMFill);
 		pixmapSelPatternOffset1->FillRectangle(rcPattern, colourFMStripes);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 		for (int y = 0; y < patternSize; y++) {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 			for (int x = y % 2; x < patternSize; x += 2) {
 				PRectangle rcPixel = PRectangle::FromInts(x, y, x + 1, y + 1);
 				pixmapSelPattern->FillRectangle(rcPixel, colourFMStripes);
@@ -192,6 +217,14 @@ void MarginView::PaintMargin(Surface *surface, int topLine, PRectangle rc, PRect
 
 	Point ptOrigin = model.GetVisibleOriginInMain();
 	FontAlias fontLineNumber = vs.styles[STYLE_LINENUMBER].font;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 	for (int margin = 0; margin <= SC_MAX_MARGIN; margin++) {
 		if (vs.ms[margin].width > 0) {
 
@@ -237,6 +270,14 @@ void MarginView::PaintMargin(Surface *surface, int topLine, PRectangle rc, PRect
 				if (level & SC_FOLDLEVELWHITEFLAG) {
 					int lineBack = model.cs.DocFromDisplay(visibleLine);
 					int levelPrev = level;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 					while ((lineBack > 0) && (levelPrev & SC_FOLDLEVELWHITEFLAG)) {
 						lineBack--;
 						levelPrev = model.pdoc->GetLevel(lineBack);
@@ -258,13 +299,23 @@ void MarginView::PaintMargin(Surface *surface, int topLine, PRectangle rc, PRect
 			const int folderEnd = SubstituteMarkerIfEmpty(SC_MARKNUM_FOLDEREND,
 				SC_MARKNUM_FOLDER, vs);
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 			while ((visibleLine < model.cs.LinesDisplayed()) && yposScreen < rc.bottom) {
 
 				PLATFORM_ASSERT(visibleLine < model.cs.LinesDisplayed());
 				const int lineDoc = model.cs.DocFromDisplay(visibleLine);
 				PLATFORM_ASSERT(model.cs.GetVisible(lineDoc));
-				const bool firstSubLine = visibleLine == model.cs.DisplayFromDoc(lineDoc);
-				const bool lastSubLine = visibleLine == model.cs.DisplayLastFromDoc(lineDoc);
+				const int firstVisibleLine = model.cs.DisplayFromDoc(lineDoc);
+				const int lastVisibleLine = model.cs.DisplayLastFromDoc(lineDoc);
+				const bool firstSubLine = visibleLine == firstVisibleLine;
+				const bool lastSubLine = visibleLine == lastVisibleLine;
 
 				int marks = model.pdoc->GetMark(lineDoc);
 				if (!firstSubLine)
@@ -403,9 +454,9 @@ void MarginView::PaintMargin(Surface *surface, int topLine, PRectangle rc, PRect
 						}
 					}
 				} else if (vs.ms[margin].style == SC_MARGIN_TEXT || vs.ms[margin].style == SC_MARGIN_RTEXT) {
-					if (firstSubLine) {
-						const StyledText stMargin = model.pdoc->MarginStyledText(lineDoc);
-						if (stMargin.text && ValidStyledText(vs, vs.marginStyleOffset, stMargin)) {
+					const StyledText stMargin = model.pdoc->MarginStyledText(lineDoc);
+					if (stMargin.text && ValidStyledText(vs, vs.marginStyleOffset, stMargin)) {
+						if (firstSubLine) {
 							surface->FillRectangle(rcMarker,
 								vs.styles[stMargin.StyleAt(0) + vs.marginStyleOffset].back);
 							if (vs.ms[margin].style == SC_MARGIN_RTEXT) {
@@ -414,11 +465,25 @@ void MarginView::PaintMargin(Surface *surface, int topLine, PRectangle rc, PRect
 							}
 							DrawStyledText(surface, vs, vs.marginStyleOffset, rcMarker,
 								stMargin, 0, stMargin.length, drawAll);
+						} else {
+							// if we're displaying annotation lines, color the margin to match the associated document line
+							const int annotationLines = model.pdoc->AnnotationLines(lineDoc);
+							if (annotationLines && (visibleLine > lastVisibleLine - annotationLines)) {
+								surface->FillRectangle(rcMarker, vs.styles[stMargin.StyleAt(0) + vs.marginStyleOffset].back);
+							}
 						}
 					}
 				}
 
 				if (marks) {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 					for (int markBit = 0; (markBit < 32) && marks; markBit++) {
 						if (marks & 1) {
 							LineMarker::typeOfFold tFold = LineMarker::undefined;

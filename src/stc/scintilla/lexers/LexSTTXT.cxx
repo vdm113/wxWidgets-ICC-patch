@@ -81,6 +81,14 @@ static void ColouriseSTTXTDoc (unsigned int startPos, int length, int initStyle,
 	CharacterSet setOperator(CharacterSet::setNone,",.+-*/:;<=>[]()%&");
 	CharacterSet setDataTime(CharacterSet::setDigits,"_.-:dmshDMSH");
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
  	for ( ; sc.More() ; sc.Forward())
  	{
 		if(sc.atLineStart && sc.state != SCE_STTXT_COMMENT)

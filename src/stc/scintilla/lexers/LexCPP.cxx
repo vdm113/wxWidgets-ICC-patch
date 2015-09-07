@@ -124,6 +124,14 @@ bool IsSpaceOrTab(int ch) {
 }
 
 bool OnlySpaceOrTab(const std::string &s) {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 	for (std::string::const_iterator it = s.begin(); it != s.end(); ++it) {
 		if (!IsSpaceOrTab(*it))
 			return false;
@@ -133,6 +141,14 @@ bool OnlySpaceOrTab(const std::string &s) {
 
 std::vector<std::string> StringSplit(const std::string &text, int separator) {
 	std::vector<std::string> vs(text.empty() ? 0 : 1);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 	for (std::string::const_iterator it = text.begin(); it != text.end(); ++it) {
 		if (*it == separator) {
 			vs.push_back(std::string());
@@ -156,6 +172,14 @@ BracketPair FindBracketPair(std::vector<std::string> &tokens) {
 	if (itTok != tokens.end()) {
 		bp.itBracket = itTok;
 		size_t nest = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 		while (itTok != tokens.end()) {
 			if (*itTok == "(") {
 				nest++;
@@ -180,6 +204,14 @@ void highlightTaskMarker(StyleContext &sc, LexAccessor &styler,
 		char marker[lengthMarker+1];
 		int currPos = (int) sc.currentPos;
 		int i = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 		while (i < lengthMarker) {
 			char ch = styler.SafeGetCharAt(currPos + i);
 			if (IsASpace(ch) || isoperator(ch)) {
@@ -1259,7 +1291,7 @@ void SCI_METHOD LexerCPP::Lex(unsigned int startPos, int length, int initStyle, 
 								while ((endName < restOfLine.length()) && setWord.Contains(static_cast<unsigned char>(restOfLine[endName])))
 									endName++;
 								std::string key = restOfLine.substr(startName, endName-startName);
-								if (restOfLine[endName] == '(') {
+								if ((endName < restOfLine.length()) && (restOfLine.at(endName) == '(')) {
 									// Macro
 									size_t endArgs = endName;
 									while ((endArgs < restOfLine.length()) && (restOfLine[endArgs] != ')'))
@@ -1268,7 +1300,9 @@ void SCI_METHOD LexerCPP::Lex(unsigned int startPos, int length, int initStyle, 
 									size_t startValue = endArgs+1;
 									while ((startValue < restOfLine.length()) && IsSpaceOrTab(restOfLine[startValue]))
 										startValue++;
-									std::string value = restOfLine.substr(startValue);
+									std::string value;
+									if (startValue < restOfLine.length())
+										value = restOfLine.substr(startValue);
 									preprocessorDefinitions[key] = SymbolValue(value, args);
 									ppDefineHistory.push_back(PPDefinition(lineCurrent, key, value, false, args));
 									definitionsChanged = true;

@@ -103,6 +103,14 @@ bool operator == (const wxArrayInt& array1, const wxArrayInt& array2)
 {
     if ( array1.size() != array2.size() )
         return false;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
     for ( size_t i = 0; i < array1.size(); i++ )
     {
         if ( array1[i] != array2[i] )
@@ -2074,7 +2082,15 @@ void wxMultiChoiceProperty::GenerateValueAsString( wxVariant& value,
     if ( itemCount )
         tempStr.append( wxS("\"") );
 
-    for ( i = 0; i < itemCount; i++ )
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
+    for ( size_t i = 0; i < itemCount; i++ )
     {
         tempStr.append( strings[i] );
         tempStr.append( wxS("\"") );
@@ -2186,6 +2202,14 @@ bool wxMultiChoiceProperty::OnEvent( wxPropertyGrid* propgrid,
                     value.push_back(extraStrings[n]);
             }
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
             for ( size_t i = 0; i < arrInt.size(); i++ )
                 value.Add(m_choices.GetLabel(arrInt.Item(i)));
 

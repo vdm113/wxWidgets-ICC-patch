@@ -2011,9 +2011,9 @@ void wxTextCtrl::OnChar(wxKeyEvent& event)
                 InitCommandEvent(evt);
                 evt.SetString(GetValue());
                 if ( HandleWindowEvent(evt) )
-                if ( !HasFlag(wxTE_MULTILINE) )
-                    return;
-                //else: multiline controls need Enter for themselves
+                    if ( !HasFlag(wxTE_MULTILINE) )
+                        return;
+                    //else: multiline controls need Enter for themselves
             }
             break;
 
