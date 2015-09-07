@@ -36,6 +36,8 @@
 
 using namespace std;
 
+bool simd_for=false;
+
 bool check_return_value(int rc)
 {
     static int iter=0;
@@ -67,7 +69,8 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
     static const char* line_end="#endif";
 #endif
 
-    static const vector<const char*> line2={ "#   pragma ivdep", "#   pragma swp", "#   pragma unroll", "#   if 0", "#       pragma simd", "#   endif", line_end };
+    static const vector<const char*> line2={ "#   pragma ivdep", "#   pragma swp", "#   pragma unroll", "#   if 0", "#       pragma simd noassert", "#   endif", line_end };
+    static const vector<const char*> line2_simd={ "#   pragma ivdep", "#   pragma swp", "#   pragma unroll", "#   if 1", "#       pragma simd noassert", "#   endif", line_end };
 
     static const char* line_prologue_token="/* token_VDM_prologue */";
     static const char* line_prologue="#if defined(__INTEL_COMPILER) && defined(_MSC_VER) && !defined(VDM_MACRO_PRAGMA_IVDEP)\n#   define VDM_MACRO_PRAGMA_IVDEP __pragma(ivdep) __pragma(swp) __pragma(unroll)\n#   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */\n#elif !defined(VDM_MACRO_PRAGMA_IVDEP)\n#   define VDM_MACRO_PRAGMA_IVDEP /* NOP */\n#   define VDM_MACRO_PRAGMA_NO_IVDEP /* NOP */\n#endif";
@@ -107,7 +110,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     while(in && !feof(in)) {
@@ -123,7 +126,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while(ln2.length()>0 && (ln2[ln2.length()-1]=='\n' || ln2[ln2.length()-1]=='\r'))
@@ -138,7 +141,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(size_t i=0; i<contents.size(); ++i) {
@@ -166,7 +169,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             do {
@@ -175,8 +178,8 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#   if 0
-#       pragma simd
+#   if 1
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for(int i1=0; i1<7; ++i1) {
@@ -217,7 +220,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for(size_t i1=0; ; ++i1) {
@@ -259,7 +262,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while(line.length()>0 && (' '==line[0] || '\t'==line[0] || '\r'==line[0] || '\n'==line[0])) {
@@ -271,7 +274,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         while(line.length()>0 && ('{'==line[line.length()-1] || ' '==line[line.length()-1] || '\t'==line[line.length()-1])) {
@@ -285,7 +288,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while(line.length()>1 && ('{'==line[line.length()-2] || ' '==line[line.length()-2] || '\t'==line[line.length()-2])) {
@@ -306,7 +309,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for(int i1=0; i1<line.length(); ++i1) {
@@ -340,8 +343,8 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#   if 0
-#       pragma simd
+#   if 1
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for(int i1=0; i1<line.length(); ++i1)  {
@@ -373,7 +376,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for(size_t i1=i; i1<contents.size(); ++i1) {
@@ -384,7 +387,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while(next.length()>0 && ('\r'==next[next.length()-1] || '\n'==next[next.length()-1]))
@@ -400,7 +403,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 while(next.length()>0 && (' '==next[next.length()-1] || '\t'==next[next.length()-1]))
@@ -420,7 +423,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for(size_t i2=0; i2<next.length(); ++i2) {
@@ -483,7 +486,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while(line.length()>0 && (' '==line[0] || '\t'==line[0])) {
@@ -504,8 +507,10 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
             return true;
         };
 
+        bool it_is_for=false;
         seeking="for";
         if(reformat_ctrl()) {
+            it_is_for=true;
             lines.push_back(line);
             string ln2=line;
             ln2.erase(0,seeking.length());
@@ -514,6 +519,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 
         seeking="for_each";
         if(reformat_ctrl()) {
+            it_is_for=true;
             lines.push_back(line);
             string ln2=line;
             ln2.erase(0,seeking.length());
@@ -535,8 +541,8 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#   if 0
-#       pragma simd
+#   if 1
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for(size_t i1=0; i1<line.length(); ++i1) {
@@ -561,7 +567,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             while(ln2.length()>0 && (' '==ln2[ln2.length()-1] || '{'==ln2[ln2.length()-1]))
@@ -591,7 +597,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                 for(auto i2=scrollback.rbegin(); i2!=scrollback.rend(); ++i2) {
@@ -633,11 +639,11 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#   if 0
-#       pragma simd
+#   if 1
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
-                    for(const auto& i4 : line2) {
+                    for(const auto& i4 : ((it_is_for && simd_for) ? line2_simd : line2)) {
                         scrollback.push_back(i4);
                     }
                     scrollback.push_back(save);
@@ -656,7 +662,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
                     while((*scrollback.rbegin()).compare(line1) && (*scrollback.rbegin()).compare(line1_disabled)) {
@@ -684,7 +690,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for(vector<string>::iterator i1=scrollback.begin(); i1!=scrollback.end(); ++i1) {
@@ -711,7 +717,7 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for(size_t i1=0; i1<scrollback.size(); ++i1) {
@@ -738,8 +744,8 @@ unsigned reformat(const string& file, bool do_prologue, bool do_patch, bool opt_
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#   if 0
-#       pragma simd
+#   if 1
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for(vector<string>::const_iterator i1=scrollback.begin(); i1!=scrollback.end(); ++i1) {
@@ -774,7 +780,7 @@ void directory_recurse(const string& base, const string& directory, const string
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(;;) {
@@ -793,7 +799,7 @@ void directory_recurse(const string& base, const string& directory, const string
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
         for(set<string>::iterator i1=ext.begin(); i1!=ext.end(); ++i1) {
@@ -850,7 +856,7 @@ int _tmain(int argc, _TCHAR* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
             for(size_t i1=1; i1<argc; ++i1) {
@@ -863,6 +869,8 @@ int _tmain(int argc, _TCHAR* argv[])
                     opt_uu=true;
                 } else if(strcmp(argv[i1],"--no-wait")==0) {
                     do_nowait=true;
+                } else if(strcmp(argv[i1],"--simd-for")==0) {
+                    simd_for=true;
                 } else {
                     usage=true;
                     break;
@@ -909,7 +917,7 @@ int _tmain(int argc, _TCHAR* argv[])
 #   pragma swp
 #   pragma unroll
 #   if 0
-#       pragma simd
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(auto i1=files.cbegin(); i1!=files.cend(); ++i1) {
@@ -923,8 +931,8 @@ int _tmain(int argc, _TCHAR* argv[])
 #   pragma ivdep
 #   pragma swp
 #   pragma unroll
-#   if 0
-#       pragma simd
+#   if 1
+#       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
     for(auto i1=funcs.begin(); i1!=funcs.end(); ++i1) {
