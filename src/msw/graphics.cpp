@@ -1826,8 +1826,24 @@ void wxGDIPlusContext::DrawIcon( const wxIcon &icon, wxDouble x, wxDouble y, wxD
             interim.GetPixelFormat(),&data);
 
         bool hasAlpha = false;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
         for ( size_t yy = 0 ; yy < height && !hasAlpha ; ++yy)
         {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   if 0
+#       pragma simd
+#   endif
+#endif /* VDM auto patch */
             for( size_t xx = 0 ; xx < width && !hasAlpha; ++xx)
             {
                 ARGB *dest = (ARGB*)((BYTE*)data.Scan0 + data.Stride*yy + xx*4);
