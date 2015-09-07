@@ -503,6 +503,15 @@ static void ColouriseBashDoc(unsigned int startPos, int length, int initStyle,
 				if (sc.atLineStart) {
 					sc.SetState(SCE_SH_HERE_Q);
 					int prefixws = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 					while (sc.ch == '\t' && !sc.atLineEnd) {	// tabulation prefix
 						sc.Forward();
 						prefixws++;

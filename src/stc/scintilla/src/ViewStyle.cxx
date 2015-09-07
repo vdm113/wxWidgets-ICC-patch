@@ -148,6 +148,15 @@ ViewStyle::ViewStyle(const ViewStyle &source) {
 	CalcLargestMarkerHeight();
 	indicatorsDynamic = 0;
 	indicatorsSetFore = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 	for (int ind=0; ind<=INDIC_MAX; ind++) {
 		indicators[ind] = source.indicators[ind];
 		if (indicators[ind].IsDynamic())
@@ -445,6 +454,15 @@ void ViewStyle::Refresh(Surface &surface, int tabInChars) {
 	}
 	indicatorsDynamic = 0;
 	indicatorsSetFore = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 	for (int ind = 0; ind <= INDIC_MAX; ind++) {
 		if (indicators[ind].IsDynamic())
 			indicatorsDynamic++;
@@ -625,6 +643,15 @@ ColourOptional ViewStyle::Background(int marksOfLine, bool caretActive, bool lin
 	}
 	if (!background.isSet && marksOfLine) {
 		int marks = marksOfLine;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 		for (int markBit = 0; (markBit < 32) && marks; markBit++) {
 			if ((marks & 1) && (markers[markBit].markType == SC_MARK_BACKGROUND) &&
 				(markers[markBit].alpha == SC_ALPHA_NOALPHA)) {
@@ -636,6 +663,15 @@ ColourOptional ViewStyle::Background(int marksOfLine, bool caretActive, bool lin
 	if (!background.isSet && maskInLine) {
 		int marksMasked = marksOfLine & maskInLine;
 		if (marksMasked) {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 			for (int markBit = 0; (markBit < 32) && marksMasked; markBit++) {
 				if ((marksMasked & 1) && (markers[markBit].markType != SC_MARK_EMPTY) &&
 					(markers[markBit].alpha == SC_ALPHA_NOALPHA)) {
@@ -648,6 +684,14 @@ ColourOptional ViewStyle::Background(int marksOfLine, bool caretActive, bool lin
 	return background;
 }
 
+bool ViewStyle::SelectionBackgroundDrawn() const {
+	return selColours.back.isSet &&
+		((selAlpha == SC_ALPHA_NOALPHA) || (selAdditionalAlpha == SC_ALPHA_NOALPHA));
+}
+
+bool ViewStyle::WhitespaceBackgroundDrawn() const {
+	return (viewWhitespace != wsInvisible) && (whitespaceColours.back.isSet);
+}
 
 ColourDesired ViewStyle::WrapColour() const {
 	if (whitespaceColours.fore.isSet)

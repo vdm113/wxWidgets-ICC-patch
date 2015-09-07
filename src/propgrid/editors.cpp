@@ -362,7 +362,7 @@ void wxPGTextCtrlEditor::DrawValue( wxDC& dc, wxPGProperty* property, const wxRe
         // Code below should no longer be needed, as the obfuscation
         // is now done in GetValueAsString.
         /*if ( property->HasFlag(wxPG_PROP_PASSWORD) &&
-             property->IsKindOf(WX_PG_CLASSINFO(wxStringProperty)) )
+             wxDynamicCast(property, wxStringProperty) )
         {
             size_t a = drawStr.length();
             drawStr.Empty();
@@ -1045,6 +1045,15 @@ wxWindow* wxPGChoiceEditor::CreateControlsBase( wxPropertyGrid* propGrid,
             }
         }
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
         for ( unsigned int i = 0; i < cmnVals; i++ )
             labels.Add(propGrid->GetCommonValueLabel(i));
     }

@@ -2060,6 +2060,15 @@ wxWindow *wxFindWindowRecursively(const wxWindow *parent,
         return (wxWindow *)parent;
 
     // It wasn't, so check all its children
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = parent->GetChildren().GetFirst();
           node;
           node = node->GetNext() )
@@ -3101,11 +3110,16 @@ void wxWindowBase::OnInternalIdle()
 
 #ifndef wxHAVE_DPI_INDEPENDENT_PIXELS
 
-wxSize wxWindowBase::FromDIP(const wxSize& sz) const
+/* static */
+wxSize
+wxWindowBase::FromDIP(const wxSize& sz, const wxWindowBase* WXUNUSED(w))
 {
-    const double scale = GetContentScaleFactor();
+    const wxSize dpi = wxScreenDC().GetPPI();
 
-    return wxSize(wxRound(scale*sz.x), wxRound(scale*sz.y));
+    // Take care to not scale -1 because it has a special meaning of
+    // "unspecified" which should be preserved.
+    return wxSize(sz.x == -1 ? -1 : wxMulDivInt32(sz.x, dpi.x, BASELINE_DPI),
+                  sz.y == -1 ? -1 : wxMulDivInt32(sz.y, dpi.y, BASELINE_DPI));
 }
 
 #endif // !wxHAVE_DPI_INDEPENDENT_PIXELS

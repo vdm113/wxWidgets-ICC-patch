@@ -588,6 +588,15 @@ void SCI_METHOD LexerSQL::Lex(unsigned int startPos, int length, int initStyle, 
 			// Locate the unique Q operator character
 			sc.Complete();
 			char qOperator = 0x00;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 			for (int styleStartPos = sc.currentPos; styleStartPos > 0; --styleStartPos) {
 				if (styler.StyleAt(styleStartPos - 1) != SCE_SQL_QOPERATOR) {
 					qOperator = styler.SafeGetCharAt(styleStartPos + 2);

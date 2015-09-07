@@ -1299,6 +1299,15 @@ wxSize wxPropertyGrid::DoGetBestSize() const
 
     wxClientDC dc(const_cast<wxPropertyGrid *>(this));
     int width = m_marginWidth;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < m_pState->GetColumnCount(); i++ )
     {
         width += m_pState->GetColumnFitWidth(dc, m_pState->DoGetRoot(), i, true);
@@ -1797,7 +1806,7 @@ wxPoint wxPropertyGrid::GetGoodEditorDialogPosition( wxPGProperty* p,
     int x = splitterX;
     int y = p->GetY();
 
-    wxCHECK_MSG( y >= 0, wxPoint(-1,-1), wxS("invalid y?") );
+    wxCHECK_MSG( y >= 0, wxDefaultPosition, wxS("invalid y?") );
 
     ImprovedClientToScreen( &x, &y );
 
@@ -2402,6 +2411,15 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
         // Splitters
         int sx = x;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
         for ( unsigned int si = 0; si < colCount; si++ )
         {
             sx += colWidths[si];
@@ -2540,6 +2558,15 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
         // Calculate cellRect.x for the last cell
         unsigned int ci = 0;
         int cellX = x + 1;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
         for ( ci = 0; ci < colCount; ci++ )
             cellX += colWidths[ci];
         cellRect.x = cellX;
@@ -2548,6 +2575,15 @@ int wxPropertyGrid::DoDrawItems( wxDC& dc,
         // cell on the right was empty from text
         bool prevFilled = true;
         ci = colCount;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
         do
         {
             ci--;
@@ -4951,6 +4987,15 @@ void wxPropertyGrid::SetFocusOnCanvas()
         if ( focus )
         {
             wxWindow* parent = focus->GetParent();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
             while ( parent )
             {
                 if ( parent == this )
