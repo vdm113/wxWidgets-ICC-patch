@@ -326,6 +326,15 @@ int SCI_METHOD LexerVerilog::WordListSet(int n, const char *wl) {
 			if (n == 5) {
 				// Rebuild preprocessorDefinitions
 				preprocessorDefinitionsStart.clear();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 				for (int nDefinition = 0; nDefinition < ppDefinitions.Length(); nDefinition++) {
 					const char *cpDefinition = ppDefinitions.WordAt(nDefinition);
 					const char *cpEquals = strchr(cpDefinition, '=');
@@ -363,6 +372,15 @@ static inline bool IsAWordStart(const int ch) {
 }
 
 static inline bool AllUpperCase(const char *a) {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 	while (*a) {
 		if (*a >= 'a' && *a <= 'z') return false;
 		a++;
@@ -384,6 +402,15 @@ static std::string GetRestOfLine(LexAccessor &styler, int start, bool allowSpace
 	int i =0;
 	char ch = styler.SafeGetCharAt(start, '\n');
 	int endLine = styler.LineEnd(styler.GetLine(start));
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 	while (((start+i) < endLine) && (ch != '\r')) {
 		char chNext = styler.SafeGetCharAt(start + i + 1, '\n');
 		if (ch == '/' && (chNext == '/' || chNext == '*'))
@@ -444,16 +471,21 @@ void SCI_METHOD LexerVerilog::Lex(unsigned int startPos, int length, int initSty
 	}
 
 	SymbolTable preprocessorDefinitions = preprocessorDefinitionsStart;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 	for (std::vector<PPDefinition>::iterator itDef = ppDefineHistory.begin(); itDef != ppDefineHistory.end(); ++itDef) {
 		if (itDef->isUndef)
 			preprocessorDefinitions.erase(itDef->key);
 		else
 			preprocessorDefinitions[itDef->key] = SymbolValue(itDef->value, itDef->arguments);
 	}
-
-	int activitySet = preproc.IsInactive() ? activeFlag : 0;
-	int lineEndNext = styler.LineEnd(curLine);
-	bool isEscapedId = false;    // true when parsing an escaped Identifier
 
 	int activitySet = preproc.IsInactive() ? activeFlag : 0;
 	int lineEndNext = styler.LineEnd(curLine);
@@ -703,19 +735,55 @@ void SCI_METHOD LexerVerilog::Lex(unsigned int startPos, int length, int initSty
 							if (options.updatePreprocessor && !preproc.IsInactive()) {
 								std::string restOfLine = GetRestOfLine(styler, sc.currentPos + 6, true);
 								size_t startName = 0;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 								while ((startName < restOfLine.length()) && IsSpaceOrTab(restOfLine[startName]))
 									startName++;
 								size_t endName = startName;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 								while ((endName < restOfLine.length()) && setWord.Contains(static_cast<unsigned char>(restOfLine[endName])))
 									endName++;
 								std::string key = restOfLine.substr(startName, endName-startName);
 								if ((endName < restOfLine.length()) && (restOfLine.at(endName) == '(')) {
 									// Macro
 									size_t endArgs = endName;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 									while ((endArgs < restOfLine.length()) && (restOfLine[endArgs] != ')'))
 										endArgs++;
 									std::string args = restOfLine.substr(endName + 1, endArgs - endName - 1);
 									size_t startValue = endArgs+1;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 									while ((startValue < restOfLine.length()) && IsSpaceOrTab(restOfLine[startValue]))
 										startValue++;
 									std::string value;
@@ -727,6 +795,15 @@ void SCI_METHOD LexerVerilog::Lex(unsigned int startPos, int length, int initSty
 								} else {
 									// Value
 									size_t startValue = endName;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 									while ((startValue < restOfLine.length()) && IsSpaceOrTab(restOfLine[startValue]))
 										startValue++;
 									std::string value = restOfLine.substr(startValue);
@@ -739,6 +816,15 @@ void SCI_METHOD LexerVerilog::Lex(unsigned int startPos, int length, int initSty
 							if (options.updatePreprocessor && !preproc.IsInactive()) {
 								// remove all preprocessor definitions
 								std::map<std::string, SymbolValue>::iterator itDef;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 								for(itDef = preprocessorDefinitions.begin(); itDef != preprocessorDefinitions.end(); ++itDef) {
 									ppDefineHistory.push_back(PPDefinition(curLine, itDef->first, "", true));
 								}
@@ -855,6 +941,15 @@ void SCI_METHOD LexerVerilog::Fold(unsigned int startPos, int length, int initSt
 		foldState.erase(foldStateIterator, foldState.end());
 	}
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 	for (unsigned int i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);
@@ -1066,15 +1161,42 @@ std::vector<std::string> LexerVerilog::Tokenize(const std::string &expr) const {
 	// Break into tokens
 	std::vector<std::string> tokens;
 	const char *cp = expr.c_str();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 	while (*cp) {
 		std::string word;
 		if (setWord.Contains(static_cast<unsigned char>(*cp))) {
 			// Identifiers and numbers
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 			while (setWord.Contains(static_cast<unsigned char>(*cp))) {
 				word += *cp;
 				cp++;
 			}
 		} else if (IsSpaceOrTab(*cp)) {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 			while (IsSpaceOrTab(*cp)) {
 				cp++;
 			}
