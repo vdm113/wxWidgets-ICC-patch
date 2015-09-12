@@ -185,6 +185,15 @@ public:
     // add all windows to update region to force redraw
     void Refresh()
     {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
         for ( size_t n = 0; n < m_count; n++ )
         {
             if ( m_hwnds[n] )
