@@ -93,6 +93,7 @@ public:
     void OnTextPaste(wxClipboardTextEvent & event);
 
     void OnMouseEvent(wxMouseEvent& event);
+    void OnContextMenu(wxContextMenuEvent& event);
 
     void OnSetFocus(wxFocusEvent& event);
     void OnKillFocus(wxFocusEvent& event);
@@ -591,6 +592,7 @@ wxBEGIN_EVENT_TABLE(MyTextCtrl, wxTextCtrl)
     EVT_TEXT_PASTE(wxID_ANY, MyTextCtrl::OnTextPaste)
 
     EVT_MOUSE_EVENTS(MyTextCtrl::OnMouseEvent)
+    EVT_CONTEXT_MENU(MyTextCtrl::OnContextMenu)
 
     EVT_SET_FOCUS(MyTextCtrl::OnSetFocus)
     EVT_KILL_FOCUS(MyTextCtrl::OnKillFocus)
@@ -832,6 +834,17 @@ void MyTextCtrl::OnMouseEvent(wxMouseEvent& ev)
         wxLogMessage(msg);
     }
     //else: we're not interested in mouse move events
+}
+
+void MyTextCtrl::OnContextMenu(wxContextMenuEvent& ev)
+{
+    ev.Skip();
+
+    if ( !ms_logMouse )
+        return;
+
+    const wxPoint pos = ev.GetPosition();
+    wxLogMessage("Context menu event at (%d, %d)", pos.x, pos.y);
 }
 
 void MyTextCtrl::OnSetFocus(wxFocusEvent& event)
