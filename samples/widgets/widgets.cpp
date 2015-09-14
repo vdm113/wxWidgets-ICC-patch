@@ -460,6 +460,8 @@ WidgetsFrame::WidgetsFrame(const wxString& title)
     SetMenuBar(mbar);
 
     mbar->Check(Widgets_Enable, true);
+    mbar->Check(Widgets_Show, true);
+
     mbar->Check(Widgets_VariantNormal, true);
 #endif // wxUSE_MENUS
 
@@ -938,6 +940,13 @@ void WidgetsFrame::OnEnable(wxCommandEvent& event)
     CurrentPage()->SetUpWidget();
 }
 
+void WidgetsFrame::OnShow(wxCommandEvent &event)
+{
+    WidgetsPage::GetAttrs().m_show = event.IsChecked();
+
+    CurrentPage()->SetUpWidget();
+}
+
 void WidgetsFrame::OnSetBorder(wxCommandEvent& event)
 {
     int border;
@@ -1388,10 +1397,21 @@ void WidgetsPage::SetUpWidget()
 {
     const Widgets widgets = GetWidgets();
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
     for ( Widgets::const_iterator it = widgets.begin();
             it != widgets.end();
             ++it )
     {
+        wxCHECK_RET(*it, "NULL widget");
+
 #if wxUSE_TOOLTIPS
         (*it)->SetToolTip(GetAttrs().m_tooltip);
 #endif // wxUSE_TOOLTIPS
@@ -1413,6 +1433,7 @@ void WidgetsPage::SetUpWidget()
 
         (*it)->SetLayoutDirection(GetAttrs().m_dir);
         (*it)->Enable(GetAttrs().m_enabled);
+        (*it)->Show(GetAttrs().m_show);
 
         if ( GetAttrs().m_cursor.IsOk() )
         {
