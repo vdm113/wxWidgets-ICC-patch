@@ -157,8 +157,7 @@ struct TextSegment {
 // Class to break a line of text into shorter runs at sensible places.
 class BreakFinder {
 	const LineLayout *ll;
-	int lineStart;
-	int lineEnd;
+	Range lineRange;
 	int posLineStart;
 	int nextBreak;
 	std::vector<int> selAndEdge;
