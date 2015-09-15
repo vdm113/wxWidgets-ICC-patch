@@ -503,7 +503,10 @@ wxFSFile *wxHtmlWinParser::OpenURL(wxHtmlURLType type,
         wxString redirect;
         status = m_windowInterface->OnHTMLOpeningURL(type, myfullurl, &redirect);
         if ( status != wxHTML_REDIRECT )
+        {
+            myurl = myfullurl;
             break;
+        }
 
         myurl = redirect;
     }
