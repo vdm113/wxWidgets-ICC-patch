@@ -4,28 +4,30 @@
 # root directory of the project.
 language: cpp
 
-compiler: gcc
+compiler:
+    - gcc
 
 branches:
     only:
         - master
-        - WX_3_0_BRANCH
+
+os:
+    - linux
 
 notifications:
     email:
         recipients:
-            - vadim@wxwidgets.org
+            - vdm113@gmail.com
         on_success: change
-        on_failure: change
+        on_failure: always
+        on_start: always
 
 before_install:
     - sudo apt-get install -y libcppunit-dev
 
 env:
-    - wxCONFIGURE_FLAGS=
-    - wxCONFIGURE_FLAGS="--disable-shared"
+    - wxCONFIGURE_FLAGS="--disable-precomp-headers --disable-shared"
     - wxCONFIGURE_FLAGS="--disable-precomp-headers --enable-monolithic"
-    - wxCONFIGURE_FLAGS="--enable-stl" CXXFLAGS=-std=c++0x
 
 script:
     - ./configure --disable-optimise $wxCONFIGURE_FLAGS
