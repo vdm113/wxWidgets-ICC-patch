@@ -558,6 +558,9 @@
     <ClCompile Include="..\..\src\msw\app.cpp">
       <Filter>MSW Sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\msw\appprogress.cpp">
+      <Filter>MSW Sources</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\msw\artmsw.cpp">
       <Filter>MSW Sources</Filter>
     </ClCompile>
@@ -837,6 +840,12 @@
     <ClCompile Include="..\..\src\msw\statusbar.cpp">
       <Filter>MSW Sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\msw\systhemectrl.cpp">
+      <Filter>MSW Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\msw\taskbarbutton.cpp">
+      <Filter>MSW Sources</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\msw\textctrl.cpp">
       <Filter>MSW Sources</Filter>
     </ClCompile>
@@ -883,12 +892,6 @@
       <Filter>Common Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\msw\graphicsd2d.cpp">
-      <Filter>MSW Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\msw\taskbarbutton.cpp">
-      <Filter>MSW Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\msw\appprogress.cpp">
       <Filter>MSW Sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1351,6 +1354,9 @@
     <ClInclude Include="..\..\include\wx\msw\app.h">
       <Filter>MSW Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\wx\msw\appprogress.h">
+      <Filter>MSW Headers</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\wx\msw\bitmap.h">
       <Filter>MSW Headers</Filter>
     </ClInclude>
@@ -1618,6 +1624,9 @@
     <ClInclude Include="..\..\include\wx\msw\statusbar.h">
       <Filter>MSW Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\wx\msw\taskbarbutton.h">
+      <Filter>MSW Headers</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\wx\msw\textctrl.h">
       <Filter>MSW Headers</Filter>
     </ClInclude>
@@ -1647,6 +1656,9 @@
     </ClInclude>
     <ClInclude Include="..\..\include\wx\msw\window.h">
       <Filter>MSW Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx\appprogress.h">
+      <Filter>Common Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\wx\nativewin.h">
       <Filter>Common Headers</Filter>
@@ -1798,6 +1810,12 @@
     <ClInclude Include="..\..\include\wx\statusbr.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\wx\systhemectrl.h">
+      <Filter>Common Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx\taskbarbutton.h">
+      <Filter>Common Headers</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\wx\tbarbase.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
@@ -1900,14 +1918,7 @@
     <ClInclude Include="..\..\include\wx\xrc\xmlreshandler.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wx\taskbarbutton.h">
-      <Filter>Generic Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\wx\msw\taskbarbutton.h">
-      <Filter>Generic Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\wx\msw\appprogress.h" />
-    <ClInclude Include="..\..\include\wx\appprogress.h" />
+    <ClInclude Include="..\..\src\msw\systhemectrl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\include\wx\msw\setup.h">
