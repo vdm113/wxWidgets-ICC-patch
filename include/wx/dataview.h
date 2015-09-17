@@ -35,6 +35,7 @@
 #include "wx/vector.h"
 #include "wx/dataobj.h"
 #include "wx/withimages.h"
+#include "wx/systhemectrl.h"
 
 class WXDLLIMPEXP_FWD_CORE wxImageList;
 
@@ -522,7 +523,7 @@ private:
 #define wxDV_ROW_LINES               0x0010     // alternating colour in rows
 #define wxDV_VARIABLE_LINE_HEIGHT    0x0020     // variable line height
 
-class WXDLLIMPEXP_ADV wxDataViewCtrlBase: public wxControl
+class WXDLLIMPEXP_ADV wxDataViewCtrlBase: public wxSystemThemedControl<wxControl>
 {
 public:
     wxDataViewCtrlBase();
