@@ -1180,7 +1180,6 @@ IMPORTANT: please read docs/tech/tn0016.txt before modifying this file!
     wx/xpmhand.h
     wx/xrc/xmlreshandler.h
     wx/systhemectrl.h
-    wx/collheaderctrl.h
 </set>
 
 <!-- ====================================================================== -->
@@ -1983,7 +1982,6 @@ IMPORTANT: please read docs/tech/tn0016.txt before modifying this file!
     src/msw/tglbtn.cpp
     src/msw/treectrl.cpp
     src/msw/systhemectrl.cpp
-    src/generic/collheaderctrlg.cpp
 </set>
 <set var="MSW_HDR" hints="files">
     wx/generic/clrpickerg.h
