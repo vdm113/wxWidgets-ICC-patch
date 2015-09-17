@@ -5889,11 +5889,10 @@ void wxDataViewCtrl::ToggleSortByColumn(int column)
 
 void wxDataViewCtrl::DoEnableSystemTheme(bool enable, wxWindow* window)
 {
-    typedef wxSystemThemedControl<wxControl> Base;
-    Base::DoEnableSystemTheme(enable, window);
-    Base::DoEnableSystemTheme(enable, m_clientArea);
+    wxSystemThemedControl::DoEnableSystemTheme(enable, window);
+    wxSystemThemedControl::DoEnableSystemTheme(enable, m_clientArea);
     if ( m_headerArea )
-        Base::DoEnableSystemTheme(enable, m_headerArea);
+        wxSystemThemedControl::DoEnableSystemTheme(enable, m_headerArea);
 }
 
 #endif // !wxUSE_GENERICDATAVIEWCTRL
