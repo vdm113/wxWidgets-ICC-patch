@@ -1918,7 +1918,6 @@
     <ClInclude Include="..\..\include\wx\xrc\xmlreshandler.h">
       <Filter>Common Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\msw\systhemectrl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\include\wx\msw\setup.h">
