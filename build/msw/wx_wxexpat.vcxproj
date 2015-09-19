@@ -170,7 +170,6 @@
       <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <AssemblerOutput>All</AssemblerOutput>
       <AdditionalOptions>/QxHOST %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ResourceCompile>
@@ -219,7 +218,6 @@
       <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <AssemblerOutput>All</AssemblerOutput>
       <AdditionalOptions>/QxHOST %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ResourceCompile>
@@ -267,7 +265,6 @@
       <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <AssemblerOutput>All</AssemblerOutput>
       <AdditionalOptions>/QxHOST %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ResourceCompile>
@@ -316,7 +313,6 @@
       <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <AssemblerOutput>All</AssemblerOutput>
       <AdditionalOptions>/QxHOST %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ResourceCompile>
@@ -365,7 +361,6 @@
       <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <AssemblerOutput>All</AssemblerOutput>
       <AdditionalOptions>/QxHOST %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ResourceCompile>
@@ -414,7 +409,6 @@
       <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <AssemblerOutput>All</AssemblerOutput>
       <AdditionalOptions>/QxHOST %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ResourceCompile>
@@ -462,7 +456,6 @@
       <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <AssemblerOutput>All</AssemblerOutput>
       <AdditionalOptions>/QxHOST %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ResourceCompile>
@@ -510,7 +503,6 @@
       <OptimizeForWindowsApplication>true</OptimizeForWindowsApplication>
       <FlushDenormalResultsToZero>true</FlushDenormalResultsToZero>
       <UseIntelOptimizedHeaders>true</UseIntelOptimizedHeaders>
-      <AssemblerOutput>All</AssemblerOutput>
       <AdditionalOptions>/QxHOST %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ResourceCompile>
