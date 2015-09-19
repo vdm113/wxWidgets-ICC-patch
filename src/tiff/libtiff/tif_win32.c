@@ -238,8 +238,16 @@ TIFFFdOpen(int ifd, const char* name, const char* mode)
 	int m;
 	fd_as_handle_union_t fdh;
 	fSuppressMap=0;
-	fd_as_handle_union_t fdh;
 	fdh.fd = ifd;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 	for (m=0; mode[m]!=0; m++)
 	{
 		if (mode[m]=='u')
