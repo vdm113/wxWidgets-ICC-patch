@@ -159,7 +159,8 @@ public:
                               const wxString& text,
                               const wxRect& rect,
                               int align = wxALIGN_LEFT | wxALIGN_TOP,
-                              int flags = 0) wxOVERRIDE;
+                              int flags = 0,
+                              wxEllipsizeMode ellipsizeMode = wxELLIPSIZE_END) wxOVERRIDE;
 
     virtual wxSplitterRenderParams GetSplitterParams(const wxWindow *win) wxOVERRIDE;
 
@@ -933,7 +934,8 @@ wxRendererGeneric::DrawItemText(wxWindow* win,
                                 const wxString& text,
                                 const wxRect& rect,
                                 int align,
-                                int flags)
+                                int flags,
+                                wxEllipsizeMode ellipsizeMode)
 {
     // Determine text color
     wxColour textColour;
@@ -958,7 +960,7 @@ wxRendererGeneric::DrawItemText(wxWindow* win,
     }
 
     const wxString paintText = wxControl::Ellipsize(text, dc,
-                                                    wxELLIPSIZE_END,
+                                                    ellipsizeMode,
                                                     rect.GetWidth());
 
     // Draw text

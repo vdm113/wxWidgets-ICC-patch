@@ -35,6 +35,7 @@
 #ifndef WX_PRECOMP
     #include "wx/string.h"
     #include "wx/window.h"
+    #include "wx/control.h"     // for wxControl::Ellipsize()
     #include "wx/dc.h"
     #include "wx/settings.h"
 #endif //WX_PRECOMP
@@ -347,7 +348,8 @@ public:
                               const wxString& text,
                               const wxRect& rect,
                               int align = wxALIGN_LEFT | wxALIGN_TOP,
-                              int flags = 0);
+                              int flags = 0,
+                              wxEllipsizeMode ellipsizeMode = wxELLIPSIZE_END);
 
     virtual wxSplitterRenderParams GetSplitterParams(const wxWindow *win);
 
@@ -979,7 +981,8 @@ void wxRendererXP::DrawItemText(wxWindow* win,
                                 const wxString& text,
                                 const wxRect& rect,
                                 int align,
-                                int flags)
+                                int flags,
+                                wxEllipsizeMode ellipsizeMode)
 {
     wxUxThemeHandle hTheme(win, L"LISTVIEW");
 
@@ -1008,7 +1011,7 @@ void wxRendererXP::DrawItemText(wxWindow* win,
             textOpts.crText = wxSystemSettings::GetColour(wxSYS_COLOUR_GRAYTEXT).GetPixel();
         }
 
-        DWORD textFlags = DT_NOPREFIX | DT_END_ELLIPSIS;
+        DWORD textFlags = DT_NOPREFIX;
         if ( align & wxALIGN_CENTER_HORIZONTAL )
             textFlags |= DT_CENTER;
         else if ( align & wxALIGN_RIGHT )
@@ -1023,12 +1026,37 @@ void wxRendererXP::DrawItemText(wxWindow* win,
         else
             textFlags |= DT_TOP;
 
+        const wxString* drawText = &text;
+        wxString ellipsizedText;
+        switch ( ellipsizeMode )
+        {
+            case wxELLIPSIZE_NONE:
+                // no flag required
+                break;
+
+            case wxELLIPSIZE_START:
+            case wxELLIPSIZE_MIDDLE:
+                // no native support for this ellipsize modes, use wxWidgets
+                // implementation (may not be 100% accurate because per
+                // definition the theme defines the font but should be close
+                // enough with current windows themes)
+                drawText = &ellipsizedText;
+                ellipsizedText = wxControl::Ellipsize(text, dc, ellipsizeMode,
+                                                      rect.width,
+                                                      wxELLIPSIZE_FLAGS_NONE);
+                break;
+
+            case wxELLIPSIZE_END:
+                textFlags |= DT_END_ELLIPSIS;
+                break;
+        }
+
         te->DrawThemeTextEx(hTheme, dc.GetHDC(), LVP_LISTITEM, itemState,
-                            text.wchar_str(), -1, textFlags, &rc, &textOpts);
+                            drawText->wchar_str(), -1, textFlags, &rc, &textOpts);
     }
     else
     {
-        m_rendererNative.DrawItemText(win, dc, text, rect, align, flags);
+        m_rendererNative.DrawItemText(win, dc, text, rect, align, flags, ellipsizeMode);
     }
 }
 
