@@ -86,8 +86,6 @@
 
 #if defined(__VISUALC__) && !defined(__WXWINCE__)
     typedef _off_t off_t;
-#elif defined(__SYMANTEC__)
-    typedef long off_t;
 #endif
 
 enum wxSeekMode
