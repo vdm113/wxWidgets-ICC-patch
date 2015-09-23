@@ -83,7 +83,7 @@
 #include <unistd.h>
 #endif
 
-#if defined(__DOS__) || defined(__WINDOWS__)
+#if defined(__WINDOWS__)
 #define IsTopMostDir(dir)   (dir.empty())
 #else
 #define IsTopMostDir(dir)   (dir == wxT("/"))
