@@ -27,11 +27,7 @@
 // resizing complicated window hierarchies, but this can in theory result in
 // different behaviour than the old code so we keep the possibility to use it
 // by setting this to 0 (in the future this should be removed completely)
-#ifdef __WXWINCE__
-    #define wxUSE_DEFERRED_SIZING 0
-#else
-    #define wxUSE_DEFERRED_SIZING 1
-#endif
+#define wxUSE_DEFERRED_SIZING 1
 
 // ---------------------------------------------------------------------------
 // wxWindow declaration for MSW
@@ -148,11 +144,6 @@ public:
     virtual bool UnregisterHotKey(int hotkeyId);
 #endif // wxUSE_HOTKEY
 
-#ifdef __POCKETPC__
-    bool IsContextMenuEnabled() const { return m_contextMenuEnabled; }
-    void EnableContextMenu(bool enable = true) { m_contextMenuEnabled = enable; }
-#endif
-
     // window handle stuff
     // -------------------
 
@@ -197,9 +188,6 @@ public:
     // --------------
 
     void OnPaint(wxPaintEvent& event);
-#ifdef __WXWINCE__
-    void OnInitDialog(wxInitDialogEvent& event);
-#endif
 
 public:
     // Windows subclassing
@@ -495,7 +483,7 @@ public:
         return InheritsBackgroundColour();
     }
 
-#if !defined(__WXWINCE__) && !defined(__WXUNIVERSAL__)
+#if !defined(__WXUNIVERSAL__)
     #define wxHAS_MSW_BACKGROUND_ERASE_HOOK
 #endif
 
@@ -728,10 +716,6 @@ protected:
 #endif // wxUSE_DEFERRED_SIZING
 
 private:
-#ifdef __POCKETPC__
-    bool        m_contextMenuEnabled;
-#endif
-
     wxDECLARE_DYNAMIC_CLASS(wxWindowMSW);
     wxDECLARE_NO_COPY_CLASS(wxWindowMSW);
     wxDECLARE_EVENT_TABLE();

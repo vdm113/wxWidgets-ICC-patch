@@ -33,9 +33,7 @@
 
 #include <stdlib.h>
 
-#ifndef __WXWINCE__
-#   include <time.h>
-#endif
+#include <time.h>
 
 #ifndef wxHAS_IMAGES_IN_RESOURCES
 #   include "bombs.xpm"
@@ -43,18 +41,10 @@
 
 wxIMPLEMENT_APP(BombsApp);
 
-#ifdef __WXWINCE__
-    STDAPI_(__int64) CeGetRandomSeed();
-#endif
-
 // Called to initialize the program
 bool BombsApp::OnInit()
 {
-#ifdef __WXWINCE__
-    srand((unsigned) CeGetRandomSeed());
-#else
     srand((unsigned) time(NULL));
-#endif
 
     m_frame = new BombsFrame(&m_game);
 

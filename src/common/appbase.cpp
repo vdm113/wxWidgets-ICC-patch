@@ -214,7 +214,7 @@ wxAppConsoleBase::~wxAppConsoleBase()
 
 bool wxAppConsoleBase::Initialize(int& WXUNUSED(argc), wxChar **WXUNUSED(argv))
 {
-#if defined(__WINDOWS__) && !defined(__WXWINCE__)
+#if defined(__WINDOWS__)
     SetErrorMode(SEM_FAILCRITICALERRORS|SEM_NOOPENFILEERRORBOX);
 #endif
 
@@ -1150,11 +1150,7 @@ bool wxAssertIsEqual(int x, int y)
 
 void wxAbort()
 {
-#ifdef __WXWINCE__
-    ExitThread(3);
-#else
     abort();
-#endif
 }
 
 #if wxDEBUG_LEVEL

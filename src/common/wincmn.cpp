@@ -1685,17 +1685,7 @@ wxWindowBase::GetClassDefaultAttributes(wxWindowVariant WXUNUSED(variant))
     wxVisualAttributes attrs;
     attrs.font = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
     attrs.colFg = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT);
-
-    // On Smartphone/PocketPC, wxSYS_COLOUR_WINDOW is a better reflection of
-    // the usual background colour than wxSYS_COLOUR_BTNFACE.
-    // It's a pity that wxSYS_COLOUR_WINDOW isn't always a suitable background
-    // colour on other platforms.
-
-#if defined(__WXWINCE__) && (defined(__SMARTPHONE__) || defined(__POCKETPC__))
-    attrs.colBg = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW);
-#else
     attrs.colBg = wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE);
-#endif
     return attrs;
 }
 
@@ -2060,6 +2050,15 @@ wxWindow *wxFindWindowRecursively(const wxWindow *parent,
         return (wxWindow *)parent;
 
     // It wasn't, so check all its children
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
     for ( wxWindowList::compatibility_iterator node = parent->GetChildren().GetFirst();
           node;
           node = node->GetNext() )
@@ -3101,11 +3100,16 @@ void wxWindowBase::OnInternalIdle()
 
 #ifndef wxHAVE_DPI_INDEPENDENT_PIXELS
 
-wxSize wxWindowBase::FromDIP(const wxSize& sz) const
+/* static */
+wxSize
+wxWindowBase::FromDIP(const wxSize& sz, const wxWindowBase* WXUNUSED(w))
 {
-    const double scale = GetContentScaleFactor();
+    const wxSize dpi = wxScreenDC().GetPPI();
 
-    return wxSize(wxRound(scale*sz.x), wxRound(scale*sz.y));
+    // Take care to not scale -1 because it has a special meaning of
+    // "unspecified" which should be preserved.
+    return wxSize(sz.x == -1 ? -1 : wxMulDivInt32(sz.x, dpi.x, BASELINE_DPI),
+                  sz.y == -1 ? -1 : wxMulDivInt32(sz.y, dpi.y, BASELINE_DPI));
 }
 
 #endif // !wxHAVE_DPI_INDEPENDENT_PIXELS

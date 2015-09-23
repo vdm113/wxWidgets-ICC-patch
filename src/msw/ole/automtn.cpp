@@ -43,11 +43,7 @@
 #include "wx/msw/ole/oleutils.h"
 #include "wx/msw/ole/automtn.h"
 
-#ifdef __WXWINCE__
-#include "wx/msw/wince/time.h"
-#else
 #include <time.h>
-#endif
 
 #include <wtypes.h>
 #include <unknwn.h>
@@ -55,9 +51,7 @@
 #include <ole2.h>
 #define _huge
 
-#ifndef __WXWINCE__
 #include <ole2ver.h>
-#endif
 
 #include <oleauto.h>
 

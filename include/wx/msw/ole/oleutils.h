@@ -46,11 +46,7 @@
 inline bool wxOleInitialize()
 {
     HRESULT
-#ifdef __WXWINCE__
-     hr = ::CoInitializeEx(NULL, COINIT_MULTITHREADED);
-#else
-     hr = ::OleInitialize(NULL);
-#endif
+    hr = ::OleInitialize(NULL);
 
     // RPC_E_CHANGED_MODE indicates that OLE had been already initialized
     // before, albeit with different mode. Don't consider it to be an error as
@@ -69,11 +65,7 @@ inline bool wxOleInitialize()
 
 inline void wxOleUninitialize()
 {
-#ifdef __WXWINCE__
-    ::CoUninitialize();
-#else
     ::OleUninitialize();
-#endif
 }
 
 // ----------------------------------------------------------------------------

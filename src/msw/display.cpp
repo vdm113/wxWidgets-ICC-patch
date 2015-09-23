@@ -52,7 +52,6 @@
 #include "wx/msw/private.h"
 #include "wx/msw/private/hiddenwin.h"
 
-#ifndef __WXWINCE__
     // Older versions of windef.h don't define HMONITOR.  Unfortunately, we
     // can't directly test whether HMONITOR is defined or not in windef.h as
     // it's not a macro but a typedef, so we test for an unrelated symbol which
@@ -77,14 +76,8 @@
         #define MONITORINFOF_PRIMARY        0x00000001
         #define HMONITOR_DECLARED
     #endif
-#endif // !__WXWINCE__
 
-// display functions are found in different DLLs under WinCE and normal Win32
-#ifdef __WXWINCE__
-static const wxChar displayDllName[] = wxT("coredll.dll");
-#else
 static const wxChar displayDllName[] = wxT("user32.dll");
-#endif
 
 // ----------------------------------------------------------------------------
 // typedefs for dynamically loaded Windows functions
@@ -101,7 +94,6 @@ typedef HMONITOR (WINAPI *MonitorFromPoint_t)(POINT,DWORD);
 typedef HMONITOR (WINAPI *MonitorFromWindow_t)(HWND,DWORD);
 typedef BOOL (WINAPI *GetMonitorInfo_t)(HMONITOR,LPMONITORINFO);
 
-#ifndef __WXWINCE__
 // emulation of ChangeDisplaySettingsEx() for Win95
 LONG WINAPI ChangeDisplaySettingsExForWin95(LPCTSTR WXUNUSED(lpszDeviceName),
                                             LPDEVMODE lpDevMode,
@@ -111,7 +103,6 @@ LONG WINAPI ChangeDisplaySettingsExForWin95(LPCTSTR WXUNUSED(lpszDeviceName),
 {
     return ::ChangeDisplaySettings(lpDevMode, dwFlags);
 }
-#endif // !__WXWINCE__
 
 
 // ----------------------------------------------------------------------------
@@ -413,11 +404,7 @@ bool wxDisplayMSW::ChangeMode(const wxVideoMode& mode)
 
         pDevMode = &dm;
 
-#ifdef __WXWINCE__
-        flags = 0;
-#else // !__WXWINCE__
         flags = CDS_FULLSCREEN;
-#endif // __WXWINCE__/!__WXWINCE__
     }
 
 
@@ -435,14 +422,12 @@ bool wxDisplayMSW::ChangeMode(const wxVideoMode& mode)
         }
         //else: huh, no this DLL must always be present, what's going on??
 
-#ifndef __WXWINCE__
         if ( !pfnChangeDisplaySettingsEx )
         {
             // we must be under Win95 and so there is no multiple monitors
             // support anyhow
             pfnChangeDisplaySettingsEx = ChangeDisplaySettingsExForWin95;
         }
-#endif // !__WXWINCE__
     }
 
     // do change the mode

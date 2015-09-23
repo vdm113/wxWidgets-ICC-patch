@@ -32,7 +32,7 @@
     #pragma hdrstop
 #endif
 
-#if wxUSE_FILEDLG && !(defined(__SMARTPHONE__) && defined(__WXWINCE__))
+#if wxUSE_FILEDLG
 
 #include "wx/filedlg.h"
 
@@ -165,7 +165,6 @@ wxFileDialogHookFunction(HWND      hDlg,
 {
     switch ( iMsg )
     {
-#ifndef __WXWINCE__
         case WM_INITDIALOG:
             {
                 OPENFILENAME* ofn = reinterpret_cast<OPENFILENAME *>(lParam);
@@ -173,7 +172,6 @@ wxFileDialogHookFunction(HWND      hDlg,
                     ->MSWOnInitDialogHook((WXHWND)hDlg);
             }
             break;
-#endif // __WXWINCE__
 
         case WM_NOTIFY:
             {
@@ -384,14 +382,7 @@ static bool DoShowCommFileDialog(OPENFILENAME *of, long style, DWORD *err)
 
     if ( err )
     {
-#ifdef __WXWINCE__
-        // according to MSDN, CommDlgExtendedError() should work under CE as
-        // well but apparently in practice it doesn't (anybody has more
-        // details?)
-        *err = GetLastError();
-#else
         *err = CommDlgExtendedError();
-#endif
     }
 
     return false;
@@ -402,13 +393,13 @@ static bool DoShowCommFileDialog(OPENFILENAME *of, long style, DWORD *err)
 // V4 (smaller) one so we try to manually extend the struct in case it is the
 // old one.
 //
-// We don't do this on Windows CE nor under Win64, however, as there are no
+// We don't do this under Win64, however, as there are no
 // compilers with old headers for these architectures
-#if defined(__WXWINCE__) || defined(__WIN64__)
+#if defined(__WIN64__)
     typedef OPENFILENAME wxOPENFILENAME;
 
     static const DWORD gs_ofStructSize = sizeof(OPENFILENAME);
-#else // !__WXWINCE__ || __WIN64__
+#else // __WIN64__
     #define wxTRY_SMALLER_OPENFILENAME
 
     struct wxOPENFILENAME : public OPENFILENAME
@@ -429,7 +420,7 @@ static bool DoShowCommFileDialog(OPENFILENAME *of, long style, DWORD *err)
 
     // always try the new one first
     static DWORD gs_ofStructSize = wxOPENFILENAME_V5_SIZE;
-#endif // __WXWINCE__ || __WIN64__/!...
+#endif // __WIN64__/!...
 
 static bool ShowCommFileDialog(OPENFILENAME *of, long style)
 {
@@ -455,11 +446,7 @@ static bool ShowCommFileDialog(OPENFILENAME *of, long style)
 #endif // wxTRY_SMALLER_OPENFILENAME
 
     if ( !success &&
-            // FNERR_INVALIDFILENAME is not defined under CE (besides we don't
-            // use CommDlgExtendedError() there anyhow)
-#ifndef __WXWINCE__
             errCode == FNERR_INVALIDFILENAME &&
-#endif // !__WXWINCE__
                 of->lpstrFile[0] )
     {
         // this can happen if the default file name is invalid, try without it
@@ -483,7 +470,6 @@ static bool ShowCommFileDialog(OPENFILENAME *of, long style)
     return true;
 }
 
-#ifndef __WXWINCE__
 void wxFileDialog::MSWOnInitDialogHook(WXHWND hwnd)
 {
    SetHWND(hwnd);
@@ -492,7 +478,6 @@ void wxFileDialog::MSWOnInitDialogHook(WXHWND hwnd)
 
    SetHWND(NULL);
 }
-#endif // __WXWINCE__
 
 int wxFileDialog::ShowModal()
 {
@@ -528,9 +513,7 @@ int wxFileDialog::ShowModal()
     {
         ChangeExceptionPolicy();
         msw_flags |= OFN_EXPLORER|OFN_ENABLEHOOK;
-#ifndef __WXWINCE__
         msw_flags |= OFN_ENABLESIZING;
-#endif
     }
 
     wxON_BLOCK_EXIT0(RestoreExceptionPolicy);
@@ -563,7 +546,6 @@ int wxFileDialog::ShowModal()
     of.lpstrFileTitle    = titleBuffer;
     of.nMaxFileTitle     = wxMAXFILE + 1 + wxMAXEXT;
 
-#ifndef __WXWINCE__
     GlobalPtr hgbl;
     if ( HasExtraControlCreator() )
     {
@@ -591,7 +573,6 @@ int wxFileDialog::ShowModal()
 
         of.hInstance = (HINSTANCE)lpdt;
     }
-#endif // __WXWINCE__
 
     // Convert forward slashes to backslashes (file selector doesn't like
     // forward slashes) and also squeeze multiple consecutive slashes into one
@@ -717,6 +698,15 @@ int wxFileDialog::ShowModal()
         const wxChar* extension = filterBuffer.t_str();
         int maxFilter = (int)(of.nFilterIndex*2L) - 1;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
         for( int j = 0; j < maxFilter; j++ )           // get extension
             extension = extension + wxStrlen( extension ) + 1;
 
@@ -817,6 +807,15 @@ int wxFileDialog::ShowModal()
             const wxChar* extension = filterBuffer.t_str();
             int   maxFilter = (int)(of.nFilterIndex*2L) - 1;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
             for( int j = 0; j < maxFilter; j++ )           // get extension
                 extension = extension + wxStrlen( extension ) + 1;
 
@@ -834,4 +833,4 @@ int wxFileDialog::ShowModal()
 
 }
 
-#endif // wxUSE_FILEDLG && !(__SMARTPHONE__ && __WXWINCE__)
+#endif // wxUSE_FILEDLG

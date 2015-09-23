@@ -177,19 +177,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(wxBitmapHandler, wxObject);
 // ----------------------------------------------------------------------------
 
 // decide whether we should create a DIB or a DDB for the given parameters
-//
-// NB: we always use DIBs under Windows CE as this is much simpler (even if
-//     also less efficient...) and we obviously can't use them if there is no
-//     DIB support compiled in at all
-#ifdef __WXWINCE__
-    static inline bool wxShouldCreateDIB(int, int, int, WXHDC) { return true; }
-
-    #define ALWAYS_USE_DIB
-#elif !wxUSE_WXDIB
-    // no sense in defining wxShouldCreateDIB() as we can't compile code
-    // executed if it is true, so we have to use #if's anyhow
-    #define NEVER_USE_DIB
-#else // wxUSE_WXDIB && !__WXWINCE__
+#if wxUSE_WXDIB
     static inline bool wxShouldCreateDIB(int w, int h, int d, WXHDC hdc)
     {
         // here is the logic:
@@ -214,6 +202,10 @@ wxIMPLEMENT_DYNAMIC_CLASS(wxBitmapHandler, wxObject);
     }
 
     #define SOMETIMES_USE_DIB
+#else // !wxUSE_WXDIB
+    // no sense in defining wxShouldCreateDIB() as we can't compile code
+    // executed if it is true, so we have to use #if's anyhow
+    #define NEVER_USE_DIB
 #endif // different DIB usage scenarious
 
 // ----------------------------------------------------------------------------
@@ -520,7 +512,6 @@ static HBITMAP CreatePremultipliedDIBIfNeeded(HBITMAP hbmp)
 bool wxBitmap::CopyFromIconOrCursor(const wxGDIImage& icon,
                                     wxBitmapTransparency transp)
 {
-#if !defined(__WXWINCE__)
     // it may be either HICON or HCURSOR
     HICON hicon = (HICON)icon.GetHandle();
 
@@ -623,12 +614,6 @@ bool wxBitmap::CopyFromIconOrCursor(const wxGDIImage& icon,
     }
 
     return true;
-#else // __WXWINCE__
-    wxUnusedVar(icon);
-    wxUnusedVar(transp);
-
-    return false;
-#endif // !__WXWINCE__/__WXWINCE__
 }
 
 bool wxBitmap::CopyFromCursor(const wxCursor& cursor, wxBitmapTransparency transp)
@@ -738,6 +723,15 @@ wxBitmap::wxBitmap(const char bits[], int width, int height, int depth)
                 unsigned char val = *src++;
                 unsigned char reversed = 0;
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
                 for ( int bit = 0; bit < 8; bit++)
                 {
                     reversed <<= 1;

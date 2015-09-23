@@ -43,12 +43,6 @@
 #include "wx/wfstream.h"
 #include "wx/msw/private.h"
 
-// Windows headers
-#ifdef __WXWINCE__
-#include <winbase.h>
-#include <winreg.h>
-#endif
-
 // other std headers
 #include  <stdlib.h>      // for _MAX_PATH
 
@@ -1037,7 +1031,7 @@ bool wxRegKey::QueryValue(const wxString& szValue, wxMemoryBuffer& buffer) const
 
 bool wxRegKey::QueryValue(const wxString& szValue,
                           wxString& strValue,
-                          bool WXUNUSED_IN_WINCE(raw)) const
+                          bool raw) const
 {
     if ( CONST_CAST Open(Read) )
     {
@@ -1081,7 +1075,6 @@ bool wxRegKey::QueryValue(const wxString& szValue,
                 }
 
                 // expand the var expansions in the string unless disabled
-#ifndef __WXWINCE__
                 if ( (dwType == REG_EXPAND_SZ) && !raw )
                 {
                     DWORD dwExpSize = ::ExpandEnvironmentStrings(strValue.t_str(), NULL, 0);
@@ -1101,8 +1094,6 @@ bool wxRegKey::QueryValue(const wxString& szValue,
                         wxLogLastError(wxT("ExpandEnvironmentStrings"));
                     }
                 }
-#endif
-                // __WXWINCE__
             }
 
             if ( m_dwLastError == ERROR_SUCCESS )
@@ -1215,13 +1206,7 @@ bool wxRegKey::GetNextKey(wxString& strKeyName, long& lIndex) const
 
   wxChar szKeyName[_MAX_PATH + 1];
 
-#ifdef __WXWINCE__
-  DWORD sizeName = WXSIZEOF(szKeyName);
-  m_dwLastError = RegEnumKeyEx((HKEY) m_hKey, lIndex++, szKeyName, & sizeName,
-      0, NULL, NULL, NULL);
-#else
   m_dwLastError = RegEnumKey((HKEY) m_hKey, lIndex++, szKeyName, WXSIZEOF(szKeyName));
-#endif
 
   if ( m_dwLastError != ERROR_SUCCESS ) {
     if ( m_dwLastError == ERROR_NO_MORE_ITEMS ) {

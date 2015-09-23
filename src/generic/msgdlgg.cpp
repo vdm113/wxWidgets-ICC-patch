@@ -105,7 +105,6 @@ wxGenericMessageDialog::wxGenericMessageDialog( wxWindow *parent,
 
 wxSizer *wxGenericMessageDialog::CreateMsgDlgButtonSizer()
 {
-#ifndef __SMARTPHONE__
     if ( HasCustomLabels() )
     {
         wxStdDialogButtonSizer * const sizerStd = new wxStdDialogButtonSizer;
@@ -160,7 +159,6 @@ wxSizer *wxGenericMessageDialog::CreateMsgDlgButtonSizer()
 
         return CreateSeparatedSizer(sizerStd);
     }
-#endif // !__SMARTPHONE__
 
     // Use standard labels for all buttons
     return CreateSeparatedButtonSizer

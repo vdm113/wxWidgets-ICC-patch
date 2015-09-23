@@ -59,11 +59,6 @@
     #include "wx/utils.h"       // For wxLoadUserResource()
 #endif
 
-#ifdef __WXWINCE__
-#include <winreg.h>
-#include <shellapi.h>
-#endif
-
 #include "wx/file.h"
 
 #include "wx/listimpl.cpp"
@@ -545,13 +540,11 @@ bool wxICOFileHandler::LoadIcon(wxIcon *icon,
     }
     //else: not standard size, load below
 
-#ifndef __WXWINCE__
     if ( !hicon )
     {
         // take any size icon from the file by index
         hicon = ::ExtractIcon(wxGetInstance(), nameReal.t_str(), iconIndex);
     }
-#endif
 
     if ( !hicon )
     {
@@ -611,7 +604,6 @@ bool wxICOResourceHandler::LoadIcon(wxIcon *icon,
     }
 
     // next check if it's not a standard icon
-#ifndef __WXWINCE__
     if ( !hicon && !hasSize )
     {
         static const struct
@@ -644,7 +636,6 @@ bool wxICOResourceHandler::LoadIcon(wxIcon *icon,
             }
         }
     }
-#endif
 
     return icon->CreateFromHICON((WXHICON)hicon);
 }
@@ -702,11 +693,10 @@ bool wxPNGResourceHandler::LoadFile(wxBitmap *bitmap,
 // private functions
 // ----------------------------------------------------------------------------
 
-wxSize wxGetHiconSize(HICON WXUNUSED_IN_WINCE(hicon))
+wxSize wxGetHiconSize(HICON hicon)
 {
     wxSize size;
 
-#ifndef __WXWINCE__
     if ( hicon )
     {
         AutoIconInfo info;
@@ -725,7 +715,6 @@ wxSize wxGetHiconSize(HICON WXUNUSED_IN_WINCE(hicon))
     }
 
     if ( !size.x )
-#endif // !__WXWINCE__
     {
         // use default icon size on this hardware
         size.x = ::GetSystemMetrics(SM_CXICON);

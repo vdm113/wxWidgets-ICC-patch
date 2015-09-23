@@ -25,7 +25,7 @@
 #include "wx/toolbook.h"
 #include "wx/aui/auibook.h"
 
-#if wxUSE_LOG && !defined( __SMARTPHONE__ )
+#if wxUSE_LOG
     #define USE_LOG 1
 #else
     #define USE_LOG 0

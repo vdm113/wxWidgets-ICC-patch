@@ -935,10 +935,6 @@ bool wxSearchCtrl::ShouldInheritColours() const
 // antialiasing
 static int GetMultiplier()
 {
-#ifdef __WXWINCE__
-    // speed up bitmap generation by using a small bitmap
-    return 3;
-#else
     int depth = ::wxDisplayDepth();
 
     if  ( depth >= 24 )
@@ -946,7 +942,6 @@ static int GetMultiplier()
         return 8;
     }
     return 6;
-#endif
 }
 
 wxBitmap wxSearchCtrl::RenderSearchBitmap( int x, int y, bool renderDrop )

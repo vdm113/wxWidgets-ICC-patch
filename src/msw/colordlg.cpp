@@ -32,7 +32,7 @@
     #pragma hdrstop
 #endif
 
-#if wxUSE_COLOURDLG && !(defined(__SMARTPHONE__) && defined(__WXWINCE__))
+#if wxUSE_COLOURDLG
 
 #include "wx/colordlg.h"
 #include "wx/modalhook.h"
@@ -302,4 +302,4 @@ void wxColourDialog::MSWOnInitDone(WXHWND hDlg)
     SetHWND(NULL);
 }
 
-#endif // wxUSE_COLOURDLG && !(__SMARTPHONE__ && __WXWINCE__)
+#endif // wxUSE_COLOURDLG

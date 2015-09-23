@@ -40,10 +40,6 @@
     #include "wx/wxcrtvararg.h"
 #endif
 
-#ifndef __WXWINCE__
-    #include <locale.h>
-#endif
-
 #include "wx/vector.h"
 #include "wx/wfstream.h"
 #include "wx/filesys.h"
@@ -59,6 +55,7 @@
 #include "wx/scopedptr.h"
 
 #include <limits.h>
+#include <locale.h>
 
 namespace
 {

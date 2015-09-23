@@ -30,7 +30,7 @@
 #   include <sys/types.h>
 #endif
 
-#if defined(__WXWINCE__) || defined(__CYGWIN__)
+#if defined(__CYGWIN__)
     #include <winsock.h>
 #endif
 

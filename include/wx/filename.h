@@ -404,7 +404,7 @@ public:
         return !m_dontFollowLinks;
     }
 
-#if defined(__WIN32__) && !defined(__WXWINCE__) && wxUSE_OLE
+#if defined(__WIN32__) && wxUSE_OLE
         // if the path is a shortcut, return the target and optionally,
         // the arguments
     bool GetShortcutTarget(const wxString& shortcutPath,
@@ -412,7 +412,6 @@ public:
                            wxString* arguments = NULL) const;
 #endif
 
-#ifndef __WXWINCE__
         // if the path contains the value of the environment variable named envname
         // then this function replaces it with the string obtained from
         //    wxString::Format(replacementFmtString, value_of_envname_variable)
@@ -424,7 +423,6 @@ public:
     bool ReplaceEnvVariable(const wxString& envname,
                             const wxString& replacementFmtString = "$%s",
                             wxPathFormat format = wxPATH_NATIVE);
-#endif
 
         // replaces, if present in the path, the home directory for the given user
         // (see wxGetHomeDir) with a tilde

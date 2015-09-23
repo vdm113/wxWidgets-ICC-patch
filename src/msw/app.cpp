@@ -70,11 +70,6 @@
     #include "wx/tooltip.h"
 #endif // wxUSE_TOOLTIPS
 
-#if defined(__POCKETPC__) || defined(__SMARTPHONE__)
-    #include <ole2.h>
-    #include <aygshell.h>
-#endif
-
 #if wxUSE_OLE
     #include <ole2.h>
 #endif
@@ -113,9 +108,7 @@
 // global variables
 // ---------------------------------------------------------------------------
 
-#if !defined(__WXWINCE__)
 extern void wxSetKeyboardHook(bool doIt);
-#endif
 
 // because of mingw32 4.3 bug this struct can't be inside the namespace below:
 // see http://article.gmane.org/gmane.comp.lib.wxwidgets.devel/110282
@@ -260,11 +253,7 @@ wxPortId wxGUIAppTraits::GetToolkitVersion(int *majVer, int *minVer) const
     // as Windows integrates the OS kernel with the GUI toolkit.
     wxGetOsVersion(majVer, minVer);
 
-#if defined(__WXHANDHELD__) || defined(__WXWINCE__)
-    return wxPORT_WINCE;
-#else
     return wxPORT_MSW;
-#endif
 }
 
 #if wxUSE_TIMER
@@ -284,8 +273,6 @@ wxEventLoopBase* wxGUIAppTraits::CreateEventLoop()
 // ---------------------------------------------------------------------------
 // Stuff for using console from the GUI applications
 // ---------------------------------------------------------------------------
-
-#ifndef __WXWINCE__
 
 #if wxUSE_DYNLIB_CLASS
 
@@ -588,8 +575,6 @@ bool wxGUIAppTraits::WriteToStderr(const wxString& WXUNUSED(text))
 
 #endif // wxUSE_DYNLIB_CLASS/!wxUSE_DYNLIB_CLASS
 
-#endif // !__WXWINCE__
-
 // ===========================================================================
 // wxApp implementation
 // ===========================================================================
@@ -633,15 +618,9 @@ bool wxApp::Initialize(int& argc_, wxChar **argv_)
 
     InitCommonControls();
 
-#if defined(__SMARTPHONE__) || defined(__POCKETPC__)
-    SHInitExtraControls();
-#endif
-
     wxOleInitialize();
 
-#if !defined(__WXWINCE__)
     wxSetKeyboardHook(true);
-#endif
 
     callBaseCleanup.Dismiss();
 
@@ -773,9 +752,7 @@ void wxApp::CleanUp()
     // class method first and only then do our clean up
     wxAppBase::CleanUp();
 
-#if !defined(__WXWINCE__)
     wxSetKeyboardHook(false);
-#endif
 
     wxOleUninitialize();
 
@@ -868,9 +845,6 @@ void wxApp::OnQueryEndSession(wxCloseEvent& event)
 // ----------------------------------------------------------------------------
 // system DLL versions
 // ----------------------------------------------------------------------------
-
-// these functions have trivial inline implementations for CE
-#ifndef __WXWINCE__
 
 #if wxUSE_DYNLIB_CLASS
 
@@ -1009,8 +983,6 @@ int wxApp::GetShell32Version()
 }
 
 #endif // wxUSE_DYNLIB_CLASS/!wxUSE_DYNLIB_CLASS
-
-#endif // !__WXWINCE__
 
 #if wxUSE_EXCEPTIONS
 

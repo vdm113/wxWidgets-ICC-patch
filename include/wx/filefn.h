@@ -23,17 +23,10 @@
 #include "wx/list.h"
 #include "wx/arrstr.h"
 
-#ifdef __WXWINCE__
-    #include "wx/msw/wince/time.h"
-    #include "wx/msw/private.h"
-#else
-    #include <time.h>
-#endif
+#include <time.h>
 
-#ifndef __WXWINCE__
-    #include <sys/types.h>
-    #include <sys/stat.h>
-#endif
+#include <sys/types.h>
+#include <sys/stat.h>
 
 #if defined(__UNIX__)
     #include <unistd.h>
@@ -41,7 +34,7 @@
 #endif
 
 #if defined(__WINDOWS__)
-#if !defined( __GNUWIN32__ ) && !defined(__WXWINCE__) && !defined(__CYGWIN__)
+#if !defined( __GNUWIN32__ ) && !defined(__CYGWIN__)
     #include <direct.h>
     #include <dos.h>
     #include <io.h>
@@ -61,9 +54,7 @@
     #include <dir.h>
 #endif
 
-#ifndef __WXWINCE__
-    #include  <fcntl.h>       // O_RDONLY &c
-#endif
+#include  <fcntl.h>       // O_RDONLY &c
 
 // ----------------------------------------------------------------------------
 // constants
@@ -73,18 +64,10 @@
     typedef int mode_t;
 #endif
 
-#ifdef __WXWINCE__
-    typedef long off_t;
-#else
-    // define off_t
-    #if !defined(__WXMAC__) || defined(__UNIX__) || defined(__MACH__)
-        #include  <sys/types.h>
-    #else
-        typedef long off_t;
-    #endif
-#endif
+// define off_t
+#include  <sys/types.h>
 
-#if defined(__VISUALC__) && !defined(__WXWINCE__)
+#if defined(__VISUALC__)
     typedef _off_t off_t;
 #endif
 
@@ -153,29 +136,7 @@ enum wxPosixPermissions
 // underscores to the usual names, some also have Unicode versions of them
 // ----------------------------------------------------------------------------
 
-// Wrappers around Win32 api functions like CreateFile, ReadFile and such
-// Implemented in filefnwce.cpp
-#if defined( __WXWINCE__)
-    typedef __int64 wxFileOffset;
-    #define wxFileOffsetFmtSpec wxT("I64")
-    WXDLLIMPEXP_BASE int wxCRT_Open(const wxChar *filename, int oflag, int WXUNUSED(pmode));
-    WXDLLIMPEXP_BASE int wxCRT_Access(const wxChar *name, int WXUNUSED(how));
-    WXDLLIMPEXP_BASE int wxCRT_Chmod(const wxChar *name, int WXUNUSED(how));
-    WXDLLIMPEXP_BASE int wxClose(int fd);
-    WXDLLIMPEXP_BASE int wxFsync(int WXUNUSED(fd));
-    WXDLLIMPEXP_BASE int wxRead(int fd, void *buf, unsigned int count);
-    WXDLLIMPEXP_BASE int wxWrite(int fd, const void *buf, unsigned int count);
-    WXDLLIMPEXP_BASE int wxEof(int fd);
-    WXDLLIMPEXP_BASE wxFileOffset wxSeek(int fd, wxFileOffset offset, int origin);
-    #define wxLSeek wxSeek
-    WXDLLIMPEXP_BASE wxFileOffset wxTell(int fd);
-
-    // always Unicode under WinCE
-    #define   wxCRT_MkDir      _wmkdir
-    #define   wxCRT_RmDir      _wrmdir
-    #define   wxCRT_Stat       _wstat
-    #define   wxStructStat struct _stat
-#elif defined(__WINDOWS__) && \
+#if defined(__WINDOWS__) && \
       ( \
         defined(__VISUALC__) || \
         defined(__MINGW64_TOOLCHAIN__) || \
@@ -477,8 +438,6 @@ inline int wxChmod(const wxString& path, mode_t mode)
 inline int wxOpen(const wxString& path, int flags, mode_t mode)
     { return wxCRT_Open(path.fn_str(), flags, mode); }
 
-// FIXME-CE: provide our own implementations of the missing CRT functions
-#ifndef __WXWINCE__
 inline int wxStat(const wxString& path, wxStructStat *buf)
     { return wxCRT_Stat(path.fn_str(), buf); }
 inline int wxLstat(const wxString& path, wxStructStat *buf)
@@ -492,7 +451,6 @@ inline int wxMkDir(const wxString& path, mode_t WXUNUSED(mode) = 0)
 inline int wxMkDir(const wxString& path, mode_t mode)
     { return wxCRT_MkDir(path.fn_str(), mode); }
 #endif
-#endif // !__WXWINCE__
 
 #ifdef O_BINARY
     #define wxO_BINARY O_BINARY

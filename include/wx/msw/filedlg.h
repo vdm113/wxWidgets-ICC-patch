@@ -39,10 +39,8 @@ public:
 
     virtual void GetPaths(wxArrayString& paths) const;
     virtual void GetFilenames(wxArrayString& files) const;
-#ifndef __WXWINCE__
     virtual bool SupportsExtraControl() const { return true; }
     void MSWOnInitDialogHook(WXHWND hwnd);
-#endif // __WXWINCE__
 
     virtual int ShowModal();
 
@@ -57,12 +55,10 @@ public:
 
 protected:
 
-#if !(defined(__SMARTPHONE__) && defined(__WXWINCE__))
     virtual void DoMoveWindow(int x, int y, int width, int height);
     virtual void DoCentre(int dir);
     virtual void DoGetSize( int *width, int *height ) const;
     virtual void DoGetPosition( int *x, int *y ) const;
-#endif // !(__SMARTPHONE__ && __WXWINCE__)
 
 private:
     wxArrayString m_fileNames;

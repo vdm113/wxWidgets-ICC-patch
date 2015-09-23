@@ -53,14 +53,6 @@
 #include "wx/msw/private.h"
 #include "wx/msw/private/keyboard.h"
 
-#if defined(__WXWINCE__) && !defined(__HANDHELDPC__)
-  #include <ole2.h>
-  #include <shellapi.h>
-  #if _WIN32_WCE < 400
-    #include <aygshell.h>
-  #endif
-#endif
-
 // Currently gcc doesn't define NMLVFINDITEM, and DMC only defines
 // it by its old name NM_FINDTIEM.
 //
@@ -1956,16 +1948,7 @@ int WXDLLIMPEXP_CORE wxMSWGetColumnClicked(NMHDR *nmhdr, POINT *ptClick)
     // notification message doesn't provide this info
 
     // where did the click occur?
-#if defined(__WXWINCE__) && !defined(__HANDHELDPC__) && _WIN32_WCE < 400
-    if ( nmhdr->code == GN_CONTEXTMENU )
-    {
-        *ptClick = ((NMRGINFO*)nmhdr)->ptAction;
-    }
-    else
-#endif //__WXWINCE__
-    {
-       wxGetCursorPosMSW(ptClick);
-    }
+    wxGetCursorPosMSW(ptClick);
 
     // we need to use listctrl coordinates for the event point so this is what
     // we return in ptClick, but for comparison with Header_GetItemRect()
@@ -2089,9 +2072,6 @@ bool wxListCtrl::MSWOnNotify(int idCtrl, WXLPARAM lParam, WXLPARAM *result)
                 event.m_col = nmHDR->iItem;
                 break;
 
-#if defined(__WXWINCE__) && !defined(__HANDHELDPC__) && _WIN32_WCE < 400
-            case GN_CONTEXTMENU:
-#endif //__WXWINCE__
             case NM_RCLICK:
                 {
                     POINT ptClick;
@@ -2358,9 +2338,6 @@ bool wxListCtrl::MSWOnNotify(int idCtrl, WXLPARAM lParam, WXLPARAM *result)
                 event.m_item.m_data = GetItemData(iItem);
                 break;
 
-#if defined(__WXWINCE__) && !defined(__HANDHELDPC__) && _WIN32_WCE < 400
-            case GN_CONTEXTMENU:
-#endif //__WXWINCE__
             case NM_RCLICK:
                 // if the user processes it in wxEVT_COMMAND_RIGHT_CLICK(),
                 // don't do anything else
@@ -2373,16 +2350,7 @@ bool wxListCtrl::MSWOnNotify(int idCtrl, WXLPARAM lParam, WXLPARAM *result)
                 LV_HITTESTINFO lvhti;
                 wxZeroMemory(lvhti);
 
-#if defined(__WXWINCE__) && !defined(__HANDHELDPC__) && _WIN32_WCE < 400
-                if ( nmhdr->code == GN_CONTEXTMENU )
-                {
-                    lvhti.pt = ((NMRGINFO*)nmhdr)->ptAction;
-                }
-                else
-#endif //__WXWINCE__
-                {
-                    wxGetCursorPosMSW(&(lvhti.pt));
-                }
+                wxGetCursorPosMSW(&(lvhti.pt));
 
                 ::ScreenToClient(GetHwnd(), &lvhti.pt);
                 if ( ListView_HitTest(GetHwnd(), &lvhti) != -1 )
@@ -2770,9 +2738,7 @@ bool HandleSubItemPrepaint(LPNMLVCUSTOMDRAW pLVCD, HFONT hfont, int colCount)
     ::SetBkMode(hdc, TRANSPARENT);
 
     UINT fmt = DT_SINGLELINE |
-#ifndef __WXWINCE__
                DT_WORD_ELLIPSIS |
-#endif // __WXWINCE__
                DT_NOPREFIX |
                DT_VCENTER;
 
