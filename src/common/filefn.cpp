@@ -1348,7 +1348,7 @@ bool wxMkdir(const wxString& dir, int perm)
 
     // assume mkdir() has 2 args on non Windows-OS/2 platforms and on Windows too
     // for the GNU compiler
-#elif (!(defined(__WINDOWS__) || defined(__DOS__))) || \
+#elif (!defined(__WINDOWS__)) || \
       (defined(__GNUWIN32__) && !defined(__MINGW32__)) ||                \
       defined(__WINE__)
     const wxChar *dirname = dir.c_str();
@@ -1358,14 +1358,7 @@ bool wxMkdir(const wxString& dir, int perm)
   #else
     if ( mkdir(wxFNCONV(dirname), perm) != 0 )
   #endif
-#elif defined(__DOS__)
-    const wxChar *dirname = dir.c_str();
-  #if defined(__DJGPP__)
-    if ( mkdir(wxFNCONV(dirname), perm) != 0 )
-  #else
-    #error "Unsupported DOS compiler!"
-  #endif
-#else  // !MSW, !DOS and !OS/2 VAC++
+#else  // !MSW and !OS/2 VAC++
     wxUnusedVar(perm);
     if ( wxMkDir(dir.fn_str()) != 0 )
 #endif // !MSW/MSW
@@ -1542,25 +1535,6 @@ wxChar *wxDoGetCwd(wxChar *buf, int sz)
     }
     else // ok, but we might need to massage the path into the right format
     {
-#ifdef __DJGPP__
-        // VS: DJGPP is a strange mix of DOS and UNIX API and returns paths
-        //     with / deliminers. We don't like that.
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
-        for (wxChar *ch = buf; *ch; ch++)
-        {
-            if (*ch == wxT('/'))
-                *ch = wxT('\\');
-        }
-#endif // __DJGPP__
-
 // MBN: we hope that in the case the user is compiling a GTK+/Motif app,
 //      he needs Unix as opposed to Win32 pathnames
 #if defined( __CYGWIN__ ) && defined( __WINDOWS__ )
@@ -1602,7 +1576,7 @@ wxString wxGetCwd()
 bool wxSetWorkingDirectory(const wxString& d)
 {
     bool success = false;
-#if defined(__UNIX__) || defined(__WXMAC__) || defined(__DOS__)
+#if defined(__UNIX__) || defined(__WXMAC__)
     success = (chdir(wxFNSTRINGCAST d.fn_str()) == 0);
 #elif defined(__WINDOWS__)
 

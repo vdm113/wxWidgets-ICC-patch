@@ -41,13 +41,6 @@
 #endif // __WINDOWS__
 #endif // native Win compiler
 
-#if defined(__DOS__)
-    #ifdef __DJGPP__
-        #include <io.h>
-        #include <unistd.h>
-    #endif
-#endif
-
 #ifdef __BORLANDC__ // Please someone tell me which version of Borland needs
                     // this (3.1 I believe) and how to test for it.
                     // If this works for Borland 4.0 as well, then no worries.
@@ -65,11 +58,7 @@
 #endif
 
 // define off_t
-#if !defined(__WXMAC__) || defined(__UNIX__) || defined(__MACH__)
-    #include  <sys/types.h>
-#else
-    typedef long off_t;
-#endif
+#include  <sys/types.h>
 
 #if defined(__VISUALC__)
     typedef _off_t off_t;

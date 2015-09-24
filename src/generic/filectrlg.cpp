@@ -47,7 +47,7 @@
     #include "wx/msw/wrapwin.h"
 #endif
 
-#if defined(__DOS__) || defined(__WINDOWS__)
+#if defined(__WINDOWS__)
 #define IsTopMostDir(dir)   (dir.empty())
 #else
 #define IsTopMostDir(dir)   (dir == wxT("/"))
@@ -182,7 +182,7 @@ void wxFileData::ReadData()
         return;
     }
 
-#if defined(__DOS__) || defined(__WINDOWS__)
+#if defined(__WINDOWS__)
     // c:\.. is a drive don't stat it
     if ((m_fileName == wxT("..")) && (m_filePath.length() <= 5))
     {
@@ -190,7 +190,7 @@ void wxFileData::ReadData()
         m_size = 0;
         return;
     }
-#endif // __DOS__ || __WINDOWS__
+#endif // __WINDOWS__
 
     // OTHER PLATFORMS
 
@@ -525,7 +525,7 @@ void wxFileListCtrl::UpdateFiles()
     item.m_itemId = 0;
     item.m_col = 0;
 
-#if defined(__WINDOWS__) || defined(__DOS__) || defined(__WXMAC__)
+#if defined(__WINDOWS__) || defined(__WXMAC__)
     if ( IsTopMostDir(m_dirName) )
     {
         wxArrayString names, paths;
@@ -563,7 +563,7 @@ void wxFileListCtrl::UpdateFiles()
         }
     }
     else
-#endif // defined(__DOS__) || defined(__WINDOWS__)
+#endif // defined(__WINDOWS__) || defined(__WXMAC__)
     {
         // Real directory...
         if ( !IsTopMostDir(m_dirName) && !m_dirName.empty() )
@@ -580,10 +580,10 @@ void wxFileListCtrl::UpdateFiles()
         }
 
         wxString dirname(m_dirName);
-#if defined(__DOS__) || defined(__WINDOWS__)
+#if defined(__WINDOWS__)
         if (dirname.length() == 2 && dirname[1u] == wxT(':'))
             dirname << wxT('\\');
-#endif // defined(__DOS__) || defined(__WINDOWS__)
+#endif // defined(__WINDOWS__)
 
         if (dirname.empty())
             dirname = wxFILE_SEP_PATH;
@@ -741,7 +741,7 @@ void wxFileListCtrl::GoToParentDir()
             m_dirName.Remove( len-1, 1 );
         wxString fname( wxFileNameFromPath(m_dirName) );
         m_dirName = wxPathOnly( m_dirName );
-#if defined(__DOS__) || defined(__WINDOWS__)
+#if defined(__WINDOWS__)
         if (!m_dirName.empty())
         {
             if (m_dirName.Last() == wxT('.'))

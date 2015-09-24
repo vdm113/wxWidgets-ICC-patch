@@ -160,6 +160,15 @@ static void ColouriseSolDoc(unsigned int startPos, int length, int initStyle,
         char chPrev2 = ' ';
         char chNext  = styler[startPos];
 	styler.StartSegment(startPos);
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 	for (int i = startPos; i < lengthDoc; i++)
         {
 

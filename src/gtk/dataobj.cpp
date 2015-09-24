@@ -255,6 +255,15 @@ bool wxFileDataObject::GetDataHere(void *buf) const
 {
     char* out = reinterpret_cast<char*>(buf);
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
     for (size_t i = 0; i < m_filenames.GetCount(); i++)
     {
         char* uri = g_filename_to_uri(m_filenames[i].mbc_str(), 0, 0);
