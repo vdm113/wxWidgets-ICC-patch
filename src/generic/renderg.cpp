@@ -216,54 +216,18 @@ static void DrawSelectedCellFocusRect(wxDC& dc, const wxRect& rect)
     wxDCPenChanger pen(dc, wxSystemSettings::GetColour(wxSYS_COLOUR_HIGHLIGHTTEXT));
 
     wxCoord z;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
     for (z = x1 + 1; z < x2; z += 2)
         dc.DrawPoint(z, rect.GetTop());
 
     wxCoord shift = z == x2 ? 0 : 1;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
     for (z = y1 + shift; z < y2; z += 2)
         dc.DrawPoint(x2, z);
 
     shift = z == y2 ? 0 : 1;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
     for (z = x2 - shift; z > x1; z -= 2)
         dc.DrawPoint(z, y2);
 
     shift = z == x1 ? 0 : 1;
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
     for (z = y2 - shift; z > y1; z -= 2)
         dc.DrawPoint(x1, z);
 }

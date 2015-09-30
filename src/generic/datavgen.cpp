@@ -2103,15 +2103,6 @@ void wxDataViewMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
                 {
                     wxRect colRect(rowRect);
 
-#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
-#   pragma ivdep
-#   pragma swp
-#   pragma unroll
-#   pragma prefetch
-#   if 0
-#       pragma simd noassert
-#   endif
-#endif /* VDM auto patch */
                     for ( unsigned int i = col_start; i < col_last; i++ )
                     {
                         wxDataViewColumn *col = GetOwner()->GetColumnAt(i);
