@@ -349,8 +349,9 @@ public:
 
 #if wxUSE_GIF && wxUSE_TIMER
     void AdvanceAnimation(wxTimer *timer);
-    virtual void Layout(int w) wxOVERRIDE;
 #endif
+
+    virtual void Layout(int w) wxOVERRIDE;
 
 private:
     wxBitmap           *m_bitmap;
@@ -592,6 +593,7 @@ void wxHtmlImageCell::AdvanceAnimation(wxTimer *timer)
         delay = 1;
     timer->Start(delay, true);
 }
+#endif
 
 void wxHtmlImageCell::Layout(int w)
 {
@@ -625,10 +627,10 @@ void wxHtmlImageCell::Layout(int w)
     }
 
     wxHtmlCell::Layout(w);
+#if wxUSE_GIF && wxUSE_TIMER
     m_physX = m_physY = wxDefaultCoord;
-}
-
 #endif
+}
 
 wxHtmlImageCell::~wxHtmlImageCell()
 {
