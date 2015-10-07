@@ -1585,8 +1585,6 @@ void wxWindowMSW::Update()
 // drag and drop
 // ---------------------------------------------------------------------------
 
-#if wxUSE_DRAG_AND_DROP
-
 #if wxUSE_STATBOX
 
 // we need to lower the sibling static boxes so controls contained within can be
@@ -1627,9 +1625,8 @@ static inline void AdjustStaticBoxZOrder(wxWindow * WXUNUSED(parent))
 
 #endif // wxUSE_STATBOX/!wxUSE_STATBOX
 
-#endif // drag and drop is used
-
 #if wxUSE_DRAG_AND_DROP
+
 void wxWindowMSW::SetDropTarget(wxDropTarget *pDropTarget)
 {
     if ( m_dropTarget != 0 ) {
@@ -1644,6 +1641,7 @@ void wxWindowMSW::SetDropTarget(wxDropTarget *pDropTarget)
         m_dropTarget->Register(m_hWnd);
     }
 }
+
 #endif // wxUSE_DRAG_AND_DROP
 
 // old-style file manager drag&drop support: we retain the old-style
