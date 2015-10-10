@@ -159,8 +159,8 @@ bool wxWrapSizer::InformFirstDirection(int direction,
     // Store the values for later use
     m_availSize = size;
     m_availableOtherDir = availableOtherDir +
-                            (direction == wxHORIZONTAL ? m_minSize.y
-                                                       : m_minSize.x);
+                            (direction == wxHORIZONTAL ? m_calculatedMinSize.y
+                                                       : m_calculatedMinSize.x);
     m_dirInform = direction;
     m_lastUsed = false;
     return true;
@@ -226,7 +226,7 @@ wxSize wxWrapSizer::CalcMin()
         }
     }
 
-    return m_minSize;
+    return m_calculatedMinSize;
 }
 
 void wxWrapSizer::CalcMinFittingSize(const wxSize& szBoundary)
@@ -238,7 +238,7 @@ void wxWrapSizer::CalcMinFittingSize(const wxSize& szBoundary)
     if ( m_minSizeMinor < SizeInMinorDir(m_size) &&
             m_maxSizeMajor < SizeInMajorDir(m_size) )
     {
-        m_minSize = sizeMin;
+        m_calculatedMinSize = sizeMin;
     }
     else
     {
@@ -249,9 +249,9 @@ void wxWrapSizer::CalcMinFittingSize(const wxSize& szBoundary)
             // We try to present a lower min value by removing an item in
             // the major direction (and preserving current minor min size).
             CalcMinFromMajor(m_maxSizeMajor - m_minItemMajor);
-            if ( m_minSize.x <= szBoundary.x && m_minSize.y <= szBoundary.y )
+            if ( m_calculatedMinSize.x <= szBoundary.x && m_calculatedMinSize.y <= szBoundary.y )
             {
-                SizeInMinorDir(m_minSize) = SizeInMinorDir(sizeMin);
+                SizeInMinorDir(m_calculatedMinSize) = SizeInMinorDir(sizeMin);
                 done = true;
             }
         }
@@ -259,7 +259,7 @@ void wxWrapSizer::CalcMinFittingSize(const wxSize& szBoundary)
         if ( !done )
         {
             // If failed finding little smaller area, go back to what we had
-            m_minSize = sizeMin;
+            m_calculatedMinSize = sizeMin;
         }
     }
 }
@@ -296,7 +296,7 @@ void wxWrapSizer::CalcMaxSingleItemSize()
     // This is, of course, not our real minimal size but if we return more
     // than this it would be impossible to shrink us to one row/column so
     // we have to pretend that this is all we need for now.
-    m_minSize = SizeFromMajorMinor(maxMajor, maxMinor);
+    m_calculatedMinSize = SizeFromMajorMinor(maxMajor, maxMinor);
 }
 
 void wxWrapSizer::CalcMinFromMajor(int totMajor)
@@ -361,7 +361,7 @@ void wxWrapSizer::CalcMinFromMajor(int totMajor)
     if ( rowTotalMajor > maxTotalMajor )
         maxTotalMajor = rowTotalMajor;
 
-    m_minSize = SizeFromMajorMinor(maxTotalMajor, minorSum);
+    m_calculatedMinSize = SizeFromMajorMinor(maxTotalMajor, minorSum);
 }
 
 // Helper struct for CalcMinFromMinor
@@ -415,7 +415,7 @@ void wxWrapSizer::CalcMinFromMinor(int totMinor)
     // The trivial case
     if ( !itemCount || totMajor==0 || maxMinor==0 )
     {
-        m_minSize = wxSize(0,0);
+        m_calculatedMinSize = wxSize(0,0);
         return;
     }
 
@@ -424,7 +424,7 @@ void wxWrapSizer::CalcMinFromMinor(int totMinor)
     if ( nrLines<=1 )
     {
         // Another simple case, everything fits on one line
-        m_minSize = SizeFromMajorMinor(totMajor,maxMinor);
+        m_calculatedMinSize = SizeFromMajorMinor(totMajor,maxMinor);
         return;
     }
 
@@ -550,7 +550,7 @@ void wxWrapSizer::CalcMinFromMinor(int totMinor)
     }
 
     // Now have min size in the opposite direction
-    m_minSize = SizeFromMajorMinor(lineSize,sumMinor);
+    m_calculatedMinSize = SizeFromMajorMinor(lineSize,sumMinor);
 }
 
 void wxWrapSizer::FinishRow(size_t n,
