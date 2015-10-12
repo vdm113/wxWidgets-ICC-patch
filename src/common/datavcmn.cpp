@@ -1169,19 +1169,14 @@ wxDataViewCustomRendererBase::RenderText(const wxString& text,
     if ( !GetOwner()->GetOwner()->IsEnabled() )
         flags |= wxCONTROL_DISABLED;
 
-    int flags = 0;
-    if ( state & wxDATAVIEW_CELL_SELECTED )
-        flags |= wxCONTROL_SELECTED | wxCONTROL_FOCUSED;
-    if ( !GetOwner()->GetOwner()->IsEnabled() )
-        flags |= wxCONTROL_DISABLED;
-
     wxRendererNative::Get().DrawItemText(
         GetOwner()->GetOwner(),
         *dc,
-        ellipsizedText.empty() ? text : ellipsizedText,
+        text,
         rectText,
         GetEffectiveAlignment(),
-        flags);
+        flags,
+        GetEllipsizeMode());
 }
 
 void wxDataViewCustomRendererBase::SetEnabled(bool enabled)

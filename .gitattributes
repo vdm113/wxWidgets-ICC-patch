@@ -13,12 +13,11 @@
 
 # Documentation used with Windows installer:
 
-\BuildGit.txt         text=auto
-\docs\changes.txt     text=auto
-\docs\licence.txt     text=auto
-\docs\readme.txt      text=auto
-\docs\msw\install.txt text=auto
-\docs\msw\install.txt text=auto
+/BuildGit.txt         text=auto
+/docs/changes.txt     text=auto
+/docs/licence.txt     text=auto
+/docs/readme.txt      text=auto
+/docs/msw/*.txt       text=auto
 
 # Unix-specific files that require LF:
 

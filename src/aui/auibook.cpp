@@ -3899,6 +3899,15 @@ void wxAuiTabCtrl::SetHoverTab(wxWindow* wnd)
     bool hoverChanged = false;
 
     const size_t page_count = m_pages.GetCount();
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
     for ( size_t i = 0; i < page_count; ++i )
     {
         wxAuiNotebookPage& page = m_pages.Item(i);

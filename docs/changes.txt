@@ -84,6 +84,7 @@ Unix:
 All (GUI):
 
 - Allow requesting modern (3.x+) OpenGL version in wxGLCanvas (Fabio Arnold).
+- Add wxActivityIndicator.
 - Add wxWindow::FromDIP() for simpler high DPI support.
 - Allow initially hiding sizer items in XRC (Bogdan Iordanescu).
 - Allow customizing window shown by wxBusyInfo.
@@ -145,6 +146,7 @@ wxGTK:
 wxMSW:
 
 - Make default wxSizer border DPI-aware.
+- Implement native tab art for wxAUI (Tobias Taschner).
 - Improve wxMimeTypesManager open command detection (Eric Jensen).
 - Make wxFILTER_INCLUDE_LIST in wxTextValidator actually usable.
 - Fix handling crashes in wxEVT_PAINT event handlers.
