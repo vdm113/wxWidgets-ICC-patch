@@ -1421,7 +1421,7 @@ int wxMenuItem::MSGetMenuItemPos() const
     if ( !hMenu )
         return -1;
 
-    const UINT id = GetMSWId();
+    const WXWPARAM id = GetMSWId();
     const int menuItems = ::GetMenuItemCount(hMenu);
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
 #   pragma ivdep
