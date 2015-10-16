@@ -2186,6 +2186,7 @@ wxD2DFontData::wxD2DFontData(wxGraphicsRenderer* renderer, ID2D1Factory* d2dFact
 
     wxCOMPtr<IDWriteGdiInterop> gdiInterop;
     hr = wxDWriteFactory()->GetGdiInterop(&gdiInterop);
+    wxCHECK_HRESULT_RET(hr);
 
     LOGFONTW logfont;
     GetObjectW(font.GetHFONT(), sizeof(logfont), &logfont);
@@ -2209,6 +2210,7 @@ wxD2DFontData::wxD2DFontData(wxGraphicsRenderer* renderer, ID2D1Factory* d2dFact
     }
 
     hr = gdiInterop->CreateFontFromLOGFONT(&logfont, &m_font);
+    wxCHECK_HRESULT_RET(hr);
 
     wxCOMPtr<IDWriteFontFamily> fontFamily;
     m_font->GetFontFamily(&fontFamily);
@@ -2236,6 +2238,8 @@ wxD2DFontData::wxD2DFontData(wxGraphicsRenderer* renderer, ID2D1Factory* d2dFact
         &m_textFormat);
 
     delete[] name;
+
+    wxCHECK_HRESULT_RET(hr);
 }
 
 wxCOMPtr<IDWriteTextLayout> wxD2DFontData::CreateTextLayout(const wxString& text) const
@@ -2254,6 +2258,7 @@ wxCOMPtr<IDWriteTextLayout> wxD2DFontData::CreateTextLayout(const wxString& text
         MAX_WIDTH,
         MAX_HEIGHT,
         &textLayout);
+    wxCHECK2_HRESULT_RET(hr, wxCOMPtr<IDWriteTextLayout>(NULL));
 
     DWRITE_TEXT_RANGE textRange = { 0, (UINT32) text.length() };
 
