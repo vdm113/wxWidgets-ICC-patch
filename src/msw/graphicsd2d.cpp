@@ -3489,7 +3489,7 @@ void wxD2DContext::Flush()
 {
     HRESULT result = m_renderTargetHolder->Flush();
 
-    if (result == D2DERR_RECREATE_TARGET)
+    if (result == (HRESULT)D2DERR_RECREATE_TARGET)
     {
         ReleaseDeviceDependentResources();
     }
