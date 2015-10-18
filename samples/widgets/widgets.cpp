@@ -460,6 +460,8 @@ WidgetsFrame::WidgetsFrame(const wxString& title)
     SetMenuBar(mbar);
 
     mbar->Check(Widgets_Enable, true);
+    mbar->Check(Widgets_Show, true);
+
     mbar->Check(Widgets_VariantNormal, true);
 #endif // wxUSE_MENUS
 
@@ -919,6 +921,13 @@ void WidgetsFrame::OnSetFont(wxCommandEvent& WXUNUSED(event))
 void WidgetsFrame::OnEnable(wxCommandEvent& event)
 {
     WidgetsPage::GetAttrs().m_enabled = event.IsChecked();
+
+    CurrentPage()->SetUpWidget();
+}
+
+void WidgetsFrame::OnShow(wxCommandEvent &event)
+{
+    WidgetsPage::GetAttrs().m_show = event.IsChecked();
 
     CurrentPage()->SetUpWidget();
 }
@@ -1405,61 +1414,6 @@ void WidgetsPage::SetUpWidget()
         (*it)->SetLayoutDirection(GetAttrs().m_dir);
         (*it)->Enable(GetAttrs().m_enabled);
         (*it)->Show(GetAttrs().m_show);
-
-        if ( GetAttrs().m_cursor.IsOk() )
-        {
-            (*it)->SetCursor(GetAttrs().m_cursor);
-        }
-
-        (*it)->SetWindowVariant(GetAttrs().m_variant);
-
-        (*it)->Refresh();
-    }
-
-    if ( GetAttrs().m_colPageBg.IsOk() )
-    {
-        SetBackgroundColour(GetAttrs().m_colPageBg);
-        Refresh();
-    }
-}
-
-/* static */
-WidgetAttributes& WidgetsPage::GetAttrs()
-{
-    static WidgetAttributes s_attrs;
-
-    return s_attrs;
-}
-
-void WidgetsPage::SetUpWidget()
-{
-    const Widgets widgets = GetWidgets();
-
-    for ( Widgets::const_iterator it = widgets.begin();
-            it != widgets.end();
-            ++it )
-    {
-#if wxUSE_TOOLTIPS
-        (*it)->SetToolTip(GetAttrs().m_tooltip);
-#endif // wxUSE_TOOLTIPS
-#if wxUSE_FONTDLG
-        if ( GetAttrs().m_font.IsOk() )
-        {
-            (*it)->SetFont(GetAttrs().m_font);
-        }
-#endif // wxUSE_FONTDLG
-        if ( GetAttrs().m_colFg.IsOk() )
-        {
-            (*it)->SetForegroundColour(GetAttrs().m_colFg);
-        }
-
-        if ( GetAttrs().m_colBg.IsOk() )
-        {
-            (*it)->SetBackgroundColour(GetAttrs().m_colBg);
-        }
-
-        (*it)->SetLayoutDirection(GetAttrs().m_dir);
-        (*it)->Enable(GetAttrs().m_enabled);
 
         if ( GetAttrs().m_cursor.IsOk() )
         {

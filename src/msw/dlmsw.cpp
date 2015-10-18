@@ -198,7 +198,6 @@ wxDynamicLibraryDetailsArray wxDynamicLibrary::ListLoaded()
     {
         wxDynamicLibraryDetailsCreator::EnumModulesProcParams params;
         params.dlls = &dlls;
-        params.verDLL = &verDLL;
 
         if ( !wxDbgHelpDLL::CallEnumerateLoadedModules
                             (

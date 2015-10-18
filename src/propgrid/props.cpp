@@ -1719,6 +1719,15 @@ void wxFlagsProperty::OnSetValue()
 
         // normalize the value (i.e. remove extra flags)
         const wxPGChoices& choices = m_choices;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
         for ( unsigned int i = 0; i < GetItemCount(); i++ )
         {
             fullFlags |= choices.GetValue(i);
@@ -1742,6 +1751,15 @@ void wxFlagsProperty::OnSetValue()
     {
         // Set child modified states
         const wxPGChoices& choices = m_choices;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
         for ( unsigned int i = 0; i < GetItemCount(); i++ )
         {
             int flag;
@@ -1765,12 +1783,6 @@ wxString wxFlagsProperty::ValueToString( wxVariant& value,
         return text;
 
     long flags = value;
-
-    const wxPGChoices& choices = m_choices;
-    for ( unsigned int i = 0; i < GetItemCount(); i++ )
-    {
-        int doAdd;
-        doAdd = ( (flags & choices.GetValue(i)) == choices.GetValue(i) );
 
     const wxPGChoices& choices = m_choices;
 #if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
@@ -1840,6 +1852,15 @@ bool wxFlagsProperty::StringToValue( wxVariant& variant, const wxString& text, i
 // Converts string id to a relevant bit.
 long wxFlagsProperty::IdToBit( const wxString& id ) const
 {
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < GetItemCount(); i++ )
     {
         if ( id == GetLabel(i) )
@@ -1857,6 +1878,15 @@ void wxFlagsProperty::RefreshChildren()
     int flags = m_value.GetLong();
 
     const wxPGChoices& choices = m_choices;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < GetItemCount(); i++ )
     {
         long flag;
@@ -2871,6 +2901,15 @@ wxArrayStringProperty::ArrayStringToString( wxString& dst,
 
     wxString delimStr(delimiter);
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
     for ( unsigned int i = 0; i < itemCount; i++ )
     {
         wxString str( src.Item(i) );

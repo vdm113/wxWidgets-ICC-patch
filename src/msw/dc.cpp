@@ -2750,7 +2750,7 @@ static bool AlphaBlt(wxMSWDCImpl* dcDst,
 #       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
-                for ( int y = 0; y < data.GetHeight(); y++ )
+                for ( int old_y = 0; old_y < data.GetHeight(); old_y++ )
                 {
                     wxAlphaPixelData::Iterator rowStart = p;
 
@@ -2763,7 +2763,7 @@ static bool AlphaBlt(wxMSWDCImpl* dcDst,
 #       pragma simd noassert
 #   endif
 #endif /* VDM auto patch */
-                    for ( int x = 0; x < data.GetWidth(); x++ )
+                    for ( int old_x = 0; old_x < data.GetWidth(); old_x++ )
                     {
                         // We choose to use wxALPHA_TRANSPARENT instead
                         // of perhaps more logical wxALPHA_OPAQUE here

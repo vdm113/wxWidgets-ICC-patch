@@ -979,6 +979,15 @@ int SCI_METHOD Document::GetRelativePosition(int positionStart, int characterOff
 	int pos = positionStart;
 	if (dbcsCodePage) {
 		const int increment = (characterOffset > 0) ? 1 : -1;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 		while (characterOffset != 0) {
 			const int posNext = NextPosition(pos, increment);
 			if (posNext == pos)
@@ -1640,6 +1649,15 @@ int Document::CountUTF16(int startPos, int endPos) const {
 	endPos = MovePositionOutsideChar(endPos, -1, false);
 	int count = 0;
 	int i = startPos;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
 	while (i < endPos) {
 		count++;
 		const int next = NextPosition(i, 1);

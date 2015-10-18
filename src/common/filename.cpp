@@ -2278,41 +2278,6 @@ wxString wxFileName::GetLongPath() const
 
 #if defined(__WIN32__)
 
-#if wxUSE_DYNLIB_CLASS
-    typedef DWORD (WINAPI *GET_LONG_PATH_NAME)(const wxChar *, wxChar *, DWORD);
-
-    // this is MT-safe as in the worst case we're going to resolve the function
-    // twice -- but as the result is the same in both threads, it's ok
-    static GET_LONG_PATH_NAME s_pfnGetLongPathName = NULL;
-    if ( !s_pfnGetLongPathName )
-    {
-        static bool s_triedToLoad = false;
-
-        if ( !s_triedToLoad )
-        {
-            s_triedToLoad = true;
-
-            wxDynamicLibrary dllKernel(wxT("kernel32"));
-
-            const wxChar* GetLongPathName = wxT("GetLongPathName")
-#if wxUSE_UNICODE
-                              wxT("W");
-#else // ANSI
-                              wxT("A");
-#endif // Unicode/ANSI
-
-            if ( dllKernel.HasSymbol(GetLongPathName) )
-            {
-                s_pfnGetLongPathName = (GET_LONG_PATH_NAME)
-                    dllKernel.GetSymbol(GetLongPathName);
-            }
-
-            // note that kernel32.dll can be unloaded, it stays in memory
-            // anyhow as all Win32 programs link to it and so it's safe to call
-            // GetLongPathName() even after unloading it
-        }
-    }
-
     DWORD dwSize = ::GetLongPathName(path.t_str(), NULL, 0);
     if ( dwSize > 0 )
     {

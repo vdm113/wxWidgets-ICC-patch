@@ -1989,6 +1989,15 @@ void wxDataViewMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
         // We only need to draw the visible part, so limit the rectangle to it.
         const int xRect = m_owner->CalcUnscrolledPosition(wxPoint(0, 0)).x;
         const int widthRect = size.x;
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
         for (unsigned int item = item_start; item < item_last; item++)
         {
             if ( item % 2 )
@@ -2103,6 +2112,15 @@ void wxDataViewMainWindow::OnPaint( wxPaintEvent &WXUNUSED(event) )
                 {
                     wxRect colRect(rowRect);
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
                     for ( unsigned int i = col_start; i < col_last; i++ )
                     {
                         wxDataViewColumn *col = GetOwner()->GetColumnAt(i);
@@ -5826,10 +5844,11 @@ void wxDataViewCtrl::ToggleSortByColumn(int column)
 
 void wxDataViewCtrl::DoEnableSystemTheme(bool enable, wxWindow* window)
 {
-    wxSystemThemedControl::DoEnableSystemTheme(enable, window);
-    wxSystemThemedControl::DoEnableSystemTheme(enable, m_clientArea);
+    typedef wxSystemThemedControl<wxControl> Base;
+    Base::DoEnableSystemTheme(enable, window);
+    Base::DoEnableSystemTheme(enable, m_clientArea);
     if ( m_headerArea )
-        wxSystemThemedControl::DoEnableSystemTheme(enable, m_headerArea);
+        Base::DoEnableSystemTheme(enable, m_headerArea);
 }
 
 #endif // !wxUSE_GENERICDATAVIEWCTRL
