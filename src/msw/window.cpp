@@ -1585,8 +1585,6 @@ void wxWindowMSW::Update()
 // drag and drop
 // ---------------------------------------------------------------------------
 
-#if wxUSE_DRAG_AND_DROP
-
 #if wxUSE_STATBOX
 
 // we need to lower the sibling static boxes so controls contained within can be

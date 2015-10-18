@@ -80,32 +80,6 @@
 static const wxChar displayDllName[] = wxT("user32.dll");
 
 // ----------------------------------------------------------------------------
-// typedefs for dynamically loaded Windows functions
-// ----------------------------------------------------------------------------
-
-typedef LONG (WINAPI *ChangeDisplaySettingsEx_t)(LPCTSTR lpszDeviceName,
-                                                 LPDEVMODE lpDevMode,
-                                                 HWND hwnd,
-                                                 DWORD dwFlags,
-                                                 LPVOID lParam);
-
-typedef BOOL (WINAPI *EnumDisplayMonitors_t)(HDC,LPCRECT,MONITORENUMPROC,LPARAM);
-typedef HMONITOR (WINAPI *MonitorFromPoint_t)(POINT,DWORD);
-typedef HMONITOR (WINAPI *MonitorFromWindow_t)(HWND,DWORD);
-typedef BOOL (WINAPI *GetMonitorInfo_t)(HMONITOR,LPMONITORINFO);
-
-// emulation of ChangeDisplaySettingsEx() for Win95
-LONG WINAPI ChangeDisplaySettingsExForWin95(LPCTSTR WXUNUSED(lpszDeviceName),
-                                            LPDEVMODE lpDevMode,
-                                            HWND WXUNUSED(hwnd),
-                                            DWORD dwFlags,
-                                            LPVOID WXUNUSED(lParam))
-{
-    return ::ChangeDisplaySettings(lpDevMode, dwFlags);
-}
-
-
-// ----------------------------------------------------------------------------
 // wxDisplayMSW declaration
 // ----------------------------------------------------------------------------
 
@@ -401,28 +375,6 @@ bool wxDisplayMSW::ChangeMode(const wxVideoMode& mode)
         flags = CDS_FULLSCREEN;
     }
 
-
-    // get pointer to the function dynamically
-    //
-    // we're only called from the main thread, so it's ok to use static
-    // variable
-    static ChangeDisplaySettingsEx_t pfnChangeDisplaySettingsEx = NULL;
-    if ( !pfnChangeDisplaySettingsEx )
-    {
-        wxDynamicLibrary dllDisplay(displayDllName, wxDL_VERBATIM | wxDL_QUIET);
-        if ( dllDisplay.IsLoaded() )
-        {
-            wxDL_INIT_FUNC_AW(pfn, ChangeDisplaySettingsEx, dllDisplay);
-        }
-        //else: huh, no this DLL must always be present, what's going on??
-
-        if ( !pfnChangeDisplaySettingsEx )
-        {
-            // we must be under Win95 and so there is no multiple monitors
-            // support anyhow
-            pfnChangeDisplaySettingsEx = ChangeDisplaySettingsExForWin95;
-        }
-    }
 
     // do change the mode
     switch ( ::ChangeDisplaySettingsEx

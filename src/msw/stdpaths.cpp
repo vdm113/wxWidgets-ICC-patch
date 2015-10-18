@@ -138,26 +138,8 @@ void ResolveShellFunctions()
     // with this
     wxLogNull noLog;
 
-#if wxUSE_UNICODE
-    static const wchar_t UNICODE_SUFFIX = L'W';
-#else // !Unicode
-    static const char UNICODE_SUFFIX = 'A';
-#endif // Unicode/!Unicode
-
-    wxString funcname(wxT("SHGetFolderPath"));
-    gs_shellFuncs.pSHGetFolderPath =
-        (SHGetFolderPath_t)dllShellFunctions.GetSymbol(funcname + UNICODE_SUFFIX);
-
-    // then for SHGetSpecialFolderPath (shell32.dll 4.71)
-    if ( !gs_shellFuncs.pSHGetFolderPath )
-    {
-        funcname = wxT("SHGetSpecialFolderPath");
-        gs_shellFuncs.pSHGetSpecialFolderPath = (SHGetSpecialFolderPath_t)
-            dllShellFunctions.GetSymbol(funcname + UNICODE_SUFFIX);
-    }
-
-    // finally we fall back on SHGetSpecialFolderLocation (shell32.dll 4.0),
-    // but we don't need to test for it -- it is available even under Win95
+    gs_shellFuncs.pSHGetKnownFolderPath = (SHGetKnownFolderPath_t)
+        dllShellFunctions.GetSymbol("SHGetKnownFolderPath");
 
     // shell32.dll is going to be unloaded, but it still remains in memory
     // because we also link to it statically, so it's ok

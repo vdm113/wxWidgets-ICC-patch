@@ -253,18 +253,28 @@ wxTextDataObject::GetAllFormats(wxDataFormat *formats,
 
 bool wxFileDataObject::GetDataHere(void *buf) const
 {
-    char* out = reinterpret_cast<char*>(buf);
+    char* out = static_cast<char*>(buf);
 
+#if defined(__INTEL_COMPILER) && 1 /* VDM auto patch */
+#   pragma ivdep
+#   pragma swp
+#   pragma unroll
+#   pragma prefetch
+#   if 0
+#       pragma simd noassert
+#   endif
+#endif /* VDM auto patch */
     for (size_t i = 0; i < m_filenames.GetCount(); i++)
     {
         char* uri = g_filename_to_uri(m_filenames[i].mbc_str(), 0, 0);
         if (uri)
         {
             size_t const len = strlen(uri);
-            strcpy(out, uri);
+            memcpy(out, uri, len);
             out += len;
             *(out++) = '\r';
             *(out++) = '\n';
+            g_free(uri);
         }
     }
     *out = 0;

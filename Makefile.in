@@ -4125,6 +4125,7 @@ COND_USE_GUI_1_ALL_GUI_HEADERS =  \
 	wx/xpmhand.h \
 	wx/xrc/xmlreshandler.h \
 	wx/systhemectrl.h \
+	wx/collheaderctrl.h \
 	$(LOWLEVEL_HDR) \
 	$(GUI_CORE_HEADERS) \
 	$(ADVANCED_HDR) \
@@ -5705,6 +5706,7 @@ COND_TOOLKIT_MSW___GUI_SRC_OBJECTS =  \
 	monodll_msw_tglbtn.o \
 	monodll_treectrl.o \
 	monodll_systhemectrl.o \
+	monodll_collheaderctrlg.o \
 	monodll_msw_checklst.o \
 	monodll_msw_fdrepdlg.o \
 	monodll_msw_fontdlg.o
@@ -7873,6 +7875,7 @@ COND_TOOLKIT_MSW___GUI_SRC_OBJECTS_1 =  \
 	monolib_msw_tglbtn.o \
 	monolib_treectrl.o \
 	monolib_systhemectrl.o \
+	monolib_collheaderctrlg.o \
 	monolib_msw_checklst.o \
 	monolib_msw_fdrepdlg.o \
 	monolib_msw_fontdlg.o
@@ -10196,6 +10199,7 @@ COND_TOOLKIT_MSW___GUI_SRC_OBJECTS_2 =  \
 	coredll_msw_tglbtn.o \
 	coredll_treectrl.o \
 	coredll_systhemectrl.o \
+	coredll_collheaderctrlg.o \
 	coredll_msw_checklst.o \
 	coredll_msw_fdrepdlg.o \
 	coredll_msw_fontdlg.o
@@ -11807,6 +11811,7 @@ COND_TOOLKIT_MSW___GUI_SRC_OBJECTS_3 =  \
 	corelib_msw_tglbtn.o \
 	corelib_treectrl.o \
 	corelib_systhemectrl.o \
+	corelib_collheaderctrlg.o \
 	corelib_msw_checklst.o \
 	corelib_msw_fdrepdlg.o \
 	corelib_msw_fontdlg.o
